@@ -1,0 +1,22 @@
+body{
+    font-family: Arial,Sans-serif;
+    font-size: 15px;
+}
+input{
+    border: solid 1px gray;
+}
+label{
+    width: 100px;
+    display: inline-block;
+    padding: 3px;
+}
+table, td, th{
+    border: solid 1px gray;
+    border-collapse:collapse;
+    padding: 3px;
+}
+div.form{
+    border:1px solid #696969;
+    width:300px;
+    padding:10px;
+}

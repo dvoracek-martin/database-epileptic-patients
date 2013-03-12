@@ -14,6 +14,11 @@
 		<input name="fieldName" type="text" /> <input type="submit"
 			value="Submit">
 	</form>
+	
+	<form name="login" action="login" method="post">
+		<input name="fieldName" type="text" /> <input type="submit"
+			value="login">
+	</form>
 
 </body>
 </html>

@@ -23,6 +23,8 @@
 	
 	<context:component-scan base-package="cz.cvut.fit" />
 	
+		<context:component-scan base-package="com.chickstarter.web" />
+	<resources location="/resources/**" mapping="/src/webapp/resources"/>
 	
 	
 </beans:beans>
