@@ -1,4 +1,4 @@
-package cz.cvut.fit;
+package cz.cvut.fit.genepi.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
