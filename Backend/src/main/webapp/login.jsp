@@ -35,16 +35,16 @@
 		<div class="form">
 			<form name="f" action="j_spring_security_check" method="post">
 				<label for="username">Username:</label><input id="username"
-					name="j_username"> </br> <label for="password">Password:</label><input
-					id="password" name="j_password" type='password'> </br> <input
+					name="j_username"> <label for="password">Password:</label>
+				<input id="password" name="j_password" type='password'>  <input
 					name="submit" type="submit" value="Login" />
 			</form>
 		</div>
 	</div>
 
-<div id="wrapper" style="width:100%; text-align:center">
+	<div id="wrapper" style="width: 100%; text-align: center">
 		<img src="resources/img/genepi.png" />
-</div>
+	</div>
 
 
 </body>
