@@ -42,9 +42,9 @@
 		</div>
 	</div>
 
-
+<div id="wrapper" style="width:100%; text-align:center">
 		<img src="resources/img/genepi.png" />
-
+</div>
 
 
 </body>
