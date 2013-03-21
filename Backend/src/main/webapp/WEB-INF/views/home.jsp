@@ -1,11 +1,10 @@
 <%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cz">
 <head>
 <meta charset="utf-8" />
 <title>Home Page</title>
