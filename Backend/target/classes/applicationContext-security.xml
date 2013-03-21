@@ -6,7 +6,7 @@
                  http://www.springframework.org/schema/security
                  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-    <security:http pattern="/css/**" security="none"/>
+    <security:http pattern="/resources/**" security="none"/>
     <security:http pattern="/login.jsp*" security="none"/>
     <security:http pattern="/denied.jsp" security="none"/>
 

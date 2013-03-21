@@ -9,7 +9,6 @@
 <head>
 <meta charset="utf-8" />
 <title>Home Page</title>
-<link rel="stylesheet" href="/spring-security/css/style.css">
 </head>
 <body>
 	<a href="j_spring_security_logout">Logout</a>
@@ -37,7 +36,6 @@
  %>
 		</strong><br />
 	</div>
-
 	<h2>Spring 3.2.x Security Namespace Configuration (URL Security)</h2>
 	<br /> You can only access this page if you have
 	<a href="admin">ROLE_ADMIN admin/admin.jsp</a>

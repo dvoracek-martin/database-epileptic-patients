@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8"/>
     <title>Admin Page</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="/resources/css/style.css">
 </head>
 <body>
 <h1>Admin Page</h1>

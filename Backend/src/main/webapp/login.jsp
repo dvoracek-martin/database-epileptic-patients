@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Login Page</title>
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
 	<div style="width: 330px; margin: auto;">
@@ -36,10 +36,16 @@
 			<form name="f" action="j_spring_security_check" method="post">
 				<label for="username">Username:</label><input id="username"
 					name="j_username"> </br> <label for="password">Password:</label><input
-					id="password" name="j_password" type='password'> </br>
-				<input name="submit" type="submit" value="Login" />
+					id="password" name="j_password" type='password'> </br> <input
+					name="submit" type="submit" value="Login" />
 			</form>
 		</div>
 	</div>
+
+
+		<img src="resources/img/genepi.png" />
+
+
+
 </body>
 </html>
