@@ -4,6 +4,7 @@
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
-			
+		<meta http-equiv="refresh" content ="20; url=j_spring_security_logout">	
 <link href="resources/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 body {
@@ -220,7 +221,9 @@ body {
 <body>
 
 	
-	
+	<a href="j_spring_security_logout">Logout</a>
+
+
     <!-- NAVBAR
     ================================================== -->
     <div class="navbar-wrapper" id="home">
