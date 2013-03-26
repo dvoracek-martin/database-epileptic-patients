@@ -1,10 +1,12 @@
 <%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-
-
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
-		<meta http-equiv="refresh" content ="20; url=j_spring_security_logout">	
+<!--  <meta http-equiv="refresh" content ="0; url=j_spring_security_logout"-->
 <link href="resources/css/bootstrap.css" rel="stylesheet">
 <style type="text/css">
 body {
@@ -23,32 +25,33 @@ body {
 	color: #5a5a5a;
 }
 
+/* Remove border and change up box shadow for more contrast */
+.navbar .navbar-inner {
+	border: 0;
+	-webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+	-moz-box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+	box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
 
-    /* Remove border and change up box shadow for more contrast */
-    .navbar .navbar-inner {
-      border: 0;
-      -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-         -moz-box-shadow: 0 2px 10px rgba(0,0,0,.25);
-              box-shadow: 0 2px 10px rgba(0,0,0,.25);
-    }
+/* Downsize the brand/project name a bit */
+.navbar .brand {
+	padding: 14px 20px 16px;
+	/* Increase vertical padding to match navbar links */
+	font-size: 16px;
+	font-weight: bold;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, .5);
+}
 
-    /* Downsize the brand/project name a bit */
-    .navbar .brand {
-      padding: 14px 20px 16px; /* Increase vertical padding to match navbar links */
-      font-size: 16px;
-      font-weight: bold;
-      text-shadow: 0 -1px 0 rgba(0,0,0,.5);
-    }
+/* Navbar links: increase padding for taller navbar */
+.navbar .nav>li>a {
+	padding: 15px 20px;
+}
 
-    /* Navbar links: increase padding for taller navbar */
-    .navbar .nav > li > a {
-      padding: 15px 20px;
-    }
+/* Offset the responsive button for proper vertical alignment */
+.navbar .btn-navbar {
+	margin-top: 10px;
+}
 
-    /* Offset the responsive button for proper vertical alignment */
-    .navbar .btn-navbar {
-      margin-top: 10px;
-    }
 .marketing .span4 {
 	text-align: center;
 }
@@ -107,8 +110,8 @@ body {
 	left: 0;
 	right: 0;
 	z-index: 10;
-	margin-left:0px;
-	margin-right:0px;
+	margin-left: 0px;
+	margin-right: 0px;
 	margin-top: 0px;
 	margin-bottom: -90px;
 	/* Negative margin to pull up carousel. 90px is roughly margins and height of navbar. */
@@ -196,7 +199,6 @@ body {
 	line-height: 1;
 	letter-spacing: -1px;
 }
-
 </style>
 <link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -219,40 +221,53 @@ body {
 
 </head>
 <body>
-
+	<sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
+		<td><a href="<c:url value="/login"/>">Login</a></td>
+	</sec:authorize>
+	<sec:authorize ifNotGranted="ROLE_ANONYMOUS">
+		<!-- shall go to the homepage or better logout the user? -->
+		<td><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></td>
+	</sec:authorize>
 	
-	<a href="j_spring_security_logout">Logout</a>
+	<sec:authorize var="loggedIn" access="isAuthenticated()"/>
+	
+	<c:choose>
+		<c:when test="${loggedIn}">
+			<td><a href="<c:url value="/j_spring_security_logout"/>">Logout2</a></td>
+		</c:when>
+	</c:choose>
 
-
-    <!-- NAVBAR
+	<!-- NAVBAR
     ================================================== -->
-    <div class="navbar-wrapper" id="home">
-      <!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
-      <div class="container">
+	<div class="navbar-wrapper" id="home">
+		<!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+		<div class="container">
 
-        <div class="navbar navbar-inverse">
-          <div class="navbar-inner">
-            <!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
-            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </a>
-            <a class="brand" href="#">GENEPI</a>
-            <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-            <div class="nav-collapse collapse">
-				<ul id="nav-list" class="nav pull-right">
-					<li><a href="#home">Home</a></li>
-					<li><a href="#about">About</a></li>
-					<li><a href="#updates">Updates</a></li>
-					<li><a href="#contact">Contact</a></li>
-				</ul>
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+					</a> <a class="brand" href="#">GENEPI</a>
+					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+					<div class="nav-collapse collapse">
+						<ul id="nav-list" class="nav pull-right">
+							<li><a href="#home">Home</a></li>
+							<li><a href="#about">About</a></li>
+							<li><a href="#updates">Updates</a></li>
+							<li><a href="#contact">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- /.navbar-inner -->
 			</div>
-          </div><!-- /.navbar-inner -->
-        </div><!-- /.navbar -->
+			<!-- /.navbar -->
 
-      </div> <!-- /.container -->
-    </div><!-- /.navbar-wrapper -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.navbar-wrapper -->
 
 
 
@@ -549,7 +564,9 @@ body {
 	<!-- Le javascript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script src="resources/js/jquery.js"></script>
+	<script src="resources/js/jquery.js">
+		
+	</script>
 	<script src="resources/js/bootstrap-transition.js"></script>
 	<script src="resources/js/bootstrap-alert.js"></script>
 	<script src="resources/js/bootstrap-modal.js"></script>
@@ -578,6 +595,7 @@ body {
 			})
 		}(window.jQuery)
 	</script>
+
 </body>
 </html>
 

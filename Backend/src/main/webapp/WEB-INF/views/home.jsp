@@ -1,5 +1,6 @@
 <%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder"%>
+<%@ page
+	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
@@ -8,10 +9,48 @@
 <head>
 <meta charset="utf-8" />
 <title>Home Page</title>
+
+  <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+  <style type="text/css"> 
+  .container {
+  margin-top: 200px;
+  }
+  </style>
+  
+  
 </head>
 <body>
 	<a href="j_spring_security_logout">Logout</a>
+	
+	
+	
+	<ul class="nav nav-tabs">
+		<li class="active"><a href="#">Home</a></li>
+		<li><a href="#">About</a></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">FrontEnd<b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li><a href="#">Twitter Bootstrap</a></li>
+				<li><a href="#">Google Plus API</a></li>
+				<li><a href="#">HTML5</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Examples</a></li>
+			</ul></li>
+		<li class="dropdown"><a class="dropdown-toggle"
+			data-toggle="dropdown" href="#">BackEnd<b class="caret bottom-up"></b></a>
+			<ul class="dropdown-menu bottom-up pull-right">
+				<li><a href="#">PHP</a></li>
+				<li><a href="#">MySQL</a></li>
+				<li><a href="#">PostgreSQL</a></li>
+				<li class="divider"></li>
+				<li><a href="#">Live Demos</a></li>
+			</ul></li>
+	</ul>
+	
+	
 	<h1>Home Page</h1>
+	
+	
 	<P>The time on the server is ${serverTime}.</P>
 
 	<%
@@ -66,5 +105,14 @@
 	</ol>
 
 	<a href="j_spring_security_logout">Login as a different user.</a>
+
+	<script
+		src="resources/js/jquery.js"></script>
+	<script
+		src="resources/js/bootstrap-dropdown.js"></script>
+	<script
+		src="resources/js/application.js"></script>
+
+
 </body>
 </html>
