@@ -233,9 +233,16 @@ body {
 	
 	<c:choose>
 		<c:when test="${loggedIn}">
-			<td><a href="<c:url value="/j_spring_security_logout"/>">Logout2</a></td>
+			<!--td><a href="<c:url value="/j_spring_security_logout"/>">Logout2</a></td-->
+				<td><a href="<c:url value="/j_spring_security_logout"/>">Logout3</a></td>
 		</c:when>
 	</c:choose>
+	
+	
+
+ 
+ 
+ 
 
 	<!-- NAVBAR
     ================================================== -->

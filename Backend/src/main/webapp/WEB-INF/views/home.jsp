@@ -20,10 +20,7 @@
   
 </head>
 <body>
-	<a href="j_spring_security_logout">Logout</a>
-	
-	
-	
+	<a href="j_spring_security_logout">Logout</a>	
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#">Home</a></li>
 		<li><a href="#">About</a></li>
@@ -44,7 +41,7 @@
 				<li><a href="#">PostgreSQL</a></li>
 				<li class="divider"></li>
 				<li><a href="#">Live Demos</a></li>
-			</ul></li>
+			</ul></li>			
 	</ul>
 	
 	

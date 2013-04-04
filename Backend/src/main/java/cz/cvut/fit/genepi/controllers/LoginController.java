@@ -17,9 +17,14 @@ public class LoginController {
 	/**
 	 * Simply selects the admin view to render by returning its name.
 	 */
+	
+	
+	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(Locale locale, Model model) {
 		logger.info("LOGIN! The client locale is {}.", locale);
+		
+		
 		
 		return "login";
 	}	

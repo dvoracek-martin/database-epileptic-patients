@@ -66,8 +66,8 @@ body {
 
 		<form name="f" action="/fit/">
 
-			<button class="btn btn-large btn-primary" type="submit"
-				onclick="/fit/">Well...so take me to my home page pls</button>
+			<button class="btn btn-large btn-prismary" type="submit"
+				onclick="/">Well...so take me to my home page pls</button>
 		</form>
 	</div>
 </body>
