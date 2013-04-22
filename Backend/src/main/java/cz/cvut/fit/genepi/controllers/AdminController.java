@@ -18,7 +18,7 @@ public class AdminController {
 	 * Simply selects the admin view to render by returning its name.
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	public String admin(Locale locale, Model model) {
 		logger.info("Welcome admin! The client locale is {}.", locale);
 		
 		return "admin";
