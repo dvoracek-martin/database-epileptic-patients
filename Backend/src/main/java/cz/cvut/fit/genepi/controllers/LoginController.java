@@ -30,12 +30,13 @@ public class LoginController {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
 		/*
-		 * ============================================ THIS BLOCK DEMONSTRATES
-		 * WORK WITH HIBERNATE ============================================
+		 * =============================================== 
+		 * THIS BLOCK DEMONSTRATES THE WORK WITH HIBERNATE 
+		 * ===============================================
 		 */
 
 		// create new session via HibernateUtil class
-		// this class seeks for hibernate.cfg.xml file and maps the entities
+		// this class seeks for the hibernate.cfg.xml file and maps the entities
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		session.beginTransaction();
 
