@@ -32,6 +32,7 @@ public class LoginController {
 	public String loginGET(Locale locale, Model model) {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
+		// NEW WAY, HOW TO USE HIBERNATE IN OUR APP, PLS GET FAMILIAR WITH THIS
 		UserDAOImpl userImpl = new UserDAOImpl();
 		userImpl.createUser(12345, "username3", "createdBy3");
 		userImpl.save(userImpl.user);
@@ -41,6 +42,8 @@ public class LoginController {
 
 		UserDAO u= userImpl.findByID(userImpl.user.getClass(), 12345);	
 		System.out.println(u.getCreatedBy());
+		
+		// DEPRECATED
 		// create new object according to its model and call save method then
 
 		/*
