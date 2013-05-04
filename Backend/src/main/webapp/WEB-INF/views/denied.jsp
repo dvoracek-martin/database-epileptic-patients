@@ -64,10 +64,9 @@ body {
 		<h1>OH SNAP! You're not authorized to access this page!</h1>
 		</br>
 
-		<form name="f" action="/">
-
-			<button class="btn btn-large btn-primary" type="submit"
-				onclick="/">Well...so take me to my home page pls</button>
+		<form name="f" action="/GENEPI/login" method="post">
+			<button class="btn btn-large btn-primary" type="submit" onclick="/">Well...so
+				take me to my home page pls</button>
 		</form>
 	</div>
 </body>

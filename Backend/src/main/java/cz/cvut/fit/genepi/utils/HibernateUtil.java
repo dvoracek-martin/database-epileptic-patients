@@ -2,13 +2,13 @@ package cz.cvut.fit.genepi.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
- 
+
 /*
  * class that handles connection with the database via hibernate 
  */
-
 public class HibernateUtil {
- 
+
+
 	private static final SessionFactory sessionFactory = buildSessionFactory();
  
 	private static SessionFactory buildSessionFactory() {
@@ -23,6 +23,8 @@ public class HibernateUtil {
 	}
  
 	public static SessionFactory getSessionFactory() {
+		if (sessionFactory==null)
+			buildSessionFactory();
 		return sessionFactory;
 	}
  
