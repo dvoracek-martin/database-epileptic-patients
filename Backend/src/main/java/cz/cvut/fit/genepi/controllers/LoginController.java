@@ -26,10 +26,25 @@ public class LoginController {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
 		// create new object according to its model and call save method then
-		UserDAOImpl user = new UserDAOImpl();
-		user.createUser(1, "username", "createdBy");		
-		user.saveUser();
+		
+		/*
+		 * SAMPLE CODE OF THE USAGE OF HIBERNATE AND DAOIMPL CLASS
+		 * 
+		  
+		
+		UserDAOImpl userImpl = new UserDAOImpl();
+		userImpl.createUser(12230, "username3", "createdBy3");		
+		userImpl.saveUser();
+		
+		userImpl.createUser(12234, "username2", "createdBy2");		
+		userImpl.saveUser();
 
+		userImpl.findUserById(12230);
+		System.out.println("USER "+userImpl.user.getCreatedBy());
+		*/
+		
+		
 		return "login";
+		
 	}
 }

@@ -15,7 +15,7 @@ public class DeniedController {
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	/**
-	 * Simply selects the admin view to render by returning its name.
+	 * Simply selects the denied view to render by returning its name.
 	 */
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
 	public String denied(Locale locale, Model model) {
