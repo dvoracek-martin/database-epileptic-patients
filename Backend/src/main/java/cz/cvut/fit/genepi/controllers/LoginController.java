@@ -9,9 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.models.UserDAO;
-import cz.cvut.fit.genepi.modelsImpl.UserDAOImpl;
-
 @Controller
 public class LoginController {
 
