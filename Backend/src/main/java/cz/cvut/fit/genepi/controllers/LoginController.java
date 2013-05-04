@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.controllers;
 import java.util.Date;
 import java.util.Locale;
 
-import model.DBUser;
 
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -13,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import util.HibernateUtil;
+import cz.cvut.fit.genepi.models.UserDAO;
+import cz.cvut.fit.genepi.utils.HibernateUtil;
+
 
 @Controller
 public class LoginController {
@@ -41,9 +42,9 @@ public class LoginController {
 		session.beginTransaction();
 
 		// create new object according to its model
-		DBUser user = new DBUser();
+		UserDAO user = new UserDAO();
 
-		user.setUserId(101);
+		user.setUserId(1013);
 		user.setUsername("superman");
 		user.setCreatedBy("system");
 		user.setCreatedDate(new Date());

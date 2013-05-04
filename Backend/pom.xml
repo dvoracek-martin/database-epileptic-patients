@@ -166,6 +166,7 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>3.6.3.Final</version>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<plugins>

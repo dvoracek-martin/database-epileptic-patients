@@ -1,4 +1,4 @@
-package util;
+package cz.cvut.fit.genepi.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
