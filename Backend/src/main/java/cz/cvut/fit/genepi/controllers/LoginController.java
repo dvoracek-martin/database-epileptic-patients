@@ -1,8 +1,6 @@
 package cz.cvut.fit.genepi.controllers;
 
-import java.util.Date;
 import java.util.Locale;
-
 
 import org.hibernate.classic.Session;
 import org.slf4j.Logger;
@@ -12,9 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.models.UserDAO;
+import cz.cvut.fit.genepi.modelsImpl.UserDAOImpl;
 import cz.cvut.fit.genepi.utils.HibernateUtil;
-
 
 @Controller
 public class LoginController {
@@ -30,32 +27,10 @@ public class LoginController {
 	public String login(Locale locale, Model model) {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
-		/*
-		 * =============================================== 
-		 * THIS BLOCK DEMONSTRATES THE WORK WITH HIBERNATE 
-		 * ===============================================
-		 */
-
-		// create new session via HibernateUtil class
-		// this class seeks for the hibernate.cfg.xml file and maps the entities
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		session.beginTransaction();
-
-		// create new object according to its model
-		UserDAO user = new UserDAO();
-
-		user.setUserId(1013);
-		user.setUsername("superman");
-		user.setCreatedBy("system");
-		user.setCreatedDate(new Date());
-
-		session.save(user);
-
-		// save the data to the database
-		session.getTransaction().commit();
-
-		// close the connection
-		session.disconnect();
+		// create new object according to its model and call save method then
+		UserDAOImpl user = new UserDAOImpl();
+		user.createUser(1, "username", "createdBy");		
+		user.saveUser();
 
 		return "login";
 	}
