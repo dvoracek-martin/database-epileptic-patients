@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.models;
 
-import java.io.*;
-import java.math.BigDecimal;
-import java.util.*;
+import java.io.Serializable;
+import java.util.List;
+
 import org.hibernate.Query;
 
 public interface GenericDAO<T, ID extends Serializable> {

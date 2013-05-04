@@ -5,7 +5,6 @@ import java.util.Date;
 
 import cz.cvut.fit.genepi.models.UserDAO;
 
-@SuppressWarnings("unchecked")
 public class UserDAOImpl extends GenericDAOImpl<UserDAO, Serializable>{
 	
 	public UserDAO user;
