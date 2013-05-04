@@ -40,29 +40,31 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 		hibernateSession.disconnect();
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<T> findMany(Query query) {
 		List<T> t;
 		t = (List<T>) query.list();
 		return t;
 	}
 
+	@SuppressWarnings("unchecked")
 	public T findOne(Query query) {
 		T t;
 		t = (T) query.uniqueResult();
 		return t;
 	}
 
-	
-	public T findByID(Class myClass, int id) {
+	@SuppressWarnings("unchecked")
+	public T findByID(Class<T> myClass, int id) {
 		Session hibernateSession = this.getSession();
 		T t = null;
 		t = (T) hibernateSession.get(myClass, id);
 		return t;
 	}
-
-	public List findAll(Class myClass) {
+	@SuppressWarnings("unchecked")
+	public List<T> findAll(Class<T> myClass) {
 		Session hibernateSession = this.getSession();
-		List T = null;
+		List<T> T = null;
 		Query query = hibernateSession.createQuery("from " + myClass.getName());
 		T = query.list();
 		return T;
