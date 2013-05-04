@@ -67,8 +67,8 @@
               <li><a href="#">Kartoteka pacientu</a></li>
               <li><a href="#">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
-              <li><a href="profile">PROFILE profile/profile.jsp</a></li>
-              <li><a href="j_spring_security_logout">Odhlasit</a></li>
+              <li><a href="#">Profil</a></li>
+              <li><a href="#">Odhlasit</a></li>
               <li class="nav-header">Jazyk</li>
             </ul>
           </div><!--/.well -->
@@ -78,23 +78,8 @@
       </div>
         <div class="span9">
           <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p> Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
+            <h1>Profile</h1>
+            <p> tady bude info 
 			</p>
           </div>
           </div>
