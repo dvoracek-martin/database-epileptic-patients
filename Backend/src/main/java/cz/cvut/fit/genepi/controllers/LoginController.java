@@ -64,13 +64,10 @@ public class LoginController {
 
 		PatientDAOImpl userImpl = new PatientDAOImpl();
 		userImpl.findByID(PatientDAO.class, (12));
-		System.out.println("USER " + userImpl.patient.get_id());
-		System.out.println("USER " + userImpl.patient.get_nin());
-		System.out.println("USER " + userImpl.patient.get_checked() );
-		System.out.println("USER " + userImpl.patient.get_contact_id());
-		System.out.println("USER " + userImpl.patient.get_doctor_id());
-		System.out.println("USER " + userImpl.patient.get_deleted());
-
+		System.out.println("USER " + userImpl.patient.getId());
+		System.out.println("USER " + userImpl.patient.getNin());
+		System.out.println("USER " + userImpl.patient.getChecked() );
+		System.out.println("USER " + userImpl.patient.getContactId());
 		return "login";
 	}
 }

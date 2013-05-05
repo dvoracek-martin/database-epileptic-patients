@@ -14,17 +14,17 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientDAO, Serializable>{
 	}
 
 	public void createPatient(int id, long nin, Date birthday, String gender,
-			int doctor_id, int deleted, int checked, int contact_id, int comment_id) {
+			int doctorId, int deleted, int checked, int contactId, int commentId) {
 	
 		patient.setId(id);
-		patient.set_nin(nin);
-		patient.set_birthday(birthday);
-		patient.set_gender(gender);
-		patient.set_doctor_id(doctor_id);
-		patient.set_deleted(deleted);
-		patient.set_checked(checked);
-		patient.set_contact_id(contact_id);
-		patient.set_comment_id(comment_id);
+		patient.setNin(nin);
+		patient.setBirthday(birthday);
+		patient.setGender(gender);
+		patient.setDoctorId(doctorId);
+		patient.setDeleted(deleted);
+		patient.setChecked(checked);
+		patient.setContactId(contactId);
+		patient.setCommentId(commentId);
 	}
 
 	public void createUser(PatientDAO patient) {

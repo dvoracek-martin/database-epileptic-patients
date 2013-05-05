@@ -12,108 +12,101 @@ public class PatientDAO implements java.io.Serializable {
 	 */
 	private static final long serialVersionUID = -8172690860460945951L;
 
-	private int _id;
-	private long _nin;
-	private Date _birthday;
-	private String _gender;
-	private int _doctor_id;
-	private int _deleted;
-	private int _checked;
-	public int get_checked() {
-		return _checked;
+	private int id;
+	private long nin;
+	private Date birthday;
+	private String gender;
+	private int doctorId;
+	private int deleted;
+	private int checked;
+	public int getId() {
+		return id;
 	}
 
-	public void set_checked(int _checked) {
-		this._checked = _checked;
+	public void setId(int id) {
+		this.id = id;
 	}
 
-	private int _contact_id;
-	private int _comment_id;
+	public long getNin() {
+		return nin;
+	}
+
+	public void setNin(long nin) {
+		this.nin = nin;
+	}
+
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public int getDeleted() {
+		return deleted;
+	}
+
+	public void setDeleted(int deleted) {
+		this.deleted = deleted;
+	}
+
+	public int getChecked() {
+		return checked;
+	}
+
+	public void setChecked(int checked) {
+		this.checked = checked;
+	}
+
+	public int getContactId() {
+		return contactId;
+	}
+
+	public void setContactId(int contactId) {
+		this.contactId = contactId;
+	}
+
+	public int getCommentId() {
+		return commentId;
+	}
+
+	public void setCommentId(int commentId) {
+		this.commentId = commentId;
+	}
+
+	private int contactId;
+	private int commentId;
 
 	public PatientDAO() {
 	}
 
-	public PatientDAO(int id, long nin, Date birthday, int doctor_id,
-			int deleted, int checked, int contact_id, int comment_id) {
-		this._id = id;
-		this._nin = nin;
-		this._birthday = birthday;
-		this._doctor_id = doctor_id;
-		this._deleted = deleted;
-		this._checked=checked;
-		this._contact_id = contact_id;
-		this._comment_id = comment_id;
+	public PatientDAO(int id, long nin, Date birthday, int doctorId,
+			int deleted, int checked, int contactId, int commentId) {
+		this.id = id;
+		this.nin = nin;
+		this.birthday = birthday;
+		this.doctorId = doctorId;
+		this.deleted = deleted;
+		this.checked=checked;
+		this.contactId = contactId;
+		this.commentId = commentId;
 	}
 
-	public int getId() {
-		return this._id;
-	}
-
-	public void setId(int id) {
-		this._id = id;
-	}
-
-	public int get_id() {
-		return _id;
-	}
-
-	public void set_id(int _id) {
-		this._id = _id;
-	}
-
-	public long get_nin() {
-		return _nin;
-	}
-
-	public void set_nin(long _nin) {
-		this._nin = _nin;
-	}
-
-	public Date get_birthday() {
-		return _birthday;
-	}
-
-	public void set_birthday(Date _birthday) {
-		this._birthday = _birthday;
-	}
-
-	public String get_gender() {
-		return _gender;
-	}
-
-	public void set_gender(String _gender) {
-		this._gender = _gender;
-	}
-
-	public int get_doctor_id() {
-		return _doctor_id;
-	}
-
-	public void set_doctor_id(int _doctor_id) {
-		this._doctor_id = _doctor_id;
-	}
-
-	public int get_deleted() {
-		return _deleted;
-	}
-
-	public void set_deleted(int _deleted) {
-		this._deleted = _deleted;
-	}
-
-	public int get_contact_id() {
-		return _contact_id;
-	}
-
-	public void set_contact_id(int _contact_id) {
-		this._contact_id = _contact_id;
-	}
-
-	public int get_comment_id() {
-		return _comment_id;
-	}
-
-	public void set_comment_id(int _comment_id) {
-		this._comment_id = _comment_id;
-	}
 }
