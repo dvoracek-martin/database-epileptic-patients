@@ -81,7 +81,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
           </br></br></br></br></br></br></br></br></br></br></br></br></br>
-          <h1>FN MOTOL</h1>
+          <h1><a href="#" style="text-decoration: none">FN MOTOL</a></h1>
         </div>
 
         <div class="well sidebar-nav">
@@ -90,7 +90,7 @@
               <li><a href="#">Kartoteka pacientu</a></li>
               <li><a href="#">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
-              <li><a href="profile">PROFILE profile/profile.jsp</a></li>
+              <li><a href="profile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
               <li class="nav-header">Jazyk</li>
             </ul>
@@ -101,13 +101,15 @@
       </div>
         <div class="span9">
           <div class="hero-unit">
-            <h1>News!</h1>
+            <div style="border-bottom: 2px solid black"><h1>News!</h1></div>
+            <div style="margin: 10px">
             <p> Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
             Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
             Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
             Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
             Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
 			</p>
+			</div>
           </div>
           </div>
 
