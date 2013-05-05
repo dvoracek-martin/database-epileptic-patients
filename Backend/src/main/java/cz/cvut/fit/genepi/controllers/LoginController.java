@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.models.PatientDAO;
+import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
+
 @Controller
 public class LoginController {
 
@@ -58,6 +61,16 @@ public class LoginController {
 		 * userImpl.findUserById(12230);
 		 * System.out.println("USER "+userImpl.user.getCreatedBy());
 		 */
+
+		PatientDAOImpl userImpl = new PatientDAOImpl();
+		userImpl.findByID(PatientDAO.class, (12));
+		System.out.println("USER " + userImpl.patient.get_id());
+		System.out.println("USER " + userImpl.patient.get_nin());
+		System.out.println("USER " + userImpl.patient.get_checked() );
+		System.out.println("USER " + userImpl.patient.get_contact_id());
+		System.out.println("USER " + userImpl.patient.get_doctor_id());
+		System.out.println("USER " + userImpl.patient.get_deleted());
+
 		return "login";
 	}
 }
