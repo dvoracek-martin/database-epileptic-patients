@@ -229,7 +229,8 @@ body {
 		<td><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></td>
 	</sec:authorize>-->
 	
-	<sec:authorize var="loggedIn" access="isAuthenticated()"/>
+	<sec:authorize var="loggedIn" access="isAuthenticated()"/> 
+	
 	
 	<c:choose>
 		<c:when test="${loggedIn}">
