@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,9 @@ public class LoginController {
 		// userImpl.createUser(54321, "username3", "createdBy3");
 		// userImpl.save(userImpl.user);
 
-		// UserDAO u= userImpl.findByID(userImpl.user.getClass(), 12345);	
+		// UserDAO u= userImpl.findByID(userImpl.user.getClass(), 12345);
 		// System.out.println(u.getCreatedBy());
-		
+
 		// DEPRECATED
 		// create new object according to its model and call save method then
 
@@ -57,7 +58,6 @@ public class LoginController {
 		 * userImpl.findUserById(12230);
 		 * System.out.println("USER "+userImpl.user.getCreatedBy());
 		 */
-
 		return "login";
 	}
 }

@@ -6,8 +6,12 @@
                  http://www.springframework.org/schema/security
                  http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
+	<bean id="webexpressionHandler"
+		class="org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler" />
+		
+		
     <security:http pattern="/resources/**" security="none"/>
-    <security:http pattern="/login" security="none" auto-config="true"/>
+    <security:http pattern="/login" auto-config="true"/>
     <security:http pattern="/denied" security="none"/>
 
     <security:http auto-config="true" access-denied-page="/denied" servlet-api-provision="false">
