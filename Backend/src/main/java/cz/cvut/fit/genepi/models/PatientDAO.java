@@ -13,7 +13,7 @@ public class PatientDAO implements java.io.Serializable {
 	private static final long serialVersionUID = -8172690860460945951L;
 
 	private int id;
-	private long nin;
+	private String nin;
 	private Date birthday;
 	private String gender;
 	private int doctorId;
@@ -27,11 +27,11 @@ public class PatientDAO implements java.io.Serializable {
 		this.id = id;
 	}
 
-	public long getNin() {
+	public String getNin() {
 		return nin;
 	}
 
-	public void setNin(long nin) {
+	public void setNin(String nin) {
 		this.nin = nin;
 	}
 
@@ -97,7 +97,7 @@ public class PatientDAO implements java.io.Serializable {
 	public PatientDAO() {
 	}
 
-	public PatientDAO(int id, long nin, Date birthday, int doctorId,
+	public PatientDAO(int id, String nin, Date birthday, int doctorId,
 			int deleted, int checked, int contactId, int commentId) {
 		this.id = id;
 		this.nin = nin;

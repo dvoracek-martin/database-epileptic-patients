@@ -13,7 +13,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientDAO, Serializable>{
 		patient = new PatientDAO();
 	}
 
-	public void createPatient(int id, long nin, Date birthday, String gender,
+	public void createPatient(int id, String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
 	
 		patient.setId(id);

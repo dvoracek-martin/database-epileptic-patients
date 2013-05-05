@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.controllers;
 
+import java.util.Date;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -34,14 +35,13 @@ public class LoginController {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
 		// NEW WAY, HOW TO USE HIBERNATE IN OUR APP, PLS GET FAMILIAR WITH THIS
-		// UserDAOImpl userImpl = new UserDAOImpl();
-		// userImpl.createUser(12345, "username3", "createdBy3");
-		// userImpl.save(userImpl.user);
+		PatientDAOImpl userImpl = new PatientDAOImpl();
+		 userImpl.createPatient(101, "zvzfsdfsdfasfas",new Date(), "male",
+					5487, 1, 0, 56421, 4567);
 
-		// userImpl.createUser(54321, "username3", "createdBy3");
-		// userImpl.save(userImpl.user);
+		 userImpl.save(userImpl.patient);
 
-		// UserDAO u= userImpl.findByID(userImpl.user.getClass(), 12345);
+		PatientDAO p= (PatientDAO)userImpl.findByID(PatientDAO.class, 10);
 		// System.out.println(u.getCreatedBy());
 
 		// DEPRECATED
@@ -61,13 +61,13 @@ public class LoginController {
 		 * userImpl.findUserById(12230);
 		 * System.out.println("USER "+userImpl.user.getCreatedBy());
 		 */
-
-		PatientDAOImpl userImpl = new PatientDAOImpl();
-		userImpl.findByID(PatientDAO.class, (12));
-		System.out.println("USER " + userImpl.patient.getId());
-		System.out.println("USER " + userImpl.patient.getNin());
-		System.out.println("USER " + userImpl.patient.getChecked() );
-		System.out.println("USER " + userImpl.patient.getContactId());
+//
+	//	PatientDAOImpl userImpl = new PatientDAOImpl();
+		//userImpl.findByID(PatientDAO.class, (12));
+		System.out.println("USER " + p.getId());
+		System.out.println("USER " + p.getNin());
+		System.out.println("USER " + p.getChecked() );
+		System.out.println("USER " + p.getContactId());
 		return "login";
 	}
 }
