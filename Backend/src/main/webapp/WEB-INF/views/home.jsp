@@ -36,7 +36,30 @@
 				<li><a href="#">Live Demos</a></li>
 			</ul></li>			
 	</ul>
-	 -->
+	-->
+	
+	<div class="navbar-wrapper" id="home">
+		<!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
+		<div class="container">
+
+			<div class="navbar navbar-inverse">
+				<div class="navbar-inner">
+					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span>
+					</a> <a class="brand" href="#">GENEPI - HOME PAGE</a>
+					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+			
+				</div>
+				<!-- /.navbar-inner -->
+			</div>
+			<!-- /.navbar -->
+
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.navbar-wrapper -->
 	
 	
 	<!-- <P>The time on the server is ${serverTime}.</P>  -->
@@ -72,29 +95,18 @@
               <li class="nav-header">Jazyk</li>
             </ul>
           </div><!--/.well -->
-        <footer>
+        <div id="copyright">
         <p>GENEPI, &copy 2013, FIT CVUT
-        </footer>
+        </div>
       </div>
         <div class="span9">
           <div class="hero-unit">
-            <h1>Hello, world!</h1>
-            <p> Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
-            Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck Fuck 
+            <h1>News!</h1>
+            <p> Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
+            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
+            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
+            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
+            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
 			</p>
           </div>
           </div>
