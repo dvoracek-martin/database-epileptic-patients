@@ -222,11 +222,11 @@ body {
 </head>
 <body>
 	<sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
-		<td><a href="<c:url value="/login"/>">Login</a></td>
+	    <c:redirect url="/" />
 	</sec:authorize>
 	<sec:authorize ifNotGranted="ROLE_ANONYMOUS">
 		<!-- shall go to the homepage or better logout the user? -->
-		<td><a href="<c:url value="/j_spring_security_logout"/>">Logout</a></td>
+		<c:redirect url="/" />
 	</sec:authorize>
 	
 	<sec:authorize var="loggedIn" access="isAuthenticated()"/>
@@ -234,7 +234,8 @@ body {
 	<c:choose>
 		<c:when test="${loggedIn}">
 			<!--td><a href="<c:url value="/j_spring_security_logout"/>">Logout2</a></td-->
-				<td><a href="<c:url value="/j_spring_security_logout"/>">Logout3</a></td>
+			<c:redirect url="/" />
+				<!--<td><a href="<c:url value="/"/>">Logout3</a></td>-->
 		</c:when>
 	</c:choose>
 	
@@ -256,14 +257,11 @@ body {
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI</a>
+					</a> <a class="brand" href="#">GENEPI - LOGIN PAGE</a>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 					<div class="nav-collapse collapse">
 						<ul id="nav-list" class="nav pull-right">
-							<li><a href="#home">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#updates">Updates</a></li>
-							<li><a href="#contact">Contact</a></li>
+							<li><a href="#contact-info">Contact</a></li>
 						</ul>
 					</div>
 				</div>
@@ -321,88 +319,8 @@ body {
 		<img src="resources/img/genepi.png" />
 	</div>
 
-
-
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-	</br>
-
-
-	<!-- Marketing messaging and featurettes
-    ================================================== -->
-	<!-- Wrap the rest of the page in another container to center all the content. -->
-
-	<div class="container marketing">
-
-		<!-- Three columns of text below the carousel -->
-		<div class="row-fluid">
-
-			<!-- PHONES IMAGE FOR DESKTOP MEDIA QUERY 
-		<div class="span5 visible-desktop">
-			<img src="resources/img/phones.png">
-		</div> -->
-
-			<!-- APP DETAILS -->
-			<div class="span7">
-
-				<!-- ICON -->
-				<div class="visible-desktop" id="icon">
-					<img src="resources/img/app_icon.png" />
-				</div>
-
-				<!-- APP NAME -->
-				<div id="app-name">
-					<h1>News</h1>
-				</div>
-
-				<!-- VERSION -->
-				<div id="version">
-					<span class="version-top label label-inverse">21.3.2013</span>
-				</div>
-
-				<!-- TAGLINE -->
-				<div id="tagline">Probehne od 12.30 do 13.00 odstavka serveru
-					a aplikace tak bude nedostupna. Odstavka se dotkne take techto
-					oddeleni a IS na nich nebude dostupny:</div>
-
-				<!-- FEATURES -->
-				<ul id="features">
-					<li>Kardio</li>
-					<li>Aro</li>
-					<li>Neuro</li>
-					<li>Patologie</li>
-				</ul>
-
-				<!-- DOWNLOAD & REQUIREMENT BOX -->
-				<div class="download-box">
-					<a href="#"><img
-						src="resources/img/available-on-the-app-store.png"></a>
-				</div>
-
-				<div class="download-box">
-					<strong>MOZNA</strong><br> jednou udelame i nejakou cool
-					mobilni appku k tomuhle softu.
-				</div>
-
-
-				<div class="download-box">
-					<strong>NEJSPIS</strong><br> ale ne.
-				</div>
-
-			</div>
-		</div>
-
-		</br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
-
 		<!-- ABOUT & UPDATES -->
-		<div class="row-fluid" id="about">
+		<!--<div class="row-fluid" id="about">
 
 			<div class="span6">
 				<h2 class="page-title" id="scroll_up">
@@ -443,11 +361,11 @@ body {
 					Updates <a href="#home" class="arrow-top"> <img
 						src="resources/img/arrow-top.png">
 					</a>
-				</h2>
+				</h2> -->
 
 				<!-- UPDATES & RELEASE NOTES -->
 
-				<h3 class="version">Version 1.2</h3>
+				<!--<h3 class="version">Version 1.2</h3>
 				<span class="release-date">Released on April 28th, 2012</span>
 				<ul>
 					<li><span class="label new">NEW</span>Challenge a Friend</li>
@@ -472,45 +390,38 @@ body {
 
 			</div>
 
-		</div>
-
-
-
-
-		</br> </br> </br> </br> </br> </br> </br> </br> </br> </br>
+		</div>-->
+		</br> </br> </br> </br> </br> </br> 
 
 		<!-- CONTACT -->
 		<div class="row-fluid" id="contact">
-
-			<h2 class="page-title" id="scroll_up">
-				Contact <a href="#home" class="arrow-top"> <img
+<div style="display:none">
+			<h2 class="page-title" id="scroll_up" >
+				Kontakt <a href="#home" class="arrow-top"> <img
 					src="resources/img/arrow-top.png">
 				</a>
 			</h2>
-
+</div>
 			<!-- CONTACT INFO -->
-			<div class="span4" id="contact-info">
-				<h3>Contact Us</h3>
-				<p>FlexApp is free and thus unfortunately we cannot provide
-					basic support for it. We simply don't have the time to answer
-					everyone's questions.</p>
-				<p>However, you may contact us about general business inquiries
-					or to report bugs in the template!
+			<div class="span4" id="contact-info"  border-left: 20px">
+				<h3>Kontaktujte nas!</h3>
+				<p>Pokud zaznamenavate problemy s prihlasenim kontaktujte nas na adrese dole.</p>
+				<p>Nebo vyuzijte formular vpravo.
 				<p>
 				<p>
-					<a href="mailto:superman@genepi.com">contact@trippoinc.com</a>
+					<a href="mailto:admin@genepi.com">admin@genepi.com</a>
 				</p>
 			</div>
 
 			<!-- CONTACT FORM -->
-			<div class="span7" id="contact-form">
+			<div class="span7" id="contact-form" margin-left: 5pt">
 				<form class="form-horizontal">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label" for="name"></label>
 							<div class="controls">
 								<input class="input-xlarge" type="text" id="name"
-									placeholder="Name">
+									placeholder="Jmeno a prijmeni">
 							</div>
 						</div>
 						<div class="control-group">
@@ -524,18 +435,18 @@ body {
 							<label class="control-label" for="subject"></label>
 							<div class="controls">
 								<input class="input-xlarge" type="text" id="subject"
-									placeholder="Subject">
+									placeholder="Predmet">
 							</div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="message"></label>
 							<div class="controls">
 								<textarea class="input-xlarge" rows="3" id="message"
-									placeholder="Message"></textarea>
+									placeholder="Text zpravy"></textarea>
 							</div>
 						</div>
-						<div style="width: 100%; text-align: center" class="form-actions">
-							<button type="submit" class="btn btn-primary">SEND</button>
+						<div  class="form-actions" style="background:white;border-color:white">
+							<button type="submit" class="btn btn-primary">ODESLAT</button>
 						</div>
 					</fieldset>
 				</form>
@@ -550,16 +461,9 @@ body {
 
 			<!-- COPYRIGHT - EDIT HOWEVER YOU WANT! -->
 			<div id="copyright">
-				Copyright &copy; 2012 Trippo, Inc.<br> Licensed under <a
-					rel="license" href="http://creativecommons.org/licenses/by/3.0/">CC
-					BY 3.0</a>. Built on <a href="http://twitter.github.com/bootstrap/">Bootstrap</a>.
+				GENEPI, &copy 2013, FIT CVUT
 			</div>
 
-			<!-- CREDIT - PLEASE LEAVE THIS LINK! -->
-			<div id="credits">
-				<a href="http://www.trippoinc.com/flexapp">Theme</a> by <a
-					href="http://www.trippoinc.com">Trippo</a>.
-			</div>
 
 		</div>
 
