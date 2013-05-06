@@ -75,8 +75,10 @@
 
     </div>
     
-    <div id="copyright">
-        		<p>GENEPI, &copy 2013, FIT CVUT</p>
+    <div class="span3">
+    	<div id="copyright">
+        			<p>GENEPI, &copy 2013, FIT CVUT</p>
+		</div>
 	</div>
         
 	<!-- 

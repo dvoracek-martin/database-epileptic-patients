@@ -48,7 +48,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - PROFILE</a>
+					</a> <a class="brand" href="#">GENEPI - PROFIL</a>
 					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 			
 				</div>
@@ -80,7 +80,7 @@
         <div class="span3">
           <div class="well sidebaß-nav">
           </br></br></br></br></br></br></br></br></br></br></br></br></br>
-          <h1><a href="/GENEPI/" style="text-decoration: none">FN MOTOL</a></h1>
+          <h1><a href="/fit/" style="text-decoration: none">FN MOTOL</a></h1>
         </div>
 
         <div class="well sidebar-nav">
@@ -94,9 +94,6 @@
               <li class="nav-header">Jazyk</li>
             </ul>
           </div>
-        <footer>
-        <p>GENEPI, &copy 2013, FIT CVUT
-        </footer>
       </div>
         <div class="span9">
           <div class="hero-unit">
@@ -110,11 +107,13 @@
 			</div>
           </div>
           </div>
-
-    
-      
-
     </div>
+    
+    <div class="span3">
+    	<div id="copyright">
+        			<p>GENEPI, &copy 2013, FIT CVUT</p>
+		</div>
+	</div>
     
 	<!-- 
 	<h2>User Info:</h2>
