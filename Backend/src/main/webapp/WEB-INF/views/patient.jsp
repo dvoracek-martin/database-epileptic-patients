@@ -9,8 +9,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Home Page</title>
-
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+  
   
 </head>
 <body>
@@ -19,6 +19,7 @@
 
 			<div class="navbar navbar-inverse">
 				<div class="navbar-inner">
+					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a> <a class="brand" href="#">GENEPI - PACIENT</a>
@@ -77,16 +78,28 @@
               		<li class="nav-header">Uzivatel: <%=username%></li>
               		<li><a href="profile">Profil</a></li>
               		<li><a href="j_spring_security_logout">Odhlasit</a></li>
-              		<li class="nav-header">Jazyk</li>
+              		<li>
+              			<div class="btn-group">
+  							<button class="btn">Jazyk</button>
+  							<button class="btn dropdown-toggle" data-toggle="dropdown">
+    							<span class="caret"></span>
+  							</button>
+  							<ul class="dropdown-menu">
+   								<li><a href="#">Czech</a></li>
+   								<li><a href="#">Czech</a></li>
+  							</ul>
+						</div>
+              		</li>
             	</ul>
 			</div>
 			
 		</div>
-      
+      	
 		<div class="span9">
 			<div class="hero-unit">
            		<div>
-            		<h2>Prehled pacienta</h2>
+            		<h2 class="pull-left">Prehled pacienta</h2>
+            		<h3 class="pull-right"><a href="#">export pacienta</a></h3>
 					<table style="border: 1px solid black">
 						<tbody>
 							<tr>
@@ -132,7 +145,7 @@
         				<thead style="border: 1px solid black">
         					<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
         				</thead>
         				<tbody>	
@@ -210,7 +223,7 @@
         				<thead style="border: 1px solid black">
         					<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
         				</thead>
         				<tbody>	
@@ -311,7 +324,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -358,7 +371,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -410,7 +423,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -474,7 +487,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -582,7 +595,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -626,7 +639,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -690,7 +703,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
@@ -726,7 +739,7 @@
 						<thead style="border: 1px solid black">
 							<tr>
             					<td>Zadano dne: XX.XX.XXXX</td>
-            					<td><a href="#">Zobrazit vsechny zaznamy</a></td>
+            					<td class="pull-right"><a href="#">Zobrazit vsechny zaznamy</a></td>
         					</tr>
 						</thead>
         				<tbody>
