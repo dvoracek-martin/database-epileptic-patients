@@ -36,7 +36,7 @@ public class LoginController {
 
 		// NEW WAY, HOW TO USE HIBERNATE IN OUR APP, PLS GET FAMILIAR WITH THIS
 		PatientDAOImpl userImpl = new PatientDAOImpl();
-		 userImpl.createPatient(101, "zvzfsdfsdfasfas",new Date(), "male",
+		 userImpl.createPatient("zvzfsdfsdfasfas",new Date(), "male",
 					5487, 1, 0, 56421, 4567);
 
 		 userImpl.save(userImpl.patient);
