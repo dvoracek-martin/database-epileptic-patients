@@ -14,55 +14,19 @@
   
 </head>
 <body>
-	<!-- <ul class="nav nav-tabs">
-		<li class="active"><a href="#">Home</a></li>
-		<li><a href="#">About</a></li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">FrontEnd<b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="#">Twitter Bootstrap</a></li>
-				<li><a href="#">Google Plus API</a></li>
-				<li><a href="#">HTML5</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Examples</a></li>
-			</ul></li>
-		<li class="dropdown"><a class="dropdown-toggle"
-			data-toggle="dropdown" href="#">BackEnd<b class="caret bottom-up"></b></a>
-			<ul class="dropdown-menu bottom-up pull-right">
-				<li><a href="#">PHP</a></li>
-				<li><a href="#">MySQL</a></li>
-				<li><a href="#">PostgreSQL</a></li>
-				<li class="divider"></li>
-				<li><a href="#">Live Demos</a></li>
-			</ul></li>			
-	</ul>
-	-->
-	
 	<div class="navbar-wrapper" id="home">
-		<!-- Wrap the .navbar in .container to center it within the absolutely positioned parent. -->
 		<div class="container">
 
 			<div class="navbar navbar-inverse">
 				<div class="navbar-inner">
-					<!-- Responsive Navbar Part 1: Button for triggering responsive navbar (not covered in tutorial). Include responsive CSS to utilize. -->
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a> <a class="brand" href="#">GENEPI - HOME PAGE</a>
-					<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
-			
 				</div>
-				<!-- /.navbar-inner -->
 			</div>
-			<!-- /.navbar -->
-
 		</div>
-		<!-- /.container -->
 	</div>
-	<!-- /.navbar-wrapper -->
-	
-	
-	<!-- <P>The time on the server is ${serverTime}.</P>  -->
 
 	<%
 		User user = (User) SecurityContextHolder.getContext()
@@ -70,10 +34,6 @@
 		String username = user.getUsername();
 		Collection<GrantedAuthority> authorities = user.getAuthorities();
 	%>
-	<!-- <form name="foo" action="foo" method="post">
-		<input name="fieldName" type="text" /> <input type="submit"
-			value="Submit">
-	</form> -->
 	
 	 <div class="container-fluid">
       
@@ -95,9 +55,6 @@
               <li class="nav-header">Jazyk</li>
             </ul>
           </div><!--/.well -->
-        <div id="copyright">
-        <p>GENEPI, &copy 2013, FIT CVUT
-        </div>
       </div>
         <div class="span9">
           <div class="hero-unit">
@@ -118,6 +75,10 @@
 
     </div>
     
+    <div id="copyright">
+        		<p>GENEPI, &copy 2013, FIT CVUT</p>
+	</div>
+        
 	<!-- 
 	<h2>User Info:</h2>
 	<div style="font-size: 15px">
