@@ -20,11 +20,11 @@ public class CreatePatientController {
 
 	@RequestMapping(value = "/createPatient", method = RequestMethod.POST)
 	public String createPatientPOST(Locale locale, Model model) {	
-		return "createPatient";
+		return "createPatientView";
 	}
 
 	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
-		return "createPatient";
+		return "createPatientView";
 	}
 }

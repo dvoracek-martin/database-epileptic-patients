@@ -15,9 +15,9 @@ import cz.cvut.fit.genepi.models.PatientDAO;
 import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
 @Controller
-public class PatientController {
+public class PatientOverviewController {
 	private static final Logger logger = LoggerFactory
-			.getLogger(PatientController.class);
+			.getLogger(PatientOverviewController.class);
 
 	// returns patient from dtb according to id	
 	public PatientDAO findByID(int id) {
@@ -25,11 +25,6 @@ public class PatientController {
 		return (PatientDAO) patientImpl.findByID(PatientDAO.class, id);		
 	}
 	
-	// returns all patients from dtb
-	public List<PatientDAO> findAll(){
-		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (List<PatientDAO>) patientImpl.findAll(PatientDAO.class);	
-	}
 	
 	// create new Patient	
 	public void createNewPatient( String nin, Date birthday, String gender,
@@ -44,13 +39,13 @@ public class PatientController {
 	 * selects the profile view to render by returning its name.
 	 */	
 
-	@RequestMapping(value = "/patient", method = RequestMethod.POST)
-	public String patientGET(Locale locale, Model model) {	
-		return "patient";
+	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
+	public String patientOverviewGET(Locale locale, Model model) {	
+		return "patientOverviewView";
 	}
 
-	@RequestMapping(value = "/patient", method = RequestMethod.GET)
-	public String patientPOST(Locale locale, Model model) {
-		return "patient";
+	@RequestMapping(value = "/patientOverview", method = RequestMethod.GET)
+	public String patientOverviewPOST(Locale locale, Model model) {
+		return "patientOverviewView";
 	}
 }

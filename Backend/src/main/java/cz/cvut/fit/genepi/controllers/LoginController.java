@@ -27,7 +27,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String loginPOST(Locale locale, Model model) {
 		logger.info("LOGIN! The client locale is {}.", locale);
-		return "login";
+		return "loginView";
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
@@ -68,6 +68,6 @@ public class LoginController {
 		System.out.println("USER " + p.getNin());
 		System.out.println("USER " + p.getChecked() );
 		System.out.println("USER " + p.getContactId());
-		return "login";
+		return "loginView";
 	}
 }

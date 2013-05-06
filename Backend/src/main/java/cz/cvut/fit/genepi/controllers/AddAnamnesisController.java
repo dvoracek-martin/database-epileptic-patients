@@ -20,11 +20,11 @@ public class AddAnamnesisController {
 
 	@RequestMapping(value = "/addAnamnesis", method = RequestMethod.POST)
 	public String addAnamnesisPOST(Locale locale, Model model) {	
-		return "addAnamnesis";
+		return "addAnamnesisView";
 	}
 
 	@RequestMapping(value = "/addAnamnesis", method = RequestMethod.GET)
 	public String addAnamnesisGET(Locale locale, Model model) {
-		return "addAnamnesis";
+		return "addAnamnesisView";
 	}
 }

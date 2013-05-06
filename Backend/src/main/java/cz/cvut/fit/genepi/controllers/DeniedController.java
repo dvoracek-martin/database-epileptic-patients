@@ -21,6 +21,6 @@ public class DeniedController {
 	public String denied(Locale locale, Model model) {
 		logger.info("DENIED! The client locale is {}.", locale);
 		
-		return "denied";
+		return "deniedView";
 	}	
 }

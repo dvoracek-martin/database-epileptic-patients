@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class ProfileController {
+public class MyProfileController {
 	private static final Logger logger = LoggerFactory
-			.getLogger(ProfileController.class);
+			.getLogger(MyProfileController.class);
 
 	/**
 	 * selects the profile view to render by returning its name.
 	 */
 
-	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	@RequestMapping(value = "/myProfile", method = RequestMethod.POST)
 	public String loginPOST(Locale locale, Model model) {	
-		return "profile";
+		return "myProfileView";
 	}
 
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
 	public String loginGET(Locale locale, Model model) {
-		return "profile";
+		return "myProfileView";
 	}
 }
