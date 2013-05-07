@@ -41,42 +41,79 @@
         <div class="span3">
           <div class="well sidebar-nav">
           </br></br></br></br></br></br></br></br></br></br></br></br></br>
-          <h1><a href="#" style="text-decoration: none">FN MOTOL</a></h1>
+          <h1><a href="/fit/" style="text-decoration: none">FN MOTOL</a></h1>
         </div>
 
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
-              <li><a href="#">Kartoteka pacientu</a></li>
+              <li><a href="patientsList">Kartoteka pacientu</a></li>
               <li><a href="#">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
-              <li><a href="profile">Profil</a></li>
+              <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
               <li class="nav-header">Jazyk</li>
             </ul>
           </div><!--/.well -->
+         </div>
+          <div class="span9">
+          <div class="hero-unit">
+            <div style="border-bottom: 2px solid black"><h1>Zalozit pacienta</h1></div>
+			<div class="form" style="margin: 10px; width: 40%">
+			<form name="createPatient" action="createPatient" method="post">
+				<b>Prijmeni</b> <input type="text" id="patientSurname" class="input-block-level"
+					name="patientSurname" placeholder=""> </br>
+				<b>Jmeno</b> <input type="text" id="patientFirstname" class="input-block-level"
+					name="patientFirstname" placeholder=""> </br>
+				<b>Datum narozeni</b> <input type="text" id="patientBirthdate" class="input-block-level"
+					name="patientBirthdate" placeholder=""> </br>
+				Rodne cislo <input type="text" id="patientIN" class="input-block-level"
+					name="patientIN" placeholder=""> </br>
+					
+				<b>Pohlavi</b></br> <select id="patientSex" class="" name="patientSex">
+									<option value="default">Zvolte pohlavi</option>
+									<option value="man">Muz</option>
+									<option value="woman">Zena</option>
+								</select> </br>
+					 
+				Ulice <input type="text" id="patientStreet" class="input-block-level"
+					name="patientStreet" placeholder=""> </br>
+				Cislo popisne/orientacni <input type="text" id="patientLRN" class="input-block-level"
+					name="patientLRN" placeholder=""> </br> 
+				Mesto <input type="text" id="patientCity" class="input-block-level"
+					name="patientCity" placeholder=""> </br>
+				PSC <input type="text" id="patientZIP" class="input-block-level"
+					name="patientZIP" placeholder=""> </br>
+				Stat <input type="text" id="patientCountry" class="input-block-level"
+					name="patientCountry" placeholder=""> </br>
+				Telefon <input type="text" id="patientPhone" class="input-block-level"
+					name="patientPhone" placeholder=""> </br>
+				E-mail <input type="text" id="patientMail" class="input-block-level"
+					name="patientMail" placeholder="" value="@"> </br>
+				
+				<b>Osetrujici lekar</b></br> <select id="patientSex" class="" name="patientSex">
+									<option value="default">Zvolte lekare</option>
+									<option value="man">hlavni</option>
+								</select> </br>
+				<button class="btn btn-small btn-primary" type="submit">Zalozit
+					in</button>
+			</form>
+		</div>
+          </div>
+          </div>
           
           
-          
-          <div class="form">
-			<form action="form_action.asp" method="get" name="myForm">
-             Prijmeni: <input type="text" name="fname"><br>
-              Jmeno: <input type="text" name="lname"><br>
-              Datum narozeni: <input type="text" name="dateofb"><br>
-              Rodne cislo: <input type="text" name="bnumber"><br>
-              <input type="button" onclick="formSubmit()" value="Send form data!">
-              </form>
+	</div>
+
+   
+    
+    <div class="span3">
+    	<div id="copyright">
+        			<p>GENEPI, &copy 2013, FIT CVUT</p>
 		</div>
 	</div>
-
-    
-      
-
-    </div>
-    
-    <div id="copyright">
-        		<p>GENEPI, &copy 2013, FIT CVUT</p>
-	</div>
+	
+	
         
 	<!-- 
 	<h2>User Info:</h2>

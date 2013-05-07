@@ -73,7 +73,7 @@
 			<div class="hero-unit">
            		<div>
             		<h2 class="pull-left">Kartoteka pacientu</h2>
-            		<h3 class="pull-right"><a href="#">Novy pacient</a></h3>
+            		<h3 class="pull-right"><a href="createPatient">Novy pacient</a></h3>
 				</div>
 			</div>
 		</div>
