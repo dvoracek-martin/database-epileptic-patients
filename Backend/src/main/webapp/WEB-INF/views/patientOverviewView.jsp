@@ -72,26 +72,15 @@
           
 			<div class="well sidebar-nav">
             	<ul class="nav nav-list">
-              		<li class="nav-header">Pacienti</li>
-              		<li><a href="#">Kartoteka pacientu</a></li>
-              		<li><a href="#">Pokrocile vyhledavani</a></li>
-              		<li class="nav-header">Uzivatel: <%=username%></li>
-              		<li><a href="profile">Profil</a></li>
-              		<li><a href="j_spring_security_logout">Odhlasit</a></li>
-              		<li>
-              			<div class="btn-group">
-  							<button class="btn">Jazyk</button>
-  							<button class="btn dropdown-toggle" data-toggle="dropdown">
-    							<span class="caret"></span>
-  							</button>
-  							<ul class="dropdown-menu">
-   								<li><a href="#">Czech</a></li>
-   								<li><a href="#">Czech</a></li>
-  							</ul>
-						</div>
-              		</li>
+            	  <li class="nav-header">Pacienti</li>
+             	 <li><a href="patientsList">Kartoteka pacientu</a></li>
+             	 <li><a href="#">Pokrocile vyhledavani</a></li>
+             	 <li class="nav-header">Uzivatel: <%=username%></li>
+             	 <li><a href="myProfile">Profil</a></li>
+             	 <li><a href="j_spring_security_logout">Odhlasit</a></li>
+             	 <li class="nav-header">Jazyk</li>
             	</ul>
-			</div>
+          	</div>
 			
 		</div>
       	

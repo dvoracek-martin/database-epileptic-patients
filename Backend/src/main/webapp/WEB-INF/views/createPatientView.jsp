@@ -12,6 +12,7 @@
 
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
   
+  
 </head>
 <body>
 	<div class="navbar-wrapper" id="create_patient">

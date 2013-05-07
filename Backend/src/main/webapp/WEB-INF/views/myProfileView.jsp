@@ -86,14 +86,14 @@
         <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
-              <li><a href="#">Kartoteka pacientu</a></li>
+              <li><a href="patientsList">Kartoteka pacientu</a></li>
               <li><a href="#">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
-              <li><a href="#">Profil</a></li>
+              <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
               <li class="nav-header">Jazyk</li>
             </ul>
-          </div>
+          </div><!--/.well -->
       </div>
         <div class="span9">
           <div class="hero-unit">

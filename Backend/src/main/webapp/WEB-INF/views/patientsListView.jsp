@@ -4,12 +4,34 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<!-- import of controllers -->
+<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
+<!-- import of modelsImpl -->
+<%@ page import="cz.cvut.fit.genepi.models.*"%>
+<!--  import of list -->
+<%@ page import=" java.util.List" %>
+
 <!DOCTYPE html>
 <html lang="cz">
 <head>
 <meta charset="utf-8" />
 <title>Home Page</title>
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+  <style type="text/css">
+  table.patients {
+  width: 90%;
+  margin: 0px auto;
+}
+
+table.patients td {
+  padding: 0px 5px 0px 5px;
+}
+
+table.patients td.head {
+  font-weight: bold;
+  text-align: center;
+}
+</style>
   
   
 </head>
@@ -46,41 +68,59 @@
           
 			<div class="well sidebar-nav">
             	<ul class="nav nav-list">
-              		<li class="nav-header">Pacienti</li>
-              		<li><a href="#">Kartoteka pacientu</a></li>
-              		<li><a href="#">Pokrocile vyhledavani</a></li>
-              		<li class="nav-header">Uzivatel: <%=username%></li>
-              		<li><a href="profile">Profil</a></li>
-              		<li><a href="j_spring_security_logout">Odhlasit</a></li>
-              		<li>
-              			<div class="btn-group">
-  							<button class="btn">Jazyk</button>
-  							<button class="btn dropdown-toggle" data-toggle="dropdown">
-    							<span class="caret"></span>
-  							</button>
-  							<ul class="dropdown-menu">
-   								<li><a href="#">Czech</a></li>
-   								<li><a href="#">Czech</a></li>
-  							</ul>
-						</div>
-              		</li>
+            	  <li class="nav-header">Pacienti</li>
+             	 <li><a href="patientsList">Kartoteka pacientu</a></li>
+             	 <li><a href="#">Pokrocile vyhledavani</a></li>
+             	 <li class="nav-header">Uzivatel: <%=username%></li>
+             	 <li><a href="myProfile">Profil</a></li>
+             	 <li><a href="j_spring_security_logout">Odhlasit</a></li>
+             	 <li class="nav-header">Jazyk</li>
             	</ul>
-			</div>
+          	</div>
 			
 		</div>
+		
+		<% 
+		// creation of patientsListController
+		PatientsListController patientsListController = new PatientsListController();
+		// gets list of patients in the database
+		List<PatientDAO> patients = patientsListController.findAll(); 
+		%>
       	
 		<div class="span9">
 			<div class="hero-unit">
-           		<div>
-            		<h2 class="pull-left">Kartoteka pacientu</h2>
-            		<h3 class="pull-right"><a href="createPatient">Novy pacient</a></h3>
-				</div>
+            		<div style="border-bottom: 2px solid black">
+            			<h2 style="display: inline; text-align: left">Kartoteka pacientu</h2>
+            			<h3 style="display: inline; text-align: right"><a href="createPatient" style="text-decoration: none">Novy pacient</a></h3>
+            		</div>
+            		<table class="patients">
+            		 <tr class="head">
+				        <td>Príjmení</td>
+				        <td>Jmeno</td>
+				        <td>Rodne císlo</td>
+				        <td>Ulice, c.p.</td>
+				        <td>Mesto</td>
+    				</tr>	
+    			
+    				<% 
+    				// this cycle prints into the table information about patients
+    				for (PatientDAO patient : patients) {
+	 					out.print("<tr>"+
+    							  "\t<td>none</td>\n"+
+    							  "\t<td>none</td>\n"+
+    							  "\t<td><a href=\"patientOverview\">"+patient.getBirthday().toString()+"</a></td>\n"+
+	 						      "\t<td>none</td>\n"+
+    							  "\t<td>none</td>\n");
+	 				}%>
+            		</table>
 			</div>
 		</div>
 	</div>
+	
 	<div id="copyright">
         		<p>GENEPI, &copy 2013, FIT CVUT</p>
 	</div>
+	
 </body>
 </html>
 
