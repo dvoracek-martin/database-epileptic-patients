@@ -4,6 +4,12 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
+<!-- import of modelsImpl -->
+<%@ page import="cz.cvut.fit.genepi.models.*"%>
+<!--  import of list -->
+<%@ page import=" java.util.*" %>
+<%@ page import=" java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="cz">
 <head>
@@ -57,6 +63,14 @@
             </ul>
           </div><!--/.well -->
          </div>
+         
+         <% 
+		// creation of patientsListController
+		CreatePatientController patientsListController = new CreatePatientController();
+		// gets list of patients in the database
+		//List<PatientDAO> patients = patientsListController.findAll(); 
+		%>
+         
           <div class="span9">
           <div class="hero-unit">
             <div style="border-bottom: 2px solid black"><h1>Zalozit pacienta</h1></div>
@@ -92,12 +106,17 @@
 				E-mail <input type="text" id="patientMail" class="input-block-level"
 					name="patientMail" placeholder="" value="@"> </br>
 				
-				<b>Osetrujici lekar</b></br> <select id="patientSex" class="" name="patientSex">
+				<b>Osetrujici lekar</b></br> <select id="patientDoctor" class="" name="patientDoctor">
 									<option value="default">Zvolte lekare</option>
 									<option value="man">hlavni</option>
 								</select> </br>
 				<button class="btn btn-small btn-primary" type="submit">Zalozit
 					in</button>
+					<%
+					String string = "January 2, 2010";
+					Date date = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH).parse(string);
+					patientsListController.createNewPatient("patientSurname", date, "patientSex", 1, 0, 0, 0, 0); 
+					%>
 			</form>
 		</div>
           </div>
