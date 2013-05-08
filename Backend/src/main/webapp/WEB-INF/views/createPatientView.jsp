@@ -15,7 +15,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Create patient</title>
-
+  <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
   
   

@@ -11,6 +11,7 @@
 <title>Home Page</title>
 
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+  <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
   
 </head>
 <body>

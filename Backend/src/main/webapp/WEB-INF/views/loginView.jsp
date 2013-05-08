@@ -13,6 +13,7 @@
 <meta charset="utf-8" />
 <title>Login Page</title>
 <link rel="stylesheet" href="resources/css/style.css">
+<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
