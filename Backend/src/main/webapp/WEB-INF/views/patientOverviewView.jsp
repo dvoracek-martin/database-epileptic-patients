@@ -48,25 +48,25 @@
 					<li class="nav-header">Cislo pacienta:</li>
              	 	<li><a href="underConstruction">Prehled</a></li>
               		<li><a href="anamnesis">Anamneza</a></li>
-              		<li><a href="#">Farmakoterapie</a></li>
-              		<li><a href="#">Neurologicke nalezy</a></li>
-              		<li><a href="#">Neuropsychologie</a></li>
-              		<li><a href="#">(Neuropsychologie - old)</a></li>
-              		<li><a href="#">Diagnosticke testy</a></li>
-              		<li><a href="#">Neuropsychologie</a></li>
+              		<li><a href="underConstruction">Farmakoterapie</a></li>
+              		<li><a href="underConstruction">Neurologicke nalezy</a></li>
+              		<li><a href="underConstruction">Neuropsychologie</a></li>
+              		<li><a href="underConstruction">(Neuropsychologie - old)</a></li>
+              		<li><a href="underConstruction">Diagnosticke testy</a></li>
+              		<li><a href="underConstruction">Neuropsychologie</a></li>
               			<ul>
-              				<li><a href="#">Skalpove EEG</a></li>
-              				<li><a href="#">Neurozobraz. testy</a></li>
+              				<li><a href="underConstruction">Skalpove EEG</a></li>
+              				<li><a href="underConstruction">Neurozobraz. testy</a></li>
               			</ul>
-              		<li><a href="#">Invazivni testy</a></li>
+              		<li><a href="underConstruction">Invazivni testy</a></li>
               			<ul>
-              				<li><a href="#">ECoG</a></li>
-              				<li><a href="#">iEEG</a></li>
-              				<li><a href="#">Kortikalni mapovani</a></li>
+              				<li><a href="underConstruction">ECoG</a></li>
+              				<li><a href="underConstruction">iEEG</a></li>
+              				<li><a href="underConstruction">Kortikalni mapovani</a></li>
               			</ul>
-             		 <li><a href="#">Operace</a></li>
-             		 <li><a href="#">Komplikace</a></li>
-              		<li><a href="#">Outcome</a></li>
+             		 <li><a href="underConstruction">Operace</a></li>
+             		 <li><a href="underConstruction">Komplikace</a></li>
+              		<li><a href="underConstruction">Outcome</a></li>
             	</ul>
 			</div>
           

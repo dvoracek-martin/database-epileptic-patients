@@ -41,7 +41,7 @@
         <div class="span3">
           <div class="well sidebar-nav">
           </br></br></br></br></br></br></br></br></br></br></br></br></br>
-          <h1><a href="#" style="text-decoration: none">FN MOTOL</a></h1>
+          <h1><a href="/GENEPI/" style="text-decoration: none">FN MOTOL</a></h1>
         </div>
 
         <div class="well sidebar-nav">
