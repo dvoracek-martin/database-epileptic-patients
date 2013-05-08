@@ -22,7 +22,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - PREHLED</a>
+					</a> <a class="brand" href="#">GENEPI - </a>
 				</div>
 			</div>
 		</div>
@@ -48,7 +48,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
               <li><a href="patientsList">Kartoteka pacientu</a></li>
-              <li><a href="#" data-toggle="tooltip" data-placement="top" title="Tooltip on top">Pokrocile vyhledavani</a></li>
+              <li><a href="#">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
               <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -57,25 +57,16 @@
           </div><!--/.well -->
       </div>
         <div class="span9">
-          <div class="hero-unit">
-            <div style="border-bottom: 2px solid black"><h1>News!</h1></div>
-            <div style="margin: 10px">
-            <p> Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
-            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
-            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
-            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
-            Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! Keep out! 
+          <div class="alert alert-block alert-error fade in">
+            <h1 class="alert-heading">Varovani! Tato stranka je prave v rekonstrukci.</h1>
+            <h3>Prosim, budte schovivavi. Obsah bude dostupny brzy.</h3>
+            <p>
+              <a class="btn btn-danger" onclick="goBack()">Vratit se na predchozi stranku</a>            
             </p>
-            
-          </div>
-			
-			
           </div>
           </div>
-          
-           
 
-    	
+    
       
 
     </div>
@@ -85,16 +76,12 @@
         			<p>GENEPI, &copy 2013, FIT CVUT</p>
 		</div>
 	</div>
-	
-	<script>
-	function goBack()
- 	 {
-  	window.history.back()
-  	}
-	</script>
     
-    <script
-		src="resources/js/bootstrap-popover.js"></script>   
+    <script>
+    // it returns us to the previous page
+	function goBack() { window.history.back() }
+	</script>
+       
 	<script
 		src="resources/js/jquery.js"></script>
 	<script
