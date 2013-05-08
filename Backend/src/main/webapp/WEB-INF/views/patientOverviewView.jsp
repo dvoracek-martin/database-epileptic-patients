@@ -40,14 +40,14 @@
         <div class="span3">
 			<div class="well sidebar-nav">
 				</br></br></br></br></br></br></br></br></br></br></br></br></br>
-          		<h1><a href="/" style="text-decoration: none">FN MOTOL</a></h1>
+          		<h1><a href="/GENEPI/" style="text-decoration: none">FN MOTOL</a></h1>
         	</div>
 		
 			<div class="well sidebar-nav">
 				<ul class="nav nav-list">
 					<li class="nav-header">Cislo pacienta:</li>
-             	 	<li><a href="#">Prehled</a></li>
-              		<li><a href="#">Anamneza</a></li>
+             	 	<li><a href="underConstruction">Prehled</a></li>
+              		<li><a href="anamnesis">Anamneza</a></li>
               		<li><a href="#">Farmakoterapie</a></li>
               		<li><a href="#">Neurologicke nalezy</a></li>
               		<li><a href="#">Neuropsychologie</a></li>
