@@ -40,8 +40,8 @@
       
         <div class="span3">
           <div class="well sidebar-nav">
-          </br></br></br></br></br></br></br></br></br></br></br></br></br>
-          <h1><a href="#" style="text-decoration: none">FN MOTOL</a></h1>
+           <a href="/GENEPI/" >  <img  class="photo1" width=2560  height=1600 src="resources/img/logo.png" alt="logo" style= margin: 1em;
+    border-radius: 2.5em;/> </a>
         </div>
 
         <div class="well sidebar-nav">
