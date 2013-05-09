@@ -9,6 +9,9 @@
 <%@ page import="cz.cvut.fit.genepi.models.*"%>
 <!--  import of list -->
 <%@ page import=" java.util.*" %>
+<%@ page import=" java.lang.*" %>
+<%@ page import=" java.io.*" %>
+
 <%@ page import=" java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html lang="cz">
@@ -70,6 +73,23 @@
 		// gets list of patients in the database
 		//List<PatientDAO> patients = patientsListController.findAll(); 
 		%>
+		
+		<%
+					String string = request.getParameter("patientBirthdate");
+					String nin = request.getParameter("patientIN");
+					String sex = request.getParameter("patientSEX");
+					try{
+						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
+						patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
+					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
+					%>
+					  <jsp:forward page="createPatientView.jsp"/>
+					<%
+					}
+					
+					%>
+					
+					
 		<div class="span9">
           <div class="hero-unit">
             <div style="border-bottom: 2px solid black"><h1>Byl vytvoren pacient !</h1></div>
@@ -99,13 +119,7 @@
           </div>
           </div>
          
-					<%
-					String string = request.getParameter("patientBirthdate");
-					String nin = request.getParameter("patientIN");
-					String sex = request.getParameter("patientSEX");
-					Date date = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).parse(string);
-					patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
-					%>
+					
 
    </div>
     
