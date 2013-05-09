@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cz.cvut.fit.genepi.models.AnamnesisDAO" table="anamnesis">
+		<id name="id" type="int">
+			<column name="id" precision="6" scale="0" not-null="true" />
+			<generator class="assigned" />
+		</id>
+		<property name="nin" type="string">
+			<column name="nin" length="20" not-null="false" />
+		</property>
+		<property name="birthday" type="date">
+            <column name="birthday" length="7" not-null="true" />
+        </property>
+		<property name="gender" type="string">
+			<column name="gender" length="10" not-null="true" />
+		</property>
+		<property name="doctorId" type="int">
+			<column name="doctor_id" precision="6" scale="0" not-null="false" />
+		</property>
+		<property name="deleted" type="int">
+			<column name="deleted" precision="1" scale="0" not-null="false" />
+		</property>
+		<property name="checked" type="int">
+			<column name="checked" precision="1" scale="0" not-null="false" />
+		</property>
+		<property name="contactId" type="int">
+			<column name="contact_id" precision="6" scale="0" not-null="false" />
+		</property>
+		<property name="commentId" type="int">
+			<column name="comment_id" precision="6" scale="0" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>

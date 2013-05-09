@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="cz.cvut.fit.genepi.models.ContactDAO" table="contact">
+		<id name="id" type="int">
+			<column name="id" precision="6" scale="0" not-null="true" />
+			<generator class="assigned" />
+		</id>
+		<property name="firstName" type="string">
+			<column name="first_name" length="20" not-null="true" />
+		</property>
+		<property name="lastName" type="string">
+			<column name="last_name" length="20" not-null="true" />
+		</property>
+		<property name="addressStreet" type="string">
+			<column name="address_street" length="30" not-null="false" />
+		</property>
+		<property name="addressHn" type="string">
+			<column name="address_hn" length="10" not-null="false" />
+		</property>
+		<property name="addressCity" type="string">
+			<column name="adress_city" length="30" not-null="false" />
+		</property>
+		<property name="addressPostalcode" type="string">
+			<column name="address_postalcode" length="10" not-null="false" />
+		</property>
+		<property name="addressCountry" type="string">
+			<column name="address_country" length="20" not-null="false" />
+		</property>
+		<property name="phoneNumber" type="string">
+			<column name="phone_number" length="20" not-null="false" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" length="20" not-null="false" />
+		</property>
+	</class>
+</hibernate-mapping>
