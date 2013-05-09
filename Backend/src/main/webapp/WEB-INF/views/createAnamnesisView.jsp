@@ -123,7 +123,7 @@
 				</div>
 			
 			<div class="form" style="margin: 10px; width: 40%">
-			<form name="createPatient" action="createdAnamnesis" method="post">
+			<form name="createdAnamnesis" action="createdAnamnesis" method="post">
 			
 			<b>Datum vysetreni</b> <input type="text" id="anamnesisDate" class="input-block-level"
 					name="anamnesisDate" placeholder=""> </br>
