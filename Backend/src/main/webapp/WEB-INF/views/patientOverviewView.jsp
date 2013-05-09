@@ -88,7 +88,7 @@
 			<div class="hero-unit">
            		<div>
             		<h2 class="pull-left">Prehled pacienta</h2>
-            		<h3 class="pull-right"><a href="#">export pacienta</a></h3>
+            		<h3 class="pull-right"><a href="createAnamnesis">Pridat zaznam</a></h3>
 					<table style="border: 1px solid black">
 						<tbody>
 							<tr>
