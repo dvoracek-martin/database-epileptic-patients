@@ -14,14 +14,14 @@
 <html lang="cz">
 <head>
 <meta charset="utf-8" />
-<title>Create patient</title>
+<title>Created patient</title>
   <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
   
   
 </head>
 <body>
-	<div class="navbar-wrapper" id="create_patient">
+	<div class="navbar-wrapper" id="created_patient">
 		<div class="container">
 
 			<div class="navbar navbar-inverse">
@@ -29,7 +29,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - VYTVORENI PACIENTA</a>
+					</a> <a class="brand" href="#">GENEPI - VYTVORENY PACIENT</a>
 				</div>
 			</div>
 		</div>
@@ -70,58 +70,44 @@
 		// gets list of patients in the database
 		//List<PatientDAO> patients = patientsListController.findAll(); 
 		%>
-		
-         
-          <div class="span9">
+		<div class="span9">
           <div class="hero-unit">
-            <div style="border-bottom: 2px solid black"><h1>Zalozit pacienta</h1></div>
-			<div class="form" style="margin: 10px; width: 40%">
-			<form name="createPatient" action="createdPatient" method="post">
-				<b>Prijmeni</b> <input type="text" id="patientSurname" class="input-block-level"
-					name="patientSurname" placeholder=""> </br>
-				<b>Jmeno</b> <input type="text" id="patientFirstname" class="input-block-level"
-					name="patientFirstname" placeholder=""> </br>
-				<b>Datum narozeni</b> <input type="text" id="patientBirthdate" class="input-block-level"
-					name="patientBirthdate" placeholder="">
-				Rodne cislo <input type="text" id="patientIN" class="input-block-level"
-					name="patientIN" placeholder=""> </br>
-					
-				<b>Pohlavi</b></br> <select id="patientSex" class="" name="patientSex">
-									<option value="default">Zvolte pohlavi</option>
-									<option value="man">Muz</option>
-									<option value="woman">Zena</option>
-								</select> </br>
-					 
-				Ulice <input type="text" id="patientStreet" class="input-block-level"
-					name="patientStreet" placeholder=""> </br>
-				Cislo popisne/orientacni <input type="text" id="patientLRN" class="input-block-level"
-					name="patientLRN" placeholder=""> </br> 
-				Mesto <input type="text" id="patientCity" class="input-block-level"
-					name="patientCity" placeholder=""> </br>
-				PSC <input type="text" id="patientZIP" class="input-block-level"
-					name="patientZIP" placeholder=""> </br>
-				Stat <input type="text" id="patientCountry" class="input-block-level"
-					name="patientCountry" placeholder=""> </br>
-				Telefon <input type="text" id="patientPhone" class="input-block-level"
-					name="patientPhone" placeholder=""> </br>
-				E-mail <input type="text" id="patientMail" class="input-block-level"
-					name="patientMail" placeholder="" value="@"> </br>
-				
-				<b>Osetrujici lekar</b></br> <select id="patientDoctor" class="" name="patientDoctor">
-									<option value="default">Zvolte lekare</option>
-									<option value="hlavni">hlavni</option>
-								</select> </br>
-				<button class="btn btn-small btn-primary" type="submit">Zalozit</button>
-				
-			</form>
-		</div>
+            <div style="border-bottom: 2px solid black"><h1>Byl vytvoren pacient !</h1></div>
+            <div style="margin: 10px">
+            <p>
+                Jmeno : <% out.println(request.getParameter("patientFirstname")); %>
+            </p>
+            <p>
+                Prijmeni : <% out.println(request.getParameter("patientSurname")); %>
+            </p>
+            <p>
+                Datum narozeni : <% out.println(request.getParameter("patientBirthdate")); %>
+            </p>
+            <p>
+                Rodne cislo : <% out.println(request.getParameter("patientIN")); %>
+            </p>
+            <p>
+                Pohlavi : <% out.println(request.getParameter("patientSex")); %>
+            </p>
+            <p>
+                Osetrujici lekar : <% out.println(request.getParameter("patientDoctor")); %>   
+            </p>
+            
+          </div>
+			
+			
           </div>
           </div>
-          
-          
-	</div>
+         
+					<%
+					String string = request.getParameter("patientBirthdate");
+					String nin = request.getParameter("patientIN");
+					String sex = request.getParameter("patientSEX");
+					Date date = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH).parse(string);
+					patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
+					%>
 
-   
+   </div>
     
     <div class="span3">
     	<div id="copyright">
