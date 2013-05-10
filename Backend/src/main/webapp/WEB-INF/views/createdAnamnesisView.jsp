@@ -69,9 +69,64 @@
          
          <% 
 		// creation of patientsListController
-		CreatePatientController patientsListController = new CreatePatientController();
+		CreateAnamnesisController createAnamnesisController = new CreateAnamnesisController();
 		// gets list of patients in the database
 		//List<PatientDAO> patients = patientsListController.findAll(); 
+		%>
+		
+		<% 
+		
+		String string = request.getParameter("anamnesisDate");
+		String string1 = request.getParameter("anamnesisEpStart");
+		int anaFZ = 0;
+		int anaIS = 0;
+		int anaES = 0;
+		int anaFE = 0;
+		int anaPR = 0;
+		int anaFI = 0;
+		int anaZA = 0;
+		int anaUR = 0;
+		int anaOP = 0;
+		int anaPM = 0;
+		if(request.getParameter("anamnesisFirstZ")=="ON"){
+			anaFZ=1;
+		}
+		if(request.getParameter("anamnesisInfSpas")=="ON"){
+			anaIS=1;
+		}
+		if(request.getParameter("anamnesisEpiSyn")=="ON"){
+			anaES=1;
+		}
+		if(request.getParameter("anamnesisFamilyEp")=="ON"){
+			anaFE=1;
+		}
+		if(request.getParameter("anamnesisPren")=="ON"){
+			anaPR=1;
+		}
+		if(request.getParameter("anamnesisFib")=="ON"){
+			anaFI=1;
+		}
+		if(request.getParameter("anamnesisZan")=="ON"){
+			anaZA=1;
+		}
+		if(request.getParameter("anamnesisUra")=="ON"){
+			anaUR=1;
+		}
+		if(request.getParameter("anamnesisOper")=="ON"){
+			anaOP=1;
+		}
+		if(request.getParameter("anamnesisPMD")=="ON"){
+			anaPM=1;
+		}
+		try{
+			Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
+			Date date1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string1);
+			createAnamnesisController.createNewAnamnesis(date, 1,1, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
+		}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
+		%>
+		  <jsp:forward page="createAnamnesisView.jsp"/>
+		<%
+		}
 		%>
 		
 		
@@ -122,43 +177,106 @@
 					</table>
 				</div>
             <p>
-                Epilepsie v rodine : <% out.println(request.getParameter("anamnesisFamilyEp")); %>
+                Epilepsie v rodine :
+            	<%
+                    if(request.getParameter("anamnesisFamilyEp")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
             <p>
-                Prenatalni rizika : <% out.println(request.getParameter("anamnesisPren")); %>
+                Prenatalni rizika :
+            	<%
+                    if(request.getParameter("anamnesisPren")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
             <p>
-                Fibrilni krece : <% out.println(request.getParameter("anamnesisFib")); %>
+                Fibrilni krece : 
+            	<%
+                    if(request.getParameter("anamnesisFib")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
             <p>
-                Zanet CNS : <% out.println(request.getParameter("anamnesisZan")); %>
+                Zanet CNS : 
+            	<%
+                    if(request.getParameter("anamnesisZan")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
             <p>
-                Uraz CNS : <% out.println(request.getParameter("anamnesisUra")); %>
+                Uraz CNS :
+            	<%
+                    if(request.getParameter("anamnesisUra")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
             <p>
-                Operace CNS : <% out.println(request.getParameter("anamnesisOper")); %>   
+                Operace CNS :   
+            	<%
+                    if(request.getParameter("anamnesisOper")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
              <p>
-                Casna PMD retardace : <% out.println(request.getParameter("anamnesisPMD")); %>   
+                Casna PMD retardace :   
+            	<%
+                    if(request.getParameter("anamnesisPMD")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
              <p>
                 Zacatek epilepsie : <% out.println(request.getParameter("anamnesisEpStart")); %>   
             </p>
              <p>
-                Prvni zachvat s horeckou : <% out.println(request.getParameter("anamnesisFirstZ")); %>   
+                Prvni zachvat s horeckou :   
+            	 <%
+                    if(request.getParameter("anamnesisFirstZ")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
              <p>
-                Infantilni spasmy : <% out.println(request.getParameter("anamnesisInfSpas")); %>   
+                Infantilni spasmy : 
+                <%
+                    if(request.getParameter("anamnesisInfSpas")==null){
+                    	out.println("NE");
+                    }else{
+                	out.println("ANO");
+                    }
+                 %> 
             </p>
              <p>
-                Epilepticky syndrom : <% out.println(request.getParameter("anamnesisEpiSyn")); %>   
+                Epilepticky syndrom : 
+                <% 
+                	out.println(request.getParameter("anamnesisEpiSyn")); 
+                %>   
             </p>
             <p>
                 Non CNS komorbidita : <% out.println(request.getParameter("anamnesisNonCNS")); %>   
-            </p>
-            <p>
-                Komentar : <% out.println(request.getParameter("anamnesisCom")); %>   
             </p>
             
           </div>
