@@ -60,7 +60,7 @@
         <div class="span9">
           <div class="alert alert-block alert-error fade in">
             <h1 class="alert-heading">Varovani! Tato stranka je prave v rekonstrukci.</h1>
-            <h3>Prosim, budte schovivavy. Obsah bude dostupny brzy.</h3>
+            <h3>Prosim, budte shovivavy. Obsah bude dostupny brzy.</h3>
             <p>
               <a class="btn btn-danger" onclick="goBack()">Vratit se na predchozi stranku</a>            
             </p>
