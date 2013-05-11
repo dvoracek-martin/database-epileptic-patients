@@ -57,7 +57,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - PREHLED</a>
+					</a> <a class="brand" href="#">GENEPI - KARTOTEKA</a>
 				</div>
 				
 			</div>
@@ -71,8 +71,8 @@
 	       			<div class="well sidebar-nav">
 	            		<ul class="nav nav-list">
 		             		<li class="nav-header">Pacienti</li>
-		             		<li><a href="patientsList">Kartoteka pacientu</a></li>
-		              		<li><a href="#">Pokrocile vyhledavani</a></li>
+		             		<li><a href="#">Kartoteka pacientu</a></li>
+		              		<li><a href="underConstruction">Pokrocile vyhledavani</a></li>
 		              		<li class="nav-header">Uzivatel: <%=username%></li>
 		              		<li><a href="myProfile">Profil</a></li>
 		              		<li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -91,10 +91,15 @@
 	      	<!--  it defines box with content -->
 			<div class="span9">
 				<div class="hero-unit">
-	            		<div style="border-bottom: 2px solid black">
-	            			<h2 style="display: inline; text-align: left">Kartoteka pacientu</h2>
-	            			<h3 style="display: inline; text-align: right"><a href="createPatient" style="text-decoration: none">Novy pacient</a></h3>
-	            		</div>
+						<div style="border-bottom: 2px solid black">
+							<div class ="span5">
+								<h2>Kartoteka pacientu</h2>
+	            			</div>
+	            			<div>
+	            				<h3><a href="createPatient" style="text-decoration: none">Novy pacient</a></h3>
+							</div>
+						</div>
+	
 	            		<table class="patients">
 	            			<tr class="head">
 						        <td>Príjmení</td>
@@ -122,5 +127,15 @@
 				</div>
 			</div>
 		</div>
+		
+		<!-- Javascripts imports -->
+	    <script
+			src="resources/js/bootstrap-popover.js"></script>   
+		<script
+			src="resources/js/jquery.js"></script>
+		<script
+			src="resources/js/bootstrap-dropdown.js"></script>
+		<script
+			src="resources/js/application.js"></script>
 	</body>
 </html>
