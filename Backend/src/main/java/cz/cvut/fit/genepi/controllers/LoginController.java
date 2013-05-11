@@ -39,9 +39,9 @@ public class LoginController {
 		 userImpl.createPatient("zvzfsdfsdfasfas",new Date(), "male",
 					5487, 1, 0, 56421, 4567);
 
-		 userImpl.save(userImpl.patient);
+		 userImpl.save(userImpl);
 
-		PatientDAO p= (PatientDAO)userImpl.findByID(PatientDAO.class, 10);
+		PatientDAOImpl p= (PatientDAOImpl)userImpl.findByID(PatientDAOImpl.class, 10);
 		// System.out.println(u.getCreatedBy());
 
 		// DEPRECATED

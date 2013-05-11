@@ -22,7 +22,7 @@ public class CreatePatientController {
 				int doctorId, int deleted, int checked, int contactId, int commentId){
 			PatientDAOImpl patientImpl = new PatientDAOImpl();
 			patientImpl.createPatient(nin, birthday, gender, doctorId, deleted, checked, contactId, commentId);
-			patientImpl.save(patientImpl.patient);
+			patientImpl.save(patientImpl);
 		}
 
 	/**

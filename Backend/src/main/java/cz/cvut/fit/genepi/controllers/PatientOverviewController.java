@@ -25,13 +25,13 @@ public class PatientOverviewController {
 	// returns patient from dtb according to id
 	public PatientDAO findByID(int id) {
 		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (PatientDAO) patientImpl.findByID(PatientDAO.class, id);
+		return (PatientDAO) patientImpl.findByID(PatientDAOImpl.class, id);
 	}
 
 	// returns current patient from dtb according to id
 	public PatientDAO findByID() {
 		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (PatientDAO) patientImpl.findByID(PatientDAO.class, this.id);
+		return (PatientDAO) patientImpl.findByID(PatientDAOImpl.class, this.id);
 	}
 
 	// create new Patient
@@ -40,7 +40,7 @@ public class PatientOverviewController {
 		PatientDAOImpl patientImpl = new PatientDAOImpl();
 		patientImpl.createPatient(nin, birthday, gender, doctorId, deleted,
 				checked, contactId, commentId);
-		patientImpl.save(patientImpl.patient);
+		patientImpl.save(patientImpl);
 	}
 
 	/**

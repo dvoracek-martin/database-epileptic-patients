@@ -20,9 +20,9 @@ public class PatientsListController {
 			.getLogger(PatientsListController.class);
 
 	// returns all patients from dtb
-	public List<PatientDAO> findAll(){
+	public List<PatientDAOImpl> findAll(){
 		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (List<PatientDAO>) patientImpl.findAll(PatientDAO.class);	
+		return (List<PatientDAOImpl>) patientImpl.findAll(PatientDAOImpl.class);	
 	}
 	
 	/**
