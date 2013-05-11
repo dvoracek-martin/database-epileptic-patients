@@ -14,30 +14,30 @@
   
 </head>
 <body>
-	<div class="navbar-wrapper" id="home">
-		<div class="container">
-
-			<div class="navbar navbar-inverse">
-				<div class="navbar-inner">
-					<a class="btn btn-navbar" data-toggle="collapse"
-						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - PREHLED</a>
+	
+	<div class="container-fluid">
+		<div class="navbar-wrapper" id="home">
+			<div class="container">
+	
+				<div class="navbar navbar-inverse">
+					<div class="navbar-inner">
+						<a class="btn btn-navbar" data-toggle="collapse"
+							data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+							class="icon-bar"></span> <span class="icon-bar"></span>
+						</a> <a class="brand" href="#">GENEPI - PREHLED</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
 	
-	 <div class="container-fluid">
-      
-      
+		<%
+			User user = (User) SecurityContextHolder.getContext()
+					.getAuthentication().getPrincipal();
+			String username = user.getUsername();
+			Collection<GrantedAuthority> authorities = user.getAuthorities();
+		%>
+	
+	  
         <div class="span3">
           <div class="well sidebar-nav">
            <a href="/GENEPI/" >  <img  class="photo1" width=2560  height=1600 src="resources/img/logo.png" alt="logo" style= margin: 1em;

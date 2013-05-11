@@ -49,7 +49,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
               <li><a href="patientsList">Kartoteka pacientu</a></li>
-              <li><a href="#">Pokrocile vyhledavani</a></li>
+              <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
               <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -60,7 +60,7 @@
         <div class="span9">
           <div class="alert alert-block alert-error fade in">
             <h1 class="alert-heading">Varovani! Tato stranka je prave v rekonstrukci.</h1>
-            <h3>Prosim, budte shovivavy. Obsah bude dostupny brzy.</h3>
+            <h3>Prosim, budte shovivavi. Obsah bude dostupny brzy.</h3>
             <p>
               <a class="btn btn-danger" onclick="goBack()">Vratit se na predchozi stranku</a>            
             </p>

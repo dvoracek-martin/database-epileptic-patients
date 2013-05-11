@@ -4,6 +4,11 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<!-- import of controllers -->
+<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
+<!-- import of modelsImpl -->
+<%@ page import="cz.cvut.fit.genepi.models.*"%>
+
 <!DOCTYPE html>
 <html lang="cz">
 <head>
@@ -34,6 +39,10 @@
 				.getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		Collection<GrantedAuthority> authorities = user.getAuthorities();
+		
+		//finding object of patient
+		PatientOverviewController patientOverviewController = new PatientOverviewController();
+		PatientDAO patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
 	%>
 	
 	<div class="container-fluid">
@@ -48,7 +57,7 @@
 				<ul class="nav nav-list">
 					<li class="nav-header">Cislo pacienta:</li>
              	 	<li><a href="underConstruction">Prehled</a></li>
-              		<li><a href="underConstruction">Anamneza</a></li>
+              		<li><a href="anamnesis">Anamneza</a></li>
               		<li><a href="underConstruction">Farmakoterapie</a></li>
               		<li><a href="underConstruction">Neurologicke nalezy</a></li>
               		<li><a href="underConstruction">Neuropsychologie</a></li>
@@ -75,7 +84,7 @@
             	<ul class="nav nav-list">
             	  <li class="nav-header">Pacienti</li>
              	 <li><a href="patientsList">Kartoteka pacientu</a></li>
-             	 <li><a href="#">Pokrocile vyhledavani</a></li>
+             	 <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
              	 <li class="nav-header">Uzivatel: <%=username%></li>
              	 <li><a href="myProfile">Profil</a></li>
              	 <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -94,7 +103,7 @@
 						<tbody>
 							<tr>
 								<th>Cislo pacienta: </th>
-									<td>XXXX</td>
+									<td><%out.println(patient.getId()); %></td>
 
 								<th>Rodne cislo: </th>
 									<td>XXXX</td>

@@ -4,6 +4,11 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<!-- import of controllers -->
+<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
+<!-- import of modelsImpl -->
+<%@ page import="cz.cvut.fit.genepi.models.*"%>
+
 <!DOCTYPE html>
 <html lang="cz">
 <head>
@@ -33,6 +38,10 @@
 				.getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		Collection<GrantedAuthority> authorities = user.getAuthorities();
+		
+		//finding object of patient
+		PatientOverviewController patientOverviewController = new PatientOverviewController();
+		PatientDAO patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
 	%>
 	
 	<div class="container-fluid">
@@ -47,7 +56,13 @@
 				<ul class="nav nav-list">
 					<li class="nav-header">Cislo pacienta:</li>
              	 	<li><a href="underConstruction">Prehled</a></li>
-              		<li><a href="anamnesis">Anamneza</a></li>
+              		<li>
+              		<form name="anamnesis" action="anamnesis" method="post">
+    							  <input type="hidden" id="id" name="id" value="<% out.print(patient.getId());%>">
+    							  <a href="javascript:;" onclick="parentNode.submit();">Anamneza</a>
+    								<input type="hidden" name="mess" value=<%%>/>
+    				</form>
+              		</li>
               		<li><a href="underConstruction">Farmakoterapie</a></li>
               		<li><a href="underConstruction">Neurologicke nalezy</a></li>
               		<li><a href="underConstruction">Neuropsychologie</a></li>
@@ -74,7 +89,7 @@
             	<ul class="nav nav-list">
             	  <li class="nav-header">Pacienti</li>
              	 <li><a href="patientsList">Kartoteka pacientu</a></li>
-             	 <li><a href="#">Pokrocile vyhledavani</a></li>
+             	 <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
              	 <li class="nav-header">Uzivatel: <%=username%></li>
              	 <li><a href="myProfile">Profil</a></li>
              	 <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -88,37 +103,37 @@
 			<div class="hero-unit">
            		<div>
             		<h2 class="pull-left">Prehled pacienta</h2>
-            		<h3 class="pull-right"><a href="createAnamnesis">Pridat zaznam</a></h3>
+            		<h3 class="pull-right"><a href="underConstruction">Export pacienta</a></h3>
 					<table style="border: 1px solid black">
 						<tbody>
 							<tr>
 								<th>Cislo pacienta: </th>
-									<td>XXXX</td>
+									<td><%out.println(patient.getId()); %></td>
 
 								<th>Rodne cislo: </th>
-									<td>XXXX</td>
+									<td><%out.println(patient.getNin()); %></td>
 
 								<th>Adresa: </th>
-									<td>XXXX</td>
+									<td>Nevyplneno</td>
 
 							</tr>
 							<tr>
 								<th>Telefon: </th>
-									<td>XXXX</td>
+									<td>Nevyplneno</td>
 									
 								<th>Vek:</th>
-									<td>XX let</td>
+									<td>Nevyplneno</td>
 
 								<th>Pohlavi:</th>
-									<td>XXX</td>
+									<td><%out.println(patient.getGender()); %></td>
 							</tr>
 							
 			                 <tr>
 			                 	<th>Email:</th>
-									<td>XXXX</td>
+									<td>Nevyplneno</td>
 									
 								<th>Vek pri zacatku epilepsie:</th>
-									<td>23 let (trvani: 0 let)</td>
+									<td>Nevyplneno</td>
 
 								<th>Osetrujici lekar:</th>
 									<td>Nevyplneno</td>

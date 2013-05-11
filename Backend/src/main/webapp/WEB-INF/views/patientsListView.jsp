@@ -71,7 +71,7 @@ table.patients td.head {
             	<ul class="nav nav-list">
             	  <li class="nav-header">Pacienti</li>
              	 <li><a href="patientsList">Kartoteka pacientu</a></li>
-             	 <li><a href="#">Pokrocile vyhledavani</a></li>
+             	 <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
              	 <li class="nav-header">Uzivatel: <%=username%></li>
              	 <li><a href="myProfile">Profil</a></li>
              	 <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -86,6 +86,8 @@ table.patients td.head {
 		PatientsListController patientsListController = new PatientsListController();
 		// gets list of patients in the database
 		List<PatientDAO> patients = patientsListController.findAll(); 
+		// creation of patientOverviewController
+		PatientOverviewController patientOverviewController = new PatientOverviewController();
 		%>
       	
 		<div class="span9">
@@ -107,11 +109,14 @@ table.patients td.head {
     				// this cycle prints into the table information about patients
     				for (PatientDAO patient : patients) {
 	 					out.print("<tr>"+
-    							  "\t<td>none</td>\n"+
-    							  "\t<td>none</td>\n"+
-    							  "\t<td><a href=\"patientOverview\">"+patient.getBirthday().toString()+"</a></td>\n"+
-	 						      "\t<td>none</td>\n"+
-    							  "\t<td>none</td>\n");
+    							  "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getLastName()+*/	
+    							  "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/
+    							  "\t<td>"+
+    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
+    							  "<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+patient.getId()+"\">"+
+    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+patient.getBirthday().toString()+"</button></form></td>\n"+
+	 						      "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getAddressHn()+*/
+    							  "\t<td>none</td>\n" /*+patientOverviewController.findContactByID(patient.getId()).getAddressCity()*/);
 	 				}%>
             		</table>
 			</div>

@@ -58,7 +58,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
               <li><a href="patientsList">Kartoteka pacientu</a></li>
-              <li><a href="#">Pokrocile vyhledavani</a></li>
+              <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
               <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -70,6 +70,7 @@
          <% 
 		// creation of patientsListController
 		CreatePatientController patientsListController = new CreatePatientController();
+         CreatedPatientController patientsController = new CreatedPatientController();
 		// gets list of patients in the database
 		//List<PatientDAO> patients = patientsListController.findAll(); 
 		%>
@@ -81,6 +82,7 @@
 					try{
 						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 						patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
+						//patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
 					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 					%>
 					  <jsp:forward page="createPatientView.jsp"/>

@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.controllers;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.cvut.fit.genepi.models.ContactDAO;
 import cz.cvut.fit.genepi.models.PatientDAO;
+import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
 import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
 @Controller
@@ -20,7 +21,7 @@ public class PatientOverviewController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PatientOverviewController.class);
 
-	private int id;
+	private int id; 
 
 	// returns patient from dtb according to id
 	public PatientDAO findByID(int id) {
@@ -32,6 +33,11 @@ public class PatientOverviewController {
 	public PatientDAO findByID() {
 		PatientDAOImpl patientImpl = new PatientDAOImpl();
 		return (PatientDAO) patientImpl.findByID(PatientDAOImpl.class, this.id);
+	}
+	
+	public ContactDAO findContactByID(int id){
+		ContactDAOImpl patientImpl = new ContactDAOImpl();
+		return (ContactDAO) patientImpl.findByID(ContactDAO.class, id);
 	}
 
 	// create new Patient

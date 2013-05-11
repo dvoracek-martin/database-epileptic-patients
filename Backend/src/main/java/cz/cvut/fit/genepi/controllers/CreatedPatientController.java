@@ -9,6 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
+
 @Controller
 public class CreatedPatientController {
 	private static final Logger logger = LoggerFactory
@@ -17,6 +19,18 @@ public class CreatedPatientController {
 	/**
 	 * selects the profile view to render by returning its name.
 	 */
+	
+	// create new Contact	
+	public void createNewContact( String firstName, String lastName,
+			String addressStreet, String addressHn, String addressCity,
+			String addressPostalcode, String addressCountry,
+			String phoneNumber, String email){
+		ContactDAOImpl contactImpl = new ContactDAOImpl();
+		contactImpl.createContact(firstName, lastName, addressStreet, addressHn, addressCity, addressPostalcode, addressCountry, phoneNumber, email);
+		contactImpl.save(contactImpl.contact);
+	}
+	
+	
 	@RequestMapping(value = "/createdPatient", method = RequestMethod.POST)
 	public String createdPatientPOST(Locale locale, Model model) {	
 		return "createdPatientView";

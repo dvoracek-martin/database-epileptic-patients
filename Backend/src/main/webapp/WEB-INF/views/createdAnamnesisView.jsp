@@ -58,7 +58,7 @@
             <ul class="nav nav-list">
               <li class="nav-header">Pacienti</li>
               <li><a href="patientsList">Kartoteka pacientu</a></li>
-              <li><a href="#">Pokrocile vyhledavani</a></li>
+              <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
               <li class="nav-header">Uzivatel: <%=username%></li>
               <li><a href="myProfile">Profil</a></li>
               <li><a href="j_spring_security_logout">Odhlasit</a></li>
@@ -121,7 +121,7 @@
 		try{
 			Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 			Date date1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string1);
-			createAnamnesisController.createNewAnamnesis(date, 1,1, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
+			//createAnamnesisController.createNewAnamnesis(date, 1,1, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
 		}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 		%>
 		  <jsp:forward page="createAnamnesisView.jsp"/>

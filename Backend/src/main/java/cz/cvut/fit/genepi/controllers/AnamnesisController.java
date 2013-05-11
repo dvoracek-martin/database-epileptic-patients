@@ -9,6 +9,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.models.ContactDAO;
+import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
+
 @Controller
 public class AnamnesisController {
 	private static final Logger logger = LoggerFactory
@@ -18,6 +21,11 @@ public class AnamnesisController {
 	 * selects the profile view to render by returning its name.
 	 */
 
+	public ContactDAO findContactByID(int id){
+		ContactDAOImpl patientImpl = new ContactDAOImpl();
+		return (ContactDAO) patientImpl.findByID(ContactDAO.class, id);
+	}
+	
 	@RequestMapping(value = "/anamnesis", method = RequestMethod.POST)
 	public String loginPOST(Locale locale, Model model) {	
 		return "anamnesisView";
