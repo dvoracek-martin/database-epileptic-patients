@@ -7,11 +7,14 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+<%@page pageEncoding="utf-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>Login Page</title>
+		<title>Přihlašovací stránka</title>
 		<link rel="stylesheet" href="resources/css/style.css">
 		<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +44,7 @@
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
 					</a> 
-					<a class="brand" href="#">GENEPI - PRIHLASENI</a>
+					<a class="brand" href="#">GENEPI - PŘIHLÁŠENÍ</a>
 					<div class="nav-collapse collapse">
 						<ul id="nav-list" class="nav pull-right">
 							<li><a href="#contact">Kontakt</a></li>
@@ -76,15 +79,15 @@
 				</tr>
 			</table>
 			<br/>
-			<h1>Prihlaseni</h1>
+			<h1>Přihlášení</h1>
 			<!-- login form -->
 			<div class="form" style="border: 0 solid white">
 				<form name="f" action="j_spring_security_check" method="post">
 					<input type="text" id="username" class="input-block-level"
-						name="j_username" placeholder="Prihlasovaci jmeno"> <input
+						name="j_username" placeholder="Přihlašovací jméno"> <input
 						type="password" id="password" name="j_password"
 						class="input-block-level" placeholder="Heslo">
-					<button class="btn btn-large btn-primary" type="submit">Prihlasit</button>
+					<button class="btn btn-large btn-primary" type="submit">Přihlásit</button>
 				</form>
 			</div>
 		</div>
@@ -93,17 +96,15 @@
 		<div class="row-fluid" id="contact" style="padding-top: 25em">
 			<div class="span4" id="contact-info" style="margin-left: 5em">
 					<div>
-						<h3>Kontaktujte nas!</h3>
+						<h3>Kontaktujte nás!</h3>
 					</div>
 					<div>
 						<div style=" float: right; margin-left: 2em">
 							<img src="resources/img/genepi.png" />
 						</div>
-						<p>Pokud zaznamenavate problemy s prihlasenim kontaktujte nas na adrese dole.</p>
-						<p>Nebo vyuzijte formular vpravo.
+						<p>Pokud zaznamenáváte problémy s přihlášením, tak nás neváhejte kontaktovat na naší adrese či využijte formulář vpravo.</p>
 						<p>
-						<p>
-							<a href="mailto:admin@genepi.com">admin@genepi.com</a>
+							<a id="address" href="mailto:admin@genepi.com">admin@genepi.com</a>
 						</p>
 						<p>____________________________</p>
 						<p>GENEPI, &copy 2013, FIT CVUT</p>
@@ -118,7 +119,7 @@
 								<label class="control-label" for="name"></label>
 								<div class="controls">
 									<input class="input-xlarge" type="text" id="name"
-										placeholder="Jmeno a prijmeni">
+										placeholder="Jméno a příjmení">
 								</div>
 							</div>
 							<div class="control-group">
@@ -132,18 +133,18 @@
 								<label class="control-label" for="subject"></label>
 								<div class="controls">
 									<input class="input-xlarge" type="text" id="subject"
-										placeholder="Predmet">
+										placeholder="Předmět">
 								</div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="message"></label>
 								<div class="controls">
 									<textarea class="input-xlarge" rows="3" id="message"
-										placeholder="Text zpravy"></textarea>
+										placeholder="Text zprávy"></textarea>
 								</div>
 							</div>
 							<div  class="form-actions" style="background:white;border-color:white">
-								<button type="submit" class="btn btn-primary">ODESLAT</button>
+								<button type="submit" class="btn btn-primary">Odeslat</button>
 							</div>
 						</fieldset>
 					</form>

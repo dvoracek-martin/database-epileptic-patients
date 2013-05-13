@@ -11,11 +11,12 @@
 <!--  import of list -->
 <%@ page import=" java.util.List" %>
 
+<%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="cz">
 	<head>
 		<meta charset="utf-8" />
-		<title>Home Page</title>
+		<title>Kartotéka</title>
 			<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
 		  	<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 			<style type="text/css">
@@ -57,7 +58,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - KARTOTEKA</a>
+					</a> <a class="brand" href="#">GENEPI - KARTOTÉKA</a>
 				</div>
 				
 			</div>
@@ -71,11 +72,11 @@
 	       			<div class="well sidebar-nav">
 	            		<ul class="nav nav-list">
 		             		<li class="nav-header">Pacienti</li>
-		             		<li><a href="#">Kartoteka pacientu</a></li>
-		              		<li><a href="underConstruction">Pokrocile vyhledavani</a></li>
-		              		<li class="nav-header">Uzivatel: <%=username%></li>
+		             		<li><a href="#">Kartotéka pacientů</a></li>
+		              		<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+		              		<li class="nav-header">Uživatel: <%=username%></li>
 		              		<li><a href="myProfile">Profil</a></li>
-		              		<li><a href="j_spring_security_logout">Odhlasit</a></li>
+		              		<li><a href="j_spring_security_logout">Odhlásit</a></li>
 		              		<li class="nav-header">Jazyk</li>
 		            	</ul>
 	          		</div>
@@ -93,34 +94,34 @@
 				<div class="hero-unit">
 						<div style="border-bottom: 2px solid black">
 							<div class ="span5">
-								<h2>Kartoteka pacientu</h2>
+								<h2>Kartotéka pacientů</h2>
 	            			</div>
 	            			<div>
-	            				<h3><a href="createPatient" style="text-decoration: none">Novy pacient</a></h3>
+	            				<h3><a href="createPatient" style="text-decoration: none">Nový pacient</a></h3>
 							</div>
 						</div>
 	
 	            		<table class="patients">
 	            			<tr class="head">
-						        <td>Pr�jmen�</td>
-						        <td>Jmeno</td>
-						        <td>Rodne c�slo</td>
-						        <td>Ulice, c.p.</td>
-						        <td>Mesto</td>
+						        <td><b>Příjmení</b></td>
+						        <td><b>Jméno</b></td>
+						        <td><b>Rodné číslo</b></td>
+						        <td><b>Ulice, c.p.</b></td>
+						        <td><b>Město</b></td>
 		    				</tr>	
 	    			
 		    				<% 
 		    						// this cycle prints into the table information about patients
 				    				for (PatientDAOImpl patient : patients) {
 					 					out.print("<tr>"+
-				    							  "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getLastName()+*/	
-				    							  "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/
+				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getLastName()+*/	
+				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/
 				    							  "\t<td>"+
 				    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
 				    							  "<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+patient.getId()+"\">"+
-				    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+patient.getBirthday().toString()+"</button></form></td>\n"+
-					 						      "\t<td>none</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getAddressHn()+*/
-				    							  "\t<td>none</td>\n" /*+patientOverviewController.findContactByID(patient.getId()).getAddressCity()*/);
+				    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+patient.getNin().toString()+"</button></form></td>\n"+
+					 						      "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getAddressHn()+*/
+				    							  "\t<td>nevyplněno</td>\n" /*+patientOverviewController.findContactByID(patient.getId()).getAddressCity()*/);
 					 				}
 			 				%>
 	            		</table>

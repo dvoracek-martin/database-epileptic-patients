@@ -13,177 +13,119 @@
 <%@ page import=" java.io.*" %>
 
 <%@ page import=" java.text.SimpleDateFormat" %>
+
+<%@page pageEncoding="utf-8" %>
+
 <!DOCTYPE html>
 <html lang="cz">
 <head>
 <meta charset="utf-8" />
-<title>Created patient</title>
+<title>Přidaný pacient</title>
   <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
   <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
   
   
 </head>
 <body>
-	<div class="navbar-wrapper" id="created_patient">
-		<div class="container">
-
+		
+		<%
+				User user = (User) SecurityContextHolder.getContext()
+						.getAuthentication().getPrincipal();
+				String username = user.getUsername();
+				Collection<GrantedAuthority> authorities = user.getAuthorities();
+		%>
+		
+		<!-- box of whole page -->			
+		<div class="container-fluid">
+			<!--  it defines box with logo -->
 			<div class="navbar navbar-inverse">
 				<div class="navbar-inner">
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - VYTVORENY PACIENT</a>
+					</a> <a class="brand" href="#">GENEPI - PŘIDANÝ PACIENT</a>
+				</div>
+				
+			</div>
+		
+		  	<!--  it defines box with menu and logo -->
+			<div class="span3">
+				<div class="well sidebar-nav">
+	           		<a href="/GENEPI/" >  <img  class="photo1" width=2560  height=1600 src="resources/img/logo.png" alt="logo"/> </a>
+	        	</div>
+				<div>
+	       			<div class="well sidebar-nav">
+	            		<ul class="nav nav-list">
+		             		<li class="nav-header">Pacienti</li>
+		             		<li><a href="patientsList">Kartotéka pacientů</a></li>
+		              		<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+		              		<li class="nav-header">Uživatel: <%=username%></li>
+		              		<li><a href="myProfile">Profil</a></li>
+		              		<li><a href="j_spring_security_logout">Odhlásit</a></li>
+		              		<li class="nav-header">Jazyk</li>
+		            	</ul>
+	          		</div>
+	          		<!--  It block with copyright -->
+			    	<div class="span3">
+				    	<div id="copyright">
+				        			<p>GENEPI, &copy 2013, FIT CVUT</p>
+						</div>
+					</div>
 				</div>
 			</div>
+	         <% 
+				// creation of patientsListController
+				CreatePatientController patientsListController = new CreatePatientController();
+		         CreatedPatientController patientsController = new CreatedPatientController();
+				// gets list of patients in the database
+				//List<PatientDAO> patients = patientsListController.findAll(); 
+				
+				String string = request.getParameter("patientBirthdate");
+				String nin = request.getParameter("patientIN");
+				String sex = request.getParameter("patientSEX");
+				try{
+					Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
+					patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
+					//patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
+				}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
+			%>
+				<jsp:forward page="createPatientView.jsp"/>
+			<%
+				}			
+			%>
+						
+			<!-- box for the content -->		
+			<div class="span9">
+	          <div class="hero-unit">
+	            	<h2 style="margin-bottom: 1em">Pacient byl vytvořen!</h2>
+		            <p>
+		                Jméno : <% out.println(request.getParameter("patientFirstname")); %>
+		            </p>
+		            <p>
+		                Příjmení : <% out.println(request.getParameter("patientSurname")); %>
+		            </p>
+		            <p>
+		                Datum narození : <% out.println(request.getParameter("patientBirthdate")); %>
+		            </p>
+		            <p>
+		                Rodné číslo : <% out.println(request.getParameter("patientIN")); %>
+		            </p>
+		            <p>
+		                Pohlaví : <% out.println(request.getParameter("patientSex")); %>
+		            </p>
+		            <p>
+		                Ošetřující lékař : <% out.println(request.getParameter("patientDoctor")); %>   
+		            </p>
+	          </div>
+			</div>
 		</div>
-	</div>
-
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
-	
-	 <div class="container-fluid">
-      
-      
-        <div class="span3">
-          <div class="well sidebar-nav">
-      <a href="/GENEPI/" >  <img  class="photo1" width=2560  height=1600 src="resources/img/logo.png" alt="logo" style= margin: 1em;
-    border-radius: 2.5em;/> </a>
-        </div>
-
-        <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Pacienti</li>
-              <li><a href="patientsList">Kartoteka pacientu</a></li>
-              <li><a href="underConstruction">Pokrocile vyhledavani</a></li>
-              <li class="nav-header">Uzivatel: <%=username%></li>
-              <li><a href="myProfile">Profil</a></li>
-              <li><a href="j_spring_security_logout">Odhlasit</a></li>
-              <li class="nav-header">Jazyk</li>
-            </ul>
-          </div><!--/.well -->
-         </div>
-         
-         <% 
-		// creation of patientsListController
-		CreatePatientController patientsListController = new CreatePatientController();
-         CreatedPatientController patientsController = new CreatedPatientController();
-		// gets list of patients in the database
-		//List<PatientDAO> patients = patientsListController.findAll(); 
-		%>
-		
-		<%
-					String string = request.getParameter("patientBirthdate");
-					String nin = request.getParameter("patientIN");
-					String sex = request.getParameter("patientSEX");
-					try{
-						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
-						patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
-						//patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
-					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
-					%>
-					  <jsp:forward page="createPatientView.jsp"/>
-					<%
-					}
-					
-					%>
-					
-					
-		<div class="span9">
-          <div class="hero-unit">
-            <div style="border-bottom: 2px solid black"><h1>Byl vytvoren pacient !</h1></div>
-            <div style="margin: 10px">
-            <p>
-                Jmeno : <% out.println(request.getParameter("patientFirstname")); %>
-            </p>
-            <p>
-                Prijmeni : <% out.println(request.getParameter("patientSurname")); %>
-            </p>
-            <p>
-                Datum narozeni : <% out.println(request.getParameter("patientBirthdate")); %>
-            </p>
-            <p>
-                Rodne cislo : <% out.println(request.getParameter("patientIN")); %>
-            </p>
-            <p>
-                Pohlavi : <% out.println(request.getParameter("patientSex")); %>
-            </p>
-            <p>
-                Osetrujici lekar : <% out.println(request.getParameter("patientDoctor")); %>   
-            </p>
-            
-          </div>
-			
-			
-          </div>
-          </div>
-         
-					
-
-   </div>
     
-    <div class="span3">
-    	<div id="copyright">
-        			<p>GENEPI, &copy 2013, FIT CVUT</p>
-		</div>
-	</div>
-	
-	
-        
-	<!-- 
-	<h2>User Info:</h2>
-	<div style="font-size: 15px">
-		<label>Username:</label> <strong><%=username%></strong><br /> <label>Roles:</label>
-		<strong> <%
- 	for (GrantedAuthority ga : authorities) {
- 		out.print(ga.getAuthority() + ", ");
- 	}
- %>
-		</strong><br />
-	</div>
-	
-	<h2>Spring 3.2.x Security Namespace Configuration (URL Security)</h2>
-	<br /> You can only access this page if you have
-	<a href="admin">ROLE_ADMIN admin/admin.jsp</a>
-	<br /> You can only access this page if you have
-	<a href="edit">ROLE_EDIT edit/edit.jsp</a>
-
-	<h2>Spring 3.2.x Method Security</h2>
-	<h3>Invoking Server Side Methods:</h3>
-	The following links invoke methods on a server side Spring Controller.
-	They all return back a JSON string which you'll see in your browser.
-	<ol>
-		<li>You must have <strong>ROLE_USER</strong> to invoke this
-			method: <a
-			href="http://localhost:8080/spring-security/data/userRoleOnly">DataService.userRoleOnlyMethod()</a></li>
-		<li>You must have <strong>ROLE_ADMIN</strong> to invoke this
-			method: <a
-			href="http://localhost:8080/spring-security/data/adminRoleOnly">DataService.adminRoleOnlyMethod()</a></li>
-		<li>You must have <strong>ROLE_EDIT</strong> to invoke this
-			method: <a
-			href="http://localhost:8080/spring-security/data/editRoleOnly">DataService.editRoleOnlyMethod()</a></li>
-		<li>You can invoke this method with any of these roles <strong>ROLE_USER,
-				ROLE_EDIT, ROLE_ADMIN</strong> to invoke this method: <a
-			href="http://localhost:8080/spring-security/data/allRoles">DataService.allRolesMethod()</a></li>
-		<li>This method has <strong>no security</strong>: <a
-			href="http://localhost:8080/spring-security/data/open">DataService.unprotectedMethod()</a></li>
-		<li>You need <strong>ROLE_USER</strong> to invoke this method and
-			it will return a JSON string of the <code>org.springframework.security.core.userdetails.User</code>
-			object: <a href="http://localhost:8080/spring-security/data/userInfo">DataService.getUserInfo()</a></li>
-	</ol>
-
-	<a href="j_spring_security_logout">Login as a different user.</a>
- -->
-	<script
-		src="resources/js/jquery.js"></script>
-	<script
-		src="resources/js/bootstrap-dropdown.js"></script>
-	<script
-		src="resources/js/application.js"></script>
-
-
-</body>
+	    <!-- Javascripts imports -->
+		<script
+			src="resources/js/jquery.js"></script>
+		<script
+			src="resources/js/bootstrap-dropdown.js"></script>
+		<script
+			src="resources/js/application.js"></script>
+	</body>
 </html>

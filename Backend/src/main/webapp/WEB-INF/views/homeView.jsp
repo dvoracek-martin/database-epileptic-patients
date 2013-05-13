@@ -4,11 +4,14 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+
+<%@page pageEncoding="utf-8" %>
+
 <!DOCTYPE html>
 <html lang="cz">
 	<head>
 		<meta charset="utf-8" />
-		<title>Home Page</title>
+		<title>Domovská stránka</title>
 		<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 		<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
 	</head>
@@ -29,7 +32,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - PREHLED</a>
+					</a> <a class="brand" href="#">GENEPI - PŘEHLED</a>
 				</div>
 				
 			</div>
@@ -43,11 +46,11 @@
 	       			<div class="well sidebar-nav">
 	            		<ul class="nav nav-list">
 		             		<li class="nav-header">Pacienti</li>
-		             		<li><a href="patientsList">Kartoteka pacientu</a></li>
-		              		<li><a href="underConstruction">Pokrocile vyhledavani</a></li>
-		              		<li class="nav-header">Uzivatel: <%=username%></li>
+		             		<li><a href="patientsList">Kartotéka pacientů</a></li>
+		              		<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+		              		<li class="nav-header">Uživatel: <%=username%></li>
 		              		<li><a href="myProfile">Profil</a></li>
-		              		<li><a href="j_spring_security_logout">Odhlasit</a></li>
+		              		<li><a href="j_spring_security_logout">Odhlásit</a></li>
 		              		<li class="nav-header">Jazyk</li>
 		            	</ul>
 	          		</div>
@@ -64,21 +67,21 @@
 	        <div class="span9">
 				<div class="hero-unit">
 	            	<div style="border-bottom: 2px solid black">
-	            		<h1>Prehled novinek</h1>
+	            		<h1>Přehled novinek</h1>
 	            	</div>
 	            
 	            	<div style="margin: 10px">
 	            		<div style="border-bottom: 2px solid black">
 	            			<h3>12.5.2013</h3>
 	            			<p>
-	            				Podpora pro sirsi skalu prohlizecu byla doplnena.
+	            				Podpora pro širší škálu prohlížečů byla doplněna.
 	            			</p>
 	            		</div>
 	            		
 	            		<div style="border-bottom: 2px solid black">
 	            			<h3>10.9.2013</h3>
 	            			<p>
-	            				Beta verze byla predvedena.
+	            				Beta verze byla předvedena.
 	            			</p>
 	            		</div>
 					</div>

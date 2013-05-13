@@ -4,11 +4,13 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+
+<%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="cz">
 	<head>
 		<meta charset="utf-8" />
-		<title>Home Page</title>
+		<title>Profil</title>
 	  	<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 	  	<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
 	</head>
@@ -42,11 +44,11 @@
 		       		<div class="well sidebar-nav">
 		            	<ul class="nav nav-list">
 			             	<li class="nav-header">Pacienti</li>
-			             	<li><a href="patientsList">Kartoteka pacientu</a></li>
-			              	<li><a href="underConstruction">Pokrocile vyhledavani</a></li>
-			              	<li class="nav-header">Uzivatel: <%=username%></li>
+			             	<li><a href="patientsList">Kartotéka pacientů</a></li>
+			              	<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+			              	<li class="nav-header">Uživatel: <%=username%></li>
 			              	<li><a href="#">Profil</a></li>
-			              	<li><a href="j_spring_security_logout">Odhlasit</a></li>
+			              	<li><a href="j_spring_security_logout">Odhlásit</a></li>
 			              	<li class="nav-header">Jazyk</li>
 			            </ul>
 		          	</div>
@@ -66,9 +68,9 @@
 			            		<h1>Profil</h1>
 			        </div>
 					<div style="margin: 10px">
-			            <p><b>Prihlasovaci jmeno:</b> <%=username%></p>
-						<p><b>Jmeno:</b></p>
-						<p><b>Prijmeni:</b></p>
+			            <p><b>Přihlašovací jméno:</b> <%=username%></p>
+						<p><b>Jméno:</b></p>
+						<p><b>Příjmení:</b></p>
 						<p><b>E-mail:</b></p>
 						<p><b>Telefon:</b></p>
 					</div>

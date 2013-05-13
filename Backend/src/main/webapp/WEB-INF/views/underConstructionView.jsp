@@ -4,11 +4,13 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+
+<%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
 <html lang="cz">
 	<head>
 		<meta charset="utf-8" />
-		<title>Home Page</title>
+		<title>Nedostupná stránka</title>
 	  <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
 	  <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 	</head>
@@ -28,7 +30,7 @@
 					<a class="btn btn-navbar" data-toggle="collapse"
 						data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 						class="icon-bar"></span> <span class="icon-bar"></span>
-					</a> <a class="brand" href="#">GENEPI - UNDER CONSTRUCTION</a>
+					</a> <a class="brand" href="#">GENEPI - NEDOSTUPNÁ</a>
 				</div>
 					
 			</div>
@@ -42,11 +44,11 @@
 		       		<div class="well sidebar-nav">
 		            	<ul class="nav nav-list">
 			             	<li class="nav-header">Pacienti</li>
-			             	<li><a href="patientsList">Kartoteka pacientu</a></li>
-			              	<li><a href="underConstruction">Pokrocile vyhledavani</a></li>
-			              	<li class="nav-header">Uzivatel: <%=username%></li>
+			             	<li><a href="patientsList">Kartotéka pacientů</a></li>
+			              	<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+			              	<li class="nav-header">Uživatel: <%=username%></li>
 			              	<li><a href="myProfile">Profil</a></li>
-			              	<li><a href="j_spring_security_logout">Odhlasit</a></li>
+			              	<li><a href="j_spring_security_logout">Odhlásit</a></li>
 			              	<li class="nav-header">Jazyk</li>
 			            </ul>
 		          	</div>
@@ -62,10 +64,10 @@
 			<!--  it defines box with content -->	
 	        <div class="span9">
 				<div class="alert alert-block alert-error fade in">
-	            	<h1 class="alert-heading">Varovani! Tato stranka je prave v rekonstrukci.</h1>
-	            	<h3>Prosim, budte shovivavi. Obsah bude dostupny brzy.</h3>
+	            	<h1 class="alert-heading">Varování! Na této stránce jsou právě prováděné změny.</h1>
+	            	<h3>Buďte, prosím, trpěliví a vyčkejte, obsah bude dostupný brzy.</h3>
 	            	<p>
-	              		<a class="btn btn-danger" onclick="goBack()">Vratit se na predchozi stranku</a>            
+	              		<a class="btn btn-danger" onclick="goBack()">Vrátit na předchozí stránku</a>            
 					</p>
 				</div>
 			</div>

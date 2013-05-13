@@ -1,5 +1,8 @@
+
+<%@page pageEncoding="utf-8" %>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cz">
 <head>
 <meta charset="utf-8" />
 <title>Denied Page</title>
@@ -61,12 +64,11 @@ body {
 <body>
 	<div id="wrapper" style="width: 100%; text-align: center">
 
-		<h1>OH SNAP! You're not authorized to access this page!</h1>
+		<h1>Nemáte oprávnění vstoupit na tutu stránku!</h1>
 		</br>
 
 		<form name="f" action="/GENEPI/login" method="post">
-			<button class="btn btn-large btn-primary" type="submit" onclick="/">Well...so
-				take me to my home page pls</button>
+			<button class="btn btn-large btn-primary" type="submit" onclick="/">Ok, vraťte mě tedy, prosím, zpátky.</button>
 		</form>
 	</div>
 </body>
