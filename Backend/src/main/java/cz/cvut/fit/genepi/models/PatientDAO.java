@@ -4,6 +4,8 @@ import java.util.Date;
 
 public interface PatientDAO {
 
+	/*
+	 *toto patri entite 
 	public void setId(int id);
 	
 	public int getId();
@@ -38,6 +40,6 @@ public interface PatientDAO {
 
 	public int getCommentId();
 
-	public void setCommentId(int commentId);
+	public void setCommentId(int commentId);*/
 
 }
