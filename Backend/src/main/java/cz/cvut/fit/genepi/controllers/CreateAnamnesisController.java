@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.modelsImpl.AnamnesisDAOImpl;
+import cz.cvut.fit.genepi.managers.AnamnesisManager;
 
 
 @Controller
@@ -27,13 +27,13 @@ public class CreateAnamnesisController {
 			int operationCns, int earlyPmdRetardation,
 			String nonCnsComorbidity, String comment, int deleted,
 			int patientId, int addUserId) {
-		AnamnesisDAOImpl anamnesisImpl = new AnamnesisDAOImpl();
+		AnamnesisManager anamnesisImpl = new AnamnesisManager();
 		anamnesisImpl.createAnamnesis(date, doctorId, added, beginningEpilepsy,
 				firstFever, infantileSpasm, specificSyndromeIdcom,
 				epilepsyInFamily, prenatalRisk, fibrilConvulsions,
 				inflammationCns, injuryCns, operationCns, earlyPmdRetardation,
 				nonCnsComorbidity, comment, deleted, patientId, addUserId);
-		anamnesisImpl.save(anamnesisImpl.anamnesis);
+		anamnesisImpl.save();
 	}
 
 	@RequestMapping(value = "/createAnamnesis", method = RequestMethod.POST)
