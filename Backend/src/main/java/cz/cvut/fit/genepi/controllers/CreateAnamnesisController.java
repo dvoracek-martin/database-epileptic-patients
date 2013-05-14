@@ -24,7 +24,6 @@ public class CreateAnamnesisController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(CreateAnamnesisController.class);
 
-	// create new Anamnesis
 	/**
 	 * Creates the new anamnesis.
 	 *
@@ -62,6 +61,7 @@ public class CreateAnamnesisController {
 				inflammationCns, injuryCns, operationCns, earlyPmdRetardation,
 				nonCnsComorbidity, comment, deleted, patientId, addUserId);
 		anamnesisImpl.save();
+		logger.info("Created new anamnesis for patient id: "+patientId);
 	}
 
 	/**

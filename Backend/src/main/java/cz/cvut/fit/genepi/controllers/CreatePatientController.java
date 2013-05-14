@@ -41,6 +41,7 @@ public class CreatePatientController {
 			PatientManager patientImpl = new PatientManager();
 			patientImpl.createPatient(nin, birthday, gender, doctorId, deleted, checked, contactId, commentId);
 			patientImpl.save();
+			logger.info("Created new patient with nin: "+nin);
 		}
 
 	/**

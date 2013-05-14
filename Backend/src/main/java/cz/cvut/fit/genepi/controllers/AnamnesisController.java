@@ -2,8 +2,6 @@ package cz.cvut.fit.genepi.controllers;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +17,6 @@ import cz.cvut.fit.genepi.managers.ContactManager;
 @Controller
 public class AnamnesisController {
 	
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(AnamnesisController.class);
-
 	/**
 	 * selects the profile view to render by returning its name.
 	 *

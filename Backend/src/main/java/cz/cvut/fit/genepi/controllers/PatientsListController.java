@@ -3,8 +3,6 @@ package cz.cvut.fit.genepi.controllers;
 import java.util.List;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,12 +17,7 @@ import cz.cvut.fit.genepi.managers.PatientManager;
  */
 @Controller
 public class PatientsListController {
-	
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(PatientsListController.class);
 
-	// returns all patients from dtb
 	/**
 	 * Find all.
 	 *

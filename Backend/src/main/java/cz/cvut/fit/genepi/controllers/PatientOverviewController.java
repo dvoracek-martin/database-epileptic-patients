@@ -30,7 +30,6 @@ public class PatientOverviewController {
 	/** The id. */
 	private int id;
 
-	// returns patient from dtb according to id
 	/**
 	 * Find by id.
 	 *
@@ -49,8 +48,8 @@ public class PatientOverviewController {
 	 * @return the patient entity
 	 */
 	public PatientEntity findByID() {
-		PatientManager patientImpl = new PatientManager();
-		return patientImpl.findByID(this.id);
+		PatientManager patientManager = new PatientManager();
+		return patientManager.findByID(this.id);
 	}
 
 	/**
@@ -60,11 +59,10 @@ public class PatientOverviewController {
 	 * @return the contact entity
 	 */
 	public ContactEntity findContactByID(int id) {
-		ContactManager patientImpl = new ContactManager();
-		return patientImpl.findByID(id);
+		ContactManager contactManager = new ContactManager();
+		return contactManager.findByID(id);
 	}
 
-	// create new Patient
 	/**
 	 * Creates the new patient.
 	 *
@@ -79,10 +77,11 @@ public class PatientOverviewController {
 	 */
 	public void createNewPatient(String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
-		PatientManager patientImpl = new PatientManager();
-		patientImpl.createPatient(nin, birthday, gender, doctorId, deleted,
+		PatientManager patientManager = new PatientManager();
+		patientManager.createPatient(nin, birthday, gender, doctorId, deleted,
 				checked, contactId, commentId);
-		patientImpl.save();
+		patientManager.save();
+		logger.info("Created new anamnesis for patient nin: "+nin);
 	}
 
 	/**
