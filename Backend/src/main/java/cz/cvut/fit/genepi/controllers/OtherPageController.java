@@ -12,10 +12,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class OtherPageController.
+ */
 @Controller
 public class OtherPageController {
+	
+	/** The name. */
 	String name;
 
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(HomeController.class);
 
@@ -25,6 +32,14 @@ public class OtherPageController {
 	 * in the constructor
 	 */
 	
+	/**
+	 * Admin.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param fieldName the field name
+	 * @return the string
+	 */
 	@RequestMapping(value = "foo", method = RequestMethod.POST)
 	public String admin(Locale locale, Model model,
 			@RequestParam String fieldName) {

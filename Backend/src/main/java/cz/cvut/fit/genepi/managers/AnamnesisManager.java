@@ -5,10 +5,39 @@ import java.util.Date;
 import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.modelsImpl.AnamnesisDAOImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AnamnesisManager.
+ */
 public class AnamnesisManager extends AnamnesisDAOImpl {
 	
+	/** The anamnesis. */
 	AnamnesisEntity anamnesis;
 	
+	/**
+	 * Creates the anamnesis.
+	 *
+	 * @param date the date
+	 * @param doctorId the doctor id
+	 * @param added the added
+	 * @param beginningEpilepsy the beginning epilepsy
+	 * @param firstFever the first fever
+	 * @param infantileSpasm the infantile spasm
+	 * @param specificSyndromeIdcom the specific syndrome idcom
+	 * @param epilepsyInFamily the epilepsy in family
+	 * @param prenatalRisk the prenatal risk
+	 * @param fibrilConvulsions the fibril convulsions
+	 * @param inflammationCns the inflammation cns
+	 * @param injuryCns the injury cns
+	 * @param operationCns the operation cns
+	 * @param earlyPmdRetardation the early pmd retardation
+	 * @param nonCnsComorbidity the non cns comorbidity
+	 * @param comment the comment
+	 * @param deleted the deleted
+	 * @param patientId the patient id
+	 * @param addUserId the add user id
+	 * @return the anamnesis entity
+	 */
 	public AnamnesisEntity createAnamnesis(Date date, int doctorId, Date added,
 			Date beginningEpilepsy, int firstFever, int infantileSpasm,
 			int specificSyndromeIdcom, int epilepsyInFamily, int prenatalRisk,
@@ -40,10 +69,18 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 		return anamnesis;
 	}
 	
+	/**
+	 * Creates the user.
+	 *
+	 * @param anamnesis the anamnesis
+	 */
 	public void createUser(AnamnesisEntity anamnesis) {
 		this.anamnesis = anamnesis;
 	}
 	
+	/**
+	 * Save.
+	 */
 	public void save(){
 		this.save(anamnesis);
 	}

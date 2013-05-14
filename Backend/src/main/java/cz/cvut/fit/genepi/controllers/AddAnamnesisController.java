@@ -12,13 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AddAnamnesisController.
+ */
 @Controller
 public class AddAnamnesisController {
+	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(AddAnamnesisController.class);
 
 	/**
 	 * selects the profile view to render by returning its name.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
 	 */
 
 	// addAnamnesis
@@ -28,6 +38,13 @@ public class AddAnamnesisController {
 		return "addAnamnesisView";
 	}
 
+	/**
+	 * Adds the anamnesis get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/addAnamnesis", method = RequestMethod.GET)
 	public String addAnamnesisGET(Locale locale, Model model) {
 		return "addAnamnesisView";

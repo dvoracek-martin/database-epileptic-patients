@@ -9,13 +9,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AdminController.
+ */
 @Controller
 public class AdminController {
 	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
 	
 	/**
 	 * Simply selects the admin view to render by returning its name.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
 	 */
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String admin(Locale locale, Model model) {

@@ -11,13 +11,29 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.managers.ContactManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreatedPatientController.
+ */
 @Controller
 public class CreatedPatientController {
+	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(CreatedPatientController.class);
 	
 	/**
 	 * selects the profile view to render by returning its name.
+	 *
+	 * @param firstName the first name
+	 * @param lastName the last name
+	 * @param addressStreet the address street
+	 * @param addressHn the address hn
+	 * @param addressCity the address city
+	 * @param addressPostalcode the address postalcode
+	 * @param addressCountry the address country
+	 * @param phoneNumber the phone number
+	 * @param email the email
 	 */
 	
 	// create new Contact	
@@ -31,11 +47,25 @@ public class CreatedPatientController {
 	}
 	
 	
+	/**
+	 * Created patient post.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/createdPatient", method = RequestMethod.POST)
 	public String createdPatientPOST(Locale locale, Model model) {	
 		return "createdPatientView";
 	}
 	
+	/**
+	 * Created patient get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/createdPatient", method = RequestMethod.GET)
 	public String createdPatientGET(Locale locale, Model model) {	
 		return "createdPatientView";

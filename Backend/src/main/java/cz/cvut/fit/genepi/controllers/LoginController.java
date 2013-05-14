@@ -13,14 +13,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.managers.PatientManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class LoginController.
+ */
 @Controller
 public class LoginController {
 
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(AdminController.class);
 
 	/**
 	 * Simply selects the admin view to render by returning its name.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
 	 */
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -29,6 +38,13 @@ public class LoginController {
 		return "loginView";
 	}
 
+	/**
+	 * Login get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET(Locale locale, Model model) {
 		logger.info("LOGIN! The client locale is {}.", locale);

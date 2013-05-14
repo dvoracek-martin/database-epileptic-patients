@@ -16,31 +16,67 @@ import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.managers.ContactManager;
 import cz.cvut.fit.genepi.managers.PatientManager;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PatientOverviewController.
+ */
 @Controller
 public class PatientOverviewController {
+	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(PatientOverviewController.class);
 
+	/** The id. */
 	private int id;
 
 	// returns patient from dtb according to id
+	/**
+	 * Find by id.
+	 *
+	 * @param id the id
+	 * @return the patient entity
+	 */
 	public PatientEntity findByID(int id) {
 		PatientManager patientImpl = new PatientManager();
 		return patientImpl.findByID(id);
 	}
 
 	// returns current patient from dtb according to id
+	/**
+	 * Find by id.
+	 *
+	 * @return the patient entity
+	 */
 	public PatientEntity findByID() {
 		PatientManager patientImpl = new PatientManager();
 		return patientImpl.findByID(this.id);
 	}
 
+	/**
+	 * Find contact by id.
+	 *
+	 * @param id the id
+	 * @return the contact entity
+	 */
 	public ContactEntity findContactByID(int id) {
 		ContactManager patientImpl = new ContactManager();
 		return patientImpl.findByID(id);
 	}
 
 	// create new Patient
+	/**
+	 * Creates the new patient.
+	 *
+	 * @param nin the nin
+	 * @param birthday the birthday
+	 * @param gender the gender
+	 * @param doctorId the doctor id
+	 * @param deleted the deleted
+	 * @param checked the checked
+	 * @param contactId the contact id
+	 * @param commentId the comment id
+	 */
 	public void createNewPatient(String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
 		PatientManager patientImpl = new PatientManager();
@@ -51,6 +87,11 @@ public class PatientOverviewController {
 
 	/**
 	 * selects the profile view to render by returning its name.
+	 *
+	 * @param id the id
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
 	 */
 
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
@@ -61,6 +102,13 @@ public class PatientOverviewController {
 		return "patientOverviewView";
 	}
 
+	/**
+	 * Patient overview post.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.GET)
 	public String patientOverviewPOST(Locale locale, Model model) {
 		return "patientOverviewView";

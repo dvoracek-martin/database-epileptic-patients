@@ -13,13 +13,41 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.managers.AnamnesisManager;
 
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CreateAnamnesisController.
+ */
 @Controller
 public class CreateAnamnesisController {
 
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(CreateAnamnesisController.class);
 
 	// create new Anamnesis
+	/**
+	 * Creates the new anamnesis.
+	 *
+	 * @param date the date
+	 * @param doctorId the doctor id
+	 * @param added the added
+	 * @param beginningEpilepsy the beginning epilepsy
+	 * @param firstFever the first fever
+	 * @param infantileSpasm the infantile spasm
+	 * @param specificSyndromeIdcom the specific syndrome idcom
+	 * @param epilepsyInFamily the epilepsy in family
+	 * @param prenatalRisk the prenatal risk
+	 * @param fibrilConvulsions the fibril convulsions
+	 * @param inflammationCns the inflammation cns
+	 * @param injuryCns the injury cns
+	 * @param operationCns the operation cns
+	 * @param earlyPmdRetardation the early pmd retardation
+	 * @param nonCnsComorbidity the non cns comorbidity
+	 * @param comment the comment
+	 * @param deleted the deleted
+	 * @param patientId the patient id
+	 * @param addUserId the add user id
+	 */
 	public void createNewAnamnesis(Date date, int doctorId, Date added,
 			Date beginningEpilepsy, int firstFever, int infantileSpasm,
 			int specificSyndromeIdcom, int epilepsyInFamily, int prenatalRisk,
@@ -36,11 +64,25 @@ public class CreateAnamnesisController {
 		anamnesisImpl.save();
 	}
 
+	/**
+	 * Creates the anamnesis post.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/createAnamnesis", method = RequestMethod.POST)
 	public String CreateAnamnesisPOST(Locale locale, Model model) {
 		return "createAnamnesisView";
 	}
 
+	/**
+	 * Creates the anamnesis get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/createAnamnesis", method = RequestMethod.GET)
 	public String CreateAnamnesisGET(Locale locale, Model model) {
 		return "createAnamnesisView";
