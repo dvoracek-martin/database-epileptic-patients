@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.controllers;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -11,8 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.models.PatientDAO;
-import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
+import cz.cvut.fit.genepi.entities.PatientEntity;
+import cz.cvut.fit.genepi.managers.PatientManagers;
 
 @Controller
 public class PatientsListController {
@@ -20,9 +19,9 @@ public class PatientsListController {
 			.getLogger(PatientsListController.class);
 
 	// returns all patients from dtb
-	public List<PatientDAOImpl> findAll(){
-		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (List<PatientDAOImpl>) patientImpl.findAll(PatientDAOImpl.class);	
+	public List<PatientEntity> findAll(){
+		PatientManagers patientImpl = new PatientManagers();
+		return patientImpl.findAll();	
 	}
 	
 	/**

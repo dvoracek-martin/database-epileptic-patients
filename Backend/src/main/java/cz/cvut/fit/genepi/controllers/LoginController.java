@@ -5,14 +5,13 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.models.PatientDAO;
-import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
+import cz.cvut.fit.genepi.entities.PatientEntity;
+import cz.cvut.fit.genepi.managers.PatientManagers;
 
 @Controller
 public class LoginController {
@@ -35,13 +34,14 @@ public class LoginController {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
 		// NEW WAY, HOW TO USE HIBERNATE IN OUR APP, PLS GET FAMILIAR WITH THIS
-		PatientDAOImpl userImpl = new PatientDAOImpl();
+		PatientManagers userImpl = new PatientManagers();
+		
 		 userImpl.createPatient("zvzfsdfsdfasfas",new Date(), "male",
-					5487, 1, 0, 56421, 4567);
+				5487, 1, 0, 56421, 4567);
 
-		 userImpl.save(userImpl);
+		 userImpl.save();
 
-		PatientDAOImpl p= (PatientDAOImpl)userImpl.findByID(PatientDAOImpl.class, 10);
+		 //PatientEntity p= userImpl.findByID(10);
 		// System.out.println(u.getCreatedBy());
 
 		// DEPRECATED
@@ -64,10 +64,10 @@ public class LoginController {
 //
 	//	PatientDAOImpl userImpl = new PatientDAOImpl();
 		//userImpl.findByID(PatientDAO.class, (12));
-		System.out.println("USER " + p.getId());
-		System.out.println("USER " + p.getNin());
-		System.out.println("USER " + p.getChecked() );
-		System.out.println("USER " + p.getContactId());
+	//	System.out.println("USER " + p.getId());
+	//	System.out.println("USER " + p.getNin());
+	//	System.out.println("USER " + p.getChecked() );
+	//	System.out.println("USER " + p.getContactId());
 		return "loginView";
 	}
 }

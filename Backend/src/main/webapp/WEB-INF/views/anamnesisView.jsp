@@ -8,6 +8,8 @@
 <%@ page import="cz.cvut.fit.genepi.controllers.*"%>
 <!-- import of modelsImpl -->
 <%@ page import="cz.cvut.fit.genepi.models.*"%>
+<!-- import of Entities -->
+<%@ page import="cz.cvut.fit.genepi.entities.*"%>
 
 <%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
@@ -26,7 +28,7 @@
 				Collection<GrantedAuthority> authorities = user.getAuthorities();
 				//finding object of patient
 				PatientOverviewController patientOverviewController = new PatientOverviewController();
-				PatientDAO patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
+				PatientEntity patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
 		%>
 				
 		<!-- box of whole page -->			

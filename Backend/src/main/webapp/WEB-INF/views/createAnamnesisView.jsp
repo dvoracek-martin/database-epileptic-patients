@@ -11,6 +11,8 @@
 <%@ page import=" java.util.*" %>
 <%@ page import=" java.lang.*" %>
 <%@ page import=" java.io.*" %>
+<!-- import of Entities -->
+<%@ page import="cz.cvut.fit.genepi.entities.*"%>
 
 <%@ page import=" java.text.SimpleDateFormat" %>
 
@@ -31,7 +33,7 @@
 					Collection<GrantedAuthority> authorities = user.getAuthorities();
 					//finding object of patient
 					PatientOverviewController patientOverviewController = new PatientOverviewController();
-					PatientDAO patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
+					PatientEntity patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
 			%>
 					
 			<!-- box of whole page -->			

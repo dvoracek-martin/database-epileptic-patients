@@ -10,6 +10,8 @@
 <%@ page import="cz.cvut.fit.genepi.modelsImpl.*"%>
 <!--  import of list -->
 <%@ page import=" java.util.List" %>
+<!-- import of Entities -->
+<%@ page import="cz.cvut.fit.genepi.entities.*"%>
 
 <%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
@@ -45,7 +47,7 @@
 				// creation of patientsListController
 				PatientsListController patientsListController = new PatientsListController();
 				// gets list of patients in the database
-				List<PatientDAOImpl> patients = patientsListController.findAll(); 
+				List<PatientEntity> patients = patientsListController.findAll(); 
 				// creation of patientOverviewController
 				PatientOverviewController patientOverviewController = new PatientOverviewController();
 		%>
@@ -112,7 +114,7 @@
 	    			
 		    				<% 
 		    						// this cycle prints into the table information about patients
-				    				for (PatientDAOImpl patient : patients) {
+				    				for (PatientEntity patient : patients) {
 					 					out.print("<tr>"+
 				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getLastName()+*/	
 				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/

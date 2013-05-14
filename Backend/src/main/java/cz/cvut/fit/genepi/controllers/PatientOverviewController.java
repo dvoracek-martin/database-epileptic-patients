@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.controllers;
+	package cz.cvut.fit.genepi.controllers;
 
 import java.util.Date;
 import java.util.Locale;
@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.cvut.fit.genepi.entities.PatientEntity;
+import cz.cvut.fit.genepi.managers.PatientManagers;
 import cz.cvut.fit.genepi.models.ContactDAO;
 import cz.cvut.fit.genepi.models.PatientDAO;
 import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
@@ -24,15 +26,15 @@ public class PatientOverviewController {
 	private int id; 
 
 	// returns patient from dtb according to id
-	public PatientDAO findByID(int id) {
-		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (PatientDAO) patientImpl.findByID(PatientDAOImpl.class, id);
+	public PatientEntity findByID(int id) {
+		PatientManagers patientImpl = new PatientManagers ();
+		return patientImpl.findByID (id);
 	}
 
 	// returns current patient from dtb according to id
-	public PatientDAO findByID() {
-		PatientDAOImpl patientImpl = new PatientDAOImpl();
-		return (PatientDAO) patientImpl.findByID(PatientDAOImpl.class, this.id);
+	public PatientEntity findByID() {
+		PatientManagers patientImpl = new PatientManagers ();
+		return patientImpl.findByID (this.id);
 	}
 	
 	public ContactDAO findContactByID(int id){
@@ -43,10 +45,10 @@ public class PatientOverviewController {
 	// create new Patient
 	public void createNewPatient(String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
-		PatientDAOImpl patientImpl = new PatientDAOImpl();
+		PatientManagers patientImpl = new PatientManagers();
 		patientImpl.createPatient(nin, birthday, gender, doctorId, deleted,
 				checked, contactId, commentId);
-		patientImpl.save(patientImpl);
+		patientImpl.save();
 	}
 
 	/**
