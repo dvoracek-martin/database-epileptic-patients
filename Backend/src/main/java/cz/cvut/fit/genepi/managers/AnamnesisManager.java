@@ -17,6 +17,7 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 			String nonCnsComorbidity, String comment, int deleted,
 			int patientId, int addUserId) {
 		
+		anamnesis = new AnamnesisEntity();
 		anamnesis.setDate(date);
 		anamnesis.setDoctorId(doctorId);
 		anamnesis.setAdded(added);
