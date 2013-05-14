@@ -118,7 +118,7 @@
 				    					ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
 					 					out.print("<tr>"+
 				    							  "\t<td>nevyplněno</td>\n"+contact.getLastName()+	
-				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/
+				    							  "\t<td>nevyplněno</td>\n"+contact.getFirstName()+
 				    							  "\t<td>"+
 				    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
 				    							  "<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+patient.getId()+"\">"+
