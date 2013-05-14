@@ -164,7 +164,7 @@
 					try{
 						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 						Date date1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string1);
-						createAnamnesisController.createNewAnamnesis(date, 1,1, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
+						createAnamnesisController.createNewAnamnesis(date, 1,date, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
 					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 				%>
 					  <jsp:forward page="createAnamnesisView.jsp"/>
