@@ -9,7 +9,7 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 	
 	AnamnesisEntity anamnesis;
 	
-	public AnamnesisEntity createAnamnesis(Date date, int doctorId, int added,
+	public AnamnesisEntity createAnamnesis(Date date, int doctorId, Date added,
 			Date beginningEpilepsy, int firstFever, int infantileSpasm,
 			int specificSyndromeIdcom, int epilepsyInFamily, int prenatalRisk,
 			int fibrilConvulsions, int inflammationCns, int injuryCns,

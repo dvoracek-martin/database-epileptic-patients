@@ -20,7 +20,7 @@ public class CreateAnamnesisController {
 			.getLogger(CreateAnamnesisController.class);
 
 	// create new Anamnesis
-	public void createNewAnamnesis(Date date, int doctorId, int added,
+	public void createNewAnamnesis(Date date, int doctorId, Date added,
 			Date beginningEpilepsy, int firstFever, int infantileSpasm,
 			int specificSyndromeIdcom, int epilepsyInFamily, int prenatalRisk,
 			int fibrilConvulsions, int inflammationCns, int injuryCns,
