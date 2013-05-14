@@ -116,7 +116,7 @@
 		    						// this cycle prints into the table information about patients
 				    				for (PatientEntity patient : patients) {
 					 					out.print("<tr>"+
-				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getLastName()+*/	
+				    							  "\t<td>nevyplněno</td>\n"+patientOverviewController.findContactByID(patient.getId()).getLastName()+	
 				    							  "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getFirstName()+*/
 				    							  "\t<td>"+
 				    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
