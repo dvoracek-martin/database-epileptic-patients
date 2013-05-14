@@ -20,7 +20,7 @@
 			<column name="address_hn" length="10" not-null="false" />
 		</property>
 		<property name="addressCity" type="string">
-			<column name="adress_city" length="30" not-null="false" />
+			<column name="address_city" length="30" not-null="false" />
 		</property>
 		<property name="addressPostalcode" type="string">
 			<column name="address_postalcode" length="10" not-null="false" />
