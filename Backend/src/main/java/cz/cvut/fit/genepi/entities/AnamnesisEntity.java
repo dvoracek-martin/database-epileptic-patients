@@ -6,7 +6,7 @@ public class AnamnesisEntity {
 	private int id;
 	private Date date;
 	private int doctorId;
-	private int added;
+	private Date added;
 	private Date beginningEpilepsy;
 	private int firstFever;
 	private int infantileSpasm;
@@ -48,11 +48,11 @@ public class AnamnesisEntity {
 		this.doctorId = doctorId;
 	}
 
-	public int getAdded() {
+	public Date getAdded() {
 		return added;
 	}
 
-	public void setAdded(int added) {
+	public void setAdded(Date added) {
 		this.added = added;
 	}
 
