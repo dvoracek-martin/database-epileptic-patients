@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.managers.PatientManagers;
+import cz.cvut.fit.genepi.managers.PatientManager;
 
 @Controller
 public class LoginController {
@@ -34,7 +34,7 @@ public class LoginController {
 		logger.info("LOGIN! The client locale is {}.", locale);
 
 		// NEW WAY, HOW TO USE HIBERNATE IN OUR APP, PLS GET FAMILIAR WITH THIS
-		PatientManagers userImpl = new PatientManagers();
+		PatientManager userImpl = new PatientManager();
 		
 		 userImpl.createPatient("zvzfsdfsdfasfas",new Date(), "male",
 				5487, 1, 0, 56421, 4567);

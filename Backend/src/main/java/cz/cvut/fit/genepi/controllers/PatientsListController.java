@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.managers.PatientManagers;
+import cz.cvut.fit.genepi.managers.PatientManager;
 
 @Controller
 public class PatientsListController {
@@ -20,7 +20,7 @@ public class PatientsListController {
 
 	// returns all patients from dtb
 	public List<PatientEntity> findAll(){
-		PatientManagers patientImpl = new PatientManagers();
+		PatientManager patientImpl = new PatientManager();
 		return patientImpl.findAll();	
 	}
 	

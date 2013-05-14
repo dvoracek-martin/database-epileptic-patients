@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
+import cz.cvut.fit.genepi.managers.ContactManager;
 
 @Controller
 public class CreatedPatientController {
@@ -25,7 +25,7 @@ public class CreatedPatientController {
 			String addressStreet, String addressHn, String addressCity,
 			String addressPostalcode, String addressCountry,
 			String phoneNumber, String email){
-		ContactDAOImpl contactImpl = new ContactDAOImpl();
+		ContactManager contactImpl = new ContactManager();
 		contactImpl.createContact(firstName, lastName, addressStreet, addressHn, addressCity, addressPostalcode, addressCountry, phoneNumber, email);
 		contactImpl.save(contactImpl.contact);
 	}

@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.managers.PatientManagers;
+import cz.cvut.fit.genepi.managers.PatientManager;
 
 @Controller
 public class CreatePatientController {
@@ -20,7 +20,7 @@ public class CreatePatientController {
 	// create new Patient	
 		public void createNewPatient( String nin, Date birthday, String gender,
 				int doctorId, int deleted, int checked, int contactId, int commentId){
-			PatientManagers patientImpl = new PatientManagers();
+			PatientManager patientImpl = new PatientManager();
 			patientImpl.createPatient(nin, birthday, gender, doctorId, deleted, checked, contactId, commentId);
 			patientImpl.save();
 		}

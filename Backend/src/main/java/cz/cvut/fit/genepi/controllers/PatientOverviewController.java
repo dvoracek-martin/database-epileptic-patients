@@ -1,4 +1,4 @@
-	package cz.cvut.fit.genepi.controllers;
+package cz.cvut.fit.genepi.controllers;
 
 import java.util.Date;
 import java.util.Locale;
@@ -11,41 +11,39 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.cvut.fit.genepi.entities.ContactEntity;
 import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.managers.PatientManagers;
-import cz.cvut.fit.genepi.models.ContactDAO;
-import cz.cvut.fit.genepi.models.PatientDAO;
-import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
-import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
+import cz.cvut.fit.genepi.managers.ContactManager;
+import cz.cvut.fit.genepi.managers.PatientManager;
 
 @Controller
 public class PatientOverviewController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(PatientOverviewController.class);
 
-	private int id; 
+	private int id;
 
 	// returns patient from dtb according to id
 	public PatientEntity findByID(int id) {
-		PatientManagers patientImpl = new PatientManagers ();
-		return patientImpl.findByID (id);
+		PatientManager patientImpl = new PatientManager();
+		return patientImpl.findByID(id);
 	}
 
 	// returns current patient from dtb according to id
 	public PatientEntity findByID() {
-		PatientManagers patientImpl = new PatientManagers ();
-		return patientImpl.findByID (this.id);
+		PatientManager patientImpl = new PatientManager();
+		return patientImpl.findByID(this.id);
 	}
-	
-	public ContactDAO findContactByID(int id){
-		ContactDAOImpl patientImpl = new ContactDAOImpl();
-		return (ContactDAO) patientImpl.findByID(ContactDAO.class, id);
+
+	public ContactEntity findContactByID(int id) {
+		ContactManager patientImpl = new ContactManager();
+		return patientImpl.findByID(id);
 	}
 
 	// create new Patient
 	public void createNewPatient(String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
-		PatientManagers patientImpl = new PatientManagers();
+		PatientManager patientImpl = new PatientManager();
 		patientImpl.createPatient(nin, birthday, gender, doctorId, deleted,
 				checked, contactId, commentId);
 		patientImpl.save();
@@ -56,7 +54,8 @@ public class PatientOverviewController {
 	 */
 
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
-	public String patientOverviewPOST(@RequestParam("id") int id,Locale locale, Model model ) {
+	public String patientOverviewPOST(@RequestParam("id") int id,
+			Locale locale, Model model) {
 		this.id = id;
 		model.addAttribute("id", id);
 		return "patientOverviewView";

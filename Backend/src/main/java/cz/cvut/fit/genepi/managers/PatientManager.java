@@ -6,7 +6,7 @@ import java.util.List;
 import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
-public class PatientManagers extends PatientDAOImpl {
+public class PatientManager extends PatientDAOImpl {
 
 	PatientEntity patient;
 
@@ -29,8 +29,8 @@ public class PatientManagers extends PatientDAOImpl {
 		this.save(patient);
 	}
 
-	public PatientEntity findByID(int i) {
-		return (this.findByID(PatientEntity.class, i));
+	public PatientEntity findByID(int id) {
+		return (this.findByID(PatientEntity.class, id));
 	}
 
 	public List<PatientEntity> findAll() {
