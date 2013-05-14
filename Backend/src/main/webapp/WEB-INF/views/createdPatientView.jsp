@@ -86,7 +86,7 @@
 				try{
 					Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 					patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
-					//patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
+					patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
 				}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 			%>
 				<jsp:forward page="createPatientView.jsp"/>
