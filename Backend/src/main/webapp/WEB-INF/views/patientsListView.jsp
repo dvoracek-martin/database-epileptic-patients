@@ -114,18 +114,20 @@
 	    			
 		    				<% 
 		    						// this cycle prints into the table information about patients
-		    						int i=0;
 				    				for (PatientEntity patient : patients) {
 				    					ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
-					 					out.print("<tr>"+
-				    							  "\t<td>nevyplněno</td>\n"+i++ +" "+contact.getLastName()+	
-				    							  "\t<td>nevyplněno</td>\n"+contact.getFirstName()+
+					 					String lastName = contact.getLastName()==null?"nevyplněno":contact.getLastName();
+					 					String firstName = contact.getFirstName()==null?"nevyplněno":contact.getFirstName();
+					 					
+				    					out.print("<tr>"+
+				    							  "\t<td>"+lastName+"</td>\n"+
+				    							  "\t<td>"+firstName+"</td>\n"+
 				    							  "\t<td>"+
 				    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
 				    							  "<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+patient.getId()+"\">"+
 				    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+patient.getNin().toString()+"</button></form></td>\n"+
-					 						      "\t<td>nevyplněno</td>\n"+/*patientOverviewController.findContactByID(patient.getId()).getAddressHn()+*/
-				    							  "\t<td>nevyplněno</td>\n" /*+patientOverviewController.findContactByID(patient.getId()).getAddressCity()*/);
+					 						      "\t<td>"+patient.getId()+"</td>\n"+
+				    							  "\t<td>nevyplněno</td>\n");
 					 				}
 			 				%>
 	            		</table>
