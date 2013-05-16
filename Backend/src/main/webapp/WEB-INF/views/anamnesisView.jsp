@@ -29,6 +29,10 @@
 				//finding object of patient
 				PatientOverviewController patientOverviewController = new PatientOverviewController();
 				PatientEntity patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
+				
+				ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
+				
+				AnamnesisEntity anamnesis = patientOverviewController.findAnamnesisByPatientID(patient.getId());
 		%>
 				
 		<!-- box of whole page -->			
@@ -154,79 +158,93 @@
 					
 		                                            
 					<div>
-						<h3>Anamnéza</h3>
-						<table style="border: 1px solid black" class="">
-		        			<thead style="border: 1px solid black">
-		        				<tr>
-		            				<td>Zadáno dne:</td>
-		            				<td class="pull-right"><a href="underConstruction">Zobrazit všechny záznamy</a></td>
-		        				</tr>
-		        			</thead>
-		        			<tbody>	
-		        				<tr>
-		            				<td colspan="2">
-		                				<div>
-		                					<table>
-		                    					<tbody>
-		                    						<tr>
-		                        						<td>Epilepsie v rodině</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Prenatální rizika</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Febrilní křeče</td>
-		                    						</tr>
-		                    
-		                    						<tr>
-		                        						<td>Zánět CNS</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Úraz CNS</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Operace CNS</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Casná PMD retardace</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Začátek epilepsie</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>První záchvat s horečkou</td>				
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                        						<td>Infantilní spasmy</td>
-		                    						</tr>
-		                    					
-		                    						<tr>
-		                    							<td>Epileptický syndrom</td>
-		                    						</tr>
-		                   						
-		                   							<tr>
-														<td>Non CNS komorbidita</td>
-			                    					</tr>
-			                    					
-			                    					<tr>
-			                       						<td>Komentář</td>
-			                    					</tr>
-		                						</tbody>
-		                					</table>
-		                				</div>
-		           					</td>
-		        				</tr>
-		    				</tbody>
-		    			</table>
-					</div>	
+					<h3>Anamnéza</h3>
+					<table style="border: 1px solid black" class="span7">
+						<thead style="border: 1px solid black">
+							<tr>
+								<td>Zadáno dne:</td>
+								<td class="pull-right"><a href="underConstruction">Zobrazit
+										všechny záznamy</a></td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td colspan="2">
+									<div>
+										<table>
+											<tbody>
+												<tr>
+													<td>Epilepsie v rodině</td>
+													<td><%out.println(anamnesis.getEpilepsyInFamily());%></td>
+												</tr>
+
+												<tr>
+													<td>Prenatální rizika</td>
+													<td><%out.println(anamnesis.getPrenatalRisk());%></td>
+												</tr>
+
+												<tr>
+													<td>Febrilní křeče</td>
+													<td><%out.println(anamnesis.getFibrilConvulsions());%></td>
+												</tr>
+
+												<tr>
+													<td>Zánět CNS</td>
+													<td><%out.println(anamnesis.getInflammationCns());%></td>
+												</tr>
+
+												<tr>
+													<td>Úraz CNS</td>
+													<td><%out.println(anamnesis.getInjuryCns());%></td>
+												</tr>
+
+												<tr>
+													<td>Operace CNS</td>
+													<td><%out.println(anamnesis.getOperationCns());%></td>
+												</tr>
+
+												<tr>
+													<td>Časná PMD retardace</td>
+													<td><%out.println(anamnesis.getEarlyPmdRetardation());%></td>
+												</tr>
+
+												<tr>
+													<td>Začátek epilepsie</td>
+													<td><%out.println(anamnesis.getNonCnsComorbidity());%></td>
+												</tr>
+
+												<tr>
+													<td>První záchvat s horečkou</td>
+													<td><%out.println("nevyplněno");%></td>
+												</tr>
+
+												<tr>
+													<td>Infantilní spasmy</td>
+													<td><%out.println("nevyplněno");%></td>
+												</tr>
+
+												<tr>
+													<td>Epileptický syndrom</td>
+													<td><%out.println("nevyplněno");%></td>
+												</tr>
+
+												<tr>
+													<td>Non CNS komorbidita</td>
+													<td><%out.println("nevyplněno");%></td>
+												</tr>
+
+												<tr>
+													<td>Komentář</td>
+													<td><%out.println("nevyplněno");%></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>	
 				</div>
 			</div>
 		</div>
