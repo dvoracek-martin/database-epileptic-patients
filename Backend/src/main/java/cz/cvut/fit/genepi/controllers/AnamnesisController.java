@@ -7,8 +7,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.entities.ContactEntity;
 import cz.cvut.fit.genepi.managers.ContactManager;
+import cz.cvut.fit.genepi.managers.PatientManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -25,8 +27,13 @@ public class AnamnesisController {
 	 */
 
 	public ContactEntity findContactByID(int id){
-		ContactManager patientImpl = new ContactManager();
-		return patientImpl.findByID(id);
+		ContactManager contactManager = new ContactManager();
+		return contactManager.findByID(id);
+	}
+	
+	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){
+		PatientManager patientManager = new PatientManager();
+		return patientManager.findAnamnesisByPatientID(patient_id);
 	}
 	
 	/**

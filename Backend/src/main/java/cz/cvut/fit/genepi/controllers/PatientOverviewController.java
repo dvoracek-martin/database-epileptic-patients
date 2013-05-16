@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.entities.ContactEntity;
 import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.managers.ContactManager;
@@ -61,6 +62,11 @@ public class PatientOverviewController {
 	public ContactEntity findContactByID(int id) {
 		ContactManager contactManager = new ContactManager();
 		return contactManager.findByID(id);
+	}
+	
+	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){
+		PatientManager patientManager = new PatientManager();
+		return patientManager.findAnamnesisByPatientID(patient_id);
 	}
 
 	/**

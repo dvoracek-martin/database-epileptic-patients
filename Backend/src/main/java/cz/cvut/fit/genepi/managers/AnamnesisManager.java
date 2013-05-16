@@ -74,7 +74,7 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 	 *
 	 * @param anamnesis the anamnesis
 	 */
-	public void createUser(AnamnesisEntity anamnesis) {
+	public void createAnamnesis(AnamnesisEntity anamnesis) {
 		this.anamnesis = anamnesis;
 	}
 	

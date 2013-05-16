@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.managers;
 import java.util.Date;
 import java.util.List;
 
+import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
@@ -42,6 +43,11 @@ public class PatientManager extends PatientDAOImpl {
 		patient.setCommentId(commentId);
 		return patient;
 	}
+	
+	public void createPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+	
 
 	/**
 	 * Save.
@@ -67,5 +73,9 @@ public class PatientManager extends PatientDAOImpl {
 	 */
 	public List<PatientEntity> findAll() {
 		return this.findAll(PatientEntity.class);
+	}
+		
+	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){		
+		return findAnamnesisByPatientID(patient_id);
 	}
 }

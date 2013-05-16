@@ -76,7 +76,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 	 */
 	@SuppressWarnings("unchecked")
 	public T findOne(Query query) {
-		T t;
+		T t;		
 		t = (T) query.uniqueResult();
 		return t;
 	}

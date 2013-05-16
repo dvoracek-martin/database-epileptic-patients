@@ -48,7 +48,7 @@ public class ContactManager extends ContactDAOImpl {
 	 *
 	 * @param contact the contact
 	 */
-	public void createUser(ContactEntity contact) {
+	public void createContact(ContactEntity contact) {
 		this.contact = contact;
 	}
 	
