@@ -30,6 +30,9 @@
 		PatientOverviewController patientOverviewController = new PatientOverviewController();
 		PatientEntity patient = patientOverviewController.findByID(Integer
 				.parseInt(request.getParameter("id")));
+		ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
+		
+		AnamnesisEntity anamnesis = patientOverviewController.findAnamnesisByPatientID(patient.getId());
 	%>
 
 	<!-- box of whole page -->
@@ -137,14 +140,20 @@
 							<th>Rodné číslo:</th>
 							<td>
 								<%
-									out.println(patient.getNin());
+									if(patient.getNin()==null)
+										out.println("nevyplněno");
+									else
+										out.println(patient.getNin());
 								%>
 							</td>
 
 							<th>Adresa:</th>
 							<td>
 								<%
+								if(contact.getAddressStreet()==null)
 									out.println("nevyplněno");
+								else
+									out.println(contact.getAddressStreet());
 								%>
 							</td>
 
@@ -153,7 +162,10 @@
 							<th>Telefon:</th>
 							<td>
 								<%
+								if(contact.getPhoneNumber()==null)
 									out.println("nevyplněno");
+								else
+									out.println(contact.getPhoneNumber());
 								%>
 							</td>
 
@@ -166,7 +178,10 @@
 
 							<th>Pohaví:</th>
 							<td>
-								<%
+								<%	
+								if(patient.getGender()==null)
+									out.println("nevyplněno");
+								else
 									out.println(patient.getGender() == "male" ? "muž" : "žena");
 								%>
 							</td>
@@ -176,7 +191,10 @@
 							<th>Email:</th>
 							<td>
 								<%
+								if(contact.getEmail()==null)
 									out.println("nevyplněno");
+								else
+									out.println(contact.getEmail());
 								%>
 							</td>
 
@@ -217,54 +235,67 @@
 											<tbody>
 												<tr>
 													<td>Epilepsie v rodině</td>
+													<td><%out.println(anamnesis.getEpilepsyInFamily());%></td>
 												</tr>
 
 												<tr>
 													<td>Prenatální rizika</td>
+													<td><%out.println(anamnesis.getPrenatalRisk());%></td>
 												</tr>
 
 												<tr>
 													<td>Febrilní křeče</td>
+													<td><%out.println(anamnesis.getFibrilConvulsions());%></td>
 												</tr>
 
 												<tr>
 													<td>Zánět CNS</td>
+													<td><%out.println(anamnesis.getInflammationCns());%></td>
 												</tr>
 
 												<tr>
 													<td>Úraz CNS</td>
+													<td><%out.println(anamnesis.getInjuryCns());%></td>
 												</tr>
 
 												<tr>
 													<td>Operace CNS</td>
+													<td><%out.println(anamnesis.getOperationCns());%></td>
 												</tr>
 
 												<tr>
-													<td>Casná PMD retardace</td>
+													<td>Časná PMD retardace</td>
+													<td><%out.println(anamnesis.getEarlyPmdRetardation());%></td>
 												</tr>
 
 												<tr>
 													<td>Začátek epilepsie</td>
+													<td><%out.println(anamnesis.getNonCnsComorbidity());%></td>
 												</tr>
 
 												<tr>
 													<td>První záchvat s horečkou</td>
+													<td><%out.println("nevyplněno");%></td>
 												</tr>
 
 												<tr>
 													<td>Infantilní spasmy</td>
+													<td><%out.println("nevyplněno");%></td>
 												</tr>
 
 												<tr>
 													<td>Epileptický syndrom</td>
+													<td><%out.println("nevyplněno");%></td>
 												</tr>
 
 												<tr>
 													<td>Non CNS komorbidita</td>
+													<td><%out.println("nevyplněno");%></td>
 												</tr>
 
 												<tr>
 													<td>Komentář</td>
+													<td><%out.println("nevyplněno");%></td>
 												</tr>
 											</tbody>
 										</table>
