@@ -84,4 +84,8 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 	public void save(){
 		this.save(anamnesis);
 	}
+	
+	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){		
+		return super.findAnamnesisByPatientID(patient_id);
+	}
 }

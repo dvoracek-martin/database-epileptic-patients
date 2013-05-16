@@ -75,7 +75,4 @@ public class PatientManager extends PatientDAOImpl {
 		return this.findAll(PatientEntity.class);
 	}
 		
-	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){		
-		return super.findAnamnesisByPatientID(patient_id);
-	}
 }

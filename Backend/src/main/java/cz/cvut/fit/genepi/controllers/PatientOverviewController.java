@@ -15,6 +15,7 @@ import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.entities.ContactEntity;
 import cz.cvut.fit.genepi.entities.PatientEntity;
 import cz.cvut.fit.genepi.managers.ContactManager;
+import cz.cvut.fit.genepi.managers.AnamnesisManager;
 import cz.cvut.fit.genepi.managers.PatientManager;
 
 // TODO: Auto-generated Javadoc
@@ -65,8 +66,8 @@ public class PatientOverviewController {
 	}
 	
 	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){
-		PatientManager patientManager = new PatientManager();
-		return patientManager.findAnamnesisByPatientID(patient_id);
+		AnamnesisManager anamnesisManager = new AnamnesisManager();
+		return anamnesisManager.findAnamnesisByPatientID(patient_id);
 	}
 
 	/**

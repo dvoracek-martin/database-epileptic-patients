@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.entities.ContactEntity;
 import cz.cvut.fit.genepi.managers.ContactManager;
-import cz.cvut.fit.genepi.managers.PatientManager;
+import cz.cvut.fit.genepi.managers.AnamnesisManager;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -32,8 +32,8 @@ public class AnamnesisController {
 	}
 	
 	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){
-		PatientManager patientManager = new PatientManager();
-		return patientManager.findAnamnesisByPatientID(patient_id);
+		AnamnesisManager anamnesisManager = new AnamnesisManager();
+		return anamnesisManager.findAnamnesisByPatientID(patient_id);
 	}
 	
 	/**
