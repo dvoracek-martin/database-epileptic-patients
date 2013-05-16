@@ -18,7 +18,7 @@ import cz.cvut.fit.genepi.managers.ContactManager;
 public class AnamnesisController {
 	
 	/**
-	 * selects the profile view to render by returning its name.
+	 * Selects the profile view to render by returning its name.
 	 *
 	 * @param id the id
 	 * @return the contact entity
@@ -30,26 +30,26 @@ public class AnamnesisController {
 	}
 	
 	/**
-	 * Login post.
+	 * Anamnesis post.
 	 *
 	 * @param locale the locale
 	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/anamnesis", method = RequestMethod.POST)
-	public String loginPOST(Locale locale, Model model) {	
+	public String anamnesisPOST(Locale locale, Model model) {	
 		return "anamnesisView";
 	}
 
 	/**
-	 * Login get.
+	 * Anamnesis get.
 	 *
 	 * @param locale the locale
 	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/anamnesis", method = RequestMethod.GET)
-	public String loginGET(Locale locale, Model model) {
+	public String anamnesisGET(Locale locale, Model model) {
 		return "anamnesisView";
 	}
 }

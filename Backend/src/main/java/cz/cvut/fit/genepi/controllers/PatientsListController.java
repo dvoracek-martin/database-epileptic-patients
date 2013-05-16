@@ -37,7 +37,7 @@ public class PatientsListController {
 	 */	
 
 	@RequestMapping(value = "/patientsList", method = RequestMethod.POST)
-	public String patientsListGET(Locale locale, Model model) {	
+	public String patientsListPOST(Locale locale, Model model) {	
 		return "patientsListView";
 	}
 
@@ -49,7 +49,7 @@ public class PatientsListController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patientsList", method = RequestMethod.GET)
-	public String patientsListPOST(Locale locale, Model model) {
+	public String patientsListGET(Locale locale, Model model) {
 		return "patientsListView";
 	}
 }

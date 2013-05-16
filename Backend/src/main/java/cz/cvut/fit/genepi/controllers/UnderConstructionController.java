@@ -24,7 +24,7 @@ public class UnderConstructionController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/underConstruction", method = RequestMethod.POST)
-	public String patientsListPOST(Locale locale, Model model) {
+	public String underConstructionPOST(Locale locale, Model model) {
 		return "underConstructionView";
 	}
 
@@ -38,7 +38,7 @@ public class UnderConstructionController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/underConstruction", method = RequestMethod.GET)
-	public String patientsListGET(Locale locale, Model model) {
+	public String underConstructionGET(Locale locale, Model model) {
 		return "underConstructionView";
 	}
 

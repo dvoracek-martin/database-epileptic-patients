@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class MyProfileController {
 
 	/**
-	 * selects the profile view to render by returning its name.
+	 * Selects the profile view to render by returning its name.
 	 *
 	 * @param locale the locale
 	 * @param model the model
@@ -23,7 +23,7 @@ public class MyProfileController {
 	 */
 
 	@RequestMapping(value = "/myProfile", method = RequestMethod.POST)
-	public String loginPOST(Locale locale, Model model) {	
+	public String myProfilePOST(Locale locale, Model model) {	
 		return "myProfileView";
 	}
 
@@ -35,7 +35,7 @@ public class MyProfileController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
-	public String loginGET(Locale locale, Model model) {
+	public String myProfileGET(Locale locale, Model model) {
 		return "myProfileView";
 	}
 }

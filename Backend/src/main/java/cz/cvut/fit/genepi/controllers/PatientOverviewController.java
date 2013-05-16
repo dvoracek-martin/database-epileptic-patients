@@ -109,7 +109,7 @@ public class PatientOverviewController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.GET)
-	public String patientOverviewPOST(Locale locale, Model model) {
+	public String patientOverviewGET(Locale locale, Model model) {
 		return "patientOverviewView";
 	}
 }

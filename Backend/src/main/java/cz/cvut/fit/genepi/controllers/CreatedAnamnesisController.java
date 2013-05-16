@@ -16,26 +16,26 @@ public class CreatedAnamnesisController {
 
 	
 	/**
-	 * selects the profile view to render by returning its name.
+	 * Selects the profile view to render by returning its name.
 	 *
 	 * @param locale the locale
 	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/createdAnamnesis", method = RequestMethod.POST)
-	public String createdPatientPOST(Locale locale, Model model) {	
+	public String createdAnamnesisPOST(Locale locale, Model model) {	
 		return "createdAnamnesisView";
 	}
 	
 	/**
-	 * Created patient get.
+	 * Created anamnesis get.
 	 *
 	 * @param locale the locale
 	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/createdAnamnesis", method = RequestMethod.GET)
-	public String createdPatientGET(Locale locale, Model model) {	
+	public String createdAnamnesisGET(Locale locale, Model model) {	
 		return "createdAnamnesisView";
 	}
 	
