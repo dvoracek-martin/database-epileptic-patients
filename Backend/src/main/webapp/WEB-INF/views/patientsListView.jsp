@@ -118,6 +118,9 @@
 				    					ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
 					 					String lastName = contact.getLastName()==null?"nevyplněno":contact.getLastName();
 					 					String firstName = contact.getFirstName()==null?"nevyplněno":contact.getFirstName();
+					 					String street = contact.getAddressStreet()==null?"nevyplněno":contact.getAddressStreet();
+					 					String city = contact.getAddressCity()==null?"nevyplněno":contact.getAddressCity();
+					 					String nin = patient.getNin()==null?"nevyplněno":patient.getNin();
 					 					
 				    					out.print("<tr>"+
 				    							  "\t<td>"+lastName+"</td>\n"+
@@ -125,9 +128,9 @@
 				    							  "\t<td>"+
 				    							  "<form name=\"patientOverview\" action=\"patientOverview\" method=\"post\">"+
 				    							  "<input type=\"hidden\" id=\"id\" name=\"id\" value=\""+patient.getId()+"\">"+
-				    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+patient.getNin().toString()+"</button></form></td>\n"+
-					 						      "\t<td>"+patient.getId()+"</td>\n"+
-				    							  "\t<td>nevyplněno</td>\n");
+				    							  "<button class=\"btn btn-small btn-primary\" type=\"submit\">"+nin+"</button></form></td>\n"+
+					 						      "\t<td>"+street+"</td>\n"+
+				    							  "\t<td>"+city+"</td>\n");
 					 				}
 			 				%>
 	            		</table>
