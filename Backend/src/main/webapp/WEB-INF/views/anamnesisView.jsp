@@ -157,7 +157,7 @@
 					</table>
 					
 		                                            
-					<div >
+					<div>
 					<h3>Anamnéza</h3>
 					<table style="border: 1px solid black" >
 						<thead style="border: 1px solid black">
@@ -176,6 +176,8 @@
 												<tr>
 													<td>Epilepsie v rodině</td>
 													<td><%
+															if(anamnesis==null)out.println("Nevyplněno");
+															else
 															if(anamnesis.getEpilepsyInFamily()==1)
 																out.println("ano");
 															else
@@ -186,6 +188,8 @@
 												<tr>
 													<td>Prenatální rizika</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getPrenatalRisk()==1)
 																out.println("ano");
 															else
@@ -196,6 +200,8 @@
 												<tr>
 													<td>Febrilní křeče</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getFibrilConvulsions()==1)
 																out.println("ano");
 															else
@@ -206,6 +212,8 @@
 												<tr>
 													<td>Zánět CNS</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getInflammationCns()==1)
 																out.println("ano");
 															else
@@ -216,6 +224,8 @@
 												<tr>
 													<td>Úraz CNS</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getInjuryCns()==1)
 																out.println("ano");
 															else
@@ -226,6 +236,8 @@
 												<tr>
 													<td>Operace CNS</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getOperationCns()==1)
 																out.println("ano");
 															else
@@ -236,6 +248,8 @@
 												<tr>
 													<td>Časná PMD retardace</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getEarlyPmdRetardation()==1)
 																out.println("ano");
 															else
@@ -245,12 +259,17 @@
 
 												<tr>
 													<td>Začátek epilepsie</td>
-													<td><%out.println(anamnesis.getBeginningEpilepsy().toString());%></td>
+													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
+													out.println(anamnesis.getBeginningEpilepsy().toString());%></td>
 												</tr>
 
 												<tr>
 													<td>První záchvat s horečkou</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getFirstFever()==1)
 																out.println("ano");
 															else
@@ -261,6 +280,8 @@
 												<tr>
 													<td>Infantilní spasmy</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getInfantileSpasm()==1)
 																out.println("ano");
 															else
@@ -271,6 +292,8 @@
 												<tr>
 													<td>Epileptický syndrom</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getSpecificSyndromeIdcom()==1)
 																out.println("ano");
 															else
@@ -280,6 +303,8 @@
 												<tr>
 													<td>Non CNS komorbidita</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getNonCnsComorbidity()==null)
 																out.println("nevyplněno");
 															else
@@ -289,6 +314,8 @@
 												<tr>
 													<td>Komentář</td>
 													<td><%
+													if(anamnesis==null)out.println("Nevyplněno");
+													else
 															if(anamnesis.getComment()==null)
 																out.println("nevyplněno");
 															else
@@ -302,7 +329,7 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>	
+				</div>
 				</div>
 			</div>
 		</div>

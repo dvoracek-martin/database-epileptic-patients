@@ -121,50 +121,50 @@
 				
 					String string = request.getParameter("anamnesisDate");
 					String string1 = request.getParameter("anamnesisEpStart");
-					int anaFZ = 0;
-					int anaIS = 0;
-					int anaES = 0;
-					int anaFE = 0;
-					int anaPR = 0;
-					int anaFI = 0;
-					int anaZA = 0;
-					int anaUR = 0;
-					int anaOP = 0;
-					int anaPM = 0;
-					if(request.getParameter("anamnesisFirstZ")=="ON"){
-						anaFZ=1;
+					int anaFZ = 1;
+					int anaIS = 1;
+					int anaES = 1;
+					int anaFE = 1;
+					int anaPR = 1;
+					int anaFI = 1;
+					int anaZA = 1;
+					int anaUR = 1;
+					int anaOP = 1;
+					int anaPM = 1;
+					if(request.getParameter("anamnesisFirstZ")==null){
+						anaFZ=0;
 					}
-					if(request.getParameter("anamnesisInfSpas")=="ON"){
-						anaIS=1;
+					if(request.getParameter("anamnesisInfSpas")==null){
+						anaIS=0;
 					}
-					if(request.getParameter("anamnesisEpiSyn")=="ON"){
-						anaES=1;
+					if(request.getParameter("anamnesisEpiSyn")==null){
+						anaES=0;
 					}
-					if(request.getParameter("anamnesisFamilyEp")=="ON"){
-						anaFE=1;
+					if(request.getParameter("anamnesisFamilyEp")==null){
+						anaFE=0;
 					}
-					if(request.getParameter("anamnesisPren")=="ON"){
-						anaPR=1;
+					if(request.getParameter("anamnesisPren")==null){
+						anaPR=0;
 					}
-					if(request.getParameter("anamnesisFib")=="ON"){
-						anaFI=1;
+					if(request.getParameter("anamnesisFib")==null){
+						anaFI=0;
 					}
-					if(request.getParameter("anamnesisZan")=="ON"){
-						anaZA=1;
+					if(request.getParameter("anamnesisZan")==null){
+						anaZA=0;
 					}
-					if(request.getParameter("anamnesisUra")=="ON"){
-						anaUR=1;
+					if(request.getParameter("anamnesisUra")==null){
+						anaUR=0;
 					}
-					if(request.getParameter("anamnesisOper")=="ON"){
-						anaOP=1;
+					if(request.getParameter("anamnesisOper")==null){
+						anaOP=0;
 					}
-					if(request.getParameter("anamnesisPMD")=="ON"){
-						anaPM=1;
+					if(request.getParameter("anamnesisPMD")==null){
+						anaPM=0;
 					}
 					try{
 						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 						Date date1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string1);
-						createAnamnesisController.createNewAnamnesis(date, 1,date, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, 1, 1);
+						createAnamnesisController.createNewAnamnesis(date, 1,date, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, patient.getId(), 1);
 					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 				%>
 					  <jsp:forward page="createAnamnesisView.jsp"/>

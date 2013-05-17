@@ -94,21 +94,24 @@
 					Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
 					patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
 					// TADY SE MUSÍ VYHLEDAT POSLEDNÍ ID KONTKTU KTERÝ SE PŘIDALO A PŘIŘADIT SE DO METODY DOLE
-					int a = 0;
+					int a = 1;
 					// creation of patientsListController
 					PatientsListController patientsListController1 = new PatientsListController();
 					// gets list of patients in the database
 					List<PatientEntity> patients = patientsListController1.findAll();
 					PatientOverviewController patientOverviewController = new PatientOverviewController();
+					if(patients.size()!=0){
 					for (PatientEntity patient : patients) {
 						ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
 						if(contact != null)
 						a=contact.getId();
 					}
 					// creation of patientOverviewController
-					a++;
 					
-					patientsListController.createNewPatient(nin,date, sex1, 1, 0, 1,a, 0); 
+					a++;}
+					
+					
+					patientsListController.createNewPatient(nin,date, sex1, 1, 0, 0,a, 0); 
 					
 				}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 			%>
