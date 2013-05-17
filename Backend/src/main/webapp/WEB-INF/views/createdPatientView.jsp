@@ -83,10 +83,17 @@
 				String string = request.getParameter("patientBirthdate");
 				String nin = request.getParameter("patientIN");
 				String sex = request.getParameter("patientSEX");
+				String sex1 = "deafult";
+				if(sex=="man"){sex1="muz";
+				}
+				if(sex=="woman"){sex1="zena";
+				}
 				try{
 					Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
-					patientsListController.createNewPatient(nin,date, "patientSEX", 1, 0, 1,1043, 0); 
 					patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
+					// TADY SE MUSÍ VYHLEDAT POSLEDNÍ ID KONTKTU KTERÝ SE PŘIDALO A PŘIŘADIT SE DO METODY DOLE
+					patientsListController.createNewPatient(nin,date, sex1, 1, 0, 1,0, 0); 
+					
 				}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
 			%>
 				<jsp:forward page="createPatientView.jsp"/>
