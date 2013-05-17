@@ -62,16 +62,7 @@
 					<th>Password</th>
 					<th>Role</th>
 				</tr>
-				<tr>
-					<td>adam</td>
-					<td>adampassword</td>
-					<td>ROLE_USER</td>
-				</tr>
-				<tr>
-					<td>jane</td>
-					<td>janepassword</td>
-					<td nowrap>ROLE_USER, ROLE_ADMIN</td>
-				</tr>
+				
 				<tr>
 					<td>sue</td>
 					<td>suepassword</td>
