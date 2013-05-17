@@ -157,9 +157,9 @@
 					</table>
 					
 		                                            
-					<div>
+					<div >
 					<h3>Anamnéza</h3>
-					<table style="border: 1px solid black" class="span7">
+					<table style="border: 1px solid black" >
 						<thead style="border: 1px solid black">
 							<tr>
 								<td>Zadáno dne:</td>
@@ -175,67 +175,125 @@
 											<tbody>
 												<tr>
 													<td>Epilepsie v rodině</td>
-													<td><%out.println(anamnesis.getEpilepsyInFamily());%></td>
+													<td><%
+															if(anamnesis.getEpilepsyInFamily()==1)
+																out.println("ano");
+															else
+																out.println("ne");
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Prenatální rizika</td>
-													<td><%out.println(anamnesis.getPrenatalRisk());%></td>
+													<td><%
+															if(anamnesis.getPrenatalRisk()==1)
+																out.println("ano");
+															else
+																out.println("ne");
+															%></td>
 												</tr>
 
 												<tr>
 													<td>Febrilní křeče</td>
-													<td><%out.println(anamnesis.getFibrilConvulsions());%></td>
+													<td><%
+															if(anamnesis.getFibrilConvulsions()==1)
+																out.println("ano");
+															else
+																out.println("ne");	
+															%></td>
 												</tr>
 
 												<tr>
 													<td>Zánět CNS</td>
-													<td><%out.println(anamnesis.getInflammationCns());%></td>
+													<td><%
+															if(anamnesis.getInflammationCns()==1)
+																out.println("ano");
+															else
+																out.println("ne");		
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Úraz CNS</td>
-													<td><%out.println(anamnesis.getInjuryCns());%></td>
+													<td><%
+															if(anamnesis.getInjuryCns()==1)
+																out.println("ano");
+															else
+																out.println("ne");	
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Operace CNS</td>
-													<td><%out.println(anamnesis.getOperationCns());%></td>
+													<td><%
+															if(anamnesis.getOperationCns()==1)
+																out.println("ano");
+															else
+																out.println("ne");	
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Časná PMD retardace</td>
-													<td><%out.println(anamnesis.getEarlyPmdRetardation());%></td>
+													<td><%
+															if(anamnesis.getEarlyPmdRetardation()==1)
+																out.println("ano");
+															else
+																out.println("ne");
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Začátek epilepsie</td>
-													<td><%out.println(anamnesis.getNonCnsComorbidity());%></td>
+													<td><%out.println(anamnesis.getBeginningEpilepsy().toString());%></td>
 												</tr>
 
 												<tr>
 													<td>První záchvat s horečkou</td>
-													<td><%out.println("nevyplněno");%></td>
+													<td><%
+															if(anamnesis.getFirstFever()==1)
+																out.println("ano");
+															else
+																out.println("ne");
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Infantilní spasmy</td>
-													<td><%out.println("nevyplněno");%></td>
+													<td><%
+															if(anamnesis.getInfantileSpasm()==1)
+																out.println("ano");
+															else
+																out.println("ne");
+													%></td>
 												</tr>
 
 												<tr>
 													<td>Epileptický syndrom</td>
-													<td><%out.println("nevyplněno");%></td>
+													<td><%
+															if(anamnesis.getSpecificSyndromeIdcom()==1)
+																out.println("ano");
+															else
+																out.println("ne");%></td>
 												</tr>
 
 												<tr>
 													<td>Non CNS komorbidita</td>
-													<td><%out.println("nevyplněno");%></td>
+													<td><%
+															if(anamnesis.getNonCnsComorbidity()==null)
+																out.println("nevyplněno");
+															else
+																out.println(anamnesis.getNonCnsComorbidity());%></td>
 												</tr>
 
 												<tr>
 													<td>Komentář</td>
-													<td><%out.println("nevyplněno");%></td>
+													<td><%
+															if(anamnesis.getComment()==null)
+																out.println("nevyplněno");
+															else
+																out.println(anamnesis.getComment());
+															%></td>
 												</tr>
 											</tbody>
 										</table>
