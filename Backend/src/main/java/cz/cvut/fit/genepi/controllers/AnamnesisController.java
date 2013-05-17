@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.controllers;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,7 @@ public class AnamnesisController {
 		return contactManager.findByID(id);
 	}
 	
-	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){
+	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id){
 		AnamnesisManager anamnesisManager = new AnamnesisManager();
 		return anamnesisManager.findAnamnesisByPatientID(patient_id);
 	}

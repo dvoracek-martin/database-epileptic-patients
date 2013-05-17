@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.managers;
 
 import java.util.Date;
+import java.util.List;
 
 import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 import cz.cvut.fit.genepi.modelsImpl.AnamnesisDAOImpl;
@@ -85,7 +86,7 @@ public class AnamnesisManager extends AnamnesisDAOImpl {
 		this.save(anamnesis);
 	}
 	
-	public AnamnesisEntity findAnamnesisByPatientID(int patient_id){		
+	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id){		
 		return super.findAnamnesisByPatientID(patient_id);
 	}
 }
