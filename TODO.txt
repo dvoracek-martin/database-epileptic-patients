@@ -1,9 +1,12 @@
-1)z entity vyrobit POJO a probublavat dal uz jen to (framework dozer)
-2)manager nesmi extendovat daoimpl !!!
-3)manager by mel sam vyrabet hibernati spojeni, commitit a ukoncovat, aby byla zarucena atomicita
-- jinak muze nastat to, ze se treba
-4)prejmenovat managery na service
-5)prejmenovat balicek models a modelsImpl na neco rozumnejsiho
-6)podivat se na hibernati anotaci @Transactional
-7)refaktoring BE po provedeni zmen - poradne okomentovat tridy a metody pro javadoc, procistit a ucesat kod
-8)kompletni refaktoring FE - predelat FE, predelat kod podle novyho BE, optimalizovat kod, poradne okomentovat
+1) z entity vyrobit POJO a probublavat dal uz jen to (framework dozer)
+2) manager nesmi extendovat daoimpl !!!
+3) manager by mel sam vyrabet hibernati spojeni, commitit a ukoncovat, aby byla zarucena atomicita
+- jinak muze nastat to, ze se treba do jedny tabulky neco zapise, ale do dalsi uz ne, protoze to narazi napr. na nejakou chyby
+=> nekonzistence v DTB
+4) prejmenovat managery na service
+5) prejmenovat balicek models a modelsImpl na neco rozumnejsiho
+6) podivat se na hibernati anotaci @Transactional
+7) refaktoring BE po provedeni zmen - poradne okomentovat tridy a metody pro javadoc, procistit a ucesat kod
+8) kompletni refaktoring FE - predelat FE, predelat kod podle novyho BE, optimalizovat kod, poradne okomentovat
+9) !!!!! VYRESIT PROBLEM S PRAVIDELNYM PADANIM APLIKACE !!!!!! (nejspis problem v dtb?)
+10) !!! odstranit problem s autoincrementem v dbt !!!
