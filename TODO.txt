@@ -1,4 +1,4 @@
-1) z entity vyrobit POJO a probublavat dal uz jen to (framework dozer)
+1) z entity vyrobit POJO (VO/DTO pravdepodobne do package models) a probublavat dal uz jen to (framework dozer)
 2) manager nesmi extendovat daoimpl !!!
 3) manager by mel sam vyrabet hibernati spojeni, commitit a ukoncovat, aby byla zarucena atomicita
 - jinak muze nastat to, ze se treba do jedny tabulky neco zapise, ale do dalsi uz ne, protoze to narazi napr. na nejakou chyby
