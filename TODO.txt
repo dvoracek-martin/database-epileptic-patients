@@ -1,0 +1,6 @@
+z entity vyrobit POJO a probublavat dal uz jen to (framework dozer)
+manager nesmi extendovat daoimpl !!!
+manager by mel sam vyrabet hibernati spojeni, commitit a ukoncovat, aby byla zarucena atomicita
+prejmenovat managery na service
+prejmenovat balicek models a modelsImpl na neco rozumnejsiho
+podivat se na hibernati anotaci @Transactional
