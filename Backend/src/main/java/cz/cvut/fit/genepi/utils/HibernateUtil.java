@@ -38,7 +38,7 @@ public class HibernateUtil {
 	 * @return the session factory
 	 */
 	public static SessionFactory getSessionFactory() {
-		if (sessionFactory==null)
+		if (sessionFactory==null || sessionFactory.isClosed())
 			buildSessionFactory();
 		return sessionFactory;
 	}
