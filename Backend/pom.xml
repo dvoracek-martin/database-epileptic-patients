@@ -167,6 +167,13 @@
 			<version>3.6.3.Final</version>
 		</dependency>
 		
+		<!-- Hibernate + C3P0 -->
+		<dependency>		
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-c3p0</artifactId>
+			<version>3.6.3.Final</version>
+		</dependency>
+		
 		<!-- C3PO -->
 		<dependency>
 			<groupId>com.mchange</groupId>
