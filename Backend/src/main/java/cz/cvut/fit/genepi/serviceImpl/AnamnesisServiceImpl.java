@@ -1,16 +1,16 @@
-package cz.cvut.fit.genepi.managers;
+package cz.cvut.fit.genepi.serviceImpl;
 
 import java.util.Date;
 import java.util.List;
 
-import cz.cvut.fit.genepi.DAOImpl.AnamnesisDAOImpl;
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
+import org.springframework.stereotype.Service;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AnamnesisManager.
- */
-public class AnamnesisManager extends AnamnesisDAOImpl {
+import cz.cvut.fit.genepi.DAOImpl.AnamnesisDAOImpl;
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
+import cz.cvut.fit.genepi.service.AnamnesisService;
+
+@Service
+public class AnamnesisServiceImpl extends AnamnesisDAOImpl implements AnamnesisService {
 	
 	/** The anamnesis. */
 	AnamnesisEntity anamnesis;

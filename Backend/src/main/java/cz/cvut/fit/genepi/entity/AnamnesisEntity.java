@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.entities;
+package cz.cvut.fit.genepi.entity;
 
 import java.util.Date;
 

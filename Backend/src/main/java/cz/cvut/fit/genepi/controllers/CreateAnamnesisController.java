@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.managers.AnamnesisManager;
+import cz.cvut.fit.genepi.serviceImpl.AnamnesisServiceImpl;
 
 
 // TODO: Auto-generated Javadoc
@@ -54,7 +54,7 @@ public class CreateAnamnesisController {
 			int operationCns, int earlyPmdRetardation,
 			String nonCnsComorbidity, String comment, int deleted,
 			int patientId, int addUserId) {
-		AnamnesisManager anamnesisImpl = new AnamnesisManager();
+		AnamnesisServiceImpl anamnesisImpl = new AnamnesisServiceImpl();
 		anamnesisImpl.createAnamnesis(date, doctorId, added, beginningEpilepsy,
 				firstFever, infantileSpasm, specificSyndromeIdcom,
 				epilepsyInFamily, prenatalRisk, fibrilConvulsions,

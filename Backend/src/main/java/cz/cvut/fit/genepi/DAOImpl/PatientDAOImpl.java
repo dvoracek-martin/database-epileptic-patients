@@ -5,7 +5,7 @@ import java.io.Serializable;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.DAO.PatientDAO;
-import cz.cvut.fit.genepi.entities.PatientEntity;
+import cz.cvut.fit.genepi.entity.PatientEntity;
 
 // TODO: Auto-generated Javadoc
 /**

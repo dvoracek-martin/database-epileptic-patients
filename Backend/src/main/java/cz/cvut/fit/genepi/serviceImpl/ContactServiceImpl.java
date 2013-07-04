@@ -1,13 +1,13 @@
-package cz.cvut.fit.genepi.managers;
+package cz.cvut.fit.genepi.serviceImpl;
+
+import org.springframework.stereotype.Service;
 
 import cz.cvut.fit.genepi.DAOImpl.ContactDAOImpl;
-import cz.cvut.fit.genepi.entities.ContactEntity;
+import cz.cvut.fit.genepi.entity.ContactEntity;
+import cz.cvut.fit.genepi.service.ContactService;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class ContactManager.
- */
-public class ContactManager extends ContactDAOImpl {
+@Service
+public class ContactServiceImpl extends ContactDAOImpl implements ContactService {
 
 	/** The contact. */
 	public ContactEntity contact;

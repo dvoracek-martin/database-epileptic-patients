@@ -2,7 +2,7 @@ package cz.cvut.fit.genepi.DAO;
 
 import java.io.Serializable;
 
-import cz.cvut.fit.genepi.entities.PatientEntity;
+import cz.cvut.fit.genepi.entity.PatientEntity;
 
 // TODO: Auto-generated Javadoc
 /**

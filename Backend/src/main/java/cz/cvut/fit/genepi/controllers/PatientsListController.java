@@ -8,8 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.managers.PatientManager;
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.serviceImpl.PatientServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -24,7 +24,7 @@ public class PatientsListController {
 	 * @return the list
 	 */
 	public List<PatientEntity> findAll(){
-		PatientManager patientImpl = new PatientManager();
+		PatientServiceImpl patientImpl = new PatientServiceImpl();
 		return patientImpl.findAll();	
 	}
 	

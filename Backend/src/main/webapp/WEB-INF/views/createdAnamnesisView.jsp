@@ -12,7 +12,7 @@
 <%@ page import=" java.lang.*" %>
 <%@ page import=" java.io.*" %>
 <!-- import of Entities -->
-<%@ page import="cz.cvut.fit.genepi.entities.*"%>
+<%@ page import="cz.cvut.fit.genepi.entity.*"%>
 
 <%@ page import=" java.text.SimpleDateFormat" %>
 

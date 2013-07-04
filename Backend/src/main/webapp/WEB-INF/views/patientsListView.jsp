@@ -11,7 +11,7 @@
 <!--  import of list -->
 <%@ page import=" java.util.List" %>
 <!-- import of Entities -->
-<%@ page import="cz.cvut.fit.genepi.entities.*"%>
+<%@ page import="cz.cvut.fit.genepi.entity.*"%>
 
 <%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>

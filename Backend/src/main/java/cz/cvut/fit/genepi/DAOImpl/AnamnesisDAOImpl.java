@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cz.cvut.fit.genepi.DAO.AnamnesisDAO;
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.utils.HibernateUtil;
 
 @Repository

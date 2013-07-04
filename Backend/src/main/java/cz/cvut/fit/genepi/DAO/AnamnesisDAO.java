@@ -3,7 +3,7 @@ package cz.cvut.fit.genepi.DAO;
 import java.io.Serializable;
 import java.util.List;
 
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 
 
 /**

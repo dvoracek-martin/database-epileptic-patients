@@ -7,7 +7,7 @@
 <%@ page import="cz.cvut.fit.genepi.controllers.*"%>
 <!-- import of modelsImpl -->
 <%@ page import="cz.cvut.fit.genepi.DAO.*"%>
-<%@ page import="cz.cvut.fit.genepi.entities.*"%>
+<%@ page import="cz.cvut.fit.genepi.entity.*"%>
 <%@ page import=" java.util.List" %>
 <!--  import of list -->
 <%@ page import=" java.util.*" %>

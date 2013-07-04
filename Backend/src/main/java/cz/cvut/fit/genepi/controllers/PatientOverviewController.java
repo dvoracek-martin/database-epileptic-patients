@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
-import cz.cvut.fit.genepi.entities.ContactEntity;
-import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.managers.ContactManager;
-import cz.cvut.fit.genepi.managers.AnamnesisManager;
-import cz.cvut.fit.genepi.managers.PatientManager;
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
+import cz.cvut.fit.genepi.entity.ContactEntity;
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.serviceImpl.AnamnesisServiceImpl;
+import cz.cvut.fit.genepi.serviceImpl.ContactServiceImpl;
+import cz.cvut.fit.genepi.serviceImpl.PatientServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -40,7 +40,7 @@ public class PatientOverviewController {
 	 * @return the patient entity
 	 */
 	public PatientEntity findByID(int id) {
-		PatientManager patientImpl = new PatientManager();
+		PatientServiceImpl patientImpl = new PatientServiceImpl();
 		return patientImpl.findByID(id);
 	}
 
@@ -51,7 +51,7 @@ public class PatientOverviewController {
 	 * @return the patient entity
 	 */
 	public PatientEntity findByID() {
-		PatientManager patientManager = new PatientManager();
+		PatientServiceImpl patientManager = new PatientServiceImpl();
 		return patientManager.findByID(this.id);
 	}
 
@@ -62,12 +62,12 @@ public class PatientOverviewController {
 	 * @return the contact entity
 	 */
 	public ContactEntity findContactByID(int id) {
-		ContactManager contactManager = new ContactManager();
+		ContactServiceImpl contactManager = new ContactServiceImpl();
 		return contactManager.findByID(id);
 	}
 	
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id){
-		AnamnesisManager anamnesisManager = new AnamnesisManager();
+		AnamnesisServiceImpl anamnesisManager = new AnamnesisServiceImpl();
 		return anamnesisManager.findAnamnesisByPatientID(patient_id);
 	}
 
@@ -85,7 +85,7 @@ public class PatientOverviewController {
 	 */
 	public void createNewPatient(String nin, Date birthday, String gender,
 			int doctorId, int deleted, int checked, int contactId, int commentId) {
-		PatientManager patientManager = new PatientManager();
+		PatientServiceImpl patientManager = new PatientServiceImpl();
 		patientManager.createPatient(nin, birthday, gender, doctorId, deleted,
 				checked, contactId, commentId);
 		patientManager.save();

@@ -1,16 +1,16 @@
-package cz.cvut.fit.genepi.managers;
+package cz.cvut.fit.genepi.serviceImpl;
 
 import java.util.Date;
 import java.util.List;
 
-import cz.cvut.fit.genepi.DAOImpl.PatientDAOImpl;
-import cz.cvut.fit.genepi.entities.PatientEntity;
+import org.springframework.stereotype.Service;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PatientManager.
- */
-public class PatientManager extends PatientDAOImpl {
+import cz.cvut.fit.genepi.DAOImpl.PatientDAOImpl;
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.service.PatientService;
+
+@Service
+public class PatientServiceImpl extends PatientDAOImpl implements PatientService {
 
 	/** The patient. */
 	PatientEntity patient;

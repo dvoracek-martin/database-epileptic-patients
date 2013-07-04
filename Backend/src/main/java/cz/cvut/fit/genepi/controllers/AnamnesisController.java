@@ -8,10 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
-import cz.cvut.fit.genepi.entities.ContactEntity;
-import cz.cvut.fit.genepi.managers.ContactManager;
-import cz.cvut.fit.genepi.managers.AnamnesisManager;
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
+import cz.cvut.fit.genepi.entity.ContactEntity;
+import cz.cvut.fit.genepi.serviceImpl.AnamnesisServiceImpl;
+import cz.cvut.fit.genepi.serviceImpl.ContactServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -28,12 +28,12 @@ public class AnamnesisController {
 	 */
 
 	public ContactEntity findContactByID(int id){
-		ContactManager contactManager = new ContactManager();
+		ContactServiceImpl contactManager = new ContactServiceImpl();
 		return contactManager.findByID(id);
 	}
 	
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id){
-		AnamnesisManager anamnesisManager = new AnamnesisManager();
+		AnamnesisServiceImpl anamnesisManager = new AnamnesisServiceImpl();
 		return anamnesisManager.findAnamnesisByPatientID(patient_id);
 	}
 	

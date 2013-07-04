@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.managers.PatientManager;
+import cz.cvut.fit.genepi.serviceImpl.PatientServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -38,7 +38,7 @@ public class CreatePatientController {
 	 */
 	public void createNewPatient( String nin, Date birthday, String gender,
 				int doctorId, int deleted, int checked, int contactId, int commentId){
-			PatientManager patientImpl = new PatientManager();
+			PatientServiceImpl patientImpl = new PatientServiceImpl();
 			patientImpl.createPatient(nin, birthday, gender, doctorId, deleted, checked, contactId, commentId);
 			patientImpl.save();
 			logger.info("Created new patient with nin: "+nin);

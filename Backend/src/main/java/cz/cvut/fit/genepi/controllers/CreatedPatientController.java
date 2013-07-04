@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.managers.ContactManager;
+import cz.cvut.fit.genepi.serviceImpl.ContactServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,7 +35,7 @@ public class CreatedPatientController {
 			String addressStreet, String addressHn, String addressCity,
 			String addressPostalcode, String addressCountry,
 			String phoneNumber, String email){
-		ContactManager contactImpl = new ContactManager();
+		ContactServiceImpl contactImpl = new ContactServiceImpl();
 		contactImpl.createContact(firstName, lastName, addressStreet, addressHn, addressCity, addressPostalcode, addressCountry, phoneNumber, email);
 		contactImpl.save(contactImpl.contact);
 	}
