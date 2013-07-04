@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.managers;
 
+import cz.cvut.fit.genepi.DAOImpl.ContactDAOImpl;
 import cz.cvut.fit.genepi.entities.ContactEntity;
-import cz.cvut.fit.genepi.modelsImpl.ContactDAOImpl;
 
 // TODO: Auto-generated Javadoc
 /**

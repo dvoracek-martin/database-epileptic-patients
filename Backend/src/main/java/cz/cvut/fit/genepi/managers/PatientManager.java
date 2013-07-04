@@ -3,9 +3,8 @@ package cz.cvut.fit.genepi.managers;
 import java.util.Date;
 import java.util.List;
 
-import cz.cvut.fit.genepi.entities.AnamnesisEntity;
+import cz.cvut.fit.genepi.DAOImpl.PatientDAOImpl;
 import cz.cvut.fit.genepi.entities.PatientEntity;
-import cz.cvut.fit.genepi.modelsImpl.PatientDAOImpl;
 
 // TODO: Auto-generated Javadoc
 /**

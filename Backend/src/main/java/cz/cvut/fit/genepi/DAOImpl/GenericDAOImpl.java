@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.modelsImpl;
+package cz.cvut.fit.genepi.DAOImpl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,16 +6,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import cz.cvut.fit.genepi.models.GenericDAO;
+import cz.cvut.fit.genepi.DAO.GenericDAO;
 import cz.cvut.fit.genepi.utils.HibernateUtil;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class GenericDAOImpl.
- *
- * @param <T> the generic type
- * @param <ID> the generic type
- */
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 		GenericDAO<T, ID> {
 

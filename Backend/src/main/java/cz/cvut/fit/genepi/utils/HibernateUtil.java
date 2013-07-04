@@ -21,6 +21,7 @@ public class HibernateUtil {
 	 *
 	 * @return the session factory
 	 */
+	@SuppressWarnings("deprecation")
 	private static SessionFactory buildSessionFactory() {
 		try {
 			// Create the SessionFactory from hibernate.cfg.xml

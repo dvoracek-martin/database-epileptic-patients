@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.models;
+package cz.cvut.fit.genepi.DAO;
 
 import java.io.Serializable;
 import java.util.List;

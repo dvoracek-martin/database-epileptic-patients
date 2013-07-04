@@ -1,5 +1,6 @@
-package cz.cvut.fit.genepi.models;
+package cz.cvut.fit.genepi.DAO;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.entities.AnamnesisEntity;
@@ -8,7 +9,7 @@ import cz.cvut.fit.genepi.entities.AnamnesisEntity;
 /**
  * The Interface AnamnesisDAO.
  */
-public interface AnamnesisDAO {
+public interface AnamnesisDAO extends GenericDAO<AnamnesisEntity, Serializable> {
 	/**
 	 * Find anamnesis by patient id.
 	 *

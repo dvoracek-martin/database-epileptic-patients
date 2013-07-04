@@ -1,20 +1,19 @@
-package cz.cvut.fit.genepi.modelsImpl;
+package cz.cvut.fit.genepi.DAOImpl;
 
 import java.io.Serializable;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.cvut.fit.genepi.DAO.AnamnesisDAO;
 import cz.cvut.fit.genepi.entities.AnamnesisEntity;
-import cz.cvut.fit.genepi.models.AnamnesisDAO;
 import cz.cvut.fit.genepi.utils.HibernateUtil;
 
-/**
- * The Class AnamnesisDAOImpl.
- */
+@Repository
 public class AnamnesisDAOImpl extends
 		GenericDAOImpl<AnamnesisEntity, Serializable> implements AnamnesisDAO {
 	/* (non-Javadoc)
