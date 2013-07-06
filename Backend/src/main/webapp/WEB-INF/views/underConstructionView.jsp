@@ -55,7 +55,7 @@
 		          	<!--  It block with copyright -->
 				    <div class="span3">
 					    <div id="copyright">
-					        		<p>GENEPI, &copy 2013, FIT CVUT</p>
+					        		<p>GENEPI, &copy; 2013, FIT CVUT</p>
 						</div>
 					</div>
 				</div>
@@ -74,10 +74,6 @@
 	    </div>
 	    
 	    <!-- Javascripts imports -->
-	    <script>
-	    // it returns us to the previous page
-		function goBack() { window.history.back() }
-		</script>	
 		<script
 			src="resources/js/bootstrap-popover.js"></script>   
 		<script

@@ -14,5 +14,4 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 @Repository
 public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		implements PatientDAO {
-
 }

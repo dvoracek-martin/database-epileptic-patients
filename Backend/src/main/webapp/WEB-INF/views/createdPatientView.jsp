@@ -4,16 +4,6 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
-<!-- import of modelsImpl -->
-<%@ page import="cz.cvut.fit.genepi.DAO.*"%>
-<%@ page import="cz.cvut.fit.genepi.entity.*"%>
-<%@ page import=" java.util.List" %>
-<!--  import of list -->
-<%@ page import=" java.util.*" %>
-<%@ page import=" java.lang.*" %>
-<%@ page import=" java.io.*" %>
-
 <%@ page import=" java.text.SimpleDateFormat" %>
 
 <%@page pageEncoding="utf-8" %>
@@ -70,54 +60,54 @@
 	          		<!--  It block with copyright -->
 			    	<div class="span3">
 				    	<div id="copyright">
-				        			<p>GENEPI, &copy 2013, FIT CVUT</p>
+				        			<p>GENEPI, &copy; 2013, FIT CVUT</p>
 						</div>
 					</div>
 				</div>
 			</div>
-	         <% 
-				// creation of patientsListController
-				CreatePatientController patientsListController = new CreatePatientController();
-		         CreatedPatientController patientsController = new CreatedPatientController();
-				// gets list of patients in the database
-				//List<PatientDAO> patients = patientsListController.findAll(); 
-				
-				String string = request.getParameter("patientBirthdate");
-				String nin = request.getParameter("patientIN");
-				String sex = request.getParameter("patientSEX");
-				String sex1 = "deafult";
-				if(sex=="man"){sex1="muz";
-				}
-				if(sex=="woman"){sex1="zena";
-				}
-				try{
-					Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
-					patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
-					// TADY SE MUSÍ VYHLEDAT POSLEDNÍ ID KONTKTU KTERÝ SE PŘIDALO A PŘIŘADIT SE DO METODY DOLE
-					int a = 1;
-					// creation of patientsListController
-					PatientsListController patientsListController1 = new PatientsListController();
-					// gets list of patients in the database
-					List<PatientEntity> patients = patientsListController1.findAll();
-					PatientOverviewController patientOverviewController = new PatientOverviewController();
-					if(patients.size()!=0){
-					for (PatientEntity patient : patients) {
-						ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
-						if(contact != null)
-						a=contact.getId();
-					}
-					// creation of patientOverviewController
-					
-					a++;}
-					
-					
-					patientsListController.createNewPatient(nin,date, sex1, 1, 0, 0,a, 0); 
-					
-				}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
-			%>
+	         <%
+	         	// creation of patientsListController
+	         		/*CreatePatientController patientsListController = new CreatePatientController();
+	         		         PatientController patientsController = new PatientController();*/
+	         		// gets list of patients in the database
+	         		//List<PatientDAO> patients = patientsListController.findAll(); 
+	         		/*
+	         		String string = request.getParameter("patientBirthdate");
+	         		String nin = request.getParameter("patientIN");
+	         		String sex = request.getParameter("patientSEX");
+	         		String sex1 = "deafult";
+	         		if(sex=="man"){sex1="muz";
+	         		}
+	         		if(sex=="woman"){sex1="zena";
+	         		}
+	         		try{
+	         			Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
+	         			patientsController.createNewContact(request.getParameter("patientFirstname"), request.getParameter("patientSurname"), request.getParameter("patientStreet"), request.getParameter("patientLRN"),request.getParameter("patientCity") , request.getParameter("patientZIP"), request.getParameter("patientCountry"), request.getParameter("patientPhone"), request.getParameter("patientMail"));
+	         			// TADY SE MUSÍ VYHLEDAT POSLEDNÍ ID KONTKTU KTERÝ SE PŘIDALO A PŘIŘADIT SE DO METODY DOLE
+	         			int a = 1;
+	         			// creation of patientsListController
+	         			PatientsListController patientsListController1 = new PatientsListController();
+	         			// gets list of patients in the database
+	         			List<PatientEntity> patients = patientsListController1.findAll();
+	         			PatientOverviewController patientOverviewController = new PatientOverviewController();
+	         			if(patients.size()!=0){
+	         			for (PatientEntity patient : patients) {
+	         				ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
+	         				if(contact != null)
+	         				a=contact.getId();
+	         			}
+	         			// creation of patientOverviewController
+	         			
+	         			a++;}
+	         			
+	         			
+	         			patientsListController.createNewPatient(nin,date, sex1, 1, 0, 0,a, 0); 
+	         			
+	         		}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");*/
+	         %>
 				<jsp:forward page="createPatientView.jsp"/>
 			<%
-				}			
+				/*}	*/		
 			%>
 						
 			<!-- box for the content -->		

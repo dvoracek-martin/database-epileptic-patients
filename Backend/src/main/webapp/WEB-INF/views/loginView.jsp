@@ -98,7 +98,7 @@
 							<a id="address" href="mailto:admin@genepi.com">admin@genepi.com</a>
 						</p>
 						<p>____________________________</p>
-						<p>GENEPI, &copy 2013, FIT CVUT</p>
+						<p>GENEPI, &copy; 2013, FIT CVUT</p>
 					</div>
 				</div>
 	

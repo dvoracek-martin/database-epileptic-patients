@@ -4,16 +4,6 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
-<!-- import of modelsImpl -->
-<%@ page import="cz.cvut.fit.genepi.DAO.*"%>
-<!--  import of list -->
-<%@ page import=" java.util.*" %>
-<%@ page import=" java.lang.*" %>
-<%@ page import=" java.io.*" %>
-<!-- import of Entities -->
-<%@ page import="cz.cvut.fit.genepi.entity.*"%>
-
 <%@ page import=" java.text.SimpleDateFormat" %>
 
 <%@page pageEncoding="utf-8" %>
@@ -32,15 +22,7 @@
 					User user = (User) SecurityContextHolder.getContext()
 							.getAuthentication().getPrincipal();
 					String username = user.getUsername();
-					Collection<GrantedAuthority> authorities = user.getAuthorities();
-					//finding object of patient
-					PatientOverviewController patientOverviewController = new PatientOverviewController();
-					PatientEntity patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
-					
-					// creation of patientsListController
-					CreateAnamnesisController createAnamnesisController = new CreateAnamnesisController();
-					// gets list of patients in the database
-					//List<PatientDAO> patients = patientsListController.findAll(); 
+					Collection<GrantedAuthority> authorities = user.getAuthorities();					
 			%>
 					
 			<!-- box of whole page -->			
@@ -66,7 +48,7 @@
 		             	 	<li><a href="underConstruction">Přehled</a></li>
 		              		<li>
 		              		<form name="anamnesis" action="anamnesis" method="post" style="display:inline">
-		    							  <input type="hidden" id="id" name="id" value="<% out.print(patient.getId());%>">
+		    							  <input type="hidden" id="id" name="id" value="<% /*out.print(patient.getId());*/%>">
 		    							  <a href="javascript:;" onclick="parentNode.submit();">Anamnéza</a>
 		    								<input type="hidden" name="mess"/>
 		    				</form>
@@ -111,65 +93,15 @@
 				        <!--  It block with copyright -->
 						<div class="span3">
 							<div id="copyright">
-								<p>GENEPI, &copy 2013, FIT CVUT</p>
+								<p>GENEPI, &copy; 2013, FIT CVUT</p>
 							</div>
 						</div>
 					</div>
 				</div>
-		
-				<% 
-				
-					String string = request.getParameter("anamnesisDate");
-					String string1 = request.getParameter("anamnesisEpStart");
-					int anaFZ = 1;
-					int anaIS = 1;
-					int anaES = 1;
-					int anaFE = 1;
-					int anaPR = 1;
-					int anaFI = 1;
-					int anaZA = 1;
-					int anaUR = 1;
-					int anaOP = 1;
-					int anaPM = 1;
-					if(request.getParameter("anamnesisFirstZ")==null){
-						anaFZ=0;
-					}
-					if(request.getParameter("anamnesisInfSpas")==null){
-						anaIS=0;
-					}
-					if(request.getParameter("anamnesisEpiSyn")==null){
-						anaES=0;
-					}
-					if(request.getParameter("anamnesisFamilyEp")==null){
-						anaFE=0;
-					}
-					if(request.getParameter("anamnesisPren")==null){
-						anaPR=0;
-					}
-					if(request.getParameter("anamnesisFib")==null){
-						anaFI=0;
-					}
-					if(request.getParameter("anamnesisZan")==null){
-						anaZA=0;
-					}
-					if(request.getParameter("anamnesisUra")==null){
-						anaUR=0;
-					}
-					if(request.getParameter("anamnesisOper")==null){
-						anaOP=0;
-					}
-					if(request.getParameter("anamnesisPMD")==null){
-						anaPM=0;
-					}
-					try{
-						Date date = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string);
-						Date date1 = new SimpleDateFormat("dd.MM.yyyy", Locale.ENGLISH).parse(string1);
-						createAnamnesisController.createNewAnamnesis(date, 1,date, date1, anaFZ, anaIS, anaES, anaFE, anaPR, anaFI, anaZA, anaUR, anaOP, anaPM, request.getParameter("anamnesisNonCNS").toString(), request.getParameter("anamnesisCom"), 0, patient.getId(), 1);
-					}catch(java.text.ParseException ex){ out.println("Incorect format of date of birth ");
-				%>
+					
 					  <jsp:forward page="createAnamnesisView.jsp"/>
 				<%
-					}
+					/*}*/
 				%>
 					
 				<!-- box with content -->	
@@ -183,35 +115,35 @@
 							<tbody>
 								<tr>
 									<th>Číslo pacienta: </th>
-										<td><%out.println(patient.getId()); %></td>
+										<td></td>
 	
 									<th>Rodné číslo: </th>
-										<td><%out.println(patient.getNin()); %></td>
+										<td></td>
 	
 									<th>Adresa: </th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 	
 								</tr>
 								<tr>
 									<th>Telefon: </th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 										
 									<th>Věk:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 	
 									<th>Pohaví:</th>
-										<td><%out.println(patient.getGender()=="male"?"muž":"žena"); %></td>
+										<td></td>
 								</tr>
 								
 				                 <tr>
 				                 	<th>Email:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 										
 									<th>Věk při začátku epilepsie:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 	
 									<th>Ošetřující lékař:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 	
 								</tr>
 							</tbody>
@@ -220,105 +152,49 @@
 		            <h2 style="margin-bottom: 1em">Záznam byl přidán!</h2>
 		            <p>
 		                Epilepsie v rodině :
-		            	<%
-		                    if(request.getParameter("anamnesisFamilyEp")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		            <p>
 		                Prenatální rizika :
-		            	<%
-		                    if(request.getParameter("anamnesisPren")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		            <p>
 		                Fibrilní křeče : 
-		            	<%
-		                    if(request.getParameter("anamnesisFib")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		            <p>
 		                Zánět CNS : 
-		            	<%
-		                    if(request.getParameter("anamnesisZan")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		            <p>
 		                Úraz CNS :
-		            	<%
-		                    if(request.getParameter("anamnesisUra")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		            <p>
 		                Operace CNS :   
-		            	<%
-		                    if(request.getParameter("anamnesisOper")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		             <p>
 		                Cašná PMD retardace :   
-		            	<%
-		                    if(request.getParameter("anamnesisPMD")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		             <p>
 		                Začátek epilepsie : <% out.println(request.getParameter("anamnesisEpStart")); %>   
 		            </p>
 		             <p>
 		                První záchvat s horečkou :   
-		            	 <%
-		                    if(request.getParameter("anamnesisFirstZ")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		             <p>
 		                Infantilní spasmy : 
-		                <%
-		                    if(request.getParameter("anamnesisInfSpas")==null){
-		                    	out.println("NE");
-		                    }else{
-		                	out.println("ANO");
-		                    }
-		                 %> 
+
 		            </p>
 		             <p>
 		                Epileptický syndrom : 
-		                <% 
-		                	out.println(request.getParameter("anamnesisEpiSyn")); 
-		                %>   
+  
 		            </p>
 		            <p>
-		                Non CNS komorbidita : <% out.println(request.getParameter("anamnesisNonCNS")); %>   
+		                Non CNS komorbidita :    
 		            </p>
 		            
 		          </div>

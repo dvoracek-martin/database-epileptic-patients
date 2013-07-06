@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.controllers;
+package cz.cvut.fit.genepi.controller;
 
 import java.util.Locale;
 

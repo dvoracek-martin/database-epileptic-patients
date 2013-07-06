@@ -55,7 +55,7 @@
 		          	<!--  It block with copyright -->
 				    <div class="span3">
 					    <div id="copyright">
-					        		<p>GENEPI, &copy 2013, FIT CVUT</p>
+					        		<p>GENEPI, &copy; 2013, FIT CVUT</p>
 						</div>
 					</div>
 		        </div>

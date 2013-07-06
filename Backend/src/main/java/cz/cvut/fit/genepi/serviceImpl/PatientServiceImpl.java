@@ -3,31 +3,24 @@ package cz.cvut.fit.genepi.serviceImpl;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import cz.cvut.fit.genepi.DAOImpl.PatientDAOImpl;
+import cz.cvut.fit.genepi.DAO.PatientDAO;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.service.PatientService;
 
 @Service
-public class PatientServiceImpl extends PatientDAOImpl implements PatientService {
+public class PatientServiceImpl implements PatientService {
+
+	@Autowired
+	private PatientDAO patientDAO;
 
 	/** The patient. */
 	PatientEntity patient;
 
-	/**
-	 * Creates the patient.
-	 *
-	 * @param nin the nin
-	 * @param birthday the birthday
-	 * @param gender the gender
-	 * @param doctorId the doctor id
-	 * @param deleted the deleted
-	 * @param checked the checked
-	 * @param contactId the contact id
-	 * @param commentId the comment id
-	 * @return the patient entity
-	 */
+	@Transactional
 	public PatientEntity createPatient(String nin, Date birthday,
 			String gender, int doctorId, int deleted, int checked,
 			int contactId, int commentId) {
@@ -42,36 +35,23 @@ public class PatientServiceImpl extends PatientDAOImpl implements PatientService
 		patient.setCommentId(commentId);
 		return patient;
 	}
-	
+	@Transactional
 	public void createPatient(PatientEntity patient) {
 		this.patient = patient;
 	}
-	
 
-	/**
-	 * Save.
-	 */
+	@Transactional
 	public void save() {
-		this.save(patient);
+		patientDAO.save(patient);
 	}
 
-	/**
-	 * Find by id.
-	 *
-	 * @param id the id
-	 * @return the patient entity
-	 */
+	@Transactional
 	public PatientEntity findByID(int id) {
-		return (this.findByID(PatientEntity.class, id));
+		return (patientDAO.findByID(PatientEntity.class, id));
 	}
 
-	/**
-	 * Find all.
-	 *
-	 * @return the list
-	 */
+	@Transactional
 	public List<PatientEntity> findAll() {
-		return this.findAll(PatientEntity.class);
+		return patientDAO.findAll(PatientEntity.class);
 	}
-		
 }

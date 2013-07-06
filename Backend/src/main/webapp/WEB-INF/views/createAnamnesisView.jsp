@@ -4,16 +4,6 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@ page import="cz.cvut.fit.genepi.controllers.*"%>
-<!-- import of modelsImpl -->
-<%@ page import="cz.cvut.fit.genepi.DAO.*"%>
-<!--  import of list -->
-<%@ page import=" java.util.*" %>
-<%@ page import=" java.lang.*" %>
-<%@ page import=" java.io.*" %>
-<!-- import of Entities -->
-<%@ page import="cz.cvut.fit.genepi.entity.*"%>
-
 <%@ page import=" java.text.SimpleDateFormat" %>
 
 <%@page pageEncoding="utf-8" %>
@@ -30,10 +20,7 @@
 					User user = (User) SecurityContextHolder.getContext()
 							.getAuthentication().getPrincipal();
 					String username = user.getUsername();
-					Collection<GrantedAuthority> authorities = user.getAuthorities();
-					//finding object of patient
-					PatientOverviewController patientOverviewController = new PatientOverviewController();
-					PatientEntity patient = patientOverviewController.findByID(Integer.parseInt(request.getParameter("id")));
+					Collection<GrantedAuthority> authorities = user.getAuthorities();					
 			%>
 					
 			<!-- box of whole page -->			
@@ -59,7 +46,7 @@
 		             	 	<li><a href="underConstruction">Přehled</a></li>
 		              		<li>
 		              		<form name="anamnesis" action="anamnesis" method="post" style="display:inline">
-		    							  <input type="hidden" id="id" name="id" value="<% out.print(patient.getId());%>">
+		    							  <input type="hidden" id="id" name="id" value="">
 		    							  <a href="javascript:;" onclick="parentNode.submit();">Anamnéza</a>
 		    								<input type="hidden" name="mess"/>
 		    				</form>
@@ -104,7 +91,7 @@
 				        <!--  It block with copyright -->
 						<div class="span3">
 							<div id="copyright">
-								<p>GENEPI, &copy 2013, FIT CVUT</p>
+								<p>GENEPI, &copy; 2013, FIT CVUT</p>
 							</div>
 						</div>
 					</div>
@@ -120,35 +107,35 @@
 							<tbody>
 								<tr>
 									<th>Číslo pacienta: </th>
-										<td><%out.println(patient.getId()); %></td>
+										<td></td>
 			
 									<th>Rodné číslo: </th>
-										<td><%out.println(patient.getNin()); %></td>
+										<td></td>
 			
 									<th>Adresa: </th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 			
 								</tr>
 								<tr>
 									<th>Telefon: </th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 												
 									<th>Věk:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 			
 									<th>Pohaví:</th>
-										<td><%out.println(patient.getGender()=="male"?"muž":"žena"); %></td>
+										<td></td>
 								</tr>
 										
 						        <tr>
 						          	<th>Email:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 												
 									<th>Věk při začátku epilepsie:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 			
 									<th>Ošetřující lékař:</th>
-										<td><%out.println("nevyplněno");%></td>
+										<td></td>
 			
 								</tr>
 							</tbody>
@@ -157,7 +144,7 @@
 						<!-- form for adding new record -->
 						<div class="form" style="margin: 10px; width: 60%">
 							<form name="createdAnamnesis" action="createdAnamnesis" method="post">
-								<input type="hidden" id="id" name="id" value="<% out.print(patient.getId());%>">
+								<input type="hidden" id="id" name="id" value="">
 								
 								<b>Datum vyšetření</b> <input type="text" id="anamnesisDate" class="input-block-level"
 									name="anamnesisDate" placeholder=""> <br/>

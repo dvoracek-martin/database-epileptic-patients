@@ -1,5 +1,9 @@
 package cz.cvut.fit.genepi.service;
 
-public interface PatientService {
+import java.util.List;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+
+public interface PatientService {
+	public List<PatientEntity> findAll();
 }

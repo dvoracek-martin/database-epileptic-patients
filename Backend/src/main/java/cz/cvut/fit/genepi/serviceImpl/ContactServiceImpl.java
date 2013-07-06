@@ -1,31 +1,23 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import cz.cvut.fit.genepi.DAOImpl.ContactDAOImpl;
+import cz.cvut.fit.genepi.DAO.ContactDAO;
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.service.ContactService;
 
 @Service
-public class ContactServiceImpl extends ContactDAOImpl implements ContactService {
+public class ContactServiceImpl implements ContactService {
 
+	@Autowired
+	private ContactDAO cntactDAO;
+	
 	/** The contact. */
 	public ContactEntity contact;
 
-	/**
-	 * Creates the contact.
-	 *
-	 * @param firstName the first name
-	 * @param lastName the last name
-	 * @param addressStreet the address street
-	 * @param addressHn the address hn
-	 * @param addressCity the address city
-	 * @param addressPostalcode the address postalcode
-	 * @param addressCountry the address country
-	 * @param phoneNumber the phone number
-	 * @param email the email
-	 * @return the contact entity
-	 */
+	@Transactional
 	public ContactEntity createContact(String firstName, String lastName,
 			String addressStreet, String addressHn, String addressCity,
 			String addressPostalcode, String addressCountry,
@@ -43,22 +35,13 @@ public class ContactServiceImpl extends ContactDAOImpl implements ContactService
 		return contact;
 	}
 	
-	/**
-	 * Creates the user.
-	 *
-	 * @param contact the contact
-	 */
+	@Transactional
 	public void createContact(ContactEntity contact) {
 		this.contact = contact;
 	}
 	
-	/**
-	 * Find by id.
-	 *
-	 * @param id the id
-	 * @return the contact entity
-	 */
+	@Transactional
 	public ContactEntity findByID(int id){
-		return (this.findByID(ContactEntity.class, id));
+		return (cntactDAO.findByID(ContactEntity.class, id));
 	}
 }
