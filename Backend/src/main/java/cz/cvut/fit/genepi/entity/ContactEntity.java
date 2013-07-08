@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Email;
+
 @Entity
 @Table(name = "CONTACT")
 public class ContactEntity {
@@ -49,6 +51,7 @@ public class ContactEntity {
 	private String phoneNumber;
 
 	/** The email. */
+	@Email
 	@Column(name = "EMAIL", length = 20, nullable = true)
 	private String email;
 

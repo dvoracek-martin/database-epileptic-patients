@@ -11,7 +11,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Pacient</title>
-<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 </head>
 <body>
@@ -20,13 +20,6 @@
 				.getAuthentication().getPrincipal();
 		String username = user.getUsername();
 		Collection<GrantedAuthority> authorities = user.getAuthorities();
-		//finding object of patient
-		/*PatientOverviewController patientOverviewController = new PatientOverviewController();
-		PatientEntity patient = patientOverviewController.findByID(Integer
-				.parseInt(request.getParameter("id")));
-		ContactEntity contact=patientOverviewController.findContactByID(patient.getId());
-		
-		List<AnamnesisEntity> anamnesises = patientOverviewController.findAnamnesisByPatientID(patient.getId());*/
 	%>
 
 	<!-- box of whole page -->

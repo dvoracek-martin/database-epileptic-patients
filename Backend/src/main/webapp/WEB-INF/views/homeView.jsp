@@ -4,7 +4,6 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-
 <%@page pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
 <meta charset="utf-8" />
 <title>Domovská stránka</title>
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
-<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 

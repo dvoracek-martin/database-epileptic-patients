@@ -12,7 +12,7 @@
 <head>
 <meta charset="utf-8" />
 <title>Kartotéka</title>
-<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 <style type="text/css">
 table.patients {
@@ -105,9 +105,9 @@ table.patients td.head {
 
 					<c:forEach items="${patientList}" var="patient">
 						<!-- add link to patient cardoverview -->
-						<tr>
-							<td>${patient.birthday}</td>
-							<td>${patient.birthday}</td>
+						<tr onclick="document.location = 'patientOverview/${patient.id}';">
+							<td>${patient.contact.lastName}</td>
+							<td>${patient.contact.firstName}</td>
 							<td>${patient.birthday}</td>
 							<td>${patient.birthday}</td>
 							<td>${patient.birthday}</td>
@@ -119,9 +119,8 @@ table.patients td.head {
 	</div>
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/bootstrap-popover.js"></script>
-	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap-dropdown.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/jquery.min.js"></script>
 	<script src="resources/js/application.js"></script>
 </body>
 </html>

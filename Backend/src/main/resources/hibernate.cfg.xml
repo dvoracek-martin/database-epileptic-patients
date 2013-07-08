@@ -4,8 +4,9 @@
 "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
+      <property name="hibernate.hbm2ddl.auto">create-drop</property>
         <!--<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-        
+      
          configuration pool via c3p0
         <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
 		<property name="c3p0.acquire_increment">1</property> 

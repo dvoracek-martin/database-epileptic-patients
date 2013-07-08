@@ -6,7 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "PATIENT")
@@ -23,7 +30,10 @@ public class PatientEntity {
 	private String nin;
 
 	/** The birthday. */
-	@Column(name = "BIRTHDAY", length = 7, nullable = false)
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past(message="rwegwe")
+	@NotNull(message="fuuu")
+	@Column(name = "BIRTHDAY", nullable = false)
 	private Date birthday;
 
 	/** The gender. */
@@ -43,12 +53,16 @@ public class PatientEntity {
 	private int checked;
 
 	/** The contact id. */
-	@Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true)
+	@Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true, insertable = false, updatable = false)
 	private int contactId;
 
 	/** The comment id. */
 	@Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
 	private int commentId;
+
+	@OneToOne
+	@Cascade({ CascadeType.SAVE_UPDATE })
+	private ContactEntity contact;
 
 	/**
 	 * Gets the id.
@@ -219,5 +233,13 @@ public class PatientEntity {
 	 */
 	public void setCommentId(int commentId) {
 		this.commentId = commentId;
+	}
+
+	public ContactEntity getContact() {
+		return contact;
+	}
+
+	public void setContact(ContactEntity contact) {
+		this.contact = contact;
 	}
 }

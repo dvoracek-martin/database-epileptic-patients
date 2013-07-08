@@ -2,13 +2,20 @@ package cz.cvut.fit.genepi.controller;
 
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
 
 // TODO: Auto-generated Javadoc
@@ -21,22 +28,36 @@ public class PatientController {
 	@Autowired
 	private PatientService patientService;
 
-	/**
-	 * Created patient get.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
+	@Autowired
+	private AnamnesisService anamnesisService;
+
+	/*@InitBinder
+	private void initBinder(WebDataBinder binder) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+		binder.registerCustomEditor(Date.class, new CustomDateEditor(
+				dateFormat, false));
+	}*/
+
 	@RequestMapping(value = "/createdPatient", method = RequestMethod.GET)
 	public String createdPatientGET(Locale locale, Model model) {
 		return "createdPatientView";
 	}
 
+	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
+	public String addPatient(
+			@ModelAttribute("patient") @Valid PatientEntity patient,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "createPatientView";
+		} else {
+			patientService.save(patient);
+			return "redirect:/patientsList";
+		}
+	}
+
 	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
+		model.addAttribute("patient", new PatientEntity());
 		return "createPatientView";
 	}
 
@@ -48,8 +69,11 @@ public class PatientController {
 		return "patientOverviewView";
 	}
 
-	@RequestMapping(value = "/patientOverview", method = RequestMethod.GET)
-	public String patientOverviewGET(Locale locale, Model model) {
+	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
+	public String patientOverviewGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID) {
+		model.addAttribute("anamnesis",
+				anamnesisService.findAnamnesisByPatientID(patientID));
 		return "patientOverviewView";
 	}
 

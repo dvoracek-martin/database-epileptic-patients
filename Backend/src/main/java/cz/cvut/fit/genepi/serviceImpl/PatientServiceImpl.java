@@ -35,13 +35,14 @@ public class PatientServiceImpl implements PatientService {
 		patient.setCommentId(commentId);
 		return patient;
 	}
+
 	@Transactional
 	public void createPatient(PatientEntity patient) {
 		this.patient = patient;
 	}
 
 	@Transactional
-	public void save() {
+	public void save(PatientEntity patient) {
 		patientDAO.save(patient);
 	}
 

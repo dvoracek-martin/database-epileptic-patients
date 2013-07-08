@@ -34,9 +34,12 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
-	<!-- Something with internationalization <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource"> 
-		<property name="basename" value="classpath:messages" /> <property name="defaultEncoding" 
-		value="UTF-8" /> </bean> -->
+	<!-- Internationalization -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="classpath:messages" />
+		<property name="defaultEncoding" value="UTF-8" />
+	</bean>
 
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"

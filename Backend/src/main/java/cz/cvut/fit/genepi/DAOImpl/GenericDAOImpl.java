@@ -21,10 +21,12 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 	 * @see cz.cvut.fit.genepi.models.GenericDAO#save(java.lang.Object)
 	 */
 	public void save(T entity) {
-		sessionFactory.getCurrentSession().beginTransaction();
+		/* sessionFactory.getCurrentSession().beginTransaction(); */
 		sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		sessionFactory.getCurrentSession().getTransaction().commit();
-		sessionFactory.getCurrentSession().disconnect();
+		/*
+		 * sessionFactory.getCurrentSession().getTransaction().commit();
+		 * sessionFactory.getCurrentSession().disconnect();
+		 */
 	}
 
 	/*
