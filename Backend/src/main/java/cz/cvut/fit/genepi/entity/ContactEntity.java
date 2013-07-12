@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "CONTACT")
@@ -19,6 +21,8 @@ public class ContactEntity {
 	private int id;
 
 	/** The first name. */
+	@NotNull
+	@NotBlank
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)
 	private String firstName;
 

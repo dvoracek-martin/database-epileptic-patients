@@ -6,6 +6,7 @@
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 
 <!DOCTYPE html>
@@ -82,13 +83,20 @@
 						<form:label path="contact.firstName">Jmeno</form:label>
 						<form:input path="contact.firstName" type="text"
 							class="input-block-level" />
+						<form:errors path="contact.firstName" cssClass="error">
+						</form:errors>
 						<form:label path="contact.lastName">Prijmeni</form:label>
 						<form:input path="contact.lastName" type="text"
 							class="input-block-level" />
+
 						<form:label path="birthday">Datum narozeni</form:label>
-						<form:input path="birthday" placeholder="DD/MM/YYYY" type="date"
+						<form:input path="birthday" placeholder="dd/MM/yyyy" type="date"
 							class="input-block-level" />
-						<form:errors path="birthday" cssclass="error"></form:errors>
+						<form:errors path="birthday" cssClass="error" />
+
+						<form:label path="nin">rč</form:label>
+						<form:input path="nin" type="text" class="input-block-level" />
+						<form:errors path="nin" cssClass="error" />
 
 
 						<form:label path="gender">pohlavi</form:label>
@@ -97,6 +105,46 @@
 							<form:option value="male" label="male" />
 							<form:option value="female" label="female" />
 						</form:select>
+
+						<form:label path="contact.addressStreet">ulice</form:label>
+						<form:input path="contact.addressStreet" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.addressStreet" cssClass="error" />
+
+						<form:label path="contact.addressHn">cislo popisne</form:label>
+						<form:input path="contact.addressHn" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.addressHn" cssClass="error" />
+
+						<form:label path="contact.addressCity">mesto</form:label>
+						<form:input path="contact.addressCity" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.addressCity" cssClass="error" />
+
+						<form:label path="contact.addressPostalcode">PSC</form:label>
+						<form:input path="contact.addressPostalcode" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.addressPostalcode" cssClass="error" />
+
+						<form:label path="contact.addressCountry">stat</form:label>
+						<form:input path="contact.addressCountry" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.addressCountry" cssClass="error" />
+
+						<form:label path="contact.phoneNumber">telefon</form:label>
+						<form:input path="contact.phoneNumber" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.phoneNumber" cssClass="error" />
+
+						<form:label path="contact.email">email</form:label>
+						<form:input path="contact.email" type="text"
+							class="input-block-level" />
+						<form:errors path="contact.email" cssClass="error" />
+
+						<form:label path="nin">lekar-to be implemented</form:label>
+						<form:input path="nin" type="text" class="input-block-level" />
+						<form:errors path="nin" cssClass="error" />
+
 						<button class="btn btn-small btn-primary" type="submit">Přidat</button>
 					</form:form>
 				</div>

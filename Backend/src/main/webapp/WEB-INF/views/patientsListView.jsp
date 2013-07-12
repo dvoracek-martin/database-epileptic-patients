@@ -87,6 +87,7 @@ table.patients td.head {
 						<h2>Kartotéka pacientů</h2>
 					</div>
 					<div>
+					implement search field
 						<h3>
 							<a href="createPatient" style="text-decoration: none">Nový
 								pacient</a>

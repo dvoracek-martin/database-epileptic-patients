@@ -7,7 +7,7 @@
 
 <%@page pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="cz">
+<html lang="cs">
 <head>
 <meta charset="utf-8" />
 <title>Pacient</title>
@@ -111,8 +111,9 @@
 						<tr>
 							<th>Číslo pacienta:</th>
 							<td>
-								<%/*
-									out.println(patient.getId());*/
+								<%
+									/*
+									 out.println(patient.getId());*/
 								%>
 							</td>
 
@@ -128,11 +129,12 @@
 
 							<th>Adresa:</th>
 							<td>
-								<%/*
-									if (contact.getAddressStreet() == null)
-										out.println("nevyplněno");
-									else
-										out.println(contact.getAddressStreet());*/
+								<%
+									/*
+									 if (contact.getAddressStreet() == null)
+									 out.println("nevyplněno");
+									 else
+									 out.println(contact.getAddressStreet());*/
 								%>
 							</td>
 
@@ -140,11 +142,12 @@
 						<tr>
 							<th>Telefon:</th>
 							<td>
-								<%/*
-									if (contact.getPhoneNumber() == null)
-										out.println("nevyplněno");
-									else
-										out.println(contact.getPhoneNumber());*/
+								<%
+									/*
+									 if (contact.getPhoneNumber() == null)
+									 out.println("nevyplněno");
+									 else
+									 out.println(contact.getPhoneNumber());*/
 								%>
 							</td>
 
@@ -157,11 +160,12 @@
 
 							<th>Pohaví:</th>
 							<td>
-								<%/*
-									if (patient.getGender() == null)
-										out.println("nevyplněno");
-									else
-										out.println(patient.getGender() == "male" ? "muž" : "žena");*/
+								<%
+									/*
+									 if (patient.getGender() == null)
+									 out.println("nevyplněno");
+									 else
+									 out.println(patient.getGender() == "male" ? "muž" : "žena");*/
 								%>
 							</td>
 						</tr>
@@ -169,11 +173,12 @@
 						<tr>
 							<th>Email:</th>
 							<td>
-								<%/*
-									if (contact.getEmail() == null)
-										out.println("nevyplněno");
-									else
-										out.println(contact.getEmail());*/
+								<%
+									/*
+									 if (contact.getEmail() == null)
+									 out.println("nevyplněno");
+									 else
+									 out.println(contact.getEmail());*/
 								%>
 							</td>
 
@@ -195,137 +200,138 @@
 					</tbody>
 				</table>
 
-				<%/*
-					int i = 1;
-					for (AnamnesisEntity anamnesis : anamnesises) {
-						out.println("<div>"
-								+ "<h3>Anamnéza: "
-								+ (i++)
-								+ "</h3>"
-								+ "<table style=\"border: 1px solid black\" class=\"span7\">"
-								+ "<thead style=\"border: 1px solid black\">" + "<tr>"
-								+ "<td>Zadáno dne: " + anamnesis.getDate() + " </td>"
-								+ "</tr>" + "</thead>" + "<tbody>" + "<tr>"
-								+ "<td colspan=\"2\">" + "<div>" + "<table>"
-								+ "<tbody>" + "<tr>" + "<td>Epilepsie v rodině</td>"
-								+ "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getEpilepsyInFamily() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+				<%
+					/*
+					 int i = 1;
+					 for (AnamnesisEntity anamnesis : anamnesises) {
+					 out.println("<div>"
+					 + "<h3>Anamnéza: "
+					 + (i++)
+					 + "</h3>"
+					 + "<table style=\"border: 1px solid black\" class=\"span7\">"
+					 + "<thead style=\"border: 1px solid black\">" + "<tr>"
+					 + "<td>Zadáno dne: " + anamnesis.getDate() + " </td>"
+					 + "</tr>" + "</thead>" + "<tbody>" + "<tr>"
+					 + "<td colspan=\"2\">" + "<div>" + "<table>"
+					 + "<tbody>" + "<tr>" + "<td>Epilepsie v rodině</td>"
+					 + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getEpilepsyInFamily() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Prenatální rizika</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getPrenatalRisk() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Prenatální rizika</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getPrenatalRisk() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Febrilní křeče</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getFibrilConvulsions() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Febrilní křeče</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getFibrilConvulsions() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Zánět CNS</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getInflammationCns() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Zánět CNS</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getInflammationCns() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Úraz CNS</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getInjuryCns() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Úraz CNS</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getInjuryCns() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Operace CNS</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getOperationCns() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Operace CNS</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getOperationCns() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Časná PMD retardace</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getEarlyPmdRetardation() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Časná PMD retardace</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getEarlyPmdRetardation() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Začátek epilepsie</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else
-							out.println(anamnesis.getBeginningEpilepsy().toString());
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Začátek epilepsie</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else
+					 out.println(anamnesis.getBeginningEpilepsy().toString());
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>První záchvat s horečkou</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getFirstFever() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>První záchvat s horečkou</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getFirstFever() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Infantilní spasmy</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getInfantileSpasm() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Infantilní spasmy</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getInfantileSpasm() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Epileptický syndrom</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getSpecificSyndromeIdcom() == 1)
-							out.println("ano");
-						else
-							out.println("ne");
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Epileptický syndrom</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getSpecificSyndromeIdcom() == 1)
+					 out.println("ano");
+					 else
+					 out.println("ne");
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Non CNS komorbidita</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getNonCnsComorbidity() == null)
-							out.println("nevyplněno");
-						else
-							out.println(anamnesis.getNonCnsComorbidity());
-						out.println("</td>" + "</tr>" +
+					 "<tr>" + "<td>Non CNS komorbidita</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getNonCnsComorbidity() == null)
+					 out.println("nevyplněno");
+					 else
+					 out.println(anamnesis.getNonCnsComorbidity());
+					 out.println("</td>" + "</tr>" +
 
-						"<tr>" + "<td>Komentář</td>" + "<td>");
-						if (anamnesis == null)
-							out.println("Nevyplněno");
-						else if (anamnesis.getComment() == null)
-							out.println("nevyplněno");
-						else
-							out.println(anamnesis.getComment());
-						out.println("</td>" + "</tr>" + "</tbody>" + "</table>"
-								+ "</div>" + "</td>" + "</tr>" + "</tbody>"
-								+ "</table>" + "</div>");
+					 "<tr>" + "<td>Komentář</td>" + "<td>");
+					 if (anamnesis == null)
+					 out.println("Nevyplněno");
+					 else if (anamnesis.getComment() == null)
+					 out.println("nevyplněno");
+					 else
+					 out.println(anamnesis.getComment());
+					 out.println("</td>" + "</tr>" + "</tbody>" + "</table>"
+					 + "</div>" + "</td>" + "</tr>" + "</tbody>"
+					 + "</table>" + "</div>");
 
-					}*/
+					 }*/
 				%>
 				<div>
 					<h3>Záchvaty</h3>
@@ -969,6 +975,9 @@
 			</div>
 		</div>
 	</div>
+<!-- Javascripts imports -->
+	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="resources/js/jquery.min.js"></script>
 </body>
 </html>
 

@@ -47,7 +47,7 @@ public class AnamnesisEntity {
 	@Column(name = "FIBRIL_CONVULSIONS", precision = 1, scale = 0, nullable = true)
 	private int fibrilConvulsions;
 
-	@Column(name = "INFLAMMATIONCNS", precision = 1, scale = 0, nullable = true)
+	@Column(name = "INFLAMMATION_CNS", precision = 1, scale = 0, nullable = true)
 	private int inflammationCns;
 
 	@Column(name = "INJURY_CNS", precision = 1, scale = 0, nullable = true)

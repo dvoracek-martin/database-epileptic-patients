@@ -8,11 +8,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -26,13 +28,14 @@ public class PatientEntity {
 	private int id;
 
 	/** The nin. */
+	@NotBlank
 	@Column(name = "NIN", length = 20, nullable = true)
 	private String nin;
 
 	/** The birthday. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Past(message="rwegwe")
-	@NotNull(message="fuuu")
+	@Past
+	@NotNull
 	@Column(name = "BIRTHDAY", nullable = false)
 	private Date birthday;
 
@@ -60,6 +63,8 @@ public class PatientEntity {
 	@Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
 	private int commentId;
 
+	
+	@Valid
 	@OneToOne
 	@Cascade({ CascadeType.SAVE_UPDATE })
 	private ContactEntity contact;

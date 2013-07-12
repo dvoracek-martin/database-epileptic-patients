@@ -31,12 +31,6 @@ public class PatientController {
 	@Autowired
 	private AnamnesisService anamnesisService;
 
-	/*@InitBinder
-	private void initBinder(WebDataBinder binder) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(
-				dateFormat, false));
-	}*/
 
 	@RequestMapping(value = "/createdPatient", method = RequestMethod.GET)
 	public String createdPatientGET(Locale locale, Model model) {
