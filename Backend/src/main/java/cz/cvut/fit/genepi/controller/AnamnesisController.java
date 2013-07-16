@@ -14,19 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AnamnesisController {
 
-
-	@RequestMapping(value = "/anamnesis", method = RequestMethod.POST)
-	public String anamnesisPOST(Locale locale, Model model) {
-		return "anamnesisView";
-	}
-
 	@RequestMapping(value = "/anamnesis", method = RequestMethod.GET)
 	public String anamnesisGET(Locale locale, Model model) {
 		return "anamnesisView";
 	}
 
 	@RequestMapping(value = "/createAnamnesis", method = RequestMethod.GET)
-	public String CreateAnamnesisGET(Locale locale, Model model) {
+	public String createAnamnesisGET(Locale locale, Model model) {
 		return "createAnamnesisView";
 	}
 

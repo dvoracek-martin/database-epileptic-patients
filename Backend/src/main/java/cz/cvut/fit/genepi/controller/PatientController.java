@@ -31,12 +31,6 @@ public class PatientController {
 	@Autowired
 	private AnamnesisService anamnesisService;
 
-
-	@RequestMapping(value = "/createdPatient", method = RequestMethod.GET)
-	public String createdPatientGET(Locale locale, Model model) {
-		return "createdPatientView";
-	}
-
 	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
 	public String addPatient(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
@@ -45,7 +39,8 @@ public class PatientController {
 			return "createPatientView";
 		} else {
 			patientService.save(patient);
-			return "redirect:/patientsList";
+			return "redirect:/patientOverview/"
+					+ Integer.toString(patient.getId());
 		}
 	}
 

@@ -15,13 +15,13 @@ public class AnamnesisDAOImpl extends
 		GenericDAOImpl<AnamnesisEntity, Serializable> implements AnamnesisDAO {
 
 	
-	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id) {
-		List<AnamnesisEntity> anamnesisEntity = new ArrayList<AnamnesisEntity>();
+	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId) {
+		List<AnamnesisEntity> anamnesisEntities = new ArrayList<AnamnesisEntity>();
 		Query query = sessionFactory.getCurrentSession()
 				.createQuery("from AnamnesisEntity where patientId = :patient_id");
-		query.setParameter("patient_id", patient_id);		
-		anamnesisEntity = findMany(query);
+		query.setParameter("patient_id", patientId);		
+		anamnesisEntities = findMany(query);
 		
-		return anamnesisEntity;
+		return anamnesisEntities;
 	}
 }
