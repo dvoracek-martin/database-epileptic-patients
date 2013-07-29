@@ -11,7 +11,7 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Anamnéza</title>
-		<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+		<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 		<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 	</head>
 	<body>

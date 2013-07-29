@@ -193,7 +193,7 @@
 		<script
 			src="resources/js/jquery.js"></script>
 		<script
-			src="resources/js/bootstrap-dropdown.js"></script>
+			src="resources/js/bootstrap.min.js"></script>
 		<script
 			src="resources/js/application.js"></script>
 	</body>

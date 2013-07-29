@@ -12,7 +12,7 @@
 <meta charset="utf-8" />
 <title>Profil</title>
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
-<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+<link href="resources/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -92,7 +92,7 @@
 
 	<!-- Javascripts imports -->
 	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap-dropdown.js"></script>
+	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/application.js"></script>
 
 </body>

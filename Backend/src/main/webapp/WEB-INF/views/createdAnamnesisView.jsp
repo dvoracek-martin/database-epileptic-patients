@@ -13,7 +13,7 @@
 <meta charset="utf-8" />
 <title>Přidaný záznam</title>
   <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
-  <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+  <link href="resources/css/bootstrap.min.css" rel="stylesheet">
   
   
 </head>
