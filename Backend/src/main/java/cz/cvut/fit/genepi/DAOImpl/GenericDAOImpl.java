@@ -35,10 +35,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 	 * @see cz.cvut.fit.genepi.models.GenericDAO#merge(java.lang.Object)
 	 */
 	public void merge(T entity) {
-		sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().merge(entity);
-		sessionFactory.getCurrentSession().getTransaction().commit();
-		sessionFactory.getCurrentSession().disconnect();
 	}
 
 	/*
@@ -47,10 +44,7 @@ public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 	 * @see cz.cvut.fit.genepi.models.GenericDAO#delete(java.lang.Object)
 	 */
 	public void delete(T entity) {
-		sessionFactory.getCurrentSession().beginTransaction();
 		sessionFactory.getCurrentSession().delete(entity);
-		sessionFactory.getCurrentSession().getTransaction().commit();
-		sessionFactory.getCurrentSession().disconnect();
 	}
 
 	/*
