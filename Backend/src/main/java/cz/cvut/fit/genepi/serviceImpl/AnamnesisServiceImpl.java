@@ -21,7 +21,7 @@ public class AnamnesisServiceImpl implements AnamnesisService {
 		anamnesisDAO.save(anamnesis);
 	}
 	@Transactional
-	public List<AnamnesisEntity> findAnamnesisByPatientID(int patient_id) {
-		return anamnesisDAO.findAnamnesisByPatientID(patient_id);
+	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId) {
+		return anamnesisDAO.findAnamnesisByPatientID(patientId);
 	}
 }
