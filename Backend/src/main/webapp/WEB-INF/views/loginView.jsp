@@ -17,9 +17,9 @@
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
 <title>Přihlašovací stránka</title>
-<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link href="resources/css/bootstrap-responsive.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap-responsive.css" />" rel="stylesheet">
 </head>
 <body>
 	<sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
@@ -140,7 +140,7 @@
 	</div>
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="<c:url value="resources/js/jquery.js" />"></script>
+	<script src="<c:url value="resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>

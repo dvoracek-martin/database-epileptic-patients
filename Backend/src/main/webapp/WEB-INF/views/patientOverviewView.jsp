@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.springframework.security.core.userdetails.User"%>
 <%@ page
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
@@ -11,8 +12,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Pacient</title>
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
 </head>
 <body>
 	<%
@@ -38,7 +39,7 @@
 		<div class="span3">
 			<div class="well sidebar-nav">
 				<a href="/GENEPI/"> <img class="photo1" width=2560 height=1600
-					src="resources/img/logo.png" alt="logo" />
+					src="<c:url value="/resources/img/logo.png" />" alt="logo" />
 				</a>
 			</div>
 			<div class="well sidebar-nav">
@@ -976,8 +977,8 @@
 		</div>
 	</div>
 <!-- Javascripts imports -->
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/jquery.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 </body>
 </html>
 
