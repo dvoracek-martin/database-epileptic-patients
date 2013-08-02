@@ -24,4 +24,8 @@ public class AnamnesisServiceImpl implements AnamnesisService {
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId) {
 		return anamnesisDAO.findAnamnesisByPatientID(patientId);
 	}
+	@Transactional
+	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID) {
+		return anamnesisDAO.findLatestAnamnesisByPatientID(patientID);
+	}
 }

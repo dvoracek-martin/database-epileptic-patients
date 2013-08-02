@@ -61,8 +61,10 @@ public class PatientController {
 	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
+		PatientEntity patient = patientService.findPatientByID(patientID);	
+		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis",
-				anamnesisService.findAnamnesisByPatientID(patientID));
+				anamnesisService.findLatestAnamnesisByPatientID(patientID));
 		return "patientOverviewView";
 	}
 

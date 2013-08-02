@@ -11,4 +11,6 @@ public interface PatientService {
 	public PatientEntity findByID(int id);
 
 	public List<PatientEntity> findAll();
+
+	public PatientEntity findPatientByID(Integer patientID);
 }

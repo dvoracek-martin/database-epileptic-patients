@@ -9,6 +9,8 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Interface PatientDAO.
  */
 public interface PatientDAO extends GenericDAO<PatientEntity, Serializable> {
+
+	PatientEntity findPatientByID(Integer patientID);
 	
 
 }

@@ -12,4 +12,6 @@ import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 public interface AnamnesisDAO extends GenericDAO<AnamnesisEntity, Serializable> {
  
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId);
+
+	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID);
 }

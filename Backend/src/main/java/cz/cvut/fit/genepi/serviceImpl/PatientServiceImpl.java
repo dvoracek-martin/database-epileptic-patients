@@ -16,18 +16,27 @@ public class PatientServiceImpl implements PatientService {
 	@Autowired
 	private PatientDAO patientDAO;
 
+	@Override
 	@Transactional
 	public void save(PatientEntity patient) {
 		patientDAO.save(patient);
 	}
 
+	@Override
 	@Transactional
 	public PatientEntity findByID(int id) {
 		return (patientDAO.findByID(PatientEntity.class, id));
 	}
 
+	@Override
 	@Transactional
 	public List<PatientEntity> findAll() {
 		return patientDAO.findAll(PatientEntity.class);
+	}
+
+	@Override
+	@Transactional
+	public PatientEntity findPatientByID(Integer patientID) {
+		return patientDAO.findPatientByID(patientID);
 	}
 }

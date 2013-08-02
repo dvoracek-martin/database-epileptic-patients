@@ -6,4 +6,6 @@ import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 
 public interface AnamnesisService {
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId);
+
+	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID);
 }
