@@ -15,8 +15,8 @@
 <head>
 <meta charset="utf-8" />
 <title>Přidat záznam</title>
-<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
-<link href="resources/css/bootstrap2.2.css" rel="stylesheet">
+<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -222,14 +222,14 @@
 						<form:label path="specificSyndromeIdcom">Epileptický syndrom</form:label>
 						<form:select path="specificSyndromeIdcom" type="text"
 							class="input-block-level">
-							<form:option value="default">Zvolte syndrom</form:option>
-							<form:option value="Extratemporální fokální epilepsie">Extratemporální
+							<form:option value="0">Zvolte syndrom</form:option>
+							<form:option value="1">Extratemporální
 							fokální epilepsie</form:option>
-							<form:option value="Hemisferální symtomaptická epilepsie">Hemisferální
+							<form:option value="2">Hemisferální
 							symtomaptická epilepsie</form:option>
-							<form:option value="Meziotemporální epilepsie (MTLE)">Meziotemporální
+							<form:option value="3">Meziotemporální
 							epilepsie (MTLE)</form:option>
-							<form:option value="Multifokální epilepsie">Multifokální
+							<form:option value="4">Multifokální
 							epilepsie</form:option>
 						</form:select>
  
@@ -251,7 +251,7 @@
 	</div>
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
 </html>
