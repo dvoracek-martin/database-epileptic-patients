@@ -13,7 +13,7 @@
 
 
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 <head>
 <meta charset="utf-8" />
 <title>Přidat pacienta</title>
@@ -62,6 +62,8 @@
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
+						<li><a href="?lang=cs">CZ</a></li>
+						<li><a href="?lang=en">EN</a></li>
 					</ul>
 				</div>
 				<!--  It block with copyright -->

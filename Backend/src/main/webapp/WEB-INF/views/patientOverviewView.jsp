@@ -338,7 +338,7 @@
 					 + "</table>" + "</div>");
 
 					 }*/
-				%>
+				%><!-- 
 				<div>
 					<h3>Záchvaty</h3>
 					<table style="border: 1px solid black" class="span7">
@@ -978,6 +978,7 @@
 				<div>
 					<h3>Outcome</h3>
 				</div>
+				 -->
 			</div>
 		</div>
 	</div>

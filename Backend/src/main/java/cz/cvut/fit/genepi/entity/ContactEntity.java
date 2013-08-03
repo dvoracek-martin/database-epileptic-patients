@@ -29,30 +29,39 @@ public class ContactEntity {
 	private String firstName;
 
 	/** The last name. */
+	@Pattern(regexp="[A-Za-z ]*")
+	@NotNull
+	@NotBlank
 	@Column(name = "LAST_NAME", length = 20, nullable = false)
 	private String lastName;
 
 	/** The address street. */
+	@Pattern(regexp="[A-Za-z ]*")
 	@Column(name = "ADDRESS_STREET", length = 30, nullable = true)
 	private String addressStreet;
 
 	/** The address hn. */
+	@Pattern(regexp="[0-9]*")
 	@Column(name = "ADDRESS_HN", length = 10, nullable = true)
 	private String addressHn;
 
 	/** The address city. */
+	@Pattern(regexp="[A-Za-z ]*")
 	@Column(name = "ADDRESS_CITY", length = 30, nullable = true)
 	private String addressCity;
 
 	/** The address postalcode. */
+	@Pattern(regexp="[0-9]*")
 	@Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
 	private String addressPostalcode;
 
 	/** The address country. */
+	@Pattern(regexp="[A-Za-z ]*")
 	@Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
 	private String addressCountry;
 
 	/** The phone number. */
+	@Pattern(regexp="[0-9]*")
 	@Column(name = "PHONE_NUMBER", length = 20, nullable = true)
 	private String phoneNumber;
 

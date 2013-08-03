@@ -40,6 +40,8 @@ public class PatientEntity {
 	private Date birthday;
 
 	/** The gender. */
+	@NotBlank
+	@NotNull
 	@Column(name = "GENDER", length = 10, nullable = false)
 	private String gender;
 
