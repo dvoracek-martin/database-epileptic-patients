@@ -17,8 +17,13 @@
 <title>Přidat záznam</title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	<link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
+<link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
+	rel="stylesheet">
+
+
+
 </head>
 <body>
 	<%
@@ -156,10 +161,11 @@
 					<form:form method="POST"
 						action="/GENEPI/patient/${patientID}/addAnamnesis"
 						commandName="anamnesis">
-						<!--<form:label path="date">Datum</form:label>
-						<form:input path="date" type="text" class="input-block-level" />
+						<form:label path="date">Datum</form:label>
+						<form:input path="date" type="date" class="input-block-level"
+							id="dateDatepicker" />
 						<form:errors path="date" cssClass="error">
-						</form:errors>-->
+						</form:errors>
 
 						<form:label path="doctorId">Lekar</form:label>
 						<form:select path="doctorId" type="text" class="input-block-level" />
@@ -200,11 +206,11 @@
 						<form:errors path="earlyPmdRetardation" cssClass="error">
 						</form:errors>
 
-						<!--<form:label path="beginningEpilepsy">Začátek epilepsie</form:label>
-						<form:input path="beginningEpilepsy" type="text"
-							class="input-block-level" />
+						<form:label path="beginningEpilepsy">Začátek epilepsie</form:label>
+						<form:input path="beginningEpilepsy" type="date"
+							class="input-block-level" id="beginningEpilepsyDatepicker"/>
 						<form:errors path="beginningEpilepsy" cssClass="error">
-						</form:errors>-->
+						</form:errors>
 
 						<form:label path="firstFever">První záchvat s horečkou</form:label>
 						<form:checkbox path="firstFever" class="input-block-level" />
@@ -248,6 +254,14 @@
 
 	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script>
+		$(function() {
+			$("#dateDatepicker").datepicker();
+			$("#beginningEpilepsyDatepicker").datepicker();
+		});
+	</script>
+
 </body>
 </html>

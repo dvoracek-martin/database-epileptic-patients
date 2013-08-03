@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ANAMNESIS")
@@ -17,12 +22,19 @@ public class AnamnesisEntity {
 	@GeneratedValue
 	private int id;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
+	@NotBlank
 	@Column(name = "DATE", length = 7, nullable = false)
 	private Date date;
 
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
 	@Column(name = "ADDED", length = 7, nullable = false)
 	private Date added;
 
