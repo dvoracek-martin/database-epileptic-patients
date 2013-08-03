@@ -162,8 +162,8 @@
 						action="/GENEPI/patient/${patientID}/addAnamnesis"
 						commandName="anamnesis">
 						<form:label path="date">Datum</form:label>
-						<form:input path="date" type="date" class="input-block-level"
-							id="dateDatepicker" />
+						<form:input path="date" type="date" class="input-block-level datepicker"
+							 />
 						<form:errors path="date" cssClass="error">
 						</form:errors>
 
@@ -208,7 +208,7 @@
 
 						<form:label path="beginningEpilepsy">Začátek epilepsie</form:label>
 						<form:input path="beginningEpilepsy" type="date"
-							class="input-block-level" id="beginningEpilepsyDatepicker"/>
+							class="input-block-level datepicker" />
 						<form:errors path="beginningEpilepsy" cssClass="error">
 						</form:errors>
 
@@ -258,8 +258,8 @@
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script>
 		$(function() {
-			$("#dateDatepicker").datepicker();
-			$("#beginningEpilepsyDatepicker").datepicker();
+			$(".datepicker").datepicker({ dateFormat: "dd/mm/yy" });
+			
 		});
 	</script>
 

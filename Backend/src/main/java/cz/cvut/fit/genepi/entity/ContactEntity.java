@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -21,6 +22,7 @@ public class ContactEntity {
 	private int id;
 
 	/** The first name. */
+	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)

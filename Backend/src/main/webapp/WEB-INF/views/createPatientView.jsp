@@ -1,3 +1,7 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@page pageEncoding="utf-8"%>
 <%@ page import="org.springframework.security.core.userdetails.User"%>
 <%@ page
@@ -5,8 +9,7 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 
 
 <!DOCTYPE html>
@@ -16,6 +19,9 @@
 <title>Přidat pacienta</title>
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
+	rel="stylesheet">
 
 </head>
 <body>
@@ -76,7 +82,7 @@
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
 					<form:form method="POST" action="addPatient" commandName="patient">
-						<form:label path="contact.firstName">Jmeno</form:label>
+						<form:label path="contact.firstName"><spring:message code="label.firstname"/></form:label>
 						<form:input path="contact.firstName" type="text"
 							class="input-block-level" />
 						<form:errors path="contact.firstName" cssClass="error">
@@ -86,8 +92,8 @@
 							class="input-block-level" />
 
 						<form:label path="birthday">Datum narozeni</form:label>
-						<form:input path="birthday" placeholder="dd/MM/yyyy" type="date"
-							class="input-block-level" />
+						<form:input path="birthday" type="date"
+							class="input-block-level datepicker" />
 						<form:errors path="birthday" cssClass="error" />
 
 						<form:label path="nin">rč</form:label>
@@ -150,7 +156,15 @@
 
 	<!-- Javascripts imports -->
 	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/application.js"></script>
+	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script>
+		$(function() {
+			$(".datepicker").datepicker({
+				dateFormat : "dd/mm/yy"
+			});
+
+		});
+	</script>
 </body>
 </html>
