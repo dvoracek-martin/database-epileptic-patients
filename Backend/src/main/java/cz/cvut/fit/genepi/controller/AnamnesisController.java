@@ -28,7 +28,9 @@ public class AnamnesisController {
 	private AnamnesisService anamnesisService;
 
 	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
-	public String createAnamnesisGET(Locale locale, Model model) {
+	public String createAnamnesisGET(Locale locale, Model model, @PathVariable("patientID") Integer patientID) {
+		PatientEntity patient = patientService.findPatientByID(patientID);
+		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "createAnamnesisView";
 	}
@@ -38,7 +40,7 @@ public class AnamnesisController {
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
-			return "createPatientView";
+			return "createAnamnesisView";
 		} else {
 			anamnesisService.save(anamnesis);
 			return "redirect:/anamnesis/"
