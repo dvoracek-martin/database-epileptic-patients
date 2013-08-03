@@ -74,10 +74,6 @@
 					<h2>Přidat pacienta</h2>
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
-
-					<form:form modelAttribute="patient">
-					</form:form>
-
 					<!-- form for adding new patient -->
 					<form:form method="POST" action="addPatient" commandName="patient">
 						<form:label path="contact.firstName">Jmeno</form:label>

@@ -113,92 +113,33 @@
 					<tbody>
 						<tr>
 							<th>Číslo pacienta:</th>
-							<td>
-								<%
-									/*
-									 out.println(patient.getId());*/
-								%>
-							</td>
+							<td>${patient.id}</td>
 
 							<th>Rodné číslo:</th>
-							<td>
-								<%
-									/*if (patient.getNin() == null)
-										out.println("nevyplněno");
-									else
-										out.println(patient.getNin());*/
-								%>
-							</td>
+							<td>${patient.nin}</td>
 
 							<th>Adresa:</th>
-							<td>
-								<%
-									/*
-									 if (contact.getAddressStreet() == null)
-									 out.println("nevyplněno");
-									 else
-									 out.println(contact.getAddressStreet());*/
-								%>
-							</td>
+							<td>${patient.contact.addressStreet}</td>
 
 						</tr>
 						<tr>
 							<th>Telefon:</th>
-							<td>
-								<%
-									/*
-									 if (contact.getPhoneNumber() == null)
-									 out.println("nevyplněno");
-									 else
-									 out.println(contact.getPhoneNumber());*/
-								%>
-							</td>
+							<td>${patient.contact.phoneNumber}</td>
 
 							<th>Věk:</th>
-							<td>
-								<%
-									out.println("nevyplněno");
-								%>
-							</td>
+							<td></td>
 
 							<th>Pohaví:</th>
-							<td>
-								<%
-									/*
-									 if (patient.getGender() == null)
-									 out.println("nevyplněno");
-									 else
-									 out.println(patient.getGender() == "male" ? "muž" : "žena");*/
-								%>
-							</td>
+							<td>${patient.gender}</td>
 						</tr>
-
 						<tr>
 							<th>Email:</th>
-							<td>
-								<%
-									/*
-									 if (contact.getEmail() == null)
-									 out.println("nevyplněno");
-									 else
-									 out.println(contact.getEmail());*/
-								%>
-							</td>
+							<td>${patient.contact.email}</td>
 
 							<th>Věk při začátku epilepsie:</th>
-							<td>
-								<%
-									out.println("nevyplněno");
-								%>
-							</td>
-
+							<td></td>
 							<th>Ošetřující lékař:</th>
-							<td>
-								<%
-									out.println("nevyplněno");
-								%>
-							</td>
-
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
@@ -208,7 +149,7 @@
 				<table border="2">
 					<tr>
 						<td>Vysetreni dne: ${anamnesis.date}</td>
-						<td><a href="anamnesis/${patient.id}">Zobrazit vsechny</a></td>
+						<td><a href="<c:url value="/anamnesis/${patient.id}" />">Zobrazit vsechny</a></td>
 					</tr>
 					<tr>
 						<td></td>

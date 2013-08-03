@@ -30,34 +30,34 @@ public class AnamnesisEntity {
 	private Date beginningEpilepsy;
 
 	@Column(name = "FIRST_FEVER", precision = 1, scale = 0, nullable = true)
-	private int firstFever;
+	private Boolean firstFever;
 
 	@Column(name = "INFANTILE_SPASM", precision = 1, scale = 0, nullable = true)
-	private int infantileSpasm;
+	private Boolean infantileSpasm;
 
 	@Column(name = "SPECIFIC_SYNDROME_IDCOM", precision = 6, scale = 0, nullable = true)
 	private int specificSyndromeIdcom;
 
 	@Column(name = "EPILEPSY_IN_FAMILY", precision = 1, scale = 0, nullable = true)
-	private int epilepsyInFamily;
+	private Boolean epilepsyInFamily;
 
 	@Column(name = "PRENATAL_RISK", precision = 1, scale = 0, nullable = true)
-	private int prenatalRisk;
+	private Boolean prenatalRisk;
 
 	@Column(name = "FIBRIL_CONVULSIONS", precision = 1, scale = 0, nullable = true)
-	private int fibrilConvulsions;
+	private Boolean fibrilConvulsions;
 
 	@Column(name = "INFLAMMATION_CNS", precision = 1, scale = 0, nullable = true)
-	private int inflammationCns;
+	private Boolean inflammationCns;
 
 	@Column(name = "INJURY_CNS", precision = 1, scale = 0, nullable = true)
-	private int injuryCns;
+	private Boolean injuryCns;
 
 	@Column(name = "OPERATION_CNS", precision = 1, scale = 0, nullable = true)
-	private int operationCns;
+	private Boolean operationCns;
 
 	@Column(name = "EARLY_PMD_RETARDATION", precision = 1, scale = 0, nullable = true)
-	private int earlyPmdRetardation;
+	private Boolean earlyPmdRetardation;
 
 	@Column(name = "NON_CNS_COMORBIDITY", length = 400, nullable = true)
 	private String nonCnsComorbidity;
@@ -174,7 +174,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the first fever
 	 */
-	public int getFirstFever() {
+	public Boolean getFirstFever() {
 		return firstFever;
 	}
 
@@ -184,7 +184,7 @@ public class AnamnesisEntity {
 	 * @param firstFever
 	 *            the new first fever
 	 */
-	public void setFirstFever(int firstFever) {
+	public void setFirstFever(Boolean firstFever) {
 		this.firstFever = firstFever;
 	}
 
@@ -193,7 +193,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the infantile spasm
 	 */
-	public int getInfantileSpasm() {
+	public Boolean getInfantileSpasm() {
 		return infantileSpasm;
 	}
 
@@ -203,7 +203,7 @@ public class AnamnesisEntity {
 	 * @param infantileSpasm
 	 *            the new infantile spasm
 	 */
-	public void setInfantileSpasm(int infantileSpasm) {
+	public void setInfantileSpasm(Boolean infantileSpasm) {
 		this.infantileSpasm = infantileSpasm;
 	}
 
@@ -231,7 +231,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the epilepsy in family
 	 */
-	public int getEpilepsyInFamily() {
+	public Boolean getEpilepsyInFamily() {
 		return epilepsyInFamily;
 	}
 
@@ -241,7 +241,7 @@ public class AnamnesisEntity {
 	 * @param epilepsyInFamily
 	 *            the new epilepsy in family
 	 */
-	public void setEpilepsyInFamily(int epilepsyInFamily) {
+	public void setEpilepsyInFamily(Boolean epilepsyInFamily) {
 		this.epilepsyInFamily = epilepsyInFamily;
 	}
 
@@ -250,7 +250,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the prenatal risk
 	 */
-	public int getPrenatalRisk() {
+	public Boolean getPrenatalRisk() {
 		return prenatalRisk;
 	}
 
@@ -260,7 +260,7 @@ public class AnamnesisEntity {
 	 * @param prenatalRisk
 	 *            the new prenatal risk
 	 */
-	public void setPrenatalRisk(int prenatalRisk) {
+	public void setPrenatalRisk(Boolean prenatalRisk) {
 		this.prenatalRisk = prenatalRisk;
 	}
 
@@ -269,7 +269,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the fibril convulsions
 	 */
-	public int getFibrilConvulsions() {
+	public Boolean getFibrilConvulsions() {
 		return fibrilConvulsions;
 	}
 
@@ -279,7 +279,7 @@ public class AnamnesisEntity {
 	 * @param fibrilConvulsions
 	 *            the new fibril convulsions
 	 */
-	public void setFibrilConvulsions(int fibrilConvulsions) {
+	public void setFibrilConvulsions(Boolean fibrilConvulsions) {
 		this.fibrilConvulsions = fibrilConvulsions;
 	}
 
@@ -288,7 +288,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the inflammation cns
 	 */
-	public int getInflammationCns() {
+	public Boolean getInflammationCns() {
 		return inflammationCns;
 	}
 
@@ -298,7 +298,7 @@ public class AnamnesisEntity {
 	 * @param inflammationCns
 	 *            the new inflammation cns
 	 */
-	public void setInflammationCns(int inflammationCns) {
+	public void setInflammationCns(Boolean inflammationCns) {
 		this.inflammationCns = inflammationCns;
 	}
 
@@ -307,7 +307,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the injury cns
 	 */
-	public int getInjuryCns() {
+	public Boolean getInjuryCns() {
 		return injuryCns;
 	}
 
@@ -317,7 +317,7 @@ public class AnamnesisEntity {
 	 * @param injuryCns
 	 *            the new injury cns
 	 */
-	public void setInjuryCns(int injuryCns) {
+	public void setInjuryCns(Boolean injuryCns) {
 		this.injuryCns = injuryCns;
 	}
 
@@ -326,7 +326,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the operation cns
 	 */
-	public int getOperationCns() {
+	public Boolean getOperationCns() {
 		return operationCns;
 	}
 
@@ -336,7 +336,7 @@ public class AnamnesisEntity {
 	 * @param operationCns
 	 *            the new operation cns
 	 */
-	public void setOperationCns(int operationCns) {
+	public void setOperationCns(Boolean operationCns) {
 		this.operationCns = operationCns;
 	}
 
@@ -345,7 +345,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the early pmd retardation
 	 */
-	public int getEarlyPmdRetardation() {
+	public Boolean getEarlyPmdRetardation() {
 		return earlyPmdRetardation;
 	}
 
@@ -355,7 +355,7 @@ public class AnamnesisEntity {
 	 * @param earlyPmdRetardation
 	 *            the new early pmd retardation
 	 */
-	public void setEarlyPmdRetardation(int earlyPmdRetardation) {
+	public void setEarlyPmdRetardation(Boolean earlyPmdRetardation) {
 		this.earlyPmdRetardation = earlyPmdRetardation;
 	}
 

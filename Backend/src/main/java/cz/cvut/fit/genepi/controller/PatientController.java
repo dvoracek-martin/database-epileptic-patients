@@ -31,6 +31,12 @@ public class PatientController {
 	@Autowired
 	private AnamnesisService anamnesisService;
 
+	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
+	public String createPatientGET(Locale locale, Model model) {
+		model.addAttribute("patient", new PatientEntity());
+		return "createPatientView";
+	}
+
 	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
 	public String addPatient(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
@@ -44,12 +50,6 @@ public class PatientController {
 		}
 	}
 
-	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
-	public String createPatientGET(Locale locale, Model model) {
-		model.addAttribute("patient", new PatientEntity());
-		return "createPatientView";
-	}
-
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
 	public String patientOverviewPOST(@RequestParam("id") int id,
 			Locale locale, Model model) {
@@ -61,7 +61,7 @@ public class PatientController {
 	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findPatientByID(patientID);	
+		PatientEntity patient = patientService.findPatientByID(patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis",
 				anamnesisService.findLatestAnamnesisByPatientID(patientID));
