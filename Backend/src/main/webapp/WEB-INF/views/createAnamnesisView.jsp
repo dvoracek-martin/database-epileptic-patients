@@ -17,9 +17,10 @@
 <title>Přidat záznam</title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
-	<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
-<link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
+<link
+	href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
 	rel="stylesheet">
 
 
@@ -162,8 +163,8 @@
 						action="/GENEPI/patient/${patientID}/addAnamnesis"
 						commandName="anamnesis">
 						<form:label path="date">Datum</form:label>
-						<form:input path="date" type="date" class="input-block-level datepicker"
-							 />
+						<form:input path="date" type="text"
+							class="input-block-level datepicker" />
 						<form:errors path="date" cssClass="error">
 						</form:errors>
 
@@ -207,7 +208,7 @@
 						</form:errors>
 
 						<form:label path="beginningEpilepsy">Začátek epilepsie</form:label>
-						<form:input path="beginningEpilepsy" type="date"
+						<form:input path="beginningEpilepsy" type="text"
 							class="input-block-level datepicker" />
 						<form:errors path="beginningEpilepsy" cssClass="error">
 						</form:errors>
@@ -258,8 +259,11 @@
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script>
 		$(function() {
-			$(".datepicker").datepicker({ dateFormat: "dd/mm/yy" });
-			
+			$(".datepicker").datepicker({
+				dateFormat : "dd/mm/yy",
+				changeYear : true
+			});
+
 		});
 	</script>
 

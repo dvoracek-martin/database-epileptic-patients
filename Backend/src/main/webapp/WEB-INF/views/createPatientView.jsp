@@ -84,7 +84,9 @@
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
 					<form:form method="POST" action="addPatient" commandName="patient">
-						<form:label path="contact.firstName"><spring:message code="label.firstname"/></form:label>
+						<form:label path="contact.firstName">
+							<spring:message code="label.firstname" />
+						</form:label>
 						<form:input path="contact.firstName" type="text"
 							class="input-block-level" />
 						<form:errors path="contact.firstName" cssClass="error">
@@ -94,7 +96,7 @@
 							class="input-block-level" />
 
 						<form:label path="birthday">Datum narozeni</form:label>
-						<form:input path="birthday" type="date"
+						<form:input path="birthday" type="text"
 							class="input-block-level datepicker" />
 						<form:errors path="birthday" cssClass="error" />
 
@@ -145,9 +147,9 @@
 							class="input-block-level" />
 						<form:errors path="contact.email" cssClass="error" />
 
-						<form:label path="nin">lekar-to be implemented</form:label>
-						<form:input path="nin" type="text" class="input-block-level" />
-						<form:errors path="nin" cssClass="error" />
+						<form:label path="doctorId">lekar-to be implemented</form:label>
+						<form:input path="doctorId" type="text" class="input-block-level" />
+						<form:errors path="doctorId" cssClass="error" />
 
 						<button class="btn btn-small btn-primary" type="submit">Přidat</button>
 					</form:form>
@@ -163,7 +165,8 @@
 	<script>
 		$(function() {
 			$(".datepicker").datepicker({
-				dateFormat : "dd/mm/yy"
+				dateFormat : "dd/mm/yy",
+				changeYear : true
 			});
 
 		});
