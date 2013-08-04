@@ -7,13 +7,14 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
 <html lang="cz">
 <head>
 <meta charset="utf-8" />
 <title>Kartotéka</title>
-<link href="resources/css/bootstrap.min.css" rel="stylesheet">
-<link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
 <style type="text/css">
 table.patients {
 	width: 90%;
@@ -120,8 +121,8 @@ table.patients td.head {
 	</div>
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/jquery.js"></script>
-	<script src="resources/js/application.js"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/application.js" />"></script>
 </body>
 </html>

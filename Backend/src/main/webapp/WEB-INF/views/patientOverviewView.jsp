@@ -47,8 +47,8 @@
 			<div class="well sidebar-nav">
 				<ul class="nav nav-list">
 					<li class="nav-header">Číslo pacienta:</li>
-					<li><a href="underConstruction">Přehled</a></li>
-					<li><a href="">Anamnéza</a></li>
+					<li><a href="<c:url value="/patientOverview/${patient.id}" />">Přehled</a></li>
+					<li><a href="<c:url value="/anamnesis/${patient.id}" />">Anamnéza</a></li>
 					<li><a href="underConstruction">Farmakoterapie</a></li>
 					<li><a href="underConstruction">Neurologické nálezy</a></li>
 					<li><a href="underConstruction">Neuropsychologie</a></li>
