@@ -4,14 +4,15 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<%@page pageEncoding="utf-8"%>
+<%@page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="cz">
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Kartotéka</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
@@ -98,8 +99,8 @@ table.patients td.head {
 
 				<table class="patients">
 					<tr class="head">
-						<td><b>Příjmení</b></td>
-						<td><b>Jméno</b></td>
+						<td><b><spring:message code="label.lastname"/></td>
+						<td><b><spring:message code="label.firstname"/></b></td>
 						<td><b>Rodné číslo</b></td>
 						<td><b>Ulice, č.p.</b></td>
 						<td><b>Město</b></td>

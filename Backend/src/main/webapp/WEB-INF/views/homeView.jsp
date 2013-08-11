@@ -4,12 +4,13 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@page pageEncoding="utf-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html lang="cz">
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Domovská stránka</title>
 <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
 <link href="resources/css/bootstrap.min.css" rel="stylesheet">
@@ -68,7 +69,7 @@
 		<div class="span9">
 			<div class="hero-unit">
 				<div style="border-bottom: 2px solid black">
-					<h1>Přehled novinek</h1>
+					<h1><spring:message code="label.news"/></h1>
 				</div>
 
 				<div style="margin: 10px">
@@ -84,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>	
 
 	<!-- Javascripts imports -->
 	<script src="resources/js/bootstrap.min.js"></script>
