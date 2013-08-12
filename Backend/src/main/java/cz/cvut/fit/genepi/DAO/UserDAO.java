@@ -1,5 +1,5 @@
 package cz.cvut.fit.genepi.DAO;
 
-public class UsedDAO {
+public class UserDAO {
 
 }
