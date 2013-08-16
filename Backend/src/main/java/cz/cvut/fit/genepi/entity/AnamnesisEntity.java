@@ -10,7 +10,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -25,7 +24,6 @@ public class AnamnesisEntity {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@NotBlank
 	@Column(name = "DATE", length = 7, nullable = false)
 	private Date date;
 
@@ -38,6 +36,9 @@ public class AnamnesisEntity {
 	@Column(name = "ADDED", length = 7, nullable = false)
 	private Date added;
 
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
 	@Column(name = "BEGINNING_EPILEPSY", length = 7, nullable = true)
 	private Date beginningEpilepsy;
 
@@ -73,7 +74,7 @@ public class AnamnesisEntity {
 
 	@Column(name = "NON_CNS_COMORBIDITY", length = 400, nullable = true)
 	private String nonCnsComorbidity;
-
+	
 	@Column(name = "COMMENT", length = 400, nullable = true)
 	private String comment;
 

@@ -1,4 +1,5 @@
 package cz.cvut.fit.genepi.entity;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,6 +8,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -16,7 +18,6 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "USER")
 public class UserEntity {
 
-
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -24,6 +25,7 @@ public class UserEntity {
 	private int id;
 
 	/** The login. */
+	@Pattern(regexp="[A-Za-z0-9 ]+")
 	@NotBlank
 	@NotNull
 	@Column(name = "USERNAME", length = 10, nullable = false)
@@ -34,8 +36,8 @@ public class UserEntity {
 	@NotNull
 	@Column(name = "PASSWORD", precision = 6, scale = 0, nullable = true)
 	private String password;
-
-		@Valid
+			
+	@Valid
 	@OneToOne
 	@Cascade({ CascadeType.SAVE_UPDATE })
 	private ContactEntity contact;
@@ -58,7 +60,6 @@ public class UserEntity {
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 	public String getLogin() {
 		return login;
