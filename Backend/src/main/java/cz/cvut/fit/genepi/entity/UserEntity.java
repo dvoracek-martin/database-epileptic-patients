@@ -13,7 +13,7 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
-@Table(name = "User")
+@Table(name = "USER")
 public class UserEntity {
 
 
@@ -26,7 +26,7 @@ public class UserEntity {
 	/** The login. */
 	@NotBlank
 	@NotNull
-	@Column(name = "LOGIN", length = 10, nullable = false)
+	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String login;
 
 	/** The password. */

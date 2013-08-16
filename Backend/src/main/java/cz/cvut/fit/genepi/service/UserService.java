@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.service;
 
-public class UserService {
+import cz.cvut.fit.genepi.entity.UserEntity;
 
+public interface UserService {
+	public void save(UserEntity user);
 }
