@@ -3,17 +3,18 @@
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@page pageEncoding="utf-8"%>
+<%@ page pageEncoding="UTF-8"%>
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
 
 <!DOCTYPE html>
-<html lang="cz">
+<html lang="cs">
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
 <title>Přihlašovací stránka</title>
@@ -65,7 +66,7 @@
 			</tr>
 		</table>
 		<br />
-		<h1>Přihlášení</h1>
+		<h1><spring:message code="label.login" /></h1>
 		<!-- login form -->
 		<div class="form" style="border: 0 solid white">
 			<form name="f" action="j_spring_security_check" method="post">
