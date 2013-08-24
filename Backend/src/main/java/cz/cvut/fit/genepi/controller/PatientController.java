@@ -30,7 +30,7 @@ public class PatientController {
 
 	@Autowired
 	private AnamnesisService anamnesisService;
-
+	
 	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
 		model.addAttribute("patient", new PatientEntity());
