@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.UserService;
 
@@ -39,7 +38,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String createUserGET(Locale locale, Model model) {
-		model.addAttribute("user", new PatientEntity());
+		model.addAttribute("user", new UserEntity());
 		return "createUserView";
 	}
 
