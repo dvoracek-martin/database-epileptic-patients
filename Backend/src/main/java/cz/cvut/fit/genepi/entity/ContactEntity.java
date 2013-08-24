@@ -83,8 +83,8 @@ public class ContactEntity {
 	private String addressCountry;
 
 	/** The phone number. */
-	@Pattern(regexp="[0-9]*")
-	@Size(min=9,max=9)
+	@Pattern(regexp="[0-9+][0-9]*")
+	@Size(min=1,max=20)
 	@Column(name = "PHONE_NUMBER", length = 20, nullable = true)
 	private String phoneNumber;
 
