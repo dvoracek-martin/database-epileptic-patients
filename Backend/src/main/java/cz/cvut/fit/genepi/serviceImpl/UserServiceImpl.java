@@ -56,4 +56,10 @@ public class UserServiceImpl implements UserService{
 	public UserEntity findUserByID(Integer userID) {
 		return userDAO.findUserByID(userID);
 	}
+
+	@Override
+	@Transactional
+	public UserEntity findUserByUsername(String username) {		
+		return userDAO.findUserByUsername(username);
+	}
 }

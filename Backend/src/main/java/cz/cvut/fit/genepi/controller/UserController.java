@@ -30,9 +30,11 @@ public class UserController {
 
 	/**
 	 * Creates the user get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
@@ -43,9 +45,11 @@ public class UserController {
 
 	/**
 	 * Adds the user get.
-	 *
-	 * @param user the user
-	 * @param result the result
+	 * 
+	 * @param user
+	 *            the user
+	 * @param result
+	 *            the result
 	 * @return the string
 	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -54,32 +58,42 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "createUserView";
 		} else {
-			userService.save(user);
-			return "redirect:/userOverview/" + Integer.toString(user.getId());
+			if (userService.findUserByUsername(user.getLogin()) != null) {
+				return "createUserView";
+			} else {
+				userService.save(user);
+				return "redirect:/userOverview/"
+						+ Integer.toString(user.getId());
+			}
 		}
 	}
 
 	/**
 	 * User overview get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param userID the user id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param userID
+	 *            the user id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/userOverview/{userID}", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findUserByID(userID);
-		model.addAttribute("user", user);		
+		model.addAttribute("user", user);
 		return "userOverviewView";
 	}
 
 	/**
 	 * Users list get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
@@ -88,6 +102,4 @@ public class UserController {
 		return "userListView";
 	}
 
-
-	
 }

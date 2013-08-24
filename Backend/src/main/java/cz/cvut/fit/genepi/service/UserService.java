@@ -39,4 +39,6 @@ public interface UserService {
 	 * @return the user entity
 	 */
 	public UserEntity findUserByID(Integer userID);
+	
+	public UserEntity findUserByUsername(String username);
 }

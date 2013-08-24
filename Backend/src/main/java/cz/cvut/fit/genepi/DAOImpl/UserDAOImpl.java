@@ -28,4 +28,14 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity, Serializable>
 		userEntity = findOne(query);
 		return userEntity;
 	}
+	
+	@Override
+	public UserEntity findUserByUsername(String username){
+		UserEntity userEntity;
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from UserEntity where id = :user_name");
+		query.setParameter("user_name", username);
+		userEntity = findOne(query);
+		return userEntity;
+	}
 }
