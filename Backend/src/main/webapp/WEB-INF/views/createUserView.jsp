@@ -56,7 +56,7 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="patientList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel: <%=username%></li>
 						<li><a href="myProfile">Profil</a></li>
@@ -85,7 +85,7 @@
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
-					<form:form method="POST" action="addPatient" commandName="patient">				
+					<form:form method="POST" action="addUser" commandName="user">				
 						<form:label path="user.username">
 							<spring:message code="label.username" />
 						</form:label>
