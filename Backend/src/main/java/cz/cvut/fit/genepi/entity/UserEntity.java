@@ -29,19 +29,18 @@ public class UserEntity {
 	@GeneratedValue
 	private int id;
 
-	/** The login. */
-	@Pattern(regexp="[A-Za-z0-9]+")
+	@Pattern(regexp="[A-Za-z0-9]*")
 	@NotBlank
 	@NotNull
-	@Size(min=1)
+	@Size(min=1,max=10)
 	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String username;
 
 	/** The password. */
 	@NotBlank
 	@NotNull
-	@Size(min=8)
-	@Column(name = "PASSWORD", precision = 6, scale = 0, nullable = true)
+	@Size(min=8,max=30)
+	@Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
 	private String password;
 			
 	/** The contact. */
