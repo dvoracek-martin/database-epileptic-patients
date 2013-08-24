@@ -86,20 +86,20 @@
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
 					<form:form method="POST" action="addUser" commandName="user">				
-						<form:label path="user.username">
+						<form:label path="username">
 							<spring:message code="label.username" />
 						</form:label>
-						<form:input path="user.login" type="text"
+						<form:input path="username" type="text"
 							class="input-block-level" />
-						<form:errors path="user.login" cssClass="error">
+						<form:errors path="username" cssClass="error">
 						</form:errors>
 						
-						<form:label path="user.password">
+						<form:label path="password">
 							<spring:message code="label.password" />
 						</form:label>
-						<form:input path="user.password" type="text"
+						<form:input path="password" type="text"
 							class="input-block-level" />
-						<form:errors path="user.password" cssClass="error">
+						<form:errors path="password" cssClass="error">
 						</form:errors>
 						
 						<form:label path="contact.firstName">
@@ -115,29 +115,6 @@
 						</form:label>
 						<form:input path="contact.lastName" type="text"
 							class="input-block-level" />
-
-						<form:label path="birthday">
-							<spring:message code="label.birthdate" />
-						</form:label>
-						<form:input path="birthday" type="text"
-							class="input-block-level datepicker" />
-						<form:errors path="birthday" cssClass="error" />
-
-						<form:label path="nin">
-							<spring:message code="label.idnumber" />
-						</form:label>
-						<form:input path="nin" type="text" class="input-block-level" />
-						<form:errors path="nin" cssClass="error" />
-
-
-						<form:label path="gender">
-							<spring:message code="label.sex" />
-						</form:label>
-						<form:select path="gender" class="input-block-level">
-							<form:option value="NONE" label="--- Select ---" />
-							<form:option value="male" label="male" />
-							<form:option value="female" label="female" />
-						</form:select>
 
 						<form:label path="contact.addressStreet">
 							<spring:message code="label.street" />
@@ -187,10 +164,6 @@
 						<form:input path="contact.email" type="text"
 							class="input-block-level" />
 						<form:errors path="contact.email" cssClass="error" />
-
-						<form:label path="doctorId">lekar-to be implemented</form:label>
-						<form:input path="doctorId" type="text" class="input-block-level" />
-						<form:errors path="doctorId" cssClass="error" />
 
 						<button class="btn btn-small btn-primary" type="submit">
 							<spring:message code="label.add" />
