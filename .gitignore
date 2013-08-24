@@ -4,6 +4,8 @@
 *.war
 *.ear
 
-*pom.properties
-*MANIFEST.MF
-*connection.properties
+pom.properties
+MANIFEST.MF
+connection.properties
+#C:\Users\Jan\Documents\GitHub\database-epileptic-patients\Backend\target\m2e-wtp\web-resources\META-INF\MANIFEST.MF
+#C:\Users\Jan\Documents\GitHub\database-epileptic-patients\Backend\target\m2e-wtp\web-resources\META-INF\maven\cz.cvut\GENEPI\pom.properties
