@@ -84,7 +84,7 @@ public class MyProfileController {
 
 		user.setId(0);
 		user.setLogin("test");
-		user.setPassword(md5("123456"));
+		user.setPassword(md5("123456"+"{"+user.getLogin()+"}"));
 		ContactEntity c = new ContactEntity();
 		
 		c.setAddressCity("ADs");

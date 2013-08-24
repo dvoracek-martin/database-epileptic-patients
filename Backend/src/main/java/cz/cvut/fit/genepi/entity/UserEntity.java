@@ -25,7 +25,7 @@ public class UserEntity {
 	private int id;
 
 	/** The login. */
-	@Pattern(regexp="[A-Za-z0-9 ]+")
+	@Pattern(regexp="[A-Za-z0-9]+")
 	@NotBlank
 	@NotNull
 	@Column(name = "USERNAME", length = 10, nullable = false)
