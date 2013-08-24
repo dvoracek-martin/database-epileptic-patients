@@ -35,7 +35,7 @@ public class UserEntity {
 	@NotNull
 	@Size(min=1)
 	@Column(name = "USERNAME", length = 10, nullable = false)
-	private String login;
+	private String username;
 
 	/** The password. */
 	@NotBlank
@@ -69,22 +69,14 @@ public class UserEntity {
 		this.id = id;
 	}
 
-	/**
-	 * Gets the login.
-	 *
-	 * @return the login
-	 */
-	public String getLogin() {
-		return login;
+	
+
+	public String getUsername() {
+		return username;
 	}
 
-	/**
-	 * Sets the login.
-	 *
-	 * @param login the new login
-	 */
-	public void setLogin(String login) {
-		this.login = login;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	/**

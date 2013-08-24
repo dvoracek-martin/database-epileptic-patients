@@ -57,7 +57,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "createUserView";
 		} else {
-			if (userService.findUserByUsername(user.getLogin()) != null) {
+			if (userService.findUserByUsername(user.getUsername()) != null) {
 				return "createUserView";
 			} else {
 				userService.save(user);

@@ -67,7 +67,7 @@ public class MyProfileController {
 		c.setPhoneNumber("43255");
 
 		user.setId(0);
-		user.setLogin("sue");
+		user.setUsername("sue");
 		user.setPassword(DigestUtils.sha256Hex("suepassword" + "{"
 				+ c.getLastName() + "}"));
 		user.setContact(c);
