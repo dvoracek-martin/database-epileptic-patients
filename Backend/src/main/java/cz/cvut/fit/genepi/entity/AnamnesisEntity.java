@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -30,18 +31,19 @@ public class AnamnesisEntity {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "DATE", length = 7, nullable = false)
+	@Column(name = "DATE", nullable = false)
 	private Date date;
 
 	/** The doctor id. */
+	@Size(max=6)
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
 	/** The added. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Past
+	@DateTimeFormat(pattern = "dd/MM/yyyy")//add time - DB DATETIME
+	@Past //meybe not - datetime is added on save which will be in past a few seconds but maybe not
 	@NotNull
-	@Column(name = "ADDED", length = 7, nullable = false)
+	@Column(name = "ADDED", nullable = false)
 	private Date added;
 
 	/** The beginning epilepsy. */
@@ -92,23 +94,29 @@ public class AnamnesisEntity {
 	private Boolean earlyPmdRetardation;
 
 	/** The non cns comorbidity. */
+	@Size(max=400)
 	@Column(name = "NON_CNS_COMORBIDITY", length = 400, nullable = true)
 	private String nonCnsComorbidity;
 	
 	/** The comment. */
+	@Size(max=400)
 	@Column(name = "COMMENT", length = 400, nullable = true)
 	private String comment;
 
 	/** The deleted. */
-	@Column(name = "DELETED", precision = 4, scale = 0, nullable = true)
-	private int deleted;
+	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
+	private Boolean deleted;
 
 	/** The patient id. */
-	@Column(name = "PATIENT_ID", precision = 6, scale = 0, nullable = true)
+	@Size(max=6)
+	@NotNull
+	@Column(name = "PATIENT_ID", precision = 6, scale = 0, nullable = false)
 	private int patientId;
 
 	/** The add user id. */
-	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = true)
+	@Size(max=6)
+	@NotNull
+	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
 
 	/**
@@ -439,7 +447,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the deleted
 	 */
-	public int getDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
 
@@ -449,7 +457,7 @@ public class AnamnesisEntity {
 	 * @param deleted
 	 *            the new deleted
 	 */
-	public void setDeleted(int deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 

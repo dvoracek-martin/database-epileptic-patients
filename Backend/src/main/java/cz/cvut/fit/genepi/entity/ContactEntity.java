@@ -30,7 +30,7 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=20)
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)
 	private String firstName;
 
@@ -38,7 +38,7 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=20)
 	@Column(name = "LAST_NAME", length = 20, nullable = false)
 	private String lastName;
 
@@ -46,7 +46,7 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=30)
 	@Column(name = "ADDRESS_STREET", length = 30, nullable = true)
 	private String addressStreet;
 
@@ -54,7 +54,7 @@ public class ContactEntity {
 	@Pattern(regexp="[0-9]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=10)
 	@Column(name = "ADDRESS_HN", length = 10, nullable = true)
 	private String addressHn;
 
@@ -62,7 +62,7 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=30)
 	@Column(name = "ADDRESS_CITY", length = 30, nullable = true)
 	private String addressCity;
 
@@ -70,7 +70,7 @@ public class ContactEntity {
 	@Pattern(regexp="[0-9]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=10)
 	@Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
 	private String addressPostalcode;
 
@@ -78,12 +78,13 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
-	@Size(min=1)
+	@Size(min=1, max=20)
 	@Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
 	private String addressCountry;
 
 	/** The phone number. */
 	@Pattern(regexp="[0-9]*")
+	@Size(min=9,max=9)
 	@Column(name = "PHONE_NUMBER", length = 20, nullable = true)
 	private String phoneNumber;
 
@@ -91,7 +92,7 @@ public class ContactEntity {
 	@Email
 	@NotNull
 	@NotBlank
-	@Size(min=4)
+	@Size(max=20)
 	@Column(name = "EMAIL", length = 20, nullable = true)
 	private String email;
 

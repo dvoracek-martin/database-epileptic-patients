@@ -11,6 +11,8 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -32,8 +34,9 @@ public class PatientEntity {
 	private int id;
 
 	/** The nin. */
-	@NotBlank
-	@Column(name = "NIN", length = 20, nullable = true)
+	@Pattern(regexp="[0-9]*")
+	@Size(max=10)
+	@Column(name = "NIN", length = 10, nullable = true)
 	private String nin;
 
 	/** The birthday. */
@@ -46,22 +49,25 @@ public class PatientEntity {
 	/** The gender. */
 	@NotBlank
 	@NotNull
+	@Size(max=10)
 	@Column(name = "GENDER", length = 10, nullable = false)
 	private String gender;
 
 	/** The doctor id. */
+	@Size(max=6)
 	@Column(name = "DOCTOR_ID", precision = 6, scale = 0, nullable = true)
 	private int doctorId;
 
 	/** The deleted. */
 	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
-	private int deleted;
+	private Boolean deleted;
 
 	/** The checked. */
 	@Column(name = "CHECKED", precision = 1, scale = 0, nullable = true)
-	private int checked;
+	private Boolean checked;
 
 	/** The contact id. */
+	@Size(max=6)
 	@Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true, insertable = false, updatable = false)
 	private int contactId;
 
@@ -176,7 +182,7 @@ public class PatientEntity {
 	 * 
 	 * @return the deleted
 	 */
-	public int getDeleted() {
+	public Boolean getDeleted() {
 		return deleted;
 	}
 
@@ -186,7 +192,7 @@ public class PatientEntity {
 	 * @param deleted
 	 *            the new deleted
 	 */
-	public void setDeleted(int deleted) {
+	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
 	}
 
@@ -195,7 +201,7 @@ public class PatientEntity {
 	 * 
 	 * @return the checked
 	 */
-	public int getChecked() {
+	public Boolean getChecked() {
 		return checked;
 	}
 
@@ -205,7 +211,7 @@ public class PatientEntity {
 	 * @param checked
 	 *            the new checked
 	 */
-	public void setChecked(int checked) {
+	public void setChecked(Boolean checked) {
 		this.checked = checked;
 	}
 
