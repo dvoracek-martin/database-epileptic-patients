@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,5 +18,23 @@ public class UserServiceImpl implements UserService{
 	@Transactional
 	public void save(UserEntity user) {
 		userDAO.save(user);
+	}
+
+	@Override
+	@Transactional
+	public UserEntity findByID(int id) {
+		return (userDAO.findByID(UserEntity.class, id));
+	}
+
+	@Override
+	@Transactional
+	public List<UserEntity> findAll() {
+		return userDAO.findAll(UserEntity.class);
+	}
+
+	@Override
+	@Transactional
+	public UserEntity findUserByID(Integer userID) {
+		return userDAO.findUserByID(userID);
 	}
 }
