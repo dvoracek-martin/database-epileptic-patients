@@ -39,6 +39,7 @@ public class UserController {
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String createUserGET(Locale locale, Model model) {
 		model.addAttribute("user", new UserEntity());
+		model.addAttribute("isUnique", "unique");
 		return "createUserView";
 	}
 
@@ -53,11 +54,12 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	public String addUserGET(@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result) {
+			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "createUserView";
 		} else {
 			if (userService.findUserByUsername(user.getUsername()) != null) {
+				model.addAttribute("isUnique", "notUnique");
 				return "createUserView";
 			} else {
 				userService.save(user);
