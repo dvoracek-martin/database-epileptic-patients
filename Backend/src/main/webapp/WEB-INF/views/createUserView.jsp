@@ -80,12 +80,28 @@
 			<div class="hero-unit">
 				<div style="border-bottom: 2px solid black">
 					<h2>
-						<spring:message code="label.addpatient" />
+						<spring:message code="label.adduser" />
 					</h2>
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
 					<form:form method="POST" action="addPatient" commandName="patient">				
+						<form:label path="user.username">
+							<spring:message code="label.username" />
+						</form:label>
+						<form:input path="user.login" type="text"
+							class="input-block-level" />
+						<form:errors path="user.login" cssClass="error">
+						</form:errors>
+						
+						<form:label path="user.password">
+							<spring:message code="label.password" />
+						</form:label>
+						<form:input path="user.password" type="text"
+							class="input-block-level" />
+						<form:errors path="user.password" cssClass="error">
+						</form:errors>
+						
 						<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />
 						</form:label>
@@ -93,6 +109,7 @@
 							class="input-block-level" />
 						<form:errors path="contact.firstName" cssClass="error">
 						</form:errors>
+						
 						<form:label path="contact.lastName">
 							<spring:message code="label.lastname" />
 						</form:label>
