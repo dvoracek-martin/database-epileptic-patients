@@ -35,7 +35,6 @@ public class AnamnesisEntity {
 	private Date date;
 
 	/** The doctor id. */
-	@Size(max=6)
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
@@ -108,13 +107,11 @@ public class AnamnesisEntity {
 	private Boolean deleted;
 
 	/** The patient id. */
-	@Size(max=6)
 	@NotNull
 	@Column(name = "PATIENT_ID", precision = 6, scale = 0, nullable = false)
 	private int patientId;
 
 	/** The add user id. */
-	@Size(max=6)
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
