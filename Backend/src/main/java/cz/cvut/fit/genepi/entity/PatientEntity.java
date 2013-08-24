@@ -54,7 +54,6 @@ public class PatientEntity {
 	private String gender;
 
 	/** The doctor id. */
-	@Size(max=6)
 	@Column(name = "DOCTOR_ID", precision = 6, scale = 0, nullable = true)
 	private int doctorId;
 
@@ -67,7 +66,6 @@ public class PatientEntity {
 	private Boolean checked;
 
 	/** The contact id. */
-	@Size(max=6)
 	@Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true, insertable = false, updatable = false)
 	private int contactId;
 
