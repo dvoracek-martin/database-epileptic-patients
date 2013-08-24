@@ -10,10 +10,17 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.DAO.AnamnesisDAO;
 import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AnamnesisDAOImpl.
+ */
 @Repository
 public class AnamnesisDAOImpl extends
 		GenericDAOImpl<AnamnesisEntity, Serializable> implements AnamnesisDAO {
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.AnamnesisDAO#findAnamnesisByPatientID(int)
+	 */
 	@Override
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId) {
 		List<AnamnesisEntity> anamnesisEntities = new ArrayList<AnamnesisEntity>();
@@ -25,6 +32,9 @@ public class AnamnesisDAOImpl extends
 		return anamnesisEntities;
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.AnamnesisDAO#findLatestAnamnesisByPatientID(int)
+	 */
 	@Override
 	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID) {
 		AnamnesisEntity anamnesisEntity;

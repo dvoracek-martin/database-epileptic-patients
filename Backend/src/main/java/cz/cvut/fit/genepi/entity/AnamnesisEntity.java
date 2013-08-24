@@ -12,78 +12,102 @@ import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AnamnesisEntity.
+ */
 @Entity
 @Table(name = "ANAMNESIS")
 public class AnamnesisEntity {
 
+	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
 	@GeneratedValue
 	private int id;
 
+	/** The date. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
 	@Column(name = "DATE", length = 7, nullable = false)
 	private Date date;
 
+	/** The doctor id. */
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
+	/** The added. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
 	@Column(name = "ADDED", length = 7, nullable = false)
 	private Date added;
 
+	/** The beginning epilepsy. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
 	@Column(name = "BEGINNING_EPILEPSY", length = 7, nullable = true)
 	private Date beginningEpilepsy;
 
+	/** The first fever. */
 	@Column(name = "FIRST_FEVER", precision = 1, scale = 0, nullable = true)
 	private Boolean firstFever;
 
+	/** The infantile spasm. */
 	@Column(name = "INFANTILE_SPASM", precision = 1, scale = 0, nullable = true)
 	private Boolean infantileSpasm;
 
+	/** The specific syndrome idcom. */
 	@Column(name = "SPECIFIC_SYNDROME_IDCOM", precision = 6, scale = 0, nullable = true)
 	private int specificSyndromeIdcom;
 
+	/** The epilepsy in family. */
 	@Column(name = "EPILEPSY_IN_FAMILY", precision = 1, scale = 0, nullable = true)
 	private Boolean epilepsyInFamily;
 
+	/** The prenatal risk. */
 	@Column(name = "PRENATAL_RISK", precision = 1, scale = 0, nullable = true)
 	private Boolean prenatalRisk;
 
+	/** The fibril convulsions. */
 	@Column(name = "FIBRIL_CONVULSIONS", precision = 1, scale = 0, nullable = true)
 	private Boolean fibrilConvulsions;
 
+	/** The inflammation cns. */
 	@Column(name = "INFLAMMATION_CNS", precision = 1, scale = 0, nullable = true)
 	private Boolean inflammationCns;
 
+	/** The injury cns. */
 	@Column(name = "INJURY_CNS", precision = 1, scale = 0, nullable = true)
 	private Boolean injuryCns;
 
+	/** The operation cns. */
 	@Column(name = "OPERATION_CNS", precision = 1, scale = 0, nullable = true)
 	private Boolean operationCns;
 
+	/** The early pmd retardation. */
 	@Column(name = "EARLY_PMD_RETARDATION", precision = 1, scale = 0, nullable = true)
 	private Boolean earlyPmdRetardation;
 
+	/** The non cns comorbidity. */
 	@Column(name = "NON_CNS_COMORBIDITY", length = 400, nullable = true)
 	private String nonCnsComorbidity;
 	
+	/** The comment. */
 	@Column(name = "COMMENT", length = 400, nullable = true)
 	private String comment;
 
+	/** The deleted. */
 	@Column(name = "DELETED", precision = 4, scale = 0, nullable = true)
 	private int deleted;
 
+	/** The patient id. */
 	@Column(name = "PATIENT_ID", precision = 6, scale = 0, nullable = true)
 	private int patientId;
 
+	/** The add user id. */
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = true)
 	private int addUserId;
 

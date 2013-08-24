@@ -9,11 +9,16 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserEntity.
+ */
 @Entity
 @Table(name = "USER")
 public class UserEntity {
@@ -28,15 +33,18 @@ public class UserEntity {
 	@Pattern(regexp="[A-Za-z0-9]+")
 	@NotBlank
 	@NotNull
+	@Size(min=1)
 	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String login;
 
 	/** The password. */
 	@NotBlank
 	@NotNull
+	@Size(min=8)
 	@Column(name = "PASSWORD", precision = 6, scale = 0, nullable = true)
 	private String password;
 			
+	/** The contact. */
 	@Valid
 	@OneToOne
 	@Cascade({ CascadeType.SAVE_UPDATE })
@@ -61,26 +69,56 @@ public class UserEntity {
 		this.id = id;
 	}
 
+	/**
+	 * Gets the login.
+	 *
+	 * @return the login
+	 */
 	public String getLogin() {
 		return login;
 	}
 
+	/**
+	 * Sets the login.
+	 *
+	 * @param login the new login
+	 */
 	public void setLogin(String login) {
 		this.login = login;
 	}
 
+	/**
+	 * Gets the password.
+	 *
+	 * @return the password
+	 */
 	public String getPassword() {
 		return password;
 	}
 
+	/**
+	 * Sets the password.
+	 *
+	 * @param password the new password
+	 */
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	/**
+	 * Gets the contact.
+	 *
+	 * @return the contact
+	 */
 	public ContactEntity getContact() {
 		return contact;
 	}
 
+	/**
+	 * Sets the contact.
+	 *
+	 * @param contact the new contact
+	 */
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
 	}

@@ -7,10 +7,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ContactEntity.
+ */
 @Entity
 @Table(name = "CONTACT")
 public class ContactEntity {
@@ -25,6 +30,7 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
+	@Size(min=1)
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)
 	private String firstName;
 
@@ -32,31 +38,47 @@ public class ContactEntity {
 	@Pattern(regexp="[A-Za-z ]*")
 	@NotNull
 	@NotBlank
+	@Size(min=1)
 	@Column(name = "LAST_NAME", length = 20, nullable = false)
 	private String lastName;
 
-	/** The address street. */
-	@Pattern(regexp="[A-Za-z ]*")
+	/** The address street. */	
+	@Pattern(regexp="[A-Za-z]*")
+	@NotNull
+	@NotBlank
+	@Size(min=1)
 	@Column(name = "ADDRESS_STREET", length = 30, nullable = true)
 	private String addressStreet;
 
 	/** The address hn. */
 	@Pattern(regexp="[0-9]*")
+	@NotNull
+	@NotBlank
+	@Size(min=1)
 	@Column(name = "ADDRESS_HN", length = 10, nullable = true)
 	private String addressHn;
 
 	/** The address city. */
 	@Pattern(regexp="[A-Za-z ]*")
+	@NotNull
+	@NotBlank
+	@Size(min=1)
 	@Column(name = "ADDRESS_CITY", length = 30, nullable = true)
 	private String addressCity;
 
 	/** The address postalcode. */
 	@Pattern(regexp="[0-9]*")
+	@NotNull
+	@NotBlank
+	@Size(min=1)
 	@Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
 	private String addressPostalcode;
 
 	/** The address country. */
 	@Pattern(regexp="[A-Za-z ]*")
+	@NotNull
+	@NotBlank
+	@Size(min=1)
 	@Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
 	private String addressCountry;
 
@@ -67,6 +89,9 @@ public class ContactEntity {
 
 	/** The email. */
 	@Email
+	@NotNull
+	@NotBlank
+	@Size(min=4)
 	@Column(name = "EMAIL", length = 20, nullable = true)
 	private String email;
 

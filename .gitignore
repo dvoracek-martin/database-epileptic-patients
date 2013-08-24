@@ -3,7 +3,3 @@
 # Package Files #
 *.war
 *.ear
-
-*pom.properties
-*MANIFEST.MF
-*connection.properties

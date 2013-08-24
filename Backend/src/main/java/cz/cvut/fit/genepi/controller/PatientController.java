@@ -25,18 +25,34 @@ import cz.cvut.fit.genepi.service.PatientService;
 @Controller
 public class PatientController {
 
+	/** The patient service. */
 	@Autowired
 	private PatientService patientService;
 
+	/** The anamnesis service. */
 	@Autowired
 	private AnamnesisService anamnesisService;
-
+	
+	/**
+	 * Creates the patient get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
 		model.addAttribute("patient", new PatientEntity());
 		return "createPatientView";
 	}
 
+	/**
+	 * Adds the patient.
+	 *
+	 * @param patient the patient
+	 * @param result the result
+	 * @return the string
+	 */
 	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
 	public String addPatient(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
@@ -50,6 +66,14 @@ public class PatientController {
 		}
 	}
 
+	/**
+	 * Patient overview post.
+	 *
+	 * @param id the id
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
 	public String patientOverviewPOST(@RequestParam("id") int id,
 			Locale locale, Model model) {
@@ -58,6 +82,14 @@ public class PatientController {
 		return "patientOverviewView";
 	}
 
+	/**
+	 * Patient overview get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
@@ -68,6 +100,13 @@ public class PatientController {
 		return "patientOverviewView";
 	}
 
+	/**
+	 * Patients list get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patientsList", method = RequestMethod.GET)
 	public String patientsListGET(Locale locale, Model model) {
 		model.addAttribute("patientList", patientService.findAll());
