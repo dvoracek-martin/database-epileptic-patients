@@ -57,7 +57,7 @@
 	</bean>
 
 	<bean id="handlerMapping"
-		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 		<property name="interceptors">
 			<ref bean="localeChangeInterceptor" />
 		</property>
