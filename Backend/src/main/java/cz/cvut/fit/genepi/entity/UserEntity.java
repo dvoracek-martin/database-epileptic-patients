@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -28,12 +29,14 @@ public class UserEntity {
 	@Pattern(regexp="[A-Za-z0-9]+")
 	@NotBlank
 	@NotNull
+	@Size(min=1)
 	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String login;
 
 	/** The password. */
 	@NotBlank
 	@NotNull
+	@Size(min=8)
 	@Column(name = "PASSWORD", precision = 6, scale = 0, nullable = true)
 	private String password;
 			
