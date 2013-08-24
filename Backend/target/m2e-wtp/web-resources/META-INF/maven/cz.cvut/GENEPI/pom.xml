@@ -198,6 +198,14 @@
 			<version>0.9.2.1</version>
 		</dependency>
 
+		<!-- apache codecs -->
+		<dependency>
+			<groupId>commons-codec</groupId>
+			<artifactId>commons-codec</artifactId>
+			<version>1.8</version>
+		</dependency>
+
+
 
 	</dependencies>
 	<build>
@@ -228,7 +236,7 @@
 					<showDeprecation>true</showDeprecation>
 				</configuration>
 			</plugin>
-			 <plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>2.6</version>

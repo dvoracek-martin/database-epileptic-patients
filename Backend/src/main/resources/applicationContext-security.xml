@@ -31,7 +31,7 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 
-			<security:password-encoder hash="md5">
+			<security:password-encoder hash="sha-256">
 				<security:salt-source user-property="username" />
 			</security:password-encoder>
 
