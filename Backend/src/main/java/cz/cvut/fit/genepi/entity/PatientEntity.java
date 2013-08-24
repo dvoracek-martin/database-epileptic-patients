@@ -62,8 +62,8 @@ public class PatientEntity {
 	private int contactId;
 
 	/** The comment id. */
-	@Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
-	private int commentId;
+	/*@Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
+	private int commentId;*/
 
 	
 	@Valid
@@ -228,19 +228,19 @@ public class PatientEntity {
 	 * 
 	 * @return the comment id
 	 */
-	public int getCommentId() {
+	/*public int getCommentId() {
 		return commentId;
 	}
-
+*/
 	/**
 	 * Sets the comment id.
 	 * 
 	 * @param commentId
 	 *            the new comment id
 	 */
-	public void setCommentId(int commentId) {
+	/*public void setCommentId(int commentId) {
 		this.commentId = commentId;
-	}
+	}*/
 
 	public ContactEntity getContact() {
 		return contact;
