@@ -26,19 +26,18 @@ import cz.cvut.fit.genepi.service.UserService;
 @Controller
 public class MyProfileController {
 
-	/**
-	 * Selects the profile view to render by returning its name.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
+	/** Selects the profile view to render by returning its name. */
 
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * My profile post.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/myProfile", method = RequestMethod.POST)
 	public String myProfilePOST(Locale locale, Model model) {
 		return "myProfileView";
@@ -46,14 +45,10 @@ public class MyProfileController {
 
 	/**
 	 * Login get.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
+	 *
+	 * @param user the user
+	 * @param result the result
 	 * @return the string
-	 * @throws NoSuchAlgorithmException
-	 * @throws UnsupportedEncodingException
 	 */
 	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
 	public String myProfileGET(@ModelAttribute("user") @Valid UserEntity user,
