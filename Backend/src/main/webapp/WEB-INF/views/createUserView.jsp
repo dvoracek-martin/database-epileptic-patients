@@ -149,43 +149,61 @@
 							<spring:message code="label.street" />
 						</form:label>
 						<form:input id="addressStreet" path="contact.addressStreet" type="text" pattern=".{1,30}"
-							class="input-block-level" />
+							class="input-block-level" onchange="addressStreetValidation();" required="true"/>
 						<form:errors path="contact.addressStreet" cssClass="error" />
+						<div id="addressStreetErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 30 znaků.
+						</div>
 
 						<form:label path="contact.addressHn">
 							<spring:message code="label.addressHn" />
 						</form:label>
 						<form:input id="addressHn" path="contact.addressHn" type="text" pattern=".{1,10}"
-							class="input-block-level" />
+							class="input-block-level" onchange="addressHnValidation();" required="true"/>
 						<form:errors path="contact.addressHn" cssClass="error" />
+						<div id="addressHnErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 10 znaků.
+						</div>
 
 						<form:label path="contact.addressCity">
 							<spring:message code="label.addressCity" />
 						</form:label>
 						<form:input id="addressCity" path="contact.addressCity" type="text" pattern=".{1,30}"
-							class="input-block-level" />
+							class="input-block-level" onchange="addressCityValidation();" required="true"/>
 						<form:errors path="contact.addressCity" cssClass="error" />
+						<div id="addressCityErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 30 znaků.
+						</div>
 
 						<form:label path="contact.addressPostalcode">
 							<spring:message code="label.addressPostalcode" />
 						</form:label>
 						<form:input id="addressPostalcode" path="contact.addressPostalcode" type="text" pattern="\d{1,10}"
-							class="input-block-level" />
+							class="input-block-level" onchange="addressPostalcodeValidation();" required="true"/>
 						<form:errors path="contact.addressPostalcode" cssClass="error" />
+						<div id="addressPostalcodeErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 10 znaků.
+						</div>
 
 						<form:label path="contact.addressCountry">
 							<spring:message code="label.addressCountry" />
 						</form:label>
 						<form:input id="addressCountry" path="contact.addressCountry" type="text" pattern=".{1,20}"
-							class="input-block-level" />
+							class="input-block-level" onchange="addressCountryValidation();" required="true"/>
 						<form:errors path="contact.addressCountry" cssClass="error" />
+						<div id="addressCountryErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 20 znaků.
+						</div>
 
 						<form:label path="contact.phoneNumber">
 							<spring:message code="label.phoneNumber" />
 						</form:label>
-						<form:input id="phoneNumber" path="contact.phoneNumber" type="text" pattern="\d{1,20}" onchange="phonenumberValidation();"
-							class="input-block-level" />
+						<form:input id="phoneNumber" path="contact.phoneNumber" type="text" pattern="[0-9+]\d{1,19}" onchange="phonenumberValidation();"
+							class="input-block-level" required="true"/>
 						<form:errors path="contact.phoneNumber" cssClass="error" />
+						<div id="phoneNumberErr" class="alert alert-error" style="display: none">
+							Nesmí být delší jak 20 znaků.
+						</div>
 
 						<form:label path="contact.email">
 							<spring:message code="label.email" />
@@ -193,6 +211,7 @@
 						<form:input id="email" path="contact.email" type="email"
 							class="input-block-level"/>
 						<form:errors path="contact.email" cssClass="error" />
+						
 
 						<button class="btn btn-small btn-primary" type="submit">
 							<spring:message code="label.add" />

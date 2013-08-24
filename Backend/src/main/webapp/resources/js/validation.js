@@ -59,3 +59,51 @@ function passwordValidation() {
 			else
 				document.getElementById('lastnameErr').style.display="none";
 		}
+		
+		function addressStreetValidation() {
+			var addressStreet = document.getElementById('addressStreet').value;
+			if ( addressStreet.length > 30)
+				document.getElementById('addressStreetErr').style.display="block";
+			else
+				document.getElementById('addressStreetErr').style.display="none";
+		}
+		
+		function addressHnValidation() {
+			var addressHn = document.getElementById('addressHn').value;
+			if ( addressHn.length > 10)
+				document.getElementById('addressHnErr').style.display="block";
+			else
+				document.getElementById('addressHnErr').style.display="none";
+		}
+		
+		function addressCityValidation() {
+			var addressCity = document.getElementById('addressCity').value;
+			if ( addressCity.length > 10)
+				document.getElementById('addressCityErr').style.display="block";
+			else
+				document.getElementById('addressCityErr').style.display="none";
+		}
+		
+		function addressPostalcodeValidation() {
+			var addressPostalcode = document.getElementById('addressPostalcode').value;
+			if ( addressPostalcode.length > 10)
+				document.getElementById('addressPostalcodeErr').style.display="block";
+			else
+				document.getElementById('addressPostalcodeErr').style.display="none";
+		}
+		
+		function addressCountryValidation() {
+			var addressCountry = document.getElementById('addressCountry').value;
+			if ( addressCountry.length > 10)
+				document.getElementById('addressCountryErr').style.display="block";
+			else
+				document.getElementById('addressCountryErr').style.display="none";
+		}
+		
+		function phoneNumberValidation() {
+			var phoneNumber = document.getElementById('phoneNumber').value;
+			if ( phoneNumber.length > 20)
+				document.getElementById('phoneNumberErr').style.display="block";
+			else
+				document.getElementById('phoneNumberErr').style.display="none";
+		}
