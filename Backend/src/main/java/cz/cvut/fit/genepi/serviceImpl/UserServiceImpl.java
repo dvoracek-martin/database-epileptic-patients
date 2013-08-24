@@ -9,29 +9,48 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.UserService;
+// TODO: Auto-generated Javadoc
+
+/**
+ * The Class UserServiceImpl.
+ */
 @Service
 public class UserServiceImpl implements UserService{
+	
+	/** The user dao. */
 	@Autowired
 	private UserDAO userDAO;
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#save(cz.cvut.fit.genepi.entity.UserEntity)
+	 */
 	@Override
 	@Transactional
 	public void save(UserEntity user) {
 		userDAO.save(user);
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#findByID(int)
+	 */
 	@Override
 	@Transactional
 	public UserEntity findByID(int id) {
 		return (userDAO.findByID(UserEntity.class, id));
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#findAll()
+	 */
 	@Override
 	@Transactional
 	public List<UserEntity> findAll() {
 		return userDAO.findAll(UserEntity.class);
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#findUserByID(java.lang.Integer)
+	 */
 	@Override
 	@Transactional
 	public UserEntity findUserByID(Integer userID) {

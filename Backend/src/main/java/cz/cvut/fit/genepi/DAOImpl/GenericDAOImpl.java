@@ -9,9 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cz.cvut.fit.genepi.DAO.GenericDAO;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GenericDAOImpl.
+ *
+ * @param <T> the generic type
+ * @param <ID> the generic type
+ */
 public abstract class GenericDAOImpl<T, ID extends Serializable> implements
 		GenericDAO<T, ID> {
 
+	/** The session factory. */
 	@Autowired
 	protected SessionFactory sessionFactory;
 

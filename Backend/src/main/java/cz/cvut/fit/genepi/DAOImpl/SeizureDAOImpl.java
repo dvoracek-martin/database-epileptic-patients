@@ -10,10 +10,17 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.DAO.SeizureDAO;
 import cz.cvut.fit.genepi.entity.SeizureEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class SeizureDAOImpl.
+ */
 @Repository
 public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity, Serializable>
 		implements SeizureDAO {
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.SeizureDAO#findAnamnesisByPatientID(int)
+	 */
 	@Override
 	public List<SeizureEntity> findAnamnesisByPatientID(int patientId) {
 		List<SeizureEntity> seizureEntities = new ArrayList<SeizureEntity>();

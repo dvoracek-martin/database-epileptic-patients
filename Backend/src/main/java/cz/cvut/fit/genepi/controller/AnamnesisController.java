@@ -18,15 +18,29 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AnamnesisController.
+ */
 @Controller
 public class AnamnesisController {
 
+	/** The patient service. */
 	@Autowired
 	private PatientService patientService;
 
+	/** The anamnesis service. */
 	@Autowired
 	private AnamnesisService anamnesisService;
 
+	/**
+	 * Creates the anamnesis get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
 	public String createAnamnesisGET(Locale locale, Model model, @PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findPatientByID(patientID);
@@ -35,6 +49,14 @@ public class AnamnesisController {
 		return "createAnamnesisView";
 	}
 
+	/**
+	 * Adds the anamnesis.
+	 *
+	 * @param anamnesis the anamnesis
+	 * @param result the result
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/addAnamnesis", method = RequestMethod.POST)
 	public String addAnamnesis(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
@@ -48,6 +70,14 @@ public class AnamnesisController {
 		}
 	}
 
+	/**
+	 * Patient overview get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/anamnesis/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {

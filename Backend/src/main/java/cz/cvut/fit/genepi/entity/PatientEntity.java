@@ -17,6 +17,10 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PatientEntity.
+ */
 @Entity
 @Table(name = "PATIENT")
 public class PatientEntity {
@@ -66,6 +70,7 @@ public class PatientEntity {
 	private int commentId;
 
 	
+	/** The contact. */
 	@Valid
 	@OneToOne
 	@Cascade({ CascadeType.SAVE_UPDATE })
@@ -242,10 +247,20 @@ public class PatientEntity {
 		this.commentId = commentId;
 	}
 
+	/**
+	 * Gets the contact.
+	 *
+	 * @return the contact
+	 */
 	public ContactEntity getContact() {
 		return contact;
 	}
 
+	/**
+	 * Sets the contact.
+	 *
+	 * @param contact the new contact
+	 */
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
 	}
