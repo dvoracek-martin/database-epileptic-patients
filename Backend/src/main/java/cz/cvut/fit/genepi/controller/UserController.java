@@ -126,11 +126,9 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/userEdit", method = RequestMethod.GET)
-	public String userEdit(@ModelAttribute("user") @Valid UserEntity user,
+	public String userEdit(@ModelAttribute("user") UserEntity user,
 			BindingResult result) {
-		if (result.hasErrors()) {
-			return "/userEdit/{"+user.getId()+"}";
-		} else {
+	
 			/*
 			List<UserRoleEntity> listOfAssignedUserRoles=new ArrayList<UserRoleEntity>();		
 			for (RoleEntity i : listOfAssignedRoles){		
@@ -141,7 +139,7 @@ public class UserController {
 			userService.save(user);
 			return "redirect:/userOverview/"
 					+ Integer.toString(user.getId());
-		}
+		
 	}
 
 
