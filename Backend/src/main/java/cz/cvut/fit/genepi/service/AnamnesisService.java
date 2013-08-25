@@ -32,4 +32,8 @@ public interface AnamnesisService {
 	 * @param anamnesis the anamnesis
 	 */
 	public void save(AnamnesisEntity anamnesis);
+	
+	public void delete(AnamnesisEntity anamnesis);
+	
+	public AnamnesisEntity findByID(int anamnesisID);
 }

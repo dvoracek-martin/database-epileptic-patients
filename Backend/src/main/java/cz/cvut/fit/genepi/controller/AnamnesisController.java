@@ -1,5 +1,8 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -35,14 +38,18 @@ public class AnamnesisController {
 
 	/**
 	 * Creates the anamnesis get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
-	public String createAnamnesisGET(Locale locale, Model model, @PathVariable("patientID") Integer patientID) {
+	public String createAnamnesisGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
@@ -51,10 +58,13 @@ public class AnamnesisController {
 
 	/**
 	 * Adds the anamnesis.
-	 *
-	 * @param anamnesis the anamnesis
-	 * @param result the result
-	 * @param patientID the patient id
+	 * 
+	 * @param anamnesis
+	 *            the anamnesis
+	 * @param result
+	 *            the result
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/addAnamnesis", method = RequestMethod.POST)
@@ -64,18 +74,31 @@ public class AnamnesisController {
 		if (result.hasErrors()) {
 			return "createAnamnesisView";
 		} else {
+			anamnesis.setpatientId(patientID);
 			anamnesisService.save(anamnesis);
-			return "redirect:/anamnesis/"
-					+ patientID;
+			return "redirect:/anamnesis/" + patientID;
 		}
+	}
+
+	@RequestMapping(value = "/anamnesis/{patientID}/deleteAnamnesis/{anamnesisID}", method = RequestMethod.GET)
+	public String deleteAnamnesis(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("anamnesisID") Integer anamnesisID) {
+
+		anamnesisService.delete(anamnesisService.findByID(anamnesisID));
+		return "redirect:/anamnesis/" + patientID;
+
 	}
 
 	/**
 	 * Patient overview get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/anamnesis/{patientID}", method = RequestMethod.GET)
@@ -83,8 +106,10 @@ public class AnamnesisController {
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(patientID);
 		model.addAttribute("patient", patient);
-		model.addAttribute("anamnesisList",
-				anamnesisService.findAnamnesisByPatientID(patientID));
+		List<AnamnesisEntity> anamnesisEntities = new ArrayList<AnamnesisEntity>();
+		anamnesisEntities=anamnesisService.findAnamnesisByPatientID(patientID);
+		Collections.reverse(anamnesisEntities);
+		model.addAttribute("anamnesisList",anamnesisEntities);
 		return "anamnesisView";
 	}
 }

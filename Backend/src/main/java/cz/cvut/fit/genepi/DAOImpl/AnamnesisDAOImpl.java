@@ -39,7 +39,7 @@ public class AnamnesisDAOImpl extends
 	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID) {
 		AnamnesisEntity anamnesisEntity;
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from AnamnesisEntity where patientId = :patient_id"); //correct to return latest
+				.createQuery("from AnamnesisEntity where id=(select max(id) from AnamnesisEntity where patientId = :patient_id)"); 
 		query.setParameter("patient_id", patientID);		
 		anamnesisEntity = findOne(query);
 		return anamnesisEntity;
