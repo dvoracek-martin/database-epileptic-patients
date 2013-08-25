@@ -46,11 +46,10 @@ public class UserController {
 
 	/**
 	 * Adds the user get.
-	 * 
-	 * @param user
-	 *            the user
-	 * @param result
-	 *            the result
+	 *
+	 * @param user the user
+	 * @param result the result
+	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)

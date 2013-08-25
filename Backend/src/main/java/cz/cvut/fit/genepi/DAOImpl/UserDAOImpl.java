@@ -15,6 +15,10 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 @Repository
 public class UserDAOImpl extends GenericDAOImpl<UserEntity, Serializable>
 		implements UserDAO {
+	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.UserDAO#findUserByUsername(java.lang.String)
+	 */
 	@Override
 	public UserEntity findUserByUsername(String username){
 		UserEntity userEntity;

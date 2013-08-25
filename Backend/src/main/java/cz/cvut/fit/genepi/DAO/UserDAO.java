@@ -10,5 +10,11 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  */
 public interface UserDAO extends GenericDAO<UserEntity, Serializable> {
 
+	/**
+	 * Find user by username.
+	 *
+	 * @param username the username
+	 * @return the user entity
+	 */
 	UserEntity findUserByUsername(String username); 
 }

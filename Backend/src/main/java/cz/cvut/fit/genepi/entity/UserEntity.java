@@ -27,6 +27,7 @@ public class UserEntity {
 	@GeneratedValue
 	private int id;
 
+	/** The username. */
 	@Pattern(regexp="[A-Za-z0-9]*")
 	//@NotBlank
 	//@NotNull
@@ -68,10 +69,20 @@ public class UserEntity {
 
 	
 
+	/**
+	 * Gets the username.
+	 *
+	 * @return the username
+	 */
 	public String getUsername() {
 		return username;
 	}
 
+	/**
+	 * Sets the username.
+	 *
+	 * @param username the new username
+	 */
 	public void setUsername(String username) {
 		this.username = username;
 	}

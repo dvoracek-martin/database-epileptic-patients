@@ -32,5 +32,11 @@ public interface UserService {
 	 */
 	public List<UserEntity> findAll();
 
+	/**
+	 * Find user by username.
+	 *
+	 * @param username the username
+	 * @return the user entity
+	 */
 	public UserEntity findUserByUsername(String username);
 }

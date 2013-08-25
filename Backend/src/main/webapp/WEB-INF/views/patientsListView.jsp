@@ -99,7 +99,7 @@ table.patients td.head {
 
 				<table class="patients">
 					<tr class="head">
-						<td><b><spring:message code="label.lastname"/></td>
+						<td><b><spring:message code="label.lastname"/></b></td>
 						<td><b><spring:message code="label.firstname"/></b></td>
 						<td><b>Rodné číslo</b></td>
 						<td><b>Ulice, č.p.</b></td>

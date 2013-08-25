@@ -49,6 +49,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#findUserByUsername(java.lang.String)
+	 */
 	@Override
 	@Transactional
 	public UserEntity findUserByUsername(String username) {		
