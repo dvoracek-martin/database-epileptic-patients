@@ -125,7 +125,7 @@ public class UserController {
 		return "userEditView";
 	}
 	
-	@RequestMapping(value = "/userEdit", method = RequestMethod.GET)
+	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
 	public String userEdit(@ModelAttribute("user") UserEntity user,
 			BindingResult result) {
 	
