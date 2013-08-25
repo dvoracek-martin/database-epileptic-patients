@@ -104,11 +104,12 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "userOverviewView";
 	}
-
+	
 	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
-	public String userEditGET(Locale locale, Model model,
+	public String userEditGET(Locale locale,@ModelAttribute("user") @Valid UserEntity user,
+			BindingResult result, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(userID);
+		UserEntity userTmp = userService.findByID(userID);
 
 		List<RoleEntity> listOfRoles = new ArrayList<RoleEntity>();
 		listOfRoles = roleService.findAll();
@@ -124,21 +125,25 @@ public class UserController {
 
 		model.addAttribute("listOfRoles", listOfRoles);
 		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
-		model.addAttribute("user", user);
+		model.addAttribute("user", userTmp);
+		model.addAttribute("userTmp", userTmp);
 
 		return "userEditView";
 	}
 
 	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
-	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
+	public String editUserGET(@ModelAttribute("userTmp") @Valid UserEntity userTmp,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "userUserView";
 		}
-		userService.save(user);
-		return "redirect:/userOverview/" + Integer.toString(user.getId());
+		userService.save(userTmp);
+		return "redirect:/userOverview/" + Integer.toString(userTmp.getId());
 
 	}
+
+	
+	
 
 	/**
 	 * Users list get.
