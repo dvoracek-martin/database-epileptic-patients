@@ -10,7 +10,7 @@
 <%@page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 <head>
 <meta charset="UTF-8" />
 <title>Kartotéka</title>
@@ -57,7 +57,7 @@ table.patients td.head {
 		<div class="span3">
 			<div class="well sidebar-nav">
 				<a href="/GENEPI/"> <img class="photo1" width=2560 height=1600
-					src="resources/img/logo.png" alt="logo" />
+					src="<c:url value="resources/img/logo.png"/>" alt="logo" />
 				</a>
 			</div>
 			<div>
