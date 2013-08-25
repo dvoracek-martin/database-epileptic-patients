@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.util.Date;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -64,6 +65,7 @@ public class AnamnesisController {
 		if (result.hasErrors()) {
 			return "createAnamnesisView";
 		} else {
+			anamnesis.setAdded(new Date());
 			anamnesisService.save(anamnesis);
 			return "redirect:/anamnesis/"
 					+ patientID;
