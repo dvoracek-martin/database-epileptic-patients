@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -14,7 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
+import cz.cvut.fit.genepi.service.RoleService;
+import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
 
 // TODO: Auto-generated Javadoc
@@ -27,6 +33,12 @@ public class UserController {
 	/** The user service. */
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
+	
+	@Autowired
+	private UserRoleService UserRoleService;
 
 	/**
 	 * Creates the user get.
@@ -90,13 +102,35 @@ public class UserController {
 		return "userOverviewView";
 	}
 	
-	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.POST)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(userID);
+		
+		List<RoleEntity> listOfRoles=new ArrayList<RoleEntity>();
+		listOfRoles = roleService.findAll();		
+		List<RoleEntity> listOfAssignedRoles=new ArrayList<RoleEntity>();		
+		
+		model.addAttribute("listOfRoles", listOfRoles);
+		model.addAttribute("listOfAssignedRoles", listOfAssignedRoles);
 		model.addAttribute("user", user);
+		
 		return "userEditView";
 	}
+	
+	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
+	public String userEdit(
+			@ModelAttribute("user") @Valid UserEntity user,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "/userEdit/{"+user.getId()+"}";
+		} else {
+			userService.save(user);
+			return "redirect:/userOverview/"
+					+ Integer.toString(user.getId());
+		}
+	}
+
 
 	/**
 	 * Users list get.
