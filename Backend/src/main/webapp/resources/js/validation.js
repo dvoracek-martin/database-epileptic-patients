@@ -1,11 +1,16 @@
 function passwordValidation() {
 			var password = document.getElementById('password').value;
+			if(document.getElementById('password').value.length>0)
+				document.getElementById('passwordErrEmpty').style.display="none";
+			else
+				document.getElementById('passwordErrEmpty').style.display="block";
+			
 			if (password.length < 8 || password.length > 30)
 				document.getElementById('passwordErr').style.display="block";
 			 else 
 			 {
 				document.getElementById('passwordErr').style.display="none";
-				var password = document.getElementById('password').value;
+				var passwordAgain = document.getElementById('password').value;
 				if ( passwordAgain != password ) {
 					document.getElementById('passwordAgainSuccComparison').style.display="none";
 					document.getElementById('passwordAgainErrComparison').style.display="block";
@@ -19,6 +24,11 @@ function passwordValidation() {
 		
 		function passwordAgainValidation() {
 			var passwordAgain = document.getElementById('passwordAgain').value;
+			if(document.getElementById('passwordAgain').value.length>0)
+				document.getElementById('passwordAgainErrEmpty').style.display="none";
+			else
+				document.getElementById('passwordAgainErrEmpty').style.display="block";
+			
 			if (passwordAgain.length < 8 || passwordAgain.length > 30)
 				document.getElementById('passwordAgainErrLength').style.display="block";
 			 else 
@@ -38,14 +48,32 @@ function passwordValidation() {
 		
 		function usernameValidation() {
 			var username = document.getElementById('username').value;
-			if ( username.length > 20)
+			if ( username.length > 20) {
 				document.getElementById('usernameErr').style.display="block";
-			else
-				document.getElementById('usernameErr').style.display="none";
+				document.getElementById('usernameErrEmpty').style.display="none";
+				}
+			else {
+				document.getElementById('usernameErr').style.display="none"; 
+				if( document.getElementById('username').value.length==0) {
+					document.getElementById('usernameErrEmpty').style.display="block";
+				} 
+				else {
+					document.getElementById('usernameErrEmpty').style.display="none";
+					if( document.getElementById('username').validity.valid == false) {
+						document.getElementById('usernameErrChar').style.display="block";
+					} else
+						document.getElementById('usernameErrChar').style.display="none";
+				}
+			}
+			
 		}
 		
 		function firstnameValidation() {
 			var firstname = document.getElementById('firstname').value;
+			if (firstname.length==0)
+				document.getElementById('firstnameErrEmpty').style.display="block";
+			else
+				document.getElementById('firstnameErrEmpty').style.display="none";
 			if ( firstname.length > 20)
 				document.getElementById('firstnameErr').style.display="block";
 			else
@@ -54,6 +82,10 @@ function passwordValidation() {
 		
 		function lastnameValidation() {
 			var lastname = document.getElementById('lastname').value;
+			if (lastname.length==0)
+				document.getElementById('lastnameErrEmpty').style.display="block";
+			else
+				document.getElementById('lastnameErrEmpty').style.display="none";
 			if ( lastname.length > 20)
 				document.getElementById('lastnameErr').style.display="block";
 			else
@@ -106,4 +138,18 @@ function passwordValidation() {
 				document.getElementById('phoneNumberErr').style.display="block";
 			else
 				document.getElementById('phoneNumberErr').style.display="none";
+		}
+		
+		function validation() {
+			passwordValidation();
+			passwordAgainValidation();
+			usernameValidation();
+			firstnameValidation();
+			lastnameValidation();
+			addressStreetValidation();
+			addressHnValidation();
+			addressCityValidation();
+			addressPostalcodeValidation();
+			addressCountryValidation();
+			phoneNumberValidation();
 		}
