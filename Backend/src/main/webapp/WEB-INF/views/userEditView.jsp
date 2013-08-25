@@ -23,8 +23,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message
-						code="label.user" /></a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.edituser" /></a>
 			</div>
 		</div>
 
@@ -63,7 +62,7 @@
 
 			<div class="hero-unit">
 				<h2>
-					<spring:message code="label.user" />
+					<spring:message code="label.edituser" /> ${user.username}
 				</h2>
 
 				<spring:message code="label.userid" />
@@ -121,11 +120,6 @@
 				<div class="label label-info">${user.contact.email}</div>
 				<br>
 				
-				<form:form method="POST" action="/userEdit/${user.id}" commandName="user">
-					<button class="btn btn-small btn-primary" type="submit">
-							<spring:message code="label.edit" />
-					</button>
-				</form:form>
 			</div>
 		</div>
 	</div>
