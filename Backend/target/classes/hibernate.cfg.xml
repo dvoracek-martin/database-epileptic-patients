@@ -20,5 +20,7 @@
   		<mapping class="cz.cvut.fit.genepi.entity.ContactEntity" />		
   		<mapping class="cz.cvut.fit.genepi.entity.PatientEntity" />
   		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
+  		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
+  		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
     </session-factory>
 </hibernate-configuration>

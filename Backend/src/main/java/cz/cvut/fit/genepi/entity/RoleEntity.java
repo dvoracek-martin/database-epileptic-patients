@@ -17,7 +17,7 @@ public class RoleEntity {
 	@GeneratedValue
 	private int id;
 	
-	@Column(name = "authority", nullable = false)
+	@Column(name = "AUTHORITY", nullable = false)
 	private String authority;
 
 	public int getId() {

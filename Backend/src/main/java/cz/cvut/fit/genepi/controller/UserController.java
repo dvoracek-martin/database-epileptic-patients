@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.RoleService;
@@ -38,7 +37,7 @@ public class UserController {
 	private RoleService roleService;
 	
 	@Autowired
-	private UserRoleService UserRoleService;
+	private UserRoleService userRoleService;
 
 	/**
 	 * Creates the user get.
