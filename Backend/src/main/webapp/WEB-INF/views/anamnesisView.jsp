@@ -7,11 +7,11 @@
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 
-<%@page pageEncoding="utf-8"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Anamnéza</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
 <link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
@@ -147,7 +147,7 @@
 					<c:forEach items="${anamnesisList}" var="anamnesis">
 						<tr>
 							<td>Vysetreni dne: ${anamnesis.date}</td>
-							<td><a href="deleteAnamnesis/${anamnesis.id}">Odstranit</a></td>
+							<td><a href="<c:url value="/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
 						</tr>
 						<tr>
 							<td></td>

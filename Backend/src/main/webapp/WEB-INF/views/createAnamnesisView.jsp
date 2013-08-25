@@ -9,11 +9,11 @@
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 <%@ page import=" java.text.SimpleDateFormat"%>
 
-<%@page pageEncoding="utf-8"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Přidat záznam</title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">

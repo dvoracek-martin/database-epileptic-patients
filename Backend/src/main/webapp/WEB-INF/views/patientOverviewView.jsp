@@ -6,11 +6,11 @@
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 
-<%@page pageEncoding="utf-8"%>
+<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="cs">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Pacient</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">

@@ -12,7 +12,7 @@
 
 
 <!DOCTYPE html>
-<html lang="cs">
+<html>
 <head>
 <meta charset="UTF-8" />
 <meta name="description" content="">
@@ -87,7 +87,7 @@
 			</div>
 			<div>
 				<div style="float: right; margin-left: 2em">
-					<img src="resources/img/genepi.png" />
+					<img src="<c:url value="/resources/img/genepi.png"/>" />
 				</div>
 				<p>Pokud zaznamenáváte problémy s přihlášením, tak nás neváhejte
 					kontaktovat na naší adrese či využijte formulář vpravo.</p>
