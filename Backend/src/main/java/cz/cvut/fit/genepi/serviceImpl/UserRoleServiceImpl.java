@@ -21,4 +21,11 @@ public class UserRoleServiceImpl implements UserRoleService {
 	public List<UserRoleEntity> findAll() {
 		return userRoleDAO.findAll(UserRoleEntity.class);
 	}
+
+		
+	@Override
+	@Transactional
+	public List<UserRoleEntity> findAllUserRolesByUserID(int userID) {		
+		return userRoleDAO.findAllUserRolesByUserID(userID);
+	}
 }

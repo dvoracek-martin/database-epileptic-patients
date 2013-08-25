@@ -9,4 +9,5 @@ import cz.cvut.fit.genepi.entity.RoleEntity;
  */
 public interface RoleService {
 	public List<RoleEntity> findAll();
+	public RoleEntity findByID(int roleID);
 }

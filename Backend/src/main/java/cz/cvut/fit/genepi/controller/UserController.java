@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
+import cz.cvut.fit.genepi.entity.UserRoleEntity;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
@@ -108,10 +110,17 @@ public class UserController {
 		
 		List<RoleEntity> listOfRoles=new ArrayList<RoleEntity>();
 		listOfRoles = roleService.findAll();		
-		List<RoleEntity> listOfAssignedRoles=new ArrayList<RoleEntity>();		
+		List<UserRoleEntity> listOfAssignedUserRoles=new ArrayList<UserRoleEntity>();		
+		List<RoleEntity> listOfAssignedRoles=new ArrayList<RoleEntity>();	
+		
+		listOfAssignedUserRoles = userRoleService.findAllUserRolesByUserID(userID);
+	
+		for (UserRoleEntity i : listOfAssignedUserRoles){			 
+			 listOfAssignedRoles.add((roleService.findByID(i.getRole_id())));
+		}
 		
 		model.addAttribute("listOfRoles", listOfRoles);
-		model.addAttribute("listOfAssignedRoles", listOfAssignedRoles);
+		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
 		model.addAttribute("user", user);
 		
 		return "userEditView";
@@ -120,7 +129,7 @@ public class UserController {
 	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
 	public String userEdit(
 			@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result) {
+			BindingResult result,@RequestParam("listOfAssignedRoles") List<RoleEntity> listOfAssignedRoles) {
 		if (result.hasErrors()) {
 			return "/userEdit/{"+user.getId()+"}";
 		} else {
