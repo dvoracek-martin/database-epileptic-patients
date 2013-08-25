@@ -73,7 +73,7 @@
 					<spring:message code="label.edituser" /> ${user.username}
 				</h2>
 				
-				<form:form method="POST" modelAttribute="user" action="userEdit" commandName="user">
+				<form:form method="POST" modelAttribute="user" action="/GENEPI/userEdit" commandName="user">
 						<div class="tabbable tabs-left">
               		<ul class="nav nav-tabs">
                 		<li class=""><a href="#" onclick="editPassword();">Heslo</a></li>
