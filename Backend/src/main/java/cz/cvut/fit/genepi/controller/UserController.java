@@ -33,10 +33,10 @@ public class UserController {
 	/** The user service. */
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RoleService roleService;
-	
+
 	@Autowired
 	private UserRoleService userRoleService;
 
@@ -58,10 +58,13 @@ public class UserController {
 
 	/**
 	 * Adds the user get.
-	 *
-	 * @param user the user
-	 * @param result the result
-	 * @param model the model
+	 * 
+	 * @param user
+	 *            the user
+	 * @param result
+	 *            the result
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
@@ -101,49 +104,41 @@ public class UserController {
 		model.addAttribute("user", user);
 		return "userOverviewView";
 	}
-	
+
 	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(userID);
-		
-		List<RoleEntity> listOfRoles=new ArrayList<RoleEntity>();
-		listOfRoles = roleService.findAll();		
-		List<UserRoleEntity> listOfAssignedUserRoles=new ArrayList<UserRoleEntity>();		
-		List<RoleEntity> listOfAssignedRoles=new ArrayList<RoleEntity>();	
-		
-		listOfAssignedUserRoles = userRoleService.findAllUserRolesByUserID(userID);
-	
-		for (UserRoleEntity i : listOfAssignedUserRoles){			 
-			 listOfAssignedRoles.add((roleService.findByID(i.getRole_id())));
+
+		List<RoleEntity> listOfRoles = new ArrayList<RoleEntity>();
+		listOfRoles = roleService.findAll();
+		List<UserRoleEntity> listOfAssignedUserRoles = new ArrayList<UserRoleEntity>();
+		List<RoleEntity> listOfAssignedRoles = new ArrayList<RoleEntity>();
+
+		listOfAssignedUserRoles = userRoleService
+				.findAllUserRolesByUserID(userID);
+
+		for (UserRoleEntity i : listOfAssignedUserRoles) {
+			listOfAssignedRoles.add((roleService.findByID(i.getRole_id())));
 		}
-		
+
 		model.addAttribute("listOfRoles", listOfRoles);
 		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
 		model.addAttribute("user", user);
-		
+
 		return "userEditView";
 	}
-	
-	@RequestMapping(value = "/userEdit", method = RequestMethod.GET)
-	public String userEdit(@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result) {
-		if (result.hasErrors()) {
-			return "/userEdit/{"+user.getId()+"}";
-		} else {
-			/*
-			List<UserRoleEntity> listOfAssignedUserRoles=new ArrayList<UserRoleEntity>();		
-			for (RoleEntity i : listOfAssignedRoles){		
-				listOfAssignedUserRoles=(userRoleService.findAllUserRolesByRoleID(i.getId()));
-				//listOfAssignedUserRoles.add((roleService.findByID(i.getRole_id())));
-			}
-			*/
-			userService.save(user);
-			return "redirect:/userOverview/"
-					+ Integer.toString(user.getId());
-		}
-	}
 
+	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
+			BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "userUserView";
+		}
+		userService.save(user);
+		return "redirect:/userOverview/" + Integer.toString(user.getId());
+
+	}
 
 	/**
 	 * Users list get.
