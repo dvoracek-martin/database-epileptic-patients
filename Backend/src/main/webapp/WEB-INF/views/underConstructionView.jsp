@@ -12,8 +12,8 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>Nedostupná stránka</title>
-	  <link href="resources/css/bootstrap2.2.css" rel="stylesheet">
-	  <link rel="icon" type="image/png" href="resources/img/logoIcon.ico">
+	  <link href="<c:url value="resources/css/bootstrap2.2.css"/>" rel="stylesheet">
+	  <link rel="icon" type="image/png" href="<c:url value="resources/img/logoIcon.ico"/>">
 	</head>
 	<body>
 		<%
@@ -39,7 +39,7 @@
 			  <!--  it defines box with menu and logo -->
 			<div class="span3">
 				<div class="well sidebar-nav">
-		           	<a href="/GENEPI/" >  <img  class="photo1" src="resources/img/logo.png" alt="logo"/> </a>
+		           	<a href="/GENEPI/" >  <img  class="photo1" src="<c:url value="resources/img/logo.png"/>" alt="logo"/> </a>
 		        </div>
 				<div>
 		       		<div class="well sidebar-nav">
