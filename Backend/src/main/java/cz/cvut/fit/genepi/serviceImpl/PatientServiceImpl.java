@@ -47,13 +47,4 @@ public class PatientServiceImpl implements PatientService {
 	public List<PatientEntity> findAll() {
 		return patientDAO.findAll(PatientEntity.class);
 	}
-
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.PatientService#findPatientByID(java.lang.Integer)
-	 */
-	@Override
-	@Transactional
-	public PatientEntity findPatientByID(Integer patientID) {
-		return patientDAO.findPatientByID(patientID);
-	}
 }

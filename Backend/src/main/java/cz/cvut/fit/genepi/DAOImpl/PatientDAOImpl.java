@@ -16,16 +16,4 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		implements PatientDAO {
 
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.DAO.PatientDAO#findPatientByID(java.lang.Integer)
-	 */
-	@Override
-	public PatientEntity findPatientByID(Integer patientID) {
-		PatientEntity patientEntity;
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from PatientEntity where id = :patient_id");
-		query.setParameter("patient_id", patientID);		
-		patientEntity = findOne(query);
-		return patientEntity;
-	}
 }

@@ -48,14 +48,6 @@ public class UserServiceImpl implements UserService{
 		return userDAO.findAll(UserEntity.class);
 	}
 
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.UserService#findUserByID(java.lang.Integer)
-	 */
-	@Override
-	@Transactional
-	public UserEntity findUserByID(Integer userID) {
-		return userDAO.findUserByID(userID);
-	}
 
 	@Override
 	@Transactional

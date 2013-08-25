@@ -38,5 +38,4 @@ public interface PatientService {
 	 * @param patientID the patient id
 	 * @return the patient entity
 	 */
-	public PatientEntity findPatientByID(Integer patientID);
 }

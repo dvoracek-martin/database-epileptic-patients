@@ -83,7 +83,7 @@ public class UserController {
 	@RequestMapping(value = "/userOverview/{userID}", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findUserByID(userID);
+		UserEntity user = userService.findByID(userID);
 		model.addAttribute("user", user);
 		return "userOverviewView";
 	}

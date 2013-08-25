@@ -16,7 +16,4 @@ public interface PatientDAO extends GenericDAO<PatientEntity, Serializable> {
 	 * @param patientID the patient id
 	 * @return the patient entity
 	 */
-	PatientEntity findPatientByID(Integer patientID);
-	
-
 }

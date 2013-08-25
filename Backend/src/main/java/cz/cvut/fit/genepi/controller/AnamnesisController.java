@@ -43,7 +43,7 @@ public class AnamnesisController {
 	 */
 	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
 	public String createAnamnesisGET(Locale locale, Model model, @PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findPatientByID(patientID);
+		PatientEntity patient = patientService.findByID(patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "createAnamnesisView";
@@ -81,7 +81,7 @@ public class AnamnesisController {
 	@RequestMapping(value = "/anamnesis/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findPatientByID(patientID);
+		PatientEntity patient = patientService.findByID(patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesisList",
 				anamnesisService.findAnamnesisByPatientID(patientID));
