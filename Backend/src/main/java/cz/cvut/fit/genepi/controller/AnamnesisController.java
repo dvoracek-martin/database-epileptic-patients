@@ -61,11 +61,14 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/addAnamnesis", method = RequestMethod.POST)
 	public String addAnamnesis(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {
+			BindingResult result, @PathVariable("patientID") Integer patientID) {		
 		if (result.hasErrors()) {
+			for (int i = 0; i != result.getAllErrors().size();i++){
+				System.out.println(result.getAllErrors().get(i));
+			}
 			return "createAnamnesisView";
 		} else {
-			anamnesis.setAdded(new Date());
+			
 			anamnesisService.save(anamnesis);
 			return "redirect:/anamnesis/"
 					+ patientID;

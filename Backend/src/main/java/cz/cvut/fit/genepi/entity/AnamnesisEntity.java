@@ -38,13 +38,9 @@ public class AnamnesisEntity {
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
-	/** The added. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")//add time - DB DATETIME
-	@Past //meybe not - datetime is added on save which will be in past a few seconds but maybe not
-	@NotNull
-
+	/** The added. */	
 	@Column(name = "ADDED", nullable = false)
-	private Date added;
+	private String added;
 
 	/** The beginning epilepsy. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -179,7 +175,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the added
 	 */
-	public Date getAdded() {
+	public String getAdded() {
 		return added;
 	}
 
@@ -189,7 +185,7 @@ public class AnamnesisEntity {
 	 * @param added
 	 *            the new added
 	 */
-	public void setAdded(Date added) {
+	public void setAdded(String added) {
 		this.added = added;
 	}
 
