@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="org.springframework.security.core.userdetails.User"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
@@ -15,8 +16,11 @@
 <title>Pacient</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
+<link href="resources/css/validation.css" rel="stylesheet">
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
+<script src="resources/js/validation.js">
+	</script>
 </head>
 <body>
 	<%
@@ -73,21 +77,19 @@
 				<h2>Přehled pacienta</h2>
 				<form:form method="POST" action="editUser" commandName="user">
 
-						<spring:message code="label.userid" />*
-						<input id="id" type="text"
-							class="input-block-level" disabled="disabled" value="fdfsfsdfds"/>
-					<span class="label label-info">4515454465646</span>		
-					<form:label path="username">
-							<spring:message code="label.username" />*
-						</form:label>
+					<spring:message code="label.userid" />:
+					<div class="label label-info">${user.id}</div>		
+					<br>
+					<spring:message code="label.username" />
+
 						<form:input id="username" path="username" type="text"
-							class="input-block-level" value="user.username"/>
+							class="input-block-level" value="${user.username}"/>
 							
 					<form:label path="password">
 							<spring:message code="label.password" />*
 						</form:label>
 						<form:input id="password" path="password" type="password" pattern=".{8,30}"
-								class="input-block-level" onFocusOut="passwordValidation();" required="true"  title="Délka musí být mezi 8-30 znaky."/>
+								class="input-block-level"  required="true"  title="Délka musí být mezi 8-30 znaky."/>
 								
 					<spring:message code="label.passwordAgain" />*
 						<input type="password" id="passwordAgain" pattern=".{8,30}"
