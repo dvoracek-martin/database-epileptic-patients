@@ -22,7 +22,6 @@
 
 </head>
 <body>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -75,31 +74,43 @@
 				</h2>
 				
 				<form:form method="POST" action="userEdit" commandName="user">
-					
-            		
-						<form:label path="username">
-							<spring:message code="label.username" />*
-						</form:label>
-						<form:input id="username" path="username" type="text" value="${user.username}"
-							pattern="[a-ž\dA-Ž]{1,20}" class="input-block-level"
-							onFocusOut="usernameValidation();" required="true"
-							title="Nesmí být delší jak 20 znaků. Smí být tvořeno pouze písmeny a čísly." />
-						<form:errors path="username" cssClass="alert alert-error">
-						</form:errors>
-						<div id="usernameErrEmpty" class="alert alert-error"
-							style="display: none">Toto pole nesmí zůstat prázdné!</div>
-						<div id="usernameErr" class="alert alert-error"
-							style="display: none">Je delší jak 20 znaků!</div>
-						<div id="usernameErrChar" class="alert alert-error"
-							style="display: none">Lze zadat pouze písmena a číslice!</div>
-						
-						<input type="button" value="<spring:message code="label.changePassword" />" onClick="changePassword();">
-						
-						<div id="passwordChange" style="display: none; border: 10px solid white; margin: 5px solid">
-							<spring:message code="label.oldPassword" />
+						<div class="tabbable tabs-left">
+              		<ul class="nav nav-tabs">
+                		<li class=""><a href="#" onclick="editUsername();">Uživatelské jméno</a></li>
+                		<li class=""><a href="#" onclick="editPassword();">Heslo</a></li>
+                		<li class=""><a href="#" onclick="editOther();">Další údaje</a></li>
+                		<li><button class="btn btn-small btn-primary" type="submit"
+							onclick="validation();">
+							<spring:message code="label.edit" />
+						</button></li>
+              		</ul>
+              		
+              		<div class="tab-content">
+                		<div id="editUsername" style="display: none">
+                 			<form:label path="username">
+								<spring:message code="label.username" />*
+							</form:label>
+							<form:input id="username" path="username" type="text" value="${user.username}"
+								pattern="[a-ž\dA-Ž]{1,20}" class="input-block-level"
+								onFocusOut="usernameValidation();" required="true"
+								title="Nesmí být delší jak 20 znaků. Smí být tvořeno pouze písmeny a čísly." />
+							<form:errors path="username" cssClass="alert alert-error">
+							</form:errors>
+							<div id="usernameErrEmpty" class="alert alert-error"
+								style="display: none">Toto pole nesmí zůstat prázdné!</div>
+							<div id="usernameErr" class="alert alert-error"
+								style="display: none">Je delší jak 20 znaků!</div>
+							<div id="usernameErrChar" class="alert alert-error"
+								style="display: none">Lze zadat pouze písmena a číslice!</div>
+                		</div>
+                		
+                		<div id="editPassword" style="display: none">
+                  		<spring:message code="label.oldPassword" />
 							<br>
-							<input type="password" id="oldpassword" pattern=".{8,30}" class="input-block-level"/>
+							<input type="password" id="oldpassword" pattern=".{8,30}" class="input-block-level" onFocusOut="oldPasswordValidation();"/>
 							<br>
+							<div id="oldPasswordErr" class="alert alert-error"
+								style="display: none">Délka není mezi 8-30 znaky!</div>
 							
 							<spring:message code="label.newPassword" />
 							<br>
@@ -125,9 +136,10 @@
 								style="display: none">Hesla se neshodují.</div>
 							<div id="passwordAgainSuccComparison" class="alert alert-success"
 								style="display: none">Hesla se shodují.</div>
-						</div>
-
-						<form:label path="contact.firstName">
+                		</div>
+                		
+                		<div id="editOther" style="display: none">
+                  		<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />
 						</form:label>
 						<form:input id="firstname" path="contact.firstName" type="text" value="${user.contact.firstName}"
@@ -233,13 +245,11 @@
 						<form:input id="email" path="contact.email" type="email"  value="${user.contact.email}"
 							title="example@address.com" class="input-block-level" />
 						<form:errors path="contact.email" cssClass="alert alert-error" />
-
-
-						<button class="btn btn-small btn-primary" type="submit"
-							onclick="validation();">
-							<spring:message code="label.edit" />
-						</button>
-					</form:form>
+                	</div>
+              	</div>
+            </div>
+						
+			</form:form>
 
 				
 			</div>
@@ -253,6 +263,7 @@
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/validation.js"/>"></script>
 	<script src="<c:url value="/resources/js/other.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap-tab.js"/>"></script>
 
 	<script>
 		$(function() {
