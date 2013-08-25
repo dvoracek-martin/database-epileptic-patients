@@ -38,9 +38,9 @@ public class AnamnesisEntity {
 	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
 	private int doctorId;
 
-	/** The added. */	
-	@Column(name = "ADDED", nullable = false)
-	private String added;
+	/** The added. */
+	@Column(name = "ADDED", nullable = false, insertable = false)
+	private Date added;
 
 	/** The beginning epilepsy. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
@@ -90,12 +90,12 @@ public class AnamnesisEntity {
 	private Boolean earlyPmdRetardation;
 
 	/** The non cns comorbidity. */
-	@Size(max=400)
+	@Size(max = 400)
 	@Column(name = "NON_CNS_COMORBIDITY", length = 400, nullable = true)
 	private String nonCnsComorbidity;
-	
+
 	/** The comment. */
-	@Size(max=400)
+	@Size(max = 400)
 	@Column(name = "COMMENT", length = 400, nullable = true)
 	private String comment;
 
@@ -175,7 +175,7 @@ public class AnamnesisEntity {
 	 * 
 	 * @return the added
 	 */
-	public String getAdded() {
+	public Date getAdded() {
 		return added;
 	}
 
@@ -185,7 +185,7 @@ public class AnamnesisEntity {
 	 * @param added
 	 *            the new added
 	 */
-	public void setAdded(String added) {
+	public void setAdded(Date added) {
 		this.added = added;
 	}
 

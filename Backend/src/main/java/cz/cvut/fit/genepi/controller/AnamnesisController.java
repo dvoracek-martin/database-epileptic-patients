@@ -1,8 +1,5 @@
 package cz.cvut.fit.genepi.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -63,17 +60,11 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/addAnamnesis", method = RequestMethod.POST)
 	public String addAnamnesis(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {		
+			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
-			for (int i = 0; i != result.getAllErrors().size();i++){
-				System.out.println(result.getAllErrors().get(i));
-			}
 			return "createAnamnesisView";
 		} else {
-			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-			Date date = new Date();
-			anamnesis.setAdded(dateFormat.format(date));
-			anamnesisService.save(anamnesis);;
+			anamnesisService.save(anamnesis);
 			return "redirect:/anamnesis/"
 					+ patientID;
 		}

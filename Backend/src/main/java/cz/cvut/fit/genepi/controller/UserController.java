@@ -4,6 +4,7 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -62,6 +63,8 @@ public class UserController {
 				model.addAttribute("isUnique", "notUnique");
 				return "createUserView";
 			} else {
+				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
+						+ user.getUsername() + "}"));
 				userService.save(user);
 				return "redirect:/userOverview/"
 						+ Integer.toString(user.getId());

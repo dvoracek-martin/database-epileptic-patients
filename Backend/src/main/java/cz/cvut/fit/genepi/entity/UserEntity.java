@@ -37,7 +37,7 @@ public class UserEntity {
 	/** The password. */
 	//@NotBlank
 	//@NotNull
-	@Size(min=8,max=30)
+	@Size(min=8,max=128)
 	@Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
 	private String password;
 			
