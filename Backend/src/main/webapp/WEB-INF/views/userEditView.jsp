@@ -76,7 +76,6 @@
 				<form:form method="POST" modelAttribute="user" action="userEdit" commandName="user">
 						<div class="tabbable tabs-left">
               		<ul class="nav nav-tabs">
-                		<li class=""><a href="#" onclick="editUsername();">Uživatelské jméno</a></li>
                 		<li class=""><a href="#" onclick="editPassword();">Heslo</a></li>
                 		<li class=""><a href="#" onclick="editOther();">Další údaje</a></li>
                 		<li><button class="btn btn-small btn-primary" type="submit"
@@ -86,23 +85,6 @@
               		</ul>
               		
               		<div class="tab-content">
-                		<div id="editUsername" style="display: none">
-                 			<form:label path="username">
-								<spring:message code="label.username" />*
-							</form:label>
-							<form:input id="username" path="username" type="text" value="${user.username}"
-								pattern="[a-ž\dA-Ž]{1,20}" class="input-block-level"
-								onFocusOut="usernameValidation();" required="true"
-								title="Nesmí být delší jak 20 znaků. Smí být tvořeno pouze písmeny a čísly." />
-							<form:errors path="username" cssClass="alert alert-error">
-							</form:errors>
-							<div id="usernameErrEmpty" class="alert alert-error"
-								style="display: none">Toto pole nesmí zůstat prázdné!</div>
-							<div id="usernameErr" class="alert alert-error"
-								style="display: none">Je delší jak 20 znaků!</div>
-							<div id="usernameErrChar" class="alert alert-error"
-								style="display: none">Lze zadat pouze písmena a číslice!</div>
-                		</div>
                 		
                 		<div id="editPassword" style="display: none">
                   		<spring:message code="label.oldPassword" />
@@ -127,7 +109,7 @@
 							<spring:message code="label.passwordAgain" />
 							<input type="password" id="passwordAgain" pattern=".{8,30}"
 								class="input-block-level" onFocusOut="passwordAgainValidation();"
-								required="true" title="Délka musí být mezi 8-30 znaky." />
+								 title="Délka musí být mezi 8-30 znaky." />
 							<div id="passwordAgainErrEmpty" class="alert alert-error"
 								style="display: none">Toto pole nesmí zůstat prázdné!</div>
 							<div id="passwordAgainErrLength" class="alert alert-error"
