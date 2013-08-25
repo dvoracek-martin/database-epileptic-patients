@@ -200,15 +200,12 @@
 						<form:label path="contact.addressCountry">
 							<spring:message code="label.addressCountry" />
 						</form:label>
-						<form:input id="addressCountry" path="contact.addressCountry"
-							type="text" pattern=".{0,20}" class="input-block-level"
-							onchange="addressCountryValidation();"
-							title="Nesmí přesáhnout délku 20 znaků." />
-						<form:errors path="contact.addressCountry"
-							cssClass="alert alert-error" />
-						<div id="addressCountryErr" class="alert alert-error"
-							style="display: none">Je delší jak 20 znaků!</div>
-
+						
+						<form:select id="addressCountry" name="countries" path="contact.addressCountry">
+							<form:option value="Afghanistan" label="Afghanistan"/>
+							<form:option value="CR" label="Ĺland Islands"/>
+						</form:select>
+						
 						<form:label path="contact.phoneNumber">
 							<spring:message code="label.phoneNumber" />
 						</form:label>
