@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -68,8 +70,10 @@ public class AnamnesisController {
 			}
 			return "createAnamnesisView";
 		} else {
-			
-			anamnesisService.save(anamnesis);
+			DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+			Date date = new Date();
+			anamnesis.setAdded(dateFormat.format(date));
+			anamnesisService.save(anamnesis);;
 			return "redirect:/anamnesis/"
 					+ patientID;
 		}
