@@ -1,3 +1,11 @@
+function oldPasswordValidation() {
+	var password = document.getElementById('password').value;
+	if (password.length < 8 || password.length > 30)
+		document.getElementById('oldPasswordErr').style.display="block";
+	 else 
+		document.getElementById('oldPasswordErr').style.display="none";
+}
+
 function passwordValidation() {
 			var password = document.getElementById('password').value;
 			if(document.getElementById('password').value.length>0)

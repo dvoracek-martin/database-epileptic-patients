@@ -121,11 +121,7 @@
 				<div class="label label-info">${user.contact.email}</div>
 				<br>
 				
-				<form:form method="POST" action="/userEdit/${user.id}" commandName="user">
-					<button class="btn btn-small btn-primary" type="submit">
-							<spring:message code="label.edit" />
-					</button>
-				</form:form>
+				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.edit" />">
 			</div>
 		</div>
 	</div>
