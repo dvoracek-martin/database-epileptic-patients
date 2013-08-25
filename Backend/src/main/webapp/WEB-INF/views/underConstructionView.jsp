@@ -7,7 +7,7 @@
 
 <%@page pageEncoding="utf-8" %>
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 	<head>
 		<meta charset="utf-8" />
 		<title>Nedostupná stránka</title>
@@ -38,7 +38,7 @@
 			  <!--  it defines box with menu and logo -->
 			<div class="span3">
 				<div class="well sidebar-nav">
-		           	<a href="/GENEPI/" >  <img  class="photo1" width=2560  height=1600 src="resources/img/logo.png" alt="logo"/> </a>
+		           	<a href="/GENEPI/" >  <img  class="photo1" src="resources/img/logo.png" alt="logo"/> </a>
 		        </div>
 				<div>
 		       		<div class="well sidebar-nav">
@@ -75,12 +75,12 @@
 	    
 	    <!-- Javascripts imports -->
 		<script
-			src="resources/js/bootstrap-popover.js"></script>   
+			src="<c:url value="resources/js/bootstrap-popover.js"/>"></script>   
 		<script
-			src="resources/js/jquery.js"></script>
+			src="<c:url value="resources/js/jquery.js"/>"></script>
 		<script
-			src="resources/js/bootstrap-dropdown.js"></script>
+			src="<c:url value="resources/js/bootstrap-dropdown.js"/>"></script>
 		<script
-			src="resources/js/application.js"></script>
+			src="<c:url value="resources/js/application.js"/>"></script>
 	</body>
 </html>
