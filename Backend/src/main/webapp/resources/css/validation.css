@@ -1,4 +1,8 @@
-.attention {
-	color=red;
-	font-size=1em;
+input[type="text"]:valid {
+    color: SteelBlue;
+}
+
+
+input[type="text"]:invalid {
+    color: red;
 }

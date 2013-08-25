@@ -7,14 +7,22 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Pacient</title>
-
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
+<title><spring:message code="label.edituser" /></title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico"/>">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/responsive.min.css"/>"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/validation.css"/>"
+	rel="stylesheet">
+<link
+	href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
+	rel="stylesheet">
+
 </head>
 <body>
+
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -23,8 +31,10 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.edituser" /></a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message
+						code="label.edituser" /></a>
 			</div>
+
 		</div>
 
 		<!--  it defines box with menu and logo -->
@@ -38,7 +48,7 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="patientList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
@@ -59,14 +69,14 @@
 
 		<!-- box with content -->
 		<div class="span9">
-
 			<div class="hero-unit">
 				<h2>
 					<spring:message code="label.edituser" /> ${user.username}
 				</h2>
-
+				
 				<form:form method="POST" action="userEdit" commandName="user">
-
+					
+            		
 						<form:label path="username">
 							<spring:message code="label.username" />*
 						</form:label>
@@ -83,26 +93,27 @@
 						<div id="usernameErrChar" class="alert alert-error"
 							style="display: none">Lze zadat pouze písmena a číslice!</div>
 						
-						<input type="button" value="<spring:message code="label.changePassword" />" onClick="document.getElementById('passwordChange').style.display=block;">
+						<input type="button" value="<spring:message code="label.changePassword" />" onClick="changePassword();">
 						
-						<div id="passwordChange" style="display: none">
-							<input type="password" id="oldpassword" value="<spring:message code="label.oldPassword" />">
-						
-							<form:label path="password">
-								<spring:message code="label.newPassword" />*
-							</form:label>
-							<form:input id="password" path="password" type="password"
+						<div id="passwordChange" style="display: none; border: 10px solid white; margin: 5px solid">
+							<spring:message code="label.oldPassword" />
+							<br>
+							<input type="password" id="oldpassword" pattern=".{8,30}" class="input-block-level"/>
+							<br>
+							
+							<spring:message code="label.newPassword" />
+							<br>
+							<input id="password" type="password"
 								pattern=".{8,30}" class="input-block-level"
-								onFocusOut="passwordValidation();" required="true"
+								onFocusOut="passwordValidation();"
 								title="Délka musí být mezi 8-30 znaky." />
-							<form:errors path="password" cssClass="alert alert-error">
-							</form:errors>
+				
 							<div id="passwordErrEmpty" class="alert alert-error"
 								style="display: none">Toto pole nesmí zůstat prázdné!</div>
 							<div id="passwordErr" class="alert alert-error"
 								style="display: none">Délka není mezi 8-30 znaky!</div>
 
-							<spring:message code="label.passwordAgain" />*
+							<spring:message code="label.passwordAgain" />
 							<input type="password" id="passwordAgain" pattern=".{8,30}"
 								class="input-block-level" onFocusOut="passwordAgainValidation();"
 								required="true" title="Délka musí být mezi 8-30 znaky." />
@@ -117,9 +128,9 @@
 						</div>
 
 						<form:label path="contact.firstName">
-							<spring:message code="label.firstname" />*
+							<spring:message code="label.firstname" />
 						</form:label>
-						<form:input id="firstname" path="contact.firstName" type="text" value="${user.contact.firstname}"
+						<form:input id="firstname" path="contact.firstName" type="text" value="${user.contact.firstName}"
 							pattern="[a-žA-Ž]{1,20}" class="input-block-level"
 							onFocusOut="firstnameValidation();" required="true"
 							title="Nesmí přesáhnout délku 20 znaků." />
@@ -131,9 +142,9 @@
 							style="display: none">Je delší jak 20 znaků!</div>
 
 						<form:label path="contact.lastName">
-							<spring:message code="label.lastname" />*
+							<spring:message code="label.lastname" />
 						</form:label>
-						<form:input id="lastname" path="contact.lastName" type="text" value="${user.contact.lastname}"
+						<form:input id="lastname" path="contact.lastName" type="text" value="${user.contact.lastName}"
 							pattern="[a-žA-Ž]{1,20}" class="input-block-level"
 							onFocusOut="lastnameValidation();" required="true"
 							title="Nesmí přesáhnout délku 20 znaků." />
@@ -182,7 +193,7 @@
 						<form:label path="contact.addressPostalcode">
 							<spring:message code="label.addressPostalcode" />
 						</form:label>
-						<form:input id="addressPostalcode" value="${user.addressPostalcode}"
+						<form:input id="addressPostalcode" value="${user.contact.addressPostalcode}"
 							path="contact.addressPostalcode" type="text" pattern="\d{0,10}"
 							class="input-block-level"
 							onchange="addressPostalcodeValidation();"
@@ -226,17 +237,32 @@
 
 						<button class="btn btn-small btn-primary" type="submit"
 							onclick="validation();">
-							<spring:message code="label.add" />
+							<spring:message code="label.edit" />
 						</button>
 					</form:form>
+
 				
 			</div>
 		</div>
 	</div>
+
+
 	<!-- Javascripts imports -->
+	<script src="resources/js/jquery.js"></script>
+	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/validation.js"/>"></script>
+	<script src="<c:url value="/resources/js/other.js"/>"></script>
+
+	<script>
+		$(function() {
+			$(".datepicker").datepicker({
+				dateFormat : "dd/mm/yy",
+				changeYear : true
+			});
+
+		});
+	</script>
+
 </body>
 </html>
-
-
