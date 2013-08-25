@@ -42,6 +42,7 @@ public class AnamnesisEntity {
 	@DateTimeFormat(pattern = "dd/MM/yyyy")//add time - DB DATETIME
 	@Past //meybe not - datetime is added on save which will be in past a few seconds but maybe not
 	@NotNull
+	@Generated(GenerationTime.ALWAYS)
 	@Column(name = "ADDED", nullable = false)
 	private Date added;
 
