@@ -18,9 +18,12 @@
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
 <title>Přihlašovací stránka</title>
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
-<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-<link href="<c:url value="/resources/css/bootstrap-responsive.css" />" rel="stylesheet">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<link href="<c:url value="/resources/css/bootstrap-responsive.css" />"
+	rel="stylesheet">
 </head>
 <body>
 	<sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
@@ -62,17 +65,24 @@
 			<tr>
 				<td>sue</td>
 				<td>suepassword</td>
-				<td>ROLE_USER, ROLE_EDIT</td>
+				<td>ROLE_USER</td>
+			</tr>
+			<tr>
+				<td>hom</td>
+				<td>hompassword</td>
+				<td>ROLE_USER, ROLE_DOCTOR</td>
 			</tr>
 		</table>
 		<br />
-		<h1><spring:message code="label.login" /></h1>
+		<h1>
+			<spring:message code="label.login" />
+		</h1>
 		<!-- login form -->
 		<div class="form" style="border: 0 solid white">
 			<form name="f" action="j_spring_security_check" method="post">
 				<input type="text" id="username" class="input-block-level"
-					name="j_username" placeholder="Přihlašovací jméno" autofocus> <input
-					type="password" id="password" name="j_password"
+					name="j_username" placeholder="Přihlašovací jméno" autofocus>
+				<input type="password" id="password" name="j_password"
 					class="input-block-level" placeholder="Heslo">
 				<button class="btn btn-large btn-primary" type="submit">Přihlásit</button>
 			</form>
