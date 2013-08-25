@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -28,69 +27,69 @@ public class ContactEntity {
 
 	/** The first name. */
 	@Pattern(regexp="[A-Za-z ]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=20)
 	@Column(name = "FIRST_NAME", length = 20, nullable = false)
 	private String firstName;
 
 	/** The last name. */
 	@Pattern(regexp="[A-Za-z ]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=20)
 	@Column(name = "LAST_NAME", length = 20, nullable = false)
 	private String lastName;
 
 	/** The address street. */	
 	@Pattern(regexp="[A-Za-z]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=30)
 	@Column(name = "ADDRESS_STREET", length = 30, nullable = true)
 	private String addressStreet;
 
 	/** The address hn. */
 	@Pattern(regexp="[0-9]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=10)
 	@Column(name = "ADDRESS_HN", length = 10, nullable = true)
 	private String addressHn;
 
 	/** The address city. */
 	@Pattern(regexp="[A-Za-z ]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=30)
 	@Column(name = "ADDRESS_CITY", length = 30, nullable = true)
 	private String addressCity;
 
 	/** The address postalcode. */
 	@Pattern(regexp="[0-9]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=10)
 	@Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
 	private String addressPostalcode;
 
 	/** The address country. */
 	@Pattern(regexp="[A-Za-z ]*")
-	@NotNull
-	@NotBlank
+	//@NotNull
+	//@NotBlank
 	@Size(min=1, max=20)
 	@Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
 	private String addressCountry;
 
 	/** The phone number. */
 	@Pattern(regexp="[0-9+][0-9]*")
-	@Size(min=1,max=20)
+	@Size(max=20)
 	@Column(name = "PHONE_NUMBER", length = 20, nullable = true)
 	private String phoneNumber;
 
 	/** The email. */
 	@Email
-	@NotNull
+	//@NotNull
 	@NotBlank
 	@Size(max=20)
 	@Column(name = "EMAIL", length = 20, nullable = true)

@@ -7,13 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.validator.constraints.NotBlank;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,15 +28,15 @@ public class UserEntity {
 	private int id;
 
 	@Pattern(regexp="[A-Za-z0-9]*")
-	@NotBlank
-	@NotNull
+	//@NotBlank
+	//@NotNull
 	@Size(min=1,max=10)
 	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String username;
 
 	/** The password. */
-	@NotBlank
-	@NotNull
+	//@NotBlank
+	//@NotNull
 	@Size(min=8,max=30)
 	@Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
 	private String password;

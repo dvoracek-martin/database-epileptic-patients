@@ -48,7 +48,7 @@ public class PatientEntity {
 
 	/** The gender. */
 	@NotBlank
-	@NotNull
+	//@NotNull
 	@Size(max=10)
 	@Column(name = "GENDER", length = 10, nullable = false)
 	private String gender;
