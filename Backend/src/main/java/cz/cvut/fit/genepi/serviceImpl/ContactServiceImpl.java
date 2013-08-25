@@ -17,7 +17,7 @@ public class ContactServiceImpl implements ContactService {
 
 	/** The cntact dao. */
 	@Autowired
-	private ContactDAO cntactDAO;
+	private ContactDAO contactDAO;
 	
 	
 	/* (non-Javadoc)
@@ -25,6 +25,12 @@ public class ContactServiceImpl implements ContactService {
 	 */
 	@Transactional
 	public ContactEntity findByID(int id){
-		return (cntactDAO.findByID(ContactEntity.class, id));
+		return (contactDAO.findByID(ContactEntity.class, id));
+	}
+	
+	@Override
+	@Transactional
+	public void merge(ContactEntity contact){
+		contactDAO.merge(contact);
 	}
 }

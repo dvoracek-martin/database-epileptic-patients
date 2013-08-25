@@ -9,10 +9,17 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.DAO.UserRoleDAO;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserRoleDAOImpl.
+ */
 @Repository
 public class UserRoleDAOImpl  extends GenericDAOImpl<UserRoleEntity, Serializable>
 implements UserRoleDAO {
 	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByUserID(int)
+	 */
 	@Override
 	public List<UserRoleEntity> findAllUserRolesByUserID(int user_id){
 		List<UserRoleEntity> userRoleEntities;
@@ -23,6 +30,9 @@ implements UserRoleDAO {
 		return userRoleEntities;
 	}
 	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByRoleID(int)
+	 */
 	@Override
 	public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id){
 		List<UserRoleEntity> userRoleEntities;

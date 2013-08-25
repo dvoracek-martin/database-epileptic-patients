@@ -57,4 +57,10 @@ public class UserServiceImpl implements UserService{
 	public UserEntity findUserByUsername(String username) {		
 		return userDAO.findUserByUsername(username);
 	}
+	
+	@Override
+	@Transactional
+	public void merge(UserEntity user){
+		userDAO.merge(user);
+	}
 }

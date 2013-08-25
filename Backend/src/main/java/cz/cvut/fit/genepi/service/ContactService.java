@@ -15,4 +15,5 @@ public interface ContactService {
 	 * @return the contact entity
 	 */
 	ContactEntity findByID(int id);
+	public void merge(ContactEntity constac);
 }

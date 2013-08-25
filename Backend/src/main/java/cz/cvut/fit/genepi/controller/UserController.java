@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
+import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
@@ -39,6 +41,9 @@ public class UserController {
 
 	@Autowired
 	private UserRoleService userRoleService;
+
+	@Autowired
+	private ContactService contactService;
 
 	/**
 	 * Creates the user get.
@@ -122,26 +127,42 @@ public class UserController {
 			listOfAssignedRoles.add((roleService.findByID(i.getRole_id())));
 		}
 
+		UserEntity userTmp = new UserEntity();
+		userTmp.setContact(user.getContact());
+
+		System.out.println(user.getContact().getId());
+
 		model.addAttribute("listOfRoles", listOfRoles);
 		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
 		model.addAttribute("user", user);
-		model.addAttribute("userTmp", new UserEntity());
+		model.addAttribute("userTmp", userTmp);
 		return "userEditView";
 	}
 
-	@RequestMapping(value = "/editUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
 	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "userUserView";
+			return "userEditView";
 		}
-		userService.save(user);
+	
+		ContactEntity contact = new ContactEntity();
+		contact.setId(userService.findByID(user.getId()).getContact().getId());
+
+		contact.setFirstName(user.getContact().getFirstName());
+		contact.setLastName(user.getContact().getLastName());
+		contact.setAddressStreet(user.getContact().getAddressStreet());
+		contact.setAddressHn(user.getContact().getAddressHn());
+		contact.setAddressCity(user.getContact().getAddressCity());
+		contact.setAddressPostalcode(user.getContact().getAddressPostalcode());
+		contact.setAddressCountry(user.getContact().getAddressCountry());
+		contact.setPhoneNumber(user.getContact().getPhoneNumber());		
+		contact.setEmail(user.getContact().getEmail());
+
+		contactService.merge(contact);
 		return "redirect:/userOverview/" + Integer.toString(user.getId());
 
 	}
-
-	
-	
 
 	/**
 	 * Users list get.

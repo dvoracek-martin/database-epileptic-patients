@@ -39,4 +39,6 @@ public interface UserService {
 	 * @return the user entity
 	 */
 	public UserEntity findUserByUsername(String username);
+	
+	public void merge(UserEntity user);
 }
