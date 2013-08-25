@@ -2,6 +2,7 @@
 <%@ page
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 

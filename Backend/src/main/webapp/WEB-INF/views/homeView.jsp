@@ -5,10 +5,11 @@
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html>
+<html lang="cz">
 <head>
 <meta charset="UTF-8" />
 <title>Domovská stránka</title>
@@ -89,7 +90,7 @@
 
 	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/jquery.js"/>"></script>
-	<script src="<c:url value="/resources/js/application.js"/>"></script>
+	<script src="<c:url value="resources/js/jquery.js"/>"></script>
+	<script src="<c:url value="resources/js/application.js"/>"></script>
 </body>
 </html>

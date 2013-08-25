@@ -5,6 +5,7 @@
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -149,7 +150,8 @@
 				<table border="2">
 					<tr>
 						<td>Vysetreni dne: ${anamnesis.date}</td>
-						<td><a href="<c:url value="/anamnesis/${patient.id}" />">Zobrazit vsechny</a></td>
+						<td><a href="<c:url value="/anamnesis/${patient.id}" />">Zobrazit
+								vsechny</a></td>
 					</tr>
 					<tr>
 						<td></td>
