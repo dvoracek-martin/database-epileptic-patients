@@ -71,7 +71,7 @@
 		<div class="form" style="border: 0 solid white">
 			<form name="f" action="j_spring_security_check" method="post">
 				<input type="text" id="username" class="input-block-level"
-					name="j_username" placeholder="Přihlašovací jméno"> <input
+					name="j_username" placeholder="Přihlašovací jméno" autofocus> <input
 					type="password" id="password" name="j_password"
 					class="input-block-level" placeholder="Heslo">
 				<button class="btn btn-large btn-primary" type="submit">Přihlásit</button>

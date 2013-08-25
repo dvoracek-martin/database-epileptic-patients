@@ -10,7 +10,7 @@ function passwordValidation() {
 			 else 
 			 {
 				document.getElementById('passwordErr').style.display="none";
-				var passwordAgain = document.getElementById('password').value;
+				var passwordAgain = document.getElementById('passwordAgain').value;
 				if ( passwordAgain != password ) {
 					document.getElementById('passwordAgainSuccComparison').style.display="none";
 					document.getElementById('passwordAgainErrComparison').style.display="block";
