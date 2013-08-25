@@ -7,7 +7,7 @@
 <%@ page
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
-<%@ page import="javax.swing.text.AbstractDocument"%>
+
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 
 
@@ -16,12 +16,10 @@
 <head>
 <meta charset="UTF-8" />
 <title>Pacient</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
-<link href="<c:url value="/resources/css/validation.css"/>" rel="stylesheet">
 <link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico"/>">
-<script src="<c:url value="/resources/js/validation.js"/>">
-	</script>
 </head>
 <body>
 	<%
@@ -39,7 +37,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - UŽIVATEL</a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.user" /></a>
 			</div>
 		</div>
 
@@ -60,6 +58,8 @@
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
+						<li><a href="?lang=cs">CZ</a></li>
+						<li><a href="?lang=en">EN</a></li>
 					</ul>
 				</div>
 				<!--  It block with copyright -->
@@ -75,20 +75,51 @@
 		<div class="span9">
 						
 			<div class="hero-unit">
-				<h2>Přehled pacienta</h2>
-				<form:form method="POST" action="editUser" commandName="user">
+				<h2><spring:message code="label.user" /></h2>		
 
-					<spring:message code="label.userid" />:
-					<div class="label label-info">${user.id}</div>		
-					<br>
-					<spring:message code="label.username" />
-
-						<form:input id="username" path="username" type="text"
-							class="input-block-level" value="${user.username}"/>
-							
-					<input type="button" value="Změnit heslo">
-				</form:form>
-
+				<spring:message code="label.userid" /> &nbsp;
+				<div class="label label-info">${user.id}</div>		
+				<br>
+					
+				<spring:message code="label.username" /> &nbsp;
+				<div class="label label-info">${user.username}</div>		
+				<br>
+					
+				<spring:message code="label.firstname" /> &nbsp;
+				<div class="label label-info">${user.contact.firstName}</div>		
+				<br>
+					
+				<spring:message code="label.lastname" /> &nbsp;
+				<div class="label label-info">${user.contact.lastName}</div>		
+				<br>	
+				
+				<spring:message code="label.street" /> &nbsp;
+				<div class="label label-info">${user.contact.addressStreet}</div>		
+				<br>
+				
+				<spring:message code="label.addressHn" /> &nbsp;
+				<div class="label label-info">${user.contact.addressHn}</div>		
+				<br>
+				
+				<spring:message code="label.addressCity" /> &nbsp;
+				<div class="label label-info">${user.contact.addressCity}</div>		
+				<br>
+				
+				<spring:message code="label.addressPostalcode" /> &nbsp;
+				<div class="label label-info">${user.contact.addressPostalcode}</div>		
+				<br>
+				
+				<spring:message code="label.addressCountry" /> &nbsp;
+				<div class="label label-info">${user.contact.addressCountry}</div>		
+				<br>
+				
+				<spring:message code="label.phoneNumber" /> &nbsp;
+				<div class="label label-info">${user.contact.phoneNumber}</div>		
+				<br>
+				
+				<spring:message code="label.email" /> &nbsp;
+				<div class="label label-info">${user.contact.email}</div>		
+				<br>
 			</div>
 		</div>
 	</div>
