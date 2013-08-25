@@ -1,29 +1,17 @@
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page pageEncoding="UTF-8"%>
 
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="java.util.Collection"%>
-<%@ page import="javax.swing.text.AbstractDocument"%>
-<%@ page import="org.springframework.security.core.GrantedAuthority"%>
-
-<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <title>Anamnéza</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico" />">
 </head>
 <body>
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -79,7 +67,7 @@
 						<li class="nav-header">Pacienti</li>
 						<li><a href="patientsList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel: <%=username%></li>
+						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
@@ -102,7 +90,8 @@
 						<h2>Přehled pacienta</h2>
 					</div>
 					<div>
-						<a href="<c:url value="/patient/${patientID}/createAnamnesis" />">Přidat záznam</a>
+						<a href="<c:url value="/patient/${patientID}/createAnamnesis" />">Přidat
+							záznam</a>
 					</div>
 				</div>
 				<table style="border: 1px solid black">
@@ -147,7 +136,8 @@
 					<c:forEach items="${anamnesisList}" var="anamnesis">
 						<tr>
 							<td>Vysetreni dne: ${anamnesis.date}</td>
-							<td><a href="<c:url value="/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
+							<td><a
+								href="<c:url value="/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
 						</tr>
 						<tr>
 							<td></td>
@@ -200,7 +190,7 @@
 						<tr>
 							<td></td>
 							<td></td>
-						</tr> 
+						</tr>
 					</c:forEach>
 				</table>
 				<!-- Anamnesis list END -->
@@ -209,7 +199,7 @@
 			</div>
 		</div>
 	</div>
-		<!-- Javascripts imports -->
+	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 </body>

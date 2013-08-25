@@ -1,30 +1,21 @@
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="java.util.Collection"%>
-<%@ page import="javax.swing.text.AbstractDocument"%>
-<%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
+<%@ page pageEncoding="UTF-8"%>
+
 
 <!DOCTYPE html>
-<html lang="cz">
+<html>
 <head>
 <meta charset="UTF-8" />
 <title>Domovská stránka</title>
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico"/>">
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico"/>">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
+	rel="stylesheet">
 </head>
 <body>
-
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -51,7 +42,7 @@
 						<li class="nav-header">Pacienti</li>
 						<li><a href="patientsList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel: <%=username%></li>
+						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
@@ -70,23 +61,26 @@
 		<div class="span9">
 			<div class="hero-unit">
 				<div style="border-bottom: 2px solid black">
-					<h1><spring:message code="label.news"/></h1>
+					<h1>
+						<spring:message code="label.news" />
+					</h1>
 				</div>
+				<sec:authorize ifAnyGranted="ROLE_USER">
+					<div style="margin: 10px">
+						<div style="border-bottom: 2px solid black">
+							<h3>12.5.2013</h3>
+							<p>Podpora pro širší škálu prohlížečů byla doplněna.</p>
+						</div>
 
-				<div style="margin: 10px">
-					<div style="border-bottom: 2px solid black">
-						<h3>12.5.2013</h3>
-						<p>Podpora pro širší škálu prohlížečů byla doplněna.</p>
+						<div style="border-bottom: 2px solid black">
+							<h3>10.9.2013</h3>
+							<p>Beta verze byla předvedena.</p>
+						</div>
 					</div>
-
-					<div style="border-bottom: 2px solid black">
-						<h3>10.9.2013</h3>
-						<p>Beta verze byla předvedena.</p>
-					</div>
-				</div>
+				</sec:authorize>
 			</div>
 		</div>
-	</div>	
+	</div>
 
 	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>

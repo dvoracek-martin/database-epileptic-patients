@@ -1,27 +1,17 @@
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="java.util.Collection"%>
-<%@ page import="javax.swing.text.AbstractDocument"%>
-<%@ page import="org.springframework.security.core.GrantedAuthority"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page pageEncoding="UTF-8"%>
 
-<%@page pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html >
+<html>
 <head>
 <meta charset="UTF-8" />
 <title>Profil</title>
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico"/>">
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico"/>">
+<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
+	rel="stylesheet">
 </head>
 <body>
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
 
 	<!-- box of whole page -->
 	<div class="container-fluid">
@@ -49,7 +39,7 @@
 						<li class="nav-header">Pacienti</li>
 						<li><a href="patientsList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel: <%=username%></li>
+						<li class="nav-header">Uživatel:</li>
 						<li><a href="#">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
@@ -73,7 +63,7 @@
 				<div style="margin: 10px">
 					<p>
 						<b>Přihlašovací jméno:</b>
-						<%=username%></p>
+						</p>
 					<p>
 						<b>Jméno:</b>
 					</p>

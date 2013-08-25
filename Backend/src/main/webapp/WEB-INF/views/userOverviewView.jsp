@@ -1,15 +1,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
-<%@page pageEncoding="UTF-8"%>
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="java.util.Collection"%>
-
-<%@ page import="org.springframework.security.core.GrantedAuthority"%>
-
+<%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
@@ -19,16 +11,10 @@
 
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico"/>">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico"/>">
 </head>
 <body>
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();
-	%>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -37,7 +23,8 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.user" /></a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message
+						code="label.user" /></a>
 			</div>
 		</div>
 
@@ -54,7 +41,7 @@
 						<li class="nav-header">Pacienti</li>
 						<li><a href="patientsList">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel: <%=username%></li>
+						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
@@ -73,52 +60,65 @@
 
 		<!-- box with content -->
 		<div class="span9">
-						
-			<div class="hero-unit">
-				<h2><spring:message code="label.user" /></h2>		
 
-				<spring:message code="label.userid" /> &nbsp;
-				<div class="label label-info">${user.id}</div>		
+			<div class="hero-unit">
+				<h2>
+					<spring:message code="label.user" />
+				</h2>
+
+				<spring:message code="label.userid" />
+				&nbsp;
+				<div class="label label-info">${user.id}</div>
 				<br>
-					
-				<spring:message code="label.username" /> &nbsp;
-				<div class="label label-info">${user.username}</div>		
+
+				<spring:message code="label.username" />
+				&nbsp;
+				<div class="label label-info">${user.username}</div>
 				<br>
-					
-				<spring:message code="label.firstname" /> &nbsp;
-				<div class="label label-info">${user.contact.firstName}</div>		
+
+				<spring:message code="label.firstname" />
+				&nbsp;
+				<div class="label label-info">${user.contact.firstName}</div>
 				<br>
-					
-				<spring:message code="label.lastname" /> &nbsp;
-				<div class="label label-info">${user.contact.lastName}</div>		
-				<br>	
-				
-				<spring:message code="label.street" /> &nbsp;
-				<div class="label label-info">${user.contact.addressStreet}</div>		
+
+				<spring:message code="label.lastname" />
+				&nbsp;
+				<div class="label label-info">${user.contact.lastName}</div>
 				<br>
-				
-				<spring:message code="label.addressHn" /> &nbsp;
-				<div class="label label-info">${user.contact.addressHn}</div>		
+
+				<spring:message code="label.street" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressStreet}</div>
 				<br>
-				
-				<spring:message code="label.addressCity" /> &nbsp;
-				<div class="label label-info">${user.contact.addressCity}</div>		
+
+				<spring:message code="label.addressHn" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressHn}</div>
 				<br>
-				
-				<spring:message code="label.addressPostalcode" /> &nbsp;
-				<div class="label label-info">${user.contact.addressPostalcode}</div>		
+
+				<spring:message code="label.addressCity" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressCity}</div>
 				<br>
-				
-				<spring:message code="label.addressCountry" /> &nbsp;
-				<div class="label label-info">${user.contact.addressCountry}</div>		
+
+				<spring:message code="label.addressPostalcode" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressPostalcode}</div>
 				<br>
-				
-				<spring:message code="label.phoneNumber" /> &nbsp;
-				<div class="label label-info">${user.contact.phoneNumber}</div>		
+
+				<spring:message code="label.addressCountry" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressCountry}</div>
 				<br>
-				
-				<spring:message code="label.email" /> &nbsp;
-				<div class="label label-info">${user.contact.email}</div>		
+
+				<spring:message code="label.phoneNumber" />
+				&nbsp;
+				<div class="label label-info">${user.contact.phoneNumber}</div>
+				<br>
+
+				<spring:message code="label.email" />
+				&nbsp;
+				<div class="label label-info">${user.contact.email}</div>
 				<br>
 			</div>
 		</div>

@@ -1,21 +1,16 @@
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ page
-	import="org.springframework.security.core.context.SecurityContextHolder"%>
-<%@ page import="java.util.Collection"%>
-<%@ page import="javax.swing.text.AbstractDocument"%>
-<%@ page import="org.springframework.security.core.GrantedAuthority"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
-<%@page pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8" />
 <title>Kartotéka</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
-<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<link rel="icon" type="image/png"
+	href="<c:url value="/resources/img/logoIcon.ico" />">
 <style type="text/css">
 table.patients {
 	width: 90%;
@@ -33,13 +28,6 @@ table.patients td.head {
 </style>
 </head>
 <body>
-	<%
-		User user = (User) SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
-		String username = user.getUsername();
-		Collection<GrantedAuthority> authorities = user.getAuthorities();	
-	%>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -66,7 +54,7 @@ table.patients td.head {
 						<li class="nav-header">Pacienti</li>
 						<li><a href="#">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel: <%=username%></li>
+						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
@@ -89,7 +77,7 @@ table.patients td.head {
 						<h2>Kartotéka pacientů</h2>
 					</div>
 					<div>
-					implement search field
+						implement search field
 						<h3>
 							<a href="createPatient" style="text-decoration: none">Nový
 								pacient</a>
@@ -99,8 +87,8 @@ table.patients td.head {
 
 				<table class="patients">
 					<tr class="head">
-						<td><b><spring:message code="label.lastname"/></b></td>
-						<td><b><spring:message code="label.firstname"/></b></td>
+						<td><b><spring:message code="label.lastname" /></b></td>
+						<td><b><spring:message code="label.firstname" /></b></td>
 						<td><b>Rodné číslo</b></td>
 						<td><b>Ulice, č.p.</b></td>
 						<td><b>Město</b></td>
