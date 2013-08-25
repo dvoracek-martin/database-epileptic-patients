@@ -1,25 +1,26 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="org.springframework.security.core.userdetails.User"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
+<%@page pageEncoding="UTF-8"%>
+<%@ page import="org.springframework.security.core.userdetails.User"%>
 <%@ page
 	import="org.springframework.security.core.context.SecurityContextHolder"%>
 <%@ page import="java.util.Collection"%>
 <%@ page import="javax.swing.text.AbstractDocument"%>
 <%@ page import="org.springframework.security.core.GrantedAuthority"%>
 
-<%@page pageEncoding="utf-8"%>
+
 <!DOCTYPE html>
-<html lang="cs">
+<html>
 <head>
-<meta charset="utf-8" />
+<meta charset="UTF-8" />
 <title>Pacient</title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
-<link href="resources/css/validation.css" rel="stylesheet">
-<link rel="icon" type="image/png"
-	href="<c:url value="/resources/img/logoIcon.ico" />">
-<script src="resources/js/validation.js">
+<link href="<c:url value="/resources/css/validation.css"/>" rel="stylesheet">
+<link rel="icon" type="image/png" href="<c:url value="/resources/img/logoIcon.ico"/>">
+<script src="<c:url value="/resources/js/validation.js"/>">
 	</script>
 </head>
 <body>
@@ -85,15 +86,7 @@
 						<form:input id="username" path="username" type="text"
 							class="input-block-level" value="${user.username}"/>
 							
-					<form:label path="password">
-							<spring:message code="label.password" />*
-						</form:label>
-						<form:input id="password" path="password" type="password" pattern=".{8,30}"
-								class="input-block-level"  required="true"  title="Délka musí být mezi 8-30 znaky."/>
-								
-					<spring:message code="label.passwordAgain" />*
-						<input type="password" id="passwordAgain" pattern=".{8,30}"
-							class="input-block-level" 	onFocusOut="passwordAgainValidation();" required="true" title="Délka musí být mezi 8-30 znaky."/>
+					<input type="button" value="Změnit heslo">
 				</form:form>
 
 			</div>
