@@ -22,4 +22,14 @@ implements UserRoleDAO {
 		userRoleEntities = findMany(query);
 		return userRoleEntities;
 	}
+	
+	@Override
+	public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id){
+		List<UserRoleEntity> userRoleEntities;
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from UserRoleEntity where role_id = :roleID");
+		query.setParameter("roleID", role_id);
+		userRoleEntities = findMany(query);
+		return userRoleEntities;
+	}
 }

@@ -7,4 +7,5 @@ import cz.cvut.fit.genepi.entity.UserRoleEntity;
 
 public interface UserRoleDAO extends GenericDAO<UserRoleEntity, Serializable> { 
 	List<UserRoleEntity> findAllUserRolesByUserID(int userID);
+	List<UserRoleEntity> findAllUserRolesByRoleID(int roleID);
 }

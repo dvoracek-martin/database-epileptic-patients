@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
@@ -126,13 +125,19 @@ public class UserController {
 		return "userEditView";
 	}
 	
-	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
-	public String userEdit(
-			@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result,@RequestParam("listOfAssignedRoles") List<RoleEntity> listOfAssignedRoles) {
+	@RequestMapping(value = "/userEdit", method = RequestMethod.GET)
+	public String userEdit(@ModelAttribute("user") @Valid UserEntity user,
+			BindingResult result) {
 		if (result.hasErrors()) {
 			return "/userEdit/{"+user.getId()+"}";
 		} else {
+			/*
+			List<UserRoleEntity> listOfAssignedUserRoles=new ArrayList<UserRoleEntity>();		
+			for (RoleEntity i : listOfAssignedRoles){		
+				listOfAssignedUserRoles=(userRoleService.findAllUserRolesByRoleID(i.getId()));
+				//listOfAssignedUserRoles.add((roleService.findByID(i.getRole_id())));
+			}
+			*/
 			userService.save(user);
 			return "redirect:/userOverview/"
 					+ Integer.toString(user.getId());
