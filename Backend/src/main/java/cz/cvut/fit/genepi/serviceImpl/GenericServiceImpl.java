@@ -16,7 +16,7 @@ public class GenericServiceImpl <T, ID extends Serializable> implements
 GenericService<T, ID> {
 
 	@Autowired
-	private GenericDAO<T, ID> genericDAO;
+	protected GenericDAO<T, ID> genericDAO;
 	
 	@Override
 	@Transactional

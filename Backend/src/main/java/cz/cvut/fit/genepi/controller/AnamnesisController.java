@@ -50,7 +50,7 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
 	public String createAnamnesisGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(patientID);
+		PatientEntity patient = patientService.findByID(PatientEntity.class,patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "createAnamnesisView";
@@ -85,7 +85,7 @@ public class AnamnesisController {
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("anamnesisID") Integer anamnesisID) {
 
-		anamnesisService.delete(anamnesisService.findByID(anamnesisID));
+		anamnesisService.delete(anamnesisService.findByID(AnamnesisEntity.class,anamnesisID));
 		return "redirect:/anamnesis/" + patientID;
 
 	}
@@ -104,7 +104,7 @@ public class AnamnesisController {
 	@RequestMapping(value = "/anamnesis/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(patientID);
+		PatientEntity patient = patientService.findByID(PatientEntity.class,patientID);
 		model.addAttribute("patient", patient);
 		List<AnamnesisEntity> anamnesisEntities = new ArrayList<AnamnesisEntity>();
 		anamnesisEntities=anamnesisService.findAnamnesisByPatientID(patientID);

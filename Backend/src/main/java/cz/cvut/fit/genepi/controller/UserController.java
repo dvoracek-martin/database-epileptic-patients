@@ -105,7 +105,7 @@ public class UserController {
 	@RequestMapping(value = "/userOverview/{userID}", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(userID);
+		UserEntity user = userService.findByID(UserEntity.class,userID);
 		model.addAttribute("user", user);
 		return "userOverviewView";
 	}
@@ -113,10 +113,10 @@ public class UserController {
 	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(userID);
+		UserEntity user = userService.findByID(UserEntity.class,userID);
 
 		List<RoleEntity> listOfRoles = new ArrayList<RoleEntity>();
-		listOfRoles = roleService.findAll();
+		listOfRoles = roleService.findAll(RoleEntity.class);
 		List<UserRoleEntity> listOfAssignedUserRoles = new ArrayList<UserRoleEntity>();
 		List<RoleEntity> listOfAssignedRoles = new ArrayList<RoleEntity>();
 
@@ -124,7 +124,7 @@ public class UserController {
 				.findAllUserRolesByUserID(userID);
 
 		for (UserRoleEntity i : listOfAssignedUserRoles) {
-			listOfAssignedRoles.add((roleService.findByID(i.getRole_id())));
+			listOfAssignedRoles.add((roleService.findByID(RoleEntity.class,i.getRole_id())));
 		}
 
 		UserEntity userTmp = new UserEntity();
@@ -147,7 +147,7 @@ public class UserController {
 		}
 	
 		ContactEntity contact = new ContactEntity();
-		contact.setId(userService.findByID(user.getId()).getContact().getId());
+		contact.setId(userService.findByID(UserEntity.class,user.getId()).getContact().getId());
 
 		contact.setFirstName(user.getContact().getFirstName());
 		contact.setLastName(user.getContact().getLastName());
@@ -175,7 +175,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/userList", method = RequestMethod.GET)
 	public String usersListGET(Locale locale, Model model) {
-		model.addAttribute("userList", userService.findAll());
+		model.addAttribute("userList", userService.findAll(UserEntity.class));
 		return "userListView";
 	}
 
