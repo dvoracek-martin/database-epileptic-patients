@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 
-public abstract interface GenericService<T, ID extends Serializable> {
+public interface GenericService<T, ID extends Serializable> {
 	
 	/**
 	 * Save.

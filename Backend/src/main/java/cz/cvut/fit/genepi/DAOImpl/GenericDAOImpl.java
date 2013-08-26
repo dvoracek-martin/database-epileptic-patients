@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.DAO.GenericDAO;
 
@@ -16,7 +17,8 @@ import cz.cvut.fit.genepi.DAO.GenericDAO;
  * @param <T> the generic type
  * @param <ID> the generic type
  */
-public abstract class GenericDAOImpl<T, ID extends Serializable> implements
+@Repository
+public class GenericDAOImpl<T, ID extends Serializable> implements
 		GenericDAO<T, ID> {
 
 	/** The session factory. */
