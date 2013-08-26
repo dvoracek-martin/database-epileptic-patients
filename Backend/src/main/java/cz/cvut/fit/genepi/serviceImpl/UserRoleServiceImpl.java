@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,31 +11,30 @@ import cz.cvut.fit.genepi.DAO.UserRoleDAO;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
 import cz.cvut.fit.genepi.service.UserRoleService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class UserRoleServiceImpl.
+ */
 @Service
-public class UserRoleServiceImpl implements UserRoleService {
+public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity, Serializable> implements UserRoleService {
 
+	/** The user role dao. */
 	@Autowired
 	private UserRoleDAO userRoleDAO;
 	
-	@Override
-	@Transactional
-	public List<UserRoleEntity> findAll() {
-		return userRoleDAO.findAll(UserRoleEntity.class);
-	}
-	
-	@Override
-	@Transactional
-	public UserRoleEntity findByID(int userRoleID){
-		return userRoleDAO.findByID(UserRoleEntity.class,userRoleID);
-	}
-
 		
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserRoleService#findAllUserRolesByUserID(int)
+	 */
 	@Override
 	@Transactional
 	public List<UserRoleEntity> findAllUserRolesByUserID(int userID) {		
 		return userRoleDAO.findAllUserRolesByUserID(userID);
 	}
 	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserRoleService#findAllUserRolesByRoleID(int)
+	 */
 	@Override
 	@Transactional
 	public List<UserRoleEntity> findAllUserRolesByRoleID(int roleID) {		

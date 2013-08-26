@@ -1,10 +1,9 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.io.Serializable;
 
-import cz.cvut.fit.genepi.DAO.ContactDAO;
+import org.springframework.stereotype.Service;
+
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.service.ContactService;
 
@@ -13,24 +12,8 @@ import cz.cvut.fit.genepi.service.ContactService;
  * The Class ContactServiceImpl.
  */
 @Service
-public class ContactServiceImpl implements ContactService {
+public class ContactServiceImpl extends
+		GenericServiceImpl<ContactEntity, Serializable> implements
+		ContactService {
 
-	/** The cntact dao. */
-	@Autowired
-	private ContactDAO contactDAO;
-	
-	
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.ContactService#findByID(int)
-	 */
-	@Transactional
-	public ContactEntity findByID(int id){
-		return (contactDAO.findByID(ContactEntity.class, id));
-	}
-	
-	@Override
-	@Transactional
-	public void merge(ContactEntity contact){
-		contactDAO.merge(contact);
-	}
 }

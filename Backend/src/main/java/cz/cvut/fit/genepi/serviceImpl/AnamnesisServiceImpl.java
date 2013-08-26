@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,43 +16,34 @@ import cz.cvut.fit.genepi.service.AnamnesisService;
  * The Class AnamnesisServiceImpl.
  */
 @Service
-public class AnamnesisServiceImpl implements AnamnesisService {
+public class AnamnesisServiceImpl extends
+		GenericServiceImpl<AnamnesisEntity, Serializable> implements
+		AnamnesisService {
 
 	/** The anamnesis dao. */
 	@Autowired
 	private AnamnesisDAO anamnesisDAO;
 
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.AnamnesisService#save(cz.cvut.fit.genepi.entity.AnamnesisEntity)
-	 */
-	@Transactional
-	public void save(AnamnesisEntity anamnesis) {
-		anamnesisDAO.save(anamnesis);
-	}
-	
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.AnamnesisService#findAnamnesisByPatientID(int)
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.service.AnamnesisService#findAnamnesisByPatientID(int)
 	 */
 	@Transactional
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId) {
 		return anamnesisDAO.findAnamnesisByPatientID(patientId);
 	}
-	
-	/* (non-Javadoc)
-	 * @see cz.cvut.fit.genepi.service.AnamnesisService#findLatestAnamnesisByPatientID(int)
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.service.AnamnesisService#findLatestAnamnesisByPatientID
+	 * (int)
 	 */
 	@Transactional
 	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID) {
 		return anamnesisDAO.findLatestAnamnesisByPatientID(patientID);
-	}
-	
-	@Transactional
-	public AnamnesisEntity findByID(int anamnesisID) {
-		return anamnesisDAO.findByID(AnamnesisEntity.class, anamnesisID);
-	}
-	
-	@Transactional
-	public void delete(AnamnesisEntity anamnesis){
-		anamnesisDAO.delete(anamnesis);
 	}
 }

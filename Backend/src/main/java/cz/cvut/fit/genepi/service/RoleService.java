@@ -1,13 +1,13 @@
 package cz.cvut.fit.genepi.service;
 
-import java.util.List;
+import java.io.Serializable;
 
 import cz.cvut.fit.genepi.entity.RoleEntity;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Class RoleService.
  */
-public interface RoleService {
-	public List<RoleEntity> findAll();
-	public RoleEntity findByID(int roleID);
+public interface RoleService extends GenericService<RoleEntity, Serializable> {
+	
 }

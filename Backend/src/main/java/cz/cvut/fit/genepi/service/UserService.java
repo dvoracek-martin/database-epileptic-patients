@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.service;
 
-import java.util.List;
+import java.io.Serializable;
 
 import cz.cvut.fit.genepi.entity.UserEntity;
 
@@ -8,37 +8,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 /**
  * The Interface UserService.
  */
-public interface UserService {
+public interface UserService extends GenericService<UserEntity, Serializable> {
 	
-	/**
-	 * Save.
-	 *
-	 * @param user the user
-	 */
-	public void save(UserEntity user);
-
-	/**
-	 * Find by id.
-	 *
-	 * @param id the id
-	 * @return the user entity
-	 */
-	public UserEntity findByID(int id);
-
-	/**
-	 * Find all.
-	 *
-	 * @return the list
-	 */
-	public List<UserEntity> findAll();
-
-	/**
-	 * Find user by username.
-	 *
-	 * @param username the username
-	 * @return the user entity
-	 */
 	public UserEntity findUserByUsername(String username);
-	
-	public void merge(UserEntity user);
 }

@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.service;
 
+import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.entity.AnamnesisEntity;
@@ -8,32 +9,25 @@ import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 /**
  * The Interface AnamnesisService.
  */
-public interface AnamnesisService {
-	
+public interface AnamnesisService extends
+		GenericService<AnamnesisEntity, Serializable> {
+
 	/**
 	 * Find anamnesis by patient id.
-	 *
-	 * @param patientId the patient id
+	 * 
+	 * @param patientId
+	 *            the patient id
 	 * @return the list
 	 */
 	public List<AnamnesisEntity> findAnamnesisByPatientID(int patientId);
 
 	/**
 	 * Find latest anamnesis by patient id.
-	 *
-	 * @param patientID the patient id
+	 * 
+	 * @param patientID
+	 *            the patient id
 	 * @return the anamnesis entity
 	 */
 	public AnamnesisEntity findLatestAnamnesisByPatientID(int patientID);
 
-	/**
-	 * Save.
-	 *
-	 * @param anamnesis the anamnesis
-	 */
-	public void save(AnamnesisEntity anamnesis);
-	
-	public void delete(AnamnesisEntity anamnesis);
-	
-	public AnamnesisEntity findByID(int anamnesisID);
 }

@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.service;
 
-import java.util.List;
+import java.io.Serializable;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
@@ -8,34 +8,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 /**
  * The Interface PatientService.
  */
-public interface PatientService {
+public interface PatientService extends
+		GenericService<PatientEntity, Serializable> {
 
-	/**
-	 * Save.
-	 *
-	 * @param patient the patient
-	 */
-	public void save(PatientEntity patient);
-
-	/**
-	 * Find by id.
-	 *
-	 * @param id the id
-	 * @return the patient entity
-	 */
-	public PatientEntity findByID(int id);
-
-	/**
-	 * Find all.
-	 *
-	 * @return the list
-	 */
-	public List<PatientEntity> findAll();
-
-	/**
-	 * Find patient by id.
-	 *
-	 * @param patientID the patient id
-	 * @return the patient entity
-	 */
 }
