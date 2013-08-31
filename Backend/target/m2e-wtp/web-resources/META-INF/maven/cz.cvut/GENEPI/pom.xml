@@ -209,6 +209,7 @@
 
 	</dependencies>
 	<build>
+	<finalName>GENEPI</finalName>
 		<plugins>			
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
