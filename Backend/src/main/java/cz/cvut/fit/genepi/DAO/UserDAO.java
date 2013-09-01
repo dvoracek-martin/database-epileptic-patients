@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.DAO;
 
 import java.io.Serializable;
 
+import java.util.List;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
 // TODO: Auto-generated Javadoc
@@ -16,5 +17,7 @@ public interface UserDAO extends GenericDAO<UserEntity, Serializable> {
 	 * @param username the username
 	 * @return the user entity
 	 */
-	UserEntity findUserByUsername(String username); 
+	UserEntity findUserByUsername(String username);
+
+	List<UserEntity> getDoctors(); 
 }

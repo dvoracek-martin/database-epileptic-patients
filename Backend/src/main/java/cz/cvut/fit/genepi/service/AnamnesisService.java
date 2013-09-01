@@ -9,8 +9,7 @@ import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 /**
  * The Interface AnamnesisService.
  */
-public interface AnamnesisService extends
-		GenericService<AnamnesisEntity, Serializable> {
+public interface AnamnesisService extends GenericService<AnamnesisEntity, Serializable> {
 
 	/**
 	 * Find anamnesis by patient id.

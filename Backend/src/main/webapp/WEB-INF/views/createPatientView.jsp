@@ -158,8 +158,9 @@
 							class="input-block-level" />
 						<form:errors path="contact.email" cssClass="error" />
 
-						<form:label path="doctorId">lekar-to be implemented</form:label>
-						<form:input path="doctorId" type="text" class="input-block-level" />
+						<form:label path="doctorId">osetrujici lekar-FIXME multilang</form:label>
+						<form:input path="doctorId" type="text" class="input-block-level"
+							list="doctors" />
 						<form:errors path="doctorId" cssClass="error" />
 
 						<button class="btn btn-small btn-primary" type="submit">
@@ -422,6 +423,10 @@
 		<option value="<spring:message code="country.ZA" />">
 		<option value="<spring:message code="country.ZM" />">
 		<option value="<spring:message code="country.ZW" />">
+	</datalist>
+
+	<datalist id="doctors">
+		<option value="ddd">
 	</datalist>
 
 	<!-- Javascripts imports -->

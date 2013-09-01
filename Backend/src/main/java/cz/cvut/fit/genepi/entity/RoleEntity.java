@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.ManyToMany;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -23,6 +24,9 @@ public class RoleEntity {
 	/** The authority. */
 	@Column(name = "AUTHORITY", nullable = false)
 	private String authority;
+	
+	/*@ManyToMany(targetEntity=cz.cvut.fit.genepi.entity.UserEntity.class, mappedBy="roles")
+	private UserEntity users;*/
 
 	/**
 	 * Gets the id.

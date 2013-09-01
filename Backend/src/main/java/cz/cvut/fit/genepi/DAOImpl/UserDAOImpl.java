@@ -1,10 +1,12 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
@@ -27,5 +29,15 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity, Serializable>
 		query.setParameter("user_name", username);
 		userEntity = findOne(query);
 		return userEntity;
+	}
+
+	@Override
+	public List<UserEntity> getDoctors() {
+		List<UserEntity> doctors = new ArrayList<UserEntity>();
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from UserEntity where username = :user_name");
+		
+		doctors=findMany(query);
+		return doctors;
 	}
 }
