@@ -239,9 +239,9 @@
 
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/jquery.js"></script>
-	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap-responsive.js" />"></script>
 	<script src="<c:url value="/resources/js/validation.js"/>"></script>
 	<script>
 		$(function() {

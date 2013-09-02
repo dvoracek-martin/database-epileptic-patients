@@ -121,7 +121,8 @@
 				<div class="label label-info">${user.contact.email}</div>
 				<br>
 				
-				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.edit" />">
+				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.editdata" />">
+			    <input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.changePassword" />">
 			</div>
 		</div>
 	</div>

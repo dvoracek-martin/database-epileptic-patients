@@ -70,14 +70,15 @@
 		<div class="span9">
 			<div class="hero-unit">
 				<h2>
-					<spring:message code="label.edituser" /> ${user.username}
+					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a>
 				</h2>
 				
 				<form:form method="POST" modelAttribute="user" action="/GENEPI/userEdit" commandName="user">
 						<div class="tabbable tabs-left">
               		<ul class="nav nav-tabs">
-                		<li class=""><a href="#" onclick="editPassword();">Heslo</a></li>
-                		<li class=""><a href="#" onclick="editOther();">Další údaje</a></li>
+                		<li class=""><a href="#" onclick="editName();">Jméno a příjmení</a></li>
+                		<li class=""><a href="#" onclick="editAddress();">Adresa</a></li>
+                		<li class=""><a href="#" onclick="editContact();">Kontakt</a></li>
                 		<li><button class="btn btn-small btn-primary" type="submit"
 							onclick="validation();">
 							<spring:message code="label.edit" />
@@ -92,41 +93,9 @@
 							class="input-block-level"/>	
                 		</div>
                 		
-                		<div id="editPassword" style="display: none">
-                  		<spring:message code="label.oldPassword" />
-							<br>
-							<input type="password" id="oldpassword" pattern=".{8,30}" class="input-block-level" onFocusOut="oldPasswordValidation();"/>
-							<br>
-							<div id="oldPasswordErr" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
-							
-							<spring:message code="label.newPassword" />
-							<br>
-							<input id="password" type="password"
-								pattern=".{8,30}" class="input-block-level"
-								onFocusOut="passwordValidation();"
-								title="Délka musí být mezi 8-30 znaky." />
-				
-							<div id="passwordErrEmpty" class="alert alert-error"
-								style="display: none">Toto pole nesmí zůstat prázdné!</div>
-							<div id="passwordErr" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
-
-							<spring:message code="label.passwordAgain" />
-							<input type="password" id="passwordAgain" pattern=".{8,30}"
-								class="input-block-level" onFocusOut="passwordAgainValidation();"
-								 title="Délka musí být mezi 8-30 znaky." />
-							<div id="passwordAgainErrEmpty" class="alert alert-error"
-								style="display: none">Toto pole nesmí zůstat prázdné!</div>
-							<div id="passwordAgainErrLength" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
-							<div id="passwordAgainErrComparison" class="alert alert-error"
-								style="display: none">Hesla se neshodují.</div>
-							<div id="passwordAgainSuccComparison" class="alert alert-success"
-								style="display: none">Hesla se shodují.</div>
-                		</div>
+                	
                 		
-                		<div id="editOther" style="display: none">
+                		<div id="editName" style="display: none">
                   		<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />
 						</form:label>
@@ -134,13 +103,7 @@
 							pattern="[a-žA-Ž]{1,20}" class="input-block-level"
 							onFocusOut="firstnameValidation();" required="true"
 							title="Nesmí přesáhnout délku 20 znaků." />
-						<form:errors path="contact.firstName" cssClass="alert alert-error">
-						</form:errors>
-						<div id="firstnameErrEmpty" class="alert alert-error"
-							style="display: none">Toto pole nesmí zůstat prázdné!</div>
-						<div id="firstnameErr" class="alert alert-error"
-							style="display: none">Je delší jak 20 znaků!</div>
-
+						
 						<form:label path="contact.lastName">
 							<spring:message code="label.lastname" />
 						</form:label>
@@ -148,13 +111,24 @@
 							pattern="[a-žA-Ž]{1,20}" class="input-block-level"
 							onFocusOut="lastnameValidation();" required="true"
 							title="Nesmí přesáhnout délku 20 znaků." />
+						</div>
+						
+						<!-- firstname, surname - error messages -->
+						<form:errors path="contact.firstName" cssClass="alert alert-error">
+						</form:errors>
+						<div id="firstnameErrEmpty" class="alert alert-error"
+							style="display: none">Jméno nesmí zůstat prázdné!</div>
+						<div id="firstnameErr" class="alert alert-error"
+							style="display: none">Jméno je delší jak 20 znaků!</div>
+							
 						<form:errors path="contact.lastName" cssClass="alert alert-error">
 						</form:errors>
 						<div id="lastnameErrEmpty" class="alert alert-error"
-							style="display: none">Toto pole nesmí zůstat prázdné!</div>
+							style="display: none">Příjemní nesmí zůstat prázdné!</div>
 						<div id="lastnameErr" class="alert alert-error"
-							style="display: none">Je delší jak 20 znaků!</div>
-
+							style="display: none">Příjemní je delší jak 20 znaků!</div>
+						
+						<div id="editAddress" style="display: none">
 						<form:label path="contact.addressStreet">
 							<spring:message code="label.street" />
 						</form:label>
@@ -162,10 +136,6 @@
 							type="text" pattern=".{0,30}" class="input-block-level"
 							onchanged="addressStreetValidation();"
 							title="Nesmí přesáhnout délku 30 znaků." />
-						<form:errors path="contact.addressStreet"
-							cssClass="alert alert-error" />
-						<div id="addressStreetErr" class="alert alert-error"
-							style="display: none">Je delší jak 30 znaků!</div>
 
 						<form:label path="contact.addressHn">
 							<spring:message code="label.addressHn" />
@@ -174,9 +144,6 @@
 							pattern=".{0,10}" class="input-block-level"
 							onchange="addressHnValidation();"
 							title="Nesmí přesáhnout délku 10 znaků." />
-						<form:errors path="contact.addressHn" cssClass="alert alert-error" />
-						<div id="addressHnErr" class="alert alert-error"
-							style="display: none">Je delší jak 10 znaků!</div>
 
 						<form:label path="contact.addressCity">
 							<spring:message code="label.addressCity" />
@@ -185,10 +152,6 @@
 							type="text" pattern=".{0,30}" class="input-block-level"
 							onchange="addressCityValidation();"
 							title="Nesmí přesáhnout délku 30 znaků." />
-						<form:errors path="contact.addressCity"
-							cssClass="alert alert-error" />
-						<div id="addressCityErr" class="alert alert-error"
-							style="display: none">Je delší jak 30 znaků!</div>
 
 						<form:label path="contact.addressPostalcode">
 							<spring:message code="label.addressPostalcode" />
@@ -198,10 +161,6 @@
 							class="input-block-level"
 							onchange="addressPostalcodeValidation();"
 							title="Smí obsahovat pouze číslce. Nesmí přesáhnout délku 10 číslic." />
-						<form:errors path="contact.addressPostalcode"
-							cssClass="alert alert-error" />
-						<div id="addressPostalcodeErr" class="alert alert-error"
-							style="display: none">Je delší jak 10 znaků!</div>
 
 						<form:label path="contact.addressCountry">
 							<spring:message code="label.addressCountry" />
@@ -210,11 +169,30 @@
 							type="text" pattern=".{0,20}" class="input-block-level"
 							onchange="addressCountryValidation();"
 							title="Nesmí přesáhnout délku 20 znaků." />
+						</div>
+						
+						<!-- address - error messages -->
+						<form:errors path="contact.addressStreet"
+							cssClass="alert alert-error" />
+						<div id="addressStreetErr" class="alert alert-error"
+							style="display: none">Ulice je delší jak 30 znaků!</div>
+						<form:errors path="contact.addressHn" cssClass="alert alert-error" />
+						<div id="addressHnErr" class="alert alert-error"
+							style="display: none">Číslo popisné je delší jak 10 znaků!</div>
+						<form:errors path="contact.addressCity"
+							cssClass="alert alert-error" />
+						<div id="addressCityErr" class="alert alert-error"
+							style="display: none">Město je delší jak 30 znaků!</div>
+						<form:errors path="contact.addressPostalcode"
+							cssClass="alert alert-error" />
+						<div id="addressPostalcodeErr" class="alert alert-error"
+							style="display: none">PSČ je delší jak 10 znaků!</div>
 						<form:errors path="contact.addressCountry"
 							cssClass="alert alert-error" />
 						<div id="addressCountryErr" class="alert alert-error"
 							style="display: none">Je delší jak 20 znaků!</div>
-
+						
+						<div id="editContact" style="display: none">
 						<form:label path="contact.phoneNumber">
 							<spring:message code="label.phoneNumber" />
 						</form:label>
@@ -222,18 +200,20 @@
 							type="text" pattern="[0-9+]\d{0,19}"
 							onchange="phoneNumberValidation();" class="input-block-level"
 							title="Musí být ve formátu +číslo/číslo. Nesmí přesáhnout délku 20 znaků." />
-						<form:errors path="contact.phoneNumber"
-							cssClass="alert alert-error" />
-						<div id="phoneNumberErr" class="alert alert-error"
-							style="display: none">Je delší jak 20 znaků!</div>
 
 						<form:label path="contact.email">
 							<spring:message code="label.email" />
 						</form:label>
 						<form:input id="email" path="contact.email" type="email"  value="${user.contact.email}"
 							title="example@address.com" class="input-block-level" />
+                		</div>
+                		
+                		<!-- contact - error messages -->
+                		<form:errors path="contact.phoneNumber"
+							cssClass="alert alert-error" />
+						<div id="phoneNumberErr" class="alert alert-error"
+							style="display: none">Je delší jak 20 znaků!</div>
 						<form:errors path="contact.email" cssClass="alert alert-error" />
-                	</div>
               	</div>
             </div>
 						
@@ -246,8 +226,8 @@
 
 
 	<!-- Javascripts imports -->
-	<script src="resources/js/jquery.js"></script>
-	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/validation.js"/>"></script>
 	<script src="<c:url value="/resources/js/other.js"/>"></script>

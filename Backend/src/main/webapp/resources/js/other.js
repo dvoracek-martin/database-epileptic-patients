@@ -9,12 +9,20 @@ function changePassword() {
 	}
 }
 
-function editPassword() {
-	document.getElementById('editPassword').style.display="block";
-	document.getElementById('editOther').style.display="none";
+function editName() {
+	document.getElementById('editName').style.display="block";
+	document.getElementById('editAddress').style.display="none";
+	document.getElementById('editContact').style.display="none";
 }
 
-function editOther() {
-	document.getElementById('editPassword').style.display="none";
-	document.getElementById('editOther').style.display="block";
+function editAddress() {
+	document.getElementById('editName').style.display="none";
+	document.getElementById('editAddress').style.display="block";
+	document.getElementById('editContact').style.display="none";
+}
+
+function editContact() {
+	document.getElementById('editName').style.display="none";
+	document.getElementById('editAddress').style.display="none";
+	document.getElementById('editContact').style.display="block";
 }
