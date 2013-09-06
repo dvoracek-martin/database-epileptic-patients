@@ -18,15 +18,6 @@
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 	</properties>
 	<dependencies>
-	
-		<!-- Maven plugin -->
-		<dependency>
-			<plugin>
-    				<groupId>org.apache.maven.plugins</groupId>
-    				<artifactId>maven-war-plugin</artifactId>
-    				<version>2.1.1</version>
-			</plugin>
-		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -219,7 +210,14 @@
 	</dependencies>
 	<build>
 	<finalName>GENEPI</finalName>
-		<plugins>			
+		<plugins>	
+		
+		<!-- Maven plugin -->
+			<plugin>
+    				<groupId>org.apache.maven.plugins</groupId>
+    				<artifactId>maven-war-plugin</artifactId>
+    				<version>2.1.1</version>
+			</plugin>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>
