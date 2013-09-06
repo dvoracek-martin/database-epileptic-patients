@@ -178,5 +178,10 @@ public class UserController {
 		model.addAttribute("userList", userService.findAll(UserEntity.class));
 		return "userListView";
 	}
+	
+	@RequestMapping(value = "/userChangePassword", method = RequestMethod.GET)
+	public String userChangePasswordGET(Locale locale, Model model) {
+		return "userChangePassword";
+	}
 
 }
