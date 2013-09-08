@@ -77,7 +77,7 @@
     							<a class="brand" href="#" onclick="document.location = 'userOverview/${user.id}';">${user.username}</a>
     							<ul class="nav">
       								<li><a href="#" onclick="document.location = 'userEdit/${user.id}';"><spring:message code="label.editdata" /></a></li>
-      								<li><a href="#" onclick="document.location = 'userChangePassword';"><spring:message code="label.changePassword" /></a></li>
+      								<li><a href="#" onclick="document.location = 'userChangePassword/${user.id}';"><spring:message code="label.changePassword" /></a></li>
     							</ul>
   							</div>
 						</div>
