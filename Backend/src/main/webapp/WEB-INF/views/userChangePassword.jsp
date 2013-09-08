@@ -51,7 +51,7 @@
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
-						<li><a href="j_spring_security_logout">Odhlásit</a></li>
+						<li><a href="j_spring_security_logout">Odhlásit</a></li->
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
 						<li><a href="?lang=en">EN</a></li>
@@ -69,18 +69,11 @@
 		<!-- box with content -->
 		<div class="span9">
 			<div class="hero-unit">
-				<h2>
-					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a> - <spring:message code="label.changePassword" />
-				</h2>
 				
-				<form:form method="POST" modelAttribute="user" action="/GENEPI/userEdit" commandName="user">
-							<spring:message code="label.oldPassword" />
-							<br>
-							<input type="password" id="oldpassword" pattern=".{8,30}" class="input-block-level" onFocusOut="oldPasswordValidation();"/>
-							<br>
-							<div id="oldPasswordErr" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
-							
+				<h2>
+					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a>
+				</h2>	
+				<form:form method="POST" modelAttribute="user" action="/GENEPI/userChangePassword/${user.id}" commandName="user">		
 							<spring:message code="label.newPassword" />
 							<br>
 							<input id="password" type="password"
@@ -105,6 +98,10 @@
 								style="display: none">Hesla se neshodují.</div>
 							<div id="passwordAgainSuccComparison" class="alert alert-success"
 								style="display: none">Hesla se shodují.</div>	
+								
+							<button class="btn btn-small btn-primary" type="submit"
+								onclick="validation();">
+							<spring:message code="label.change" />
 				</form:form>
 
 				
