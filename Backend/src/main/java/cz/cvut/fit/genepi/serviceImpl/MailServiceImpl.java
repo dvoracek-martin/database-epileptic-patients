@@ -22,15 +22,15 @@ public class MailServiceImpl implements MailService {
 
 	private static final String SMTP_HOST_NAME = "smtp.gmail.com";
 	private static final String SMTP_HOST_PORT = "587";
-	private static final String SMTP_AUTH_USER = "gmailUserName";
-	private static final String SMTP_AUTH_PWD = "gmailUserPassword";
-	
+	private static final String SMTP_AUTH_USER = "genepimailbot";
+	private static final String SMTP_AUTH_PWD = "Kobliha0123";
 
-	public void send(String attachmentName) throws Exception {
-		new MailServiceImpl().sendMail(attachmentName);
+	public void send(String attachmentName, String recipient) throws Exception {
+		new MailServiceImpl().sendMail(attachmentName, recipient);
 	}
-	
-	public void sendMail(String attachmentName) throws Exception {
+
+	public void sendMail(String attachmentName, String recipient)
+			throws Exception {
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -43,9 +43,9 @@ public class MailServiceImpl implements MailService {
 		Transport transport = session.getTransport();
 
 		MimeMessage message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("sentFrom@gmail.com"));
+		message.setFrom(new InternetAddress("genepi_mailbot@gmail.com"));
 		message.setRecipient(Message.RecipientType.TO, new InternetAddress(
-				"sentTo@gmail.com"));
+				"Dworza@gmail.com"));
 		message.setSubject("Some subject");
 		message.setSentDate(new Date());
 
