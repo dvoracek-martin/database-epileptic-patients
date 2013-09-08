@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -25,11 +26,18 @@ public class MailServiceImpl implements MailService {
 	private static final String SMTP_AUTH_USER = "genepimailbot";
 	private static final String SMTP_AUTH_PWD = "Kobliha0123";
 
-	public void send(String attachmentName, String recipient) throws Exception {
-		new MailServiceImpl().sendMail(attachmentName, recipient);
+	private String MessageType;
+
+	public String getMessageType() {
+		return MessageType;
 	}
 
-	public void sendMail(String attachmentName, String recipient)
+	public void setMessageType(String messageType) {
+		MessageType = messageType;
+	}
+
+
+	public void sendMail(String attachmentName, String recipient, HashMap<String, String> map)
 			throws Exception {
 
 		Properties props = new Properties();
@@ -50,7 +58,17 @@ public class MailServiceImpl implements MailService {
 		message.setSentDate(new Date());
 
 		MimeBodyPart messagePart = new MimeBodyPart();
-		messagePart.setText("Some text displayed in the body of an email");
+		if (getMessageType().equals("newPassword")) {
+			messagePart.setText("some text" + map.get("newPassword"));
+		} else if (getMessageType().equals("newPassword")) {
+			messagePart.setText("some text");
+		} else if (getMessageType().equals("newPassword")) {
+			messagePart.setText("some text");
+		} else if (getMessageType().equals("newPassword")) {
+			messagePart.setText("some text");
+		} else {
+			messagePart.setText("error");
+		}
 
 		//
 		// Set the email attachment file

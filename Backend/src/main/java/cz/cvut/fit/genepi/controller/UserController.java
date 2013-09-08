@@ -198,7 +198,7 @@ public class UserController {
 		model.addAttribute("passwordChanged", true);
 		MailServiceImpl mailService = new MailServiceImpl();
 		try {
-			mailService.send(null, user.getContact().getEmail());
+			mailService.sendMail(null, user.getContact().getEmail(),null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
