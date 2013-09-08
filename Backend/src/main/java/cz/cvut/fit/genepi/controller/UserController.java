@@ -24,6 +24,7 @@ import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.serviceImpl.MailServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -182,9 +183,9 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
-	public String userChangePasswordGET(Locale locale, Model model,
-			@PathVariable("userID") Integer userID) {
-
+	public String userChangePasswordGET(Locale locale, Model model,			@PathVariable("userID") Integer userID) {
+		UserEntity user = userService.findByID(UserEntity.class, userID);
+		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
 		return "userChangePassword";
 	}
@@ -196,6 +197,12 @@ public class UserController {
 				+ user.getUsername() + "}"));
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
+		MailServiceImpl mailService = new MailServiceImpl();
+		try {
+			mailService.send(null, user.getContact().getEmail());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return "redirect:/passwordChanged";
 	}
 }
