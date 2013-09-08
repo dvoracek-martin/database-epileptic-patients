@@ -132,8 +132,6 @@ public class UserController {
 		UserEntity userTmp = new UserEntity();
 		userTmp.setContact(user.getContact());
 
-		System.out.println(user.getContact().getId());
-
 		model.addAttribute("listOfRoles", listOfRoles);
 		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
 		model.addAttribute("user", user);
@@ -183,7 +181,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
-	public String userChangePasswordGET(Locale locale, Model model,			@PathVariable("userID") Integer userID) {
+	public String userChangePasswordGET(Locale locale, Model model,
+			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
