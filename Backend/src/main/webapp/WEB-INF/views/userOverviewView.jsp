@@ -122,7 +122,7 @@
 				<br>
 				
 				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.editdata" />">
-			    <input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.changePassword" />">
+			    <input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userChangePassword/${user.id}';" value="<spring:message code="label.changePassword" />">
 			</div>
 		</div>
 	</div>
