@@ -31,7 +31,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		<!-- START: Spring web -->
+		<!-- Spring web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -52,9 +52,8 @@
 			<artifactId>spring-orm</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		<!-- END: Spring web -->
 
-		<!-- START: Spring security -->
+		<!-- Spring security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
@@ -77,7 +76,6 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
-		<!-- END: Spring security -->
 
 		<!-- AspectJ -->
 		<dependency>
@@ -177,7 +175,7 @@
 			<version>4.2.2.Final</version>
 		</dependency>
 
-		<!-- START: form validation -->
+		<!-- Form validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -189,7 +187,6 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.0.1.Final</version>
 		</dependency>
-		<!-- END: form validation -->
 
 		<!-- C3PO -->
 		<dependency>
@@ -205,12 +202,24 @@
 			<version>1.8</version>
 		</dependency>
 
-
+		<!-- mail service -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		</dependency>
 
 	</dependencies>
+
 	<build>
-	<finalName>GENEPI</finalName>
-		<plugins>			
+		<finalName>GENEPI</finalName>
+		<plugins>
+			<!-- Maven plugin -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+			</plugin>
 			<plugin>
 				<artifactId>maven-eclipse-plugin</artifactId>
 				<version>2.9</version>

@@ -105,7 +105,7 @@ public class UserController {
 	@RequestMapping(value = "/userOverview/{userID}", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(UserEntity.class,userID);
+		UserEntity user = userService.findByID(UserEntity.class, userID);
 		model.addAttribute("user", user);
 		return "userOverviewView";
 	}
@@ -113,7 +113,7 @@ public class UserController {
 	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(UserEntity.class,userID);
+		UserEntity user = userService.findByID(UserEntity.class, userID);
 
 		List<RoleEntity> listOfRoles = new ArrayList<RoleEntity>();
 		listOfRoles = roleService.findAll(RoleEntity.class);
@@ -124,7 +124,8 @@ public class UserController {
 				.findAllUserRolesByUserID(userID);
 
 		for (UserRoleEntity i : listOfAssignedUserRoles) {
-			listOfAssignedRoles.add((roleService.findByID(RoleEntity.class,i.getRole_id())));
+			listOfAssignedRoles.add((roleService.findByID(RoleEntity.class,
+					i.getRole_id())));
 		}
 
 		UserEntity userTmp = new UserEntity();
@@ -145,9 +146,10 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "userEditView";
 		}
-	
+
 		ContactEntity contact = new ContactEntity();
-		contact.setId(userService.findByID(UserEntity.class,user.getId()).getContact().getId());
+		contact.setId(userService.findByID(UserEntity.class, user.getId())
+				.getContact().getId());
 
 		contact.setFirstName(user.getContact().getFirstName());
 		contact.setLastName(user.getContact().getLastName());
@@ -156,7 +158,7 @@ public class UserController {
 		contact.setAddressCity(user.getContact().getAddressCity());
 		contact.setAddressPostalcode(user.getContact().getAddressPostalcode());
 		contact.setAddressCountry(user.getContact().getAddressCountry());
-		contact.setPhoneNumber(user.getContact().getPhoneNumber());		
+		contact.setPhoneNumber(user.getContact().getPhoneNumber());
 		contact.setEmail(user.getContact().getEmail());
 
 		contactService.merge(contact);
@@ -178,10 +180,22 @@ public class UserController {
 		model.addAttribute("userList", userService.findAll(UserEntity.class));
 		return "userListView";
 	}
-	
-	@RequestMapping(value = "/userChangePassword", method = RequestMethod.GET)
-	public String userChangePasswordGET(Locale locale, Model model) {
+
+	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
+	public String userChangePasswordGET(Locale locale, Model model,
+			@PathVariable("userID") Integer userID) {
+
+		model.addAttribute("passwordChanged", false);
 		return "userChangePassword";
 	}
 
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
+			@ModelAttribute("newPassword") String newPassword, Model model) {
+		user.setPassword(DigestUtils.sha256Hex(newPassword + "{"
+				+ user.getUsername() + "}"));
+		userService.save(user);
+		model.addAttribute("passwordChanged", true);
+		return "redirect:/passwordChanged";
+	}
 }
