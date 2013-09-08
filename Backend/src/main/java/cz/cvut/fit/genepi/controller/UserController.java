@@ -189,7 +189,7 @@ public class UserController {
 		return "userChangePassword";
 	}
 
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/userChangePassword", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
 			@ModelAttribute("newPassword") String newPassword, Model model) {
 		user.setPassword(DigestUtils.sha256Hex(newPassword + "{"
@@ -202,6 +202,6 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/passwordChanged";
+		return "redirect:/userChangePassword/"+user.getId()	;
 	}
 }
