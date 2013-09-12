@@ -76,10 +76,12 @@
 				<form:form method="POST" modelAttribute="user" action="/GENEPI/changePassword" commandName="user">		
 							<spring:message code="label.newPassword" />
 							<br>
-							<input id="password" type="password"
-								pattern=".{8,30}" class="input-block-level"
-								onFocusOut="passwordValidation();"
-								title="Délka musí být mezi 8-30 znaky." />
+							<form:input id="password" path="password" type="password"
+							pattern=".{8,30}" class="input-block-level"
+							onFocusOut="passwordValidation();" required="true"
+							title="Délka musí být mezi 8-30 znaky." />
+						<form:errors path="password" cssClass="alert alert-error">
+						</form:errors>
 				
 							<div id="passwordErrEmpty" class="alert alert-error"
 								style="display: none">Toto pole nesmí zůstat prázdné!</div>
