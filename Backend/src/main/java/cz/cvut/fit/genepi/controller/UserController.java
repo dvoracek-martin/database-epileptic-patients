@@ -8,6 +8,7 @@ import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +25,12 @@ import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
-import cz.cvut.fit.genepi.serviceImpl.MailServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class UserController.
  */
+@Scope("session")
 @Controller
 public class UserController {
 
@@ -180,6 +181,7 @@ public class UserController {
 		return "userListView";
 	}
 
+	
 	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
@@ -189,16 +191,20 @@ public class UserController {
 		return "userChangePassword";
 	}
 
+	
 	@RequestMapping(value = "/userChangePassword", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
-			@ModelAttribute("newPassword") String newPassword, Model model) {
-		user.setPassword(DigestUtils.sha256Hex(newPassword + "{"
-				+ user.getUsername() + "}"));
-		userService.save(user);
+			 Model model) {
+		System.out.println(user.getId()+" ID");
+ 		System.out.println(user.getPassword()+" USERNAME");
+	   //	user.setPassword(DigestUtils.sha256Hex(newPassword + "{"
+			//	+ user.getUsername() + "}"));
+		// don't save it yet - it must be fixed yet
+		// userService.save(user);
 		model.addAttribute("passwordChanged", true);
-		MailServiceImpl mailService = new MailServiceImpl();
+		//MailServiceImpl mailService = new MailServiceImpl();
 		try {
-			mailService.sendMail(null, user.getContact().getEmail(),null);
+		//	mailService.sendMail(null, user.getContact().getEmail(),null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
