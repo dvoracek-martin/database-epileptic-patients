@@ -73,7 +73,7 @@
 				<h2>
 					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a> - <spring:message code="label.changePassword" /> 
 				</h2>	
-				<form:form method="POST" modelAttribute="user" action="/GENEPI/changePassword" commandName="user">		
+				<form:form method="POST" modelAttribute="user" action="/GENEPI/userChangePassword" commandName="user">		
 							<spring:message code="label.newPassword" />
 							<br>
 							<form:input id="password" path="password" type="password"
