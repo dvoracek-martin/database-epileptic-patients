@@ -75,6 +75,17 @@
 				</h2>	
 				<form:form method="POST" modelAttribute="user" action="/GENEPI/userChangePassword" commandName="user">		
 							<form:hidden path="id" id="id" />
+							<form:hidden path="contact" id="contact" />
+							<form:hidden path="contact.firstName" id="firstName" />
+							<form:hidden path="contact.lastName" id="lastName" />
+							<form:hidden path="contact.addressStreet" id="addressStreet" />
+							<form:hidden path="contact.addressHn" id="addressHn" />
+							<form:hidden path="contact.addressCity" id="addressCity" />
+							<form:hidden path="contact.addressPostalcode" id="addressPostalcode" />
+							<form:hidden path="contact.addressCountry" id="addressCountry" />
+							<form:hidden path="contact.phoneNumber" id="phoneNumber" />
+							<form:hidden path="contact.email" id="email" />
+							
 							<spring:message code="label.newPassword" />
 							<br>
 							<form:input id="password" path="password" type="password"
