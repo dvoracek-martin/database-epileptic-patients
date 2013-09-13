@@ -89,7 +89,6 @@ public class AnamnesisController {
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisID));
 		return "redirect:/anamnesis/" + patientID;
-
 	}
 
 	/**

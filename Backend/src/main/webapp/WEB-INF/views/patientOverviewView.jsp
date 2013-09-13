@@ -93,7 +93,7 @@
 					</div>
 					<div>
 						<h3 class="pull-right">
-							<a href="underConstruction">Export pacienta</a>
+							<a href="<c:url value="/patientExport/${patient.id}" />">Export pacienta</a>
 						</h3>
 					</div>
 				</div>

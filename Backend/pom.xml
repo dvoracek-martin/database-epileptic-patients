@@ -209,6 +209,15 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- libs for export -->
+
+		<!-- to pdf -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>4.2.1</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>

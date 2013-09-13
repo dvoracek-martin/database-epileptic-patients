@@ -137,7 +137,7 @@
 						<tr>
 							<td>Vysetreni dne: ${anamnesis.date}</td>
 							<td><a
-								href="<c:url value="/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
+								href="<c:url value="${patient.id}/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
 						</tr>
 						<tr>
 							<td></td>

@@ -36,31 +36,35 @@ public class PatientController {
 	/** The anamnesis service. */
 	@Autowired
 	private AnamnesisService anamnesisService;
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	/**
 	 * Creates the patient get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
 		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		doctors =userService.getDoctors();
+		doctors = userService.getDoctors();
 		model.addAttribute("patient", new PatientEntity());
-		model.addAttribute("doctors",doctors);
+		model.addAttribute("doctors", doctors);
 		return "createPatientView";
 	}
 
 	/**
 	 * Adds the patient.
-	 *
-	 * @param patient the patient
-	 * @param result the result
+	 * 
+	 * @param patient
+	 *            the patient
+	 * @param result
+	 *            the result
 	 * @return the string
 	 */
 	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
@@ -78,10 +82,13 @@ public class PatientController {
 
 	/**
 	 * Patient overview post.
-	 *
-	 * @param id the id
-	 * @param locale the locale
-	 * @param model the model
+	 * 
+	 * @param id
+	 *            the id
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
@@ -94,16 +101,20 @@ public class PatientController {
 
 	/**
 	 * Patient overview get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,patientID);
+		PatientEntity patient = patientService.findByID(PatientEntity.class,
+				patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis",
 				anamnesisService.findLatestAnamnesisByPatientID(patientID));
@@ -112,15 +123,34 @@ public class PatientController {
 
 	/**
 	 * Patients list get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patientsList", method = RequestMethod.GET)
 	public String patientsListGET(Locale locale, Model model) {
-		model.addAttribute("patientList", patientService.findAll(PatientEntity.class));
+		model.addAttribute("patientList",
+				patientService.findAll(PatientEntity.class));
 		return "patientsListView";
 	}
 
+	@RequestMapping(value = "/patientDelete/{patientID}", method = RequestMethod.GET)
+	public String patientDeleteGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID) {
+		patientService.delete(patientService.findByID(PatientEntity.class,
+				patientID));
+		return "patientOverviewView";
+	}
+
+	@RequestMapping(value = "/patientExport/{patientID}", method = RequestMethod.GET)
+	public String patientExportGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID) {
+
+
+		
+		return "patientOverviewView";
+	}
 }
