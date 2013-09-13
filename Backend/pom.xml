@@ -218,6 +218,14 @@
 			<version>5.0.6</version>
 		</dependency>
 
+		<!-- to xsl -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.9</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
