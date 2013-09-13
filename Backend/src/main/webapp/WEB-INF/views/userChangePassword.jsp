@@ -74,8 +74,11 @@
 					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a> - <spring:message code="label.changePassword" /> 
 				</h2>	
 				<form:form method="POST" modelAttribute="user" action="/GENEPI/userChangePassword" commandName="user">		
+							
+							<!-- Hidden form for retrieving user's properties -->
 							<form:hidden path="id" id="id" />
-							<form:hidden path="contact" id="contact" />
+							<form:hidden path="username" id="username" />
+							<form:hidden path="password" id="password" />
 							<form:hidden path="contact.firstName" id="firstName" />
 							<form:hidden path="contact.lastName" id="lastName" />
 							<form:hidden path="contact.addressStreet" id="addressStreet" />
