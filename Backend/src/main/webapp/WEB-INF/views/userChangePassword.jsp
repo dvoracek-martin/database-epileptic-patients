@@ -7,7 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title><spring:message code="label.edituser" /> - <spring:message code="label.changePassword" /></title>
+<title><spring:message code="label.edituser" /> - <spring:message
+		code="label.changePassword" /></title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico"/>">
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
@@ -31,7 +32,8 @@
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
 				</a> <a class="brand" href="#">GENEPI - <spring:message
-						code="label.edituser" /> - <spring:message code="label.changePassword" /></a>
+						code="label.edituser" /> - <spring:message
+						code="label.changePassword" /></a>
 			</div>
 
 		</div>
@@ -51,7 +53,7 @@
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
 						<li><a href="myProfile">Profil</a></li>
-						<li><a href="j_spring_security_logout">Odhlásit</a></li->
+						<li><a href="j_spring_security_logout">Odhlásit</a> </li->
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
 						<li><a href="?lang=en">EN</a></li>
@@ -69,59 +71,77 @@
 		<!-- box with content -->
 		<div class="span9">
 			<div class="hero-unit">
-				
-				<h2>
-					<spring:message code="label.edituser" /> <a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a> - <spring:message code="label.changePassword" /> 
-				</h2>	
-				<form:form method="POST" modelAttribute="user" action="/GENEPI/userChangePassword" commandName="user">		
-							
-							<!-- Hidden form for retrieving user's properties -->
-							<form:hidden path="id" id="id" />
-							<form:hidden path="username" id="username" />
-							<form:hidden path="password" id="password" />
-							<form:hidden path="contact.firstName" id="firstName" />
-							<form:hidden path="contact.lastName" id="lastName" />
-							<form:hidden path="contact.addressStreet" id="addressStreet" />
-							<form:hidden path="contact.addressHn" id="addressHn" />
-							<form:hidden path="contact.addressCity" id="addressCity" />
-							<form:hidden path="contact.addressPostalcode" id="addressPostalcode" />
-							<form:hidden path="contact.addressCountry" id="addressCountry" />
-							<form:hidden path="contact.phoneNumber" id="phoneNumber" />
-							<form:hidden path="contact.email" id="email" />
-							
-							<spring:message code="label.newPassword" />
-							<br>
-							<form:input id="password" path="password" type="password"
-							pattern=".{8,30}" class="input-block-level"
-							onFocusOut="passwordValidation();" required="true"
-							title="Délka musí být mezi 8-30 znaky." />
-						<form:errors path="password" cssClass="alert alert-error">
-						</form:errors>
-				
-							<div id="passwordErrEmpty" class="alert alert-error"
-								style="display: none">Toto pole nesmí zůstat prázdné!</div>
-							<div id="passwordErr" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
 
-							<spring:message code="label.passwordAgain" />
-							<input type="password" id="passwordAgain" pattern=".{8,30}"
-								class="input-block-level" onFocusOut="passwordAgainValidation();"
-								 title="Délka musí být mezi 8-30 znaky." />
-							<div id="passwordAgainErrEmpty" class="alert alert-error"
-								style="display: none">Toto pole nesmí zůstat prázdné!</div>
-							<div id="passwordAgainErrLength" class="alert alert-error"
-								style="display: none">Délka není mezi 8-30 znaky!</div>
-							<div id="passwordAgainErrComparison" class="alert alert-error"
-								style="display: none">Hesla se neshodují.</div>
-							<div id="passwordAgainSuccComparison" class="alert alert-success"
-								style="display: none">Hesla se shodují.</div>	
-								
-							<button class="btn btn-small btn-primary" type="submit"
-								onclick="validation();">
-							<spring:message code="label.change" />
+				<h2>
+					<spring:message code="label.edituser" />
+					<a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a>
+					-
+					<spring:message code="label.changePassword" />
+				</h2>
+				<form:form method="POST" modelAttribute="user"
+					action="/GENEPI/userChangePassword" commandName="user">
+
+
+
+					<spring:message code="label.newPassword" />
+					<br>
+					<form:input id="password" path="password" type="password"
+						pattern=".{8,30}" class="input-block-level"
+						onFocusOut="passwordValidation();" required="true"
+						title="Délka musí být mezi 8-30 znaky." />
+					<form:errors path="password" cssClass="alert alert-error">
+					</form:errors>
+
+					<div id="passwordErrEmpty" class="alert alert-error"
+						style="display: none">Toto pole nesmí zůstat prázdné!</div>
+					<div id="passwordErr" class="alert alert-error"
+						style="display: none">Délka není mezi 8-30 znaky!</div>
+
+					<spring:message code="label.passwordAgain" />
+					<input type="password" id="passwordAgain" pattern=".{8,30}"
+						class="input-block-level" onFocusOut="passwordAgainValidation();"
+						title="Délka musí být mezi 8-30 znaky." />
+					<div id="passwordAgainErrEmpty" class="alert alert-error"
+						style="display: none">Toto pole nesmí zůstat prázdné!</div>
+					<div id="passwordAgainErrLength" class="alert alert-error"
+						style="display: none">Délka není mezi 8-30 znaky!</div>
+					<div id="passwordAgainErrComparison" class="alert alert-error"
+						style="display: none">Hesla se neshodují.</div>
+					<div id="passwordAgainSuccComparison" class="alert alert-success"
+						style="display: none">Hesla se shodují.</div>
+						
+						
+
+						
+						
+					<!-- Hidden form for retrieving user's properties -->
+					<!-- --------------------------------------------- -->
+					<form:hidden path="id" id="id" />
+					<form:hidden path="username" id="username" />
+					<!--form:hidden path="password" id="password" /-->
+					<form:hidden path="contact.id" id="contact.id" />
+					<form:hidden path="contact.firstName" id="contact.firstName" />
+					<form:hidden path="contact.lastName" id="contact.lastName" />
+					<form:hidden path="contact.addressStreet"
+						id="contact.addressStreet" />
+					<form:hidden path="contact.addressHn" id="contact.addressHn" />
+				
+					<form:hidden path="contact.addressCity" id="contact.addressCity" />
+					<form:hidden path="contact.addressPostalcode"
+						id="contact.addressPostalcode" />
+					<form:hidden path="contact.addressCountry"
+						id="contact.addressCountry" />
+					<form:hidden path="contact.phoneNumber" id="contact.phoneNumber" />
+					<form:hidden path="contact.email" id="contact.email" />
+					<!-- --------------------------------------------- -->
+					<!-- -----------END OF THE HIDDEN FORM------------ -->
+
+					<button class="btn btn-small btn-primary" type="submit"
+						onclick="validation();">
+						<spring:message code="label.change" />
 				</form:form>
 
-				
+
 			</div>
 		</div>
 	</div>
@@ -129,7 +149,7 @@
 
 	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-	
+
 	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/validation.js"/>"></script>
 	<script src="<c:url value="/resources/js/other.js"/>"></script>
