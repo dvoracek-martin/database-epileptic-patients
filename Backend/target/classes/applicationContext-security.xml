@@ -19,6 +19,8 @@
 		<security:form-login login-page="/login"
 			authentication-failure-url="/denied" default-target-url="/" />
 		<security:logout logout-success-url="/login" />
+		<security:remember-me key="some!Key$#To7Generate1Password0"
+			token-validity-seconds="1209600" />
 	</security:http>
 	<!-- authentication from database -->
 	<security:authentication-manager>
@@ -32,4 +34,5 @@
 				authorities-by-username-query="SELECT u.username, r.authority FROM user u, user_role ur, role r WHERE u.id=ur.user_id AND ur.role_id=r.id AND u.username=?" />
 		</security:authentication-provider>
 	</security:authentication-manager>
+
 </beans>

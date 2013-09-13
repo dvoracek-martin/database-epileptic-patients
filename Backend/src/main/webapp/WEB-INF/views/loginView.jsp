@@ -79,6 +79,14 @@
 					class="input-block-level" placeholder="Heslo">
 				<button class="btn btn-large btn-primary" type="submit">Přihlásit</button>
 			</form>
+
+			<div class="span3">
+				<span><spring:message code="label.rememberMe" /></span>
+			</div>
+
+			<div class="span4">
+				<input type="checkbox" name="_spring_security_remember_me" />
+			</div>
 		</div>
 	</div>
 
