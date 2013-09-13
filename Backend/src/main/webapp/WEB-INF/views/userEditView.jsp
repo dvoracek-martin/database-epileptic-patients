@@ -214,6 +214,16 @@
 						<div id="phoneNumberErr" class="alert alert-error"
 							style="display: none">Je delší jak 20 znaků!</div>
 						<form:errors path="contact.email" cssClass="alert alert-error" />
+						
+						
+						
+						<!-- Hidden form for retrieving user's properties -->
+					<!-- --------------------------------------------- -->
+					<form:hidden path="contact.id" id="contact.id" />
+					<!-- --------------------------------------------- -->
+					<!-- -----------END OF THE HIDDEN FORM------------ -->
+					
+					
               	</div>
             </div>
 						

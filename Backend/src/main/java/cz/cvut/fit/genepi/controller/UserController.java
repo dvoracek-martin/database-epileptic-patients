@@ -146,7 +146,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "userEditView";
 		}
-
+		
 		ContactEntity contact = new ContactEntity();
 		contact.setId(userService.findByID(UserEntity.class, user.getId())
 				.getContact().getId());
@@ -196,7 +196,6 @@ public class UserController {
 			Model model) { 
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 				+ user.getUsername() + "}"));
-		
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
 		// MailServiceImpl mailService = new MailServiceImpl();
@@ -205,6 +204,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 		return "redirect:/userChangePassword/" + user.getId();
 	}
 }
