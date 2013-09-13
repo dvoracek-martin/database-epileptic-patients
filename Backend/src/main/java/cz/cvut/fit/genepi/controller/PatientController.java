@@ -21,6 +21,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.serviceImpl.ExportServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -148,9 +149,7 @@ public class PatientController {
 	@RequestMapping(value = "/patientExport/{patientID}", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-
-
-		
+		new ExportServiceImpl("pdf");
 		return "patientOverviewView";
 	}
 }

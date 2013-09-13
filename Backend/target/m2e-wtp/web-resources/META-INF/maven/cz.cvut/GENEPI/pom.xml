@@ -209,6 +209,15 @@
 			<version>1.4</version>
 		</dependency>
 
+		<!-- libs for export -->
+
+		<!-- to pdf -->
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>itextpdf</artifactId>
+			<version>5.0.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
