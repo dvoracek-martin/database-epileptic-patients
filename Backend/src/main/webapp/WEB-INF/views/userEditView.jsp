@@ -217,7 +217,7 @@
 						
 						
 						
-						<!-- Hidden form for retrieving user's properties -->
+					<!-- Hidden form for retrieving user's properties -->
 					<!-- --------------------------------------------- -->
 					<form:hidden path="contact.id" id="contact.id" />
 					<!-- --------------------------------------------- -->
