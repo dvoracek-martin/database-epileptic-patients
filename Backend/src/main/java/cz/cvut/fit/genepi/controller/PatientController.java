@@ -95,7 +95,6 @@ public class PatientController {
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
 	public String patientOverviewPOST(@RequestParam("id") int id,
 			Locale locale, Model model) {
-		/* this.id = id; */
 		model.addAttribute("id", id);
 		return "patientOverviewView";
 	}
@@ -148,8 +147,9 @@ public class PatientController {
 
 	@RequestMapping(value = "/patientExport/{patientID}", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		new ExportServiceImpl("pdf");
-		return "patientOverviewView";
+			@PathVariable("patientID") Integer patientId) {
+		new ExportServiceImpl("xlsx",patientId);
+		return "redirect:/patientOverview/"
+				+ Integer.toString(patientId);
 	}
 }

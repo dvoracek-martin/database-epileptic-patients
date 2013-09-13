@@ -35,7 +35,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 			Font.BOLD);
 
-	public void export() throws FileNotFoundException, DocumentException {
+	public void export(int pateintID) throws FileNotFoundException, DocumentException {
 		Document document = new Document();
 		PdfWriter.getInstance(document, new FileOutputStream(FILE));
 		document.open();
