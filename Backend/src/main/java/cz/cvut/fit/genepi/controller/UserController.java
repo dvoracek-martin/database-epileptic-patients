@@ -58,6 +58,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String createUserGET(Locale locale, Model model) {
+		List<RoleEntity> listOfPossibleRoles = roleService.findAll(RoleEntity.class);
+		List<RoleEntity> listOfSelectedRoles = new ArrayList<RoleEntity>();
+		model.addAttribute("listOfPossibleRoles",listOfPossibleRoles);
+		model.addAttribute("listOfSelectedRoles", listOfSelectedRoles);
 		model.addAttribute("user", new UserEntity());
 		model.addAttribute("isUnique", "unique");
 		return "createUserView";
@@ -86,7 +90,20 @@ public class UserController {
 			} else {
 				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 						+ user.getUsername() + "}"));
+				
 				userService.save(user);
+				List<Integer> listOfRoles = new ArrayList<Integer>();
+				listOfRoles.add(1);
+				List<UserRoleEntity> listOfUserRoles = new ArrayList<UserRoleEntity>();
+				for (int i : listOfRoles) {
+					UserRoleEntity userRole = new UserRoleEntity();
+					userRole.setUser_id(user.getId());
+					userRole.setRole_id(i);
+					listOfUserRoles.add(userRole);
+				}
+				for (UserRoleEntity userRole : listOfUserRoles){
+					userRoleService.save(userRole);
+				}
 				return "redirect:/userOverview/"
 						+ Integer.toString(user.getId());
 			}
@@ -146,7 +163,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "userEditView";
 		}
-		
+
 		ContactEntity contact = new ContactEntity();
 		contact.setId(userService.findByID(UserEntity.class, user.getId())
 				.getContact().getId());
@@ -187,13 +204,13 @@ public class UserController {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
-		
+
 		return "userChangePassword";
 	}
 
 	@RequestMapping(value = "/userChangePassword", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
-			Model model) { 
+			Model model) {
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 				+ user.getUsername() + "}"));
 		userService.save(user);
@@ -204,7 +221,7 @@ public class UserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return "redirect:/userChangePassword/" + user.getId();
 	}
 }

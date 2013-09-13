@@ -230,6 +230,8 @@
 							onclick="validation();">
 							<spring:message code="label.add" />
 						</button>
+						
+						<form:hidden path="id" id="id" />
 					</form:form>
 
 				</div>
