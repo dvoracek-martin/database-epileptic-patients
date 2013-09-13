@@ -181,33 +181,30 @@ public class UserController {
 		return "userListView";
 	}
 
-	
 	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
+		
 		return "userChangePassword";
 	}
 
-	
 	@RequestMapping(value = "/userChangePassword", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
-			 Model model) {
-		System.out.println(user.getId()+" ID");
- 		System.out.println(user.getPassword()+" USERNAME");
-	   //	user.setPassword(DigestUtils.sha256Hex(newPassword + "{"
-			//	+ user.getUsername() + "}"));
-		// don't save it yet - it must be fixed yet
-		// userService.save(user);
+			Model model) { 
+		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
+				+ user.getUsername() + "}"));
+		
+		userService.save(user);
 		model.addAttribute("passwordChanged", true);
-		//MailServiceImpl mailService = new MailServiceImpl();
+		// MailServiceImpl mailService = new MailServiceImpl();
 		try {
-		//	mailService.sendMail(null, user.getContact().getEmail(),null);
+			// mailService.sendMail(null, user.getContact().getEmail(),null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "redirect:/userChangePassword/"+user.getId()	;
+		return "redirect:/userChangePassword/" + user.getId();
 	}
 }
