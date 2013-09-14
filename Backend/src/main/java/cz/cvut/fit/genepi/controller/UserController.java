@@ -57,7 +57,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
-	public String createUserGET(Locale locale, Model model) {
+	public String createUserGET(Model model) {
 		List<RoleEntity> listOfPossibleRoles = roleService
 				.findAll(RoleEntity.class);
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
