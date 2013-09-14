@@ -200,12 +200,13 @@
 						<form:label path="contact.addressCountry">
 							<spring:message code="label.addressCountry" />
 						</form:label>
-						
-						<form:select id="addressCountry" name="countries" path="contact.addressCountry">
-							<form:option value="Afghanistan" label="Afghanistan"/>
-							<form:option value="CR" label="Ĺland Islands"/>
+
+						<form:select id="addressCountry" name="countries"
+							path="contact.addressCountry">
+							<form:option value="Afghanistan" label="Afghanistan" />
+							<form:option value="CR" label="Ĺland Islands" />
 						</form:select>
-						
+
 						<form:label path="contact.phoneNumber">
 							<spring:message code="label.phoneNumber" />
 						</form:label>
@@ -226,11 +227,18 @@
 						<form:errors path="contact.email" cssClass="alert alert-error" />
 
 
+
+						<c:forEach var="person" items="${listOfPossibleRoles}">							
+								<td>${person.authority}</td> </br>							
+						</c:forEach>
+	
 						<button class="btn btn-small btn-primary" type="submit"
 							onclick="validation();">
 							<spring:message code="label.add" />
 						</button>
 						
+						
+
 						<form:hidden path="id" id="id" />
 					</form:form>
 

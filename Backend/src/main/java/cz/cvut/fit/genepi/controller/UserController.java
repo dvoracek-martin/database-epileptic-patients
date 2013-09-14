@@ -58,10 +58,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
 	public String createUserGET(Locale locale, Model model) {
-		List<RoleEntity> listOfPossibleRoles = roleService.findAll(RoleEntity.class);
-		List<RoleEntity> listOfSelectedRoles = new ArrayList<RoleEntity>();
-		model.addAttribute("listOfPossibleRoles",listOfPossibleRoles);
-		model.addAttribute("listOfSelectedRoles", listOfSelectedRoles);
+		List<RoleEntity> listOfPossibleRoles = roleService
+				.findAll(RoleEntity.class);
+		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
+		model.addAttribute("listOfSelectedRoles", new ArrayList<RoleEntity>());
 		model.addAttribute("user", new UserEntity());
 		model.addAttribute("isUnique", "unique");
 		return "createUserView";
@@ -79,8 +79,12 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String addUserGET(@ModelAttribute("user") @Valid UserEntity user,
+	public String addUserGET(
+			@ModelAttribute("user") @Valid UserEntity user,
+			@PathVariable("listOfPossibleRoles") ArrayList<RoleEntity> listOfSelectedRoles,
 			BindingResult result, Model model) {
+		for (RoleEntity i : listOfSelectedRoles)
+			System.out.println(i.getAuthority());
 		if (result.hasErrors()) {
 			return "createUserView";
 		} else {
@@ -90,7 +94,7 @@ public class UserController {
 			} else {
 				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 						+ user.getUsername() + "}"));
-				
+
 				userService.save(user);
 				List<Integer> listOfRoles = new ArrayList<Integer>();
 				listOfRoles.add(1);
@@ -101,7 +105,7 @@ public class UserController {
 					userRole.setRole_id(i);
 					listOfUserRoles.add(userRole);
 				}
-				for (UserRoleEntity userRole : listOfUserRoles){
+				for (UserRoleEntity userRole : listOfUserRoles) {
 					userRoleService.save(userRole);
 				}
 				return "redirect:/userOverview/"
