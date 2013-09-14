@@ -48,6 +48,8 @@
 						<li class="nav-header">Administrace:</li>
 						<li><a href="userList">Uživatelé</a></li>
 						<li class="nav-header">Jazyk</li>
+						<li><a href="?lang=cs">CZ</a></li>
+						<li><a href="?lang=en">EN</a></li>
 					</ul>
 				</div>
 				<!--  It block with copyright -->
