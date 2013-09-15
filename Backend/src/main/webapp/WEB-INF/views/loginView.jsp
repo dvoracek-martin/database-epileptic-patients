@@ -82,7 +82,7 @@
 				
 				<button class="btn btn-large btn-primary" type="submit"><spring:message code="label.login" /></button>
 
-			
+			<br><br>
 				<span><input type="checkbox" name="_spring_security_remember_me" /></span>
 				<spring:message code="label.rememberMe" />
 				
