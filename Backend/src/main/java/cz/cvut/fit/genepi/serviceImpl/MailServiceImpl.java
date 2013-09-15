@@ -40,14 +40,17 @@ public class MailServiceImpl implements MailService {
 	public void sendMail(String attachmentName, String recipient, HashMap<String, String> map)
 			throws Exception {
 
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", SMTP_HOST_NAME);
-		props.put("mail.smtp.port", SMTP_HOST_PORT);
+		// Assuming you are sending email from localhost
+	      String host = "localhost";
+	      
+		 // Get system properties
+	      Properties props = System.getProperties();
+
+	      // Setup mail server
+	      props.setProperty("mail.smtp.host", host);
 
 		Authenticator auth = new SMTPAuthenticator();
-		Session session = Session.getDefaultInstance(props, auth);
+		Session session = Session.getDefaultInstance(props);
 		Transport transport = session.getTransport();
 
 		MimeMessage message = new MimeMessage(session);
