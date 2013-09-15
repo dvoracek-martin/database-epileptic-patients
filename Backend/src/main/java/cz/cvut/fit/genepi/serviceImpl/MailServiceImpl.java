@@ -36,20 +36,19 @@ public class MailServiceImpl implements MailService {
 		MessageType = messageType;
 	}
 
-
-	public void sendMail(String attachmentName, String recipient, HashMap<String, String> map)
-			throws Exception {
+	public void sendMail(String attachmentName, String recipient,
+			HashMap<String, String> map) throws Exception {
 
 		// Assuming you are sending email from localhost
-	      String host = "localhost";
-	      
-		 // Get system properties
-	      Properties props = System.getProperties();
+		String host = "localhost";
 
-	      // Setup mail server
-	      props.setProperty("mail.smtp.host", host);
+		// Get system properties
+		Properties props = System.getProperties();
 
-		Authenticator auth = new SMTPAuthenticator();
+		// Setup mail server
+		props.setProperty("mail.smtp.host", host);
+
+		// Authenticator auth = new SMTPAuthenticator();
 		Session session = Session.getDefaultInstance(props);
 		Transport transport = session.getTransport();
 

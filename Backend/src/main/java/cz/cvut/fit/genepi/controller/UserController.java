@@ -1,8 +1,10 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -25,6 +27,7 @@ import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.serviceImpl.MailServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -219,8 +222,12 @@ public class UserController {
 				+ user.getUsername() + "}"));
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
-		// MailServiceImpl mailService = new MailServiceImpl();
+		MailServiceImpl mailService = new MailServiceImpl();
+		mailService.setMessageType("newPassword");
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("newPassword", user.getPassword());
 		try {
+			mailService.sendMail(null, "Dworza@gmail.com", map);
 			// mailService.sendMail(null, user.getContact().getEmail(),null);
 		} catch (Exception e) {
 			e.printStackTrace();
