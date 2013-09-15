@@ -6,27 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Kartotéka</title>
+<title><spring:message code="label.cardFile" /></title>
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
 	rel="stylesheet">
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
-<style type="text/css">
-table.patients {
-	width: 90%;
-	margin: 0px auto;
-}
-
-table.patients td {
-	padding: 0px 5px 0px 5px;
-}
-
-table.patients td.head {
-	font-weight: bold;
-	text-align: center;
-}
-</style>
 </head>
+
 <body>
 	<!-- box of whole page -->
 	<div class="container-fluid">
@@ -36,7 +22,7 @@ table.patients td.head {
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - KARTOTÉKA</a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.cardFile" /></a>
 			</div>
 
 		</div>
@@ -74,39 +60,32 @@ table.patients td.head {
 		<!--  it defines box with content -->
 		<div class="span9">
 			<div class="hero-unit">
-				<div style="border-bottom: 2px solid black">
+				
 					<div class="span5">
-						<h2>Kartotéka pacientů</h2>
+						<h2><spring:message code="label.cardFile" /></h2>
 					</div>
 					<div>
-						implement search field
 						<h3>
-							<a href="createPatient" style="text-decoration: none">Nový
-								pacient</a>
+							<a href="createPatient" style="text-decoration: none"><spring:message code="label.addpatient" /></a>
 						</h3>
-					</div>
-				</div>
-
-				<table class="patients">
-					<tr class="head">
-						<td><b><spring:message code="label.lastname" /></b></td>
-						<td><b><spring:message code="label.firstname" /></b></td>
-						<td><b>Rodné číslo</b></td>
-						<td><b>Ulice, č.p.</b></td>
-						<td><b>Město</b></td>
-					</tr>
-
+					</div>								
+					
+					
 					<c:forEach items="${patientList}" var="patient">
-						<!-- add link to patient cardoverview -->
-						<tr onclick="document.location = 'patientOverview/${patient.id}';">
-							<td>${patient.contact.lastName}</td>
-							<td>${patient.contact.firstName}</td>
-							<td>${patient.birthday}</td>
-							<td>${patient.birthday}</td>
-							<td>${patient.birthday}</td>
-						</tr>
+						
+						
+						<div class="navbar">
+  							<div class="navbar-inner">
+    							<a class="brand" href="#" onclick="document.location = 'patientOverview/${patient.id}';">${patient.contact.firstName} ${patient.contact.lastName}</a>
+    							<ul class="nav">
+      								<li class="divider-vertical"><a href="<c:url value="/anamnesis/${patient.id}" />"><spring:message code="label.anamnesis" /></a></li>
+      								<li class="divider-vertical"><a href="<c:url value="/patientExport/${patient.id}" />"><spring:message code="label.export" /></a></li>
+    							</ul>
+  							</div>
+						</div>
+						
 					</c:forEach>
-				</table>
+				
 				
 			</div>
 		</div>

@@ -39,6 +39,7 @@
 				</a> <a class="brand" href="#">GENEPI - PŘIHLÁŠENÍ</a>
 				<div class="nav-collapse collapse">
 					<ul id="nav-list" class="nav pull-right">
+						<li><span><a href="?lang=cs">CZ</a>/<a href="?lang=en">EN</a></span></li>
 						<li><a href="#contact">Kontakt</a></li>
 					</ul>
 				</div>
@@ -74,19 +75,21 @@
 		<div class="form" style="border: 0 solid white">
 			<form name="f" action="j_spring_security_check" method="post">
 				<input type="text" id="username" class="input-block-level"
-					name="j_username" placeholder="Přihlašovací jméno" autofocus>
+					name="j_username" placeholder="<spring:message code="label.username" />" autofocus>
 				<input type="password" id="password" name="j_password"
-					class="input-block-level" placeholder="Heslo">
-				<button class="btn btn-large btn-primary" type="submit">Přihlásit</button>
+					class="input-block-level" placeholder="<spring:message code="label.password" />">
+				
+				
+				<button class="btn btn-large btn-primary" type="submit"><spring:message code="label.login" /></button>
+
+			
+				<span><input type="checkbox" name="_spring_security_remember_me" /></span>
+				<spring:message code="label.rememberMe" />
+				
+			
 			</form>
 
-			<div class="span3">
-				<span><spring:message code="label.rememberMe" /></span>
-			</div>
-
-			<div class="span4">
-				<input type="checkbox" name="_spring_security_remember_me" />
-			</div>
+			
 		</div>
 	</div>
 
