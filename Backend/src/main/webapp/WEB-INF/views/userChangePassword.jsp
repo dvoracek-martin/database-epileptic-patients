@@ -86,7 +86,7 @@
 					<spring:message code="label.newPassword" />
 					<br>
 					<form:input id="password" path="password" type="password"
-						pattern=".{8,30}" class="input-block-level" value="12345678"
+						pattern=".{8,30}" class="input-block-level"
 						onFocusOut="passwordValidation();" required="true"
 						title="Délka musí být mezi 8-30 znaky." />
 					<form:errors path="password" cssClass="alert alert-error">
