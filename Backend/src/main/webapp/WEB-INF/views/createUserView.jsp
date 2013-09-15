@@ -228,8 +228,8 @@
 
 
 
-						<c:forEach var="person" items="${listOfPossibleRoles}">							
-								<td>${person.authority}</td> </br>							
+						<c:forEach var="role" items="${listOfPossibleRoles}">							
+								<td>${role.authority}</td> </br>							
 						</c:forEach>
 	
 						<button class="btn btn-small btn-primary" type="submit"

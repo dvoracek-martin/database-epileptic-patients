@@ -118,10 +118,22 @@
 				<spring:message code="label.email" />
 				&nbsp;
 				<div class="label label-info">${user.contact.email}</div>
-				<br>
+				<br> <br>
+				<spring:message code="label.assignedRoles" />
+				: &nbsp; <br>
+				<c:forEach var="role" items="${listOfAssignedRoles}">
+					<td><div class="label label-info">${role.authority}</div></td>
+					</br>
+				</c:forEach>
+				<br> <br> <br> 
 				
-				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.editdata" />">
-			    <input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userChangePassword/${user.id}';" value="<spring:message code="label.changePassword" />">
+				<input type="button"
+					class="btn btn-small btn-primary"
+					onclick="document.location = '/GENEPI/userEdit/${user.id}';"
+					value="<spring:message code="label.editdata" />"> <input
+					type="button" class="btn btn-small btn-primary"
+					onclick="document.location = '/GENEPI/userChangePassword/${user.id}';"
+					value="<spring:message code="label.changePassword" />">
 			</div>
 		</div>
 	</div>
