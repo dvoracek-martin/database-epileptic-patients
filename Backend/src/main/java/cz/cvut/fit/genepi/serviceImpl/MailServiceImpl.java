@@ -32,7 +32,7 @@ public class MailServiceImpl implements MailService {
 
 	public void sendMail(String attachmentName, String recipient,
 			HashMap<String, String> map) throws Exception {  // Recipient's email ID needs to be mentioned.
-	      String to = "abcd@gmail.com";
+	      String to = "Dworza@gmail.com";
 
 	      // Sender's email ID needs to be mentioned
 	      String from = "web@gmail.com";
