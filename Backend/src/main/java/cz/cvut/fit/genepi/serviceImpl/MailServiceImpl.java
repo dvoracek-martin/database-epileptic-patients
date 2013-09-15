@@ -1,20 +1,15 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Properties;
 
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
 import javax.mail.Message;
-import javax.mail.Multipart;
+import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import cz.cvut.fit.genepi.service.MailService;
 
@@ -36,68 +31,47 @@ public class MailServiceImpl implements MailService {
 	}
 
 	public void sendMail(String attachmentName, String recipient,
-			HashMap<String, String> map) throws Exception {
+			HashMap<String, String> map) throws Exception {  // Recipient's email ID needs to be mentioned.
+	      String to = "abcd@gmail.com";
 
-		// Assuming you are sending email from localhost
-		String host = "localhost";
+	      // Sender's email ID needs to be mentioned
+	      String from = "web@gmail.com";
 
-		// Get system properties
-		Properties props = System.getProperties();
+	      // Assuming you are sending email from localhost
+	      String host = "localhost";
 
-		// Setup mail server
-		props.setProperty("mail.smtp.host", host);
+	      // Get system properties
+	      Properties properties = System.getProperties();
 
-		// Authenticator auth = new SMTPAuthenticator();
-		Session session = Session.getDefaultInstance(props);
-		Transport transport = session.getTransport();
+	      // Setup mail server
+	      properties.setProperty("mail.smtp.host", host);
 
-		MimeMessage message = new MimeMessage(session);
-		message.setFrom(new InternetAddress("genepi_mailbot@gmail.com"));
-		message.setRecipient(Message.RecipientType.TO, new InternetAddress(
-				"Dworza@gmail.com"));
-		message.setSubject("Some subject");
-		message.setSentDate(new Date());
+	      // Get the default Session object.
+	      Session session = Session.getDefaultInstance(properties);
 
-		MimeBodyPart messagePart = new MimeBodyPart();
-		if (getMessageType().equals("newPassword")) {
-			messagePart.setText("some text" + map.get("newPassword"));
-		} else if (getMessageType().equals("newPassword")) {
-			messagePart.setText("some text");
-		} else if (getMessageType().equals("newPassword")) {
-			messagePart.setText("some text");
-		} else if (getMessageType().equals("newPassword")) {
-			messagePart.setText("some text");
-		} else {
-			messagePart.setText("error");
-		}
+	      try{
+	         // Create a default MimeMessage object.
+	         MimeMessage message = new MimeMessage(session);
 
-		//
-		// Set the email attachment file
-		//
+	         // Set From: header field of the header.
+	         message.setFrom(new InternetAddress(from));
 
-		MimeBodyPart attachmentPart = new MimeBodyPart();
-		if (attachmentName != null) {
-			FileDataSource fileDataSource = new FileDataSource(attachmentName) {
-				@Override
-				public String getContentType() {
-					return "application/octet-stream";
-				}
-			};
+	         // Set To: header field of the header.
+	         message.addRecipient(Message.RecipientType.TO,
+	                                  new InternetAddress(to));
 
-			attachmentPart.setDataHandler(new DataHandler(fileDataSource));
-			attachmentPart.setFileName("newimage.jpg");
-		}
-		Multipart multipart = new MimeMultipart();
-		multipart.addBodyPart(messagePart);
-		if (attachmentName != null) {
-			multipart.addBodyPart(attachmentPart);
-		}
-		message.setContent(multipart);
+	         // Set Subject: header field
+	         message.setSubject("This is the Subject Line!");
 
-		transport.connect();
-		transport.sendMessage(message,
-				message.getRecipients(Message.RecipientType.TO));
-		transport.close();
+	         // Now set the actual message
+	         message.setText("This is actual message");
+
+	         // Send message
+	         Transport.send(message);
+	         System.out.println("Sent message successfully....");
+	      }catch (MessagingException mex) {
+	         mex.printStackTrace();
+	      }
 	}
 
 	private class SMTPAuthenticator extends javax.mail.Authenticator {
