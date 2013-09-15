@@ -1,4 +1,6 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
@@ -59,26 +61,67 @@
 		<!--  it defines box with content -->
 		<div class="span9">
 			<div class="hero-unit">
-				<div style="border-bottom: 2px solid black">
-					<h1>Profil</h1>
-				</div>
-				<div style="margin: 10px">
-					<p>
-						<b>Přihlašovací jméno:</b>
-						</p>
-					<p>
-						<b>Jméno:</b>
-					</p>
-					<p>
-						<b>Příjmení:</b>
-					</p>
-					<p>
-						<b>E-mail:</b>
-					</p>
-					<p>
-						<b>Telefon:</b>
-					</p>
-				</div>
+				<h2>
+					<spring:message code="label.myProfile" />
+				</h2>
+
+				<spring:message code="label.userid" />
+				&nbsp;
+				<div class="label label-info">${user.id}</div>
+				<br>
+
+				<spring:message code="label.username" />
+				&nbsp;
+				<div class="label label-info">${user.username}</div>
+				<br>
+
+				<spring:message code="label.firstname" />
+				&nbsp;
+				<div class="label label-info">${user.contact.firstName}</div>
+				<br>
+
+				<spring:message code="label.lastname" />
+				&nbsp;
+				<div class="label label-info">${user.contact.lastName}</div>
+				<br>
+
+				<spring:message code="label.street" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressStreet}</div>
+				<br>
+
+				<spring:message code="label.addressHn" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressHn}</div>
+				<br>
+
+				<spring:message code="label.addressCity" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressCity}</div>
+				<br>
+
+				<spring:message code="label.addressPostalcode" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressPostalcode}</div>
+				<br>
+
+				<spring:message code="label.addressCountry" />
+				&nbsp;
+				<div class="label label-info">${user.contact.addressCountry}</div>
+				<br>
+
+				<spring:message code="label.phoneNumber" />
+				&nbsp;
+				<div class="label label-info">${user.contact.phoneNumber}</div>
+				<br>
+
+				<spring:message code="label.email" />
+				&nbsp;
+				<div class="label label-info">${user.contact.email}</div>
+				<br>
+				
+				<input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userEdit/${user.id}';" value="<spring:message code="label.editdata" />">
+			    <input type="button" class="btn btn-small btn-primary" onclick="document.location = '/GENEPI/userChangePassword/${user.id}';" value="<spring:message code="label.changePassword" />">
 			</div>
 		</div>
 	</div>

@@ -95,7 +95,7 @@
                 		
                 	
                 		
-                		<div id="editName" style="display: none">
+                		<div id="editName" style="display: block">
                   		<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />
 						</form:label>
