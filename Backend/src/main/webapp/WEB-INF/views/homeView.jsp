@@ -81,14 +81,13 @@
 							<p>Beta verze byla předvedena.</p>
 						</div>
 					</div>
-				</sec:authorize>
-			</div>
+				</sec:authorize>	
 		</div>
 	</div>
 
 	<!-- Javascripts imports -->
 	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-	<script src="<c:url value="resources/js/jquery.js"/>"></script>
-	<script src="<c:url value="resources/js/application.js"/>"></script>
+	<script src="<c:url value="/resources/js/jquery.js"/>"></script>
+	<script src="<c:url value="/resources/js/application.js"/>"></script>
 </body>
 </html>
