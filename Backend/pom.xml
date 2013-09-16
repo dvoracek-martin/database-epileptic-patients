@@ -5,9 +5,33 @@
 	<groupId>cz.cvut</groupId>
 	<artifactId>GENEPI</artifactId>
 	<name>GENEPI</name>
-	<!-- description>To be corrected</description> <developers> <developer> 
-		<id>dusekja8</id> <name>Jan Dusek</name> <roles> <role>developer</role> </roles> 
-		<timezone>1</timezone> </developer> </developers> -->
+	<description>To be supplied</description>
+	<developers>
+		<developer>
+			<id>Honza31415</id>
+			<name>Jan Dusek</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>1</timezone>
+		</developer>
+		<developer>
+			<id>Dworzaaa</id>
+			<name>Martin Dvoracek</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>1</timezone>
+		</developer>
+		<developer>
+			<id>slay4ever</id>
+			<name>Jakub Hout</name>
+			<roles>
+				<role>developer</role>
+			</roles>
+			<timezone>1</timezone>
+		</developer>
+	</developers>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
@@ -18,6 +42,7 @@
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 	</properties>
 	<dependencies>
+
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -31,6 +56,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<!-- Spring web -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -223,6 +249,14 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.7</version>
+		</dependency>
+
+
+		<!-- Apache Tiles templating support for JSP-->
+		<dependency>
+			<groupId>org.apache.tiles</groupId>
+			<artifactId>tiles-jsp</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 
 	</dependencies>
