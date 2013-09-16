@@ -40,13 +40,13 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list"/>">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile"/>">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Administrace:</li>
-						<li><a href="userList">Uživatelé</a></li>
+						<li><a href="<c:url value="/user/list"/>">Uživatelé</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
 						<li><a href="?lang=en">EN</a></li>

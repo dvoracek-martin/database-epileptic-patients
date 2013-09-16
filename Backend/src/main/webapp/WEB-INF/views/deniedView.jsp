@@ -30,7 +30,7 @@
 				</a> <a class="brand" href="#">PŘÍSTUP ODEPŘEN</a>
 				<div class="nav-collapse collapse">
 					<ul id="nav-list" class="nav pull-right">
-						<li><a href="login">GENEPI</a></li>
+						<li><a href="<c:url value="/login" />">GENEPI</a></li>
 					</ul>
 				</div>
 			</div>

@@ -50,13 +50,13 @@ public class PatientController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/createPatient", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
 		List<UserEntity> doctors = new ArrayList<UserEntity>();
 		doctors = userService.getDoctors();
 		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("doctors", doctors);
-		return "createPatientView";
+		return "patient/createView";
 	}
 
 	/**
@@ -68,7 +68,7 @@ public class PatientController {
 	 *            the result
 	 * @return the string
 	 */
-	@RequestMapping(value = "/addPatient", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/add", method = RequestMethod.POST)
 	public String addPatient(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
 			BindingResult result) {
@@ -76,8 +76,8 @@ public class PatientController {
 			return "createPatientView";
 		} else {
 			patientService.save(patient);
-			return "redirect:/patientOverview/"
-					+ Integer.toString(patient.getId());
+			return "redirect:/patient/" + Integer.toString(patient.getId())
+					+ "/overview";
 		}
 	}
 
@@ -96,7 +96,7 @@ public class PatientController {
 	public String patientOverviewPOST(@RequestParam("id") int id,
 			Locale locale, Model model) {
 		model.addAttribute("id", id);
-		return "patientOverviewView";
+		return "patient/overviewView";
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class PatientController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patientOverview/{patientID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
@@ -118,7 +118,7 @@ public class PatientController {
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis",
 				anamnesisService.findLatestAnamnesisByPatientID(patientID));
-		return "patientOverviewView";
+		return "patient/overviewView";
 	}
 
 	/**
@@ -130,26 +130,25 @@ public class PatientController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patientsList", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/list", method = RequestMethod.GET)
 	public String patientsListGET(Locale locale, Model model) {
 		model.addAttribute("patientList",
 				patientService.findAll(PatientEntity.class));
-		return "patientsListView";
+		return "patient/listView";
 	}
 
-	@RequestMapping(value = "/patientDelete/{patientID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
 	public String patientDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		patientService.delete(patientService.findByID(PatientEntity.class,
 				patientID));
-		return "patientOverviewView";
+		return "patient/overviewView";
 	}
 
-	@RequestMapping(value = "/patientExport/{patientID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientId) {
-		new ExportServiceImpl("xlsx",patientId);
-		return "redirect:/patientOverview/"
-				+ Integer.toString(patientId);
+			@PathVariable("patientID") Integer patientID) {
+		new ExportServiceImpl("xlsx", patientID);
+		return "redirect:/patient/" + Integer.toString(patientID) + "/overview";
 	}
 }

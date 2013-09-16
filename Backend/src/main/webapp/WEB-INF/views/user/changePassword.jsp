@@ -9,11 +9,11 @@
 <meta charset="UTF-8" />
 <title><spring:message code="label.edituser" /> - <spring:message
 		code="label.changePassword" /></title>
-<link rel="icon" type="image/png"
-	href="<c:url value="/resources/img/logoIcon.ico"/>">
+<link rel="icon" type="image/png" href="7">
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
-<link href="<c:url value="/resources/css/responsive.min.css"/>"
+<link
+	href="<c:url value="/resources/css/bootstrap-responsive.min.css"/>"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/validation.css"/>"
 	rel="stylesheet">
@@ -49,10 +49,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list"/>">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile"/>">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a> </li->
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -74,20 +75,17 @@
 
 				<h2>
 					<spring:message code="label.edituser" />
-					<a onclick="document.location = '/GENEPI/userOverview/${user.id}';">${user.username}</a>
-					-
+					<a href="<c:url value="/user/${user.id}/overview"/>">${user.username}</a>
 					<spring:message code="label.changePassword" />
 				</h2>
 				<form:form method="POST" modelAttribute="user"
-					action="/GENEPI/userChangePassword" commandName="user">
-
-
+					action="/GENEPI/user/change-password" commandName="user">
 
 					<spring:message code="label.newPassword" />
 					<br>
 					<form:input id="password" path="password" type="password"
-						pattern=".{8,30}" class="input-block-level" value="" autofocus="on"
-						onFocusOut="passwordValidation();" required="true"
+						pattern=".{8,30}" class="input-block-level" value=""
+						autofocus="on" onFocusOut="passwordValidation();" required="true"
 						title="Délka musí být mezi 8-30 znaky." />
 					<form:errors path="password" cssClass="alert alert-error">
 					</form:errors>
@@ -109,11 +107,11 @@
 						style="display: none">Hesla se neshodují.</div>
 					<div id="passwordAgainSuccComparison" class="alert alert-success"
 						style="display: none">Hesla se shodují.</div>
-						
-						
 
-						
-						
+
+
+
+
 					<!-- Hidden form for retrieving user's properties -->
 					<!-- --------------------------------------------- -->
 					<form:hidden path="id" id="id" />
@@ -125,7 +123,7 @@
 					<form:hidden path="contact.addressStreet"
 						id="contact.addressStreet" />
 					<form:hidden path="contact.addressHn" id="contact.addressHn" />
-				
+
 					<form:hidden path="contact.addressCity" id="contact.addressCity" />
 					<form:hidden path="contact.addressPostalcode"
 						id="contact.addressPostalcode" />

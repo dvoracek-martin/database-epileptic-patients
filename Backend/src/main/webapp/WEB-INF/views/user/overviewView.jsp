@@ -1,4 +1,3 @@
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
@@ -7,14 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title>Profil</title>
+<title>Pacient</title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico"/>">
 <link href="<c:url value="/resources/css/bootstrap.min.css"/>"
 	rel="stylesheet">
 </head>
 <body>
-
 	<!-- box of whole page -->
 	<div class="container-fluid">
 		<!--  it defines box with logo -->
@@ -23,9 +21,9 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - PROFIL</a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message
+						code="label.user" /></a>
 			</div>
-
 		</div>
 
 		<!--  it defines box with menu and logo -->
@@ -39,10 +37,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list"/>">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="#">Profil</a></li>
+						<li><a href="<c:url value="/profile"/>">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -58,11 +57,12 @@
 			</div>
 		</div>
 
-		<!--  it defines box with content -->
+		<!-- box with content -->
 		<div class="span9">
+
 			<div class="hero-unit">
 				<h2>
-					<spring:message code="label.myProfile" />
+					<spring:message code="label.user" />
 				</h2>
 
 				<spring:message code="label.userid" />
@@ -118,30 +118,19 @@
 				<spring:message code="label.email" />
 				&nbsp;
 				<div class="label label-info">${user.contact.email}</div>
-				<br> <br>
-				<spring:message code="label.assignedRoles" />
-				: &nbsp; <br>
-				<c:forEach var="role" items="${listOfAssignedRoles}">
-					<td><div class="label label-info">${role.authority}</div></td>
-					</br>
-				</c:forEach>
-				<br> <br> <br> 
-				
-				<input type="button"
-					class="btn btn-small btn-primary"
-					onclick="document.location = '/GENEPI/userEdit/${user.id}';"
+				<br> <input type="button" class="btn btn-small btn-primary"
+					onclick="document.location = '<c:url value="/user/${user.id}/edit"/>';"
 					value="<spring:message code="label.editdata" />"> <input
 					type="button" class="btn btn-small btn-primary"
-					onclick="document.location = '/GENEPI/userChangePassword/${user.id}';"
+					onclick="document.location = '<c:url value="/user/${user.id}/change-password"/>';"
 					value="<spring:message code="label.changePassword" />">
 			</div>
 		</div>
 	</div>
-
 	<!-- Javascripts imports -->
-	<script src="<c:url value="/resources/js/jquery.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-	<script src="<c:url value="/resources/js/application.js"/>"></script>
-
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 </body>
 </html>
+
+

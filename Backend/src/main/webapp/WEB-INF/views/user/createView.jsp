@@ -46,10 +46,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list"/>">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile"/>">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -75,7 +76,8 @@
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
-					<form:form method="POST" action="addUser" commandName="user">
+					<form:form method="POST" action="/GENEPI/user/add"
+						commandName="user">
 
 						<form:label path="username">
 							<spring:message code="label.username" />*
@@ -228,16 +230,17 @@
 
 
 
-						<c:forEach var="role" items="${listOfPossibleRoles}">							
-								<td>${role.authority}</td> </br>							
+						<c:forEach var="role" items="${listOfPossibleRoles}">
+							<td>${role.authority}</td>
+							</br>
 						</c:forEach>
-	
+
 						<button class="btn btn-small btn-primary" type="submit"
 							onclick="validation();">
 							<spring:message code="label.add" />
 						</button>
-						
-						
+
+
 
 						<form:hidden path="id" id="id" />
 					</form:form>

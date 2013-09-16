@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8" />
-<title><spring:message code="label.allusers" /></title>
-<link href="<c:url value="/resources/css/bootstrap.css" />"
-	rel="stylesheet">
+<title><spring:message code="label.cardFile" /></title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
 
 </head>
+
 <body>
 	<!-- box of whole page -->
 	<div class="container-fluid">
@@ -22,7 +23,8 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message code="label.allusers" /></a>
+				</a> <a class="brand" href="#">GENEPI - <spring:message
+						code="label.cardFile" /></a>
 			</div>
 
 		</div>
@@ -41,7 +43,7 @@
 						<li><a href="#">Kartotéka pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile" />">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -61,30 +63,42 @@
 		<div class="span9">
 			<div class="hero-unit">
 
-					<div class="span5">
-						<h2><spring:message code="label.allusers" /></h2>
-					</div>
-					<div>
-						<h3>
-							<a href="createUser" style="text-decoration: none"><spring:message code="label.newuser" /></a>
-						</h3>
-					</div>
-				
+				<div class="span5">
+					<h2>
+						<spring:message code="label.cardFile" />
+					</h2>
+				</div>
+				<div>
+					<h3>
+						<a href="<c:url value="/patient/create" />"
+							style="text-decoration: none"><spring:message
+								code="label.addpatient" /></a>
+					</h3>
+				</div>
 
-					<c:forEach items="${userList}" var="user">
-						
-						
-						<div class="navbar">
-  							<div class="navbar-inner">
-    							<a class="brand" href="#" onclick="document.location = 'userOverview/${user.id}';">${user.username}</a>
-    							<ul class="nav">
-      								<li><a href="#" onclick="document.location = 'userEdit/${user.id}';"><spring:message code="label.editdata" /></a></li>
-      								<li><a href="#" onclick="document.location = 'userChangePassword/${user.id}';"><spring:message code="label.changePassword" /></a></li>
-    							</ul>
-  							</div>
+
+				<c:forEach items="${patientList}" var="patient">
+
+
+					<div class="navbar">
+						<div class="navbar-inner">
+							<a class="brand"
+								href="<c:url value="/patient/${patient.id}/overview" />">${patient.contact.firstName}
+								${patient.contact.lastName}</a>
+							<ul class="nav">
+								<li class="divider-vertical"><a
+									href="<c:url value="/patient/${patient.id}/anamnesis/list" />"><spring:message
+											code="label.anamnesis" /></a></li>
+								<li class="divider-vertical"><a
+									href="<c:url value="/patient/${patient.id}/export" />"><spring:message
+											code="label.export" /></a></li>
+							</ul>
 						</div>
-						
-					</c:forEach>
+					</div>
+
+				</c:forEach>
+
+
 			</div>
 		</div>
 	</div>

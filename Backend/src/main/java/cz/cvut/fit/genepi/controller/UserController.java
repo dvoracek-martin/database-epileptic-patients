@@ -56,7 +56,7 @@ public class UserController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/createUser", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
 	public String createUserGET(Model model) {
 		List<RoleEntity> listOfPossibleRoles = roleService
 				.findAll(RoleEntity.class);
@@ -64,7 +64,7 @@ public class UserController {
 		model.addAttribute("listOfSelectedRoles", new ArrayList<RoleEntity>());
 		model.addAttribute("user", new UserEntity());
 		model.addAttribute("isUnique", "unique");
-		return "createUserView";
+		return "user/createView";
 	}
 
 	/**
@@ -78,7 +78,7 @@ public class UserController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
 	public String addUserGET(
 			@ModelAttribute("user") @Valid UserEntity user,
 			@PathVariable("listOfPossibleRoles") ArrayList<RoleEntity> listOfSelectedRoles,
@@ -86,11 +86,11 @@ public class UserController {
 		for (RoleEntity i : listOfSelectedRoles)
 			System.out.println(i.getAuthority());
 		if (result.hasErrors()) {
-			return "createUserView";
+			return "user/createView";
 		} else {
 			if (userService.findUserByUsername(user.getUsername()) != null) {
 				model.addAttribute("isUnique", "notUnique");
-				return "createUserView";
+				return "user/createView";
 			} else {
 				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 						+ user.getUsername() + "}"));
@@ -108,8 +108,8 @@ public class UserController {
 				for (UserRoleEntity userRole : listOfUserRoles) {
 					userRoleService.save(userRole);
 				}
-				return "redirect:/userOverview/"
-						+ Integer.toString(user.getId());
+				return "redirect:/user/" + Integer.toString(user.getId())
+						+ "/overview";
 			}
 		}
 	}
@@ -125,15 +125,15 @@ public class UserController {
 	 *            the user id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/userOverview/{userID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		model.addAttribute("user", user);
-		return "userOverviewView";
+		return "user/overviewView";
 	}
 
-	@RequestMapping(value = "/userEdit/{userID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
@@ -158,14 +158,14 @@ public class UserController {
 		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
 		model.addAttribute("user", user);
 		model.addAttribute("userTmp", userTmp);
-		return "userEditView";
+		return "user/editView";
 	}
 
-	@RequestMapping(value = "/userEdit", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
 	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "userEditView";
+			return "user/editView";
 		}
 
 		ContactEntity contact = new ContactEntity();
@@ -183,7 +183,7 @@ public class UserController {
 		contact.setEmail(user.getContact().getEmail());
 
 		contactService.merge(contact);
-		return "redirect:/userOverview/" + Integer.toString(user.getId());
+		return "redirect:/user/" + Integer.toString(user.getId()) + "/overview";
 
 	}
 
@@ -196,13 +196,13 @@ public class UserController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/userList", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public String usersListGET(Locale locale, Model model) {
 		model.addAttribute("userList", userService.findAll(UserEntity.class));
-		return "userListView";
+		return "user/listView";
 	}
 
-	@RequestMapping(value = "/userChangePassword/{userID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
@@ -210,23 +210,23 @@ public class UserController {
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
 
-		return "userChangePassword";
+		return "user/changePassword";
 	}
 
-	@RequestMapping(value = "/userChangePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
 			Model model) {
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 				+ user.getUsername() + "}"));
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
-		//MailServiceImpl mailService = new MailServiceImpl();
+		// MailServiceImpl mailService = new MailServiceImpl();
 		try {
 			// mailService.sendMail(null, user.getContact().getEmail(),null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return "redirect:/userChangePassword/" + user.getId();
+		return "redirect:/user/" + user.getId() + "changePassword";
 	}
 }

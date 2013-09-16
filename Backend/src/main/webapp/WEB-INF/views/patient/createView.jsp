@@ -43,10 +43,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list" />">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile" />">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -72,7 +73,8 @@
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
-					<form:form method="POST" action="addPatient" commandName="patient">
+					<form:form method="POST" action="/GENEPI/patient/add"
+						commandName="patient">
 						<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />
 						</form:label>

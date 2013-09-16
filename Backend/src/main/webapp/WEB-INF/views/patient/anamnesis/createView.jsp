@@ -42,12 +42,13 @@
 					<li class="nav-header">Číslo pacienta:</li>
 					<li><a href="underConstruction">Přehled</a></li>
 					<li>
+						<!-- WTF is this FORM??? START -->
 						<form name="anamnesis" action="anamnesis" method="post"
 							style="display: inline">
 							<input type="hidden" id="id" name="id" value=""> <a
 								href="javascript:;" onclick="parentNode.submit();">Anamnéza</a>
 							<input type="hidden" name="mess" />
-						</form>
+						</form> <!-- WTF is this FORM??? END -->
 					</li>
 					<li><a href="underConstruction">Farmakoterapie</a></li>
 					<li><a href="underConstruction">Neurologické nálezy</a></li>
@@ -78,10 +79,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list" />">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile" />">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -146,7 +148,7 @@
 					<!-- form for adding new patient -->
 					<!-- mapping resource in action with c:url caused errors -->
 					<form:form method="POST"
-						action="/GENEPI/patient/${patientID}/addAnamnesis"
+						action="/GENEPI/patient/${patientID}/anamnesis/add"
 						commandName="anamnesis">
 						<form:label path="date">Datum</form:label>
 						<form:input path="date" type="text"
@@ -240,9 +242,9 @@
 	</div>
 
 	<!-- Javascripts imports -->
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery.js" />"></script>
 	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 	<script>
 		$(function() {
 			$(".datepicker").datepicker({

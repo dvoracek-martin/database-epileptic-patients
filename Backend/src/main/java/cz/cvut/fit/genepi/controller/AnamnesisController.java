@@ -47,14 +47,14 @@ public class AnamnesisController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/createAnamnesis", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.GET)
 	public String createAnamnesisGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
-		return "createAnamnesisView";
+		return "patient/anamnesis/createView";
 	}
 
 	/**
@@ -68,27 +68,27 @@ public class AnamnesisController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/addAnamnesis", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/add", method = RequestMethod.POST)
 	public String addAnamnesis(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
-			return "createAnamnesisView";
+			return "patient/anamnesis/createView";
 		} else {
 			anamnesis.setpatientId(patientID);
 			anamnesisService.save(anamnesis);
-			return "redirect:/anamnesis/" + patientID;
+			return "redirect:/patient/" + patientID + "/anamnesis/list";
 		}
 	}
 
-	@RequestMapping(value = "/anamnesis/{patientID}/deleteAnamnesis/{anamnesisID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/delete", method = RequestMethod.GET)
 	public String deleteAnamnesis(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("anamnesisID") Integer anamnesisID) {
 
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisID));
-		return "redirect:/anamnesis/" + patientID;
+		return "redirect:/patient/" + patientID + "/anamnesis/list";
 	}
 
 	/**
@@ -102,7 +102,7 @@ public class AnamnesisController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/anamnesis/{patientID}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/list", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
@@ -113,6 +113,6 @@ public class AnamnesisController {
 				.findAnamnesisByPatientID(patientID);
 		Collections.reverse(anamnesisEntities);
 		model.addAttribute("anamnesisList", anamnesisEntities);
-		return "anamnesisView";
+		return "patient/anamnesis/anamnesisView";
 	}
 }

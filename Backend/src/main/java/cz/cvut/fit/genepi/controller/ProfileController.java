@@ -25,7 +25,7 @@ import cz.cvut.fit.genepi.service.UserService;
  * The Class MyProfileController.
  */
 @Controller
-public class MyProfileController {
+public class ProfileController {
 
 	/** The user service. */
 	@Autowired
@@ -49,9 +49,9 @@ public class MyProfileController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/myProfile", method = RequestMethod.POST)
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
 	public String myProfilePOST(Locale locale, Model model) {
-		return "myProfileView";
+		return "profileView";
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class MyProfileController {
 	 *            the result
 	 * @return the string
 	 */
-	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String myProfileGET(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -84,6 +84,6 @@ public class MyProfileController {
 		}
 		model.addAttribute("user", user);
 		model.addAttribute("listOfAssignedRoles", listOfAssignedRoles);
-		return "myProfileView";
+		return "profileView";
 	}
 }

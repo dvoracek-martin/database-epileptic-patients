@@ -6,10 +6,11 @@
 <head>
 <meta charset="UTF-8" />
 <title>Anamnéza</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />"
-	rel="stylesheet">
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
+
 </head>
 <body>
 	<!-- box of whole page -->
@@ -65,10 +66,11 @@
 				<div class="well sidebar-nav">
 					<ul class="nav nav-list">
 						<li class="nav-header">Pacienti</li>
-						<li><a href="patientsList">Kartotéka pacientů</a></li>
+						<li><a href="<c:url value="/patient/list" />">Kartotéka
+								pacientů</a></li>
 						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
 						<li class="nav-header">Uživatel:</li>
-						<li><a href="myProfile">Profil</a></li>
+						<li><a href="<c:url value="/profile" />">Profil</a></li>
 						<li><a href="j_spring_security_logout">Odhlásit</a></li>
 						<li class="nav-header">Jazyk</li>
 						<li><a href="?lang=cs">CZ</a></li>
@@ -92,7 +94,7 @@
 						<h2>Přehled pacienta</h2>
 					</div>
 					<div>
-						<a href="<c:url value="/patient/${patientID}/createAnamnesis" />">Přidat
+						<a href="<c:url value="/patient/${patientID}/anamnesis/create" />">Přidat
 							záznam</a>
 					</div>
 				</div>
@@ -139,7 +141,7 @@
 						<tr>
 							<td>Vysetreni dne: ${anamnesis.date}</td>
 							<td><a
-								href="<c:url value="${patient.id}/deleteAnamnesis/${anamnesis.id}"/>">Odstranit</a></td>
+								href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/delete"/>">Odstranit</a></td>
 						</tr>
 						<tr>
 							<td></td>
