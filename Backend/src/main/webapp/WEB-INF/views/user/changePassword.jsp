@@ -1,112 +1,75 @@
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title><spring:message code="label.edituser" /> - <spring:message
-		code="label.changePassword" /></title>
-<link rel="icon" type="image/png" href="7">
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
-<link
-	href="<c:url value="/resources/css/bootstrap-responsive.min.css"/>"
-	rel="stylesheet">
-<link href="<c:url value="/resources/css/validation.css"/>"
-	rel="stylesheet">
-<link
-	href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
-	rel="stylesheet">
+<t:menuLVL2>
 
-</head>
-<body>
-	<!-- box of whole page -->
-	<div class="container-fluid">
-		<!--  it defines box with logo -->
-		<div class="navbar navbar-inverse">
-			<div class="navbar-inner">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message
-						code="label.edituser" /> - <spring:message
-						code="label.changePassword" /></a>
-			</div>
+	<jsp:attribute name="head">
+     <link href="<c:url value="/resources/css/validation.css"/>"
+			rel="stylesheet">
+		<link
+			href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
+			rel="stylesheet">
+    </jsp:attribute>
+	<jsp:attribute name="title">
+      
+    </jsp:attribute>
+	<jsp:attribute name="header">
+      <spring:message code="label.changePassword" />
+    </jsp:attribute>
+	<jsp:attribute name="script">
+		<script src="<c:url value="/resources/js/other.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap-tab.js"/>"></script>
+      <script src="<c:url value="/resources/js/validation.js"/>"></script>
+	<script>
+		$(function() {
+			$(".datepicker").datepicker({
+				dateFormat : "dd/mm/yy",
+				changeYear : true
+			});
 
-		</div>
+		});
+	</script>
+    </jsp:attribute>
 
-		<!--  it defines box with menu and logo -->
-		<div class="span3">
-			<div class="well sidebar-nav">
-				<a href="/GENEPI/"> <img class="photo1" width=2560 height=1600
-					src="<c:url value="/resources/img/logo.png"/>" alt="logo" />
-				</a>
-			</div>
-			<div>
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">Pacienti</li>
-						<li><a href="<c:url value="/patient/list"/>">Kartotéka
-								pacientů</a></li>
-						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel:</li>
-						<li><a href="<c:url value="/profile"/>">Profil</a></li>
-						<li><a href="j_spring_security_logout">Odhlásit</a> </li->
-						<li class="nav-header">Jazyk</li>
-						<li><a href="?lang=cs">CZ</a></li>
-						<li><a href="?lang=en">EN</a></li>
-					</ul>
-				</div>
-				<!--  It block with copyright -->
-				<div class="span3">
-					<div id="copyright">
-						<p>GENEPI, &copy; 2013, FIT CVUT</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- box with content -->
-		<div class="span9">
-			<div class="hero-unit">
-
+	<jsp:body>
+	
 				<h2>
 					<spring:message code="label.edituser" />
 					<a href="<c:url value="/user/${user.id}/overview"/>">${user.username}</a>
 					<spring:message code="label.changePassword" />
 				</h2>
 				<form:form method="POST" modelAttribute="user"
-					action="/GENEPI/user/change-password" commandName="user">
+			action="/GENEPI/user/change-password" commandName="user">
 
 					<spring:message code="label.newPassword" />
 					<br>
 					<form:input id="password" path="password" type="password"
-						pattern=".{8,30}" class="input-block-level" value=""
-						autofocus="on" onFocusOut="passwordValidation();" required="true"
-						title="Délka musí být mezi 8-30 znaky." />
+				pattern=".{8,30}" class="input-block-level" value="" autofocus="on"
+				onFocusOut="passwordValidation();" required="true"
+				title="Délka musí být mezi 8-30 znaky." />
 					<form:errors path="password" cssClass="alert alert-error">
 					</form:errors>
 
 					<div id="passwordErrEmpty" class="alert alert-error"
-						style="display: none">Toto pole nesmí zůstat prázdné!</div>
+				style="display: none">Toto pole nesmí zůstat prázdné!</div>
 					<div id="passwordErr" class="alert alert-error"
-						style="display: none">Délka není mezi 8-30 znaky!</div>
+				style="display: none">Délka není mezi 8-30 znaky!</div>
 
 					<spring:message code="label.passwordAgain" />
 					<input type="password" id="passwordAgain" pattern=".{8,30}"
-						class="input-block-level" onFocusOut="passwordAgainValidation();"
-						title="Délka musí být mezi 8-30 znaky." />
+				class="input-block-level" onFocusOut="passwordAgainValidation();"
+				title="Délka musí být mezi 8-30 znaky." />
 					<div id="passwordAgainErrEmpty" class="alert alert-error"
-						style="display: none">Toto pole nesmí zůstat prázdné!</div>
+				style="display: none">Toto pole nesmí zůstat prázdné!</div>
 					<div id="passwordAgainErrLength" class="alert alert-error"
-						style="display: none">Délka není mezi 8-30 znaky!</div>
+				style="display: none">Délka není mezi 8-30 znaky!</div>
 					<div id="passwordAgainErrComparison" class="alert alert-error"
-						style="display: none">Hesla se neshodují.</div>
+				style="display: none">Hesla se neshodují.</div>
 					<div id="passwordAgainSuccComparison" class="alert alert-success"
-						style="display: none">Hesla se shodují.</div>
+				style="display: none">Hesla se shodují.</div>
 
 
 
@@ -121,47 +84,24 @@
 					<form:hidden path="contact.firstName" id="contact.firstName" />
 					<form:hidden path="contact.lastName" id="contact.lastName" />
 					<form:hidden path="contact.addressStreet"
-						id="contact.addressStreet" />
+				id="contact.addressStreet" />
 					<form:hidden path="contact.addressHn" id="contact.addressHn" />
 
 					<form:hidden path="contact.addressCity" id="contact.addressCity" />
 					<form:hidden path="contact.addressPostalcode"
-						id="contact.addressPostalcode" />
+				id="contact.addressPostalcode" />
 					<form:hidden path="contact.addressCountry"
-						id="contact.addressCountry" />
+				id="contact.addressCountry" />
 					<form:hidden path="contact.phoneNumber" id="contact.phoneNumber" />
 					<form:hidden path="contact.email" id="contact.email" />
 					<!-- --------------------------------------------- -->
 					<!-- -----------END OF THE HIDDEN FORM------------ -->
 
 					<button class="btn btn-small btn-primary" type="submit"
-						onclick="validation();">
+				onclick="validation();">
 						<spring:message code="label.change" />
-				</form:form>
+				
+		</form:form>
+	</jsp:body>
+</t:menuLVL2>
 
-
-			</div>
-		</div>
-	</div>
-
-
-	<!-- Javascripts imports -->
-	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-
-	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-	<script src="<c:url value="/resources/js/validation.js"/>"></script>
-	<script src="<c:url value="/resources/js/other.js"/>"></script>
-	<script src="<c:url value="/resources/js/bootstrap-tab.js"/>"></script>
-
-	<script>
-		$(function() {
-			$(".datepicker").datepicker({
-				dateFormat : "dd/mm/yy",
-				changeYear : true
-			});
-
-		});
-	</script>
-
-</body>
-</html>

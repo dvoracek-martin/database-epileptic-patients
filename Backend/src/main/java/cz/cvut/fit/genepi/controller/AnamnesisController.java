@@ -113,6 +113,6 @@ public class AnamnesisController {
 				.findAnamnesisByPatientID(patientID);
 		Collections.reverse(anamnesisEntities);
 		model.addAttribute("anamnesisList", anamnesisEntities);
-		return "patient/anamnesis/anamnesisView";
+		return "patient/anamnesis/listView";
 	}
 }

@@ -71,7 +71,7 @@
 		</div>
 
 		<!-- footer section -->
-		<div id="footer">
+		<div id="footer" class="span9">
 			<p>GENEPI, &copy; 2013, FIT CVUT</p>
 		</div>
 

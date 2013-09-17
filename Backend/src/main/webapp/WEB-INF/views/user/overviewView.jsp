@@ -1,66 +1,18 @@
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8" />
-<title>Pacient</title>
-<link rel="icon" type="image/png"
-	href="<c:url value="/resources/img/logoIcon.ico"/>">
-<link href="<c:url value="/resources/css/bootstrap.min.css"/>"
-	rel="stylesheet">
-</head>
-<body>
-	<!-- box of whole page -->
-	<div class="container-fluid">
-		<!--  it defines box with logo -->
-		<div class="navbar navbar-inverse">
-			<div class="navbar-inner">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - <spring:message
-						code="label.user" /></a>
-			</div>
-		</div>
+<t:menuLVL2>
 
-		<!--  it defines box with menu and logo -->
-		<div class="span3">
-			<div class="well sidebar-nav">
-				<a href="/GENEPI/"> <img class="photo1" width=2560 height=1600
-					src="<c:url value="/resources/img/logo.png"/>" alt="logo" />
-				</a>
-			</div>
-			<div>
-				<div class="well sidebar-nav">
-					<ul class="nav nav-list">
-						<li class="nav-header">Pacienti</li>
-						<li><a href="<c:url value="/patient/list"/>">Kartotéka
-								pacientů</a></li>
-						<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
-						<li class="nav-header">Uživatel:</li>
-						<li><a href="<c:url value="/profile"/>">Profil</a></li>
-						<li><a href="j_spring_security_logout">Odhlásit</a></li>
-						<li class="nav-header">Jazyk</li>
-						<li><a href="?lang=cs">CZ</a></li>
-						<li><a href="?lang=en">EN</a></li>
-					</ul>
-				</div>
-				<!--  It block with copyright -->
-				<div class="span3">
-					<div id="copyright">
-						<p>GENEPI, &copy; 2013, FIT CVUT</p>
-					</div>
-				</div>
-			</div>
-		</div>
+	<jsp:attribute name="title">
+      <spring:message code="label.user" />
+    </jsp:attribute>
+	<jsp:attribute name="header">
+      <spring:message code="label.user" />
+    </jsp:attribute>
 
-		<!-- box with content -->
-		<div class="span9">
-
-			<div class="hero-unit">
+	<jsp:body>
 				<h2>
 					<spring:message code="label.user" />
 				</h2>
@@ -119,18 +71,15 @@
 				&nbsp;
 				<div class="label label-info">${user.contact.email}</div>
 				<br> <input type="button" class="btn btn-small btn-primary"
-					onclick="document.location = '<c:url value="/user/${user.id}/edit"/>';"
-					value="<spring:message code="label.editdata" />"> <input
-					type="button" class="btn btn-small btn-primary"
-					onclick="document.location = '<c:url value="/user/${user.id}/change-password"/>';"
-					value="<spring:message code="label.changePassword" />">
-			</div>
-		</div>
-	</div>
-	<!-- Javascripts imports -->
-	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
-	<script src="<c:url value="/resources/js/jquery.js" />"></script>
-</body>
-</html>
+			onclick="document.location = '<c:url value="/user/${user.id}/edit"/>';"
+			value="<spring:message code="label.editdata" />"> <input
+			type="button" class="btn btn-small btn-primary"
+			onclick="document.location = '<c:url value="/user/${user.id}/change-password"/>';"
+			value="<spring:message code="label.changePassword" />">
+	
+	</jsp:body>
+</t:menuLVL2>
+
+
 
 
