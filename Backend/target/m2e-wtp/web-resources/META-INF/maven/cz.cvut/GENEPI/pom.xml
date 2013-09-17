@@ -251,14 +251,6 @@
 			<version>3.7</version>
 		</dependency>
 
-
-		<!-- Apache Tiles templating support for JSP-->
-		<dependency>
-			<groupId>org.apache.tiles</groupId>
-			<artifactId>tiles-jsp</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
