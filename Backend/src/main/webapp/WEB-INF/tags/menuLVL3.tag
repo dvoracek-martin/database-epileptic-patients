@@ -33,29 +33,29 @@
 					href="<c:url value="/patient/${patient.id}/overview" />">Přehled</a></li>
 					<li><a
 					href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Anamnéza</a></li>
-					<li><a href="underConstruction">Farmakoterapie</a></li>
-					<li><a href="underConstruction">Neurologické nálezy</a></li>
-					<li><a href="underConstruction">Neuropsychologie</a></li>
-					<li><a href="underConstruction">(Neuropsychologie - old)</a></li>
-					<li><a href="underConstruction">Diagnostické testy</a></li>
-					<li><a href="underConstruction">Neuropsychologie</a></li>
+					<li><a href="">Farmakoterapie</a></li>
+					<li><a href="">Neurologické nálezy</a></li>
+					<li><a href="">Neuropsychologie</a></li>
+					<li><a href="">(Neuropsychologie - old)</a></li>
+					<li><a href="">Diagnostické testy</a></li>
+					<li><a href="">Neuropsychologie</a></li>
 					<li>
 						<ul>
-							<li><a href="underConstruction">Skalpové EEG</a></li>
-							<li><a href="underConstruction">Neurozobraz. testy</a></li>
+							<li><a href="">Skalpové EEG</a></li>
+							<li><a href="">Neurozobraz. testy</a></li>
 						</ul>
 					</li>
-					<li><a href="underConstruction">Invazivní testy</a></li>
+					<li><a href="">Invazivní testy</a></li>
 					<li>
 						<ul>
-							<li><a href="underConstruction">ECoG</a></li>
-							<li><a href="underConstruction">iEEG</a></li>
-							<li><a href="underConstruction">Kortikalní mapovaní</a></li>
+							<li><a href="">ECoG</a></li>
+							<li><a href="">iEEG</a></li>
+							<li><a href="">Kortikalní mapovaní</a></li>
 						</ul>
 					</li>
-					<li><a href="underConstruction">Operace</a></li>
-					<li><a href="underConstruction">Komplikace</a></li>
-					<li><a href="underConstruction">Outcome</a></li>
+					<li><a href="">Operace</a></li>
+					<li><a href="">Komplikace</a></li>
+					<li><a href="">Outcome</a></li>
 				</ul>
 	</jsp:attribute>
 

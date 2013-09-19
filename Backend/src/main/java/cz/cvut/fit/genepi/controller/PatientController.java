@@ -74,7 +74,7 @@ public class PatientController {
 			@ModelAttribute("patient") @Valid PatientEntity patient,
 			BindingResult result) {
 		if (result.hasErrors()) {
-			return "createPatientView";
+			return "patient/createView";
 		} else {
 			patientService.save(patient);
 			return "redirect:/patient/" + Integer.toString(patient.getId())

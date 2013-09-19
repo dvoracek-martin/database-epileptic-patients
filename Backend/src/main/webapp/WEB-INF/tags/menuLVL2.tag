@@ -31,7 +31,7 @@
 	<jsp:invoke fragment="menuLVL3" />
 		<li class="nav-header">Pacienti</li>
 		<li><a href="<c:url value="/patient/list"/>">Kartotéka pacientů</a></li>
-		<li><a href="underConstruction">Pokročilé vyhledávání</a></li>
+		<li><a href="">Pokročilé vyhledávání</a></li>
 		<li class="nav-header">Uživatel:</li>
 		<li><a href="<c:url value="/profile"/>">Profil</a></li>
 		<li><a href="j_spring_security_logout">Odhlásit</a></li>
