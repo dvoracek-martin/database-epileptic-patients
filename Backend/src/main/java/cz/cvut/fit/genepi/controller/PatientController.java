@@ -53,9 +53,10 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String createPatientGET(Locale locale, Model model) {
 		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		doctors = userService.getDoctors();
+		//doctors = userService.getDoctors();
 		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("doctors", doctors);
+		System.out.println("test");
 		return "patient/createView";
 	}
 
