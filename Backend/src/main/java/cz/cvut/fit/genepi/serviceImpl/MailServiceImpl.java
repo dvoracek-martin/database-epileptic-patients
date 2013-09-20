@@ -5,7 +5,6 @@ import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
@@ -14,11 +13,6 @@ import javax.mail.internet.MimeMessage;
 import cz.cvut.fit.genepi.service.MailService;
 
 public class MailServiceImpl implements MailService {
-
-	private static final String SMTP_HOST_NAME = "smtp.gmail.com";
-	private static final String SMTP_HOST_PORT = "587";
-	private static final String SMTP_AUTH_USER = "genepimailbot";
-	private static final String SMTP_AUTH_PWD = "Kobliha0123";
 
 	private String MessageType;
 
@@ -35,7 +29,7 @@ public class MailServiceImpl implements MailService {
 	      String to = "Dworza@gmail.com";
 
 	      // Sender's email ID needs to be mentioned
-	      String from = "web@gmail.com";
+	      String from = "web@mail.com";
 
 	      // Assuming you are sending email from localhost
 	      String host = "localhost";
@@ -72,15 +66,5 @@ public class MailServiceImpl implements MailService {
 	      }catch (MessagingException mex) {
 	         mex.printStackTrace();
 	      }
-	}
-
-	private class SMTPAuthenticator extends javax.mail.Authenticator {
-
-		@Override
-		public PasswordAuthentication getPasswordAuthentication() {
-			String username = SMTP_AUTH_USER;
-			String password = SMTP_AUTH_PWD;
-			return new PasswordAuthentication(username, password);
-		}
 	}
 }
