@@ -25,6 +25,7 @@ import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.serviceImpl.MailServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -220,9 +221,9 @@ public class UserController {
 				+ user.getUsername() + "}"));
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
-		// MailServiceImpl mailService = new MailServiceImpl();
+		MailServiceImpl mailService = new MailServiceImpl();
 		try {
-			// mailService.sendMail(null, user.getContact().getEmail(),null);
+			mailService.sendMail(null, user.getContact().getEmail(), null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
