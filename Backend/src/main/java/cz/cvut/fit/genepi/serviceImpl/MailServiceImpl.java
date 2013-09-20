@@ -18,10 +18,12 @@ import javax.mail.internet.MimeMessage;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 import cz.cvut.fit.genepi.controller.HomeController;
 import cz.cvut.fit.genepi.service.MailService;
 
+@Service
 public class MailServiceImpl implements MailService {
 
 	private static final Logger logger = LoggerFactory

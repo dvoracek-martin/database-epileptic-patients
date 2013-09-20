@@ -22,6 +22,7 @@ import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
 import cz.cvut.fit.genepi.service.ContactService;
+import cz.cvut.fit.genepi.service.MailService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
@@ -47,6 +48,8 @@ public class UserController {
 
 	@Autowired
 	private ContactService contactService;
+	
+	@Autowired MailService mailService;
 
 	/**
 	 * Creates the user get.
@@ -220,8 +223,7 @@ public class UserController {
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 				+ user.getUsername() + "}"));
 		userService.save(user);
-		model.addAttribute("passwordChanged", true);
-		MailServiceImpl mailService = new MailServiceImpl();
+		model.addAttribute("passwordChanged", true);		
 		try {
 			mailService.sendMail(null, user.getContact().getEmail(), null);
 		} catch (Exception e) {
