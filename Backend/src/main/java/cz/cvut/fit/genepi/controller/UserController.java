@@ -209,6 +209,11 @@ public class UserController {
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
+		try {
+			mailService.sendMail(null, user.getContact().getEmail(), null);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		user.setPassword("");
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
