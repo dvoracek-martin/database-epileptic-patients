@@ -21,7 +21,7 @@ public class NewsMessageEntity {
 	
 	/** The message. */
 	@Size(max = 2000)
-	@Column(name = "MESSAGES", length = 2000, nullable = true)
+	@Column(name = "MESSAGE", length = 2000, nullable = false)
 	private String message;
 
 	public int getId() {
