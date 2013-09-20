@@ -22,5 +22,6 @@
   		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
   		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
   		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
+  		<mapping class="cz.cvut.fit.genepi.entity.NewsMessageEntity" />
     </session-factory>
 </hibernate-configuration>
