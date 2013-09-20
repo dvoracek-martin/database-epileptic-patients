@@ -80,6 +80,7 @@ public class MailServiceImpl implements MailService {
 			// Send message
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
+			logger.info("Sent message successfully....");
 		} catch (MessagingException mex) {
 			DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 
@@ -89,7 +90,7 @@ public class MailServiceImpl implements MailService {
 			PrintWriter pw = new PrintWriter(sw);
 			mex.printStackTrace(pw);
 			sw.toString(); // stack trace as a string
-			logger.error(reportDate
+			logger.info(reportDate
 					+ " Error when attemting to send an email: "
 					+ sw.toString());
 
