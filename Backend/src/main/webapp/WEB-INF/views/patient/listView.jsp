@@ -43,7 +43,7 @@
 							href="<c:url value="/patient/${patient.id}/export" />"><spring:message
 									code="label.export" /></a></li>
 								<li class="divider-vertical"><a
-							href="<c:url value="/underConstruction" />"><spring:message
+							href="<c:url value="/patient/${patient.id}/edit" />"><spring:message
 									code="label.edit" /></a></li>
 							</ul>
 						</div>
