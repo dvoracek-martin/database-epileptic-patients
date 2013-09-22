@@ -101,6 +101,7 @@ public class UserController {
 				model.addAttribute("isUnique", "notUnique");
 				return "user/createView";
 			} else {
+				String password = user.getPassword();
 				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 						+ user.getUsername() + "}"));
 
@@ -122,7 +123,7 @@ public class UserController {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					map.put("subject", "creationOfANewUser");
 					map.put("user", user);
-					map.put("password", user.getPassword());
+					map.put("password", password);
 					mailService.sendMail("test", map);
 				} catch (Exception e) {
 					e.printStackTrace();
