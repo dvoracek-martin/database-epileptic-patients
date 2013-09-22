@@ -81,7 +81,7 @@ public class MailService {
 				logger.info(reportDate
 						+ " Message about the change of the password was sent to user "
 						+ user.getId());
-			} else if (map.get("subject").equals("creationOfNewUser")) {
+			} else if (map.get("subject").equals("creationOfANewUser")) {
 				message.setSubject("New account to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
 				String text = "Dear " + user.getUsername() + ",\n"
