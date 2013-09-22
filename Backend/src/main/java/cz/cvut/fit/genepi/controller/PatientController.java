@@ -152,6 +152,9 @@ public class PatientController {
 			@PathVariable("patientID") Integer patientID) {
 		patientService.findByID(PatientEntity.class,
 				patientID);
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class,
+						patientID));
 		return "patient/editView";
 	}
 		
