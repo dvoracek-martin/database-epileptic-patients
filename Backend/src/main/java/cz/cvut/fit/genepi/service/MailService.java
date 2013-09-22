@@ -69,9 +69,9 @@ public class MailService {
 			if (map.get("subject").equals("changeOfThePassword")) {
 				message.setSubject("Changed password to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
-				String text = "Dear " + user.getUsername() + ",\n"
+				String text = "Dear " + user.getUsername() + ",\n\n"
 						+ "\tyour password was changed to: "
-						+ map.get("password") + ".\n Regards,\nGENEPI team.";
+						+ map.get("password") + ".\n\nRegards,\nGENEPI team.";
 				message.setText(text);
 				Transport.send(message);
 
@@ -84,9 +84,9 @@ public class MailService {
 			} else if (map.get("subject").equals("creationOfANewUser")) {
 				message.setSubject("New account to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
-				String text = "Dear " + user.getUsername() + ",\n"
+				String text = "Dear " + user.getUsername() + ",\n\n"
 						+ "\tyour account was created. Your password is: "
-						+ map.get("password") + ".\n Please change it in your user administration as soon as possible.\nRegards,\nGENEPI team.";
+						+ map.get("password") + ".\nPlease change it in your user administration as soon as possible.\n\nRegards,\nGENEPI team.";
 				message.setText(text);
 				Transport.send(message);
 

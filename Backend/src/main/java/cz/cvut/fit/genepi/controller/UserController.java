@@ -101,7 +101,6 @@ public class UserController {
 				model.addAttribute("isUnique", "notUnique");
 				return "user/createView";
 			} else {
-				String password = user.getPassword();
 				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 						+ user.getUsername() + "}"));
 
@@ -118,22 +117,11 @@ public class UserController {
 				for (UserRoleEntity userRole : listOfUserRoles) {
 					userRoleService.save(userRole);
 				}
-				try {
-					mailService = new MailService();
-					HashMap<String, Object> map = new HashMap<String, Object>();
-					map.put("subject", "creationOfANewUser");
-					map.put("user", user);
-					map.put("password", password);
-					mailService.sendMail("test", map);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
 			}
 		}
 	}
-
 	/**
 	 * User overview get.
 	 * 

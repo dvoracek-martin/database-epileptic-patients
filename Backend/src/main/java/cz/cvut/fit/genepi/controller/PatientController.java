@@ -150,8 +150,8 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		patientService.delete(patientService.findByID(PatientEntity.class,
-				patientID));
+		patientService.findByID(PatientEntity.class,
+				patientID);
 		return "patient/editView";
 	}
 		
