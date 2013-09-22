@@ -19,11 +19,9 @@ import javax.mail.internet.MimeMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import cz.cvut.fit.genepi.controller.HomeController;
-
 public class MailService {
 	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
+			.getLogger(MailService.class);
 
 	private String MessageType;
 
