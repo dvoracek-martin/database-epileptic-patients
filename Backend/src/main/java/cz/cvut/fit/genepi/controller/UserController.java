@@ -216,7 +216,8 @@ public class UserController {
 		logger.info("Changing password");
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		try {
-			mailService.sendMail(null, user.getContact().getEmail(), null);
+			mailService = new MailService();
+			mailService.sendMail(null, "test", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -234,7 +235,8 @@ public class UserController {
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
 		try {
-			mailService.sendMail(null, user.getContact().getEmail(), null);
+			mailService = new MailService();
+			mailService.sendMail(null, "test", null);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
