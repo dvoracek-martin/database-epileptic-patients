@@ -146,6 +146,28 @@ public class PatientController {
 		return "patient/overviewView";
 	}
 
+	
+	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
+	public String patientEditGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID) {
+		patientService.delete(patientService.findByID(PatientEntity.class,
+				patientID));
+		return "patient/editView";
+	}
+		
+	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
+	public String patientEditPOST(Locale locale, Model model,
+			@ModelAttribute("patient") @Valid PatientEntity patient,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "patient/"+ Integer.toString(patient.getId())+"/edit";
+		} else {
+			patientService.save(patient);
+			return "redirect:/patient/" + Integer.toString(patient.getId())
+					+ "/overview";
+		}
+	}
+	
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
