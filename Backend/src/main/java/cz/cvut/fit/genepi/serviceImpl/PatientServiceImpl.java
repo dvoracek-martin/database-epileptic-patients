@@ -17,6 +17,8 @@ import cz.cvut.fit.genepi.service.PatientService;
 public class PatientServiceImpl extends
 		GenericServiceImpl<PatientEntity, Serializable> implements
 		PatientService {
+	
+	/** The patient dao. */
 	@Autowired
 	private PatientDAO patientDAO;
 }

@@ -7,7 +7,18 @@ import com.itextpdf.text.DocumentException;
 
 import cz.cvut.fit.genepi.service.ExportService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExportServiceImpl.
+ */
 public class ExportServiceImpl implements ExportService {
+	
+	/**
+	 * Instantiates a new export service impl.
+	 *
+	 * @param format the format
+	 * @param pateintID the pateint id
+	 */
 	public ExportServiceImpl(String format,int pateintID) {
 		if (format.equals("pdf")) {
 			try {

@@ -21,20 +21,44 @@ import org.slf4j.LoggerFactory;
 
 import cz.cvut.fit.genepi.entity.UserEntity;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class MailService.
+ */
 public class MailService {
+	
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(MailService.class);
 
+	/** The Message type. */
 	private String MessageType;
 
+	/**
+	 * Gets the message type.
+	 *
+	 * @return the message type
+	 */
 	public String getMessageType() {
 		return MessageType;
 	}
 
+	/**
+	 * Sets the message type.
+	 *
+	 * @param messageType the new message type
+	 */
 	public void setMessageType(String messageType) {
 		MessageType = messageType;
 	}
 
+	/**
+	 * Send mail.
+	 *
+	 * @param recipient the recipient
+	 * @param map the map
+	 * @throws Exception the exception
+	 */
 	public void sendMail(String recipient, HashMap<String, Object> map)
 			throws Exception { // Recipient's email
 								// ID needs to be

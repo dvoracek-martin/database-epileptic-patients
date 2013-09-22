@@ -37,6 +37,9 @@ public class UserServiceImpl extends
 		return userDAO.findUserByUsername(username);
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.UserService#getDoctors()
+	 */
 	@Override
 	@Transactional
 	public List<UserEntity> getDoctors() {

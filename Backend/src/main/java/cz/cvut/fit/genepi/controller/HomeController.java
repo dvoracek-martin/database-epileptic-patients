@@ -24,6 +24,7 @@ import cz.cvut.fit.genepi.service.NewsMessageService;
 @Controller
 public class HomeController {
 
+	/** The news message service. */
 	@Autowired
 	private NewsMessageService newsMessageService;
 

@@ -11,7 +11,18 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  */
 public interface UserService extends GenericService<UserEntity, Serializable> {
 
+	/**
+	 * Find user by username.
+	 *
+	 * @param username the username
+	 * @return the user entity
+	 */
 	public UserEntity findUserByUsername(String username);
 
+	/**
+	 * Gets the doctors.
+	 *
+	 * @return the doctors
+	 */
 	public List<UserEntity> getDoctors();
 }

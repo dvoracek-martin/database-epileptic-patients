@@ -31,12 +31,15 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
+	/** The role service. */
 	@Autowired
 	private RoleService roleService;
 
+	/** The user role service. */
 	@Autowired
 	private UserRoleService userRoleService;
 
+	/** The contact service. */
 	@Autowired
 	private ContactService contactService;
 
@@ -56,11 +59,8 @@ public class ProfileController {
 
 	/**
 	 * Login get.
-	 * 
-	 * @param user
-	 *            the user
-	 * @param result
-	 *            the result
+	 *
+	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)

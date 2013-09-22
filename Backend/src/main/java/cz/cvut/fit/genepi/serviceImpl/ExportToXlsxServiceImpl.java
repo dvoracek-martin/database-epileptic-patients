@@ -14,7 +14,19 @@ import com.itextpdf.text.DocumentException;
 
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExportToXlsxServiceImpl.
+ */
 public class ExportToXlsxServiceImpl implements ExportToXlsxService {
+	
+	/**
+	 * Export.
+	 *
+	 * @param pateintID the pateint id
+	 * @throws DocumentException the document exception
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public void export(int pateintID) throws DocumentException, IOException {
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();

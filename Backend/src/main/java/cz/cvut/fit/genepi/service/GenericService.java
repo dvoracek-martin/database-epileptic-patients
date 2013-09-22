@@ -5,6 +5,13 @@ import java.util.List;
 
 import org.hibernate.Query;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Interface GenericService.
+ *
+ * @param <T> the generic type
+ * @param <ID> the generic type
+ */
 public interface GenericService<T, ID extends Serializable> {
 	
 	/**

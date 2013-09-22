@@ -47,7 +47,7 @@ public class AnamnesisController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/patie\nt/{patientID}/anamnesis/create", method = RequestMethod.GET)
 	public String createAnamnesisGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
@@ -81,6 +81,15 @@ public class AnamnesisController {
 		}
 	}
 
+	/**
+	 * Delete anamnesis.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @param anamnesisID the anamnesis id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/delete", method = RequestMethod.GET)
 	public String deleteAnamnesis(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,

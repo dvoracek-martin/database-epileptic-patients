@@ -38,6 +38,7 @@ public class PatientController {
 	@Autowired
 	private AnamnesisService anamnesisService;
 
+	/** The user service. */
 	@Autowired
 	private UserService userService;
 
@@ -138,6 +139,14 @@ public class PatientController {
 		return "patient/listView";
 	}
 
+	/**
+	 * Patient delete get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
 	public String patientDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
@@ -147,6 +156,14 @@ public class PatientController {
 	}
 
 	
+	/**
+	 * Patient edit get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
@@ -158,6 +175,14 @@ public class PatientController {
 		return "patient/editView";
 	}
 		
+	/**
+	 * Patient edit post.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patient the patient
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
 	public String patientEditPOST(Locale locale, Model model,
 			@ModelAttribute("patient")  PatientEntity patient)
@@ -169,6 +194,14 @@ public class PatientController {
 		
 	}
 	
+	/**
+	 * Patient export get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param patientID the patient id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {

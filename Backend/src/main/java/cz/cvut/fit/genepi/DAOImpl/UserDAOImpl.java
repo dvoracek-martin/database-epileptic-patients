@@ -31,6 +31,9 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity, Serializable>
 		return userEntity;
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.DAO.UserDAO#getDoctors()
+	 */
 	@Override
 	public List<UserEntity> getDoctors() {
 		List<UserEntity> doctors = new ArrayList<UserEntity>();

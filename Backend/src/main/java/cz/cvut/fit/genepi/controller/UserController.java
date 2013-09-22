@@ -42,27 +42,29 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	/** The role service. */
 	@Autowired
 	private RoleService roleService;
 
+	/** The user role service. */
 	@Autowired
 	private UserRoleService userRoleService;
 
+	/** The contact service. */
 	@Autowired
 	private ContactService contactService;
 
+	/** The mail service. */
 	private MailService mailService;
 
+	/** The Constant logger. */
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserController.class);
 
 	/**
 	 * Creates the user get.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
+	 *
+	 * @param model the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
@@ -149,6 +151,14 @@ public class UserController {
 		return "user/overviewView";
 	}
 
+	/**
+	 * User edit get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param userID the user id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
@@ -177,6 +187,14 @@ public class UserController {
 		return "user/editView";
 	}
 
+	/**
+	 * Edits the user get.
+	 *
+	 * @param user the user
+	 * @param result the result
+	 * @param model the model
+	 * @return the string
+	 */
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
 	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
@@ -218,6 +236,14 @@ public class UserController {
 		return "user/listView";
 	}
 
+	/**
+	 * User change password get.
+	 *
+	 * @param locale the locale
+	 * @param model the model
+	 * @param userID the user id
+	 * @return the string
+	 */
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
@@ -229,6 +255,14 @@ public class UserController {
 		return "user/changePassword";
 	}
 
+	/**
+	 * Change password post.
+	 *
+	 * @param user the user
+	 * @param model the model
+	 * @param result the result
+	 * @return the string
+	 */
 	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
 	public String changePasswordPOST(@ModelAttribute("user") @Valid UserEntity user,
 			Model model, BindingResult result) {

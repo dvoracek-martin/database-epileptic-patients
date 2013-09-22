@@ -12,14 +12,25 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.cvut.fit.genepi.DAO.GenericDAO;
 import cz.cvut.fit.genepi.service.GenericService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class GenericServiceImpl.
+ *
+ * @param <T> the generic type
+ * @param <ID> the generic type
+ */
 @Service
 public class GenericServiceImpl <T, ID extends Serializable> implements
 GenericService<T, ID> {
 
+	/** The generic dao. */
 	@Autowired
 	@Qualifier("genericDAOImpl")
 	protected GenericDAO<T, ID> genericDAO;
 	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#save(java.lang.Object)
+	 */
 	@Override
 	@Transactional
 	public void save(T entity) {
@@ -27,6 +38,9 @@ GenericService<T, ID> {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#merge(java.lang.Object)
+	 */
 	@Override
 	@Transactional
 	public void merge(T entity) {
@@ -34,6 +48,9 @@ GenericService<T, ID> {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#delete(java.lang.Object)
+	 */
 	@Override
 	@Transactional
 	public void delete(T entity) {
@@ -41,6 +58,9 @@ GenericService<T, ID> {
 	}
 	
 	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#findMany(org.hibernate.Query)
+	 */
 	@Override
 	@Transactional
 	public List<T> findMany(Query query){
@@ -49,18 +69,27 @@ GenericService<T, ID> {
 	
 	
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#findOne(org.hibernate.Query)
+	 */
 	@Override
 	@Transactional
 	public T findOne(Query query) {
 		return genericDAO.findOne(query);
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#findAll(java.lang.Class)
+	 */
 	@Override
 	@Transactional
 	public List<T> findAll(Class<T> myClass) {
 		return genericDAO.findAll(myClass);
 	}
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#findByID(java.lang.Class, int)
+	 */
 	@Override
 	@Transactional
 	public T findByID(Class<T> myClass, int id) {

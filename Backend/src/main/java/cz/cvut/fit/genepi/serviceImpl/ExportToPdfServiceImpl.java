@@ -23,18 +23,34 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class ExportToPdfServiceImpl.
+ */
 public class ExportToPdfServiceImpl implements ExportToPdfService {
 
+	/** The file. */
 	private static String FILE = "c:/temp/FirstPdf.pdf";
+	
+	/** The cat font. */
 	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
 			Font.BOLD);
+	
+	/** The red font. */
 	private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 			Font.NORMAL, BaseColor.RED);
+	
+	/** The sub font. */
 	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
 			Font.BOLD);
+	
+	/** The small bold. */
 	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
 			Font.BOLD);
 
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.ExportToPdfService#export(int)
+	 */
 	public void export(int pateintID) throws FileNotFoundException, DocumentException {
 		Document document = new Document();
 		PdfWriter.getInstance(document, new FileOutputStream(FILE));
@@ -48,6 +64,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	// iText allows to add metadata to the PDF which can be viewed in your Adobe
 	// Reader
 	// under File -> Properties
+	/**
+	 * Adds the meta data.
+	 *
+	 * @param document the document
+	 */
 	private static void addMetaData(Document document) {
 		document.addTitle("My first PDF");
 		document.addSubject("Using iText");
@@ -56,6 +77,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		document.addCreator("Lars Vogel");
 	}
 
+	/**
+	 * Adds the title page.
+	 *
+	 * @param document the document
+	 * @throws DocumentException the document exception
+	 */
 	private static  void addTitlePage(Document document) throws DocumentException {
 		Paragraph preface = new Paragraph();
 		// We add one empty line
@@ -84,6 +111,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		document.newPage();
 	}
 
+	/**
+	 * Adds the content.
+	 *
+	 * @param document the document
+	 * @throws DocumentException the document exception
+	 */
 	private static void addContent(Document document) throws DocumentException {
 		Anchor anchor = new Anchor("First Chapter", catFont);
 		anchor.setName("First Chapter");
@@ -129,6 +162,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	}
 
+	/**
+	 * Creates the table.
+	 *
+	 * @param subCatPart the sub cat part
+	 * @throws BadElementException the bad element exception
+	 */
 	private static void createTable(Section subCatPart)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(3);
@@ -162,6 +201,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	}
 
+	/**
+	 * Creates the list.
+	 *
+	 * @param subCatPart the sub cat part
+	 */
 	private static void createList(Section subCatPart) {
 		List list = new List(true, false, 10);
 		list.add(new ListItem("First point"));
@@ -170,6 +214,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		subCatPart.add(list);
 	}
 
+	/**
+	 * Adds the empty line.
+	 *
+	 * @param paragraph the paragraph
+	 * @param number the number
+	 */
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {
 			paragraph.add(new Paragraph(" "));

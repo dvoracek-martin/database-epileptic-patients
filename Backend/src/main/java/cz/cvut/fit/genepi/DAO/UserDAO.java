@@ -19,5 +19,10 @@ public interface UserDAO extends GenericDAO<UserEntity, Serializable> {
 	 */
 	UserEntity findUserByUsername(String username);
 
+	/**
+	 * Gets the doctors.
+	 *
+	 * @return the doctors
+	 */
 	List<UserEntity> getDoctors(); 
 }
