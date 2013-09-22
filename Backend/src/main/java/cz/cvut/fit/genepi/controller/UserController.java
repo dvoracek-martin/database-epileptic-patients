@@ -7,6 +7,8 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -49,6 +51,9 @@ public class UserController {
 	private ContactService contactService;
 
 	private MailService mailService;
+
+	private static final Logger logger = LoggerFactory
+			.getLogger(UserController.class);
 
 	/**
 	 * Creates the user get.
@@ -208,6 +213,7 @@ public class UserController {
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
+		logger.info("Changing password");
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		try {
 			mailService.sendMail(null, user.getContact().getEmail(), null);
@@ -217,7 +223,6 @@ public class UserController {
 		user.setPassword("");
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
-
 		return "user/changePassword";
 	}
 
