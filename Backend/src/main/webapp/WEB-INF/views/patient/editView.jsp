@@ -39,7 +39,7 @@
 	</h2>
 	
 	<form:form method="POST" modelAttribute="patient"
-			action="/GENEPI/patient/edit" commandName="patient">
+				action="/GENEPI/patient/edit" commandName="patient">
 					<div class="tabbable tabs-left">
 						<ul class="nav nav-tabs">
 							<li class=""><a href="#" onclick="editName();">Jméno,

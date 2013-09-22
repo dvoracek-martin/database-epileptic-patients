@@ -160,15 +160,13 @@ public class PatientController {
 		
 	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
 	public String patientEditPOST(Locale locale, Model model,
-			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result) {
-		if (result.hasErrors()) {
-			return "patient/"+ Integer.toString(patient.getId())+"/edit";
-		} else {
+			@ModelAttribute("patient")  PatientEntity patient)
+		 {
+		
 			patientService.save(patient);
 			return "redirect:/patient/" + Integer.toString(patient.getId())
 					+ "/overview";
-		}
+		
 	}
 	
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
