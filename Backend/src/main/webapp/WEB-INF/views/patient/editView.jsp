@@ -38,49 +38,11 @@
 </h2>
 
 <form:form method="POST" modelAttribute="patient"
-			action="/GENEPI/patient/edit" commandName="patient">
-
-
-			<div class="tabbable tabs-left">
-						<ul class="nav nav-tabs">
-							<li class=""><a href="#" onclick="editName();">Jméno a
-									příjmení</a></li>
-							<li class=""><a href="#" onclick="editAddress();">Adresa</a></li>
-							<li class=""><a href="#" onclick="editContact();">Kontakt</a></li>
-							<li><button class="btn btn-small btn-primary" type="submit"
-							onclick="validation();">
-									<spring:message code="label.edit" />
-								</button></li>
-						</ul>
-
-						<div class="tab-content">
-
-
-
-							<div id="editName" style="display: block">
-							</div>
-
-							<div id="editAddress" style="display: none">
-							</div>
-
-
-							<!-- Hidden form for retrieving user's properties -->
-							<!-- --------------------------------------------- -->
-							<form:hidden path="contact.id" id="contact.id" />
-							<!-- --------------------------------------------- -->
-							<!-- -----------END OF THE HIDDEN FORM------------ -->
-
-
-						</div>
-					</div>
-
-
-	<!-- Hidden form for retrieving user's properties -->
-	<!-- --------------------------------------------- -->
-	<form:hidden path="contact.id" id="contact.id" />
-	<!-- --------------------------------------------- -->
-	<!-- -----------END OF THE HIDDEN FORM------------ -->
-
+			action="/GENEPI/patient/${patient.id}/edit" commandName="patient">
+		<form:input id="firstname" path="contact.firstName" type="text"
+							value="${patient.contact.firstName}" pattern="[a-žA-Ž]{1,20}"
+							class="input-block-level"
+							required="true" title="Nesmí přesáhnout délku 20 znaků." />
 
 
 </form:form>
