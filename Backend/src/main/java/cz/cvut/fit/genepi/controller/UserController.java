@@ -234,6 +234,6 @@ public class UserController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/user/" + user.getId() + "changePassword";
+		return "redirect:/user/" + user.getId() + "/change-password";
 	}
 }

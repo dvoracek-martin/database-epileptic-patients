@@ -76,7 +76,7 @@
 
 
 					<!-- Hidden form for retrieving user's properties -->
-					<!-- --------------------------------------------- -->
+					<!-- //////////////////////////////////////////// -->
 					<form:hidden path="id" id="id" />
 					<form:hidden path="username" id="username" />
 					<!--form:hidden path="password" id="password" /-->
@@ -94,8 +94,8 @@
 				id="contact.addressCountry" />
 					<form:hidden path="contact.phoneNumber" id="contact.phoneNumber" />
 					<form:hidden path="contact.email" id="contact.email" />
-					<!-- --------------------------------------------- -->
-					<!-- -----------END OF THE HIDDEN FORM------------ -->
+					<!-- ///////////////////////////////////////////// -->
+					<!-- ///////////END OF THE HIDDEN FORM//////////// -->
 
 					<button class="btn btn-small btn-primary" type="submit"
 				onclick="validation();">

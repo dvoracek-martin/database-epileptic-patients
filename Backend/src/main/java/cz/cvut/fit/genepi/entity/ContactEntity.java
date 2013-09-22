@@ -42,11 +42,11 @@ public class ContactEntity {
 	private String lastName;
 
 	/** The address street. */	
-	@Pattern(regexp="[A-Za-z]*")
+	//@Pattern(regexp="[A-Za-z]*")
 	//@NotNull
 	//@NotBlank
-	@Size(min=1, max=30)
-	@Column(name = "ADDRESS_STREET", length = 30, nullable = true)
+	@Size(min=1, max=50)
+	@Column(name = "ADDRESS_STREET", length = 50, nullable = true)
 	private String addressStreet;
 
 	/** The address hn. */
@@ -91,8 +91,8 @@ public class ContactEntity {
 	@Email
 	//@NotNull
 	@NotBlank
-	@Size(max=20)
-	@Column(name = "EMAIL", length = 20, nullable = true)
+	@Size(min=1, max=50)
+	@Column(name = "EMAIL", length = 50, nullable = true)
 	private String email;
 
 	/**
