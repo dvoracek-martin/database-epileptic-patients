@@ -70,7 +70,7 @@ public class MailService {
 				message.setSubject("Changed password to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
 				String text = "Dear " + user.getUsername() + ",\n\n"
-						+ "\tyour password was changed to: "
+						+ "your password was changed to: "
 						+ map.get("password") + ".\n\nRegards,\nGENEPI team.";
 				message.setText(text);
 				Transport.send(message);
@@ -85,7 +85,7 @@ public class MailService {
 				message.setSubject("New account to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
 				String text = "Dear " + user.getUsername() + ",\n\n"
-						+ "\tyour account was created. Your password is: "
+						+ "your account was created. Your password is: "
 						+ map.get("password") + ".\nPlease change it in your user administration as soon as possible.\n\nRegards,\nGENEPI team.";
 				message.setText(text);
 				Transport.send(message);
