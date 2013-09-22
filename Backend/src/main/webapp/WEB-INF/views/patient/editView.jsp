@@ -41,7 +41,38 @@
 			action="/GENEPI/patient/edit" commandName="patient">
 
 
+			<div class="tabbable tabs-left">
+						<ul class="nav nav-tabs">
+							<li class=""><a href="#" onclick="editName();">Jméno a
+									příjmení</a></li>
+							<li class=""><a href="#" onclick="editAddress();">Adresa</a></li>
+							<li class=""><a href="#" onclick="editContact();">Kontakt</a></li>
+							<li><button class="btn btn-small btn-primary" type="submit"
+							onclick="validation();">
+									<spring:message code="label.edit" />
+								</button></li>
+						</ul>
 
+						<div class="tab-content">
+
+
+
+							<div id="editName" style="display: block">
+							</div>
+
+							<div id="editAddress" style="display: none">
+							</div>
+
+
+							<!-- Hidden form for retrieving user's properties -->
+							<!-- --------------------------------------------- -->
+							<form:hidden path="contact.id" id="contact.id" />
+							<!-- --------------------------------------------- -->
+							<!-- -----------END OF THE HIDDEN FORM------------ -->
+
+
+						</div>
+					</div>
 
 
 	<!-- Hidden form for retrieving user's properties -->

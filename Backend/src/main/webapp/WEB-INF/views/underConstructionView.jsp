@@ -10,7 +10,7 @@
 <meta charset="UTF-8" />
 <meta name="description" content="">
 <meta name="author" content="GENEPI team">
-<title>Přístup odepřen</title>
+<title><spring:message code="label.underConstruction" /></title>
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
@@ -27,7 +27,7 @@
 				<a class="btn btn-navbar" data-toggle="collapse"
 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
 					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">V rekonstrukci</a>
+				</a> <a class="brand" href="#"><spring:message code="label.underConstruction" /></a>
 				<div class="nav-collapse collapse">
 					<ul id="nav-list" class="nav pull-right">
 						<li><a href="<c:url value="/login" />">GENEPI</a></li>
