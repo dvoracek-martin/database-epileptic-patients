@@ -48,7 +48,7 @@ public class UserController {
 	@Autowired
 	private ContactService contactService;
 	
-	@Autowired MailService mailService;
+	private MailService mailService;
 
 	/**
 	 * Creates the user get.
