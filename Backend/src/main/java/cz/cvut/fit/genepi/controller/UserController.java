@@ -88,12 +88,9 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
-	public String addUserGET(
-			@ModelAttribute("user") @Valid UserEntity user,
-			@PathVariable("listOfPossibleRoles") ArrayList<RoleEntity> listOfSelectedRoles,
+	public String addUserGET(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
-		for (RoleEntity i : listOfSelectedRoles)
-			System.out.println(i.getAuthority());
+
 		if (result.hasErrors()) {
 			return "user/createView";
 		} else {
@@ -117,11 +114,22 @@ public class UserController {
 				for (UserRoleEntity userRole : listOfUserRoles) {
 					userRoleService.save(userRole);
 				}
+				try {
+					mailService = new MailService();
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("subject", "creationOfANewUser");
+					map.put("user", user);
+					map.put("password", user.getPassword());
+					mailService.sendMail("test", map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
 			}
 		}
 	}
+
 	/**
 	 * User overview get.
 	 * 
