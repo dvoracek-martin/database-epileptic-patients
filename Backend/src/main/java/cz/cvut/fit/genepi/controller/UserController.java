@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -116,6 +117,16 @@ public class UserController {
 				for (UserRoleEntity userRole : listOfUserRoles) {
 					userRoleService.save(userRole);
 				}
+				try {
+					mailService = new MailService();
+					HashMap<String, Object> map = new HashMap<String, Object>();
+					map.put("subject", "creationOfANewUser");
+					map.put("user", user);
+					map.put("password", user.getPassword());
+					mailService.sendMail("test", map);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
 			}
@@ -215,12 +226,6 @@ public class UserController {
 			@PathVariable("userID") Integer userID) {
 		logger.info("Changing password");
 		UserEntity user = userService.findByID(UserEntity.class, userID);
-		try {
-			mailService = new MailService();
-			mailService.sendMail(null, "test", null);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		user.setPassword("");
 		model.addAttribute("user", user);
 		model.addAttribute("passwordChanged", false);
@@ -228,19 +233,27 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
-	public String changePasswordPOST(@ModelAttribute("user") UserEntity user,
-			Model model) {
+	public String changePasswordPOST(@ModelAttribute("user") @Valid UserEntity user,
+			Model model, BindingResult result) {
+		if (result.hasErrors()) {
+			return "user/"+user.getId()+"change-password";
+		} else {
+		String password = user.getPassword();
 		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
 				+ user.getUsername() + "}"));
 		userService.save(user);
 		model.addAttribute("passwordChanged", true);
 		try {
 			mailService = new MailService();
-			mailService.sendMail(null, "test", null);
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("subject", "changeOfThePassword");
+			map.put("user", user);
+			map.put("password", password);
+			mailService.sendMail("test", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		}
 		return "redirect:/user/" + user.getId() + "/change-password";
 	}
 }
