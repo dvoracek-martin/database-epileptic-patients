@@ -38,7 +38,7 @@
 	</div>
 	
 	<div style="width: 330px; margin: auto; padding-top: 10em">
-			<h1>Tato stránka se právě rekonstruuje. Co nevidět bude k dispozici.</h1>
+			<h1>Tato funkce je dočasně nedostupná.</h1>
 
 	</div>
 

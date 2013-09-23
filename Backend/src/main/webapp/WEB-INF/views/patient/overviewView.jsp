@@ -20,7 +20,7 @@
 					</div>
 					<div>
 						<h3 class="pull-right">
-							<a href="<c:url value="/patient/${patient.id}/export" />">Export
+							<a id="export" onclick="chooseFormat()" href="<c:url value="/patient/${patient.id}/export" />">Export
 								pacienta</a>
 						</h3>
 					</div>
@@ -937,5 +937,20 @@
 </t:menuLVL3>
 
 
+<script>
+var link = document.getElementById('export').href;
+function chooseFormat()
+{
+var format=prompt("Zvolte souborový formát, do kterého chcete exportovat:","pdf/csv");
 
+while (format!="pdf" && format!="csv" && format!=null)
+  {
+	format=prompt("Takovýto formát není podporován. Prosím, zvolte podporovaný formát (pdf či csv).","pdf/csv");
+  }
+  if (format==null)
+  	document.getElementById('export').href="#";
+  else	
+	  document.getElementById('export').href;
+}
+</script>
 
