@@ -130,7 +130,7 @@ public class UserController {
 				try {
 					mailService = new MailService();
 					HashMap<String, Object> map = new HashMap<String, Object>();
-					map.put("subject", "changeOfThePassword");
+					map.put("subject", "creationOfANewUser");
 					map.put("user", user);
 					map.put("password", password);
 					mailService.sendMail("test", map);
