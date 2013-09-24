@@ -45,7 +45,7 @@ public class UserEntity {
 	/** The contact. */
 	@Valid
 	@OneToOne
-	@Cascade({ CascadeType.SAVE_UPDATE })
+	@Cascade({CascadeType.ALL})
 	private ContactEntity contact;
 
 	

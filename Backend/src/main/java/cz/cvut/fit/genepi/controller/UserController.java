@@ -167,6 +167,13 @@ public class UserController {
 		return "user/overviewView";
 	}
 
+	@RequestMapping(value = "/user/{userID}/delete", method = RequestMethod.GET)
+	public String patientDeleteGET(Locale locale, Model model,
+			@PathVariable("userID") Integer userID) {
+		userService.delete(userService.findByID(UserEntity.class,
+				userID));
+		return "redirect:/user/list";
+	}
 	/**
 	 * User edit get.
 	 * 

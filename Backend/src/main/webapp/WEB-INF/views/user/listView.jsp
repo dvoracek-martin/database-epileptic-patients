@@ -38,7 +38,7 @@
 				<li><a
 							href="<c:url value="/user/${user.id}/change-password" />"><spring:message
 									code="label.changePassword" /></a></li>
-				<li><a href="<c:url value="/underConstruction"/>"><spring:message
+				<li><a href="<c:url value="/user/${user.id}/delete"/>"><spring:message
 									code="label.deleteUser" /></a></li>
 			</ul>
 		</div>
