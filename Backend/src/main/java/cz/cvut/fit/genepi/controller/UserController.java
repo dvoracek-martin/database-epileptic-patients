@@ -1,6 +1,12 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -127,6 +133,16 @@ public class UserController {
 					map.put("password", password);
 					mailService.sendMail("test", map);
 				} catch (Exception e) {
+					DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+					Date today = Calendar.getInstance().getTime();
+					String reportDate = df.format(today);
+					StringWriter sw = new StringWriter();
+					PrintWriter pw = new PrintWriter(sw);
+					e.printStackTrace(pw);
+					sw.toString(); // stack trace as a string
+					logger.error(reportDate
+							+ " Error when attemting to send an email after creating a user: "
+							+ sw.toString());
 					e.printStackTrace();
 				}
 				return "redirect:/user/" + Integer.toString(user.getId())
