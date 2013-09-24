@@ -109,6 +109,8 @@ public class UserController {
 				return "user/createView";
 			} else {
 				String password = RandomStringUtils.random(10);
+				logInfo("New password " + password + " for new user id "
+						+ user.getId() + " generated.");
 				user.setPassword(DigestUtils.sha256Hex(password + "{"
 						+ user.getUsername() + "}"));
 
@@ -132,19 +134,14 @@ public class UserController {
 					map.put("user", user);
 					map.put("password", password);
 					mailService.sendMail("test", map);
+					logInfo("Email to new user sent");
+
 				} catch (Exception e) {
-					DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-					Date today = Calendar.getInstance().getTime();
-					String reportDate = df.format(today);
-					StringWriter sw = new StringWriter();
-					PrintWriter pw = new PrintWriter(sw);
-					e.printStackTrace(pw);
-					sw.toString(); // stack trace as a string
-					logger.error(reportDate
-							+ " Error when attemting to send an email after creating a user: "
-							+ sw.toString());
-					e.printStackTrace();
+					logError(
+							"Error when trying to send email after creating new user.",
+							e);
 				}
+				logInfo("New user successfuly created.");
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
 			}
@@ -318,5 +315,23 @@ public class UserController {
 			}
 		}
 		return "redirect:/user/" + user.getId() + "/change-password";
+	}
+
+	private void logInfo(String message) {
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date today = Calendar.getInstance().getTime();
+		String reportDate = df.format(today);
+		logger.info(reportDate + ": " + message);
+	}
+
+	private void logError(String message, Exception e) {
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date today = Calendar.getInstance().getTime();
+		String reportDate = df.format(today);
+		StringWriter sw = new StringWriter();
+		PrintWriter pw = new PrintWriter(sw);
+		e.printStackTrace(pw);
+		sw.toString(); // stack trace as a string
+		logger.error(reportDate + ": " + message + " " + sw.toString());
 	}
 }
