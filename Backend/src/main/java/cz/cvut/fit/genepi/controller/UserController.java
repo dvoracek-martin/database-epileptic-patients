@@ -8,6 +8,7 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,8 +64,9 @@ public class UserController {
 
 	/**
 	 * Creates the user get.
-	 *
-	 * @param model the model
+	 * 
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
@@ -100,7 +102,8 @@ public class UserController {
 				model.addAttribute("isUnique", "notUnique");
 				return "user/createView";
 			} else {
-				user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
+				String password = RandomStringUtils.random(10);
+				user.setPassword(DigestUtils.sha256Hex(password + "{"
 						+ user.getUsername() + "}"));
 
 				userService.save(user);
@@ -121,7 +124,7 @@ public class UserController {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					map.put("subject", "creationOfANewUser");
 					map.put("user", user);
-					map.put("password", user.getPassword());
+					map.put("password", password);
 					mailService.sendMail("test", map);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -153,10 +156,13 @@ public class UserController {
 
 	/**
 	 * User edit get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param userID the user id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param userID
+	 *            the user id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
@@ -189,10 +195,13 @@ public class UserController {
 
 	/**
 	 * Edits the user get.
-	 *
-	 * @param user the user
-	 * @param result the result
-	 * @param model the model
+	 * 
+	 * @param user
+	 *            the user
+	 * @param result
+	 *            the result
+	 * @param model
+	 *            the model
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
@@ -238,10 +247,13 @@ public class UserController {
 
 	/**
 	 * User change password get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param userID the user id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param userID
+	 *            the user id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
@@ -257,33 +269,37 @@ public class UserController {
 
 	/**
 	 * Change password post.
-	 *
-	 * @param user the user
-	 * @param model the model
-	 * @param result the result
+	 * 
+	 * @param user
+	 *            the user
+	 * @param model
+	 *            the model
+	 * @param result
+	 *            the result
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
-	public String changePasswordPOST(@ModelAttribute("user") @Valid UserEntity user,
-			Model model, BindingResult result) {
+	public String changePasswordPOST(
+			@ModelAttribute("user") @Valid UserEntity user, Model model,
+			BindingResult result) {
 		if (result.hasErrors()) {
-			return "user/"+user.getId()+"change-password";
+			return "user/" + user.getId() + "change-password";
 		} else {
-		String password = user.getPassword();
-		user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
-				+ user.getUsername() + "}"));
-		userService.save(user);
-		model.addAttribute("passwordChanged", true);
-		try {
-			mailService = new MailService();
-			HashMap<String, Object> map = new HashMap<String, Object>();
-			map.put("subject", "changeOfThePassword");
-			map.put("user", user);
-			map.put("password", password);
-			mailService.sendMail("test", map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			String password = user.getPassword();
+			user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
+					+ user.getUsername() + "}"));
+			userService.save(user);
+			model.addAttribute("passwordChanged", true);
+			try {
+				mailService = new MailService();
+				HashMap<String, Object> map = new HashMap<String, Object>();
+				map.put("subject", "changeOfThePassword");
+				map.put("user", user);
+				map.put("password", password);
+				mailService.sendMail("test", map);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return "redirect:/user/" + user.getId() + "/change-password";
 	}
