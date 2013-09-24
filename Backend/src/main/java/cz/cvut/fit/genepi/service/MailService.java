@@ -118,7 +118,7 @@ public class MailService {
 				Date today = Calendar.getInstance().getTime();
 				String reportDate = df.format(today);
 				logger.info(reportDate
-						+ " Message about the creation of new account was sent to user "
+						+ " Message about the creation of a new account was sent to user "
 						+ user.getId());
 			} else {
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
