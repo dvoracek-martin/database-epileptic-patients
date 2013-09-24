@@ -108,7 +108,7 @@ public class UserController {
 				model.addAttribute("isUnique", "notUnique");
 				return "user/createView";
 			} else {
-				String password = RandomStringUtils.random(10);
+				String password = RandomStringUtils.randomAlphanumeric(10);
 				logInfo("New password " + password + " for new user id "
 						+ user.getId() + " generated.");
 				user.setPassword(DigestUtils.sha256Hex(password + "{"
