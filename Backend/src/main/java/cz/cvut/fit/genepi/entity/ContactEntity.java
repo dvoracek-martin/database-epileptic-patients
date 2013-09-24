@@ -26,7 +26,7 @@ public class ContactEntity {
 	private int id;
 
 	/** The first name. */
-	//@Pattern(regexp="[A-Za-z ]*")
+	@Pattern(regexp="[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
 	//@NotNull
 	//@NotBlank
 	@Size(min=1, max=20)
@@ -34,7 +34,7 @@ public class ContactEntity {
 	private String firstName;
 
 	/** The last name. */
-	//@Pattern(regexp="[A-Za-z ]*")
+	@Pattern(regexp="[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
 	//@NotNull
 	//@NotBlank
 	@Size(min=1, max=20)
@@ -42,7 +42,7 @@ public class ContactEntity {
 	private String lastName;
 
 	/** The address street. */	
-	//@Pattern(regexp="[A-Za-z]*")
+	@Pattern(regexp="[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
 	//@NotNull
 	//@NotBlank
 	@Size(min=1, max=50)
@@ -58,7 +58,7 @@ public class ContactEntity {
 	private String addressHn;
 
 	/** The address city. */
-	//@Pattern(regexp="[A-Za-z ]*")
+	@Pattern(regexp="[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
 	//@NotNull
 	//@NotBlank
 	@Size(min=1, max=30)
@@ -74,7 +74,7 @@ public class ContactEntity {
 	private String addressPostalcode;
 
 	/** The address country. */
-	//@Pattern(regexp="[A-Za-z ]*")
+	@Pattern(regexp="[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
 	//@NotNull
 	//@NotBlank
 	@Size(min=1, max=20)
