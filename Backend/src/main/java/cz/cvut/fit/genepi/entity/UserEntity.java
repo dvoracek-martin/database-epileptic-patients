@@ -1,10 +1,15 @@
 package cz.cvut.fit.genepi.entity;
 
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -28,30 +33,31 @@ public class UserEntity {
 	private int id;
 
 	/** The username. */
-	@Pattern(regexp="[A-Za-z0-9]*")
-	//@NotBlank
-	//@NotNull
-	@Size(min=1,max=10)
+	@Pattern(regexp = "[A-Za-z0-9]*")
+	// @NotBlank
+	// @NotNull
+	@Size(min = 1, max = 10)
 	@Column(name = "USERNAME", length = 10, nullable = false)
 	private String username;
 
 	/** The password. */
-	//@NotBlank
-	//@NotNull
-	@Size(min=8,max=128)
+	// @NotBlank
+	// @NotNull
+	@Size(min = 8, max = 128)
 	@Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
 	private String password;
-			
+
 	/** The contact. */
 	@Valid
 	@OneToOne
-	@Cascade({CascadeType.ALL})
+	@Cascade({ CascadeType.ALL })
 	private ContactEntity contact;
 
-	
-    /*@ManyToMany(targetEntity=cz.cvut.fit.genepi.entity.RoleEntity.class)   
-    private Set<RoleEntity> roles;*/
-    
+	@ManyToMany()
+	@Cascade({ CascadeType.ALL })
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_ID", nullable = false, updatable = false) })
+	private Set<RoleEntity> roles;
+
 	/**
 	 * Gets the id.
 	 * 
@@ -71,11 +77,9 @@ public class UserEntity {
 		this.id = id;
 	}
 
-	
-
 	/**
 	 * Gets the username.
-	 *
+	 * 
 	 * @return the username
 	 */
 	public String getUsername() {
@@ -84,8 +88,9 @@ public class UserEntity {
 
 	/**
 	 * Sets the username.
-	 *
-	 * @param username the new username
+	 * 
+	 * @param username
+	 *            the new username
 	 */
 	public void setUsername(String username) {
 		this.username = username;
@@ -93,7 +98,7 @@ public class UserEntity {
 
 	/**
 	 * Gets the password.
-	 *
+	 * 
 	 * @return the password
 	 */
 	public String getPassword() {
@@ -102,8 +107,9 @@ public class UserEntity {
 
 	/**
 	 * Sets the password.
-	 *
-	 * @param password the new password
+	 * 
+	 * @param password
+	 *            the new password
 	 */
 	public void setPassword(String password) {
 		this.password = password;
@@ -111,7 +117,7 @@ public class UserEntity {
 
 	/**
 	 * Gets the contact.
-	 *
+	 * 
 	 * @return the contact
 	 */
 	public ContactEntity getContact() {
@@ -120,10 +126,19 @@ public class UserEntity {
 
 	/**
 	 * Sets the contact.
-	 *
-	 * @param contact the new contact
+	 * 
+	 * @param contact
+	 *            the new contact
 	 */
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
+	}
+
+	public Set<RoleEntity> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<RoleEntity> roles) {
+		this.roles = roles;
 	}
 }
