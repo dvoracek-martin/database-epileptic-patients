@@ -22,7 +22,7 @@ public class DeniedController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {		
+	public String deniedGET(Locale locale, Model model) {		
 		return "deniedView";
 	}	
 }

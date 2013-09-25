@@ -53,7 +53,7 @@ public class ProfileController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String myProfilePOST(Locale locale, Model model) {
+	public String profilePOST(Locale locale, Model model) {
 		return "profileView";
 	}
 
@@ -64,7 +64,7 @@ public class ProfileController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
-	public String myProfileGET(Model model) {
+	public String profileGET(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 

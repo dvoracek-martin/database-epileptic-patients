@@ -52,7 +52,7 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
-	public String createPatientGET(Locale locale, Model model) {
+	public String patientCreateGET(Locale locale, Model model) {
 		List<UserEntity> doctors = new ArrayList<UserEntity>();
 		//doctors = userService.getDoctors();
 		model.addAttribute("patient", new PatientEntity());
@@ -71,7 +71,7 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
-	public String addPatient(
+	public String patientCreatePOST(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
 			BindingResult result) {
 		if (result.hasErrors()) {

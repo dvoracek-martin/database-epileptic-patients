@@ -48,7 +48,7 @@ public class AnamnesisController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.GET)
-	public String createAnamnesisGET(Locale locale, Model model,
+	public String anamnesisCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
@@ -69,7 +69,7 @@ public class AnamnesisController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.POST)
-	public String addAnamnesis(
+	public String anamnesisCreatePOST(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
@@ -91,7 +91,7 @@ public class AnamnesisController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/delete", method = RequestMethod.GET)
-	public String deleteAnamnesis(Locale locale, Model model,
+	public String anamnesisDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("anamnesisID") Integer anamnesisID) {
 
@@ -112,7 +112,7 @@ public class AnamnesisController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/list", method = RequestMethod.GET)
-	public String patientOverviewGET(Locale locale, Model model,
+	public String anamnesisListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);

@@ -76,7 +76,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
-	public String createUserGET(Model model) {
+	public String userCreateGET(Model model) {
 		List<RoleEntity> listOfPossibleRoles = roleService
 				.findAll(RoleEntity.class);
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
@@ -98,7 +98,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String addUserGET(@ModelAttribute("user") @Valid UserEntity user,
+	public String userCreatePOST(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -168,7 +168,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/{userID}/delete", method = RequestMethod.GET)
-	public String patientDeleteGET(Locale locale, Model model,
+	public String userDeleteGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
 		userService.delete(userService.findByID(UserEntity.class,
 				userID));
@@ -225,7 +225,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-	public String editUserGET(@ModelAttribute("user") @Valid UserEntity user,
+	public String userEditPOST(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "user/editView";
@@ -260,7 +260,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
-	public String usersListGET(Locale locale, Model model) {
+	public String userListGET(Locale locale, Model model) {
 		model.addAttribute("userList", userService.findAll(UserEntity.class));
 		return "user/listView";
 	}
@@ -299,7 +299,7 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
-	public String changePasswordPOST(
+	public String userChangePasswordPOST(
 			@ModelAttribute("user") @Valid UserEntity user, Model model,
 			BindingResult result) {
 		if (result.hasErrors()) {
