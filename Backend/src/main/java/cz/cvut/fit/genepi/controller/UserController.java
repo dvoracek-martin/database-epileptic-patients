@@ -97,7 +97,7 @@ public class UserController {
 	 *            the model
 	 * @return the string
 	 */
-	@RequestMapping(value = "/user/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
 	public String addUserGET(@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 

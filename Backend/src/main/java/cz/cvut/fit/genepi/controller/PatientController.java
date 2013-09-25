@@ -70,7 +70,7 @@ public class PatientController {
 	 *            the result
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
 	public String addPatient(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
 			BindingResult result) {

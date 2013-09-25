@@ -68,7 +68,7 @@ public class AnamnesisController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/anamnesis/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.POST)
 	public String addAnamnesis(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {

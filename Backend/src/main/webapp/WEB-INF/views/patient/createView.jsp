@@ -36,7 +36,7 @@
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
 					<!-- form for adding new patient -->
-					<form:form method="POST" action="/GENEPI/patient/add"
+					<form:form method="POST" action="/GENEPI/patient/create"
 				commandName="patient">
 						<form:label path="contact.firstName">
 							<spring:message code="label.firstname" />

@@ -74,7 +74,7 @@
 					<!-- form for adding new patient -->
 					<!-- mapping resource in action with c:url caused errors -->
 					<form:form method="POST"
-				action="/GENEPI/patient/${patientID}/anamnesis/add"
+				action="/GENEPI/patient/${patientID}/anamnesis/create"
 				commandName="anamnesis">
 						<form:label path="date">Datum</form:label>
 						<form:input path="date" type="text"
