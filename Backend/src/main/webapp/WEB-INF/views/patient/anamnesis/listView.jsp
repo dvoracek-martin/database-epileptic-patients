@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
 
@@ -68,55 +69,51 @@
 						href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/delete"/>">Odstranit</a></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.epilepsyInFamily" /></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.prenatalRisk" /></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.fibrilConvulsions" /></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.inflamationCNS" /></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.injureCNS" /></td>
 							<td></td>
 						</tr>
 						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
+							<td><spring:message code="label.operationCNS" /></td>
 							<td></td>
 						</tr>
 						<tr>
+							<td><spring:message code="label.earlyPMDRetardation" /></td>
 							<td></td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.beginningEpilepsy" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.firstFever" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.infantileSpasm" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.epilepticSyndrome" /></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.nonCNSComorbidity" /></td>
 							<td></td>
 						</tr>
 					</c:forEach>
