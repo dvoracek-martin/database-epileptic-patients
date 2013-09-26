@@ -70,51 +70,51 @@
 						</tr>
 						<tr>
 							<td><spring:message code="label.epilepsyInFamily" /></td>
-							<td></td>
+							<td>${anamnesis.epilepsyInFamily}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.prenatalRisk" /></td>
-							<td></td>
+							<td>${anamnesis.prenatalRisk}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.fibrilConvulsions" /></td>
-							<td></td>
+							<td>${anamnesis.fibrilConvulsions}</td>
 						</tr>
 						<tr>
-							<td><spring:message code="label.inflamationCNS" /></td>
-							<td></td>
+							<td><spring:message code="label.inflammationCNS" /></td>
+							<td>${anamnesis.inflammationCns}</td>
 						</tr>
 						<tr>
-							<td><spring:message code="label.injureCNS" /></td>
-							<td></td>
+							<td><spring:message code="label.injuryCNS" /></td>
+							<td>${anamnesis.injuryCns}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.operationCNS" /></td>
-							<td></td>
+							<td>${anamnesis.operationCns}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.earlyPMDRetardation" /></td>
-							<td></td>
+							<td>${anamnesis.earlyPmdRetardation}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.beginningEpilepsy" /></td>
-							<td></td>
+							<td>${anamnesis.beginningEpilepsy}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.firstFever" /></td>
-							<td></td>
+							<td>${anamnesis.firstFever}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.infantileSpasm" /></td>
-							<td></td>
+							<td>${anamnesis.infantileSpasm}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.epilepticSyndrome" /></td>
-							<td></td>
+							<td>${anamnesis.specificSyndromeIdcom}</td>
 						</tr>
 						<tr>
 							<td><spring:message code="label.nonCNSComorbidity" /></td>
-							<td></td>
+							<td>${anamnesis.nonCnsComorbidity}</td>
 						</tr>
 					</c:forEach>
 				</table>
