@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
 
@@ -20,7 +21,8 @@
 					</div>
 					<div>
 						<h3 class="pull-right">
-							<a id="export" onclick="chooseFormat()" href="<c:url value="/patient/${patient.id}/export" />">Export
+							<a id="export" onclick="chooseFormat()"
+						href="<c:url value="/patient/${patient.id}/export" />">Export
 								pacienta</a>
 						</h3>
 					</div>
@@ -71,57 +73,53 @@
 								vsechny</a></td>
 					</tr>
 					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
-					<tr>
-						<td></td>
-						<td></td>
-					</tr>
+							<td><spring:message code="label.epilepsyInFamily" /></td>
+							<td>${anamnesis.epilepsyInFamily}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.prenatalRisk" /></td>
+							<td>${anamnesis.prenatalRisk}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.fibrilConvulsions" /></td>
+							<td>${anamnesis.fibrilConvulsions}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.inflammationCNS" /></td>
+							<td>${anamnesis.inflammationCns}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.injuryCNS" /></td>
+							<td>${anamnesis.injuryCns}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.operationCNS" /></td>
+							<td>${anamnesis.operationCns}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.earlyPMDRetardation" /></td>
+							<td>${anamnesis.earlyPmdRetardation}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.beginningEpilepsy" /></td>
+							<td>${anamnesis.beginningEpilepsy}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.firstFever" /></td>
+							<td>${anamnesis.firstFever}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.infantileSpasm" /></td>
+							<td>${anamnesis.infantileSpasm}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.epilepticSyndrome" /></td>
+							<td>${anamnesis.specificSyndromeIdcom}</td>
+						</tr>
+						<tr>
+							<td><spring:message code="label.nonCNSComorbidity" /></td>
+							<td>${anamnesis.nonCnsComorbidity}</td>
+						</tr>
 				</table>
 
 
@@ -938,19 +936,21 @@
 
 
 <script>
-var link = document.getElementById('export').href;
-function chooseFormat()
-{
-var format=prompt("Zvolte souborový formát, do kterého chcete exportovat:","pdf/csv");
+	var link = document.getElementById('export').href;
+	function chooseFormat() {
+		var format = prompt(
+				"Zvolte souborový formát, do kterého chcete exportovat:",
+				"pdf/csv");
 
-while (format!="pdf" && format!="csv" && format!=null)
-  {
-	format=prompt("Takovýto formát není podporován. Prosím, zvolte podporovaný formát (pdf či csv).","pdf/csv");
-  }
-  if (format==null)
-  	document.getElementById('export').href="#";
-  else	
-	  document.getElementById('export').href;
-}
+		while (format != "pdf" && format != "csv" && format != null) {
+			format = prompt(
+					"Takovýto formát není podporován. Prosím, zvolte podporovaný formát (pdf či csv).",
+					"pdf/csv");
+		}
+		if (format == null)
+			document.getElementById('export').href = "#";
+		else
+			document.getElementById('export').href;
+	}
 </script>
 
