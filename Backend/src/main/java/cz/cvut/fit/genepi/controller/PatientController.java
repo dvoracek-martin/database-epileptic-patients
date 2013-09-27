@@ -7,6 +7,7 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -30,6 +31,9 @@ import cz.cvut.fit.genepi.serviceImpl.ExportServiceImpl;
 @Controller
 public class PatientController {
 
+	@Autowired
+	private MessageSource messageSource;
+	
 	/** The patient service. */
 	@Autowired
 	private PatientService patientService;
@@ -57,7 +61,9 @@ public class PatientController {
 		//doctors = userService.getDoctors();
 		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("doctors", doctors);
-		System.out.println("test");
+		//System.out.println("test");
+		model.addAttribute("male", messageSource.getMessage("label.male", null, locale));
+		model.addAttribute("female", messageSource.getMessage("label.female", null, locale));
 		return "patient/createView";
 	}
 
@@ -73,8 +79,10 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
 	public String patientCreatePOST(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result) {
+			BindingResult result,Locale locale, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("male", messageSource.getMessage("label.male", null, locale));
+			model.addAttribute("female", messageSource.getMessage("label.female", null, locale));
 			return "patient/createView";
 		} else {
 			patientService.save(patient);

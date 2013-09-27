@@ -62,8 +62,8 @@
 						</form:label>
 						<form:select path="gender" class="input-block-level">
 							<form:option value="NONE" label="--- Select ---" />
-							<form:option value="male" label="male" />
-							<form:option value="female" label="female" />
+							<form:option value="male" label="${male}" />
+							<form:option value="female" label="${female}" />
 						</form:select>
 
 						<form:label path="contact.addressStreet">
