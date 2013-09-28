@@ -18,6 +18,27 @@
 <link href="<c:url value="/resources/css/bootstrap-responsive.css" />"
 	rel="stylesheet">
 </head>
+<style type="text/css">
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: transparent;
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+ </style>
 <body>
 	<sec:authorize ifAnyGranted="ROLE_ANONYMOUS">
 		<td><a href="<c:url value="/login"/>"></a></td>
@@ -33,14 +54,11 @@
 	<div class="container-fluid">
 		<div class="navbar navbar-inverse">
 			<div class="navbar-inner">
-				<a class="btn btn-navbar" data-toggle="collapse"
-					data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-					class="icon-bar"></span> <span class="icon-bar"></span>
-				</a> <a class="brand" href="#">GENEPI - PŘIHLÁŠENÍ</a>
+				<a class="brand" href="#">GENEPI</a>
 				<div class="nav-collapse collapse">
 					<ul id="nav-list" class="nav pull-right">
-						<li><span><a href="?lang=cs">CZ</a>/<a href="?lang=en">EN</a></span></li>
-						<li><a href="#contact">Kontakt</a></li>
+						<li><a href="?lang=cs">CZ</a></li>
+						<li><a href="?lang=en">EN</a></li>
 					</ul>
 				</div>
 			</div>
@@ -48,8 +66,10 @@
 	</div>
 
 	<!-- box of testing login -->
+	<
 	<div style="width: 330px; margin: auto; padding-top: 10em">
-		<table>
+		<input type="button" id="visibleLoginData" value="zobrazit přihlašovací údaje" onclick="loginDataVisibility()">	
+		<table id="loginData" style="display: none">
 			<tr>
 				<th>Username</th>
 				<th>Password</th>
@@ -67,34 +87,34 @@
 				<td>ROLE_USER, ROLE_DOCTOR</td>
 			</tr>
 		</table>
-		<br />
-		<h1>
-			<spring:message code="label.login" />
-		</h1>
+		</div>
+		
 		<!-- login form -->
-		<div class="form" style="border: 0 solid white">
-			<form name="f" action="j_spring_security_check" method="post">
+		<div class="container">
+			<form class="form-signin" name="f" action="j_spring_security_check" method="post">
+				<h1>
+					<spring:message code="label.login" />
+				</h1>
 				<input type="text" id="username" class="input-block-level"
 					name="j_username" placeholder="<spring:message code="label.username" />" autofocus>
 				<input type="password" id="password" name="j_password"
 					class="input-block-level" placeholder="<spring:message code="label.password" />">
-				
-				
+				<label class="checkbox">
+					<input type="checkbox" name="_spring_security_remember_me" /><spring:message code="label.rememberMe" />
+				</label>
 				<button class="btn btn-large btn-primary" type="submit"><spring:message code="label.login" /></button>
-
-			<br><br>
-				<span><input type="checkbox" name="_spring_security_remember_me" /></span>
-				<spring:message code="label.rememberMe" />
 				
 			
 			</form>
-
-			
-		</div>
 	</div>
+			
+		
 
-	<!-- box for contact -->
-	<div class="row-fluid" id="contact" style="padding-top: 25em">
+	
+	
+
+	<!-- box for contact 
+	<div class="container" id="contact" style="margin-left: 5em">
 		<div class="span4" id="contact-info" style="margin-left: 5em">
 			<div>
 				<h3>Kontaktujte nás!</h3>
@@ -113,7 +133,7 @@
 			</div>
 		</div>
 
-		<!-- box with contact form -->
+		<!-- box with contact form 
 		<div class="span4" id="contact-form">
 			<form class="form-horizontal">
 				<fieldset>
@@ -152,10 +172,21 @@
 				</fieldset>
 			</form>
 		</div>
-	</div>
+	</div>-->
 
 	<!-- Javascripts imports -->
-	<script src="<c:url value="resources/js/jquery.js" />"></script>
-	<script src="<c:url value="resources/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/js/jquery.js" />"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
 </body>
+<script>
+function loginDataVisibility() {
+	if(document.getElementById("loginData").style.display=="none") {
+		document.getElementById("loginData").style.display="block";
+		document.getElementById("visibleLoginData").value="skrýt přihlašovací údaje";
+	} else {
+		document.getElementById("loginData").style.display="none";
+		document.getElementById("visibleLoginData").value="zobrazit přihlašovací údaje";
+	}
+}
+</script>
 </html>
