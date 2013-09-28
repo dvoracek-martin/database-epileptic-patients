@@ -45,7 +45,7 @@
 								<li class="divider-vertical"><a
 							href="<c:url value="/patient/${patient.id}/edit" />"><spring:message
 									code="label.edit" /></a></li>
-								<li><a href="<c:url value="/underConstruction"/>"><spring:message
+								<li><a href="<c:url value="/patient/${patient.id}/delete"/>"><spring:message
 									code="label.deletePatient" /></a></li>
 							</ul>
 						</div>

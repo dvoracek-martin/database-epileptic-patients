@@ -180,7 +180,7 @@
 
 
 		<c:forEach var="role" items="${listOfPossibleRoles}">
-			<td>${role.authority}</td>
+			<input type="checkbox" value="${role.id}"/> ${role.authority}
 			</br>
 		</c:forEach>
 
