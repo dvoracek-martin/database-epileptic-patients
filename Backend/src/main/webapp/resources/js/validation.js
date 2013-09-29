@@ -149,8 +149,7 @@ function passwordValidation() {
 		}
 		
 		function validation() {
-			passwordValidation();
-			passwordAgainValidation();
+			
 			usernameValidation();
 			firstnameValidation();
 			lastnameValidation();

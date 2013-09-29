@@ -51,33 +51,6 @@
 		<div id="usernameErrChar" class="alert alert-error"
 					style="display: none">Lze zadat pouze písmena a číslice!</div>
 
-		<form:label path="password">
-			<spring:message code="label.password" />*
-						</form:label>
-		<form:input id="password" path="password" type="password"
-					pattern=".{8,30}" class="input-block-level"
-					onFocusOut="passwordValidation();" required="true"
-					title="Délka musí být mezi 8-30 znaky." />
-		<form:errors path="password" cssClass="alert alert-error">
-		</form:errors>
-		<div id="passwordErrEmpty" class="alert alert-error"
-					style="display: none">Toto pole nesmí zůstat prázdné!</div>
-		<div id="passwordErr" class="alert alert-error" style="display: none">Délka
-			není mezi 8-30 znaky!</div>
-
-		<spring:message code="label.passwordAgain" />*
-						<input type="password" id="passwordAgain" pattern=".{8,30}"
-					class="input-block-level" onFocusOut="passwordAgainValidation();"
-					required="true" title="Délka musí být mezi 8-30 znaky." />
-		<div id="passwordAgainErrEmpty" class="alert alert-error"
-					style="display: none">Toto pole nesmí zůstat prázdné!</div>
-		<div id="passwordAgainErrLength" class="alert alert-error"
-					style="display: none">Délka není mezi 8-30 znaky!</div>
-		<div id="passwordAgainErrComparison" class="alert alert-error"
-					style="display: none">Hesla se neshodují.</div>
-		<div id="passwordAgainSuccComparison" class="alert alert-success"
-					style="display: none">Hesla se shodují.</div>
-
 
 		<form:label path="contact.firstName">
 			<spring:message code="label.firstname" />*
