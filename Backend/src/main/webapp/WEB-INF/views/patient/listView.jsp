@@ -13,17 +13,29 @@
     </jsp:attribute>
 
 	<jsp:body>
-	<div class="span5">
-					<h2>
-						<spring:message code="label.cardFile" />
-					</h2>
-				</div>
 				<div>
-					<h3>
-						<a href="<c:url value="/patient/create" />"
-					style="text-decoration: none"><spring:message
-						code="label.addpatient" /></a>
-					</h3>
+					<div>
+						<h2>
+							<spring:message code="label.cardFile" />
+						</h2>
+					</div>
+					<div class="span5">
+						<form class="form-search">
+  								<div class="input-append">
+    								<input type="text" class="span2 search-query">
+    								<button type="submit" class="btn">Search</button>
+  								</div>
+  						</form>
+					</div>
+					<div>
+						<h3>
+							<a href="<c:url value="/patient/create" />"
+						style="text-decoration: none"><spring:message
+							code="label.addpatient" /></a>
+						</h3>
+					</div>
+						
+
 				</div>
 
 

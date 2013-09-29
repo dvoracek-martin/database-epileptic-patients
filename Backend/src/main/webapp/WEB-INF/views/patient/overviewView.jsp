@@ -27,9 +27,8 @@
 						</h3>
 					</div>
 				</div>
-
-				<table style="border: 1px solid black">
-					<tbody>
+				<table class="table table-bordered">
+				<tbody>
 						<tr>
 							<th>Číslo pacienta:</th>
 							<td>${patient.id}</td>
@@ -65,62 +64,64 @@
 
 				<!-- print out latest anamnesis START -->
 				<h3>Anamnéza</h3>
-				<table border="2">
-					<tr>
-						<td>Vysetreni dne: ${anamnesis.date}</td>
-						<td><a
-					href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit
-								vsechny</a></td>
-					</tr>
-					<tr>
+				
+				<table class="table">
+              <tbody>
+                		<tr class="info">
+							<td>Vysetreni dne:</td>
+							<td>${anamnesis.date}</td>
+						</tr>
+						<tr class="info">
 							<td><spring:message code="label.epilepsyInFamily" /></td>
 							<td>${anamnesis.epilepsyInFamily}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.prenatalRisk" /></td>
 							<td>${anamnesis.prenatalRisk}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.fibrilConvulsions" /></td>
 							<td>${anamnesis.fibrilConvulsions}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.inflammationCNS" /></td>
 							<td>${anamnesis.inflammationCns}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.injuryCNS" /></td>
 							<td>${anamnesis.injuryCns}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.operationCNS" /></td>
 							<td>${anamnesis.operationCns}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.earlyPMDRetardation" /></td>
 							<td>${anamnesis.earlyPmdRetardation}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.beginningEpilepsy" /></td>
 							<td>${anamnesis.beginningEpilepsy}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.firstFever" /></td>
 							<td>${anamnesis.firstFever}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.infantileSpasm" /></td>
 							<td>${anamnesis.infantileSpasm}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.epilepticSyndrome" /></td>
 							<td>${anamnesis.specificSyndromeIdcom}</td>
 						</tr>
-						<tr>
+						<tr class="info">
 							<td><spring:message code="label.nonCNSComorbidity" /></td>
 							<td>${anamnesis.nonCnsComorbidity}</td>
 						</tr>
-				</table>
+              </tbody>
+            </table>
+            <a href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit vsechny</a>	
 
 
 				<!-- print out latest anamnesis END -->
