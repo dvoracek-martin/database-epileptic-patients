@@ -38,7 +38,7 @@
 				<li><a
 							href="<c:url value="/user/${user.id}/change-password" />"><spring:message
 									code="label.changePassword" /></a></li>
-				<li><a href="<c:url value="/user/${user.id}/delete"/>"><spring:message
+				<li><a id="delete" href="<c:url value="/user/${user.id}/delete"/>" onclick="deleteUser()"><spring:message
 									code="label.deleteUser" /></a></li>
 			</ul>
 		</div>
@@ -48,3 +48,13 @@
 	</jsp:body>
 </t:menuLVL2>
 
+<script>
+var linkDelete = document.getElementById('delete').href;
+function deleteUser() {
+	var answer = confirm("Opravdu chcete smazat uživatele?");
+	if (answer==false)
+		document.getElementById('delete').href = "#";
+	else
+		document.getElementById('delete').href = linkDelete;
+}
+</script>
