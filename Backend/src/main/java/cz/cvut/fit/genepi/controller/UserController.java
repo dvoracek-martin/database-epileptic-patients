@@ -1,12 +1,6 @@
 package cz.cvut.fit.genepi.controller;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -15,8 +9,6 @@ import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -32,6 +24,7 @@ import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
 import cz.cvut.fit.genepi.service.ContactService;
+import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.MailService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
@@ -65,8 +58,7 @@ public class UserController {
 	private MailService mailService;
 
 	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(UserController.class);
+	private LoggingService logger = new LoggingService();
 
 	/**
 	 * Creates the user get.
@@ -98,7 +90,8 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String userCreatePOST(@ModelAttribute("user") @Valid UserEntity user,
+	public String userCreatePOST(
+			@ModelAttribute("user") @Valid UserEntity user,
 			BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -109,7 +102,9 @@ public class UserController {
 				return "user/createView";
 			} else {
 				String password = RandomStringUtils.randomAlphanumeric(10);
-				logInfo("New password " + password + " for new user id "
+				if (logger.getLogger() == null)
+					logger.setLogger(UserController.class);
+				logger.logInfo("New password " + password + " for new user id "
 						+ user.getId() + " generated.");
 				user.setPassword(DigestUtils.sha256Hex(password + "{"
 						+ user.getUsername() + "}"));
@@ -134,14 +129,14 @@ public class UserController {
 					map.put("user", user);
 					map.put("password", password);
 					mailService.sendMail("test", map);
-					logInfo("Email to new user sent");
+					logger.logInfo("Email to new user sent");
 
 				} catch (Exception e) {
-					logError(
+					logger.logError(
 							"Error when trying to send email after creating new user.",
 							e);
 				}
-				logInfo("New user successfuly created.");
+				logger.logInfo("New user successfuly created.");
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
 			}
@@ -170,10 +165,10 @@ public class UserController {
 	@RequestMapping(value = "/user/{userID}/delete", method = RequestMethod.GET)
 	public String userDeleteGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		userService.delete(userService.findByID(UserEntity.class,
-				userID));
+		userService.delete(userService.findByID(UserEntity.class, userID));
 		return "redirect:/user/list";
 	}
+
 	/**
 	 * User edit get.
 	 * 
@@ -279,7 +274,11 @@ public class UserController {
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
 	public String userChangePasswordGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		logger.info("Changing password");
+
+		if (logger.getLogger() == null)
+			logger.setLogger(UserController.class);
+		logger.logInfo("Changing password");
+
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 		user.setPassword("");
 		model.addAttribute("user", user);
@@ -322,23 +321,5 @@ public class UserController {
 			}
 		}
 		return "redirect:/user/" + user.getId() + "/change-password";
-	}
-
-	private void logInfo(String message) {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		Date today = Calendar.getInstance().getTime();
-		String reportDate = df.format(today);
-		logger.info(reportDate + ": " + message);
-	}
-
-	private void logError(String message, Exception e) {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		Date today = Calendar.getInstance().getTime();
-		String reportDate = df.format(today);
-		StringWriter sw = new StringWriter();
-		PrintWriter pw = new PrintWriter(sw);
-		e.printStackTrace(pw);
-		sw.toString(); // stack trace as a string
-		logger.error(reportDate + ": " + message + " " + sw.toString());
 	}
 }
