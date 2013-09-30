@@ -66,31 +66,9 @@
 	</div>
 
 	<!-- box of testing login -->
-	<
-	<div style="width: 330px; margin: auto; padding-top: 10em">
-		<input type="button" id="visibleLoginData" value="zobrazit přihlašovací údaje" onclick="loginDataVisibility()">	
-		<table id="loginData" style="display: none">
-			<tr>
-				<th>Username</th>
-				<th>Password</th>
-				<th>Role</th>
-			</tr>
-
-			<tr>
-				<td>sue</td>
-				<td>suepassword</td>
-				<td>ROLE_USER</td>
-			</tr>
-			<tr>
-				<td>hom</td>
-				<td>hompassword</td>
-				<td>ROLE_USER, ROLE_DOCTOR</td>
-			</tr>
-		</table>
-		</div>
 		
 		<!-- login form -->
-		<div class="container">
+		<div class="container" style="padding-top: 10em">
 			<form class="form-signin" name="f" action="j_spring_security_check" method="post">
 				<h1>
 					<spring:message code="label.login" />
@@ -106,7 +84,29 @@
 				
 			
 			</form>
-	</div>
+		</div>
+		
+		<div style="width: 330px; margin: auto">
+			<input type="button" id="visibleLoginData" value="zobrazit přihlašovací údaje" onclick="loginDataVisibility()">	
+			<table id="loginData" style="display: none">
+				<tr>
+					<th>Username</th>
+					<th>Password</th>
+					<th>Role</th>
+				</tr>
+
+				<tr>
+					<td>sue</td>
+					<td>suepassword</td>
+					<td>ROLE_USER</td>
+				</tr>
+				<tr>
+					<td>hom</td>
+					<td>hompassword</td>
+					<td>ROLE_USER, ROLE_DOCTOR</td>
+				</tr>
+			</table>
+		</div>
 			
 		
 
