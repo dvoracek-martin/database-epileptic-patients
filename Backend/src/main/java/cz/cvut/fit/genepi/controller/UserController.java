@@ -55,6 +55,7 @@ public class UserController {
 	private ContactService contactService;
 
 	/** The mail service. */
+	@Autowired
 	private MailService mailService;
 
 	/** The Constant logger. */
@@ -92,7 +93,7 @@ public class UserController {
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
 	public String userCreatePOST(
 			@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result, Model model) {
+			BindingResult result, Model model, Locale locale) {
 
 		if (result.hasErrors()) {
 			return "user/createView";
@@ -123,12 +124,11 @@ public class UserController {
 					userRoleService.save(userRole);
 				}
 				try {
-					mailService = new MailService();
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					map.put("subject", "creationOfANewUser");
 					map.put("user", user);
 					map.put("password", password);
-					mailService.sendMail("test", map);
+					mailService.sendMail("test", map, locale);
 					logger.logInfo("Email to new user sent");
 
 				} catch (Exception e) {
@@ -300,7 +300,7 @@ public class UserController {
 	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
 	public String userChangePasswordPOST(
 			@ModelAttribute("user") @Valid UserEntity user, Model model,
-			BindingResult result) {
+			BindingResult result, Locale locale) {
 		if (result.hasErrors()) {
 			return "user/" + user.getId() + "change-password";
 		} else {
@@ -310,12 +310,11 @@ public class UserController {
 			userService.save(user);
 			model.addAttribute("passwordChanged", true);
 			try {
-				mailService = new MailService();
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("subject", "changeOfThePassword");
 				map.put("user", user);
 				map.put("password", password);
-				mailService.sendMail("test", map);
+				mailService.sendMail("test", map, locale);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
