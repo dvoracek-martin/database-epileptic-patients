@@ -2,8 +2,10 @@ package cz.cvut.fit.genepi.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
@@ -110,19 +113,23 @@ public class UserController {
 				user.setPassword(DigestUtils.sha256Hex(password + "{"
 						+ user.getUsername() + "}"));
 
+				/* assigning roles to user */
+				Set<RoleEntity> roles = new HashSet<RoleEntity>();
+				roles.add(roleService.findByID(RoleEntity.class, 1));
+				user.setRoles(roles);
 				userService.save(user);
-				List<Integer> listOfRoles = new ArrayList<Integer>();
-				listOfRoles.add(1);
-				List<UserRoleEntity> listOfUserRoles = new ArrayList<UserRoleEntity>();
-				for (int i : listOfRoles) {
-					UserRoleEntity userRole = new UserRoleEntity();
-					userRole.setUser_id(user.getId());
-					userRole.setRole_id(i);
-					listOfUserRoles.add(userRole);
-				}
-				for (UserRoleEntity userRole : listOfUserRoles) {
-					userRoleService.save(userRole);
-				}
+
+				/*
+				 * List<Integer> listOfRoles = new ArrayList<Integer>();
+				 * listOfRoles.add(1); List<UserRoleEntity> listOfUserRoles =
+				 * new ArrayList<UserRoleEntity>(); for (int i : listOfRoles) {
+				 * UserRoleEntity userRole = new UserRoleEntity();
+				 * userRole.setUser_id(user.getId()); userRole.setRole_id(i);
+				 * listOfUserRoles.add(userRole); } for (UserRoleEntity userRole
+				 * : listOfUserRoles) { userRoleService.save(userRole); }
+				 */
+				
+				/*sending email to user about account creation*/
 				try {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					map.put("subject", "creationOfANewUser");
@@ -297,28 +304,31 @@ public class UserController {
 	 *            the result
 	 * @return the string
 	 */
-	@RequestMapping(value = "/user/change-password", method = RequestMethod.POST)
+	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.POST)
 	public String userChangePasswordPOST(
-			@ModelAttribute("user") @Valid UserEntity user, Model model,
-			BindingResult result, Locale locale) {
+			@ModelAttribute("user") @Valid UserEntity formUser, Model model,
+			BindingResult result, Locale locale,
+			@PathVariable("userID") Integer userID) {
+		UserEntity realUser = userService.findByID(UserEntity.class, userID);
 		if (result.hasErrors()) {
-			return "user/" + user.getId() + "change-password";
+			return "user/" + realUser.getId() + "/change-password";
 		} else {
-			String password = user.getPassword();
-			user.setPassword(DigestUtils.sha256Hex(user.getPassword() + "{"
-					+ user.getUsername() + "}"));
-			userService.save(user);
+			String password = formUser.getPassword();
+			realUser.setPassword(DigestUtils.sha256Hex(formUser.getPassword()
+					+ "{" + realUser.getUsername() + "}"));
+			userService.save(realUser);
 			model.addAttribute("passwordChanged", true);
+			/* send mail to user about cahnge of password */
 			try {
 				HashMap<String, Object> map = new HashMap<String, Object>();
 				map.put("subject", "changeOfThePassword");
-				map.put("user", user);
+				map.put("user", realUser);
 				map.put("password", password);
 				mailService.sendMail("test", map, locale);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "redirect:/user/" + user.getId() + "/change-password";
+		return "redirect:/user/" + realUser.getId() + "/change-password";
 	}
 }

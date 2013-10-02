@@ -28,7 +28,7 @@ public class RoleEntity {
 	@Column(name = "AUTHORITY", nullable = false)
 	private String authority;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
 	private Set<UserEntity> users;
 
 	/**

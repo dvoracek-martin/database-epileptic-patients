@@ -34,7 +34,7 @@
 					<spring:message code="label.changePassword" />
 				</h2>
 				<form:form method="POST" modelAttribute="user"
-			action="/GENEPI/user/change-password" commandName="user">
+			action="/GENEPI/user/${user.id}/change-password" commandName="user">
 
 					<spring:message code="label.newPassword" />
 					<br>
@@ -62,37 +62,10 @@
 				style="display: none">Hesla se neshodují.</div>
 					<div id="passwordAgainSuccComparison" class="alert alert-success"
 				style="display: none">Hesla se shodují.</div>
-
-
-
-
-
-					<!-- Hidden form for retrieving user's properties -->
-					<!-- //////////////////////////////////////////// -->
-					<form:hidden path="id" id="id" />
-					<form:hidden path="username" id="username" />
-					<!--form:hidden path="password" id="password" /-->
-					<form:hidden path="contact.id" id="contact.id" />
-					<form:hidden path="contact.firstName" id="contact.firstName" />
-					<form:hidden path="contact.lastName" id="contact.lastName" />
-					<form:hidden path="contact.addressStreet"
-				id="contact.addressStreet" />
-					<form:hidden path="contact.addressHn" id="contact.addressHn" />
-
-					<form:hidden path="contact.addressCity" id="contact.addressCity" />
-					<form:hidden path="contact.addressPostalcode"
-				id="contact.addressPostalcode" />
-					<form:hidden path="contact.addressCountry"
-				id="contact.addressCountry" />
-					<form:hidden path="contact.phoneNumber" id="contact.phoneNumber" />
-					<form:hidden path="contact.email" id="contact.email" />
-					<!-- ///////////////////////////////////////////// -->
-					<!-- ///////////END OF THE HIDDEN FORM//////////// -->
-
 					<button class="btn btn-small btn-primary" type="submit"
 				onclick="validation();">
 						<spring:message code="label.change" />
-				
+
 		</form:form>
 	</jsp:body>
 </t:menuLVL2>

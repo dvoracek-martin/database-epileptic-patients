@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -53,7 +54,7 @@ public class UserEntity {
 	@Cascade({ CascadeType.ALL })
 	private ContactEntity contact;
 
-	@ManyToMany()
+	@ManyToMany(fetch = FetchType.EAGER)
 	@Cascade({ CascadeType.ALL })
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_ID", nullable = false, updatable = false) })
 	private Set<RoleEntity> roles;
