@@ -97,6 +97,15 @@ public class AnamnesisController {
 
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisID));
+		return  "patient/"+patientID+"/anamnesis/"+anamnesisID+"/exportView";
+	}
+	
+	
+	
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/export", method = RequestMethod.GET)
+	public String anamnesisExportGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("anamnesisID") Integer anamnesisID) {
 		return "redirect:/patient/" + patientID + "/anamnesis/list";
 	}
 
