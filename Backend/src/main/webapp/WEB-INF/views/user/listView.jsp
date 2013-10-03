@@ -11,6 +11,8 @@
 	<jsp:attribute name="header">
       <spring:message code="label.allusers" />
     </jsp:attribute>
+	<jsp:attribute name="script">
+   		</jsp:attribute>
 
 	<jsp:body>
 	<div class="span5">
@@ -38,23 +40,39 @@
 				<li><a
 							href="<c:url value="/user/${user.id}/change-password" />"><spring:message
 									code="label.changePassword" /></a></li>
-				<li><a id="delete" href="<c:url value="/user/${user.id}/delete"/>" onclick="deleteUser()"><spring:message
+									
+				<li><a href="#userDeleteConfirm${user.id}" role="button" class="btn"
+							data-toggle="modal"><spring:message
 									code="label.deleteUser" /></a></li>
 			</ul>
 		</div>
 	</div>
 
+	<!-- Modal window>: user delete confirmation -->
+<div id="userDeleteConfirm${user.id}" class="modal hide fade" tabindex="-1" role="dialog"
+				aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">×</button>
+<h3 id="myModalLabel">User deletion</h3>
+</div>
+<div class="modal-body">
+<p>Do you really wnat ot delete this user?</p>
+</div>
+<div class="modal-footer">
+<button class="btn" data-dismiss="modal" aria-hidden="true">NO</button>
+<a class="btn btn-primary" href="<c:url value="/user/${user.id}/delete"/>">YES</a>
+
+</div>
+</div>
+<script>
+var userID = ${user.id};
+	$('#userDeleteConfirm'+userID).modal({
+		show: false
+	})
+</script>
 </c:forEach>
+
 	</jsp:body>
 </t:menuLVL2>
 
-<script>
-var linkDelete = document.getElementById('delete').href;
-function deleteUser() {
-	var answer = confirm("Opravdu chcete smazat uživatele?");
-	if (answer==false)
-		document.getElementById('delete').href = "#";
-	else
-		document.getElementById('delete').href = linkDelete;
-}
-</script>

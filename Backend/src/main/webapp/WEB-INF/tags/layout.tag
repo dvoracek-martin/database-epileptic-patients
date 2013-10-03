@@ -80,7 +80,7 @@
 	<!-- script section (script hook)-->
 
 	<script src="<c:url value="/resources/js/jquery.js"/>"></script>
-		<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 	<jsp:invoke fragment="script" />
 
 </body>
