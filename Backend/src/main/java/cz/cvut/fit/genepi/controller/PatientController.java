@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.controller;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -18,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
+import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
 import cz.cvut.fit.genepi.serviceImpl.ExportServiceImpl;
 
@@ -33,7 +35,7 @@ public class PatientController {
 
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	/** The patient service. */
 	@Autowired
 	private PatientService patientService;
@@ -45,6 +47,9 @@ public class PatientController {
 	/** The user service. */
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	/**
 	 * Creates the patient get.
@@ -57,13 +62,18 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		//doctors = userService.getDoctors();
+		
+		Set<UserEntity> doctors = new HashSet<UserEntity>();
+		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
+		doctors = doctorRole.getUsers();
+		model.addAttribute("doctors", doctors);
+		
 		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("doctors", doctors);
-		//System.out.println("test");
-		model.addAttribute("male", messageSource.getMessage("label.male", null, locale));
-		model.addAttribute("female", messageSource.getMessage("label.female", null, locale));
+		model.addAttribute("male",
+				messageSource.getMessage("label.male", null, locale));
+		model.addAttribute("female",
+				messageSource.getMessage("label.female", null, locale));
 		return "patient/createView";
 	}
 
@@ -79,10 +89,12 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
 	public String patientCreatePOST(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result,Locale locale, Model model) {
+			BindingResult result, Locale locale, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("male", messageSource.getMessage("label.male", null, locale));
-			model.addAttribute("female", messageSource.getMessage("label.female", null, locale));
+			model.addAttribute("male",
+					messageSource.getMessage("label.male", null, locale));
+			model.addAttribute("female",
+					messageSource.getMessage("label.female", null, locale));
 			return "patient/createView";
 		} else {
 			patientService.save(patient);
@@ -149,10 +161,13 @@ public class PatientController {
 
 	/**
 	 * Patient delete get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
@@ -163,51 +178,56 @@ public class PatientController {
 		return "patient/overviewView";
 	}
 
-	
 	/**
 	 * Patient edit get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		patientService.findByID(PatientEntity.class,
-				patientID);
+		patientService.findByID(PatientEntity.class, patientID);
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class,
-						patientID));
+				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/editView";
 	}
-		
+
 	/**
 	 * Patient edit post.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patient the patient
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patient
+	 *            the patient
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
 	public String patientEditPOST(Locale locale, Model model,
-			@ModelAttribute("patient")  PatientEntity patient)
-		 {
-		
-			patientService.save(patient);
-			return "redirect:/patient/" + Integer.toString(patient.getId())
-					+ "/overview";
-		
+			@ModelAttribute("patient") PatientEntity patient) {
+
+		patientService.save(patient);
+		return "redirect:/patient/" + Integer.toString(patient.getId())
+				+ "/overview";
+
 	}
-	
+
 	/**
 	 * Patient export get.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
