@@ -99,8 +99,8 @@ public class HomeController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/news/{newsMessageID}/delete", method = RequestMethod.POST)
-	public String newsMessageDeletePOST(Locale locale, Model model,
+	@RequestMapping(value = "/news/{newsMessageID}/delete", method = RequestMethod.GET)
+	public String newsMessageDeleteGET(Locale locale, Model model,
 			@PathVariable("newsMessageID") Integer newsMessageID) {
 		newsMessageService.delete(newsMessageService.findByID(
 				NewsMessageEntity.class, newsMessageID));
