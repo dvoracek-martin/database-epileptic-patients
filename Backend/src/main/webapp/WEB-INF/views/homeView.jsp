@@ -22,13 +22,13 @@
 	</div>
 	<sec:authorize ifAnyGranted="ROLE_USER">
 		<div style="margin: 10px">
-			<c:forEach items="${news}" var="message">
+			<c:forEach items="${newsMessages}" var="newsMessage">
 			<div>
 				
 					<div class="navbar">
 						<div class="navbar-inner">
 							<ul id="nav-list" class="nav pull-left">
-									<li class="brand">${message.date }</li>
+									<li class="brand">${newsMessage.date }</li>
 								</ul>
 									<ul id="nav-list" class="nav pull-right">
 										<li>
@@ -37,8 +37,8 @@
 							    					Action<span class="caret"></span>
 							  					</a>
 							  					<ul class="dropdown-menu">
-							    					<li><a href="<c:url value="/message/${message.id}/edit" />"><spring:message code="label.edit"/></a></li>
-							    					<li><a href="<c:url value="/message/${message.id}/delete" />"><spring:message code="label.delete"/></a></li>
+							    					<li><a href="<c:url value="/news/${newsMessage.id}/edit" />"><spring:message code="label.edit"/></a></li>
+							    					<li><a href="<c:url value="/news/${newsMessage.id}/delete" />"><spring:message code="label.delete"/></a></li>
 							  					</ul>
 											</div>
 										</li>
