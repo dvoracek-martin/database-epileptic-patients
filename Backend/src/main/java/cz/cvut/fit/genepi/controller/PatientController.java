@@ -232,8 +232,10 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID,
-			@PathVariable("anamnesisID") Integer anamnesisID) {
+			@PathVariable("patientID") Integer patientID) {
+		patientService.findByID(PatientEntity.class, patientID);
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/exportView";
 	}
 	
@@ -241,6 +243,7 @@ public class PatientController {
 	public String patientExportPOST(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("anamnesisID") Integer anamnesisID) {
+		patientService.findByID(PatientEntity.class, patientID);
 		return "redirect:/patient/" + patientID + "/overview";
 	}
 	
