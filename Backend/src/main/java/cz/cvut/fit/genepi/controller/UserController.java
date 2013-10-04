@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
@@ -128,8 +127,8 @@ public class UserController {
 				 * listOfUserRoles.add(userRole); } for (UserRoleEntity userRole
 				 * : listOfUserRoles) { userRoleService.save(userRole); }
 				 */
-				
-				/*sending email to user about account creation*/
+
+				/* sending email to user about account creation */
 				try {
 					HashMap<String, Object> map = new HashMap<String, Object>();
 					map.put("subject", "creationOfANewUser");
@@ -331,4 +330,37 @@ public class UserController {
 		}
 		return "redirect:/user/" + realUser.getId() + "/change-password";
 	}
+
+	@RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.GET)
+	public String userEditRolesGET(Locale locale, Model model,
+			@PathVariable("userID") Integer userID) {
+		if (logger.getLogger() == null)
+			logger.setLogger(UserController.class);
+
+		UserEntity user = userService.findByID(UserEntity.class, userID);
+		user.setPassword("");
+		model.addAttribute("user", user);
+		model.addAttribute("passwordChanged", false);
+		return "user/editRoles";
+	}
+
+	@RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.POST)
+	public String userEditRolesPOST(
+			@ModelAttribute("user") @Valid UserEntity formUser, Model model,
+			BindingResult result, Locale locale,
+			@PathVariable("userID") Integer userID) {
+		UserEntity realUser = userService.findByID(UserEntity.class, userID);
+		if (result.hasErrors()) {
+			return "user/" + realUser.getId() + "/change-password";
+		} else {
+			Set<RoleEntity> roles = new HashSet<RoleEntity>();
+			for (RoleEntity r : formUser.getRoles()) {
+				roles.add(r);
+			}
+			realUser.setRoles(roles);
+			userService.save(realUser);
+		}
+		return "redirect:/user/" + realUser.getId() + "/edit-roles";
+	}
+
 }
