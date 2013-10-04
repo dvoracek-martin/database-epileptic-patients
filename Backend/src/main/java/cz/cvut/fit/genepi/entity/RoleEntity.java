@@ -1,14 +1,14 @@
 package cz.cvut.fit.genepi.entity;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.ManyToMany;
-import javax.persistence.FetchType;
+import javax.persistence.Table;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -29,7 +29,7 @@ public class RoleEntity {
 	private String authority;
 
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-	private Set<UserEntity> users;
+	private List<UserEntity> users;
 
 	/**
 	 * Gets the id.
@@ -69,11 +69,11 @@ public class RoleEntity {
 		this.authority = authority;
 	}
 
-	public Set<UserEntity> getUsers() {
+	public List<UserEntity> getUsers() {
 		return users;
 	}
 
-	public void setUsers(Set<UserEntity> users) {
+	public void setUsers(List<UserEntity> users) {
 		this.users = users;
 	}
 }

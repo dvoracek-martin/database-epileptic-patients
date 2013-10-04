@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.controller;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -63,7 +63,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
 		
-		Set<UserEntity> doctors = new HashSet<UserEntity>();
+		List<UserEntity> doctors = new ArrayList<UserEntity>();
 		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
 		doctors = doctorRole.getUsers();
 		model.addAttribute("doctors", doctors);
