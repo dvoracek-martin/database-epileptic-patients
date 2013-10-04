@@ -237,11 +237,13 @@ public class PatientController {
 		return "patient/exportView";
 	}
 	
-	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.POST)
-	public String patientExportPOST(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		patientService.findByID(PatientEntity.class, patientID);
-		return "redirect:/patient/" + patientID + "/overview";
-	}
+	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
+	public String patientExportPOST(
+			@ModelAttribute("patient") @Valid PatientEntity patient,
+			 Locale locale, Model model) {		
+			return "redirect:/patient/" + Integer.toString(patient.getId())
+					+ "/overview";
+		}
+	
 	
 }
