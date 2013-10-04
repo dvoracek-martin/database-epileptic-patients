@@ -24,7 +24,6 @@ import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
-import cz.cvut.fit.genepi.serviceImpl.ExportServiceImpl;
 
 // TODO: Auto-generated Javadoc
 /**
