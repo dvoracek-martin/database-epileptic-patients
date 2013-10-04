@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.NewsMessageEntity;
 import cz.cvut.fit.genepi.service.NewsMessageService;
 
@@ -71,6 +70,19 @@ public class HomeController {
 				newsMessageService.findAll(NewsMessageEntity.class));
 		model.addAttribute("serverTime", formattedDate);
 		return "homeView";
+	}
+
+	@RequestMapping(value = "/news/create", method = RequestMethod.POST)
+	public String newsMessageCreatePOST(
+			Locale locale,
+			Model model,
+			@ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
+			BindingResult result) {
+		if (result.hasErrors()) {
+			return "homeView";
+		}
+		newsMessageService.save(newsMessage);
+		return "redirect:/";
 	}
 
 	@RequestMapping(value = "/news/{newsMessageID}/edit", method = RequestMethod.POST)
