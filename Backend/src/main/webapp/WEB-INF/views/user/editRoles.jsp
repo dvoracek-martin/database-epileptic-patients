@@ -100,7 +100,7 @@ li.sortable-placeholder {
 		<div class="span9">	
 			<div class="span3">
 				<label>Dostupné role</label>
-				<ul id="sortable4" class="connected sortable list" style="border-style:solid;
+				<ul id="possibleRoles" class="connected sortable list" style="border-style:solid;
 							border-width:5px; border-color:CornflowerBlue;">
 			
 					<c:forEach var="role" items="${listOfPossibleRoles}">
@@ -110,18 +110,26 @@ li.sortable-placeholder {
 			</div>
 			<div class="span3">
 				<label>Moje role</label>
-				<ul id="sortable5" class="connected sortable list" style="border-style:solid;
+				<ul id="selectedRoles" class="connected sortable list" style="border-style:solid;
 						border-width:5px; border-color:CornflowerBlue;">			
 				</ul>
 			</div>
 			<div class="span3">
 			<!--  tady pridat submitovaci button, kterej zavola nejakou funkci -->
-				<form:form method="POST" modelAttribute="user"
-					action="/GENEPI/user/edit-roles" commandName="user">
-					<input type="submit" value="uložit" onclick="" class="btn btn-primary">
+				<form:form method="POST" modelAttribute="listOfSelectedRoles"
+					action="/GENEPI/user/edit-roles" commandName="listOfSelectedRoles">
+					<input type="submit" value="uložit" onclick="createSetOfRoles();" class="btn btn-primary">
 				</form:form>
 			</div>
 		</div>
+		<script>
+		
+		
+		function createSetOfRoles(){
+			
+		}
+		
+		</script>
 
 	</jsp:body>
 </t:menuLVL2>
