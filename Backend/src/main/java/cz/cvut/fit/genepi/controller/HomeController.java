@@ -6,15 +6,21 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.NewsMessageEntity;
 import cz.cvut.fit.genepi.service.NewsMessageService;
 
@@ -52,7 +58,8 @@ public class HomeController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 
-		List<NewsMessageEntity> news = newsMessageService.findAll(NewsMessageEntity.class);
+		List<NewsMessageEntity> news = newsMessageService
+				.findAll(NewsMessageEntity.class);
 		Collections.reverse(news);
 		model.addAttribute("news", news);
 		/*
@@ -64,5 +71,27 @@ public class HomeController {
 				newsMessageService.findAll(NewsMessageEntity.class));
 		model.addAttribute("serverTime", formattedDate);
 		return "homeView";
+	}
+
+	@RequestMapping(value = "/news/{newsMessageID}/edit", method = RequestMethod.POST)
+	public String newsMessageEditPOST(
+			Locale locale,
+			Model model,
+			@ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
+			BindingResult result) {
+
+		if (result.hasErrors()) {
+			return "homeView";
+		}
+		newsMessageService.save(newsMessage);
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/news/{newsMessageID}/delete", method = RequestMethod.POST)
+	public String newsMessageDeletePOST(Locale locale, Model model,
+			@PathVariable("newsMessageID") Integer newsMessageID) {
+		newsMessageService.delete(newsMessageService.findByID(
+				NewsMessageEntity.class, newsMessageID));
+		return "redirect:/";
 	}
 }
