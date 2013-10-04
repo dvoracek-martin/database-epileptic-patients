@@ -89,7 +89,6 @@ public class MailServiceImpl implements MailService {
 
 		// Setup mail server
 		properties.setProperty("mail.smtp.host", host);
-		
 
 		// Get the default Session object.
 		Session session = Session.getDefaultInstance(properties);
@@ -97,6 +96,9 @@ public class MailServiceImpl implements MailService {
 		try {
 			// Create a default MimeMessage object.
 			MimeMessage message = new MimeMessage(session);
+
+			String encodingOptions = "text/html; charset=UTF-8";
+			message.setHeader("Content-Type", encodingOptions);
 
 			// Set From: header field of the header.
 			message.setFrom(new InternetAddress(from));
@@ -130,12 +132,13 @@ public class MailServiceImpl implements MailService {
 			} else if (map.get("subject").equals("creationOfANewUser")) {
 				message.setSubject("New account to GENEPI system");
 				UserEntity user = (UserEntity) map.get("user");
-				/*String text = "Dear "
-						+ user.getUsername()
-						+ ",\n\n"
-						+ "your account was created. Your password is: "
-						+ map.get("password")
-						+ ".\nPlease change it in your user administration as soon as possible.\n\nRegards,\nGENEPI team.";*/
+				/*
+				 * String text = "Dear " + user.getUsername() + ",\n\n" +
+				 * "your account was created. Your password is: " +
+				 * map.get("password") +
+				 * ".\nPlease change it in your user administration as soon as possible.\n\nRegards,\nGENEPI team."
+				 * ;
+				 */
 				String[] messagePrameters = new String[] { user.getUsername(),
 						(String) map.get("password") };
 				String text = messageSource.getMessage("userCreated",
