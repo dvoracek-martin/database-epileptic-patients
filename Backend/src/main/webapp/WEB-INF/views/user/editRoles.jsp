@@ -92,7 +92,7 @@
 			</li><li class="highlight" draggable="true">Item 6
 		</li></ul>
 	</section>
-	<script src="<c:url value="/resources/js/jquery-1.7.1.min.js"/>"></script>
+	
 	<script src="<c:url value="/resources/js/jquery.sortable.js"/>"></script>
 	<script>
 		$(function() {
