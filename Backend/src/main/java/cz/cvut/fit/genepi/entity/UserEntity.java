@@ -1,16 +1,16 @@
 package cz.cvut.fit.genepi.entity;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
@@ -57,7 +57,7 @@ public class UserEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Cascade({ CascadeType.ALL })
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_ID", nullable = false, updatable = false) })
-	private Set<RoleEntity> roles;
+	private ArrayList<RoleEntity> roles;
 
 	/**
 	 * Gets the id.
@@ -135,11 +135,11 @@ public class UserEntity {
 		this.contact = contact;
 	}
 
-	public Set<RoleEntity> getRoles() {
+	public ArrayList<RoleEntity> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<RoleEntity> roles) {
+	public void setRoles(ArrayList<RoleEntity> roles) {
 		this.roles = roles;
 	}
 }

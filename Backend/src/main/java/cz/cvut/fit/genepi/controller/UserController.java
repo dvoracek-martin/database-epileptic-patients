@@ -2,10 +2,8 @@ package cz.cvut.fit.genepi.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -113,7 +111,7 @@ public class UserController {
 						+ user.getUsername() + "}"));
 
 				/* assigning roles to user */
-				Set<RoleEntity> roles = new HashSet<RoleEntity>();
+				ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>();
 				roles.add(roleService.findByID(RoleEntity.class, 1));
 				user.setRoles(roles);
 				userService.save(user);
@@ -353,7 +351,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "user/" + realUser.getId() + "/change-password";
 		} else {
-			Set<RoleEntity> roles = new HashSet<RoleEntity>();
+			ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>();
 			for (RoleEntity r : formUser.getRoles()) {
 				roles.add(r);
 			}
