@@ -1,11 +1,15 @@
 package cz.cvut.fit.genepi.entity;
 
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -18,6 +22,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
+
 
 // TODO: Auto-generated Javadoc
 /**
@@ -34,8 +39,8 @@ public class PatientEntity {
 	private int id;
 
 	/** The nin. */
-	@Pattern(regexp="[0-9]*")
-	@Size(max=10)
+	@Pattern(regexp = "[0-9]*")
+	@Size(max = 10)
 	@Column(name = "NIN", length = 10, nullable = true)
 	private String nin;
 
@@ -48,8 +53,8 @@ public class PatientEntity {
 
 	/** The gender. */
 	@NotBlank
-	//@NotNull
-	@Size(max=10)
+	// @NotNull
+	@Size(max = 10)
 	@Column(name = "GENDER", length = 10, nullable = false)
 	private String gender;
 
@@ -70,15 +75,21 @@ public class PatientEntity {
 	private int contactId;
 
 	/** The comment id. */
-	/*@Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
-	private int commentId;*/
+	/*
+	 * @Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
+	 * private int commentId;
+	 */
 
-	
 	/** The contact. */
 	@Valid
 	@OneToOne
 	@Cascade({ CascadeType.SAVE_UPDATE })
 	private ContactEntity contact;
+
+	/* AnamnesisList */
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<AnamnesisEntity> anamnesisList;
 
 	/**
 	 * Gets the id.
@@ -237,23 +248,22 @@ public class PatientEntity {
 	 * 
 	 * @return the comment id
 	 */
-	/*public int getCommentId() {
-		return commentId;
-	}
-*/
+	/*
+	 * public int getCommentId() { return commentId; }
+	 */
 	/**
 	 * Sets the comment id.
 	 * 
 	 * @param commentId
 	 *            the new comment id
 	 */
-	/*public void setCommentId(int commentId) {
-		this.commentId = commentId;
-	}*/
+	/*
+	 * public void setCommentId(int commentId) { this.commentId = commentId; }
+	 */
 
 	/**
 	 * Gets the contact.
-	 *
+	 * 
 	 * @return the contact
 	 */
 	public ContactEntity getContact() {
@@ -262,10 +272,21 @@ public class PatientEntity {
 
 	/**
 	 * Sets the contact.
-	 *
-	 * @param contact the new contact
+	 * 
+	 * @param contact
+	 *            the new contact
 	 */
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
+	}
+
+	public List<AnamnesisEntity> getAnamnesisList() {
+		Collections.reverse(this.anamnesisList);
+		return anamnesisList;
+	}
+
+	public void setAnamnesisList(List<AnamnesisEntity> anamnesisList) {
+
+		this.anamnesisList = anamnesisList;
 	}
 }

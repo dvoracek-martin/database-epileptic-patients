@@ -137,8 +137,6 @@ public class PatientController {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 		model.addAttribute("patient", patient);
-		model.addAttribute("anamnesis",
-				anamnesisService.findLatestAnamnesisByPatientID(patientID));
 		return "patient/overviewView";
 	}
 
@@ -241,8 +239,7 @@ public class PatientController {
 	
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.POST)
 	public String patientExportPOST(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID,
-			@PathVariable("anamnesisID") Integer anamnesisID) {
+			@PathVariable("patientID") Integer patientID) {
 		patientService.findByID(PatientEntity.class, patientID);
 		return "redirect:/patient/" + patientID + "/overview";
 	}
