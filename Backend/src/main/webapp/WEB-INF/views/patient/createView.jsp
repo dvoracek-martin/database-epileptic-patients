@@ -115,10 +115,13 @@
 					class="input-block-level" />
 						<form:errors path="contact.email" cssClass="error" />
 
-						<form:label path="doctorId"><spring:message code="label.doctor" /></form:label>
-						<form:input path="doctorId" type="text" class="input-block-level"
-					list="doctors" />
-						<form:errors path="doctorId" cssClass="error" />
+							<form:label path="doctorId"><spring:message code="label.doctor" /></form:label>
+						<form:select path="doctorId" type="text"
+					class="input-block-level">
+						<c:forEach items="${doctors}" var="doctor">
+	<form:option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+			</c:forEach>
+			</form:select>
 
 						<button class="btn btn-small btn-primary" type="submit">
 							<spring:message code="label.add" />
@@ -1628,11 +1631,6 @@
 		
 		
 		</datalist>
-
-	<datalist id="doctors">
-	<c:forEach items="${doctors}" var="doctor">
-		<option label="${doctor.contact.firstName } ${doctor.contact.lastName }" value="${doctor.id}">${doctor.contact.firstName } ${doctor.contact.lastName }</option>
-	</c:forEach>
 		
 		
 		

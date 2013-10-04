@@ -74,14 +74,16 @@
 					class="input-block-level datepicker" />
 						<form:errors path="date" cssClass="error">
 						</form:errors>
-
-						<form:label path="doctorId">
-					<spring:message code="label.doctor" />
-				</form:label>
-						<form:input path="doctorId" type="text" class="input-block-level"
-					list="doctors" />
-						<form:errors path="doctorId" cssClass="error" />
 						
+						
+							<form:label path="doctorId"><spring:message code="label.doctor" /></form:label>
+						<form:select path="doctorId" type="text"
+					class="input-block-level">
+						<c:forEach items="${doctors}" var="doctor">
+	<form:option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+			</c:forEach>
+							
+							</form:select>
 
 						<form:label path="epilepsyInFamily">Epilepsie v rodině</form:label>
 						<form:checkbox path="epilepsyInFamily" class="input-block-level" />
@@ -164,10 +166,9 @@
 	
 		<datalist id="doctors">
 	<c:forEach items="${doctors}" var="doctor">
-		<option
-					label="${doctor.contact.firstName } ${doctor.contact.lastName }"
-					value="${doctor.id}">${doctor.contact.firstName } ${doctor.contact.lastName }</option>
-	</c:forEach>
+		<option value="${doctor.id}">dfdf</option>
+	
+			</c:forEach>
 	</datalist>
 	</jsp:body>
 </t:menuLVL3>
