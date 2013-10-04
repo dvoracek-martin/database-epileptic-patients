@@ -57,10 +57,10 @@ public class HomeController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 
-		List<NewsMessageEntity> news = newsMessageService
+		List<NewsMessageEntity> newsMessages = newsMessageService
 				.findAll(NewsMessageEntity.class);
-		Collections.reverse(news);
-		model.addAttribute("news", news);
+		Collections.reverse(newsMessages);
+		model.addAttribute("newsMessages", newsMessages);
 		/*
 		 * next line allows you to access property formattedDate within your
 		 * home.jsp page. you can access it with writting ${serverTime} just to
