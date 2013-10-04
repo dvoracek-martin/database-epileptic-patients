@@ -230,13 +230,7 @@ public class PatientController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
-	public String patientExportGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		new ExportServiceImpl("xlsx", patientID);
-		return "redirect:/patient/" + Integer.toString(patientID) + "/overview";
-	}
-	
+
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
