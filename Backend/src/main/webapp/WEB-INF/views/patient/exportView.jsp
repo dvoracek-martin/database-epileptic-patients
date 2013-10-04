@@ -15,27 +15,33 @@
     </jsp:attribute>
 
 	<jsp:body>
-			<h1>Puso</h1>
+			<div>
+					<div>
+						<h2>
+							<spring:message code="label.exportPatient" /> <a href="<c:url value="/patient/${patient.id}/overview" />"
+						style="text-decoration: none">${patient.contact.firstName} ${patient.contact.lastName}</a>
+						</h2>
+					</div>
+					
+					<form:form method="POST" modelAttribute="patient" class="form-horizontal"
+				action="/GENEPI/patient/edit" commandName="patient">
+						<div class="control-group">
+						    <label class="control-label" for="inputFormat"><spring:message code="label.chooseFormat"/></label>
+						    <div class="controls">
+						     	<input type="radio"id="inputFormat" name="format" value="pdf"> pdf
+								<input type="radio" name="format" valus="csv"> csv
+							</div>
+						 </div>
+
+						 <div class="control-group">
+						    <div class="controls">
+						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>
+						    </div>
+						  </div>
+						
+					</form:form>
+
+				</div>
 	</jsp:body>
 </t:menuLVL3>
-
-
-<script>
-	var link = document.getElementById('export').href;
-	function chooseFormat() {
-		var format = prompt(
-				"Zvolte souborový formát, do kterého chcete exportovat:",
-				"pdf/csv");
-
-		while (format != "pdf" && format != "csv" && format != null) {
-			format = prompt(
-					"Takovýto formát není podporován. Prosím, zvolte podporovaný formát (pdf či csv).",
-					"pdf/csv");
-		}
-		if (format == null)
-			document.getElementById('export').href = "#";
-		else
-			document.getElementById('export').href;
-	}
-</script>
 
