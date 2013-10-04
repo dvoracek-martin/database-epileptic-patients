@@ -236,4 +236,19 @@ public class PatientController {
 		new ExportServiceImpl("xlsx", patientID);
 		return "redirect:/patient/" + Integer.toString(patientID) + "/overview";
 	}
+	
+	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
+	public String patientExportGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("anamnesisID") Integer anamnesisID) {
+		return "patient/exportView";
+	}
+	
+	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
+	public String patientExportPOST(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("anamnesisID") Integer anamnesisID) {
+		return "redirect:/patient/" + patientID + "/overview";
+	}
+	
 }
