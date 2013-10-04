@@ -89,6 +89,7 @@ public class MailServiceImpl implements MailService {
 
 		// Setup mail server
 		properties.setProperty("mail.smtp.host", host);
+		
 
 		// Get the default Session object.
 		Session session = Session.getDefaultInstance(properties);
@@ -140,7 +141,7 @@ public class MailServiceImpl implements MailService {
 				String text = messageSource.getMessage("userCreated",
 						messagePrameters, locale);
 				System.out.println(text);
-				message.setText(text);
+				message.setText(text, "UTF-8");
 				Transport.send(message);
 
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
