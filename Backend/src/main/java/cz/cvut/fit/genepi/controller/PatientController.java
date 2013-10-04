@@ -137,8 +137,6 @@ public class PatientController {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 		model.addAttribute("patient", patient);
-		model.addAttribute("anamnesis",
-				anamnesisService.findLatestAnamnesisByPatientID(patientID));
 		return "patient/overviewView";
 	}
 

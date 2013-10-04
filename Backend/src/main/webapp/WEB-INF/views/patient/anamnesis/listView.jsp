@@ -30,26 +30,26 @@
 							<td></td>
 
 							<th>Rodné číslo:</th>
-							<td></td>
+							<td>${patient.nin}</td>
 
 							<th>Adresa:</th>
-							<td></td>
+							<td>${patient.contact.addressStreet}</td>
 
 						</tr>
 						<tr>
 							<th>Telefon:</th>
-							<td></td>
+							<td>${patient.contact.phoneNumber}</td>
 
 							<th>Věk:</th>
 							<td></td>
 
 							<th>Pohaví:</th>
-							<td></td>
+							<td>${patient.gender}</td>
 						</tr>
 
 						<tr>
 							<th>Email:</th>
-							<td></td>
+							<td>${patient.contact.email}</td>
 
 							<th>Věk při začátku epilepsie:</th>
 							<td></td>
@@ -62,7 +62,7 @@
 				</table>
 				<!-- Anamnesis list START -->
 				<table border="2">
-					<c:forEach items="${anamnesisList}" var="anamnesis">
+					<c:forEach items="${patient.anamnesisList}" var="anamnesis">
 						<tr>
 							<td>Vysetreni dne: ${anamnesis.date}</td>
 							<td><a

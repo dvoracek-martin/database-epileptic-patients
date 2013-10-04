@@ -69,55 +69,55 @@
               <tbody>
                 		<tr class="info">
 							<td>Vysetreni dne:</td>
-							<td>${anamnesis.date}</td>
+							<td>${patient.anamnesisList[0].date}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.epilepsyInFamily" /></td>
-							<td>${anamnesis.epilepsyInFamily}</td>
+							<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.prenatalRisk" /></td>
-							<td>${anamnesis.prenatalRisk}</td>
+							<td>${patient.anamnesisList[0].prenatalRisk}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.fibrilConvulsions" /></td>
-							<td>${anamnesis.fibrilConvulsions}</td>
+							<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.inflammationCNS" /></td>
-							<td>${anamnesis.inflammationCns}</td>
+							<td>${patient.anamnesisList[0].inflammationCns}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.injuryCNS" /></td>
-							<td>${anamnesis.injuryCns}</td>
+							<td>${patient.anamnesisList[0].injuryCns}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.operationCNS" /></td>
-							<td>${anamnesis.operationCns}</td>
+							<td>${patient.anamnesisList[0].operationCns}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.earlyPMDRetardation" /></td>
-							<td>${anamnesis.earlyPmdRetardation}</td>
+							<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.beginningEpilepsy" /></td>
-							<td>${anamnesis.beginningEpilepsy}</td>
+							<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.firstFever" /></td>
-							<td>${anamnesis.firstFever}</td>
+							<td>${patient.anamnesisList[0].firstFever}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.infantileSpasm" /></td>
-							<td>${anamnesis.infantileSpasm}</td>
+							<td>${patient.anamnesisList[0].infantileSpasm}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.epilepticSyndrome" /></td>
-							<td>${anamnesis.specificSyndromeIdcom}</td>
+							<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.nonCNSComorbidity" /></td>
-							<td>${anamnesis.nonCnsComorbidity}</td>
+							<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
 						</tr>
               </tbody>
             </table>
