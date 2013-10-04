@@ -336,9 +336,11 @@ public class UserController {
 			logger.setLogger(UserController.class);
 
 		UserEntity user = userService.findByID(UserEntity.class, userID);
-		user.setPassword("");
+		List<RoleEntity> listOfPossibleRoles = roleService
+				.findAll(RoleEntity.class);
+		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
+		model.addAttribute("listOfSelectedRoles", new ArrayList<RoleEntity>());		
 		model.addAttribute("user", user);
-		model.addAttribute("passwordChanged", false);
 		return "user/editRoles";
 	}
 
