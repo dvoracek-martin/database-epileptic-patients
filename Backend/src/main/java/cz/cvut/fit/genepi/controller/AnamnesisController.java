@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.RoleEntity;
+import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.PatientService;
+import cz.cvut.fit.genepi.service.RoleService;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -35,6 +38,9 @@ public class AnamnesisController {
 	/** The anamnesis service. */
 	@Autowired
 	private AnamnesisService anamnesisService;
+
+	@Autowired
+	private RoleService roleService;
 
 	/**
 	 * Creates the anamnesis get.
@@ -52,6 +58,13 @@ public class AnamnesisController {
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
+
+		/* getting all docs */
+		List<UserEntity> doctors = new ArrayList<UserEntity>();
+		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
+		doctors = doctorRole.getUsers();
+		model.addAttribute("doctors", doctors);
+
 		model.addAttribute("patient", patient);
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "patient/anamnesis/createView";
@@ -83,11 +96,15 @@ public class AnamnesisController {
 
 	/**
 	 * Delete anamnesis.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @param patientID the patient id
-	 * @param anamnesisID the anamnesis id
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @param patientID
+	 *            the patient id
+	 * @param anamnesisID
+	 *            the anamnesis id
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/delete", method = RequestMethod.GET)
@@ -97,11 +114,10 @@ public class AnamnesisController {
 
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisID));
-		return  "patient/"+patientID+"/anamnesis/"+anamnesisID+"/exportView";
+		return "patient/" + patientID + "/anamnesis/" + anamnesisID
+				+ "/exportView";
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisID}/export", method = RequestMethod.GET)
 	public String anamnesisExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,

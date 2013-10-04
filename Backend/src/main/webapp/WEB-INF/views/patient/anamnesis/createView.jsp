@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
 <t:menuLVL3>
@@ -74,8 +75,13 @@
 						<form:errors path="date" cssClass="error">
 						</form:errors>
 
-						<form:label path="doctorId">Lekar</form:label>
-						<form:select path="doctorId" type="text" class="input-block-level" />
+						<form:label path="doctorId">
+					<spring:message code="label.doctor" />
+				</form:label>
+						<form:input path="doctorId" type="text" class="input-block-level"
+					list="doctors" />
+						<form:errors path="doctorId" cssClass="error" />
+						
 
 						<form:label path="epilepsyInFamily">Epilepsie v rodině</form:label>
 						<form:checkbox path="epilepsyInFamily" class="input-block-level" />
@@ -156,6 +162,13 @@
 					</form:form>
 				</div>
 	
+		<datalist id="doctors">
+	<c:forEach items="${doctors}" var="doctor">
+		<option
+					label="${doctor.contact.firstName } ${doctor.contact.lastName }"
+					value="${doctor.id}">${doctor.contact.firstName } ${doctor.contact.lastName }</option>
+	</c:forEach>
+	</datalist>
 	</jsp:body>
 </t:menuLVL3>
 
