@@ -96,23 +96,32 @@ li.sortable-placeholder {
 	border: 1px dashed #CCC;
 	background: none;
 }
-</style>	
-		
-	<section>
-		<ul id="sortable4" class="connected sortable list">
-		
-		<c:forEach var="role" items="${listOfPossibleRoles}">
-		<li draggable="true">${role.authority}</li>			
-		</c:forEach>
-			</ul>
+</style>
+		<div class="span9">	
+			<div class="span3">
+				<label>Dostupné role</label>
+				<ul id="sortable4" class="connected sortable list" style="border-style:solid;
+							border-width:5px; border-color:CornflowerBlue;">
 			
-			
-		<ul id="sortable5" class="connected sortable list">			
-			</ul>
-	</section>
-	
-	<!--  tady pridat submitovaci button, kterej zavola nejakou funkci -->
-
+					<c:forEach var="role" items="${listOfPossibleRoles}">
+						<li draggable="true">${role.authority}</li>			
+					</c:forEach>
+				</ul>	
+			</div>
+			<div class="span3">
+				<label>Moje role</label>
+				<ul id="sortable5" class="connected sortable list" style="border-style:solid;
+						border-width:5px; border-color:CornflowerBlue;">			
+				</ul>
+			</div>
+			<div class="span3">
+			<!--  tady pridat submitovaci button, kterej zavola nejakou funkci -->
+				<form:form method="POST" modelAttribute="user"
+					action="/GENEPI/user/edit-roles" commandName="user">
+					<input type="submit" value="uložit" onclick="" class="btn btn-primary">
+				</form:form>
+			</div>
+		</div>
 
 	</jsp:body>
 </t:menuLVL2>
