@@ -10,16 +10,12 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Properties;
 
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -124,7 +120,7 @@ public class MailServiceImpl implements MailService {
 				String text = messageSource.getMessage("changedPassword",
 						messagePrameters, locale);
 				System.out.println(text);
-				message.setText(text);
+				message.setText(text,"UTF-8");
 				Transport.send(message);
 
 				DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -149,36 +145,7 @@ public class MailServiceImpl implements MailService {
 						messagePrameters, locale);
 				System.out.println(text);
 				message.setText(text, "UTF-8");
-				
-				MimeMessage message2 = new MimeMessage( session ); 
-
-				message2.setFrom(new InternetAddress(from));
-
-				// Set To: header field of the header.
-				message2.addRecipient(Message.RecipientType.TO, new InternetAddress(
-						to));
-
-				
-				
-				// Setting the Subject and Content Type 
-				message2.setSubject( "neco", "utf-8" ); // <---- 
-
-				// Create a message part to represent the body text 
-				BodyPart messageBodyPart = new MimeBodyPart(); 
-				messageBodyPart.setContent( text, "text/html; charset=utf-8" ); // <---- 
-
-				// use a MimeMultipart as we need to handle the file attachments 
-				Multipart multipart = new MimeMultipart(); 
-
-				// add the message body to the mime message 
-				multipart.addBodyPart( messageBodyPart ); 
-
-				// Put all message parts in the message 
-				message2.setContent( multipart ); 
-
-				Transport.send( message2 );
-				
-				
+							
 				
 				Transport.send(message);
 
