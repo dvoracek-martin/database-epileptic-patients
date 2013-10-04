@@ -244,7 +244,7 @@ public class PatientController {
 		return "patient/exportView";
 	}
 	
-	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.POST)
 	public String patientExportPOST(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("anamnesisID") Integer anamnesisID) {
