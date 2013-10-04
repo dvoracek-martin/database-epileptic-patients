@@ -57,12 +57,34 @@
 								<li class="divider-vertical"><a
 							href="<c:url value="/patient/${patient.id}/edit" />"><spring:message
 									code="label.edit" /></a></li>
-								<li><a id="delete" href="<c:url value="/patient/${patient.id}/delete"/>" onclick="deletePatient()"><spring:message
+								<li><a href="#patientDeleteConfirm${patient.id}" role="button" class="btn"
+							data-toggle="modal"><spring:message
 									code="label.deletePatient" /></a></li>
 							</ul>
 						</div>
 					</div>
+					<!-- Modal window>: user delete confirmation -->
+					<div id="patientDeleteConfirm${patient.id}" class="modal hide fade" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">×</button>
+							<h3 id="myModalLabel">Patient deletion</h3>
+						</div>
+						<div class="modal-body">
+							<p>Do you really want to delete this patient?</p>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal" aria-hidden="true">NO</button>
+							<a class="btn btn-primary" href="<c:url value="/patient/${patient.id}/delete"/>">YES</a>
 
+						</div>
+					</div>
+					<script>
+						var patientID = ${patient.id};
+						$('#patientDeleteConfirm'+patientID).modal({
+						show: false})
+					</script>
 				</c:forEach>
 	</jsp:body>
 </t:menuLVL2>
