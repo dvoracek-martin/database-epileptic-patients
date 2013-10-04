@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.entity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -57,7 +57,7 @@ public class UserEntity {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@Cascade({ CascadeType.ALL })
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_ID", nullable = false, updatable = false) })
-	private ArrayList<RoleEntity> roles;
+	private List<RoleEntity> roles;
 
 	/**
 	 * Gets the id.
@@ -135,11 +135,11 @@ public class UserEntity {
 		this.contact = contact;
 	}
 
-	public ArrayList<RoleEntity> getRoles() {
+	public List<RoleEntity> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(ArrayList<RoleEntity> roles) {
+	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
 	}
 }
