@@ -52,7 +52,7 @@
 							href="<c:url value="/patient/${patient.id}/anamnesis/list" />"><spring:message
 									code="label.anamnesis" /></a></li>
 								<li class="divider-vertical"><a id="export"
-							href="<c:url value="/patient/${patient.id}/export" />" onclick="chooseFormat()"><spring:message
+							href="<c:url value="/patient/${patient.id}/export" />"><spring:message
 									code="label.export" /></a></li>
 								<li class="divider-vertical"><a
 							href="<c:url value="/patient/${patient.id}/edit" />"><spring:message
@@ -88,28 +88,3 @@
 				</c:forEach>
 	</jsp:body>
 </t:menuLVL2>
-
-<script>
-var linkDelete = document.getElementById('delete').href;
-function chooseFormat()
-{
-var format=prompt("Zvolte souborový formát, do kterého chcete exportovat:","pdf/csv");
-
-while (format!="pdf" && format!="csv" && format!=null)
-  {
-	format=prompt("Takovýto formát není podporován. Prosím, zvolte podporovaný formát (pdf či csv).","pdf/csv");
-  }
-  if (format==null)
-  	document.getElementById('export').href="#";
-  else	
-	  document.getElementById('export').href;
-}
-
-function deletePatient() {
-	var answer = confirm("Opravdu chcete smazat pacienta?");
-	if (answer==false)
-		document.getElementById('delete').href = "#";
-	else
-		document.getElementById('delete').href = linkDelete;
-}
-</script>
