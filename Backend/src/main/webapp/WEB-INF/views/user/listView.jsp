@@ -37,6 +37,8 @@
 			<ul class="nav">
 				<li><a href="<c:url value="/user/${user.id}/edit" />"><spring:message
 									code="label.editdata" /></a></li>
+				<li><a href="<c:url value="/user/${user.id}/edit-roles" />"><spring:message
+									code="label.editRoles" /></a></li>
 				<li><a
 							href="<c:url value="/user/${user.id}/change-password" />"><spring:message
 									code="label.changePassword" /></a></li>
