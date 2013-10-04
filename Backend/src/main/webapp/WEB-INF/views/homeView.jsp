@@ -23,8 +23,29 @@
 	<sec:authorize ifAnyGranted="ROLE_USER">
 		<div style="margin: 10px">
 			<c:forEach items="${news}" var="message">
-			<div style="border-bottom: 2px solid black">
-				<h3>${message.date }</h3>
+			<div>
+				
+					<div class="navbar">
+						<div class="navbar-inner">
+							<ul id="nav-list" class="nav pull-left">
+									<li class="brand">${message.date }</li>
+								</ul>
+									<ul id="nav-list" class="nav pull-right">
+										<li>
+											<div class="btn-group">
+							  					<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
+							    					Action<span class="caret"></span>
+							  					</a>
+							  					<ul class="dropdown-menu">
+							    					<li><a href="<c:url value="/message/${message.id}/edit" />"><spring:message code="label.edit"/></a></li>
+							    					<li><a href="<c:url value="/message/${message.id}/delete" />"><spring:message code="label.delete"/></a></li>
+							  					</ul>
+											</div>
+										</li>
+									</ul>							
+						</div>
+			
+				</div>
 				<p>${message.message }</p>
 			</div>
 			</c:forEach>
