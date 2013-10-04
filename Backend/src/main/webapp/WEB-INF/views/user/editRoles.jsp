@@ -22,6 +22,20 @@
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/datepicker.js" />"></script>
 				<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
+					<script>
+		$(function() {
+			$('#sortable1, #sortable2').sortable();
+			$('#sortable3').sortable({
+				items: ':not(.disabled)'
+			});
+			$('#sortable-with-handles').sortable({
+				handle: '.handle'
+			});
+			$('#sortable4, #sortable5').sortable({
+				connectWith: '.connected'
+			});
+		});
+	</script>
     </jsp:attribute>
 
 	<jsp:body>
@@ -93,21 +107,7 @@
 			</li><li class="highlight" draggable="true">Item 6
 		</li></ul>
 	</section>
-	
-	<script src="<c:url value="/resources/js/jquery.sortable.js"/>"></script>
-	<script>
-		$(function() {
-			$('#sortable1, #sortable2').sortable();
-			$('#sortable3').sortable({
-				items: ':not(.disabled)'
-			});
-			$('#sortable-with-handles').sortable({
-				handle: '.handle'
-			});
-			$('#sortable4, #sortable5').sortable({
-				connectWith: '.connected'
-			});
-		});
-	</script>
+
+
 	</jsp:body>
 </t:menuLVL2>
