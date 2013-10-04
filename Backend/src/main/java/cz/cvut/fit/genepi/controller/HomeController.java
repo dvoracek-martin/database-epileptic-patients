@@ -1,7 +1,9 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.text.DateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -50,6 +52,9 @@ public class HomeController {
 				DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 
+		List<NewsMessageEntity> news = newsMessageService.findAll(NewsMessageEntity.class);
+		Collections.reverse(news);
+		model.addAttribute("news", news);
 		/*
 		 * next line allows you to access property formattedDate within your
 		 * home.jsp page. you can access it with writting ${serverTime} just to

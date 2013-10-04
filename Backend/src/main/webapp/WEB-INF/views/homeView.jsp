@@ -22,15 +22,12 @@
 	</div>
 	<sec:authorize ifAnyGranted="ROLE_USER">
 		<div style="margin: 10px">
+			<c:forEach items="${news}" var="message">
 			<div style="border-bottom: 2px solid black">
-				<h3>12.5.2013</h3>
-				<p>Podpora pro širší škálu prohlížečů byla doplněna.</p>
+				<h3>${message.date }</h3>
+				<p>${message.message }</p>
 			</div>
-
-			<div style="border-bottom: 2px solid black">
-				<h3>10.9.2013</h3>
-				<p>Beta verze byla předvedena.</p>
-			</div>
+			</c:forEach>
 		</div>
 	</sec:authorize>
 </jsp:body>

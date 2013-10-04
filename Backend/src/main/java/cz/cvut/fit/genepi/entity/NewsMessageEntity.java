@@ -1,12 +1,13 @@
 package cz.cvut.fit.genepi.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
-
 
 // TODO: Auto-generated Javadoc
 /**
@@ -16,21 +17,23 @@ import javax.validation.constraints.Size;
 @Table(name = "NEWS_MESSAGE")
 public class NewsMessageEntity {
 
-
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
 	@GeneratedValue
 	private int id;
-	
+
 	/** The message. */
 	@Size(max = 2000)
 	@Column(name = "MESSAGE", length = 2000, nullable = false)
 	private String message;
 
+	@Column(name = "DATE", nullable = false)
+	private Date date;
+
 	/**
 	 * Gets the id.
-	 *
+	 * 
 	 * @return the id
 	 */
 	public int getId() {
@@ -39,8 +42,9 @@ public class NewsMessageEntity {
 
 	/**
 	 * Sets the id.
-	 *
-	 * @param id the new id
+	 * 
+	 * @param id
+	 *            the new id
 	 */
 	public void setId(int id) {
 		this.id = id;
@@ -48,7 +52,7 @@ public class NewsMessageEntity {
 
 	/**
 	 * Gets the message.
-	 *
+	 * 
 	 * @return the message
 	 */
 	public String getMessage() {
@@ -57,10 +61,20 @@ public class NewsMessageEntity {
 
 	/**
 	 * Sets the message.
-	 *
-	 * @param message the new message
+	 * 
+	 * @param message
+	 *            the new message
 	 */
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Date getDate() {
+		/*fomrmat date here*/
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 }
