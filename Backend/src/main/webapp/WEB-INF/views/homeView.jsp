@@ -79,10 +79,10 @@
 						<h3 id="myModalLabel"><spring:message code="label.messageEditing"/></h3>
 					</div>
 					<!-- Form to edit message -->
-					<form:form method="POST" modelAttribute="newsMessage"
-							action="/GENEPI/news/${newsMessage.id}/edit" commandName="newsMessage">
+					<form:form method="POST" modelAttribute="emptyMessage"
+							action="/GENEPI/news/${newsMessage.id}/edit" commandName="emptyMessage">
 						<div class="modal-body">
-							${newsMessage.message}
+							<form:input type="text" path="message" class="input-block-level" value="${newsMessage.message}"/>
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
