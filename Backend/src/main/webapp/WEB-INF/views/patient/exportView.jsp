@@ -39,6 +39,8 @@
 						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>						 
 						    </div>
 						  </div>
+						  
+						  <form:hidden path="id" id="id" />
 						
 					</form:form>
 

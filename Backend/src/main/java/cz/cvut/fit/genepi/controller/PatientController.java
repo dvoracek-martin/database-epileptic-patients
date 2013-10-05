@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.controller;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -8,6 +9,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,10 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.itextpdf.text.DocumentException;
+
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
+import cz.cvut.fit.genepi.service.ExportToPdfService;
+import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
@@ -46,9 +53,15 @@ public class PatientController {
 	/** The user service. */
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	private ExportToPdfService exportToPdfService;
+
+	/** The Constant logger. */
+	private LoggingService logger = new LoggingService();
 
 	/**
 	 * Creates the patient get.
@@ -61,12 +74,12 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
-		
+
 		List<UserEntity> doctors = new ArrayList<UserEntity>();
 		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
 		doctors = doctorRole.getUsers();
 		model.addAttribute("doctors", doctors);
-		
+
 		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("doctors", doctors);
 		model.addAttribute("male",
@@ -231,19 +244,29 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		patientService.findByID(PatientEntity.class, patientID);
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/exportView";
 	}
-	
+
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@ModelAttribute("patient") @Valid PatientEntity patient,
-			 Locale locale, Model model) {		
-			return "redirect:/patient/" + Integer.toString(patient.getId())
-					+ "/overview";
+			@ModelAttribute("patient") PatientEntity patient, Locale locale,
+			Model model) {
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		patient = patientService.findByID(PatientEntity.class, patient.getId());
+		try {
+			exportToPdfService.export(patient,
+					userService.findUserByUsername(auth.getName()));
+		} catch (FileNotFoundException e) {
+			logger.logError("File wasn't found when trying to export to pdf.",
+					e);
+		} catch (DocumentException e) {
+			logger.logError("Document exception when trying to export to pdf.",
+					e);
 		}
-	
-	
+		return "redirect:/patient/" + Integer.toString(patient.getId())
+				+ "/overview";
+	}
 }

@@ -2,7 +2,12 @@ package cz.cvut.fit.genepi.serviceImpl;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+
+import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
@@ -10,50 +15,76 @@ import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.Section;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Class ExportToPdfServiceImpl.
  */
+@Service
 public class ExportToPdfServiceImpl implements ExportToPdfService {
 
-	/** The file. */
-	private static String FILE = "c:/temp/FirstPdf.pdf";
-	
+	private static PatientEntity patient;
+
+	private static UserEntity user;
+
 	/** The cat font. */
-	private static Font catFont = new Font(Font.FontFamily.TIMES_ROMAN, 18,
-			Font.BOLD);
-	
-	/** The red font. */
-	private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 12,
-			Font.NORMAL, BaseColor.RED);
-	
-	/** The sub font. */
-	private static Font subFont = new Font(Font.FontFamily.TIMES_ROMAN, 16,
-			Font.BOLD);
-	
-	/** The small bold. */
-	private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
+	private static Font catFont = new Font(Font.FontFamily.HELVETICA, 18,
 			Font.BOLD);
 
-	/* (non-Javadoc)
+	/** The red font. */
+	private static Font redFont = new Font(Font.FontFamily.HELVETICA, 12,
+			Font.NORMAL, BaseColor.RED);
+
+	/** The larger font. */
+	private static Font largerFont = new Font(Font.FontFamily.HELVETICA, 16,
+			Font.NORMAL);
+	
+	/** The regular  font. */
+	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 12,
+			Font.NORMAL);
+
+	/** The sub font. */
+	private static Font subFont = new Font(Font.FontFamily.HELVETICA, 16,
+			Font.BOLD);
+
+	/** The small bold. */
+	private static Font smallBold = new Font(Font.FontFamily.HELVETICA, 12,
+			Font.BOLD);
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cz.cvut.fit.genepi.service.ExportToPdfService#export(int)
 	 */
-	public void export(int pateintID) throws FileNotFoundException, DocumentException {
+
+	private static String getDate() {
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date today = Calendar.getInstance().getTime();
+		String reportDate = df.format(today);
+		return reportDate;
+	}
+
+	public void export(PatientEntity patient, UserEntity user)
+			throws FileNotFoundException, DocumentException {
 		Document document = new Document();
-		PdfWriter.getInstance(document, new FileOutputStream(FILE));
+		ExportToPdfServiceImpl.patient = patient;
+		ExportToPdfServiceImpl.user = user;
+
+		PdfWriter.getInstance(document, new FileOutputStream("c:/temp/patient"
+				+ patient.getId() + ".pdf"));
+
 		document.open();
 		addMetaData(document);
 		addTitlePage(document);
@@ -66,29 +97,42 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	// under File -> Properties
 	/**
 	 * Adds the meta data.
-	 *
-	 * @param document the document
+	 * 
+	 * @param document
+	 *            the document
 	 */
 	private static void addMetaData(Document document) {
-		document.addTitle("My first PDF");
+		document.addTitle(patient.getContact().getFirstName() + " "
+				+ patient.getContact().getLastName() + " ,ID:"
+				+ patient.getId() + " " + getDate());
 		document.addSubject("Using iText");
 		document.addKeywords("Java, PDF, iText");
-		document.addAuthor("Lars Vogel");
-		document.addCreator("Lars Vogel");
+		document.addAuthor(user.getUsername() + " " + user.getId() + " "
+				+ user.getContact().getFirstName() + " "
+				+ user.getContact().getLastName());
+		document.addCreator(user.getUsername() + " " + user.getId() + " "
+				+ user.getContact().getFirstName() + " "
+				+ user.getContact().getLastName());
 	}
 
 	/**
 	 * Adds the title page.
-	 *
-	 * @param document the document
-	 * @throws DocumentException the document exception
+	 * 
+	 * @param document
+	 *            the document
+	 * @throws DocumentException
+	 *             the document exception
 	 */
-	private static  void addTitlePage(Document document) throws DocumentException {
+	private static void addTitlePage(Document document)
+			throws DocumentException {
 		Paragraph preface = new Paragraph();
 		// We add one empty line
 		addEmptyLine(preface, 1);
 		// Lets write a big header
-		preface.add(new Paragraph("Title of the document", catFont));
+		preface.add(new Paragraph("Export of the patient "
+				+ patient.getContact().getFirstName() + " "
+				+ patient.getContact().getLastName() + " ,ID:"
+				+ patient.getId() + " " + getDate()));
 
 		addEmptyLine(preface, 1);
 		// Will create: Report generated by: _name, _date
@@ -113,9 +157,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	/**
 	 * Adds the content.
-	 *
-	 * @param document the document
-	 * @throws DocumentException the document exception
+	 * 
+	 * @param document
+	 *            the document
+	 * @throws DocumentException
+	 *             the document exception
 	 */
 	private static void addContent(Document document) throws DocumentException {
 		Anchor anchor = new Anchor("First Chapter", catFont);
@@ -140,6 +186,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		addEmptyLine(paragraph, 5);
 		subCatPart.add(paragraph);
 
+		Paragraph patientParagraph = new Paragraph(patient.getContact()
+				.getFirstName() + " " + patient.getContact().getLastName(),
+				largerFont);
+		subCatPart.add(patientParagraph);
+		
 		// Add a table
 		createTable(subCatPart);
 
@@ -164,35 +215,27 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	/**
 	 * Creates the table.
-	 *
-	 * @param subCatPart the sub cat part
-	 * @throws BadElementException the bad element exception
+	 * 
+	 * @param subCatPart
+	 *            the sub cat part
+	 * @throws BadElementException
+	 *             the bad element exception
 	 */
 	private static void createTable(Section subCatPart)
 			throws BadElementException {
-		PdfPTable table = new PdfPTable(3);
+		PdfPTable table = new PdfPTable(2);
 
 		// t.setBorderColor(BaseColor.GRAY);
 		// t.setPadding(4);
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
+		
+		
+	            
 
-		PdfPCell c1 = new PdfPCell(new Phrase("Table Header 1"));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-
-		c1 = new PdfPCell(new Phrase("Table Header 2"));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-
-		c1 = new PdfPCell(new Phrase("Table Header 3"));
-		c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-		table.addCell(c1);
-		table.setHeaderRows(1);
-
-		table.addCell("1.0");
-		table.addCell("1.1");
-		table.addCell("1.2");
+		table.addCell(new Phrase("Číslo pacienta:",normalFont));
+		table.addCell(String.valueOf(patient.getId()));
+		table.addCell(new Phrase("Číslo pacienta:",normalFont));
 		table.addCell("2.1");
 		table.addCell("2.2");
 		table.addCell("2.3");
@@ -203,8 +246,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	/**
 	 * Creates the list.
-	 *
-	 * @param subCatPart the sub cat part
+	 * 
+	 * @param subCatPart
+	 *            the sub cat part
 	 */
 	private static void createList(Section subCatPart) {
 		List list = new List(true, false, 10);
@@ -216,9 +260,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	/**
 	 * Adds the empty line.
-	 *
-	 * @param paragraph the paragraph
-	 * @param number the number
+	 * 
+	 * @param paragraph
+	 *            the paragraph
+	 * @param number
+	 *            the number
 	 */
 	private static void addEmptyLine(Paragraph paragraph, int number) {
 		for (int i = 0; i < number; i++) {

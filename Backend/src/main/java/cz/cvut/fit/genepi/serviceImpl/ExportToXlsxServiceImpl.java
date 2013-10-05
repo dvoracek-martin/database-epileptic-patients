@@ -12,6 +12,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.itextpdf.text.DocumentException;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
 
 // TODO: Auto-generated Javadoc
@@ -27,7 +29,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 * @throws DocumentException the document exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void export(int pateintID) throws DocumentException, IOException {
+	public void export(PatientEntity patient, UserEntity user) throws DocumentException, IOException {
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();
 		CreationHelper createHelper = wb.getCreationHelper();
@@ -47,7 +49,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
 		// Write the output to a file
 		FileOutputStream fileOut = new FileOutputStream("c:/temp/patient"
-				+ Integer.toString(pateintID) + ".xlsx");
+				+ Integer.toString(patient.getId()) + ".xlsx");
 		wb.write(fileOut);
 		fileOut.close();
 	}
