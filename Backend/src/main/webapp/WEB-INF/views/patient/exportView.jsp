@@ -25,31 +25,36 @@
 					</div>
 					
 					<form:form method="POST" modelAttribute="patient" class="form-horizontal"
-				action="/GENEPI/patient/export" commandName="patient">
+								action="/GENEPI/patient/export" commandName="patient">
+						
 						<div class="control-group">
-						    <label class="control-label" for="inputFormat"><spring:message code="label.chooseFormat"/></label>
+						    <label class="control-label" for="pdfFormat">Formát</label>
 						    <div class="controls">
-						     	<input type="radio" id="pdfFormat" name="format" value="pdf" checked> pdf
-								<input type="radio" id="xlsxFormat" name="format" value="xlsx"> xlsx
-							</div>
-						 </div>
-
-						 <div class="control-group">
-						    <div class="controls">
-						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>						 
+						    	<input type="radio" id="pdfFormat" name="exportType" value="pdf" checked> pdf
+								<input type="radio" id="xlsxFormat" name="exportType" value="xlsx"> xlsx
 						    </div>
-						  </div>
-						  
-						  <form:hidden path="id" id="id" />
+						</div>
+						
+						<div class="control-group">
+						    <div class="controls">
+						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>	
+						    </div>
+						</div>
+											 
+						<form:hidden path="id" id="id" />
 						
 					</form:form>
 
-					<div id="exportDownload">
-						<span class="text-success">Soubor byl úspěšně vygenerován!</span>
-						<button class="btn btn-primary btn-success">Stáhnout</button>
-					</div>
-
+					<c:if test="${isReady==true}">
+						<div id="exportDownload">
+							<span class="text-success">Soubor byl úspěšně vygenerován!</span>
+							<a class="btn btn-primary btn-success" href="/usr/local/tomcat/webapps/GENEPI/resources/downloads/patient${patient.id}.${exportType}">Stáhnout</a>
+						</div>
+					</c:if>
+					
 				</div>
 	</jsp:body>
 </t:menuLVL3>
+
+
 
