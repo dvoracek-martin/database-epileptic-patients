@@ -29,7 +29,7 @@
 	</jsp:attribute>
 	<jsp:attribute name="menuLVL2">
 	<jsp:invoke fragment="menuLVL3" />
-		<li class="nav-header">Pacienti</li>
+		<li class="nav-header"><spring:message code="label.patients" /></li>
 		<li><a href="<c:url value="/patient/list"/>">Kartotéka pacientů</a></li>
 		<li><a href="">Pokročilé vyhledávání</a></li>
 		<li class="nav-header">Uživatel:</li>
