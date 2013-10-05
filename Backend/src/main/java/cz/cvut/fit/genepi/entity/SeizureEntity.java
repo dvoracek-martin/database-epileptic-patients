@@ -4,8 +4,11 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 // TODO: Auto-generated Javadoc
@@ -86,13 +89,21 @@ public class SeizureEntity {
 	@Column(name = "deleted")
 	private int deleted;
 
-	/** The patient id. */
-	@Column(name = "patient_id")
-	private int patientId;
-
 	/** The add user id. */
 	@Column(name = "add_user_id")
 	private int addUserId;
+	
+	/*@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;*/
+
+	/*public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}*/
 
 	/**
 	 * Gets the id.
@@ -398,24 +409,6 @@ public class SeizureEntity {
 	 */
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
-	}
-
-	/**
-	 * Gets the patient id.
-	 *
-	 * @return the patient id
-	 */
-	public int getPatientId() {
-		return patientId;
-	}
-
-	/**
-	 * Sets the patient id.
-	 *
-	 * @param patientId the new patient id
-	 */
-	public void setPatientId(int patientId) {
-		this.patientId = patientId;
 	}
 
 	/**
