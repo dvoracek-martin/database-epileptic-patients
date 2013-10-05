@@ -254,14 +254,13 @@ public class PatientController {
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("listOfExports", new ArrayList<String>());
 		model.addAttribute("isReady", isReady);
-		model.addAttribute("exportType", new String());
 		return "patient/exportView";
 	}
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
 			@ModelAttribute("patient") PatientEntity patient,
-			@ModelAttribute("exportType") String exportType, Locale locale,
+			@RequestParam("exportType") String exportType, Locale locale,
 			Model model) {
 		logger.setLogger(PatientController.class);
 		List<String> listOfExports = new ArrayList<String>();
