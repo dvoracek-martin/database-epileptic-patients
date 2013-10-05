@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.entity.ContactEntity;
+import cz.cvut.fit.genepi.entity.NewsMessageEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
@@ -355,6 +356,7 @@ public class UserController {
 
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
 		model.addAttribute("user", user);
+		model.addAttribute("emptyUser", new UserEntity());
 		return "user/editRoles";
 	}
 
