@@ -21,7 +21,6 @@
 			<spring:message code="label.news" />
 		</h1>
 	</div>
-	<sec:authorize ifAnyGranted="ROLE_USER">
 		<div style="margin: 10px">
 			<c:forEach items="${newsMessages}" var="newsMessage">
 			<div>
@@ -180,6 +179,5 @@
 				show : false
 			})
 		</script>
-	</sec:authorize>
 </jsp:body>
 </t:menuLVL2>
