@@ -119,13 +119,16 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		
 				File f = new File(downloadFolder + "patient" + patient.getId()
 						+ ".pdf");
-				f.mkdirs(); 
-				try {
-					f.createNewFile();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+			
+				if (!f.getParentFile().exists())
+				    f.getParentFile().mkdirs();
+				if (!f.exists())
+					try {
+						f.createNewFile();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 		
 		}
 		System.out.println(downloadFolder + "patient" + patient.getId()
