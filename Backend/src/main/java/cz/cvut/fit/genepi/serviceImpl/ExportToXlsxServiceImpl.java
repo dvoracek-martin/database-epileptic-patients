@@ -75,6 +75,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
 		} else {
+			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
 			File f = new File(downloadFolder + "patient" + patient.getId()
 					+ ".xlsx");
 			if (!f.getParentFile().exists())

@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -280,26 +279,16 @@ public class PatientController {
 				logger.logError(
 						"Document exception when trying to export to pdf.", e);
 			}
-		} else {
-			try {
+		} else {			
 				exportToXlsxService.export(patient,
 						userService.findUserByUsername(auth.getName()),
 						listOfExports);
-			} catch (FileNotFoundException e) {
-				logger.logError("File wasn't found when trying to export to xlsx.",
-						e);
-			} catch (DocumentException e) {
-				logger.logError("Document exception when trying to export to xlsx.",
-						e);
-			} catch (IOException e) {
-				logger.logError("Document exception when trying to export to xlsx.",
-						e);
-			}
 		}
 		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("listOfExports", new ArrayList<String>());
+		model.addAttribute("format", exportType);
 		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
 		// return "redirect:/patient/" + Integer.toString(patient.getId())
