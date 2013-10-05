@@ -60,7 +60,7 @@
 
 					<c:if test="${isReady==true}">
 					<div style="display: none">
-						<a data-auto-download href="/GENEPI/resources/downloads/patient1.pdf"></a>
+						<a data-auto-download href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>
 					</c:if>
 					
