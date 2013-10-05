@@ -23,7 +23,6 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class PatientEntity.
@@ -87,9 +86,30 @@ public class PatientEntity {
 	private ContactEntity contact;
 
 	/* AnamnesisList */
-	@OneToMany(fetch = FetchType.EAGER,mappedBy = "patient")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<NeurologicalFindingEntity> neurologicalFindingList;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<PharmacotherapyEntity> pharmacotherapyList;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<ComplicationEntity> complicationList;
+
+	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
+		return neurologicalFindingList;
+	}
+
+	public void setNeurologicalFindingList(
+			List<NeurologicalFindingEntity> neurologicalFindingList) {
+		this.neurologicalFindingList = neurologicalFindingList;
+	}
 
 	/**
 	 * Gets the id.
