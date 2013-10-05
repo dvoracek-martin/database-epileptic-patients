@@ -78,11 +78,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	private void initFonts() {
 		BaseFont bf = null;
 		String os = System.getProperty("os.name").toLowerCase();
-		
+
 		try {
-			if (os.indexOf("win") < 0){				
-			bf = BaseFont.createFont("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf",
-					BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			if (os.indexOf("win") < 0) {
+				bf = BaseFont.createFont(
+						"/usr/share/fonts/truetype/msttcorefonts/Arial.ttf",
+						BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -102,34 +103,38 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	public void export(PatientEntity patient, UserEntity user,
-			java.util.List<String> exports)  {
+			java.util.List<String> exports) {
 		initFonts();
 		Document document = new Document();
 		ExportToPdfServiceImpl.patient = patient;
 		ExportToPdfServiceImpl.user = user;
-		String downloadFolder = System.getProperty( "user.home" )+System.getProperty("file.separator")+"Download_Links"+System.getProperty("file.separator");
-		
-		
+		String downloadFolder = System.getProperty("user.home")
+				+ System.getProperty("file.separator") + "Download_Links"
+				+ System.getProperty("file.separator");
+
 		String os = System.getProperty("os.name").toLowerCase();
-		if (os.indexOf("win") >= 0){
-			downloadFolder.replace("\\","/");
-		}
-		else {
-			File f= new File(downloadFolder+"patient"
-				+ patient.getId() + ".pdf");
+		if (os.indexOf("win") >= 0) {
+			downloadFolder.replace("\\", "/");
+		} else {
 			try {
-				f.createNewFile();
+
+				File f = new File(downloadFolder + "patient" + patient.getId()
+						+ ".pdf");
+				if (f.createNewFile()) {
+					System.out.println("File is created!");
+				} else {
+					System.out.println("File already exists.");
+				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		System.out.println(downloadFolder+"patient"
-				+ patient.getId() + ".pdf");
-		
+		System.out.println(downloadFolder + "patient" + patient.getId()
+				+ ".pdf");
+
 		try {
-			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder+"patient"
-					+ patient.getId() + ".pdf"));
+			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
+					+ "patient" + patient.getId() + ".pdf"));
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR 1\n");
 			e.printStackTrace();
@@ -137,7 +142,6 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			System.out.println("ERROR 2\n");
 			e.printStackTrace();
 		}
-		
 
 		document.open();
 		addMetaData(document);
