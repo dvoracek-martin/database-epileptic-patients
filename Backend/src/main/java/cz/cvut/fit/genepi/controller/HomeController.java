@@ -69,6 +69,7 @@ public class HomeController {
 		model.addAttribute("patientList",
 				newsMessageService.findAll(NewsMessageEntity.class));
 		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("emptyMessage", new NewsMessageEntity());
 		return "homeView";
 	}
 
