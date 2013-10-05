@@ -90,13 +90,17 @@ public class HomeController {
 	public String newsMessageEditPOST(
 			Locale locale,
 			Model model,
-			@ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
+			@PathVariable("newsMessageID") Integer newsMessageID,
+			@ModelAttribute("formNewsMessage") @Valid NewsMessageEntity formNewsMessage,
 			BindingResult result) {
 
 		if (result.hasErrors()) {
 			return "homeView";
 		}
-		newsMessageService.save(newsMessage);
+		NewsMessageEntity realNewsMessage = newsMessageService.findByID(
+				NewsMessageEntity.class, newsMessageID);
+		realNewsMessage.setMessage(formNewsMessage.getMessage());
+		newsMessageService.save(realNewsMessage);
 		return "redirect:/";
 	}
 
