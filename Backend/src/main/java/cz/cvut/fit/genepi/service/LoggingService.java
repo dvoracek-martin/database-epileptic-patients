@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.service;
 
+import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -34,6 +35,7 @@ public class LoggingService {
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		StringWriter sw = new StringWriter();
+		e.printStackTrace(new PrintWriter(sw));
 		sw.toString(); // stack trace as a string
 		this.logger.error(reportDate + ": " + message + " \n" + sw.toString());
 	}
