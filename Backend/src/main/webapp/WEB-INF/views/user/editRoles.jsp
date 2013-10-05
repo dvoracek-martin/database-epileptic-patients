@@ -106,7 +106,7 @@ li.sortable-placeholder {
 					<c:forEach var="possibleRole" items="${listOfPossibleRoles}">
 						<li draggable="true">${possibleRole.authority}
 						<input class="btn" type="hidden" name="role"
-							value="${possibleRole.authority}">
+							value="${possibleRole.id}">
 						</li>			
 					</c:forEach>
 				</ul>	
@@ -120,7 +120,7 @@ li.sortable-placeholder {
 						<c:forEach var="role" items="${user.roles}">
 						<li draggable="true">${role.authority}
 						<input class="btn" type="hidden" name="role"
-								value="${role.authority}">
+								value="${role.id}">
 						</li>			
 					</c:forEach>
 				</ul>

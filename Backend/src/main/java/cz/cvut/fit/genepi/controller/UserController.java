@@ -339,9 +339,9 @@ public class UserController {
 		UserEntity user = userService.findByID(UserEntity.class, userID);
 
 		List<RoleEntity> listOfPossibleRoles = new ArrayList<RoleEntity>();
-		
+
 		boolean found = false;
-		for (RoleEntity possibleRole :  roleService.findAll(RoleEntity.class)) {
+		for (RoleEntity possibleRole : roleService.findAll(RoleEntity.class)) {
 			found = false;
 			for (RoleEntity role : user.getRoles())
 				if (role.getId() == possibleRole.getId()) {
@@ -352,7 +352,6 @@ public class UserController {
 				listOfPossibleRoles.add(possibleRole);
 			}
 		}
-	
 
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
 		model.addAttribute("user", user);
@@ -364,21 +363,21 @@ public class UserController {
 			@ModelAttribute("user") @Valid UserEntity formUser, Model model,
 			BindingResult result, Locale locale,
 			@PathVariable("userID") Integer userID,
-			@RequestParam(value = "role") String[] paramValues) {
+			@RequestParam(value = "role") int[] paramValues) {
 
-		for (String a : paramValues) {
-			System.out.println(a);
+		List<RoleEntity> newRoles = new ArrayList<RoleEntity>();
+
+		for (int id : paramValues) {
+			newRoles.add(roleService.findByID(RoleEntity.class, id));
 		}
 
 		UserEntity realUser = userService.findByID(UserEntity.class, userID);
+
 		if (result.hasErrors()) {
 			return "user/" + realUser.getId() + "/edit-roles";
 		} else {
-			/*
-			 * ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>(); for
-			 * (RoleEntity r : formUser.getRoles()) { roles.add(r); }
-			 * realUser.setRoles(roles); userService.save(realUser);
-			 */
+			realUser.setRoles(newRoles);
+			userService.save(realUser);
 		}
 		return "redirect:/user/" + realUser.getId() + "/edit-roles";
 	}
