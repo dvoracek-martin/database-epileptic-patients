@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.serviceImpl;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -9,6 +10,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.DocumentException;
 
@@ -20,6 +22,8 @@ import cz.cvut.fit.genepi.service.ExportToXlsxService;
 /**
  * The Class ExportToXlsxServiceImpl.
  */
+
+@Service
 public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	
 	/**
@@ -29,7 +33,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 * @throws DocumentException the document exception
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public void export(PatientEntity patient, UserEntity user) throws DocumentException, IOException {
+	public void export(PatientEntity patient, UserEntity user, List<String> exports) throws DocumentException, IOException {
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();
 		CreationHelper createHelper = wb.getCreationHelper();

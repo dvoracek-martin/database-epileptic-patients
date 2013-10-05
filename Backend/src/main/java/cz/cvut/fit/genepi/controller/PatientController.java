@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -27,6 +28,7 @@ import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
+import cz.cvut.fit.genepi.service.ExportToXlsxService;
 import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
@@ -59,6 +61,9 @@ public class PatientController {
 
 	@Autowired
 	private ExportToPdfService exportToPdfService;
+
+	@Autowired
+	private ExportToXlsxService exportToXlsxService;
 
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
@@ -249,58 +254,48 @@ public class PatientController {
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("listOfExports", new ArrayList<String>());
 		model.addAttribute("isReady", isReady);
+		model.addAttribute("exportType", new String());
 		return "patient/exportView";
 	}
 
-	@RequestMapping(value = "/patient/exportPdf", method = RequestMethod.POST)
-	public String patientExportPdfPOST(
-			@ModelAttribute("patient") PatientEntity patient, Locale locale,
+	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
+	public String patientExportPOST(
+			@ModelAttribute("patient") PatientEntity patient,
+			@ModelAttribute("exportType") String exportType, Locale locale,
 			Model model) {
+		logger.setLogger(PatientController.class);
 		List<String> listOfExports = new ArrayList<String>();
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		patient = patientService.findByID(PatientEntity.class, patient.getId());
 		listOfExports.add("Anamnesis");
-		try {
-			exportToPdfService.export(patient,
-					userService.findUserByUsername(auth.getName()),
-					listOfExports);
-		} catch (FileNotFoundException e) {
-			logger.logError("File wasn't found when trying to export to pdf.",
-					e);
-		} catch (DocumentException e) {
-			logger.logError("Document exception when trying to export to pdf.",
-					e);
-		}
-		boolean isReady = true;
-		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patient.getId()));
-		model.addAttribute("listOfExports", new ArrayList<String>());
-		model.addAttribute("isReady", isReady);
-		return "patient/exportView";
-		// return "redirect:/patient/" + Integer.toString(patient.getId())
-		// + "/overview";
-	}
-
-	@RequestMapping(value = "/patient/exportXlsx", method = RequestMethod.POST)
-	public String patientExportXlsxPOST(
-			@ModelAttribute("patient") PatientEntity patient, Locale locale,
-			Model model) {
-		List<String> listOfExports = new ArrayList<String>();
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
-		patient = patientService.findByID(PatientEntity.class, patient.getId());
-		listOfExports.add("Anamnesis");
-		try {
-			exportToPdfService.export(patient,
-					userService.findUserByUsername(auth.getName()),
-					listOfExports);
-		} catch (FileNotFoundException e) {
-			logger.logError("File wasn't found when trying to export to xlsx.",
-					e);
-		} catch (DocumentException e) {
-			logger.logError("Document exception when trying to export to xlsx.",
-					e);
+		if (exportType.equals("pdf")) {
+			try {
+				exportToPdfService.export(patient,
+						userService.findUserByUsername(auth.getName()),
+						listOfExports);
+			} catch (FileNotFoundException e) {
+				logger.logError(
+						"File wasn't found when trying to export to pdf.", e);
+			} catch (DocumentException e) {
+				logger.logError(
+						"Document exception when trying to export to pdf.", e);
+			}
+		} else {
+			try {
+				exportToXlsxService.export(patient,
+						userService.findUserByUsername(auth.getName()),
+						listOfExports);
+			} catch (FileNotFoundException e) {
+				logger.logError("File wasn't found when trying to export to xlsx.",
+						e);
+			} catch (DocumentException e) {
+				logger.logError("Document exception when trying to export to xlsx.",
+						e);
+			} catch (IOException e) {
+				logger.logError("Document exception when trying to export to xlsx.",
+						e);
+			}
 		}
 		boolean isReady = true;
 		model.addAttribute("patient",
