@@ -13,8 +13,10 @@ import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.List;
 import com.itextpdf.text.ListItem;
@@ -24,6 +26,7 @@ import com.itextpdf.text.Section;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
@@ -50,8 +53,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	/** The larger font. */
 	private static Font largerFont = new Font(Font.FontFamily.HELVETICA, 16,
 			Font.NORMAL);
-	
-	/** The regular  font. */
+
+	/** The regular font. */
 	private static Font normalFont = new Font(Font.FontFamily.HELVETICA, 12,
 			Font.NORMAL);
 
@@ -189,10 +192,19 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		Paragraph patientParagraph = new Paragraph(patient.getContact()
 				.getFirstName() + " " + patient.getContact().getLastName(),
 				largerFont);
+		patientParagraph.setAlignment(Element.ALIGN_CENTER);
+
+		addEmptyLine(patientParagraph, 10);
+
 		subCatPart.add(patientParagraph);
-		
+
 		// Add a table
 		createTable(subCatPart);
+
+		for (AnamnesisEntity a : patient.getAnamnesisList()){
+			printOutAnamnesis(subCatPart, a);
+			subCatPart.add(Chunk.NEWLINE);
+		}
 
 		// Now add all this to the document
 		document.add(catPart);
@@ -229,16 +241,67 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// t.setPadding(4);
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
-		
-		
-	            
 
-		table.addCell(new Phrase("Číslo pacienta:",normalFont));
+		table.addCell(new Phrase("Číslo pacienta:", normalFont));
 		table.addCell(String.valueOf(patient.getId()));
-		table.addCell(new Phrase("Číslo pacienta:",normalFont));
-		table.addCell("2.1");
-		table.addCell("2.2");
-		table.addCell("2.3");
+		table.addCell(new Phrase("Rodné číslo:", normalFont));
+		table.addCell(String.valueOf(patient.getNin()));
+		table.addCell(new Phrase("Adresa:", normalFont));
+		table.addCell(String.valueOf(patient.getContact().getAddressStreet()));
+		table.addCell(new Phrase("Telefon:", normalFont));
+		table.addCell(String.valueOf(patient.getContact().getPhoneNumber()));
+		table.addCell(new Phrase("Věk:", normalFont));
+		table.addCell(String.valueOf(patient.getBirthday()));
+		table.addCell(new Phrase("Pohaví:", normalFont));
+		table.addCell(String.valueOf(patient.getGender()));
+		table.addCell(new Phrase("Email:", normalFont));
+		table.addCell(String.valueOf(patient.getContact().getEmail()));
+		table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
+		table.addCell(" ");
+		table.addCell(new Phrase("Ošetřující lékař:", normalFont));
+		table.addCell(" ");
+
+		subCatPart.add(table);
+
+	}
+
+	private static void printOutAnamnesis(Section subCatPart,
+			AnamnesisEntity anamnesis) throws BadElementException {
+		PdfPTable table = new PdfPTable(2);
+
+		// t.setBorderColor(BaseColor.GRAY);
+		// t.setPadding(4);
+		// t.setSpacing(4);
+		// t.setBorderWidth(1);
+		table.addCell(new Phrase("Anamnesis from date:", largerFont));
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		Date dateOfAnamnesis = anamnesis.getDate();
+		String dateOfAnamnesisString = df.format(dateOfAnamnesis);
+		table.addCell(new Phrase(dateOfAnamnesisString));
+		table.addCell(new Phrase("Epilepsie v rodině:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getEpilepsyInFamily()));
+		table.addCell(new Phrase("Prenatální rizika:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getPrenatalRisk()));
+		table.addCell(new Phrase("Fibrilní křeče:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getFibrilConvulsions()));
+		table.addCell(new Phrase("Zánět CNS:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getInflammationCns()));
+		table.addCell(new Phrase("Úraz CNS:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getInjuryCns()));
+		table.addCell(new Phrase("Operace CNS:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getOperationCns()));
+		table.addCell(new Phrase("Časná PMD retardace:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getEarlyPmdRetardation()));
+		table.addCell(new Phrase("Začátek epilepsie:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getBeginningEpilepsy()));
+		table.addCell(new Phrase("První záchvat s horečkou:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getFirstFever()));
+		table.addCell(new Phrase("Infantilní spasmy:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getInfantileSpasm()));
+		table.addCell(new Phrase("Epileptický syndrom:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getSpecificSyndromeIdcom()));
+		table.addCell(new Phrase("Non CNS komorbidita:", normalFont));
+		table.addCell(String.valueOf(anamnesis.getNonCnsComorbidity()));
 
 		subCatPart.add(table);
 
