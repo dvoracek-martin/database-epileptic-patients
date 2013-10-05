@@ -59,6 +59,7 @@
 					</form:form>
 
 					<c:if test="${isReady==true}">
+					${exportType}
 					<div style="display: none">
 						<a data-auto-download href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>

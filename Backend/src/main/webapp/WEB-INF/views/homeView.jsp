@@ -103,8 +103,8 @@
 							action="/GENEPI/news/${newsMessage.id}/edit"
 							commandName="emptyMessage">
 						<div class="modal-body">
-							<form:input type="text" path="message" class="input-block-level"
-									value="${newsMessage.message}" />
+							<form:input type="" path="message" class="input-block-level"
+									value="sasasass" />
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">
@@ -156,7 +156,7 @@
 			<form:form method="POST" modelAttribute="emptyMessage"
 					action="/GENEPI/news/create" commandName="emptyMessage">
 				<div class="modal-body">
-					<form:input type="text" path="message" class="input-block-level" />
+					<form:textarea path="message" class="input-block-level"/>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">
@@ -179,5 +179,6 @@
 				show : false
 			})
 		</script>
+
 </jsp:body>
 </t:menuLVL2>
