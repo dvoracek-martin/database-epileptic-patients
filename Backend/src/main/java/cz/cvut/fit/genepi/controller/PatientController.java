@@ -244,27 +244,27 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		boolean isReady=false;
+		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("listOfExports", new ArrayList<String>());
-		model.addAttribute("exportType",new String());
-		model.addAttribute("isReady",isReady);
+		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
 	}
 
-	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
-	public String patientExportPOST(
-			@ModelAttribute("patient") PatientEntity patient,@ModelAttribute("exportType") String exportType, Locale locale,
+	@RequestMapping(value = "/patient/exportPdf", method = RequestMethod.POST)
+	public String patientExportPdfPOST(
+			@ModelAttribute("patient") PatientEntity patient, Locale locale,
 			Model model) {
-	List<String> listOfExports  = new ArrayList<String>(); 
+		List<String> listOfExports = new ArrayList<String>();
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		patient = patientService.findByID(PatientEntity.class, patient.getId());
 		listOfExports.add("Anamnesis");
 		try {
 			exportToPdfService.export(patient,
-					userService.findUserByUsername(auth.getName()),listOfExports);
+					userService.findUserByUsername(auth.getName()),
+					listOfExports);
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to export to pdf.",
 					e);
@@ -272,13 +272,43 @@ public class PatientController {
 			logger.logError("Document exception when trying to export to pdf.",
 					e);
 		}
-		boolean isReady=true;
+		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("listOfExports", new ArrayList<String>());
-		model.addAttribute("isReady",isReady);
+		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
-		//return "redirect:/patient/" + Integer.toString(patient.getId())
-		//		+ "/overview";
+		// return "redirect:/patient/" + Integer.toString(patient.getId())
+		// + "/overview";
+	}
+
+	@RequestMapping(value = "/patient/exportXlsx", method = RequestMethod.POST)
+	public String patientExportXlsxPOST(
+			@ModelAttribute("patient") PatientEntity patient, Locale locale,
+			Model model) {
+		List<String> listOfExports = new ArrayList<String>();
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		patient = patientService.findByID(PatientEntity.class, patient.getId());
+		listOfExports.add("Anamnesis");
+		try {
+			exportToPdfService.export(patient,
+					userService.findUserByUsername(auth.getName()),
+					listOfExports);
+		} catch (FileNotFoundException e) {
+			logger.logError("File wasn't found when trying to export to pdf.",
+					e);
+		} catch (DocumentException e) {
+			logger.logError("Document exception when trying to export to pdf.",
+					e);
+		}
+		boolean isReady = true;
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patient.getId()));
+		model.addAttribute("listOfExports", new ArrayList<String>());
+		model.addAttribute("isReady", isReady);
+		return "patient/exportView";
+		// return "redirect:/patient/" + Integer.toString(patient.getId())
+		// + "/overview";
 	}
 }
