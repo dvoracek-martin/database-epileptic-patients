@@ -116,18 +116,17 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
 		} else {
-			try {
-
+		
 				File f = new File(downloadFolder + "patient" + patient.getId()
 						+ ".pdf");
-				if (f.createNewFile()) {
-					System.out.println("File is created!");
-				} else {
-					System.out.println("File already exists.");
+				f.mkdirs(); 
+				try {
+					f.createNewFile();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		
 		}
 		System.out.println(downloadFolder + "patient" + patient.getId()
 				+ ".pdf");
