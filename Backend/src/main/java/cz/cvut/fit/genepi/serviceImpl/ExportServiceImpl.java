@@ -24,15 +24,7 @@ public class ExportServiceImpl implements ExportService {
 	 */
 	public ExportServiceImpl(String format,PatientEntity patient,UserEntity user) {
 		if (format.equals("pdf")) {
-			try {
-				new ExportToPdfServiceImpl().export(patient,user,new ArrayList<String>());
-			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (DocumentException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			new ExportToPdfServiceImpl().export(patient,user,new ArrayList<String>());
 		} else if (format.equals("xlsx")) {
 			try {
 				new ExportToXlsxServiceImpl().export(patient,user);
