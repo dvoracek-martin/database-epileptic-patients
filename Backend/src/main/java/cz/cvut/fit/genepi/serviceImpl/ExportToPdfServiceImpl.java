@@ -101,8 +101,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	public void export(PatientEntity patient, UserEntity user,
-			java.util.List<String> exports) throws FileNotFoundException,
-			DocumentException {
+			java.util.List<String> exports)  {
 		initFonts();
 		Document document = new Document();
 		ExportToPdfServiceImpl.patient = patient;
@@ -116,14 +115,32 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		}
 		System.out.println(downloadFolder+"patient"
 				+ patient.getId() + ".pdf");
-		PdfWriter.getInstance(document, new FileOutputStream(downloadFolder+"patient"
-				+ patient.getId() + ".pdf"));
+		try {
+			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder+"patient"
+					+ patient.getId() + ".pdf"));
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR 1\n");
+			e.printStackTrace();
+		} catch (DocumentException e) {
+			System.out.println("ERROR 2\n");
+			e.printStackTrace();
+		}
 		
 
 		document.open();
 		addMetaData(document);
-		addTitlePage(document);
-		addContent(document, exports);
+		try {
+			addTitlePage(document);
+		} catch (DocumentException e) {
+			System.out.println("ERROR 3\n");
+			e.printStackTrace();
+		}
+		try {
+			addContent(document, exports);
+		} catch (DocumentException e) {
+			System.out.println("ERROR 4\n");
+			e.printStackTrace();
+		}
 		document.close();
 	}
 
