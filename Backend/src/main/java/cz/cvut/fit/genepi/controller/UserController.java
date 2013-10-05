@@ -337,20 +337,22 @@ public class UserController {
 			logger.setLogger(UserController.class);
 
 		UserEntity user = userService.findByID(UserEntity.class, userID);
-		
-		List<RoleEntity> listOfAllRoles = roleService
-				.findAll(RoleEntity.class);
 
 		List<RoleEntity> listOfPossibleRoles = new ArrayList<RoleEntity>();
 		
-		for (RoleEntity role : listOfAllRoles) {
-			for (RoleEntity userRole : user.getRoles()) {
-				if (role.getId() != userRole.getId()) {
-					listOfPossibleRoles.add(role);
+		boolean found = false;
+		for (RoleEntity possibleRole :  roleService.findAll(RoleEntity.class)) {
+			found = false;
+			for (RoleEntity role : user.getRoles())
+				if (role.getId() == possibleRole.getId()) {
+					found = true;
+					continue;
 				}
+			if (!found) {
+				listOfPossibleRoles.add(possibleRole);
 			}
 		}
-
+	
 
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
 		model.addAttribute("user", user);
