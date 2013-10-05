@@ -44,6 +44,11 @@
 						
 					</form:form>
 
+					<div id="exportDownload">
+						<span class="text-success">Soubor byl úspěšně vygenerován!</span>
+						<button class="btn btn-primary btn-success">Stáhnout</button>
+					</div>
+
 				</div>
 	</jsp:body>
 </t:menuLVL3>
