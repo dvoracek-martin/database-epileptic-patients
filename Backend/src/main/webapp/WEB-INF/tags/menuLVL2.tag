@@ -30,13 +30,18 @@
 	<jsp:attribute name="menuLVL2">
 	<jsp:invoke fragment="menuLVL3" />
 		<li class="nav-header"><spring:message code="label.patients" /></li>
-		<li><a href="<c:url value="/patient/list"/>">Kartotéka pacientů</a></li>
-		<li><a href="">Pokročilé vyhledávání</a></li>
-		<li class="nav-header">Uživatel:</li>
-		<li><a href="<c:url value="/profile"/>">Profil</a></li>
-		<li><a href="j_spring_security_logout">Odhlásit</a></li>
-		<li class="nav-header">Administrace:</li>
-		<li><a href="<c:url value="/user/list"/>">Uživatelé</a></li>
+		<li><a href="<c:url value="/patient/list"/>"><spring:message
+					code="label.cardIndex" /></a></li>
+		<li><a href=""><spring:message
+					code="label.advancedSearch" /></a></li>
+		<li class="nav-header"><spring:message code="label.user" />:</li>
+		<li><a href="<c:url value="/profile"/>"><spring:message code="label.profile" /></a></li>
+		<li><a href="j_spring_security_logout"><spring:message
+					code="label.logOut" /></a></li>
+		<li class="nav-header"><spring:message
+					code="label.administration" />:</li>
+		<li><a href="<c:url value="/user/list"/>"><spring:message
+					code="label.users" /></a></li>
 	</jsp:attribute>
 
 	<jsp:attribute name="script">

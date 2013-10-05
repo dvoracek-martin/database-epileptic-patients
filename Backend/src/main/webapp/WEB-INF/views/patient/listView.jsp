@@ -6,17 +6,17 @@
 <t:menuLVL2>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.cardFile" />
+      <spring:message code="label.cardIndex" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-     <spring:message code="label.cardFile" />
+     <spring:message code="label.cardIndex" />
     </jsp:attribute>
 
 	<jsp:body>
 				<div>
 					<div>
 						<h2>
-							<spring:message code="label.cardFile" />
+							<spring:message code="label.cardIndex" />
 						</h2>
 					</div>
 					<div class="span5">
@@ -31,7 +31,7 @@
 						<h3>
 							<a href="<c:url value="/patient/create" />"
 						style="text-decoration: none"><spring:message
-							code="label.addpatient" /></a>
+							code="label.addPatient" /></a>
 						</h3>
 					</div>
 						
