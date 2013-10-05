@@ -76,9 +76,13 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	private void initFonts() {
 		BaseFont bf = null;
+		String os = System.getProperty("os.name").toLowerCase();
+		
 		try {
-			bf = BaseFont.createFont("c:/windows/Fonts/ARIAL.TTF",
+			if (os.indexOf("win") < 0){				
+			bf = BaseFont.createFont("usr/share/fonts/truetype/msttcorefonts/ARIAL.TTF",
 					BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
