@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -113,8 +114,19 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		if (os.indexOf("win") >= 0){
 			downloadFolder.replace("\\","/");
 		}
+		else {
+			File f= new File(downloadFolder+"patient"
+				+ patient.getId() + ".pdf");
+			try {
+				f.createNewFile();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		System.out.println(downloadFolder+"patient"
 				+ patient.getId() + ".pdf");
+		
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder+"patient"
 					+ patient.getId() + ".pdf"));
