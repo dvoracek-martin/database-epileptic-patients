@@ -120,23 +120,20 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
-		} else {
-		
+		} else {		
 				File f = new File(downloadFolder + "patient" + patient.getId()
-						+ ".pdf");
-			
+						+ ".pdf");			
 				if (!f.getParentFile().exists())
 				    f.getParentFile().mkdirs();
-				if (!f.exists())
+				if (f.exists())
+					f.delete();
 					try {
 						f.createNewFile();
 					} catch (IOException e) {
 						logger.logError("Couldn't create new file when trying to save pdf file.", e);
-					}
-		
+					}		
 		}
 	
-
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
 					+ "patient" + patient.getId() + ".pdf"));

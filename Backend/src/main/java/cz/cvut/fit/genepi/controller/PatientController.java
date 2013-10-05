@@ -244,15 +244,18 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
+		boolean isReady=false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("listOfExports", new ArrayList<String>());
+		model.addAttribute("exportType",new String());
+		model.addAttribute("isReady",isReady);
 		return "patient/exportView";
 	}
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@ModelAttribute("patient") PatientEntity patient, Locale locale,
+			@ModelAttribute("patient") PatientEntity patient,@ModelAttribute("exportType") String exportType, Locale locale,
 			Model model) {
 	List<String> listOfExports  = new ArrayList<String>(); 
 		Authentication auth = SecurityContextHolder.getContext()
@@ -269,7 +272,13 @@ public class PatientController {
 			logger.logError("Document exception when trying to export to pdf.",
 					e);
 		}
-		return "redirect:/patient/" + Integer.toString(patient.getId())
-				+ "/overview";
+		boolean isReady=true;
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patient.getId()));
+		model.addAttribute("listOfExports", new ArrayList<String>());
+		model.addAttribute("isReady",isReady);
+		return "patient/exportView";
+		//return "redirect:/patient/" + Integer.toString(patient.getId())
+		//		+ "/overview";
 	}
 }
