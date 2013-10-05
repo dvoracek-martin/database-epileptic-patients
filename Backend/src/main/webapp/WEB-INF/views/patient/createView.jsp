@@ -23,7 +23,7 @@
 	<jsp:body>
 					<div style="border-bottom: 2px solid black">
 					<h2>
-						<spring:message code="label.addpatient" />
+						<spring:message code="label.addPatient" />
 					</h2>
 				</div>
 				<div class="form" style="margin: 10px; width: 60%">
@@ -58,7 +58,7 @@
 
 
 						<form:label path="gender">
-							<spring:message code="label.sex" />
+							<spring:message code="label.gender" />
 						</form:label>
 						<form:select path="gender" class="input-block-level">
 							<form:option value="male" label="${male}" />
@@ -101,7 +101,7 @@
 						<form:errors path="contact.addressCountry" cssClass="error" />
 
 						<form:label path="contact.phoneNumber">
-							<spring:message code="label.phoneNumber" />
+							<spring:message code="label.telephone" />
 						</form:label>
 						<form:input path="contact.phoneNumber" type="text"
 					class="input-block-level" />

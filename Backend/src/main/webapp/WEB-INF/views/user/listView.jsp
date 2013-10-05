@@ -6,10 +6,10 @@
 <t:menuLVL2>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.allusers" />
+      <spring:message code="label.allUsers" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.allusers" />
+      <spring:message code="label.allUsers" />
     </jsp:attribute>
 	<jsp:attribute name="script">
    		</jsp:attribute>
@@ -17,13 +17,13 @@
 	<jsp:body>
 	<div class="span5">
 	<h2>
-		<spring:message code="label.allusers" />
+		<spring:message code="label.allUsers" />
 	</h2>
 </div>
 <div>
 	<h3>
 		<a href="<c:url value="/user/create" />" style="text-decoration: none"><spring:message
-						code="label.newuser" /></a>
+						code="label.newUser" /></a>
 	</h3>
 </div>
 
@@ -36,7 +36,7 @@
 			<a class="brand" href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
 			<ul class="nav">
 				<li><a href="<c:url value="/user/${user.id}/edit" />"><spring:message
-									code="label.editdata" /></a></li>
+									code="label.editData" /></a></li>
 				<li><a href="<c:url value="/user/${user.id}/edit-roles" />"><spring:message
 									code="label.editRoles" /></a></li>
 				<li><a

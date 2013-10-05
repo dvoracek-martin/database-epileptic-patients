@@ -14,10 +14,10 @@
 			rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
-      <spring:message code="label.edituser" />
+      <spring:message code="label.editUser" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.edituser" />
+      <spring:message code="label.editUser" />
     </jsp:attribute>
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/other.js"/>"></script>
@@ -29,7 +29,7 @@
 	<jsp:body>
 	
 				<h2>
-					<spring:message code="label.edituser" />
+					<spring:message code="label.editUser" />
 					<a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
 				</h2>
 
@@ -161,7 +161,7 @@
 
 							<div id="editContact" style="display: none">
 								<form:label path="contact.phoneNumber">
-									<spring:message code="label.phoneNumber" />
+									<spring:message code="label.telephone" />
 								</form:label>
 								<form:input id="phoneNumber" path="contact.phoneNumber"
 							value="${user.contact.phoneNumber}" type="text"

@@ -29,7 +29,7 @@
 	<jsp:body>
 	
 				<h2>
-					<spring:message code="label.edituser" />
+					<spring:message code="label.editUser" />
 					<a href="<c:url value="/user/${user.id}/overview"/>">${user.username}</a>
 					<spring:message code="label.changePassword" />
 				</h2>

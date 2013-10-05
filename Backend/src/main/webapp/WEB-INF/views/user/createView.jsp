@@ -14,10 +14,10 @@
 			rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
-      <spring:message code="label.adduser" />
+      <spring:message code="label.addUser" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.adduser" />
+      <spring:message code="label.addUser" />
     </jsp:attribute>
 	<jsp:attribute name="script">
       <script src="<c:url value="/resources/js/validation.js"/>"></script>
@@ -28,7 +28,7 @@
 	
 <div style="border-bottom: 2px solid black">
 	<h2>
-		<spring:message code="label.adduser" />
+		<spring:message code="label.addUser" />
 	</h2>
 </div>
 <div class="form" style="margin: 10px; width: 60%">
@@ -133,7 +133,7 @@
 						<form:errors path="contact.addressCountry" cssClass="error" />
 
 		<form:label path="contact.phoneNumber">
-			<spring:message code="label.phoneNumber" />
+			<spring:message code="label.telephone" />
 		</form:label>
 		<form:input id="phoneNumber" path="contact.phoneNumber" type="text"
 					pattern="[0-9+]\d{0,19}" onchange="phoneNumberValidation();"
