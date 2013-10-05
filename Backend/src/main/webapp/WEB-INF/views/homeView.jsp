@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
@@ -82,8 +83,6 @@
 							action="/GENEPI/news/${newsMessage.id}/edit" commandName="newsMessage">
 						<div class="modal-body">
 							${newsMessage.message}
-							<form:input type="text" path="newsMessages[${newsMessage.id}].message" value="jkl">
-							</form:input>
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
@@ -121,10 +120,12 @@
 									aria-hidden="true">×</button>
 				<h3 id="myModalLabel"><spring:message code="label.messageCreation"/></h3>
 			</div>
-			<!-- Form to edit message -->
-			<form:form method="POST" modelAttribute="newsMessages"
-					action="/GENEPI/news/create" commandName="newsMessages">
+			
+			<!-- Form to create message -->
+			<form:form method="POST" modelAttribute="emptyMessage"
+					action="/GENEPI/news/create" commandName="emptyMessage">
 				<div class="modal-body">
+					<form:input type="text" path="message" class="input-block-level" value="sdsd"/>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
