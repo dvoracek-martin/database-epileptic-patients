@@ -15,6 +15,19 @@
       Pacient
     </jsp:attribute>
 
+    <jsp:attribute name="script">
+    <script>
+    	$(function() {
+  			$('a[data-auto-download]').each(function(){
+   			 	var $this = $(this);
+    		  	setTimeout(function() {
+      			window.location = $this.attr('href');
+    									}, 2000);
+  			});
+		});
+	</script>
+	</jsp:attribute>
+
 	<jsp:body>
 			<div>
 					<div>
@@ -25,31 +38,35 @@
 					</div>
 					
 					<form:form method="POST" modelAttribute="patient" class="form-horizontal"
-				action="/GENEPI/patient/export" commandName="patient">
+								action="/GENEPI/patient/export" commandName="patient">
+						
 						<div class="control-group">
-						    <label class="control-label" for="inputFormat"><spring:message code="label.chooseFormat"/></label>
+						    <label class="control-label" for="pdfFormat">Formát</label>
 						    <div class="controls">
-						     	<input type="radio" id="pdfFormat" name="format" value="pdf" checked> pdf
-								<input type="radio" id="xlsxFormat" name="format" value="xlsx"> xlsx
-							</div>
-						 </div>
-
-						 <div class="control-group">
-						    <div class="controls">
-						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>						 
+						    	<input type="radio" id="pdfFormat" name="exportType" value="pdf" checked> pdf
+								<input type="radio" id="xlsxFormat" name="exportType" value="xlsx"> xlsx
 						    </div>
-						  </div>
-						  
-						  <form:hidden path="id" id="id" />
+						</div>
+						
+						<div class="control-group">
+						    <div class="controls">
+						      	<button type="submit" class="btn btn-primary"><spring:message code="label.export"/></button>	
+						    </div>
+						</div>
+											 
+						<form:hidden path="id" id="id" />
 						
 					</form:form>
 
-					<div id="exportDownload">
-						<span class="text-success">Soubor byl úspěšně vygenerován!</span>
-						<button class="btn btn-primary btn-success">Stáhnout</button>
+					<c:if test="${isReady==true}">
+					<div style="display: none">
+						<a data-auto-download href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>
-
+					</c:if>
+					
 				</div>
 	</jsp:body>
 </t:menuLVL3>
+
+
 
