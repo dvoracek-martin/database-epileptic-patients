@@ -117,6 +117,18 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<OutcomeEntity> outcomeList;
+	
+		@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<InvasiveTestEEGEntity> invasiveTestEEGList;
+	
+		@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<OperationEntity> operationList;
+	
+			@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<DiagnosticTestMriEntity> diagnosticTestMriList;
 
 	
 	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
