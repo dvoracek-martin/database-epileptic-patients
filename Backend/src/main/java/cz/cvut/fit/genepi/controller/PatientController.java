@@ -279,11 +279,15 @@ public class PatientController {
 				logger.logError(
 						"Document exception when trying to export to pdf.", e);
 			}
-		} else {			
+		} else if (exportType.equals("xlsx")) {			
 				exportToXlsxService.export(patient,
 						userService.findUserByUsername(auth.getName()),
 						listOfExports);
-		}
+		} else if (exportType.equals("docx")) {			
+			exportToXlsxService.export(patient,
+					userService.findUserByUsername(auth.getName()),
+					listOfExports);
+	}
 		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
