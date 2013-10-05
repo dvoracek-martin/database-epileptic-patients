@@ -28,7 +28,7 @@ public class NewsMessageEntity {
 	@Column(name = "MESSAGE", length = 2000, nullable = false)
 	private String message;
 
-	@Column(name = "DATE", nullable = false)
+	@Column(name = "DATE", nullable = true)
 	private Date date;
 
 	/**
