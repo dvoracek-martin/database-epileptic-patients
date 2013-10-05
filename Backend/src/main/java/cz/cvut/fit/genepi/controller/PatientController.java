@@ -246,19 +246,21 @@ public class PatientController {
 			@PathVariable("patientID") Integer patientID) {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
+		model.addAttribute("listOfExports", new ArrayList<String>());
 		return "patient/exportView";
 	}
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@ModelAttribute("patient") PatientEntity patient, Locale locale,
+			@ModelAttribute("patient") PatientEntity patient,@ModelAttribute("listOfExports") ArrayList<String> listOfExports, Locale locale,
 			Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		patient = patientService.findByID(PatientEntity.class, patient.getId());
+		listOfExports.add("Anamnesis");
 		try {
 			exportToPdfService.export(patient,
-					userService.findUserByUsername(auth.getName()));
+					userService.findUserByUsername(auth.getName()),listOfExports);
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to export to pdf.",
 					e);
