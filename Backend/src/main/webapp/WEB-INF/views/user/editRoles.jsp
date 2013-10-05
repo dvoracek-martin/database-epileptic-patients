@@ -14,10 +14,10 @@
 			rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
-      <spring:message code="label.edituser" />
+      <spring:message code="label.editUser" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.edituser" />
+      <spring:message code="label.editUser" />
     </jsp:attribute>
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/datepicker.js" />"></script>

@@ -24,7 +24,13 @@
 		<mapping class="cz.cvut.fit.genepi.entity.NeuropsychologyEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.OutcomeEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.PharmacotherapyEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.SeizureEntity" />-->
+		<mapping class="cz.cvut.fit.genepi.entity.SeizureEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.OperationEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.DiagnosticTestMriEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.InvasiveTestEEGEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.DiagnosticTestEEGEntity" />
+				<mapping class="cz.cvut.fit.genepi.entity.InvasiveTestECOGEntity" />
+		-->
 
 	</session-factory>
 </hibernate-configuration>

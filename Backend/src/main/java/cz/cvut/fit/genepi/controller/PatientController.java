@@ -291,7 +291,5 @@ public class PatientController {
 		model.addAttribute("exportType", exportType);
 		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
-		// return "redirect:/patient/" + Integer.toString(patient.getId())
-		// + "/overview";
 	}
 }
