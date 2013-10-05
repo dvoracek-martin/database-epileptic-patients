@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
@@ -336,10 +337,22 @@ public class UserController {
 			logger.setLogger(UserController.class);
 
 		UserEntity user = userService.findByID(UserEntity.class, userID);
-		List<RoleEntity> listOfPossibleRoles = roleService
+		
+		List<RoleEntity> listOfAllRoles = roleService
 				.findAll(RoleEntity.class);
+
+		List<RoleEntity> listOfPossibleRoles = new ArrayList<RoleEntity>();
+		
+		for (RoleEntity role : listOfAllRoles) {
+			for (RoleEntity userRole : user.getRoles()) {
+				if (role.getId() != userRole.getId()) {
+					listOfPossibleRoles.add(role);
+				}
+			}
+		}
+
+
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
-		model.addAttribute("listOfSelectedRoles", new ArrayList<RoleEntity>());		
 		model.addAttribute("user", user);
 		return "user/editRoles";
 	}
@@ -348,17 +361,22 @@ public class UserController {
 	public String userEditRolesPOST(
 			@ModelAttribute("user") @Valid UserEntity formUser, Model model,
 			BindingResult result, Locale locale,
-			@PathVariable("userID") Integer userID) {
+			@PathVariable("userID") Integer userID,
+			@RequestParam(value = "role") String[] paramValues) {
+
+		for (String a : paramValues) {
+			System.out.println(a);
+		}
+
 		UserEntity realUser = userService.findByID(UserEntity.class, userID);
 		if (result.hasErrors()) {
-			return "user/" + realUser.getId() + "/change-password";
+			return "user/" + realUser.getId() + "/edit-roles";
 		} else {
-			ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>();
-			for (RoleEntity r : formUser.getRoles()) {
-				roles.add(r);
-			}
-			realUser.setRoles(roles);
-			userService.save(realUser);
+			/*
+			 * ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>(); for
+			 * (RoleEntity r : formUser.getRoles()) { roles.add(r); }
+			 * realUser.setRoles(roles); userService.save(realUser);
+			 */
 		}
 		return "redirect:/user/" + realUser.getId() + "/edit-roles";
 	}

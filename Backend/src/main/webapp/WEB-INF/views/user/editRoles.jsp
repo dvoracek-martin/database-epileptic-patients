@@ -100,28 +100,41 @@ li.sortable-placeholder {
 		<div class="span9">	
 			<div class="span3">
 				<label>Dostupné role</label>
-				<ul id="sortable4" class="connected sortable list" style="border-style:solid;
-							border-width:5px; border-color:CornflowerBlue;">
+				<ul id="sortable4" class="connected sortable list"
+					style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">
 			
-					<c:forEach var="role" items="${listOfPossibleRoles}">
-						<li draggable="true">${role.authority}</li>			
+					<c:forEach var="possibleRole" items="${listOfPossibleRoles}">
+						<li draggable="true">${possibleRole.authority}
+						<input class="btn" type="hidden" name="role"
+							value="${possibleRole.authority}">
+						</li>			
 					</c:forEach>
 				</ul>	
 			</div>
+			
+			<form:form method="POST" action="/GENEPI/user/${user.id }/edit-roles">
 			<div class="span3">
 				<label>Moje role</label>
-				<ul id="sortable5" class="connected sortable list" style="border-style:solid;
-						border-width:5px; border-color:CornflowerBlue;">			
+				<ul id="sortable5" class="connected sortable list"
+						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
+						<c:forEach var="role" items="${user.roles}">
+						<li draggable="true">${role.authority}
+						<input class="btn" type="hidden" name="role"
+								value="${role.authority}">
+						</li>			
+					</c:forEach>
 				</ul>
 			</div>
 			<div class="span3">
 			<!--  tady pridat submitovaci button, kterej zavola nejakou funkci -->
-				<form:form method="POST" modelAttribute="user"
-					action="/GENEPI/user/edit-roles" commandName="user">
-					<input type="submit" value="uložit" onclick="" class="btn btn-primary">
-				</form:form>
+				
+					<input type="submit" value="uložit" class="btn btn-primary">
+				
 			</div>
-		</div>
+		
+		
 
+		</form:form>
+		</div>
 	</jsp:body>
 </t:menuLVL2>
