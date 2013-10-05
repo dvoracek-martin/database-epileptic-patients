@@ -90,7 +90,7 @@ public class PatientEntity {
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeurologicalFindingEntity> neurologicalFindingList;
 	
@@ -101,15 +101,19 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<ComplicationEntity> complicationList;
-
-	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
-		return neurologicalFindingList;
-	}
-
-	public void setNeurologicalFindingList(
-			List<NeurologicalFindingEntity> neurologicalFindingList) {
-		this.neurologicalFindingList = neurologicalFindingList;
-	}
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<SeizureEntity> seizureList;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<HistologyEntity> histologyList;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<NeuropsychologyEntity> neuropsychologyList;
+*/	
 
 	/**
 	 * Gets the id.
