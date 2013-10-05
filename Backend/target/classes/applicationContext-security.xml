@@ -15,6 +15,8 @@
 			access="ROLE_EDIT" />
 		<security:intercept-url pattern="/admin/**"
 			access="ROLE_ADMIN" />
+					<security:intercept-url pattern="/news/**" 
+			access="ROLE_ADMIN" />
 		<security:intercept-url pattern="/**" access="ROLE_USER" />
 		<security:form-login login-page="/login"
 			authentication-failure-url="/denied" default-target-url="/" />
