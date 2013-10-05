@@ -108,7 +108,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	public void export(PatientEntity patient, UserEntity user,
 			java.util.List<String> exports) {
-		logger.setLogger(ExportServiceImpl.class);
+		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
 		ExportToPdfServiceImpl.patient = patient;

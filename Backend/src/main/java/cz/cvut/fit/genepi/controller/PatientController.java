@@ -296,10 +296,10 @@ public class PatientController {
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		} catch (FileNotFoundException e) {
-			logger.logError("File wasn't found when trying to export to pdf.",
+			logger.logError("File wasn't found when trying to export to xlsx.",
 					e);
 		} catch (DocumentException e) {
-			logger.logError("Document exception when trying to export to pdf.",
+			logger.logError("Document exception when trying to export to xlsx.",
 					e);
 		}
 		boolean isReady = true;
