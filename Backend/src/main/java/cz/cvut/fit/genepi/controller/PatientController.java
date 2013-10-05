@@ -288,7 +288,7 @@ public class PatientController {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("listOfExports", new ArrayList<String>());
-		model.addAttribute("format", exportType);
+		model.addAttribute("exportType", exportType);
 		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
 		// return "redirect:/patient/" + Integer.toString(patient.getId())
