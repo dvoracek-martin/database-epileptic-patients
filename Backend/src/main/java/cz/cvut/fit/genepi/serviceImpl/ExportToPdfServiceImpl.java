@@ -32,6 +32,7 @@ import cz.cvut.fit.genepi.entity.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
+import cz.cvut.fit.genepi.service.LoggingService;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -62,6 +63,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	/** The small bold. */
 	private static Font smallBold;
 
+
+	/** The Constant logger. */
+	private LoggingService logger = new LoggingService();
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -104,6 +108,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	public void export(PatientEntity patient, UserEntity user,
 			java.util.List<String> exports) {
+		logger.setLogger(ExportServiceImpl.class);
 		initFonts();
 		Document document = new Document();
 		ExportToPdfServiceImpl.patient = patient;
@@ -126,22 +131,19 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					try {
 						f.createNewFile();
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						logger.logError("Couldn't create new file when trying to save pdf file.", e);
 					}
 		
 		}
-		System.out.println(downloadFolder + "patient" + patient.getId()
-				+ ".pdf");
+	
 
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
 					+ "patient" + patient.getId() + ".pdf"));
 		} catch (FileNotFoundException e) {
-			System.out.println("ERROR 1\n");
-			e.printStackTrace();
+			logger.logError("File wasn't found when trying to save pdf file.", e);
 		} catch (DocumentException e) {
-			System.out.println("ERROR 2\n");
+			logger.logError("Document exception when trying to save pdf file.", e);
 			e.printStackTrace();
 		}
 
@@ -150,13 +152,13 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		try {
 			addTitlePage(document);
 		} catch (DocumentException e) {
-			System.out.println("ERROR 3\n");
+			logger.logError("Document exception when trying to save pdf file.", e);
 			e.printStackTrace();
 		}
 		try {
 			addContent(document, exports);
 		} catch (DocumentException e) {
-			System.out.println("ERROR 4\n");
+			logger.logError("Document exception when trying to save pdf file.", e);
 			e.printStackTrace();
 		}
 		document.close();
