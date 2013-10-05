@@ -356,7 +356,7 @@ public class UserController {
 
 		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
 		model.addAttribute("user", user);
-		model.addAttribute("emptyUser", new UserEntity());
+		model.addAttribute("emptyMessage", new NewsMessageEntity());
 		return "user/editRoles";
 	}
 
