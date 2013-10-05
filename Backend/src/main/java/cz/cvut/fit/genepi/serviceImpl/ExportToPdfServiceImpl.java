@@ -80,7 +80,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		
 		try {
 			if (os.indexOf("win") < 0){				
-			bf = BaseFont.createFont("/usr/share/fonts/truetype/msttcorefonts/ARIAL.TTF",
+			bf = BaseFont.createFont("/usr/share/fonts/truetype/msttcorefonts/Arial.ttf",
 					BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 			}
 		} catch (IOException e) {
