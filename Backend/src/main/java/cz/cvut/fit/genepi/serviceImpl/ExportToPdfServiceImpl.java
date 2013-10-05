@@ -13,7 +13,6 @@ import com.itextpdf.text.Anchor;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chapter;
-import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -194,16 +193,18 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				largerFont);
 		patientParagraph.setAlignment(Element.ALIGN_CENTER);
 
-		addEmptyLine(patientParagraph, 10);
-
+		addEmptyLine(patientParagraph, 1);
 		subCatPart.add(patientParagraph);
 
+		addEmptyLine(patientParagraph, 1);
 		// Add a table
 		createTable(subCatPart);
-
-		for (AnamnesisEntity a : patient.getAnamnesisList()){
+		Paragraph anamnesisParahraph = new Paragraph("\n\nAnamnesis\n\n",largerFont);
+		anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+		subCatPart.add(anamnesisParahraph);
+		for (AnamnesisEntity a : patient.getAnamnesisList()) {
 			printOutAnamnesis(subCatPart, a);
-			subCatPart.add(Chunk.NEWLINE);
+			addEmptyLine(patientParagraph, 2);
 		}
 
 		// Now add all this to the document
