@@ -103,9 +103,18 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		Document document = new Document();
 		ExportToPdfServiceImpl.patient = patient;
 		ExportToPdfServiceImpl.user = user;
-
-		PdfWriter.getInstance(document, new FileOutputStream("c:/temp/patient"
+		String downloadFolder = System.getProperty( "user.home" )+System.getProperty("file.separator")+"Download_Links"+System.getProperty("file.separator");
+		
+		
+		String os = System.getProperty("os.name").toLowerCase();
+		if (os.indexOf("win") >= 0){
+			downloadFolder.replace("\\","/");
+		}
+		System.out.println(downloadFolder+"patient"
+				+ patient.getId() + ".pdf");
+		PdfWriter.getInstance(document, new FileOutputStream(downloadFolder+"patient"
 				+ patient.getId() + ".pdf"));
+		
 
 		document.open();
 		addMetaData(document);
