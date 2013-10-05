@@ -17,7 +17,7 @@
 					<spring:message code="label.myProfile" />
 				</h2>
 
-				<spring:message code="label.userid" />
+				<spring:message code="label.userID" />
 				&nbsp;
 				<div class="label label-info">${user.id}</div>
 				<br>
@@ -62,7 +62,7 @@
 				<div class="label label-info">${user.contact.addressCountry}</div>
 				<br>
 
-				<spring:message code="label.phoneNumber" />
+				<spring:message code="label.telephone" />
 				&nbsp;
 				<div class="label label-info">${user.contact.phoneNumber}</div>
 				<br>
