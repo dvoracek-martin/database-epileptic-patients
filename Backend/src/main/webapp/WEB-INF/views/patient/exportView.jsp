@@ -15,6 +15,19 @@
       Pacient
     </jsp:attribute>
 
+    <jsp:attribute name="script">
+    <script>
+    	$(function() {
+  			$('a[data-auto-download]').each(function(){
+   			 	var $this = $(this);
+    		  	setTimeout(function() {
+      			window.location = $this.attr('href');
+    									}, 2000);
+  			});
+		});
+	</script>
+	</jsp:attribute>
+
 	<jsp:body>
 			<div>
 					<div>
@@ -46,10 +59,9 @@
 					</form:form>
 
 					<c:if test="${isReady==true}">
-						<div id="exportDownload">
-							<span class="text-success">Soubor byl úspěšně vygenerován!</span>
-							<a class="btn btn-primary btn-success" href="/usr/local/tomcat/webapps/GENEPI/resources/downloads/patient${patient.id}.${exportType}">Stáhnout</a>
-						</div>
+					<div style="display: none">
+						<a data-auto-download href="/GENEPI/resources/downloads/patient1.pdf"></a>
+					</div>
 					</c:if>
 					
 				</div>
