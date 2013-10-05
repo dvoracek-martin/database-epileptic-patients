@@ -16,13 +16,14 @@ import javax.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "NEUROLOGICAL_FINDING")
-public class NeurologicalFindingEntity {
+@Table(name = "OUTCOME")
+public class OutcomeEntity {
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
 	@GeneratedValue
 	private int id;
-	
+
+	/** The date. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
@@ -37,28 +38,32 @@ public class NeurologicalFindingEntity {
 	@Column(name = "ADDED", nullable = false, insertable = false)
 	private Date added;
 	
-	@Column(name="hemisphere_dominance_idcom")
-	private int hemisphereDominanceIdcom;
-	
-	@Column(name="abnormal_neurological_finding")
-	private int abnormalNeurologicalFinding;
-	
-	@Column(name="hemiparesis")
-	private int hemiparesis;
-	
-	@Column(name="visual_cut")
-	private int visualCut;
+	@Column(name="finally_seizures_idcom")
+	private int finallySeizuresIdcom;
 	
 	@Column(name="comment")
 	private String comment;
 	
+	@Column(name="eeg_spikes")
+	private Boolean eegSpikes;
+	
+	@Column(name="aed planted")
+	private Boolean aedPlanted;
+	
+	@Column(name="mri_done")
+	private Boolean mriDone;
+	
+	@Column(name="neuropsychology")
+	private Boolean neuropsychology;
+	
 	@Column(name="deleted")
 	private Boolean deleted;
-	
+		
+	/** The add user id. */
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
-	
+
 	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;*/
@@ -95,36 +100,12 @@ public class NeurologicalFindingEntity {
 		this.added = added;
 	}
 
-	public int getHemisphereDominanceIdcom() {
-		return hemisphereDominanceIdcom;
+	public int getFinallySeizuresIdcom() {
+		return finallySeizuresIdcom;
 	}
 
-	public void setHemisphereDominanceIdcom(int hemisphereDominanceIdcom) {
-		this.hemisphereDominanceIdcom = hemisphereDominanceIdcom;
-	}
-
-	public int getAbnormalNeurologicalFinding() {
-		return abnormalNeurologicalFinding;
-	}
-
-	public void setAbnormalNeurologicalFinding(int abnormalNeurologicalFinding) {
-		this.abnormalNeurologicalFinding = abnormalNeurologicalFinding;
-	}
-
-	public int getHemiparesis() {
-		return hemiparesis;
-	}
-
-	public void setHemiparesis(int hemiparesis) {
-		this.hemiparesis = hemiparesis;
-	}
-
-	public int getVisualCut() {
-		return visualCut;
-	}
-
-	public void setVisualCut(int visualCut) {
-		this.visualCut = visualCut;
+	public void setFinallySeizuresIdcom(int finallySeizuresIdcom) {
+		this.finallySeizuresIdcom = finallySeizuresIdcom;
 	}
 
 	public String getComment() {
@@ -133,6 +114,38 @@ public class NeurologicalFindingEntity {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public Boolean getEegSpikes() {
+		return eegSpikes;
+	}
+
+	public void setEegSpikes(Boolean eegSpikes) {
+		this.eegSpikes = eegSpikes;
+	}
+
+	public Boolean getAedPlanted() {
+		return aedPlanted;
+	}
+
+	public void setAedPlanted(Boolean aedPlanted) {
+		this.aedPlanted = aedPlanted;
+	}
+
+	public Boolean getMriDone() {
+		return mriDone;
+	}
+
+	public void setMriDone(Boolean mriDone) {
+		this.mriDone = mriDone;
+	}
+
+	public Boolean getNeuropsychology() {
+		return neuropsychology;
+	}
+
+	public void setNeuropsychology(Boolean neuropsychology) {
+		this.neuropsychology = neuropsychology;
 	}
 
 	public Boolean getDeleted() {

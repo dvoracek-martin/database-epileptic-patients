@@ -57,9 +57,9 @@ public class PharmacotherapyEntity {
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
+	private PatientEntity patient;*/
 
 	public int getId() {
 		return id;
@@ -141,12 +141,12 @@ public class PharmacotherapyEntity {
 		this.addUserId = addUserId;
 	}
 
-	public PatientEntity getPatient() {
+	/*public PatientEntity getPatient() {
 		return patient;
 	}
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
-	}
+	}*/
 	
 }

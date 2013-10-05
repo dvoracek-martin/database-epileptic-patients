@@ -89,8 +89,8 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
-
-	/*@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+/*
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeurologicalFindingEntity> neurologicalFindingList;
 	
@@ -113,7 +113,70 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeuropsychologyEntity> neuropsychologyList;
-*/	
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private List<OutcomeEntity> outcomeList;
+
+	
+	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
+		return neurologicalFindingList;
+	}
+
+	public void setNeurologicalFindingList(
+			List<NeurologicalFindingEntity> neurologicalFindingList) {
+		this.neurologicalFindingList = neurologicalFindingList;
+	}
+
+	public List<PharmacotherapyEntity> getPharmacotherapyList() {
+		return pharmacotherapyList;
+	}
+
+	public void setPharmacotherapyList(
+			List<PharmacotherapyEntity> pharmacotherapyList) {
+		this.pharmacotherapyList = pharmacotherapyList;
+	}
+
+	public List<ComplicationEntity> getComplicationList() {
+		return complicationList;
+	}
+
+	public void setComplicationList(List<ComplicationEntity> complicationList) {
+		this.complicationList = complicationList;
+	}
+
+	public List<SeizureEntity> getSeizureList() {
+		return seizureList;
+	}
+
+	public void setSeizureList(List<SeizureEntity> seizureList) {
+		this.seizureList = seizureList;
+	}
+
+	public List<HistologyEntity> getHistologyList() {
+		return histologyList;
+	}
+
+	public void setHistologyList(List<HistologyEntity> histologyList) {
+		this.histologyList = histologyList;
+	}
+
+	public List<NeuropsychologyEntity> getNeuropsychologyList() {
+		return neuropsychologyList;
+	}
+
+	public void setNeuropsychologyList(
+			List<NeuropsychologyEntity> neuropsychologyList) {
+		this.neuropsychologyList = neuropsychologyList;
+	}
+
+	public List<OutcomeEntity> getOutcomeList() {
+		return outcomeList;
+	}
+
+	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
+		this.outcomeList = outcomeList;
+	}*/
 
 	/**
 	 * Gets the id.

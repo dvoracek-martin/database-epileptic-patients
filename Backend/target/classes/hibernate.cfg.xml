@@ -3,25 +3,28 @@
 "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-     
-        <!--<property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-       <property name="hibernate.hbm2ddl.auto">create-drop</property>
-         configuration pool via c3p0
-        <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
-		<property name="c3p0.acquire_increment">1</property> 
-		<property name="c3p0.idle_test_period">100</property> 
-		<property name="c3p0.max_size">100</property> 
-		<property name="c3p0.max_statements">0</property> 
-		<property name="c3p0.min_size">10</property> 
-		<property name="c3p0.timeout">100</property>                      
-       --> 
- 		<mapping class="cz.cvut.fit.genepi.entity.AnamnesisEntity" />		
-  		<mapping class="cz.cvut.fit.genepi.entity.ContactEntity" />		
-  		<mapping class="cz.cvut.fit.genepi.entity.PatientEntity" />
-  		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
-  		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
-  		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
-  		<mapping class="cz.cvut.fit.genepi.entity.NewsMessageEntity" />
-    </session-factory>
+	<session-factory>
+
+		<!--<property name="hibernate.bytecode.use_reflection_optimizer">false</property> 
+			<property name="hibernate.hbm2ddl.auto">create-drop</property> configuration 
+			pool via c3p0 <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property> 
+			<property name="c3p0.acquire_increment">1</property> <property name="c3p0.idle_test_period">100</property> 
+			<property name="c3p0.max_size">100</property> <property name="c3p0.max_statements">0</property> 
+			<property name="c3p0.min_size">10</property> <property name="c3p0.timeout">100</property> -->
+		<mapping class="cz.cvut.fit.genepi.entity.AnamnesisEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.ContactEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.PatientEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.NewsMessageEntity" />
+		<!--<mapping class="cz.cvut.fit.genepi.entity.ComplicationEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.HistologyEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.NeurologicalFindingEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.NeuropsychologyEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.OutcomeEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.PharmacotherapyEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.SeizureEntity" />-->
+
+	</session-factory>
 </hibernate-configuration>
