@@ -125,7 +125,7 @@
 			<form:form method="POST" modelAttribute="emptyMessage"
 					action="/GENEPI/news/create" commandName="emptyMessage">
 				<div class="modal-body">
-					<form:input type="text" path="message" class="input-block-level" value="sdsd"/>
+					<form:input type="text" path="message" class="input-block-level"/>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
