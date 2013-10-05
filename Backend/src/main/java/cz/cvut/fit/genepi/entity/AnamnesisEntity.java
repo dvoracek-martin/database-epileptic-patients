@@ -106,11 +106,6 @@ public class AnamnesisEntity {
 	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
 	private Boolean deleted;
 
-	/** The patient id. */
-	@NotNull
-	@Column(name = "PATIENT_ID", precision = 6, scale = 0, nullable = false)
-	private int patientId;
-
 	/** The add user id. */
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
@@ -460,25 +455,6 @@ public class AnamnesisEntity {
 	 */
 	public void setDeleted(Boolean deleted) {
 		this.deleted = deleted;
-	}
-
-	/**
-	 * Gets the patient id.
-	 * 
-	 * @return the patient id
-	 */
-	public int getpatientId() {
-		return patientId;
-	}
-
-	/**
-	 * Sets the patient id.
-	 * 
-	 * @param patientId
-	 *            the new patient id
-	 */
-	public void setpatientId(int patientId) {
-		this.patientId = patientId;
 	}
 
 	/**

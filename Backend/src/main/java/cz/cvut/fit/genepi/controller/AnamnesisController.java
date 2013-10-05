@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -88,7 +87,8 @@ public class AnamnesisController {
 		if (result.hasErrors()) {
 			return "patient/anamnesis/createView";
 		} else {
-			anamnesis.setpatientId(patientID);
+			anamnesis.setPatient(patientService.findByID(PatientEntity.class,
+					patientID));
 			anamnesisService.save(anamnesis);
 			return "redirect:/patient/" + patientID + "/anamnesis/list";
 		}
@@ -142,11 +142,6 @@ public class AnamnesisController {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 		model.addAttribute("patient", patient);
-		List<AnamnesisEntity> anamnesisEntities = new ArrayList<AnamnesisEntity>();
-		anamnesisEntities = anamnesisService
-				.findAnamnesisByPatientID(patientID);
-		Collections.reverse(anamnesisEntities);
-		model.addAttribute("anamnesisList", anamnesisEntities);
 		return "patient/anamnesis/listView";
 	}
 }
