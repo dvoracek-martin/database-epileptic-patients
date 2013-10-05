@@ -34,22 +34,112 @@
 										<li>
 											<div class="btn-group">
 							  					<a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="#">
-							    					Action<span class="caret"></span>
+							    					<spring:message code="label.manage"/><span class="caret"></span>
 							  					</a>
 							  					<ul class="dropdown-menu">
-							    					<li><a href="<c:url value="/news/${newsMessage.id}/edit" />"><spring:message code="label.edit"/></a></li>
-							    					<li><a href="<c:url value="/news/${newsMessage.id}/delete" />"><spring:message code="label.delete"/></a></li>
+							    					<li><a href="#messageEdit${newsMessage.id}" role="button"
+															data-toggle="modal"><spring:message code="label.edit"/></a></li>
+							    					<li><a href="#messageDeleteConfirm${newsMessage.id}" role="button"
+															data-toggle="modal"><spring:message code="label.delete"/></a></li>
 							  					</ul>
 											</div>
 										</li>
-									</ul>							
+							  		</ul>
+												
 						</div>
 			
 				</div>
-				<p>${message.message }</p>
+				<p>${newsMessage.message }</p>
 			</div>
+				
+				<!-- Modal window>: message delete confirmation -->
+				<div id="messageDeleteConfirm${newsMessage.id}" class="modal hide fade" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">×</button>
+						<h3 id="myModalLabel1"><spring:message code="label.messageDeletion"/></h3>
+					</div>
+					<div class="modal-body">
+						<p><spring:message code="label.messageDeleteContent"/></p>
+					</div>
+					<div class="modal-footer">
+						<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.no"/></button>
+						<a class="btn btn-primary" href="<c:url value="/news/${newsMessage.id}/delete"/>"><spring:message code="label.yes"/></a>
+					</div>
+				</div>
+
+				<!-- Modal window>: message edit window -->
+				<div id="messageEdit${newsMessage.id}" class="modal hide fade" tabindex="-1" role="dialog"
+								aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">×</button>
+						<h3 id="myModalLabel"><spring:message code="label.messageEditing"/></h3>
+					</div>
+					<!-- Form to edit message -->
+					<form:form method="POST" modelAttribute="newsMessage"
+							action="/GENEPI/news/${newsMessage.id}/edit" commandName="newsMessage">
+						<div class="modal-body">
+							${newsMessage.message}
+							<form:input type="text" path="newsMessages[${newsMessage.id}].message" value="jkl">
+							</form:input>
+						</div>
+						<div class="modal-footer">
+							<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
+							<button class="btn btn-small btn-primary" type="submit"><spring:message code="label.edit" /></button>
+						</div>
+					</form:form>
+				</div>
+
+
+				<script>
+					var messageID = ${newsMessage.id};
+						$('#messageDeleteConfirm'+messageID).modal({
+							show: false
+						})
+
+						$('#messageEdit'+messageID).modal({
+							show: false
+						})
+				</script>
+															
 			</c:forEach>
+
+			<a class="btn btn-info" href="#messageCreate" role="button"
+															data-toggle="modal"><spring:message code="label.addMessage"/></a>
+
+				
+			
 		</div>
+		
+		<!-- Modal window>: message create window -->
+		<div id="messageCreate" class="modal hide fade" tabindex="-1" role="dialog"
+						aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">×</button>
+				<h3 id="myModalLabel"><spring:message code="label.messageCreation"/></h3>
+			</div>
+			<!-- Form to edit message -->
+			<form:form method="POST" modelAttribute="newsMessages"
+					action="/GENEPI/news/create" commandName="newsMessages">
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button class="btn" data-dismiss="modal" aria-hidden="true"><spring:message code="label.cancel"/></button>
+					<button class="btn btn-primary" type="submit"><spring:message code="label.create"/></button>
+				</div>
+			</form:form>
+		</div>
+
+		<script>
+		var messageID = ${newsMessage.id};
+
+			$('#messageCreate').modal({
+				show: false
+			})
+		</script>
 	</sec:authorize>
 </jsp:body>
 </t:menuLVL2>
