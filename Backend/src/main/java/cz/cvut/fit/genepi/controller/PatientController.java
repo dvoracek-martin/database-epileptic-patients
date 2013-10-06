@@ -347,8 +347,24 @@ public class PatientController {
 		model.addAttribute("listOfExports", new ArrayList<String>());
 		model.addAttribute("isReady", isReady);
 
+		List<String> chosenRoles=new ArrayList<String>();
+		boolean found = false;
+		for (String possibleCard : listOfPossibleCards) {
+			found = false;
+			for (String card : cards)
+				if (card == possibleCard) {
+					found = true;
+					continue;
+				}
+			if (!found) {
+				chosenRoles.add(possibleCard);
+			}
+		}
+
+		
+		
 		model.addAttribute("cards", cards);
-		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
+		model.addAttribute("listOfPossibleCards", chosenRoles.toArray());
 		return "patient/exportView";
 	}
 }
