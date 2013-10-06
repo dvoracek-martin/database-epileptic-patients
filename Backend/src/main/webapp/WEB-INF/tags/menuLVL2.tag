@@ -36,7 +36,7 @@
 					code="label.advancedSearch" /></a></li>
 		<li class="nav-header"><spring:message code="label.user" />:</li>
 		<li><a href="<c:url value="/profile"/>"><spring:message code="label.profile" /></a></li>
-		<li><a href="j_spring_security_logout"><spring:message
+		<li><a href="<c:url value="/j_spring_security_logout"/>"><spring:message
 					code="label.logOut" /></a></li>
 		<li class="nav-header"><spring:message
 					code="label.administration" />:</li>
