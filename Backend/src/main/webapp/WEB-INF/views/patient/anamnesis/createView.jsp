@@ -208,18 +208,29 @@
     				</div>
   				</div>
 
-
-						<form:label path="nonCnsComorbidity">Non CNS komorbidita</form:label>
-						<form:input path="nonCnsComorbidity" type="text"
-					class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="nonCnsComorbidity"><strong>Non CNS komorbidita</strong></label>
+    				<div class="controls">
+    					<form:input path="nonCnsComorbidity" id="nonCnsComorbidity" type="text" class="input-medium" 
+    					value="porod per SC. pro gestrózu zjištěnou až během porodu" />
 						<form:errors path="nonCnsComorbidity" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="comment">Komentář</form:label>
-						<form:textarea cols="40" rows="10" path="comment" />
+  				<div class="control-group">
+    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<div class="controls">
+    					<form:textarea path="comment" id="comment" />
+    				</div>
+  				</div>
 
-						<button class="btn btn-small btn-primary" type="submit">Pridat</button>
-					</form:form>
+  				<div class="control-group">
+			    	<div class="controls">
+			     		<button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+			    	</div>
+			  	</div>				
+			</form:form>
 	
 		<datalist id="doctors">
 	<c:forEach items="${doctors}" var="doctor">
