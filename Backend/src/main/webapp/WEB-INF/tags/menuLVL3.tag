@@ -33,28 +33,28 @@
 					href="<c:url value="/patient/${patient.id}/overview" />">Přehled</a></li>
 					<li><a
 					href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Anamnéza</a></li>
-					<li><a href="">Záchvaty</a></li>
-					<li><a href="">Farmakoterapie</a></li>
-					<li><a href="">Neurologické nálezy</a></li>
-					<li><a href="">Neuropsychologie</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/sizure/list" />">Záchvaty</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">Farmakoterapie</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">Neurologické nálezy</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">Neuropsychologie</a></li>
 					<li>Diagnostické testy</li>
 					<li>
 						<ul>
-							<li><a href="">EEG testy</a></li>
-							<li><a href="">MRI testy</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/list" />">EEG testy</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">MRI testy</a></li>
 						</ul>
 					</li>
 					<li>Invazivní testy</li>
 					<li>
 						<ul>
-							<li><a href="">EEG testy</a></li>
-							<li><a href="">ECoG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">EEG testy</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">ECoG</a></li>
 						</ul>
 					</li>
-					<li><a href="">Operace</a></li>
-					<li><a href="">Histologie</a></li>
-					<li><a href="">Komplikace</a></li>
-					<li><a href="">Outcome</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/operation/list" />">Operace</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/histology/list" />">Histologie</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/complication/list" />">Komplikace</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/outcome/list" />">Outcome</a></li>
 				</ul>
 	</jsp:attribute>
 

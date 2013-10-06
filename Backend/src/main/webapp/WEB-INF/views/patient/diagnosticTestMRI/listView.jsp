@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Histologie
+      Diagnostické testy - MRI
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Histologie
+      Diagnostické testy - MRI
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Histologie</h2>
+					<h2>Diagnostické testy - MRI</h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
