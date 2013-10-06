@@ -151,7 +151,7 @@ li.sortable-placeholder {
 						
 						<div class="control-group span6">
 						    <div class="controls">
-						      	<button type="submit" class="btn btn-primary">
+						      	<button id="submitBtn" onclick='this.style.visibility = "hidden";' type="submit" class="btn btn-primary">
 							<spring:message code="label.export" />
 						</button>	
 						    </div>
