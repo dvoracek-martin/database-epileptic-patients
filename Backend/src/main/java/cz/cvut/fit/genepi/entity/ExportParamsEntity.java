@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "EXPORTPARAMS")
+@Table(name = "EXPORT_PARAMS")
 public class ExportParamsEntity {
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
