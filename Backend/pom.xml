@@ -42,12 +42,6 @@
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	<repositories>
-		<repository>
-			<id>codehaus</id>
-			<url>http://repository.codehaus.org/org/codehaus</url>
-		</repository>
-	</repositories>
 	<dependencies>
 
 		<!-- Spring -->
