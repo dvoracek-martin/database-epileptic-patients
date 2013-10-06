@@ -26,6 +26,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
+import cz.cvut.fit.genepi.service.ExportParamsService;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
@@ -43,6 +44,9 @@ public class PatientController {
 
 	@Autowired
 	private MessageSource messageSource;
+	
+	@Autowired
+	private ExportParamsService exportParamsService;
 
 	/** The patient service. */
 	@Autowired
