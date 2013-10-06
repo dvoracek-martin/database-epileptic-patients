@@ -298,7 +298,6 @@ public class PatientController {
 		model.addAttribute("user", user);
 
 		boolean isReady = false;
-		model.addAttribute("cards", new ArrayList<String>() );
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("isReady", isReady);
