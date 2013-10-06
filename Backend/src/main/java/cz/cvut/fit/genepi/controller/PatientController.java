@@ -362,9 +362,9 @@ public class PatientController {
 		}
 
 		
-		
+		model.addAttribute("exportType",exportType);
 		model.addAttribute("cards", cards);
-		model.addAttribute("listOfPossibleCards", chosenRoles.toArray());
+		model.addAttribute("listOfPossibleCards", listOfPossibleCards.toArray());
 		return "patient/exportView";
 	}
 }
