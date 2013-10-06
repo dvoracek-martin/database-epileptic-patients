@@ -262,12 +262,26 @@ public class PatientController {
 		UserEntity user = userService.findUserByUsername(auth.getName());
 
 		List<String> listOfPossibleCards = new ArrayList<String>();
-		List<RoleEntity> listOfSavedConfigurations = new ArrayList<RoleEntity>();
-		List<RoleEntity> listOfUsersSavedConfigurations = new ArrayList<RoleEntity>();
-
+		
 		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis", null,
 				locale));
 		listOfPossibleCards.add("Farmakoloterapie");
+		listOfPossibleCards.add("Zachvaty");
+		listOfPossibleCards.add("Farmakoloterapie");
+		listOfPossibleCards.add("Neurologicke nalezy");
+		listOfPossibleCards.add("Neuropsychologie");
+		listOfPossibleCards.add("Diagnosticke EEG testy");
+		listOfPossibleCards.add("Diagnosticke MRI testy");
+		listOfPossibleCards.add("Invazivni EEG testy");
+		listOfPossibleCards.add("Invazivni ECoG testy");
+		listOfPossibleCards.add("Operace");
+		listOfPossibleCards.add("Histologie");
+		listOfPossibleCards.add("Komplikace");
+		listOfPossibleCards.add("Outcome");
+		
+		List<RoleEntity> listOfSavedConfigurations = new ArrayList<RoleEntity>();
+		List<RoleEntity> listOfUsersSavedConfigurations = new ArrayList<RoleEntity>();
+
 		
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("user", user);
@@ -282,13 +296,11 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@RequestParam("patientID") Integer patientID,
+			@ModelAttribute("patient") PatientEntity patient,
 			@RequestParam("exportType") String exportType, Locale locale,
 			Model model) {
 		logger.setLogger(PatientController.class);
-		
-		PatientEntity patient=patientService.findByID(PatientEntity.class,
-				patientID);
+	
 		List<String> listOfExports = new ArrayList<String>();
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
