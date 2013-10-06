@@ -263,9 +263,9 @@ public class PatientController {
 		UserEntity user = userService.findUserByUsername(auth.getName());
 
 		List<String> listOfPossibleCards = new ArrayList<String>();
-		
-		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis", null,
-				locale));
+
+		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis",
+				null, locale));
 		listOfPossibleCards.add("Farmakoloterapie");
 		listOfPossibleCards.add("Zachvaty");
 		listOfPossibleCards.add("Farmakoloterapie");
@@ -279,18 +279,20 @@ public class PatientController {
 		listOfPossibleCards.add("Histologie");
 		listOfPossibleCards.add("Komplikace");
 		listOfPossibleCards.add("Outcome");
-		
 
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
-		listOfSavedConfigurations=exportParamsService.findExportParamsEntityByUserID(user.getId());
-		
+		listOfSavedConfigurations = exportParamsService
+				.findExportParamsEntityByUserID(user.getId());
+
 		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
-		listOfUsersSavedConfigurations=exportParamsService.findAll(ExportParamsEntity.class);
-		
-		
+		listOfUsersSavedConfigurations = exportParamsService
+				.findAll(ExportParamsEntity.class);
+
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
-		model.addAttribute("listOfSavedConfigurations", listOfSavedConfigurations);
-		model.addAttribute("listOfUsersSavedConfigurations", listOfUsersSavedConfigurations);
+		model.addAttribute("listOfSavedConfigurations",
+				listOfSavedConfigurations);
+		model.addAttribute("listOfUsersSavedConfigurations",
+				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
 		boolean isReady = false;
@@ -304,20 +306,25 @@ public class PatientController {
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
 			@ModelAttribute("patient") PatientEntity patient,
-			@RequestParam("exportType") String exportType, @RequestParam("cards") String[] cards, Locale locale,
-			Model model) {
+			@RequestParam("exportType") String exportType,
+			@RequestParam("cards") String[] cards, Locale locale, Model model) {
 		logger.setLogger(PatientController.class);
-	
+
 		List<String> listOfExports = new ArrayList<String>();
+		for (String s : cards) {
+			System.out.println(s);
+			listOfExports.add(s);
+		}
+
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		patient = patientService.findByID(PatientEntity.class, patient.getId());
-		listOfExports.add("Anamnesis");
+
 		if (exportType.equals("pdf")) {
 			try {
 				exportToPdfService.export(patient,
 						userService.findUserByUsername(auth.getName()),
-						listOfExports);
+						listOfExports, locale);
 			} catch (FileNotFoundException e) {
 				logger.logError(
 						"File wasn't found when trying to export to pdf.", e);

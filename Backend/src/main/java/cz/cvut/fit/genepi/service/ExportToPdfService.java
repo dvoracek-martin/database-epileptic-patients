@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.service;
 
 import java.io.FileNotFoundException;
 import java.util.List;
+import java.util.Locale;
 
 import com.itextpdf.text.DocumentException;
 
@@ -12,14 +13,19 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 /**
  * The Interface ExportToPdfService.
  */
-public interface  ExportToPdfService {
-	
+public interface ExportToPdfService {
+
 	/**
 	 * Export.
-	 *
-	 * @param pateintID the pateint id
-	 * @throws FileNotFoundException the file not found exception
-	 * @throws DocumentException the document exception
+	 * 
+	 * @param pateintID
+	 *            the pateint id
+	 * @throws FileNotFoundException
+	 *             the file not found exception
+	 * @throws DocumentException
+	 *             the document exception
 	 */
-	public void export(PatientEntity patient, UserEntity user, List<String> exports) throws FileNotFoundException, DocumentException;
+	public void export(PatientEntity patient, UserEntity user,
+			List<String> exports, Locale locale) throws FileNotFoundException,
+			DocumentException;
 }

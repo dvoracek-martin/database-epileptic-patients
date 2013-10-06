@@ -8,7 +8,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Anchor;
@@ -41,6 +44,10 @@ import cz.cvut.fit.genepi.service.LoggingService;
 @Service
 public class ExportToPdfServiceImpl implements ExportToPdfService {
 
+
+	@Autowired
+	private static MessageSource messageSource;
+	
 	private static PatientEntity patient;
 
 	private static UserEntity user;
@@ -107,7 +114,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	public void export(PatientEntity patient, UserEntity user,
-			java.util.List<String> exports) {
+			java.util.List<String> exports,Locale locale) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
@@ -159,7 +166,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			e.printStackTrace();
 		}
 		try {
-			addContent(document, exports);
+			addContent(document, exports,locale);
 		} catch (DocumentException e) {
 			logger.logError("Document exception when trying to save pdf file.",
 					e);
@@ -240,7 +247,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 *             the document exception
 	 */
 	private static void addContent(Document document,
-			java.util.List<String> exports) throws DocumentException {
+			java.util.List<String> exports,Locale locale)
+			throws DocumentException {
+
 		Anchor anchor = new Anchor("First Chapter", catFont);
 		anchor.setName("First Chapter");
 
@@ -268,81 +277,84 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				largerFont);
 		patientParagraph.setAlignment(Element.ALIGN_CENTER);
 
-		addEmptyLine(patientParagraph, 1);
+		addEmptyLine(patientParagraph, 2);
 		subCatPart.add(patientParagraph);
 		// Add a table
 		createTable(subCatPart);
 
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+		for (String s : exports) {
+			if (s.equals(messageSource.getMessage("label.anamnesis", null,
+					locale))) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Anamnesis")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Anamnesis")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
-		}
-		if (exports.contains("Outbreaks")) {
-			Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
-					catFont);
-			anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
-			subCatPart.add(anamnesisParahraph);
-			for (AnamnesisEntity a : patient.getAnamnesisList()) {
-				printOutAnamnesis(subCatPart, a);
+			if (s.equals("Outbreaks")) {
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
+						catFont);
+				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
+				subCatPart.add(anamnesisParahraph);
+				for (AnamnesisEntity a : patient.getAnamnesisList()) {
+					printOutAnamnesis(subCatPart, a);
+				}
 			}
 		}
 
