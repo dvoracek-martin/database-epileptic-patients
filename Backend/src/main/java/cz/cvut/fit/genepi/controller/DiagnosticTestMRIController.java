@@ -13,16 +13,16 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.service.PatientService;
 
 @Controller
-public class DiagnosticTestMriController {
+public class DiagnosticTestMRIController {
 	@Autowired
 	PatientService patientService;
 	
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestMri/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/list", method = RequestMethod.GET)
 	public String diagnosticTestMriListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 		model.addAttribute("patient", patient);
-		return "patient/diagnosticTestMri/listView";
+		return "patient/diagnosticTestMRI/listView";
 	}
 }

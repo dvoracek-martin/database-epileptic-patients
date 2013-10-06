@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "GIAGNOSTICTESTMRI")
-public class DiagnosticTestMriEntity {
+public class DiagnosticTestMRIEntity {
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
