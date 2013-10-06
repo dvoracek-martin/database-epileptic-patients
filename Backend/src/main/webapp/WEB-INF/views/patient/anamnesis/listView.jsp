@@ -68,7 +68,14 @@
 					</tr>
 				</tbody>
 			</table>
- 
+ 			
+ 			<c:if test="${empty patient.anamnesisList}">
+ 				<div class="alert alert-block">
+		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  			<h4>Žádné záznamy!</h4>
+				</div>
+ 			</c:if>
+
 			<!-- Anamnesis list START -->
 			<div class="accordion">
 				<c:forEach items="${patient.anamnesisList}" var="anamnesis">
