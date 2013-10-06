@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itextpdf.text.DocumentException;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
@@ -279,11 +280,15 @@ public class PatientController {
 		listOfPossibleCards.add("Komplikace");
 		listOfPossibleCards.add("Outcome");
 		
-		List<RoleEntity> listOfSavedConfigurations = new ArrayList<RoleEntity>();
-		List<RoleEntity> listOfUsersSavedConfigurations = new ArrayList<RoleEntity>();
-
+		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfSavedConfigurations=exportParamsService.findExportParamsEntityByUserID(user.getId());
+		
+		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfSavedConfigurations=exportParamsService.findAll(ExportParamsEntity.class);
 		
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
+		model.addAttribute("listOfSavedConfigurations", listOfSavedConfigurations);
+		model.addAttribute("listOfUsersSavedConfigurations", listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
 		boolean isReady = false;
@@ -297,7 +302,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
 			@ModelAttribute("patient") PatientEntity patient,
-			@RequestParam("exportType") String exportType, Locale locale,
+			@RequestParam("exportType") String exportType, @RequestParam("cards") String[] cards, Locale locale,
 			Model model) {
 		logger.setLogger(PatientController.class);
 	
