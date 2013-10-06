@@ -42,6 +42,12 @@
 		<org.slf4j-version>1.7.5</org.slf4j-version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<repositories>
+		<repository>
+			<id>codehaus</id>
+			<url>http://repository.codehaus.org/org/codehaus</url>
+		</repository>
+	</repositories>
 	<dependencies>
 
 		<!-- Spring -->
@@ -245,7 +251,7 @@
 			<version>5.0.6</version>
 		</dependency>
 
-		<!-- to xlsx and docx-->
+		<!-- to xlsx and docx -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi-ooxml</artifactId>
@@ -257,6 +263,13 @@
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<version>2.3</version>
+		</dependency>
+
+		<!-- JSON -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.8.5</version>
 		</dependency>
 	</dependencies>
 
