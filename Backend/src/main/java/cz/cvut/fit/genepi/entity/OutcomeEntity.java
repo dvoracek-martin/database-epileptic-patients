@@ -64,6 +64,9 @@ public class OutcomeEntity {
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
 
+	@Column(name = "STATUS", nullable = false)
+	private int status;
+	
 	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;*/
@@ -164,6 +167,13 @@ public class OutcomeEntity {
 		this.addUserId = addUserId;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	/*public PatientEntity getPatient() {
 		return patient;
 	}

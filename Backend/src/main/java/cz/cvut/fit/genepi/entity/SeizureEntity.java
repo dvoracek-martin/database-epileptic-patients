@@ -93,6 +93,10 @@ public class SeizureEntity {
 	@Column(name = "add_user_id")
 	private int addUserId;
 	
+	@Column(name = "STATUS", nullable = false)
+	private int status;
+	
+	
 	/*@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;*/
@@ -104,6 +108,7 @@ public class SeizureEntity {
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
 	}*/
+
 
 	/**
 	 * Gets the id.
@@ -428,6 +433,12 @@ public class SeizureEntity {
 	public void setAddUserId(int addUserId) {
 		this.addUserId = addUserId;
 	}
+	public int getStatus() {
+		return status;
+	}
 
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	
 }

@@ -73,6 +73,9 @@ public class DiagnosticTestEEGEntity {
 	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
 	private Boolean deleted;
 
+	@Column(name = "STATUS", nullable = false)
+	private int status;
+	
 	/** The add user id. */
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
@@ -202,7 +205,13 @@ public class DiagnosticTestEEGEntity {
 	public void setAddUserId(int addUserId) {
 		this.addUserId = addUserId;
 	}
+	public int getStatus() {
+		return status;
+	}
 
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	/*public PatientEntity getPatient() {
 		return patient;
 	}
