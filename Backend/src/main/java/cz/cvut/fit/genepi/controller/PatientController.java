@@ -44,7 +44,7 @@ public class PatientController {
 
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private ExportParamsService exportParamsService;
 
@@ -256,6 +256,22 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
 	public String patientExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
+
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		UserEntity user = userService.findUserByUsername(auth.getName());
+
+		List<String> listOfPossibleCards = new ArrayList<String>();
+		List<RoleEntity> listOfSavedConfigurations = new ArrayList<RoleEntity>();
+		List<RoleEntity> listOfUsersSavedConfigurations = new ArrayList<RoleEntity>();
+
+		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis", null,
+				locale));
+		listOfPossibleCards.add("Farmakoloterapie");
+		
+		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
+		model.addAttribute("user", user);
+
 		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
@@ -287,15 +303,15 @@ public class PatientController {
 				logger.logError(
 						"Document exception when trying to export to pdf.", e);
 			}
-		} else if (exportType.equals("xlsx")) {			
-				exportToXlsxService.export(patient,
-						userService.findUserByUsername(auth.getName()),
-						listOfExports);
-		} else if (exportType.equals("docx")) {			
+		} else if (exportType.equals("xlsx")) {
+			exportToXlsxService.export(patient,
+					userService.findUserByUsername(auth.getName()),
+					listOfExports);
+		} else if (exportType.equals("docx")) {
 			exportToDocxService.export(patient,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
-	}
+		}
 		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
