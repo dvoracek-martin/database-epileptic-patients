@@ -27,37 +27,41 @@
 						</h3>
 					</div>
 				</div>
-				<table class="table table-bordered">
+				<table class="table">
 				<tbody>
 						<tr>
-							<th>Číslo pacienta:</th>
-							<td>${patient.id}</td>
+							<th>Pacient:</th>
+							<td>${patient.contact.firstName}</td>
 
 							<th>Rodné číslo:</th>
 							<td>${patient.nin}</td>
 
+							<th>Datum narození:</th>
+							<td>${patient.birthday}</td>
+							
+						</tr>
+						<tr>	
 							<th>Adresa:</th>
 							<td>${patient.contact.addressStreet}</td>
-
-						</tr>
-						<tr>
+							
 							<th>Telefon:</th>
 							<td>${patient.contact.phoneNumber}</td>
-
-							<th>Věk:</th>
-							<td></td>
-
-							<th>Pohaví:</th>
-							<td>${patient.gender}</td>
-						</tr>
-						<tr>
+							
 							<th>Email:</th>
 							<td>${patient.contact.email}</td>
-
+												
+							
+						</tr>
+						<tr>
+							<th>Pohaví:</th>
+							<td>${patient.gender}</td>
+							
 							<th>Věk při začátku epilepsie:</th>
 							<td></td>
+							
 							<th>Ošetřující lékař:</th>
 							<td></td>
+							
 						</tr>
 					</tbody>
 				</table>
@@ -66,7 +70,7 @@
 				<h3>Anamnéza</h3>
 				
 				<table class="table">
-              <tbody>
+               <tbody>
                 		<tr class="info">
 							<td>Vysetreni dne:</td>
 							<td>${patient.anamnesisList[0].date}</td>

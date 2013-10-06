@@ -13,77 +13,70 @@
       Anamnéza
     </jsp:attribute>
 
-    <jsp:attribute name="script">
-    	
-	</jsp:attribute>
-
 	<jsp:body>
 		<div>
-			<div>
-				<div class="span5">
-					<h2>Anamnéza</h2>
-				</div>
 				<div>
-					<h3 class="pull-right">
-						<a id="export"
-					href="<c:url value="/patient/${patientID}/anamnesis/create" />">Přidat
-						záznam</a>
-					</h3>
+					<div class="span5">
+						<h2>Anamnéza</h2>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a id="export"
+						href="<c:url value="/patient/${patientID}/anamnesis/create" />">Přidat
+							záznam</a>
+						</h3>
+					</div>
 				</div>
-			</div>
-			<table class="table">
-			<tbody>
-					<tr>
-						<th>Pacient:</th>
-						<td>${patient.contact.firstName}</td>
+				<table class="table">
+				<tbody>
+						<tr>
+							<th>Pacient:</th>
+							<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
-						<td>${patient.nin}</td>
+							<th>Rodné číslo:</th>
+							<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
-						<td>${patient.birthday}</td>
+							<th>Datum narození:</th>
+							<td>${patient.birthday}</td>
 							
-					</tr>
-					<tr>	
-						<th>Adresa:</th>
-						<td>${patient.contact.addressStreet}</td>
+						</tr>
+						<tr>	
+							<th>Adresa:</th>
+							<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
-						<td>${patient.contact.phoneNumber}</td>
+							<th>Telefon:</th>
+							<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
-						<td>${patient.contact.email}</td>
+							<th>Email:</th>
+							<td>${patient.contact.email}</td>
 												
 							
-					</tr>
-					<tr>
-						<th>Pohaví:</th>
-						<td>${patient.gender}</td>
+						</tr>
+						<tr>
+							<th>Pohaví:</th>
+							<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
-						<td></td>
+							<th>Věk při začátku epilepsie:</th>
+							<td></td>
 							
-						<th>Ošetřující lékař:</th>
-						<td></td>
+							<th>Ošetřující lékař:</th>
+							<td></td>
 							
-					</tr>
-				</tbody>
-			</table>
-			<!-- Anamnesis list START -->
-			<c:forEach items="${patient.anamnesisList}" var="anamnesis">
+						</tr>
+					</tbody>
+				</table>
+				<!-- Anamnesis list START -->
+				<c:forEach items="${patient.anamnesisList}" var="anamnesis">
 				<table class="table">
-              		<tbody>
-                		<tr>
-                			<div class="alert alert-info" style="margin: 0">
-              					<a class="close" href="<c:url value="/patient/${patientID}/anamnesis/${anamnesis.id}/delete"/>">×</a>
-             					 <strong>Vyšetření dne:</strong> ${anamnesis.date}
-            				</div>
-							
+               <tbody>
+                		<tr class="warning">
+							<td>Vysetreni dne:</td>
+							<td>${anamnesis.date}</td>
 						</tr>
 						<tr class="info">
 							<td><spring:message code="label.epilepsyInFamily" /></td>
 							<c:if test="${anamnesis.epilepsyInFamily==true}">
-								<td style="column-span: 2"><spring:message code="label.yes"/></td>
+								<td><spring:message code="label.yes"/></td>
 							</c:if>
 							<c:if test="${anamnesis.epilepsyInFamily==false}">
 								<td><spring:message code="label.no"/></td>
@@ -173,8 +166,8 @@
 							<td><spring:message code="label.nonCNSComorbidity" /></td>
 							<td>${anamnesis.nonCnsComorbidity}</td>
 						</tr>
-              		</tbody>
-            	</table>
+              </tbody>
+            </table>
             </c:forEach>
 			<!-- Anamnesis list END -->
 	</jsp:body>

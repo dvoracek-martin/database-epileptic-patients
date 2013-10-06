@@ -33,27 +33,26 @@
 					href="<c:url value="/patient/${patient.id}/overview" />">Přehled</a></li>
 					<li><a
 					href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Anamnéza</a></li>
+					<li><a href="">Záchvaty</a></li>
 					<li><a href="">Farmakoterapie</a></li>
 					<li><a href="">Neurologické nálezy</a></li>
 					<li><a href="">Neuropsychologie</a></li>
-					<li><a href="">(Neuropsychologie - old)</a></li>
-					<li><a href="">Diagnostické testy</a></li>
-					<li><a href="">Neuropsychologie</a></li>
+					<li>Diagnostické testy</li>
 					<li>
 						<ul>
-							<li><a href="">Skalpové EEG</a></li>
-							<li><a href="">Neurozobraz. testy</a></li>
+							<li><a href="">EEG testy</a></li>
+							<li><a href="">MRI testy</a></li>
 						</ul>
 					</li>
-					<li><a href="">Invazivní testy</a></li>
+					<li>Invazivní testy</li>
 					<li>
 						<ul>
+							<li><a href="">EEG testy</a></li>
 							<li><a href="">ECoG</a></li>
-							<li><a href="">iEEG</a></li>
-							<li><a href="">Kortikalní mapovaní</a></li>
 						</ul>
 					</li>
 					<li><a href="">Operace</a></li>
+					<li><a href="">Histologie</a></li>
 					<li><a href="">Komplikace</a></li>
 					<li><a href="">Outcome</a></li>
 				</ul>
