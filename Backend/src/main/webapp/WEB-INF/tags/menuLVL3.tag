@@ -33,22 +33,22 @@
 					href="<c:url value="/patient/${patient.id}/overview" />">Přehled</a></li>
 					<li><a
 					href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Anamnéza</a></li>
-					<li><a href="<c:url value="/patient/${patient.id}/sizure/list" />">Záchvaty</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/seizure/list" />">Záchvaty</a></li>
 					<li><a href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">Farmakoterapie</a></li>
 					<li><a href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">Neurologické nálezy</a></li>
 					<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">Neuropsychologie</a></li>
-					<li>Diagnostické testy</li>
+					<li style="color: DodgerBlue">Diagnostické testy</li>
 					<li>
 						<ul>
 							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/list" />">EEG testy</a></li>
 							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">MRI testy</a></li>
 						</ul>
 					</li>
-					<li>Invazivní testy</li>
+					<li style="color: DodgerBlue">Invazivní testy</li>
 					<li>
 						<ul>
-							<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">EEG testy</a></li>
-							<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">ECoG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestECOG/list" />">EEG testy</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestEEG/list" />">ECoG</a></li>
 						</ul>
 					</li>
 					<li><a href="<c:url value="/patient/${patient.id}/operation/list" />">Operace</a></li>
