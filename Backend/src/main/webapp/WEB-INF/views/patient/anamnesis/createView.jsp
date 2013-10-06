@@ -11,145 +11,203 @@
 			rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
-      Přidat záznam
+      <spring:message code="label.addRecord"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Přidat záznam
+      <spring:message code="label.addRecord"/>
     </jsp:attribute>
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 		<script src="<c:url value="/resources/js/datepicker.js" />"></script>
    </jsp:attribute>
 	<jsp:body>
-					<div>
-					<h2>Přehled pacienta</h2>
-				</div>
-				<table style="border: 1px solid black">
-					<tbody>
-						<tr>
-							<th>Číslo pacienta:</th>
-							<td></td>
 
-							<th>Rodné číslo:</th>
-							<td></td>
+			<div class="span5">
+				<h2>Anamnéza</h2>
+			</div>
 
-							<th>Adresa:</th>
-							<td></td>
+			<table class="table">
+				<tbody>
+					<tr>
+						<th>Pacient:</th>
+						<td>${patient.contact.firstName}</td>
 
-						</tr>
-						<tr>
-							<th>Telefon:</th>
-							<td></td>
+						<th>Rodné číslo:</th>
+						<td>${patient.nin}</td>
 
-							<th>Věk:</th>
-							<td></td>
+						<th>Datum narození:</th>
+						<td>${patient.birthday}</td>
+							
+					</tr>
+					<tr>	
+						<th>Adresa:</th>
+						<td>${patient.contact.addressStreet}</td>
+							
+						<th>Telefon:</th>
+						<td>${patient.contact.phoneNumber}</td>
+							
+						<th>Email:</th>
+						<td>${patient.contact.email}</td>
+												
+							
+					</tr>
+					<tr>
+						<th>Pohaví:</th>
+						<td>${patient.gender}</td>
+							
+						<th>Věk při začátku epilepsie:</th>
+						<td></td>
+							
+						<th>Ošetřující lékař:</th>
+						<td></td>
+							
+					</tr>
+				</tbody>
+			</table>
+			
+			<!-- form for adding new record -->
+			<!-- mapping resource in action with c:url caused errors -->
+			<form:form class="form-horizontal" method="POST"
+						action="/GENEPI/patient/${patientID}/anamnesis/create" commandName="anamnesis">
 
-							<th>Pohaví:</th>
-							<td></td>
-						</tr>
-
-						<tr>
-							<th>Email:</th>
-							<td></td>
-
-							<th>Věk při začátku epilepsie:</th>
-							<td></td>
-
-							<th>Ošetřující lékař:</th>
-							<td></td>
-
-						</tr>
-					</tbody>
-				</table>
-
-				<!-- form for adding new record -->
-				<div class="form" style="margin: 10px; width: 60%">
-					<!-- form for adding new patient -->
-					<!-- mapping resource in action with c:url caused errors -->
-					<form:form method="POST"
-				action="/GENEPI/patient/${patientID}/anamnesis/create"
-				commandName="anamnesis">
-						<form:label path="date">Datum</form:label>
-						<form:input path="date" type="text"
-					class="input-block-level datepicker" />
+				<div class="control-group">
+    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<div class="controls">
+    					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
 						</form:errors>
-						
-						
-							<form:label path="doctorId"><spring:message code="label.doctor" /></form:label>
-						<form:select path="doctorId" type="text"
-					class="input-block-level">
-						<c:forEach items="${doctors}" var="doctor">
-	<form:option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
-			</c:forEach>
-							
-							</form:select>
+    				</div>
+  				</div>
 
-						<form:label path="epilepsyInFamily">Epilepsie v rodině</form:label>
-						<form:checkbox path="epilepsyInFamily" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<div class="controls">
+    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
+							<c:forEach items="${doctors}" var="doctor">
+								<form:option value="${doctor.id}">
+									${doctor.contact.firstName} ${doctor.contact.lastName}
+								</form:option>
+							</c:forEach>	
+						</form:select>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="epilepsyInFamily"><strong>Epilepsie v rodině</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="epilepsyInFamily" input="epilepsyInFamily" class="input-block-level" />
 						<form:errors path="epilepsyInFamily" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="prenatalRisk">Prenatální rizika</form:label>
-						<form:checkbox path="prenatalRisk" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="prenatalRisk"><strong>Prenatální rizika</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="prenatalRisk" input="prenatalRisk" class="input-block-level" />
 						<form:errors path="prenatalRisk" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="fibrilConvulsions">Fibrilní křeče</form:label>
-						<form:checkbox path="fibrilConvulsions" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="fibrilConvulsions"><strong>Fibrilní křeče</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="fibrilConvulsions" input="fibrilConvulsions" class="input-block-level" />
 						<form:errors path="fibrilConvulsions" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="inflammationCns">Zánět CNS</form:label>
-						<form:checkbox path="inflammationCns" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="inflammationCns"><strong>Zánět CNS</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="inflammationCns" input="inflammationCns" class="input-block-level" />
 						<form:errors path="inflammationCns" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="injuryCns">Úraz CNS</form:label>
-						<form:checkbox path="injuryCns" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="injuryCns"><strong>Úraz CNS</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="injuryCns" input="injuryCns" class="input-block-level" />
 						<form:errors path="injuryCns" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="operationCns">Operace CNS</form:label>
-						<form:checkbox path="operationCns" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="operationCns"><strong>Operace CNS</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="operationCns" input="operationCns" class="input-block-level" />
 						<form:errors path="operationCns" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="earlyPmdRetardation">Časná PMD retardace</form:label>
-						<form:checkbox path="earlyPmdRetardation"
-					class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="earlyPmdRetardation"><strong>Časná PMD retardace</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="earlyPmdRetardation" input="earlyPmdRetardation" class="input-block-level" />
 						<form:errors path="earlyPmdRetardation" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="beginningEpilepsy">Začátek epilepsie</form:label>
-						<form:input path="beginningEpilepsy" type="text"
-					class="input-block-level datepicker" />
+  				<div class="control-group">
+    				<label class="control-label" for="beginningEpilepsy"><strong>Začátek epilepsie</strong></label>
+    				<div class="controls">
+    					<form:input path="beginningEpilepsy" id="beginningEpilepsy" type="text" class="input-medium datepicker" />
 						<form:errors path="beginningEpilepsy" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="firstFever">První záchvat s horečkou</form:label>
-						<form:checkbox path="firstFever" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="firstFever"><strong>První záchvat s horečkou</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="firstFever" input="firstFever" class="input-block-level" />
 						<form:errors path="firstFever" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="infantileSpasm">Infantilní spasmy</form:label>
-						<form:checkbox path="infantileSpasm" class="input-block-level" />
+  				<div class="control-group">
+    				<label class="control-label" for="infantileSpasm"><strong>Infantilní spasmy</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="infantileSpasm" input="infantileSpasm" class="input-block-level" />
 						<form:errors path="infantileSpasm" cssClass="error">
 						</form:errors>
+    				</div>
+  				</div>
 
-						<form:label path="specificSyndromeIdcom">Epileptický syndrom</form:label>
-						<form:select path="specificSyndromeIdcom" type="text"
-					class="input-block-level">
-							<form:option value="0">Zvolte syndrom</form:option>
-							<form:option value="1">Extratemporální
-							fokální epilepsie</form:option>
-							<form:option value="2">Hemisferální
-							symtomaptická epilepsie</form:option>
-							<form:option value="3">Meziotemporální
-							epilepsie (MTLE)</form:option>
-							<form:option value="4">Multifokální
-							epilepsie</form:option>
+  				<div class="control-group">
+    				<label class="control-label" for="specificSyndromeIdcom"><strong>Epileptický syndrom</strong></label>
+    				<div class="controls">
+    					<form:select path="specificSyndromeIdcom" id="specificSyndromeIdcom" type="text" class="input-large">
+							<form:option value="0">
+								Zvolte syndrom
+							</form:option>
+							<form:option value="1">
+								Extratemporální fokální epilepsie
+							</form:option>
+							<form:option value="2">
+								Hemisferální symtomaptická epilepsie
+							</form:option>
+							<form:option value="3">
+								Meziotemporální epilepsie (MTLE)
+							</form:option>
+							<form:option value="4">
+								Multifokální epilepsie
+							</form:option>	
+							<form:option value="4">
+								Temporální epilepsie jiná než MTLE
+							</form:option>
 						</form:select>
+    				</div>
+  				</div>
+
 
 						<form:label path="nonCnsComorbidity">Non CNS komorbidita</form:label>
 						<form:input path="nonCnsComorbidity" type="text"
@@ -162,7 +220,6 @@
 
 						<button class="btn btn-small btn-primary" type="submit">Pridat</button>
 					</form:form>
-				</div>
 	
 		<datalist id="doctors">
 	<c:forEach items="${doctors}" var="doctor">
