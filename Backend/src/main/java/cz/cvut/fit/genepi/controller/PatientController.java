@@ -26,6 +26,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.AnamnesisService;
+import cz.cvut.fit.genepi.service.ExportToDocxService;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
 import cz.cvut.fit.genepi.service.LoggingService;
@@ -63,6 +64,9 @@ public class PatientController {
 
 	@Autowired
 	private ExportToXlsxService exportToXlsxService;
+
+	@Autowired
+	private ExportToDocxService exportToDocxService;
 
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
@@ -284,7 +288,7 @@ public class PatientController {
 						userService.findUserByUsername(auth.getName()),
 						listOfExports);
 		} else if (exportType.equals("docx")) {			
-			exportToXlsxService.export(patient,
+			exportToDocxService.export(patient,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 	}

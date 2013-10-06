@@ -45,6 +45,7 @@
 						    <div class="controls">
 						    	<input type="radio" id="pdfFormat" name="exportType" value="pdf" checked> pdf
 								<input type="radio" id="xlsxFormat" name="exportType" value="xlsx"> xlsx
+								<input type="radio" id="docxormat" name="exportType" value="docx"> docx
 						    </div>
 						</div>
 						
