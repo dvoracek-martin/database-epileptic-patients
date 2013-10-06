@@ -81,7 +81,7 @@
 				
 				<input type="button" class="btn btn-small btn-primary"
 			onclick="document.location = '<c:url value="/user/${user.id}/edit" />';"
-			value="<spring:message code="label.editdata" />"> <input
+			value="<spring:message code="label.editData" />"> <input
 			type="button" class="btn btn-small btn-primary"
 			onclick="document.location = '<c:url value="/user/${user.id}/change-password" />';"
 			value="<spring:message code="label.changePassword" />">
