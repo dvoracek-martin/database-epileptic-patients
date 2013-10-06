@@ -112,7 +112,7 @@ li.sortable-placeholder {
 					</div>
 					
 			<div class="span3">
-				<label>Dostupné role</label>
+				<label>Dostupné karty</label>
 				<ul id="sortable4" class="connected sortable list"
 					style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">
 			
@@ -130,7 +130,7 @@ li.sortable-placeholder {
 				commandName="patient">
 	
 			<div class="span3">
-				<label>Moje role</label>
+				<label>Vybrané karty</label>
 				<ul id="sortable5" class="connected sortable list"
 						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
 					
