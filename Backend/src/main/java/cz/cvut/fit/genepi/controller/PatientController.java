@@ -344,27 +344,9 @@ public class PatientController {
 		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
-		model.addAttribute("listOfExports", new ArrayList<String>());
 		model.addAttribute("isReady", isReady);
-
-		List<String> chosenRoles=new ArrayList<String>();
-		boolean found = false;
-		for (String possibleCard : listOfPossibleCards) {
-			found = false;
-			for (String card : cards)
-				if (card == possibleCard) {
-					found = true;
-					continue;
-				}
-			if (!found) {
-				chosenRoles.add(possibleCard);
-			}
-		}
-
-		
 		model.addAttribute("exportType",exportType);
-		model.addAttribute("cards", cards);
-		model.addAttribute("listOfPossibleCards", listOfPossibleCards.toArray());
+		
 		return "patient/exportView";
 	}
 }
