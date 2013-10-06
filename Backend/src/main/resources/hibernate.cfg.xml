@@ -18,6 +18,7 @@
 		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.NewsMessageEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.ExportParamsEntity" />
 		<!--<mapping class="cz.cvut.fit.genepi.entity.ComplicationEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.HistologyEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.NeurologicalFindingEntity" />
