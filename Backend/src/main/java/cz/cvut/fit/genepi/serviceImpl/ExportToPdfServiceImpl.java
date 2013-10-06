@@ -8,7 +8,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -44,10 +43,9 @@ import cz.cvut.fit.genepi.service.LoggingService;
 @Service
 public class ExportToPdfServiceImpl implements ExportToPdfService {
 
-
 	@Autowired
 	private static MessageSource messageSource;
-	
+
 	private static PatientEntity patient;
 
 	private static UserEntity user;
@@ -114,7 +112,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	public void export(PatientEntity patient, UserEntity user,
-			java.util.List<String> exports,Locale locale) {
+			java.util.List<String> exports,
+			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
@@ -166,7 +165,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			e.printStackTrace();
 		}
 		try {
-			addContent(document, exports,locale);
+			addContent(document, exports, listOfPossibleCards);
 		} catch (DocumentException e) {
 			logger.logError("Document exception when trying to save pdf file.",
 					e);
@@ -247,7 +246,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 *             the document exception
 	 */
 	private static void addContent(Document document,
-			java.util.List<String> exports,Locale locale)
+			java.util.List<String> exports,
+			java.util.List<String> listOfPossibleCards)
 			throws DocumentException {
 
 		Anchor anchor = new Anchor("First Chapter", catFont);
@@ -281,10 +281,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		subCatPart.add(patientParagraph);
 		// Add a table
 		createTable(subCatPart);
-
+		;
 		for (String s : exports) {
-			if (s.equals(messageSource.getMessage("label.anamnesis", null,
-					locale))) {
+			if (s.equals(listOfPossibleCards.get(0))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -293,7 +292,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(1))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -302,7 +301,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(2))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -311,7 +310,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(3))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -320,7 +319,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(4))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -329,7 +328,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(5))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -338,7 +337,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Anamnesis")) {
+			if (s.equals(listOfPossibleCards.get(6))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
@@ -347,7 +346,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 					printOutAnamnesis(subCatPart, a);
 				}
 			}
-			if (s.equals("Outbreaks")) {
+			if (s.equals(listOfPossibleCards.get(7))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
 						catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);

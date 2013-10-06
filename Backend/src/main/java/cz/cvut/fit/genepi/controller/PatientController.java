@@ -76,6 +76,8 @@ public class PatientController {
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
 
+	private List<String> listOfPossibleCards;
+
 	/**
 	 * Creates the patient get.
 	 * 
@@ -262,7 +264,7 @@ public class PatientController {
 				.getAuthentication();
 		UserEntity user = userService.findUserByUsername(auth.getName());
 
-		List<String> listOfPossibleCards = new ArrayList<String>();
+		this.listOfPossibleCards = new ArrayList<String>();
 
 		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis",
 				null, locale));
@@ -298,7 +300,6 @@ public class PatientController {
 		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
-		model.addAttribute("listOfExports", new ArrayList<String>());
 		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
 	}
@@ -312,7 +313,6 @@ public class PatientController {
 
 		List<String> listOfExports = new ArrayList<String>();
 		for (String s : cards) {
-			System.out.println(s);
 			listOfExports.add(s);
 		}
 
@@ -324,7 +324,7 @@ public class PatientController {
 			try {
 				exportToPdfService.export(patient,
 						userService.findUserByUsername(auth.getName()),
-						listOfExports, locale);
+						listOfExports, listOfPossibleCards);
 			} catch (FileNotFoundException e) {
 				logger.logError(
 						"File wasn't found when trying to export to pdf.", e);
@@ -345,8 +345,10 @@ public class PatientController {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("listOfExports", new ArrayList<String>());
-		model.addAttribute("exportType", exportType);
 		model.addAttribute("isReady", isReady);
+
+		model.addAttribute("cards", cards);
+		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		return "patient/exportView";
 	}
 }
