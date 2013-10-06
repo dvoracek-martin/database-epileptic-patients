@@ -282,10 +282,13 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@ModelAttribute("patient") PatientEntity patient,
+			@RequestParam("patientID") Integer patientID,
 			@RequestParam("exportType") String exportType, Locale locale,
 			Model model) {
 		logger.setLogger(PatientController.class);
+		
+		PatientEntity patient=patientService.findByID(PatientEntity.class,
+				patientID);
 		List<String> listOfExports = new ArrayList<String>();
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
