@@ -17,7 +17,7 @@
 					<spring:message code="label.user" />
 				</h2>
 
-				<spring:message code="label.userid" />
+				<spring:message code="label.userID" />
 				&nbsp;
 				<div class="label label-info">${user.id}</div>
 				<br>
@@ -62,7 +62,7 @@
 				<div class="label label-info">${user.contact.addressCountry}</div>
 				<br>
 
-				<spring:message code="label.phoneNumber" />
+				<spring:message code="label.telephone" />
 				&nbsp;
 				<div class="label label-info">${user.contact.phoneNumber}</div>
 				<br>
@@ -72,7 +72,7 @@
 				<div class="label label-info">${user.contact.email}</div>
 				<br> <input type="button" class="btn btn-small btn-primary"
 			onclick="document.location = '<c:url value="/user/${user.id}/edit"/>';"
-			value="<spring:message code="label.editdata" />"> <input
+			value="<spring:message code="label.editData" />"> <input
 			type="button" class="btn btn-small btn-primary"
 			onclick="document.location = '<c:url value="/user/${user.id}/change-password"/>';"
 			value="<spring:message code="label.changePassword" />">

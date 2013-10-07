@@ -26,7 +26,6 @@ import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
-import cz.cvut.fit.genepi.service.AnamnesisService;
 import cz.cvut.fit.genepi.service.ExportParamsService;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
@@ -35,6 +34,7 @@ import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.service.card.AnamnesisService;
 
 // TODO: Auto-generated Javadoc
 /**

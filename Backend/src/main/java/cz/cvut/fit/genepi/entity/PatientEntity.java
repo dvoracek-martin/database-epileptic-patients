@@ -23,6 +23,8 @@ import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class PatientEntity.
