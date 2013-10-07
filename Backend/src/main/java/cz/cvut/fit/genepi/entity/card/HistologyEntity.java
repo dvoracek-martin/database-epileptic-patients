@@ -15,6 +15,8 @@ import javax.validation.constraints.Past;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+
 @Entity
 @Table(name = "HISTOLOGY")
 public class HistologyEntity {
@@ -58,9 +60,9 @@ public class HistologyEntity {
 	@Column(name = "STATUS", nullable = false)
 	private int status;
 	
-	/*@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;*/
+	private PatientEntity patient;
 
 	public int getId() {
 		return id;
@@ -141,14 +143,12 @@ public class HistologyEntity {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	/*public PatientEntity getPatient() {
+	public PatientEntity getPatient() {
 		return patient;
 	}
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
-	}*/
-	
-	
+	}	
 	
 }
