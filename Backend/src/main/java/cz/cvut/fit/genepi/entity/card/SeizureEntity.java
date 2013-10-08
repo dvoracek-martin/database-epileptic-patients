@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import cz.cvut.fit.genepi.entity.PatientEntity;
+
 // TODO: Auto-generated Javadoc
 /**
  * The Class SeizureEntity.
@@ -97,17 +99,17 @@ public class SeizureEntity {
 	private int status;
 	
 	
-	/*@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;*/
-
-	/*public PatientEntity getPatient() {
+	private PatientEntity patient;
+	
+	public PatientEntity getPatient() {
 		return patient;
 	}
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
-	}*/
+	}
 
 
 	/**
