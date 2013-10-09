@@ -160,7 +160,7 @@
 
 							<div id="editContact" style="display: none">
 								<form:label path="contact.phoneNumber">
-									<spring:message code="label.phoneNumber" />
+									<spring:message code="label.telephone" />
 								</form:label>
 								<form:input id="phoneNumber" path="contact.phoneNumber"
 							value="${patient.contact.phoneNumber}" type="text"
