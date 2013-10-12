@@ -34,17 +34,17 @@ public class AnamnesisController {
 
 	private PatientService patientService;
 
-	@Autowired
-	public AnamnesisController(PatientService patientService){
-		this.patientService = patientService;
-	}
-	
-	/** The anamnesis service. */
-	@Autowired
 	private AnamnesisService anamnesisService;
 
-	@Autowired
 	private RoleService roleService;
+
+	@Autowired
+	public AnamnesisController(PatientService patientService,
+			AnamnesisService anamnesisService, RoleService roleService) {
+		this.patientService = patientService;
+		this.anamnesisService = anamnesisService;
+		this.roleService = roleService;
+	}
 
 	/**
 	 * Creates the anamnesis get.
