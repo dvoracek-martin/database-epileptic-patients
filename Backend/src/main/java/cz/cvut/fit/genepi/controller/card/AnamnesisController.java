@@ -31,9 +31,14 @@ import cz.cvut.fit.genepi.service.card.AnamnesisService;
 public class AnamnesisController {
 
 	/** The patient service. */
-	@Autowired
+
 	private PatientService patientService;
 
+	@Autowired
+	public AnamnesisController(PatientService patientService){
+		this.patientService = patientService;
+	}
+	
 	/** The anamnesis service. */
 	@Autowired
 	private AnamnesisService anamnesisService;
