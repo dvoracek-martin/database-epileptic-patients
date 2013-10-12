@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"classpath:anamnesisControllerTestContext.xml",
-		"classpath:applicationContext.xml" })
+		"file:src/main/webapp/WEB-INF/applicationContext.xml" })
 @WebAppConfiguration
 public class AnamnesisControllerTest {
 
