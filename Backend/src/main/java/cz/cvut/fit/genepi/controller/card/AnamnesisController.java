@@ -60,16 +60,12 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.GET)
 	public String anamnesisCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
 
 		/* getting all docs */
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
-		doctors = doctorRole.getUsers();
-		model.addAttribute("doctors", doctors);
+		model.addAttribute("doctors", roleService.getAllDoctors());
 
-		model.addAttribute("patient", patient);
+		model.addAttribute("patient", patientService.findByID(PatientEntity.class,
+				patientID));
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "patient/anamnesis/createView";
 	}
@@ -88,8 +84,12 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/create", method = RequestMethod.POST)
 	public String anamnesisCreatePOST(
 			@ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {
+			BindingResult result, @PathVariable("patientID") Integer patientID,
+			Model model, Locale locale) {
 		if (result.hasErrors()) {
+			model.addAttribute("doctors", roleService.getAllDoctors());
+			model.addAttribute("patient", patientService.findByID(PatientEntity.class,
+					patientID));
 			return "patient/anamnesis/createView";
 		} else {
 			anamnesis.setPatient(patientService.findByID(PatientEntity.class,
@@ -143,9 +143,8 @@ public class AnamnesisController {
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/list", method = RequestMethod.GET)
 	public String anamnesisListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
-		model.addAttribute("patient", patient);
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/anamnesis/listView";
 	}
 }

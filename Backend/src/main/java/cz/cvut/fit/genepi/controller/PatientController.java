@@ -89,14 +89,8 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
-
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
-		doctors = doctorRole.getUsers();
-		model.addAttribute("doctors", doctors);
-
+		model.addAttribute("doctors", roleService.getAllDoctors());
 		model.addAttribute("patient", new PatientEntity());
-		model.addAttribute("doctors", doctors);
 		model.addAttribute("male",
 				messageSource.getMessage("label.male", null, locale));
 		model.addAttribute("female",
@@ -118,6 +112,7 @@ public class PatientController {
 			@ModelAttribute("patient") @Valid PatientEntity patient,
 			BindingResult result, Locale locale, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("doctors", roleService.getAllDoctors());
 			model.addAttribute("male",
 					messageSource.getMessage("label.male", null, locale));
 			model.addAttribute("female",
@@ -162,9 +157,8 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
-		model.addAttribute("patient", patient);
+		model.addAttribute("patient", patientService.findByID(PatientEntity.class,
+				patientID));
 		return "patient/overviewView";
 	}
 
@@ -216,8 +210,7 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		patientService.findByID(PatientEntity.class, patientID);
+			@PathVariable("patientID") Integer patientID) {	
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/editView";
@@ -238,6 +231,7 @@ public class PatientController {
 	public String patientEditPOST(Locale locale, Model model,
 			@ModelAttribute("patient") PatientEntity patient) {
 
+		// FIXME: validation and its failure branch
 		patientService.save(patient);
 		return "redirect:/patient/" + Integer.toString(patient.getId())
 				+ "/overview";
@@ -345,8 +339,8 @@ public class PatientController {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("isReady", isReady);
-		model.addAttribute("exportType",exportType);
-		
+		model.addAttribute("exportType", exportType);
+
 		return "patient/exportView";
 	}
 }
