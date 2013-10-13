@@ -104,7 +104,7 @@
 							commandName="emptyMessage">
 						<div class="modal-body">
 							<form:input type="" path="message" class="input-block-level"
-									value="sasasass" />
+									value="" />
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">
