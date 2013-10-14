@@ -24,6 +24,7 @@ import com.itextpdf.text.DocumentException;
 
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
+import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportParamsService;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
@@ -341,14 +342,16 @@ public class PatientController {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("isReady", isReady);
+		model.addAttribute("listOfPossibleExportParams",
+				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
 		return "patient/exportView";
 	}
 
 	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
 	public String patientExportSavePOST(
-			@RequestParam("patient") Integer patientId,
-			
+			@RequestParam("patientId") Integer patientId,
+
 			@RequestParam("exportName") String exportName,
 			@RequestParam("cards") Integer[] cards, Locale locale, Model model) {
 		ExportParamsEntity exportParams = new ExportParamsEntity();
@@ -358,14 +361,89 @@ public class PatientController {
 		for (int i : cards) {
 			params += exportParamsService.changerToString(i, locale) + ",";
 		}
-		params=params.substring(0, params.length()-1);
+		params = params.substring(0, params.length() - 1);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
-		exportParams.setUserID(userService.findUserByUsername(auth.getName()).getId());
+		exportParams.setUserID(userService.findUserByUsername(auth.getName())
+				.getId());
 		exportParams.setParams(params);
-		
+
 		exportParamsService.save(exportParams);
 
+		return "redirect:/patient/" + patientId + "/export";
+	}
+
+	// TODO: revision
+	@RequestMapping(value = "/patient/export/load", method = RequestMethod.GET)
+	public String patientExportLoadPOST(Model model, Locale locale,
+			@RequestParam("patientId") Integer patientID,
+			@RequestParam("exportId") Integer exportID) {
+
+		if (logger.getLogger() == null)
+			logger.setLogger(PatientController.class);
+
+		ExportParamsEntity exportParams = exportParamsService.findByID(
+				ExportParamsEntity.class, exportID);
+		String[] arrayOfAsignedCards = exportParams.getParams().split(",");
+
+		List<String> listOfAllCards = new ArrayList<String>();
+		listOfAllCards.add(messageSource.getMessage("label.anamnesis", null,
+				locale));
+		listOfAllCards.add("Farmakoloterapie");
+		listOfAllCards.add("Zachvaty");
+		listOfAllCards.add("Farmakoloterapie");
+		listOfAllCards.add("Neurologicke nalezy");
+		listOfAllCards.add("Neuropsychologie");
+		listOfAllCards.add("Diagnosticke EEG testy");
+		listOfAllCards.add("Diagnosticke MRI testy");
+		listOfAllCards.add("Invazivni EEG testy");
+		listOfAllCards.add("Invazivni ECoG testy");
+		listOfAllCards.add("Operace");
+		listOfAllCards.add("Histologie");
+		listOfAllCards.add("Komplikace");
+		listOfAllCards.add("Outcome");
+
+		List<String> listOfPossibleCards = new ArrayList<String>();
+
+		boolean found = false;
+		for (String possibleCard : listOfAllCards) {
+			found = false;
+			for (String card : arrayOfAsignedCards)
+				if (card.equals(possibleCard)) {
+					found = true;
+					continue;
+				}
+			if (!found) {
+				listOfPossibleCards.add(possibleCard);
+			}
+		}
+
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		UserEntity user = userService.findUserByUsername(auth.getName());
+
+		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
+		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
+
+
+		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfSavedConfigurations = exportParamsService
+				.findExportParamsEntityByUserID(user.getId());
+		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfUsersSavedConfigurations = exportParamsService
+				.findAll(ExportParamsEntity.class);
+
+		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
+		model.addAttribute("listOfSavedConfigurations",
+				listOfSavedConfigurations);
+		model.addAttribute("listOfUsersSavedConfigurations",
+				listOfUsersSavedConfigurations);
+		model.addAttribute("user", user);
+
+		boolean isReady = false;
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patientID));
+		model.addAttribute("isReady", isReady);
 		return "redirect:/patient/" + patientId + "/export";
 	}
 }
