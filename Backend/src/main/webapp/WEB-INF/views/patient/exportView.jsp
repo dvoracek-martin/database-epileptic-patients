@@ -53,9 +53,22 @@
 													'value',
 													$('#exportNameToCopy')
 															.val());
-											$('#exportForm').submit();
+											
+						$('#exportForm').submit();
 										});
 					</script>
+					//change action URL when deleting users SET
+						<script>
+						$('#exportParamDeleteBrn')
+								.click(
+										function() {
+											$('#usersSet')
+													.attr('action',
+															'<c:url value="/patient/export/delete" />');
+											$('#usersSet').submit();
+										});
+					</script>
+				
 	</jsp:attribute>
 
 	<jsp:body>
@@ -128,7 +141,7 @@ li.sortable-placeholder {
 					
 					
 					<div class="span6">
-					<form method="POST" action="<c:url value="/patient/export/load" />">
+					<form id="usersSet" method="POST" action="<c:url value="/patient/export/load" />">
 					<label>Users Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
@@ -140,7 +153,8 @@ li.sortable-placeholder {
 							</c:forEach>	
 						</select>
 					<input type="hidden" value="${patient.id}" name="patientId">
-					<button class="btn btn-primary" type="submit" />LOAD</button>		
+					<button class="btn btn-primary" type="submit" />LOAD</button>
+					<button id="exportParamDeleteBrn" class="btn btn-primary" type="submit" />DELETE</button>				
 					</form>
 					</div>
 					
@@ -152,7 +166,8 @@ li.sortable-placeholder {
 			
 					<c:forEach var="possibleCard" items="${listOfPossibleCards}">
 						<li draggable="true">${possibleCard}
-						<input class="btn" type="hidden" name="cards" value="${possibleCard}">
+						<input class="btn" type="hidden" name="cards"
+							value="${possibleCard}">
 						</li>			
 					</c:forEach>
 				</ul>	
@@ -168,7 +183,8 @@ li.sortable-placeholder {
 						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
 					<c:forEach var="arrayOfAsignedCard" items="${arrayOfAsignedCards}">
 						<li draggable="true">${arrayOfAsignedCard}
-						<input class="btn" type="hidden" name="cards" value="${arrayOfAsignedCard}">
+						<input class="btn" type="hidden" name="cards"
+								value="${arrayOfAsignedCard}">
 						</li>			
 					</c:forEach>
 				</ul>

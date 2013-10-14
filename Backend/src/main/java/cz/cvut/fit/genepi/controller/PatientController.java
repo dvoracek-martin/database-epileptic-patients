@@ -455,8 +455,8 @@ public class PatientController {
 		return "patient/exportView";
 	}
 
-	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
-	public String patientExportSavePOST(
+	@RequestMapping(value = "/patient/export/delete", method = RequestMethod.POST)
+	public String patientExportDeletePOST(
 			@RequestParam("patientId") Integer patientId,
 			@RequestParam("exportId") Integer exportId) {
 		exportParamsService.delete(exportParamsService.findByID(
