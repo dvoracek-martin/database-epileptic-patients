@@ -49,7 +49,7 @@ public class SeizureEntity {
 
 	/** The status epilepticus. */
 	@Column(name = "status_epilepticus")
-	private int statusEpilepticus;
+	private boolean statusEpilepticus;
 
 	/** The ssc classification idcom. */
 	@Column(name = "ssc_classification_idcom")
@@ -225,7 +225,7 @@ public class SeizureEntity {
 	 *
 	 * @return the status epilepticus
 	 */
-	public int getStatusEpilepticus() {
+	public boolean getStatusEpilepticus() {
 		return statusEpilepticus;
 	}
 
@@ -234,7 +234,7 @@ public class SeizureEntity {
 	 *
 	 * @param statusEpilepticus the new status epilepticus
 	 */
-	public void setStatusEpilepticus(int statusEpilepticus) {
+	public void setStatusEpilepticus(boolean statusEpilepticus) {
 		this.statusEpilepticus = statusEpilepticus;
 	}
 
