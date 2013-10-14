@@ -22,6 +22,9 @@ public class ExportParamsEntity {
 	
 	@Column(name="user_id")
 	private int userID;
+	
+	@Column(name="isGeneric")
+	private boolean isGeneric;
 
 	public int getId() {
 		return id;
@@ -55,6 +58,11 @@ public class ExportParamsEntity {
 		this.userID = userID;
 	}
 
-	
-	
+	public boolean isGeneric() {
+		return isGeneric;
+	}
+
+	public void setGeneric(boolean isGeneric) {
+		this.isGeneric = isGeneric;
+	}	
 }
