@@ -347,7 +347,7 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
 	public String patientExportSavePOST(
-			@RequestParam("patient") PatientEntity patient,
+			@RequestParam("patient") Integer patientId,
 			@RequestParam("exportName") String exportName,
 			@RequestParam("cards") Integer[] cards, Locale locale, Model model) {
 		ExportParamsEntity exportParams = new ExportParamsEntity();
@@ -360,8 +360,6 @@ public class PatientController {
 
 		exportParams.setParams(params);
 
-		return "redirect:/patient/" + Integer.toString(patient.getId())
-				+ "/export";
+		return "redirect:/patient/" + patientId + "/export";
 	}
-
 }
