@@ -356,8 +356,9 @@ public class PatientController {
 		String params = "";
 
 		for (int i : cards) {
-			params += Integer.toString(i);
+			params += exportParamsService.changerToString(i, locale) + ",";
 		}
+		params=params.substring(0, params.length()-1);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		exportParams.setUserID(userService.findUserByUsername(auth.getName()).getId());
