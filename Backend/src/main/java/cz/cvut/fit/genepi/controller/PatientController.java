@@ -24,7 +24,6 @@ import com.itextpdf.text.DocumentException;
 
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportParamsService;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
@@ -343,7 +342,26 @@ public class PatientController {
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("isReady", isReady);
 		model.addAttribute("exportType", exportType);
-
 		return "patient/exportView";
 	}
+
+	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
+	public String patientExportSavePOST(
+			@RequestParam("patient") PatientEntity patient,
+			@RequestParam("exportName") String exportName,
+			@RequestParam("cards") Integer[] cards, Locale locale, Model model) {
+		ExportParamsEntity exportParams = new ExportParamsEntity();
+		exportParams.setName(exportName);
+		String params = null;
+
+		for (int i : cards) {
+			params += Integer.toString(i);
+		}
+
+		exportParams.setParams(params);
+
+		return "redirect:/patient/" + Integer.toString(patient.getId())
+				+ "/export";
+	}
+
 }
