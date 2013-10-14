@@ -419,6 +419,12 @@ public class PatientController {
 				listOfPossibleCards.add(possibleCard);
 			}
 		}
+		
+		for (String s: listOfPossibleCards){
+			System.out.println(s);
+		}for (String s: arrayOfAsignedCards){
+			System.out.println(s);
+		}
 
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();

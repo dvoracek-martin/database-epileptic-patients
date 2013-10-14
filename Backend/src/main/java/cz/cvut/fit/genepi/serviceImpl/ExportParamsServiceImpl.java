@@ -47,28 +47,28 @@ public class ExportParamsServiceImpl extends
 			return "Neuropsychologie";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 6) {
-			return "neco";
+			return "Diagnosticke EEG testy";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 7) {
-			return "neco";
+			return "Diagnosticke MRI testy";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 8) {
-			return "neco";
+			return "Invazivni EEG testy";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 9) {
-			return "neco";
+			return "Invazivni ECoG testy";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 10) {
-			return "neco";
+			return "Operace";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 11) {
-			return "neco";
+			return "Histologie";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 12) {
-			return "neco";
+			return "Komplikace";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else if (ID == 13) {
-			return "neco";
+			return "Outcome";
 			// return messageSource.getMessage("label.anamnesis", null, locale);
 		} else {
 			return "Unkonown ID of the card";
