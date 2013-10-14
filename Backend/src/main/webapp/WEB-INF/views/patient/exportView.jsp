@@ -150,30 +150,26 @@ li.sortable-placeholder {
 				<ul id="sortable4" class="connected sortable list"
 					style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">
 			
-			<c:set var="count" value="0" />
 					<c:forEach var="possibleCard" items="${listOfPossibleCards}">
 						<li draggable="true">${possibleCard}
-						<input class="btn" type="hidden" name="cards" value="${count}">
+						<input class="btn" type="hidden" name="cards" value="${possibleCard}">
 						</li>			
-						<c:set var="count" value="${count + 1}" />
 					</c:forEach>
 				</ul>	
 			</div>
 			
 			<form:form id="exportForm" method="POST" modelAttribute="patient"
 				class="form-horizontal" action="/GENEPI/patient/export"
-				commandName="patient">
+				commandName="patient"> 
 	
 			<div class="span3">
 				<label>Vybrané karty</label>
 				<ul id="sortable5" class="connected sortable list"
 						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
-						<c:set var="count2" value="0" />
 					<c:forEach var="arrayOfAsignedCard" items="${arrayOfAsignedCards}">
-						<li draggable="true">${possibleCard}
-						<input class="btn" type="hidden" name="cards" value="${count}">
+						<li draggable="true">${arrayOfAsignedCard}
+						<input class="btn" type="hidden" name="cards" value="${arrayOfAsignedCard}">
 						</li>			
-						<c:set var="count" value="${count + 1}" />
 					</c:forEach>
 				</ul>
 			</div>
