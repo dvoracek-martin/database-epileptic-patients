@@ -298,6 +298,8 @@ public class PatientController {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("isReady", isReady);
+		String[] arrayOfAsignedCards = null;
+		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
 		return "patient/exportView";
 	}
 
@@ -374,9 +376,9 @@ public class PatientController {
 	}
 
 	// TODO: revision
-	@RequestMapping(value = "/patient/export/load", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/export/load", method = RequestMethod.POST)
 	public String patientExportLoadPOST(Model model, Locale locale,
-			@RequestParam("patientId") Integer patientID,
+			@RequestParam("patientId") Integer patientId,
 			@RequestParam("exportId") Integer exportID) {
 
 		if (logger.getLogger() == null)
@@ -442,8 +444,8 @@ public class PatientController {
 
 		boolean isReady = false;
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientID));
+				patientService.findByID(PatientEntity.class, patientId));
 		model.addAttribute("isReady", isReady);
-		return "redirect:/patient/" + patientId + "/export";
+		return "patient/exportView";
 	}
 }

@@ -43,15 +43,18 @@
 					</script>
 					//jQuery for changing action method of rform when clicking on SAVE set
 					<script>
-						$('#saveSetBtn').click(
-								function() {
-									$('#exportForm').attr('action',
-											'<c:url value="/patient/export/save" />');
-									$('#exportName').attr(
-											'value',
-											$('#exportNameToCopy').val());
-									$('#exportForm').submit();
-								});
+						$('#saveSetBtn')
+								.click(
+										function() {
+											$('#exportForm')
+													.attr('action',
+															'<c:url value="/patient/export/save" />');
+											$('#exportName').attr(
+													'value',
+													$('#exportNameToCopy')
+															.val());
+											$('#exportForm').submit();
+										});
 					</script>
 	</jsp:attribute>
 
@@ -123,6 +126,25 @@ li.sortable-placeholder {
 						</h2>
 					</div>
 					
+					
+					<div class="span6">
+					<form method="POST" action="<c:url value="/patient/export/load" />">
+					<label>Users Sets</label>
+					
+						<select name="exportId" type="text" class="input-large">
+							<c:forEach items="${listOfUsersSavedConfigurations}"
+							var="exportParam">
+								<option value="${exportParam.id}">
+									${exportParam.name}
+								</option>
+							</c:forEach>	
+						</select>
+					<input type="hidden" value="${patient.id}" name="patientId">
+					<button class="btn btn-primary" type="submit" />LOAD</button>		
+					</form>
+					</div>
+					
+					
 			<div class="span3">
 				<label>Dostupné karty</label>
 				<ul id="sortable4" class="connected sortable list"
@@ -146,7 +168,13 @@ li.sortable-placeholder {
 				<label>Vybrané karty</label>
 				<ul id="sortable5" class="connected sortable list"
 						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
-					
+						<c:set var="count2" value="0" />
+					<c:forEach var="arrayOfAsignedCard" items="${arrayOfAsignedCards}">
+						<li draggable="true">${possibleCard}
+						<input class="btn" type="hidden" name="cards" value="${count}">
+						</li>			
+						<c:set var="count" value="${count + 1}" />
+					</c:forEach>
 				</ul>
 			</div>
 			
@@ -174,7 +202,7 @@ li.sortable-placeholder {
 											 
 						<form:hidden path="id" id="id" />
 						
-						<input type="hidden" value="${patient.id}" name="patient">
+						<input type="hidden" value="${patient.id}" name="patientId">
 						<input id="exportName" type="hidden" value="" name="exportName">
 					</form:form>
 
@@ -185,10 +213,12 @@ li.sortable-placeholder {
 						href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>
 					</c:if>
+					<div class="span6">
 					<label>Uložit sestavu</label>
 					<input id="exportNameToCopy" type="text" name="name">
 						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
 				</div>
+		</div>
 	</jsp:body>
 </t:menuLVL3>
 
