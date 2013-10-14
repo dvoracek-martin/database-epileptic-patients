@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.service.RoleService;
 
+//TODO: this controller doesnt do anything right now
 @Scope("session")
 @Controller
 public class RoleController {

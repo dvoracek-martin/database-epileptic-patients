@@ -43,47 +43,13 @@ public class ProfileController {
 	@Autowired
 	private ContactService contactService;
 
-	/**
-	 * My profile post.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
-	@RequestMapping(value = "/profile", method = RequestMethod.POST)
-	public String profilePOST(Locale locale, Model model) {
-		return "profileView";
-	}
-
-	/**
-	 * Login get.
-	 *
-	 * @param model the model
-	 * @return the string
-	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profileGET(Model model) {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 
-		UserEntity user = userService.findUserByUsername(auth.getName());
-		List<UserRoleEntity> listOfAssignedUserRoles = userRoleService
-				.findAllUserRolesByUserID(user.getId());
-		List<RoleEntity> listOfAssignedRoles = new ArrayList<RoleEntity>();
-		List<RoleEntity> listOfPossibleRoles = roleService
-				.findAll(RoleEntity.class);
-
-		for (UserRoleEntity userRole : listOfAssignedUserRoles) {
-			for (RoleEntity role : listOfPossibleRoles) {
-				if (userRole.getRole_id() == role.getId()) {
-					listOfAssignedRoles.add(role);
-				}
-			}
-		}
-		model.addAttribute("user", user);
-		model.addAttribute("listOfAssignedRoles", listOfAssignedRoles);
+		model.addAttribute("user",
+				userService.findUserByUsername(auth.getName()));
 		return "profileView";
 	}
 }

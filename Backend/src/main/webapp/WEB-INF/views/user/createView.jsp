@@ -148,14 +148,7 @@
 		</form:label>
 		<form:input id="email" path="contact.email" type="email"
 					title="example@address.com" class="input-block-level" />
-		<form:errors path="contact.email" cssClass="alert alert-error" />
-
-
-
-		<c:forEach var="role" items="${listOfPossibleRoles}">
-			<input type="checkbox" value="${role.id}"/> ${role.authority}
-			</br>
-		</c:forEach>
+		<form:errors path="contact.email" cssClass="alert alert-error" />		
 
 		<button class="btn btn-small btn-primary" type="submit"
 					onclick="validation();">

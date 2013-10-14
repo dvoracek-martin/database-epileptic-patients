@@ -1,8 +1,9 @@
 package cz.cvut.fit.genepi.service;
 
 import java.io.Serializable;
-
 import java.util.List;
+import java.util.Locale;
+
 import cz.cvut.fit.genepi.entity.UserEntity;
 
 // TODO: Auto-generated Javadoc
@@ -25,4 +26,6 @@ public interface UserService extends GenericService<UserEntity, Serializable> {
 	 * @return the doctors
 	 */
 	public List<UserEntity> getDoctors();
+
+	public void create(UserEntity user, Locale locale);
 }

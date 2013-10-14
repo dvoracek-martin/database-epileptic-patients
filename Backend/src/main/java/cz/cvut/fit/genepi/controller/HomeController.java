@@ -52,23 +52,13 @@ public class HomeController {
 	public String homeGET(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,
-				DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-
+		// TODO: overide findAll rto return reverted news list
 		List<NewsMessageEntity> newsMessages = newsMessageService
 				.findAll(NewsMessageEntity.class);
 		Collections.reverse(newsMessages);
 		model.addAttribute("newsMessages", newsMessages);
-		/*
-		 * next line allows you to access property formattedDate within your
-		 * home.jsp page. you can access it with writting ${serverTime} just to
-		 * your html code
-		 */
 		model.addAttribute("patientList",
 				newsMessageService.findAll(NewsMessageEntity.class));
-		model.addAttribute("serverTime", formattedDate);
 		model.addAttribute("emptyMessage", new NewsMessageEntity());
 		return "homeView";
 	}
@@ -80,6 +70,11 @@ public class HomeController {
 			@ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
 			BindingResult result) {
 		if (result.hasErrors()) {
+			// TODO: overide findAll rto return reverted news list
+			List<NewsMessageEntity> newsMessages = newsMessageService
+					.findAll(NewsMessageEntity.class);
+			Collections.reverse(newsMessages);
+			model.addAttribute("newsMessages", newsMessages);
 			return "homeView";
 		}
 		newsMessageService.save(newsMessage);
@@ -95,8 +90,14 @@ public class HomeController {
 			BindingResult result) {
 
 		if (result.hasErrors()) {
+			// TODO: overide findAll rto return reverted news list
+			List<NewsMessageEntity> newsMessages = newsMessageService
+					.findAll(NewsMessageEntity.class);
+			Collections.reverse(newsMessages);
+			model.addAttribute("newsMessages", newsMessages);
 			return "homeView";
 		}
+		
 		NewsMessageEntity realNewsMessage = newsMessageService.findByID(
 				NewsMessageEntity.class, newsMessageID);
 		realNewsMessage.setMessage(formNewsMessage.getMessage());

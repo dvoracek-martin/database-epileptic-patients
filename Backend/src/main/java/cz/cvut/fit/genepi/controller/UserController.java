@@ -71,10 +71,6 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
 	public String userCreateGET(Model model) {
-		List<RoleEntity> listOfPossibleRoles = roleService
-				.findAll(RoleEntity.class);
-		model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
-		model.addAttribute("listOfSelectedRoles", new ArrayList<RoleEntity>());
 		model.addAttribute("user", new UserEntity());
 		model.addAttribute("isUnique", "unique");
 		return "user/createView";
@@ -92,55 +88,20 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String userCreatePOST(
-			@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result, Model model, Locale locale) {
-
+	public String userCreatePOST(Model model, Locale locale,
+			@ModelAttribute("user") @Valid UserEntity user, BindingResult result) {
 		if (result.hasErrors()) {
 			return "user/createView";
 		} else {
+			// TODO: maybe userSrvice.create should do this IF and return
+			// boolean
 			if (userService.findUserByUsername(user.getUsername()) != null) {
 				model.addAttribute("isUnique", "notUnique");
 				return "user/createView";
 			} else {
-				String password = RandomStringUtils.randomAlphanumeric(10);
+				userService.create(user, locale);
 				if (logger.getLogger() == null)
 					logger.setLogger(UserController.class);
-				logger.logInfo("New password " + password + " for new user id "
-						+ user.getId() + " generated.");
-				user.setPassword(DigestUtils.sha256Hex(password + "{"
-						+ user.getUsername() + "}"));
-
-				/* assigning roles to user */
-				ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>();
-				roles.add(roleService.findByID(RoleEntity.class, 1));
-				user.setRoles(roles);
-				userService.save(user);
-
-				/*
-				 * List<Integer> listOfRoles = new ArrayList<Integer>();
-				 * listOfRoles.add(1); List<UserRoleEntity> listOfUserRoles =
-				 * new ArrayList<UserRoleEntity>(); for (int i : listOfRoles) {
-				 * UserRoleEntity userRole = new UserRoleEntity();
-				 * userRole.setUser_id(user.getId()); userRole.setRole_id(i);
-				 * listOfUserRoles.add(userRole); } for (UserRoleEntity userRole
-				 * : listOfUserRoles) { userRoleService.save(userRole); }
-				 */
-
-				/* sending email to user about account creation */
-				try {
-					HashMap<String, Object> map = new HashMap<String, Object>();
-					map.put("subject", "creationOfANewUser");
-					map.put("user", user);
-					map.put("password", password);
-					mailService.sendMail("test", map, locale);
-					logger.logInfo("Email to new user sent");
-
-				} catch (Exception e) {
-					logger.logError(
-							"Error when trying to send email after creating new user.",
-							e);
-				}
 				logger.logInfo("New user successfuly created.");
 				return "redirect:/user/" + Integer.toString(user.getId())
 						+ "/overview";
@@ -162,8 +123,8 @@ public class UserController {
 	@RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
 	public String userOverviewGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(UserEntity.class, userID);
-		model.addAttribute("user", user);
+		model.addAttribute("user",
+				userService.findByID(UserEntity.class, userID));
 		return "user/overviewView";
 	}
 
@@ -188,28 +149,8 @@ public class UserController {
 	@RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
 	public String userEditGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
-		UserEntity user = userService.findByID(UserEntity.class, userID);
-
-		List<RoleEntity> listOfRoles = new ArrayList<RoleEntity>();
-		listOfRoles = roleService.findAll(RoleEntity.class);
-		List<UserRoleEntity> listOfAssignedUserRoles = new ArrayList<UserRoleEntity>();
-		List<RoleEntity> listOfAssignedRoles = new ArrayList<RoleEntity>();
-
-		listOfAssignedUserRoles = userRoleService
-				.findAllUserRolesByUserID(userID);
-
-		for (UserRoleEntity i : listOfAssignedUserRoles) {
-			listOfAssignedRoles.add((roleService.findByID(RoleEntity.class,
-					i.getRole_id())));
-		}
-
-		UserEntity userTmp = new UserEntity();
-		userTmp.setContact(user.getContact());
-
-		model.addAttribute("listOfRoles", listOfRoles);
-		model.addAttribute("listOfAssignedRoles", listOfAssignedUserRoles);
-		model.addAttribute("user", user);
-		model.addAttribute("userTmp", userTmp);
+		model.addAttribute("user",
+				userService.findByID(UserEntity.class, userID));
 		return "user/editView";
 	}
 
@@ -225,12 +166,12 @@ public class UserController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-	public String userEditPOST(@ModelAttribute("user") @Valid UserEntity user,
-			BindingResult result, Model model) {
+	public String userEditPOST(Locale locale, Model model,
+			@Valid @ModelAttribute("user") UserEntity user, BindingResult result) {
 		if (result.hasErrors()) {
 			return "user/editView";
 		}
-
+		// TODO:veird sequence. is there a better solution??
 		ContactEntity contact = new ContactEntity();
 		contact.setId(userService.findByID(UserEntity.class, user.getId())
 				.getContact().getId());
@@ -311,6 +252,7 @@ public class UserController {
 		if (result.hasErrors()) {
 			return "user/" + realUser.getId() + "/change-password";
 		} else {
+			// TODO: transfer to Service
 			String password = formUser.getPassword();
 			realUser.setPassword(DigestUtils.sha256Hex(formUser.getPassword()
 					+ "{" + realUser.getUsername() + "}"));
@@ -330,6 +272,7 @@ public class UserController {
 		return "redirect:/user/" + realUser.getId() + "/change-password";
 	}
 
+	// TODO: revision
 	@RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.GET)
 	public String userEditRolesGET(Locale locale, Model model,
 			@PathVariable("userID") Integer userID) {
@@ -358,6 +301,7 @@ public class UserController {
 		return "user/editRoles";
 	}
 
+	// TODO: revision
 	@RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.POST)
 	public String userEditRolesPOST(
 			@ModelAttribute("user") @Valid UserEntity formUser, Model model,

@@ -73,7 +73,7 @@
 				<br> <br>
 				<spring:message code="label.assignedRoles" />
 				: &nbsp; <br>
-				<c:forEach var="role" items="${listOfAssignedRoles}">
+				<c:forEach var="role" items="${user.roles}">
 					<td><div class="label label-info">${role.authority}</div></td>
 					</br>
 				</c:forEach>

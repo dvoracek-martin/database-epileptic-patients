@@ -108,9 +108,9 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
-	public String patientCreatePOST(
+	public String patientCreatePOST(Locale locale, Model model,
 			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result, Locale locale, Model model) {
+			BindingResult result) {
 		if (result.hasErrors()) {
 			model.addAttribute("doctors", roleService.getAllDoctors());
 			model.addAttribute("male",
@@ -157,8 +157,8 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		model.addAttribute("patient", patientService.findByID(PatientEntity.class,
-				patientID));
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/overviewView";
 	}
 
@@ -194,7 +194,7 @@ public class PatientController {
 			@PathVariable("patientID") Integer patientID) {
 		patientService.delete(patientService.findByID(PatientEntity.class,
 				patientID));
-		return "patient/overviewView";
+		return "redirect:/patient/list";
 	}
 
 	/**
@@ -210,7 +210,7 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {	
+			@PathVariable("patientID") Integer patientID) {
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/editView";
@@ -229,13 +229,16 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
 	public String patientEditPOST(Locale locale, Model model,
-			@ModelAttribute("patient") PatientEntity patient) {
+			@Valid @ModelAttribute("patient") PatientEntity patient,
+			BindingResult result) {
 
-		// FIXME: validation and its failure branch
-		patientService.save(patient);
-		return "redirect:/patient/" + Integer.toString(patient.getId())
-				+ "/overview";
-
+		if (result.hasErrors()) {
+			return "patient/editView";
+		} else {
+			patientService.save(patient);
+			return "redirect:/patient/" + Integer.toString(patient.getId())
+					+ "/overview";
+		}
 	}
 
 	/**
