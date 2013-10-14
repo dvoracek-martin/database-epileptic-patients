@@ -348,17 +348,22 @@ public class PatientController {
 	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
 	public String patientExportSavePOST(
 			@RequestParam("patient") Integer patientId,
+			
 			@RequestParam("exportName") String exportName,
 			@RequestParam("cards") Integer[] cards, Locale locale, Model model) {
 		ExportParamsEntity exportParams = new ExportParamsEntity();
 		exportParams.setName(exportName);
-		String params = null;
+		String params = "";
 
 		for (int i : cards) {
 			params += Integer.toString(i);
 		}
-
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
+		exportParams.setUserID(userService.findUserByUsername(auth.getName()).getId());
 		exportParams.setParams(params);
+		
+		exportParamsService.save(exportParams);
 
 		return "redirect:/patient/" + patientId + "/export";
 	}
