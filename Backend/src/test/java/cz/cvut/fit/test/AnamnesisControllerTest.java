@@ -111,18 +111,12 @@ public class AnamnesisControllerTest {
 						.sessionAttr("anamnesis", anamnesis))
 				.andExpect(status().isOk())
 				.andExpect(view().name("patient/anamnesis/createView"))
-		// .andExpect(forwardedUrl("/WEB-INF/jsp/todo/add.jsp"))
-		// FIXME: no errors return
-		/*
-		 * .andExpect(model().attributeHasFieldErrors("anamnesis",
-		 * "nonCnsComorbidity"))
-		 */;
-
+				.andExpect(model().attributeHasFieldErrors("anamnesis", "date"));
 		verifyZeroInteractions(anamnesisServiceMock);
 	}
 
-	
-	//FIXME: set all properties which has validation. Anamnesis which is saved and tested is different by Hashcode, dunno why 
+	// FIXME: set all properties which has validation. Anamnesis which is saved
+	// and tested is different by Hashcode, dunno why
 	@Test
 	public void create_AnamnesisEntityValid() throws Exception {
 
