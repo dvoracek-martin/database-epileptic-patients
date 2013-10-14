@@ -24,7 +24,6 @@ import com.itextpdf.text.DocumentException;
 
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportParamsService;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
@@ -355,14 +354,15 @@ public class PatientController {
 			@RequestParam("patientId") Integer patientId,
 
 			@RequestParam("exportName") String exportName,
-			@RequestParam("cards") Integer[] cards, Locale locale, Model model) {
+			@RequestParam("cards") String[] cards, Locale locale, Model model) {
 		ExportParamsEntity exportParams = new ExportParamsEntity();
 		exportParams.setName(exportName);
 		String params = "";
 
-		for (int i : cards) {
-			params += exportParamsService.changerToString(i, locale) + ",";
+		for (String s : cards) {
+			params += s + ",";
 		}
+		
 		params = params.substring(0, params.length() - 1);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
