@@ -121,6 +121,8 @@ public class AnamnesisControllerTest {
 		verifyZeroInteractions(anamnesisServiceMock);
 	}
 
+	
+	//FIXME: set all properties which has validation. Anamnesis which is saved and tested is different by Hashcode, dunno why 
 	@Test
 	public void create_AnamnesisEntityValid() throws Exception {
 
@@ -134,12 +136,8 @@ public class AnamnesisControllerTest {
 								TestUtil.convertObjectToFormUrlEncodedBytes(anamnesis))
 						.sessionAttr("anamnesis", anamnesis))
 				.andExpect(status().isMovedTemporarily())
-				.andExpect(view().name("redirect:todo/{id}"))
-				.andExpect(redirectedUrl("/todo/1"))
-				.andExpect(model().attribute("id", is("1")))
-				.andExpect(
-						flash().attribute("feedbackMessage",
-								is("Todo entry: title was added.")));
+				.andExpect(view().name("redirect:/patient/1/anamnesis/list"))
+				.andExpect(redirectedUrl("/patient/1/anamnesis/list"));
 
 		verify(anamnesisServiceMock, times(1)).save(anamnesis);
 		verifyNoMoreInteractions(anamnesisServiceMock);
