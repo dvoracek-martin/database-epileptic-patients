@@ -362,7 +362,7 @@ public class PatientController {
 		for (String s : cards) {
 			params += s + ",";
 		}
-		
+
 		params = params.substring(0, params.length() - 1);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
@@ -419,10 +419,11 @@ public class PatientController {
 				listOfPossibleCards.add(possibleCard);
 			}
 		}
-		
-		for (String s: listOfPossibleCards){
+
+		for (String s : listOfPossibleCards) {
 			System.out.println(s);
-		}for (String s: arrayOfAsignedCards){
+		}
+		for (String s : arrayOfAsignedCards) {
 			System.out.println(s);
 		}
 
@@ -432,7 +433,6 @@ public class PatientController {
 
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
-
 
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		listOfSavedConfigurations = exportParamsService
@@ -453,5 +453,14 @@ public class PatientController {
 				patientService.findByID(PatientEntity.class, patientId));
 		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
+	}
+
+	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
+	public String patientExportSavePOST(
+			@RequestParam("patientId") Integer patientId,
+			@RequestParam("exportId") Integer exportId) {
+		exportParamsService.delete(exportParamsService.findByID(
+				ExportParamsEntity.class, exportId));
+		return "redirect:/patient/" + patientId + "/export";
 	}
 }
