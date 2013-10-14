@@ -41,6 +41,18 @@
 							});
 						});
 					</script>
+					//jQuery for changing action method of rform when clicking on SAVE set
+					<script>
+						$('#saveSetBtn').click(
+								function() {
+									$('#exportForm').attr('action',
+											'<c:url value="/patient/export/save" />');
+									$('#exportName').attr(
+											'value',
+											$('#exportNameToCopy').val());
+									$('#exportForm').submit();
+								});
+					</script>
 	</jsp:attribute>
 
 	<jsp:body>
@@ -116,16 +128,17 @@ li.sortable-placeholder {
 				<ul id="sortable4" class="connected sortable list"
 					style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">
 			
+			<c:set var="count" value="0" />
 					<c:forEach var="possibleCard" items="${listOfPossibleCards}">
 						<li draggable="true">${possibleCard}
-						<input class="btn" type="hidden" name="cards"
-							value="${possibleCard}">
+						<input class="btn" type="hidden" name="cards" value="${count}">
 						</li>			
+						<c:set var="count" value="${count + 1}" />
 					</c:forEach>
 				</ul>	
 			</div>
 			
-			<form:form method="POST" modelAttribute="patient"
+			<form:form id="exportForm" method="POST" modelAttribute="patient"
 				class="form-horizontal" action="/GENEPI/patient/export"
 				commandName="patient">
 	
@@ -151,7 +164,9 @@ li.sortable-placeholder {
 						
 						<div class="control-group span6">
 						    <div class="controls">
-						      	<button id="submitBtn" onclick='this.style.visibility = "hidden";' type="submit" class="btn btn-primary">
+						      	<button id="submitBtn"
+							onclick='this.style.visibility = "hidden";' type="submit"
+							class="btn btn-primary">
 							<spring:message code="label.export" />
 						</button>	
 						    </div>
@@ -159,6 +174,8 @@ li.sortable-placeholder {
 											 
 						<form:hidden path="id" id="id" />
 						
+						<input type="hidden" value="${patient.id}" name="patient">
+						<input id="exportName" type="hidden" value="" name="exportName">
 					</form:form>
 
 					<c:if test="${isReady==true}">
@@ -168,7 +185,9 @@ li.sortable-placeholder {
 						href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>
 					</c:if>
-					
+					<label>Uložit sestavu</label>
+					<input id="exportNameToCopy" type="text" name="name">
+						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
 				</div>
 	</jsp:body>
 </t:menuLVL3>
