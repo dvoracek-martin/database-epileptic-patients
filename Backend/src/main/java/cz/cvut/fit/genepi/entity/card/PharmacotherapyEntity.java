@@ -98,12 +98,14 @@ public class PharmacotherapyEntity {
 		this.added = added;
 	}
 
-	public int getAed_idcom() {
+
+
+	public int getAedIdcom() {
 		return aedIdcom;
 	}
 
-	public void setAed_idcom(int aed_idcom) {
-		this.aedIdcom = aed_idcom;
+	public void setAedIdcom(int aedIdcom) {
+		this.aedIdcom = aedIdcom;
 	}
 
 	public Boolean getEffective() {
