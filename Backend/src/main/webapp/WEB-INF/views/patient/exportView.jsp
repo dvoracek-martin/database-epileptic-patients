@@ -3,6 +3,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ page pageEncoding="UTF-8"%>
 
 
@@ -54,20 +56,24 @@
 													$('#exportNameToCopy')
 															.val());
 											
-						$('#exportForm').submit();
+											<sec:authorize ifAnyGranted="ROLE_ADMIN">
+											$('#isGeneric').attr('value',$('#isGenericBox').is(':checked'));
+											</sec:authorize>
+											
+											$('#exportForm').submit();
 										});
 					</script>
 					//change action URL when deleting users SET
 						<script>
-						$('#exportParamDeleteBrn')
-								.click(
-										function() {
-											$('#usersSet')
-													.attr('action',
-															'<c:url value="/patient/export/delete" />');
-											$('#usersSet').submit();
-										});
-					</script>
+							$('#exportParamDeleteBrn')
+									.click(
+											function() {
+												$('#usersSet')
+														.attr('action',
+																'<c:url value="/patient/export/delete" />');
+												$('#usersSet').submit();
+											});
+						</script>
 				
 	</jsp:attribute>
 
@@ -141,7 +147,8 @@ li.sortable-placeholder {
 					
 					
 					<div class="span6">
-					<form id="usersSet" method="POST" action="<c:url value="/patient/export/load" />">
+					<form id="usersSet" method="POST"
+					action="<c:url value="/patient/export/load" />">
 					<label>Users Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
@@ -154,7 +161,8 @@ li.sortable-placeholder {
 						</select>
 					<input type="hidden" value="${patient.id}" name="patientId">
 					<button class="btn btn-primary" type="submit" />LOAD</button>
-					<button id="exportParamDeleteBrn" class="btn btn-primary" type="submit" />DELETE</button>				
+					<button id="exportParamDeleteBrn" class="btn btn-primary"
+						type="submit" />DELETE</button>				
 					</form>
 					</div>
 					
@@ -216,6 +224,7 @@ li.sortable-placeholder {
 						
 						<input type="hidden" value="${patient.id}" name="patientId">
 						<input id="exportName" type="hidden" value="" name="exportName">
+						<input id="isGeneric" type="hidden" value="0" name="isGeneric">
 					</form:form>
 
 					<c:if test="${isReady==true}">
@@ -225,9 +234,19 @@ li.sortable-placeholder {
 						href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
 					</div>
 					</c:if>
+					
+					
+
+						
+						
 					<div class="span6">
-					<label>Uložit sestavu</label>
+					<label>Uložit generic sestavu</label>
 					<input id="exportNameToCopy" type="text" name="name">
+					
+						<sec:authorize ifAnyGranted="ROLE_ADMIN">
+						<input id="isGenericBox" type="checkbox" name="isGeneric">Is Generic???
+						</sec:authorize>
+						
 						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
 				</div>
 		</div>

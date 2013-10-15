@@ -23,7 +23,7 @@ public class ExportParamsEntity {
 	@Column(name="user_id")
 	private int userID;
 	
-	@Column(name="isGeneric")
+	@Column(name="is_generic")
 	private boolean isGeneric;
 
 	public int getId() {
