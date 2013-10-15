@@ -68,7 +68,7 @@
 					</tr>
 				</tbody>
 			</table>
- 			
+
  			<c:if test="${empty patient.anamnesisList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -81,11 +81,13 @@
 				<c:forEach items="${patient.anamnesisList}" var="anamnesis">
 					<div >
 						<div class="accordion-heading">
-					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse${anamnesis.id}">
+					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${anamnesis.id}">
 					    	    <strong>Vyšetření dne:</strong> ${anamnesis.date}
 					    	</a>
 						</div>
+
 					    <div id="collapse${anamnesis.id}" class="accordion-body collapse">
+
 					      	<div class="accordion-inner">
 						      	<a class="close" href="<c:url value="/patient/${patientID}/anamnesis/${anamnesis.id}/delete"/>">×</a>
 								<table class="table">
