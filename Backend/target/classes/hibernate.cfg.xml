@@ -28,7 +28,7 @@
 		<mapping class="cz.cvut.fit.genepi.entity.card.PharmacotherapyEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.SeizureEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.OperationEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.DiagnosticTestMriEntity" />
+		<mapping class="cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.InvasiveTestEEGEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.DiagnosticTestEEGEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity" />

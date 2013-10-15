@@ -24,6 +24,18 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
+import cz.cvut.fit.genepi.entity.card.ComplicationEntity;
+import cz.cvut.fit.genepi.entity.card.DiagnosticTestEEGEntity;
+import cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity;
+import cz.cvut.fit.genepi.entity.card.HistologyEntity;
+import cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity;
+import cz.cvut.fit.genepi.entity.card.InvasiveTestEEGEntity;
+import cz.cvut.fit.genepi.entity.card.NeurologicalFindingEntity;
+import cz.cvut.fit.genepi.entity.card.NeuropsychologyEntity;
+import cz.cvut.fit.genepi.entity.card.OperationEntity;
+import cz.cvut.fit.genepi.entity.card.OutcomeEntity;
+import cz.cvut.fit.genepi.entity.card.PharmacotherapyEntity;
+import cz.cvut.fit.genepi.entity.card.SeizureEntity;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -91,7 +103,7 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
-/*
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeurologicalFindingEntity> neurologicalFindingList;
@@ -130,7 +142,7 @@ public class PatientEntity {
 	
 			@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private List<DiagnosticTestMriEntity> diagnosticTestMriList;
+	private List<DiagnosticTestMRIEntity> diagnosticTestMriList;
 	
 				@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -198,7 +210,7 @@ public class PatientEntity {
 
 	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
 		this.outcomeList = outcomeList;
-	}*/
+	}
 
 	/**
 	 * Gets the id.
