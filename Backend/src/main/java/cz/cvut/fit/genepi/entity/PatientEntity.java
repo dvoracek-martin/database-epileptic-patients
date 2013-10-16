@@ -103,56 +103,55 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
-
+/*
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeurologicalFindingEntity> neurologicalFindingList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<PharmacotherapyEntity> pharmacotherapyList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<ComplicationEntity> complicationList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<SeizureEntity> seizureList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<HistologyEntity> histologyList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeuropsychologyEntity> neuropsychologyList;
-	
+
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<OutcomeEntity> outcomeList;
-	
-		@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<InvasiveTestEEGEntity> invasiveTestEEGList;
-	
-		@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<OperationEntity> operationList;
-	
-			@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<DiagnosticTestMRIEntity> diagnosticTestMriList;
-	
-				@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<DiagnosticTestEEGEntity> DiagnosticTestEEGList;
-	
-					@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<InvasiveTestECOGEntity> InvasiveTestECOGList;
 
-	
 	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
 		return neurologicalFindingList;
 	}
@@ -211,6 +210,7 @@ public class PatientEntity {
 	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
 		this.outcomeList = outcomeList;
 	}
+	*/
 
 	/**
 	 * Gets the id.
