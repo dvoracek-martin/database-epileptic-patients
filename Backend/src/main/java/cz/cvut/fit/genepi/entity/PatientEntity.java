@@ -100,7 +100,7 @@ public class PatientEntity {
 	private ContactEntity contact;
 
 	/* AnamnesisList */
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
 /*

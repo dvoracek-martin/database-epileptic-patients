@@ -157,7 +157,7 @@ public class PatientController {
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientID));
+				patientService.getPatientByIdWithAnamnesis(patientID));
 		return "patient/overviewView";
 	}
 

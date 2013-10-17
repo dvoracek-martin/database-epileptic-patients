@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cz.cvut.fit.genepi.DAO.PatientDAO;
 import cz.cvut.fit.genepi.entity.PatientEntity;
@@ -21,4 +22,13 @@ public class PatientServiceImpl extends
 	/** The patient dao. */
 	@Autowired
 	private PatientDAO patientDAO;
+
+	@Override
+	@Transactional
+	public PatientEntity getPatientByIdWithAnamnesis(int patientId) {
+		
+		return patientDAO.getPatientByIdWithAnamnesis(patientId);
+	}
+	
+	
 }
