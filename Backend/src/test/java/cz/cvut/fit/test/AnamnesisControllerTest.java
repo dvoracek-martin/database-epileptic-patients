@@ -97,7 +97,7 @@ public class AnamnesisControllerTest {
 
 	@Test
 	public void create_AnamnesisEntityNotValid() throws Exception {
-		String nonCnsComorbidity = TestUtil.createStringWithLength(500);
+		String nonCnsComorbidity = Util.createStringWithLength(500);
 
 		AnamnesisEntity anamnesis = new AnamnesisEntity();
 		anamnesis.setNonCnsComorbidity(nonCnsComorbidity);
@@ -106,7 +106,7 @@ public class AnamnesisControllerTest {
 				post("/patient/{patientID}/anamnesis/create", 1)
 						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
 						.content(
-								TestUtil.convertObjectToFormUrlEncodedBytes(anamnesis))
+								Util.convertObjectToFormUrlEncodedBytes(anamnesis))
 						.sessionAttr("anamnesis", anamnesis))
 				.andExpect(status().isOk())
 				.andExpect(view().name("patient/anamnesis/createView"))

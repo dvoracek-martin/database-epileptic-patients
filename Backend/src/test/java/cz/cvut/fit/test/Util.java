@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 
 
-public class TestUtil {
+public class Util {
 
 	private static final String CHARACTER = "a";
 
