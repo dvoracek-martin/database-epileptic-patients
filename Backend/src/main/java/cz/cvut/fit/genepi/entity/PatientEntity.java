@@ -103,11 +103,12 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<AnamnesisEntity> anamnesisList;
-/*
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<NeurologicalFindingEntity> neurologicalFindingList;
-
+	
+/*
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<PharmacotherapyEntity> pharmacotherapyList;
@@ -151,7 +152,7 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private List<InvasiveTestECOGEntity> InvasiveTestECOGList;
-
+*/
 	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
 		return neurologicalFindingList;
 	}
@@ -160,7 +161,7 @@ public class PatientEntity {
 			List<NeurologicalFindingEntity> neurologicalFindingList) {
 		this.neurologicalFindingList = neurologicalFindingList;
 	}
-
+/*
 	public List<PharmacotherapyEntity> getPharmacotherapyList() {
 		return pharmacotherapyList;
 	}

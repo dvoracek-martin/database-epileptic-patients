@@ -25,10 +25,18 @@ public class PatientServiceImpl extends
 
 	@Override
 	@Transactional
+	public PatientEntity getPatientByIdWithAllLists(int patientId) {
+		return patientDAO.getPatientByIdWithAllLists(patientId);
+	}
+	
+	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithAnamnesis(int patientId) {
 		
 		return patientDAO.getPatientByIdWithAnamnesis(patientId);
 	}
+
+
 	
 	
 }

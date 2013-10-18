@@ -19,6 +19,16 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		implements PatientDAO {
 
 	@Override
+	public PatientEntity getPatientByIdWithAllLists(int patientId) {
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"select p from PatientEntity p join fetch p.anamnesisList where p.id = :patientId");
+		query.setParameter("patientId", patientId);
+		return this.findOne(query);
+	}
+	
+	@Override
 	public PatientEntity getPatientByIdWithAnamnesis(int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
@@ -27,4 +37,6 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
+
+	
 }

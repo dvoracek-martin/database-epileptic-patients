@@ -10,5 +10,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  */
 public interface PatientService extends
 		GenericService<PatientEntity, Serializable> {
+	
+	public PatientEntity getPatientByIdWithAllLists(int patientId);
 	public PatientEntity getPatientByIdWithAnamnesis(int patientId);
 }
