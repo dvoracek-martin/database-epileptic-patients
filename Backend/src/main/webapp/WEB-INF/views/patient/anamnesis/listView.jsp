@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Anamnéza
+      <spring:message code="label.anamnesis" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Anamnéza
+      <spring:message code="label.anamnesis" />
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Anamnéza</h2>
+					<h2><spring:message code="label.anamnesis" /></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
