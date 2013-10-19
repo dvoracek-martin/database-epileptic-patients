@@ -144,7 +144,7 @@ public class AnamnesisController {
 	public String anamnesisListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientID));
+				patientService.getPatientByIdWithAnamnesis(patientID));
 		return "patient/anamnesis/listView";
 	}
 }
