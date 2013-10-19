@@ -192,6 +192,7 @@
 	            	</div>
 	            </c:forEach>
             </div>
+        </br> 
 			<!-- Anamnesis list END -->
 	</jsp:body>
 </t:menuLVL3>
