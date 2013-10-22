@@ -23,7 +23,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p join fetch p.anamnesisList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.anamnesisList where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -33,7 +33,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p join fetch p.anamnesisList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.anamnesisList where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}

@@ -26,7 +26,11 @@ public class PatientServiceImpl extends
 	@Override
 	@Transactional
 	public PatientEntity getPatientByIdWithAllLists(int patientId) {
-		return patientDAO.getPatientByIdWithAllLists(patientId);
+		PatientEntity ent =patientDAO.getPatientByIdWithAllLists(patientId);
+		if(ent==null){
+			System.out.println("is NULL");
+		}
+		return ent;
 	}
 	
 	@Override
