@@ -55,11 +55,14 @@
 													'value',
 													$('#exportNameToCopy')
 															.val());
-											
+
 											<sec:authorize ifAnyGranted="ROLE_ADMIN">
-											$('#isGeneric').attr('value',$('#isGenericBox').is(':checked'));
+											$('#isGeneric').attr(
+													'value',
+													$('#isGenericBox').is(
+															':checked'));
 											</sec:authorize>
-											
+
 											$('#exportForm').submit();
 										});
 					</script>
@@ -151,8 +154,7 @@ li.sortable-placeholder {
 					<label>My Sets</label>
 					
 						<select name="exportMyId" type="text" class="input-large">
-							<c:forEach items="${listOfSavedConfigurations}"
-							var="exportParam">
+							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
 								<option value="${exportParam.id}">
 									${exportParam.name}
 								</option>
@@ -160,8 +162,11 @@ li.sortable-placeholder {
 						</select>
 					<input type="hidden" value="${patient.id}" name="patientId">
 					<button class="btn btn-primary" type="submit" />LOAD</button>
+					
+						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 					<button id="exportMyParamDeleteBrn" class="btn btn-primary"
-						type="submit" />DELETE</button>				
+							type="submit" />DELETE</button>
+						</sec:authorize>
 					</form>
 					</div>
 					
