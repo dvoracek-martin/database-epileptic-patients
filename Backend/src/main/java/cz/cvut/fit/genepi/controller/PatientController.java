@@ -316,7 +316,7 @@ public class PatientController {
 
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
-		patient = patientService.findByID(PatientEntity.class, patient.getId());
+		patient = patientService.getPatientByIdWithAllLists(patient.getId());
 
 		if (exportType.equals("pdf")) {
 			try {
