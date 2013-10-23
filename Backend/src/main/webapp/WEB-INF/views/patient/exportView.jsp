@@ -246,10 +246,7 @@ li.sortable-placeholder {
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 						<input id="isGenericBox" type="checkbox" name="isGeneric">Is Generic???
 						</sec:authorize>
-						<sec:authorize access="hasRole('ROLE_ADMIN')">
- This content will only be visible to users who have
- the "supervisor" authority in their list of <tt>GrantedAuthority</tt>s.
-</sec:authorize>
+						
 						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
 				</div>
 		</div>
