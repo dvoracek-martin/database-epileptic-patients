@@ -146,15 +146,15 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestMRIEntity> diagnosticTestMriList;
+	private Set<DiagnosticTestMRIEntity> diagnosticTestMRIList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestEEGEntity> DiagnosticTestEEGList;
+	private Set<DiagnosticTestEEGEntity> diagnosticTestEEGList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<InvasiveTestECOGEntity> InvasiveTestECOGList;
+	private Set<InvasiveTestECOGEntity> invasiveTestECOGList;
 
 	public List<AnamnesisEntity> getAnamnesisList() {
 		CollectionConverter<AnamnesisEntity> converter = new CollectionConverter<>();
@@ -246,6 +246,67 @@ public class PatientEntity {
 	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
 		CollectionConverter<OutcomeEntity> converter = new CollectionConverter<>();
 		this.outcomeList = converter.toSet(outcomeList);
+	}
+	
+	public List<InvasiveTestEEGEntity> getInvasiveTestEEGList() {
+		CollectionConverter<InvasiveTestEEGEntity> converter = new CollectionConverter<>();
+		Sorter<InvasiveTestEEGEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.invasiveTestEEGList));
+	}
+
+	public void setInvasiveTestEEGList(
+			List<InvasiveTestEEGEntity> invasiveTestEEGList) {
+		CollectionConverter<InvasiveTestEEGEntity> converter = new CollectionConverter<>();
+		this.invasiveTestEEGList = converter.toSet(invasiveTestEEGList);
+	}
+
+	public List<OperationEntity> getOperationList() {
+		CollectionConverter<OperationEntity> converter = new CollectionConverter<>();
+		Sorter<OperationEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.operationList));
+	}
+
+	public void setOperationList(List<OperationEntity> operationList) {
+		CollectionConverter<OperationEntity> converter = new CollectionConverter<>();
+		this.operationList = converter.toSet(operationList);
+	}
+
+	public List<DiagnosticTestMRIEntity> getDiagnosticTestMRIList() {
+		CollectionConverter<DiagnosticTestMRIEntity> converter = new CollectionConverter<>();
+		Sorter<DiagnosticTestMRIEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.diagnosticTestMRIList));
+	}
+
+	public void setDiagnosticTestMRIList(
+			List<DiagnosticTestMRIEntity> diagnosticTestMRIList) {
+		CollectionConverter<DiagnosticTestMRIEntity> converter = new CollectionConverter<>();
+		this.diagnosticTestMRIList = converter.toSet(diagnosticTestMRIList);
+	}
+
+	public List<DiagnosticTestEEGEntity> getDiagnosticTestEEGList() {
+		CollectionConverter<DiagnosticTestEEGEntity> converter = new CollectionConverter<>();
+		Sorter<DiagnosticTestEEGEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.diagnosticTestEEGList));
+	}
+
+	public void setDiagnosticTestEEGList(
+			List<DiagnosticTestEEGEntity> diagnosticTestEEGList) {
+		CollectionConverter<DiagnosticTestEEGEntity> converter = new CollectionConverter<>();
+		this.diagnosticTestEEGList = converter.toSet(diagnosticTestEEGList);
+	}
+
+	public List<InvasiveTestECOGEntity> getInvasiveTestECOGList() {
+		CollectionConverter<InvasiveTestECOGEntity> converter = new CollectionConverter<>();
+		Sorter<InvasiveTestECOGEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.invasiveTestECOGList));
+
+	}
+
+	public void setInvasiveTestECOGList(
+			List<InvasiveTestECOGEntity> invasiveTestECOGList) {
+		CollectionConverter<InvasiveTestECOGEntity> converter = new CollectionConverter<>();
+		this.invasiveTestECOGList = converter.toSet(invasiveTestECOGList);
+
 	}
 
 	/**

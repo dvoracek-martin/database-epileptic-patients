@@ -21,11 +21,18 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.anamnesisList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.anamnesisList left join fetch p.complicationList"
+						/*+ " left join fetch p.diagnosticTestEEGList left join fetch p.diagnosticTestMRIList"
+						+ " left join fetch p.histologyList left join fetch p.invasiveTestECOGList"
+						+ " left join fetch p.invasiveTestEEGList left join fetch p.neurologicalFindingList"
+						+ " left join fetch p.neuropsychologyList left join fetch p.operationList "
+						+ " left join fetch p.outcomeList left join fetch p.pharmacotherapyList"
+						+ " left join fetch p.seizureList"*/
+						+ " where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
-	
+
 	@Override
 	public PatientEntity getPatientByIdWithAnamnesisList(int patientId) {
 		Query query = sessionFactory
@@ -156,5 +163,4 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 		return this.findOne(query);
 	}
 
-	
 }
