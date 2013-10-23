@@ -110,6 +110,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		smallBold = new Font(bf, 12, Font.BOLD);
 
 	}
+	/* TODO:
+	 * 
+	 * Make it able to accept List<PatientEntity> and iterate through it 
+	 * 
+	 */
 
 	public void export(PatientEntity patient, UserEntity user,
 			java.util.List<String> exports,
