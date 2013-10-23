@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.serviceImpl;
+package cz.cvut.fit.genepi.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -41,7 +41,7 @@ import cz.cvut.fit.genepi.service.LoggingService;
  * The Class ExportToPdfServiceImpl.
  */
 @Service
-public class ExportToPdfServiceImpl implements ExportToPdfService {
+public class ExportToPdf implements ExportToPdfService {
 
 	@Autowired
 	private static MessageSource messageSource;
@@ -119,11 +119,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	public void export(PatientEntity patient, UserEntity user,
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
-		logger.setLogger(ExportToPdfServiceImpl.class);
+		logger.setLogger(ExportToPdf.class);
 		initFonts();
 		Document document = new Document();
-		ExportToPdfServiceImpl.patient = patient;
-		ExportToPdfServiceImpl.user = user;
+		ExportToPdf.patient = patient;
+		ExportToPdf.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");

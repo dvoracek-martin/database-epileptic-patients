@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.serviceImpl;
+package cz.cvut.fit.genepi.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +31,7 @@ import cz.cvut.fit.genepi.service.LoggingService;
  */
 
 @Service
-public class ExportToXlsxServiceImpl implements ExportToXlsxService {
+public class ExportToXlsx implements ExportToXlsxService {
 
 	private static PatientEntity patient;
 
@@ -59,10 +59,10 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	public void export(PatientEntity patient, UserEntity user,
 			List<String> exports) {
 
-		ExportToXlsxServiceImpl.patient = patient;
-		ExportToXlsxServiceImpl.user = user;
+		ExportToXlsx.patient = patient;
+		ExportToXlsx.user = user;
 
-		logger.setLogger(ExportToXlsxServiceImpl.class);
+		logger.setLogger(ExportToXlsx.class);
 		writeData();
 	}
 

@@ -145,6 +145,25 @@ li.sortable-placeholder {
 						</h2>
 					</div>
 					
+					<div class="span6">
+					<form id="mySet" method="POST"
+					action="<c:url value="/patient/export/load" />">
+					<label>My Sets</label>
+					
+						<select name="exportMyId" type="text" class="input-large">
+							<c:forEach items="${listOfSavedConfigurations}"
+							var="exportParam">
+								<option value="${exportParam.id}">
+									${exportParam.name}
+								</option>
+							</c:forEach>	
+						</select>
+					<input type="hidden" value="${patient.id}" name="patientId">
+					<button class="btn btn-primary" type="submit" />LOAD</button>
+					<button id="exportMyParamDeleteBrn" class="btn btn-primary"
+						type="submit" />DELETE</button>				
+					</form>
+					</div>
 					
 					<div class="span6">
 					<form id="usersSet" method="POST"
@@ -246,7 +265,6 @@ li.sortable-placeholder {
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 						<input id="isGenericBox" type="checkbox" name="isGeneric">Is Generic???
 						</sec:authorize>
-						
 						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
 				</div>
 		</div>

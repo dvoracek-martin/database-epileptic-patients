@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.serviceImpl;
+package cz.cvut.fit.genepi.util;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,9 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.cvut.fit.genepi.DAO.ExportParamsDAO;
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.service.ExportParamsService;
+import cz.cvut.fit.genepi.serviceImpl.GenericServiceImpl;
 
 @Service
-public class ExportParamsServiceImpl extends
+public class ExportParams extends
 		GenericServiceImpl<ExportParamsEntity, Serializable> implements
 		ExportParamsService {
 	@Autowired

@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.serviceImpl;
+package cz.cvut.fit.genepi.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -21,7 +21,7 @@ import cz.cvut.fit.genepi.service.ExportToDocxService;
 import cz.cvut.fit.genepi.service.LoggingService;
 
 @Service
-public class ExportToDocxServiceImpl implements ExportToDocxService {
+public class ExportToDocx implements ExportToDocxService {
 
 	private static PatientEntity patient;
 
