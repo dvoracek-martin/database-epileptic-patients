@@ -63,7 +63,7 @@ public class AnamnesisControllerTest {
 		PatientEntity found = new PatientEntity();
 		found.setId(1);
 
-		when(patientServiceMock.getPatientByIdWithAnamnesis( 1)).thenReturn(
+		when(patientServiceMock.getPatientByIdWithAnamnesisList( 1)).thenReturn(
 				found);
 
 		mockMvc.perform(get("/patient/{patientID}/anamnesis/list", 1))
@@ -78,7 +78,7 @@ public class AnamnesisControllerTest {
 				.andExpect(
 						model().attribute("patient", is(PatientEntity.class)));
 
-		verify(patientServiceMock, times(1)).getPatientByIdWithAnamnesis(1);
+		verify(patientServiceMock, times(1)).getPatientByIdWithAnamnesisList(1);
 		verifyNoMoreInteractions(patientServiceMock);
 	}
 
