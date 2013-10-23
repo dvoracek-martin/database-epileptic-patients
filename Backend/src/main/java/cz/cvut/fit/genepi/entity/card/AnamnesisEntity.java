@@ -24,7 +24,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  */
 @Entity
 @Table(name = "ANAMNESIS")
-public class AnamnesisEntity {
+public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
 	/** The id. */
 	@Id
@@ -112,7 +112,7 @@ public class AnamnesisEntity {
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
-	
+
 	@Column(name = "STATUS", nullable = false)
 	private int status;
 
@@ -480,6 +480,7 @@ public class AnamnesisEntity {
 	public void setAddUserId(int addUserId) {
 		this.addUserId = addUserId;
 	}
+
 	public int getStatus() {
 		return status;
 	}
@@ -487,11 +488,24 @@ public class AnamnesisEntity {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
 	public PatientEntity getPatient() {
 		return patient;
 	}
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
+	}
+
+	@Override
+	public int compareTo(AnamnesisEntity o) {
+		int comparison = this.date.compareTo(o.getDate());
+		if (comparison > 0) {
+			return -1;
+		} else if (comparison == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 }
