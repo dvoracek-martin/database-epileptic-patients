@@ -19,7 +19,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  */
 @Entity
 @Table(name = "SEIZURE")
-public class SeizureEntity {
+public class SeizureEntity implements Comparable<SeizureEntity>{
 
 	/** The id. */
 	@Id
@@ -441,6 +441,18 @@ public class SeizureEntity {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	
+	@Override
+	public int compareTo(SeizureEntity o) {
+		int comparison = this.date.compareTo(o.getDate());
+		if (comparison > 0) {
+			return -1;
+		} else if (comparison == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 	
 }

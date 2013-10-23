@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 @Entity
 @Table(name = "NEUROPSYCHOLOGY")
-public class NeuropsychologyEntity {
+public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -184,4 +184,16 @@ public class NeuropsychologyEntity {
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
 	}	
+	
+	@Override
+	public int compareTo(NeuropsychologyEntity o) {
+		int comparison = this.date.compareTo(o.getDate());
+		if (comparison > 0) {
+			return -1;
+		} else if (comparison == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 }

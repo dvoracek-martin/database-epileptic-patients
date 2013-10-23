@@ -20,7 +20,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
 @Table(name = "INVASIVETESTECOG")
-public class InvasiveTestECOGEntity {
+public class InvasiveTestECOGEntity implements Comparable<InvasiveTestECOGEntity> {
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
 	@GeneratedValue
@@ -186,5 +186,17 @@ public class InvasiveTestECOGEntity {
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
+	}
+	
+	@Override
+	public int compareTo(InvasiveTestECOGEntity o) {
+		int comparison = this.date.compareTo(o.getDate());
+		if (comparison > 0) {
+			return -1;
+		} else if (comparison == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
 	}
 }

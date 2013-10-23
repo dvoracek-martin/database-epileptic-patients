@@ -20,7 +20,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
 @Table(name = "OPERATION")
-public class OperationEntity {
+public class OperationEntity implements Comparable<OperationEntity>{
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -231,5 +231,18 @@ public class OperationEntity {
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
-	}	
+
+}
+	
+	@Override
+	public int compareTo(OperationEntity o) {
+		int comparison = this.date.compareTo(o.getDate());
+		if (comparison > 0) {
+			return -1;
+		} else if (comparison == 0) {
+			return 0;
+		} else {
+			return 1;
+		}
+	}
 }

@@ -108,63 +108,53 @@ public class PatientEntity {
 	@Cascade({ CascadeType.ALL })
 	private Set<AnamnesisEntity> anamnesisList;
 
-	/*
-	 * @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<NeurologicalFindingEntity>
-	 * neurologicalFindingList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<PharmacotherapyEntity>
-	 * pharmacotherapyList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<ComplicationEntity>
-	 * complicationList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<SeizureEntity> seizureList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<HistologyEntity> histologyList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<NeuropsychologyEntity>
-	 * neuropsychologyList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<OutcomeEntity> outcomeList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<InvasiveTestEEGEntity>
-	 * invasiveTestEEGList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<OperationEntity> operationList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<DiagnosticTestMRIEntity>
-	 * diagnosticTestMriList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<DiagnosticTestEEGEntity>
-	 * DiagnosticTestEEGList;
-	 * 
-	 * @OneToMany(fetch = FetchType.EAGER, mappedBy = "patient")
-	 * 
-	 * @Cascade({ CascadeType.ALL }) private Set<InvasiveTestECOGEntity>
-	 * InvasiveTestECOGList;
-	 */
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<NeurologicalFindingEntity> neurologicalFindingList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<PharmacotherapyEntity> pharmacotherapyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<ComplicationEntity> complicationList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<SeizureEntity> seizureList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<HistologyEntity> histologyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<NeuropsychologyEntity> neuropsychologyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<OutcomeEntity> outcomeList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<InvasiveTestEEGEntity> invasiveTestEEGList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<OperationEntity> operationList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<DiagnosticTestMRIEntity> diagnosticTestMriList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<DiagnosticTestEEGEntity> DiagnosticTestEEGList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<InvasiveTestECOGEntity> InvasiveTestECOGList;
 
 	public List<AnamnesisEntity> getAnamnesisList() {
 		CollectionConverter<AnamnesisEntity> converter = new CollectionConverter<>();
@@ -177,89 +167,86 @@ public class PatientEntity {
 		this.anamnesisList = converter.toSet(anamnesisList);
 	}
 
-	/*
-	 * public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
-	 * CollectionConverter<NeurologicalFindingEntity> converter = new
-	 * CollectionConverter<>(); List<NeurologicalFindingEntity>
-	 * neurologicalFindingList = new ArrayList<>(); neurologicalFindingList =
-	 * converter .toList(this.neurologicalFindingList); // TODO:
-	 * Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * neurologicalFindingList; }
-	 * 
-	 * public void setNeurologicalFindingList( List<NeurologicalFindingEntity>
-	 * neurologicalFindingList) { CollectionConverter<NeurologicalFindingEntity>
-	 * converter = new CollectionConverter<>(); this.neurologicalFindingList =
-	 * converter.toSet(neurologicalFindingList); }
-	 * 
-	 * public List<PharmacotherapyEntity> getPharmacotherapyList() {
-	 * CollectionConverter<PharmacotherapyEntity> converter = new
-	 * CollectionConverter<>(); List<PharmacotherapyEntity> pharmacotherapyList
-	 * = new ArrayList<>(); pharmacotherapyList =
-	 * converter.toList(this.pharmacotherapyList); // TODO:
-	 * Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * pharmacotherapyList; }
-	 * 
-	 * public void setPharmacotherapyList( List<PharmacotherapyEntity>
-	 * pharmacotherapyList) { this.pharmacotherapyList = pharmacotherapyList; }
-	 * 
-	 * public List<ComplicationEntity> getComplicationList() {
-	 * CollectionConverter<ComplicationEntity> converter = new
-	 * CollectionConverter<>(); List<ComplicationEntity> complicationList = new
-	 * ArrayList<>(); complicationList =
-	 * converter.toList(this.complicationList); // TODO:
-	 * Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * complicationList; }
-	 * 
-	 * public void setComplicationList(List<ComplicationEntity>
-	 * complicationList) { this.complicationList = complicationList; }
-	 * 
-	 * public List<SeizureEntity> getSeizureList() {
-	 * CollectionConverter<SeizureEntity> converter = new
-	 * CollectionConverter<>(); List<SeizureEntity> seizureList = new
-	 * ArrayList<>(); seizureList = converter.toList(this.seizureList); // TODO:
-	 * Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * seizureList; }
-	 * 
-	 * public void setSeizureList(List<SeizureEntity> seizureList) {
-	 * this.seizureList = seizureList; }
-	 * 
-	 * public List<HistologyEntity> getHistologyList() {
-	 * CollectionConverter<HistologyEntity> converter = new
-	 * CollectionConverter<>(); List<HistologyEntity> anamnesisList = new
-	 * ArrayList<>(); anamnesisList = converter.toList(this.anamnesisList); //
-	 * TODO: Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * anamnesisList; }
-	 * 
-	 * public void setHistologyList(List<HistologyEntity> histologyList) {
-	 * this.histologyList = histologyList; }
-	 * 
-	 * public List<NeuropsychologyEntity> getNeuropsychologyList() {
-	 * CollectionConverter<AnamnesisEntity> converter = new
-	 * CollectionConverter<>(); List<AnamnesisEntity> anamnesisList = new
-	 * ArrayList<>(); anamnesisList = converter.toList(this.anamnesisList); //
-	 * TODO: Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * anamnesisList; }
-	 * 
-	 * public void setNeuropsychologyList( List<NeuropsychologyEntity>
-	 * neuropsychologyList) { this.neuropsychologyList = neuropsychologyList; }
-	 * 
-	 * public List<OutcomeEntity> getOutcomeList() {
-	 * CollectionConverter<AnamnesisEntity> converter = new
-	 * CollectionConverter<>(); List<AnamnesisEntity> anamnesisList = new
-	 * ArrayList<>(); anamnesisList = converter.toList(this.anamnesisList); //
-	 * TODO: Sorter.sortbyDate(anamnesisList); >> return //
-	 * sorter.sortByDate(converter.toList(this.anamnesisList)); return
-	 * anamnesisList; }
-	 * 
-	 * public void setOutcomeList(List<OutcomeEntity> outcomeList) {
-	 * this.outcomeList = outcomeList; }
-	 */
+	public List<NeurologicalFindingEntity> getNeurologicalFindingList() {
+		CollectionConverter<NeurologicalFindingEntity> converter = new CollectionConverter<>();
+		Sorter<NeurologicalFindingEntity> sorter = new Sorter<>();
+		return sorter
+				.sortByDate(converter.toList(this.neurologicalFindingList));
+	}
+
+	public void setNeurologicalFindingList(
+			List<NeurologicalFindingEntity> neurologicalFindingList) {
+		CollectionConverter<NeurologicalFindingEntity> converter = new CollectionConverter<>();
+		this.neurologicalFindingList = converter.toSet(neurologicalFindingList);
+	}
+
+	public List<PharmacotherapyEntity> getPharmacotherapyList() {
+		CollectionConverter<PharmacotherapyEntity> converter = new CollectionConverter<>();
+		Sorter<PharmacotherapyEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.pharmacotherapyList));
+	}
+
+	public void setPharmacotherapyList(
+			List<PharmacotherapyEntity> pharmacotherapyList) {
+		CollectionConverter<PharmacotherapyEntity> converter = new CollectionConverter<>();
+		this.pharmacotherapyList = converter.toSet(pharmacotherapyList);
+	}
+
+	public List<ComplicationEntity> getComplicationList() {
+		CollectionConverter<ComplicationEntity> converter = new CollectionConverter<>();
+		Sorter<ComplicationEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.complicationList));
+	}
+
+	public void setComplicationList(List<ComplicationEntity> complicationList) {
+		CollectionConverter<ComplicationEntity> converter = new CollectionConverter<>();
+		this.complicationList = converter.toSet(complicationList);
+	}
+
+	public List<SeizureEntity> getSeizureList() {
+		CollectionConverter<SeizureEntity> converter = new CollectionConverter<>();
+		Sorter<SeizureEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.seizureList));
+	}
+
+	public void setSeizureList(List<SeizureEntity> seizureList) {
+		CollectionConverter<SeizureEntity> converter = new CollectionConverter<>();
+		this.seizureList = converter.toSet(seizureList);
+	}
+
+	public List<HistologyEntity> getHistologyList() {
+		CollectionConverter<HistologyEntity> converter = new CollectionConverter<>();
+		Sorter<HistologyEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.histologyList));
+	}
+
+	public void setHistologyList(List<HistologyEntity> histologyList) {
+		CollectionConverter<HistologyEntity> converter = new CollectionConverter<>();
+		this.histologyList = converter.toSet(histologyList);
+	}
+
+	public List<NeuropsychologyEntity> getNeuropsychologyList() {
+		CollectionConverter<NeuropsychologyEntity> converter = new CollectionConverter<>();
+		Sorter<NeuropsychologyEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.neuropsychologyList));
+	}
+
+	public void setNeuropsychologyList(
+			List<NeuropsychologyEntity> neuropsychologyList) {
+		CollectionConverter<NeuropsychologyEntity> converter = new CollectionConverter<>();
+		this.neuropsychologyList = converter.toSet(neuropsychologyList);
+	}
+
+	public List<OutcomeEntity> getOutcomeList() {
+		CollectionConverter<OutcomeEntity> converter = new CollectionConverter<>();
+		Sorter<OutcomeEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter.toList(this.outcomeList));
+	}
+
+	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
+		CollectionConverter<OutcomeEntity> converter = new CollectionConverter<>();
+		this.outcomeList = converter.toSet(outcomeList);
+	}
 
 	/**
 	 * Gets the id.
