@@ -99,8 +99,7 @@ public class OutcomeController {
 	@RequestMapping(value = "/patient/{patientID}/outcome/list", method = RequestMethod.GET)
 	public String outcomeListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithOutcomeList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/outcome/listView";
 	}

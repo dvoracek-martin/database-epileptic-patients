@@ -99,8 +99,7 @@ public class ComplicationController {
 	@RequestMapping(value = "/patient/{patientID}/complication/list", method = RequestMethod.GET)
 	public String complicationListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithComplicationList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/complication/listView";
 	}

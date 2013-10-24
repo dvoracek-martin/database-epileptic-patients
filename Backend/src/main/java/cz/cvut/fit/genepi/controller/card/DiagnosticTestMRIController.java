@@ -99,8 +99,7 @@ public class DiagnosticTestMRIController {
 	@RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/list", method = RequestMethod.GET)
 	public String diagnosticTestMRIListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithDiagnosticTestMRIList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/diagnosticTestMRI/listView";
 	}

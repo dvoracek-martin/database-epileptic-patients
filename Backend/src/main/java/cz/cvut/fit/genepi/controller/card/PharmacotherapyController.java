@@ -99,8 +99,7 @@ public class PharmacotherapyController {
 	@RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
 	public String pharmacotherapyListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithPharmacotherapyList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/pharmacotherapy/listView";
 	}

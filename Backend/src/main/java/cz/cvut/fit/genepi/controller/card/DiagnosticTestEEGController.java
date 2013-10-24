@@ -99,8 +99,7 @@ public class DiagnosticTestEEGController {
 	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/list", method = RequestMethod.GET)
 	public String diagnosticTestEEGListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithDiagnosticTestEEGList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/diagnosticTestEEG/listView";
 	}

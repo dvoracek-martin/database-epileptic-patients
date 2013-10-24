@@ -99,8 +99,7 @@ public class NeuropsychologyController {
 	@RequestMapping(value = "/patient/{patientID}/neuropsychology/list", method = RequestMethod.GET)
 	public String neuropsychologyListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithNeuropsychologyList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/neuropsychology/listView";
 	}

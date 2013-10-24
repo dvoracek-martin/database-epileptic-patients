@@ -99,8 +99,7 @@ public class SeizureController {
 	@RequestMapping(value = "/patient/{patientID}/seizure/list", method = RequestMethod.GET)
 	public String seizureListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithSeizureList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/seizure/listView";
 	}

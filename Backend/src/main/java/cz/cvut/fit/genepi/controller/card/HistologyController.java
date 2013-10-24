@@ -99,8 +99,7 @@ public class HistologyController {
 	@RequestMapping(value = "/patient/{patientID}/histology/list", method = RequestMethod.GET)
 	public String histologyListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithHistologyList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/histology/listView";
 	}

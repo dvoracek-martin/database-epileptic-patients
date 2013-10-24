@@ -99,8 +99,7 @@ public class OperationController {
 	@RequestMapping(value = "/patient/{patientID}/operation/list", method = RequestMethod.GET)
 	public String operationListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithOperationList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/operation/listView";
 	}

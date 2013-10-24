@@ -99,8 +99,7 @@ public class InvasiveTestECOGController {
 	@RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/list", method = RequestMethod.GET)
 	public String invasiveTestECOGListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+		PatientEntity patient = patientService.getPatientByIdWithInvasiveTestECOGList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/invasiveTestECOG/listView";
 	}
