@@ -26,7 +26,7 @@
 				<div>
 					<h3 class="pull-right">
 						<a id="export"
-					href="<c:url value="/underConstruction" />"><spring:message code="label.addRecord"/></a>
+					href="<c:url value="/patient/${patientID}/diagnosticTestEEG/create"  />"><spring:message code="label.addRecord"/></a>
 					</h3>
 				</div>
 			</div>
