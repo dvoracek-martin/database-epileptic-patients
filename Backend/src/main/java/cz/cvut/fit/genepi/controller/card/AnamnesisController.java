@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.controller.card;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -16,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
-import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;

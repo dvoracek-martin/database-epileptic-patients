@@ -8,7 +8,6 @@ import java.util.Locale;
 import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
-import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
-import cz.cvut.fit.genepi.entity.UserRoleEntity;
 import cz.cvut.fit.genepi.service.ContactService;
 import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.MailService;
