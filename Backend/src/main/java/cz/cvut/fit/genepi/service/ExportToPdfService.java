@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.service;
 
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Locale;
 
 import com.itextpdf.text.DocumentException;
 
