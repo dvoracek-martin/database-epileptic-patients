@@ -97,25 +97,31 @@
     				<div class="controls">
     					<form:select path="typeOperationsIdcom" id="typeOperationsIdcom" type="text" class="input-large">
 							<form:option value="0">
-								Zvolte syndrom
+								Zvolte typ operace
 							</form:option>
 							<form:option value="1">
-								Mírná mentální retardace
+								Diskonekce
 							</form:option>
 							<form:option value="2">
-								Naprůměrná inteligence
+								Hemisferektomie
 							</form:option>
 							<form:option value="3">
-								Podprůměrná inteligence
+								Kortikální resekce
 							</form:option>
 							<form:option value="4">
-								Průměrná inteligence
+								Lesionektomie
 							</form:option>	
-							<form:option value="4">
-								Středně těžká mentální retardace
-							</form:option>
 							<form:option value="5">
-								Těžká mentální retardace
+								Rozšíření Lesionektomie
+							</form:option>
+							<form:option value="6">
+								Standardizované resekce
+							</form:option>
+							<form:option value="7">
+								Tailored resekce
+							</form:option>
+							<form:option value="7">
+								Zákrok gamma nožem
 							</form:option>
 						</form:select>
     				</div>
@@ -126,26 +132,20 @@
     				<div class="controls">
     					<form:select path="rangeOperationsIdcom" id="rangeOperationsIdcom" type="text" class="input-large">
 							<form:option value="0">
-								Zvolte syndrom
+								Zvolte rozsah operace
 							</form:option>
 							<form:option value="1">
-								Mírná mentální retardace
+								Fokální resekce
 							</form:option>
 							<form:option value="2">
-								Naprůměrná inteligence
+								Hemisferektomie
 							</form:option>
 							<form:option value="3">
-								Podprůměrná inteligence
+								Jednolobární resekce
 							</form:option>
 							<form:option value="4">
-								Průměrná inteligence
+								Multilobární resekce
 							</form:option>	
-							<form:option value="4">
-								Středně těžká mentální retardace
-							</form:option>
-							<form:option value="5">
-								Těžká mentální retardace
-							</form:option>
 						</form:select>
     				</div>
   				</div>

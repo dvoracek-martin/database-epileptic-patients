@@ -120,10 +120,10 @@
 							<form:option value="4">
 								Průměrná inteligence
 							</form:option>	
-							<form:option value="4">
+							<form:option value="5">
 								Středně těžká mentální retardace
 							</form:option>
-							<form:option value="5">
+							<form:option value="6">
 								Těžká mentální retardace
 							</form:option>
 						</form:select>

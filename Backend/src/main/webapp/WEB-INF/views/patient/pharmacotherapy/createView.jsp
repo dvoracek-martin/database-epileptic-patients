@@ -93,7 +93,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="aedIdcom"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="aedIdcom"><strong>AED</strong></label>
     				<div class="controls">
     					<form:select path="aedIdcom" id="aedIdcom" type="text" class="input-large">
 								<form:option value="1">
