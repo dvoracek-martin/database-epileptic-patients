@@ -162,6 +162,43 @@ public class ExportParamsEntity {
 		private boolean invasiveTestECOGAddUserId;
 		private boolean invasiveTestECOGPatientId;
 		private boolean invasiveTestECOGStatus;
+		
+		// InvasiveTestEEG properties
+		private boolean invasiveTestEEGId;
+		private boolean invasiveTestEEGDate;
+		private boolean invasiveTestEEGDoctorId;
+		private boolean invasiveTestEEGAdded;
+		private boolean invasiveTestEEGInvasiveMonitoring;
+		private boolean invasiveTestEEGCoticalMappingIdCom;
+		private boolean invasiveTestEEGLocalizationIntracranialElectrodes;
+		private boolean invasiveTestEEGIntracranialElectrodesIdCom;
+		private boolean invasiveTestEEGInvasiveEEGSlowingIdCom;
+		private boolean invasiveTestEEGInvasiveEEGInterictalSpikesIdCom;
+		private boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
+		private boolean invasiveTestEEGStatusEpilepticus;
+		private boolean invasiveTestEEGInvasiveIctalEEGPatternsIdCom;
+		private boolean invasiveTestEEGLocalizationIctalEEGPatterns;
+		private boolean invasiveTestEEGComment;
+		private boolean invasiveTestEEGDeleted;
+		private boolean invasiveTestEEGAddUserId;
+		private boolean invasiveTestEEGPatientId;
+		private boolean invasiveTestEEGStatus;
+		
+		// Neurological finding property
+		private boolean neurologicalFindingId;
+		private boolean neurologicalFindingDate;
+		private boolean neurologicalFindingDoctorId;
+		private boolean neurologicalFindingAdded;
+		private boolean neurologicalFindingHemisphereDominanceIdCom;
+		private boolean neurologicalFindingAbnormalNeurologicalFinding;
+		private boolean neurologicalFindingHemiparesis;
+		private boolean neurologicalFindingVisualCut;
+		private boolean neurologicalFindingComment;
+		private boolean neurologicalFindingDeleted;
+		private boolean neurologicalFindingAddUserId;
+		private boolean neurologicalFindingPatientId;
+		private boolean neurologicalFindingStatus;
+		
 		*/
 
 	public int getId() {
