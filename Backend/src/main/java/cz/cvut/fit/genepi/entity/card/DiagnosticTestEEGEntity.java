@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "DIAGNOSTICTESTEEG")
+@Table(name = "diagnostic_test_eeg")
 public class DiagnosticTestEEGEntity implements Comparable<DiagnosticTestEEGEntity> {
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -50,13 +50,13 @@ public class DiagnosticTestEEGEntity implements Comparable<DiagnosticTestEEGEnti
 	@Column(name="interictal_eeg_spikes_idcom")
 	private int interictalEegSpikesIdcom;
 	
-	@Column(name="localization_interictal_EEG_ spikes")
+	@Column(name="localization_interictal_eeg_spikes")
 	private String localizationInterictalEEGSpikes;
 	
 	@Column(name="eeg_status_epilepticus")
 	private Boolean eegStatusEpilepticus;
 	
-	@Column(name="secondary_sided_ synchrony")
+	@Column(name="secondary_sided_synchrony")
 	private Boolean secondarySidedSynchrony;
 	
 	@Column(name="ictal_eeg_patterns_idcom")

@@ -23,7 +23,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Class AnamnesisEntity.
  */
 @Entity
-@Table(name = "ANAMNESIS")
+@Table(name = "anamnesis")
 public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
 	/** The id. */

@@ -108,43 +108,7 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<NeurologicalFindingEntity> neurologicalFindingList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<PharmacotherapyEntity> pharmacotherapyList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
 	private Set<ComplicationEntity> complicationList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<SeizureEntity> seizureList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<HistologyEntity> histologyList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<NeuropsychologyEntity> neuropsychologyList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<OutcomeEntity> outcomeList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<InvasiveTestEEGEntity> invasiveTestEEGList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<OperationEntity> operationList;
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
-	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestMRIEntity> diagnosticTestMRIList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -152,7 +116,43 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
+	private Set<DiagnosticTestMRIEntity> diagnosticTestMRIList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<HistologyEntity> histologyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
 	private Set<InvasiveTestECOGEntity> invasiveTestECOGList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<InvasiveTestEEGEntity> invasiveTestEEGList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<NeurologicalFindingEntity> neurologicalFindingList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<NeuropsychologyEntity> neuropsychologyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<OperationEntity> operationList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<OutcomeEntity> outcomeList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<PharmacotherapyEntity> pharmacotherapyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<SeizureEntity> seizureList;
 
 	public List<AnamnesisEntity> getAnamnesisList() {
 		CollectionConverter<AnamnesisEntity> converter = new CollectionConverter<>();
@@ -245,7 +245,7 @@ public class PatientEntity {
 		CollectionConverter<OutcomeEntity> converter = new CollectionConverter<>();
 		this.outcomeList = converter.toSet(outcomeList);
 	}
-	
+
 	public List<InvasiveTestEEGEntity> getInvasiveTestEEGList() {
 		CollectionConverter<InvasiveTestEEGEntity> converter = new CollectionConverter<>();
 		Sorter<InvasiveTestEEGEntity> sorter = new Sorter<>();
