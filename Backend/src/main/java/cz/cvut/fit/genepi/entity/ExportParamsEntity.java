@@ -199,6 +199,93 @@ public class ExportParamsEntity {
 		private boolean neurologicalFindingPatientId;
 		private boolean neurologicalFindingStatus;
 		
+		// Neuropsychology properties
+		private boolean neurolopsychologyId;
+		private boolean neurolopsychologyDate;
+		private boolean neurolopsychologyDoctorId;
+		private boolean neurolopsychologyAdded;
+		private boolean neurolopsychologyNeuropsychologicalExamination;
+		private boolean neurolopsychologyIntelligenceLevelIdCom;
+		private boolean neurolopsychologySpecificLearning;
+		private boolean neurolopsychologyDevelopmentLanguageDisorders;
+		private boolean neurolopsychologyAdhdSyndome;
+		private boolean neurolopsychologyComment;
+		private boolean neurolopsychologyDeleted;
+		private boolean neurolopsychologyAddUserId;
+		private boolean neurolopsychologyPatientId;
+		private boolean neurolopsychologyStatus;
+		
+		// Operation properties
+		private boolean operationId;
+		private boolean operationDate;
+		private boolean operationDoctorId;
+		private boolean operationAdded;
+		private boolean operationTypeOperationsIdCom;
+		private boolean operationRangeOpertationsIdCom;
+		private boolean operationLocalizationsOperations;
+		private boolean operationMst;
+		private boolean operationKalostomie ??? neni anglicky ???
+		private boolean operationVNS;
+		private boolean operationVNsImplantationDate;
+		private boolean operationOperationDetails;
+		private boolean operationCompleteResection;
+		private boolean operationComment;
+		private boolean operationDeleted;
+		private boolean operationAddUserId;
+		private boolean operationPatientId;
+		private boolean operationStatus;
+		
+		// Outcome properties
+		private boolean outcomeId;
+		private boolean outcomeDate;
+		private boolean outcomeDoctorId;
+		private boolean outcomeAdded;
+		private boolean outcomeFinallySeizuresIdCom;
+		private boolean outcomeEEGSpikes;
+		private boolean outcomeAEDPlanted;
+		private boolean outcomeMRIDone;
+		private boolean outcomeNeuroPsychology;
+		private boolean outcomeComment;
+		private boolean outcomeDeleted;
+		private boolean outcomeAddUserId;
+		private boolean outcomePatientId;
+		private boolean outcomeStatus;
+		
+		// Pharmacotherapy properties
+		private boolean pharmacotherapyId;
+		private boolean pharmacotherapyDate;
+		private boolean pharmacotherapyDoctorId;
+		private boolean pharmacotherapyAdded;
+		private boolean pharmacotherapyAEDIdCom;
+		private boolean pharmacotherapyEffective;
+		private boolean pharmacotherapyDuringSurgery;
+		private boolean pharmacotherapyComment;
+		private boolean pharmacotherapyDeleted;
+		private boolean pharmacotherapyAddUserId;
+		private boolean pharmacotherapyPatientId;
+		private boolean pharmacotherapyStatus;
+		
+		// Seizure properties
+		private boolean seizureId;
+		private boolean seizureDate;
+		private boolean seizureDoctorId;
+		private boolean seizureAdded;
+		private boolean seizureSeizureFrequencyIdCom;
+		private boolean seizureSecondarilyGeneralizedSeizure;
+		private boolean seizureStatusEpilepticus;
+		private boolean seizureSSCClassificationIdCom;
+		private boolean seizureILAEClassificationIdCom;
+		private boolean seizureSeizuresWhileAwakeEpi;
+		private boolean seizureSeizuresWhileAwakeLatent;
+		private boolean seizureSeizuresWhileAwakeNonEpi;
+		private boolean seizureSeizuresWhileSleepEpi;
+		private boolean seizureSeizuresWhileSleepLatent;
+		private boolean seizureSeizuresWhileSleepNonEpi;
+		private boolean seizureComment;
+		private boolean seizureDeleted;
+		private boolean seizureAddUserId;
+		private boolean seizurePatientId;
+		private boolean seizureStatus;
 		*/
 
 	public int getId() {
