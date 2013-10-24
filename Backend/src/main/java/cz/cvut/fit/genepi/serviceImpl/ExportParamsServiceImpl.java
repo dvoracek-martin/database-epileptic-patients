@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.util;
+package cz.cvut.fit.genepi.serviceImpl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -12,10 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.cvut.fit.genepi.DAO.ExportParamsDAO;
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.service.ExportParamsService;
-import cz.cvut.fit.genepi.serviceImpl.GenericServiceImpl;
 
 @Service
-public class ExportParams extends
+public class ExportParamsServiceImpl extends
 		GenericServiceImpl<ExportParamsEntity, Serializable> implements
 		ExportParamsService {
 	@Autowired
@@ -28,64 +27,6 @@ public class ExportParams extends
 	public List<ExportParamsEntity> findExportParamsEntityByUserID(int userID) {
 		return exportParamsDAO.findExportParamsByUserID(userID);
 	}
-
-	// Patient properties
-	private boolean patientId;
-	private boolean patientNin;
-	private boolean patientBirthday;
-	private boolean patientGender;
-	private boolean patientDoctorId;
-	private boolean patientDeleted;
-	private boolean patientChecked;
-	private boolean patientContactId;
-
-
-	// Contact properties	
-	private boolean contactId;
-	private boolean contactFirstName;
-	private boolean contactLastName;
-	private boolean contactAddressStreet;
-	private boolean contactAddressHn;
-	private boolean contactAddressCity;
-	private boolean contactPostalCode;
-	private boolean contactCountry;
-	private boolean contactPhoneNumber;
-	private boolean contactEmail;
-	
-
-	// Anamnesis properties
-	private boolean anamnesisId;
-	private boolean anamnesisDate;
-	private boolean anamnesisDoctorId;
-	private boolean anamnesisAdded;
-	private boolean anamnesisBeginningEpilepsy;
-	private boolean anamnesisInfantileSpasm;
-	private boolean anamnesisSpecificSyndrome;
-	private boolean anamnesisEpilepsyInFamily;
-	private boolean anamnesisParentalRisk;
-	private boolean anamnesisFibrilConvulsions;
-	private boolean anamnesisInflammationCns;
-	private boolean anamnesisInjuryCns;
-	private boolean anamnesisOperationCns;
-	private boolean anamnesisEarlyPmdRetardation;
-	private boolean anamnesisNonCnsComorbidity;
-	private boolean anamnesisComment;
-
-	
-	// Complication properties
-	private boolean complicationId;
-	private boolean complicationDate;
-	private boolean complicationDoctorId;
-	private boolean complicationAdded;
-	private boolean complicationIdCom;
-	private boolean complicationComment;
-	private boolean complicationDeleted;
-	private boolean complicationPatientId;
-	private boolean complicationAddUserId;
-	private boolean complicationStatus;
-	
-	
-	
 
 	public String changerToString(int ID, Locale locale) {
 		if (ID == 0) {
