@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "INVASIVETESTECOG")
+@Table(name = "invasive_test_ecog")
 public class InvasiveTestECOGEntity implements Comparable<InvasiveTestECOGEntity> {
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)

@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "OUTCOME")
+@Table(name = "outcome")
 public class OutcomeEntity implements Comparable<OutcomeEntity>{
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -49,7 +49,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity>{
 	@Column(name="eeg_spikes")
 	private Boolean eegSpikes;
 	
-	@Column(name="aed planted")
+	@Column(name="aed_planted")
 	private Boolean aedPlanted;
 	
 	@Column(name="mri_done")

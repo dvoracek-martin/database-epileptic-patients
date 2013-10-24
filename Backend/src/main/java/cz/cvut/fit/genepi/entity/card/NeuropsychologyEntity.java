@@ -17,7 +17,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 @Entity
-@Table(name = "NEUROPSYCHOLOGY")
+@Table(name = "neuropsychlogy")
 public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	/** The id. */
 	@Id

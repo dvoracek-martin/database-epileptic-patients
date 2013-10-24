@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "NEUROLOGICAL_FINDING")
+@Table(name = "neurological_finding")
 public class NeurologicalFindingEntity implements Comparable<NeurologicalFindingEntity>{
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)

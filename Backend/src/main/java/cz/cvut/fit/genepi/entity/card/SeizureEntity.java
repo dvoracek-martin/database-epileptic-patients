@@ -18,7 +18,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Class SeizureEntity.
  */
 @Entity
-@Table(name = "SEIZURE")
+@Table(name = "seizure")
 public class SeizureEntity implements Comparable<SeizureEntity>{
 
 	/** The id. */

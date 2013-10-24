@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "OPERATION")
+@Table(name = "operation")
 public class OperationEntity implements Comparable<OperationEntity>{
 	/** The id. */
 	@Id
@@ -66,7 +66,7 @@ public class OperationEntity implements Comparable<OperationEntity>{
 	@Column(name="operation_details")
 	private String operationDetails;
 	
-	@Column(name="complete resection")
+	@Column(name="complete_resection")
 	private Boolean completeResection;
 	
 	/** The comment. */
