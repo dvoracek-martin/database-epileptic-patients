@@ -277,7 +277,10 @@ public class PatientController {
 		listOfPossibleCards.add("Histologie");
 		listOfPossibleCards.add("Komplikace");
 		listOfPossibleCards.add("Outcome");
-
+		
+		// @TODO:
+                // chyba - tohle tedkon se predava do my sets, ale melo by se predavat do user sets
+                // predelat, aby se zobrazovalo spravne + pridat logiku na zobrazovani my sets
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		List<ExportParamsEntity> listOfSavedConfigurationsTmp= new ArrayList<ExportParamsEntity>();
 		listOfSavedConfigurationsTmp = exportParamsService
