@@ -18,7 +18,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "HISTOLOGY")
+@Table(name = "histology")
 public class HistologyEntity implements Comparable<HistologyEntity> {
 	/** The id. */
 	@Id
