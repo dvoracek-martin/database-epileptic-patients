@@ -81,6 +81,87 @@ public class ExportParamsEntity {
 		private boolean complicationPatientId;
 		private boolean complicationAddUserId;
 		private boolean complicationStatus;
+		
+		// DiagnosticTestEEG properties
+		private boolean diagnosticTestEEGId;
+		private boolean diagnosticTestEEGDate;
+		private boolean diagnosticTestEEGDoctorId;
+		private boolean diagnosticTestEEGAdded;
+		private boolean diagnosticTestEEGActivityIdCom;
+		private boolean diagnosticTestEEGSlowId;
+		private boolean diagnosticTestEEGInterictalEEGSpikesComId;
+		private boolean diagnosticTestEEGLocalizationInerictalEEGSpikes;
+		private boolean diagnosticTestEEGStatusEpilepticus;
+		private boolean diagnosticTestEEGSecondarySidedSynchrony;
+		private boolean diagnosticTestEEGIctalEEGPatternsIdCom;
+		private boolean diagnosticTestEEGLocalizationIctalEEGPattern;
+		private boolean diagnosticTestEEGComment;
+		private boolean diagnosticTestEEGDeleted;
+		private boolean diagnosticTestEEGAddUserId;
+		private boolean diagnosticTestEEGPatientId;
+		private boolean diagnosticTestEEGStatus;
+		
+		// DiagnosticTestMRI properties
+		private boolean diagnosticTestMRIId;
+		private boolean diagnosticTestMRIate;
+		private boolean diagnosticTestMRIDoctorId;
+		private boolean diagnosticTestMRIAdded;
+		private boolean diagnosticTestMRIProtocolIdCom;
+		private boolean diagnosticTestMRIFindingIdCom;
+		private boolean diagnosticTestMRIFdgPetIdCom;
+		private boolean diagnosticTestMRIInterictalSpectIdCom;
+		private boolean diagnosticTestMRIIntaliSpectIdCom;
+		private boolean diagnosticTestMRISiscom;
+		private boolean diagnosticTestMRITimeAplicationRn;
+		private boolean diagnosticTestMRITimingiAplicationRnIdCom ??? preklep ???
+		private boolean diagnosticTestMRIMrsProtocolIdCom;
+		private boolean diagnosticTestMRIMrsFindingIdCom;
+		private boolean diagnosticTestMRIDti;
+		private boolean diagnosticTestMRIDtiDetailStuide; ??? neni anglicky ???
+		private boolean diagnosticTestMRIFmri;
+		private boolean diagnosticTestMRIDetailsFmri;
+		private boolean diagnosticTestMRIWada;
+		private boolean diagnosticTestMRIDetailsWada;
+		private boolean diagnosticTestMRIDescribe;
+		private boolean diagnosticTestMRILocalizationSpecHypoperfuse;
+		private boolean diagnosticTestMRILocalizationMrsAbnormality;
+		private boolean diagnosticTestMRILocalizationPetHypometabolismu ???  neni anglicky ???
+		private boolean diagnosticTestMRILocalizationSpecHyperperfuse;
+		private boolean diagnosticTestMRIFmriProtocols;
+		private boolean diagnosticTestMRIComment;
+		private boolean diagnosticTestMRIDeleted;
+		private boolean diagnosticTestMRIPatientId;
+		private boolean diagnosticTestMRIAddUserId;
+		private boolean diagnosticTestMRIStatus;
+		
+		// Histiology properties
+		private boolean histiologyId;
+		private boolean histiologyDate;
+		private boolean histiologyDoctorId;
+		private boolean histiologyAdded;
+		private boolean histiologyHistopathologyIdCom;
+		private boolean histiologyClassificationIdCom;
+		private boolean histiologyComment;
+		private boolean histiologyDeleted;
+		private boolean histiologyPatientId;
+		private boolean histiologyAddUserId;
+		private boolean histiologyStatus;
+		
+		// InvasiveTestECOG properties
+		private boolean invasiveTestECOGId;
+		private boolean invasiveTestECOGDate;
+		private boolean invasiveTestECOGDoctorId;
+		private boolean invasiveTestECOGAdded;
+		private boolean invasiveTestECOGIntraOperativeEcog;
+		private boolean invasiveTestECOGEcogPatternsIdCom;
+		private boolean invasiveTestECOGEcogCover;
+		private boolean invasiveTestECOGAfterResectiomEcogIdCom;
+		private boolean invasiveTestECOGAwakeCraniotomy;
+		private boolean invasiveTestECOGComment;
+		private boolean invasiveTestECOGDeleted;
+		private boolean invasiveTestECOGAddUserId;
+		private boolean invasiveTestECOGPatientId;
+		private boolean invasiveTestECOGStatus;
 		*/
 
 	public int getId() {
