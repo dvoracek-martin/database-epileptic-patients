@@ -153,7 +153,7 @@ li.sortable-placeholder {
 					action="<c:url value="/patient/export/load" />">
 					<label>My Sets</label>
 					
-						<select name="exportMyId" type="text" class="input-large">
+						<select name="exportId" type="text" class="input-large">
 							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
 								<option value="${exportParam.id}">
 									${exportParam.name}
