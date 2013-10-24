@@ -43,7 +43,7 @@
 							});
 						});
 					</script>
-					//jQuery for changing action method of rform when clicking on SAVE set
+					<!--jQuery for changing action method of rform when clicking on SAVE set-->
 					<script>
 						$('#saveSetBtn')
 								.click(
