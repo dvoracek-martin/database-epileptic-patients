@@ -36,72 +36,84 @@ public class PatientServiceImpl extends
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithComplicationList(int patientId) {
 		return patientDAO.getPatientByIdWithComplicationList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithDiagnosticTestEEGList(int patientId) {
 		return patientDAO.getPatientByIdWithDiagnosticTestEEGList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId) {
 		return patientDAO.getPatientByIdWithDiagnosticTestMRIList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithHistologyList(int patientId) {
 		return patientDAO.getPatientByIdWithHistologyList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId) {
 		return patientDAO.getPatientByIdWithInvasiveTestECOGList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId) {
 		return patientDAO.getPatientByIdWithInvasiveTestEEGList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
 		return patientDAO.getPatientByIdWithNeurologicalFindingList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithNeuropsychologyList(int patientId) {
 		return patientDAO.getPatientByIdWithNeuropsychologyList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithOperationList(int patientId) {
 		return patientDAO.getPatientByIdWithOperationList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithOutcomeList(int patientId) {
 		return patientDAO.getPatientByIdWithOutcomeList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithPharmacotherapyList(int patientId) {
 		return patientDAO.getPatientByIdWithPharmacotherapyList(patientId);
 
 	}
 
 	@Override
+	@Transactional
 	public PatientEntity getPatientByIdWithSeizureList(int patientId) {
 		return patientDAO.getPatientByIdWithSeizureList(patientId);
 
