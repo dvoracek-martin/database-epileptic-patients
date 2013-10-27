@@ -86,7 +86,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			e.printStackTrace();
 		}
 		String content = "";
-		content += addTitlePage(f, bw,locale);
+		content += addTitlePage(f, bw, locale);
 		content += addContent(f, exports, listOfPossibleCards, locale);
 
 		try {
@@ -148,36 +148,51 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
-			 	content += (messageSource.getMessage("label.anamnesis",null, locale)+"\n\n");
+				content += (messageSource.getMessage("label.anamnesis", null,
+						locale) + "\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content +=messageSource.getMessage("label.dateExamination",null,	 locale); 
-					content += (": "+a.getAdded() + "\n");					
-					content +=messageSource.getMessage("label.epilepsyInFamily",null,	 locale);
-					content += (": "+a.getEpilepsyInFamily() + "\n");
-					content +=messageSource.getMessage("label.prenatalRisk",null,	 locale);
-					content += (": "+a.getPrenatalRisk() + "\n");
-					content +=messageSource.getMessage("label.inflammationCNS",null,	 locale);
-					content += (": "+a.getInflammationCns() + "\n");
-					content +=messageSource.getMessage("label.fibrilConvulsions",null,	 locale);
-					content += (": "+a.getFibrilConvulsions() + "\n");	
-					content +=messageSource.getMessage("abel.injuryCNS",null,	 locale);
-					content += (": "+a.getInjuryCns() + "\n");	
-					content +=messageSource.getMessage("label.operationCNS",null,	 locale);
-					content += (": "+a.getOperationCns() + "\n");	
-					content +=messageSource.getMessage("label.earlyPMDRetardation",null,	 locale);
-					content += (": "+a.getEarlyPmdRetardation() + "\n");	
-					content +=messageSource.getMessage("label.beginningEpilepsy",null,	 locale);
-					content += (": "+a.getBeginningEpilepsy() + "\n");	
-					content +=messageSource.getMessage("label.firstFever",null,	 locale);
-					content += (": "+a.getFirstFever() + "\n");	
-					content +=messageSource.getMessage("label.infantileSpasm",null,	 locale);
-					content += (": "+a.getInfantileSpasm() + "\n");	
-					content +=messageSource.getMessage("label.epilepticSyndrome",null,	 locale);
-					content += (": "+a.getSpecificSyndromeIdcom() + "\n");
-					content +=messageSource.getMessage("label.nonCNSComorbidit",null,	 locale);
-					content += (": "+a.getNonCnsComorbidity() + "\n");
-					content +=messageSource.getMessage("changedPassword",null,	 locale);
-					content += (": "+a.getComment() + "\n");
+					content += messageSource.getMessage(
+							"label.dateExamination", null, locale);
+					content += (": " + a.getAdded() + "\n");
+					content += messageSource.getMessage(
+							"label.epilepsyInFamily", null, locale);
+					content += (": " + a.getEpilepsyInFamily() + "\n");
+					content += messageSource.getMessage("label.prenatalRisk",
+							null, locale);
+					content += (": " + a.getPrenatalRisk() + "\n");
+					content += messageSource.getMessage(
+							"label.inflammationCNS", null, locale);
+					content += (": " + a.getInflammationCns() + "\n");
+					content += messageSource.getMessage(
+							"label.fibrilConvulsions", null, locale);
+					content += (": " + a.getFibrilConvulsions() + "\n");
+					content += messageSource.getMessage("label.injuryCNS",
+							null, locale);
+					content += (": " + a.getInjuryCns() + "\n");
+					content += messageSource.getMessage("label.operationCNS",
+							null, locale);
+					content += (": " + a.getOperationCns() + "\n");
+					content += messageSource.getMessage(
+							"label.earlyPMDRetardation", null, locale);
+					content += (": " + a.getEarlyPmdRetardation() + "\n");
+					content += messageSource.getMessage(
+							"label.beginningEpilepsy", null, locale);
+					content += (": " + a.getBeginningEpilepsy() + "\n");
+					content += messageSource.getMessage("label.firstFever",
+							null, locale);
+					content += (": " + a.getFirstFever() + "\n");
+					content += messageSource.getMessage("label.infantileSpasm",
+							null, locale);
+					content += (": " + a.getInfantileSpasm() + "\n");
+					content += messageSource.getMessage(
+							"label.epilepticSyndrome", null, locale);
+					content += (": " + a.getSpecificSyndromeIdcom() + "\n");
+					content += messageSource.getMessage(
+							"label.nonCNSComorbidit", null, locale);
+					content += (": " + a.getNonCnsComorbidity() + "\n");
+					content += messageSource.getMessage("label.comment", null,
+							locale);
+					content += (": " + a.getComment() + "\n");
 
 					content += addStarLine();
 				}
