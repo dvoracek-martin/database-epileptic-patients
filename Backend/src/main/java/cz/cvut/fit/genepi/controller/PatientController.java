@@ -354,10 +354,13 @@ public class PatientController {
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		} else if (exportType.equals("txt")) {
+
+			System.out.println( "\n\n\n\n\n"+"JES!"+ "\n\n\n\n");
 			exportToTxtService.export(patient,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		}
+		System.out.println( "\n\n\n\n\n"+exportType+ "\n\n\n\n");
 		boolean isReady = true;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
