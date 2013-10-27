@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -33,7 +34,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports) {
+			List<String> exports, Locale locale) {
 		String date = getDate();
 		String name = date + ".docx";
 
@@ -69,14 +70,15 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		tmpRun.setText("LALALALAALALAAAA");
 		tmpRun.setFontSize(18);
 		try {
-			document.write(new FileOutputStream(new File(downloadFolder+ getDate() + ".docx")));
+			document.write(new FileOutputStream(new File(downloadFolder
+					+ getDate() + ".docx")));
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save docx file.",
 					e);
 		} catch (IOException e) {
 			logger.logError("IO exception when trying to save docx file.", e);
 		}
-		
+
 		return name;
 	}
 }

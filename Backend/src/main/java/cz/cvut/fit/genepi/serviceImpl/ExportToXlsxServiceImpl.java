@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -55,7 +56,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports) {
+			List<String> exports, Locale locale) {
 
 		logger.setLogger(ExportToXlsxServiceImpl.class);
 	return	writeData(patientList);

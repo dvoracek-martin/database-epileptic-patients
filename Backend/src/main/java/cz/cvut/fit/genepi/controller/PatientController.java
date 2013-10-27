@@ -313,10 +313,8 @@ public class PatientController {
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
-		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
-		model.addAttribute("isReady", isReady);
 		String[] arrayOfAsignedCards = null;
 		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
 		return "patient/exportView";
@@ -344,7 +342,7 @@ public class PatientController {
 			try {
 				String url = exportToPdfService.export(patientList,
 						userService.findUserByUsername(auth.getName()),
-						listOfExports, listOfPossibleCards);
+						listOfExports, listOfPossibleCards, locale);
 				return "redirect:/resources/downloads/" + url;
 			} catch (FileNotFoundException e) {
 				logger.logError(
@@ -356,12 +354,12 @@ public class PatientController {
 		} else if (exportType.equals("xlsx")) {
 			String url = exportToXlsxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
-					listOfExports);
+					listOfExports, locale);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("docx")) {
 			String url = exportToDocxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
-					listOfExports);
+					listOfExports, locale);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("txt")) {
 			String url = exportToTxtService.export(patientList,
@@ -374,10 +372,9 @@ public class PatientController {
 					listOfExports, listOfPossibleCards);
 			return "redirect:/resources/downloads/" + url;
 		}
-		boolean isReady = true;
+		
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
-		model.addAttribute("isReady", isReady);
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
@@ -483,10 +480,8 @@ public class PatientController {
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
-		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientId));
-		model.addAttribute("isReady", isReady);
 		return "patient/exportView";
 	}
 

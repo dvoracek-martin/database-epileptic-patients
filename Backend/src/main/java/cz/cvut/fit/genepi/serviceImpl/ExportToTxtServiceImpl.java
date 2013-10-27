@@ -204,7 +204,6 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 					content += (": " + a.getComment() + "\n");
 
 					content += addStarLine();
-					content += addEmptyLine();
 				}
 			}
 			content += addDashLine();

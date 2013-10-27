@@ -8,6 +8,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -119,7 +120,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	public String export(java.util.List<PatientEntity> patientList,
 			UserEntity user, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards) {
+			java.util.List<String> listOfPossibleCards, Locale locale) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
@@ -175,7 +176,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				e.printStackTrace();
 			}
 			try {
-				addContent(document, exports, listOfPossibleCards, patient);
+				addContent(document, exports, listOfPossibleCards, patient, locale);
 			} catch (DocumentException e) {
 				logger.logError(
 						"Document exception when trying to save pdf file.", e);
@@ -257,7 +258,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 */
 	private static void addContent(Document document,
 			java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards, PatientEntity patient)
+			java.util.List<String> listOfPossibleCards, PatientEntity patient, Locale locale)
 			throws DocumentException {
 
 		Anchor anchor = new Anchor("First Chapter", catFont);
@@ -290,8 +291,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		addEmptyLine(patientParagraph, 2);
 		subCatPart.add(patientParagraph);
 		// Add a table
-		createTable(subCatPart, patient);
-		;
+		createTable(subCatPart, patient);		
+		
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
 				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",
