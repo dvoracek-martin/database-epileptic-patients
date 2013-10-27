@@ -342,9 +342,10 @@ public class PatientController {
 
 		if (exportType.equals("pdf")) {
 			try {
-				exportToPdfService.export(patientList,
+				String url = exportToPdfService.export(patientList,
 						userService.findUserByUsername(auth.getName()),
 						listOfExports, listOfPossibleCards);
+				return "redirect:/resources/downloads/" + url;
 			} catch (FileNotFoundException e) {
 				logger.logError(
 						"File wasn't found when trying to export to pdf.", e);

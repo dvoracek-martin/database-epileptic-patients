@@ -82,6 +82,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		reportDate=reportDate.replace(' ','_');
+		reportDate = reportDate.replace('/', '_');
 		return reportDate;
 	}
 
@@ -117,7 +118,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * 
 	 */
 
-	public void export(java.util.List<PatientEntity> patient, UserEntity user,
+	public String export(java.util.List<PatientEntity> patient, UserEntity user,
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
@@ -125,17 +126,20 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		Document document = new Document();
 		
 		ExportToPdfServiceImpl.user = user;
+		String date = getDate();
+		String name = date + ".pdf";
+
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
-
+		File f = null;
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + getDate()
-					+ ".pdf");
+
+			f = new File(downloadFolder + name);
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -178,6 +182,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			e.printStackTrace();
 		}
 		document.close();
+		return name;
 	}
 
 	// iText allows to add metadata to the PDF which can be viewed in your Adobe

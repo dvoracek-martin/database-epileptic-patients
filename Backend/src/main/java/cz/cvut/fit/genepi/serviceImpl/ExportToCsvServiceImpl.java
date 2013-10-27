@@ -39,6 +39,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 	    reportDate=reportDate.replace(' ','_');
+		reportDate = reportDate.replace('/', '_');
 		return reportDate;
 	}
 
