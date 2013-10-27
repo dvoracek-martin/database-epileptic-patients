@@ -46,8 +46,6 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	@Autowired
 	private static MessageSource messageSource;
 
-	private static PatientEntity patient;
-
 	private static UserEntity user;
 
 	/** The cat font. */
@@ -81,7 +79,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
-		reportDate=reportDate.replace(' ','_');
+		reportDate = reportDate.replace(' ', '_');
 		reportDate = reportDate.replace('/', '_');
 		return reportDate;
 	}
@@ -112,19 +110,20 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		smallBold = new Font(bf, 12, Font.BOLD);
 
 	}
-	/* TODO:
+
+	/*
+	 * TODO:
 	 * 
-	 * Make it able to accept List<PatientEntity> and iterate through it 
-	 * 
+	 * Make it able to accept List<PatientEntity> and iterate through it
 	 */
 
-	public String export(java.util.List<PatientEntity> patient, UserEntity user,
-			java.util.List<String> exports,
+	public String export(java.util.List<PatientEntity> patientList,
+			UserEntity user, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
-		
+
 		ExportToPdfServiceImpl.user = user;
 		String date = getDate();
 		String name = date + ".pdf";
@@ -155,7 +154,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
-					+ "patient" +getDate() + ".pdf"));
+					+ "patient" + getDate() + ".pdf"));
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save pdf file.",
 					e);
@@ -167,19 +166,21 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		document.open();
 		addMetaData(document);
-		try {
-			addTitlePage(document);
-		} catch (DocumentException e) {
-			logger.logError("Document exception when trying to save pdf file.",
-					e);
-			e.printStackTrace();
-		}
-		try {
-			addContent(document, exports, listOfPossibleCards);
-		} catch (DocumentException e) {
-			logger.logError("Document exception when trying to save pdf file.",
-					e);
-			e.printStackTrace();
+		for (PatientEntity patient : patientList) {
+			try {
+				addTitlePage(document, patient);
+			} catch (DocumentException e) {
+				logger.logError(
+						"Document exception when trying to save pdf file.", e);
+				e.printStackTrace();
+			}
+			try {
+				addContent(document, exports, listOfPossibleCards, patient);
+			} catch (DocumentException e) {
+				logger.logError(
+						"Document exception when trying to save pdf file.", e);
+				e.printStackTrace();
+			}
 		}
 		document.close();
 		return name;
@@ -195,9 +196,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 *            the document
 	 */
 	private static void addMetaData(Document document) {
-		document.addTitle(patient.getContact().getFirstName() + " "
-				+ patient.getContact().getLastName() + " ,ID:"
-				+ patient.getId() + " " + getDate());
+		document.addTitle("test title");
 		document.addSubject("Using iText");
 		document.addKeywords("Java, PDF, iText");
 		document.addAuthor(user.getUsername() + " " + user.getId() + " "
@@ -216,7 +215,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * @throws DocumentException
 	 *             the document exception
 	 */
-	private static void addTitlePage(Document document)
+	private static void addTitlePage(Document document, PatientEntity patient)
 			throws DocumentException {
 		Paragraph preface = new Paragraph();
 		// We add one empty line
@@ -258,7 +257,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 */
 	private static void addContent(Document document,
 			java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards)
+			java.util.List<String> listOfPossibleCards, PatientEntity patient)
 			throws DocumentException {
 
 		Anchor anchor = new Anchor("First Chapter", catFont);
@@ -291,7 +290,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		addEmptyLine(patientParagraph, 2);
 		subCatPart.add(patientParagraph);
 		// Add a table
-		createTable(subCatPart);
+		createTable(subCatPart, patient);
 		;
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
@@ -395,7 +394,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * @throws BadElementException
 	 *             the bad element exception
 	 */
-	private static void createTable(Section subCatPart)
+	private static void createTable(Section subCatPart, PatientEntity patient)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(2);
 
