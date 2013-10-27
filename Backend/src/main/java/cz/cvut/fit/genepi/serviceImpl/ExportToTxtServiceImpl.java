@@ -11,15 +11,18 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.Paragraph;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
+import cz.cvut.fit.genepi.service.ExportToTxtService;
 import cz.cvut.fit.genepi.service.LoggingService;
 
-public class ExportToTxtServiceImpl {
+@Service
+public class ExportToTxtServiceImpl implements ExportToTxtService{
 
 	@Autowired
 	private static MessageSource messageSource;
@@ -41,7 +44,6 @@ public class ExportToTxtServiceImpl {
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
-logger.logInfo("**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************");
 		ExportToTxtServiceImpl.patient = patient;
 		//ExportToTxtServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
