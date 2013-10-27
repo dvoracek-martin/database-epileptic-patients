@@ -94,7 +94,10 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();
 		CreationHelper createHelper = wb.getCreationHelper();
-		Sheet sheet = wb.createSheet("new sheet");
+		Sheet sheet = wb.createSheet(patient.getContact().getLastName() + " "
+				+ patient.getContact().getFirstName() + " " + patient.getNin());
+		for (int i = 0; i != 10; i++)
+			wb.createSheet("Test" + i);
 
 		// Create a row and put some cells in it. Rows are 0 based.
 		Row row = sheet.createRow((short) 0);
