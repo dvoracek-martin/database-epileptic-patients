@@ -81,6 +81,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
+		reportDate=reportDate.replace(' ','_');
 		return reportDate;
 	}
 

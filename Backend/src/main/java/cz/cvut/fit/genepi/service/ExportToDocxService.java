@@ -6,5 +6,5 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
 public interface ExportToDocxService {
-	public void export(List<PatientEntity> patientList, UserEntity user, List<String> exports);
+	public String export(List<PatientEntity> patientList, UserEntity user, List<String> exports);
 }

@@ -353,22 +353,25 @@ public class PatientController {
 						"Document exception when trying to export to pdf.", e);
 			}
 		} else if (exportType.equals("xlsx")) {
-			exportToXlsxService.export(patientList,
+			String url = exportToXlsxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
+			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("docx")) {
-			exportToDocxService.export(patientList,
+			String url = exportToDocxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
+			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("txt")) {
-			String url=exportToTxtService.export(patientList,
+			String url = exportToTxtService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
 					listOfExports, listOfPossibleCards);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("csv")) {
-			exportToCsvService.export(patientList,
+			String url = exportToCsvService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
 					listOfExports, listOfPossibleCards);
+			return "redirect:/resources/downloads/" + url;
 		}
 		boolean isReady = true;
 		model.addAttribute("patient",

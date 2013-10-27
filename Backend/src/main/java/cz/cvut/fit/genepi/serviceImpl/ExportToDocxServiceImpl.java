@@ -32,18 +32,22 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		return reportDate;
 	}
 
-	public void export(List<PatientEntity> patientList, UserEntity user,
+	public String export(List<PatientEntity> patientList, UserEntity user,
 			List<String> exports) {
+		String date = getDate();
+		String name = date + ".docx";
+
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
-
+		File f = null;
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + getDate()+ ".xlsx");
+
+			f = new File(downloadFolder + name);
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -72,5 +76,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		} catch (IOException e) {
 			logger.logError("IO exception when trying to save docx file.", e);
 		}
+		
+		return name;
 	}
 }

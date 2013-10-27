@@ -39,6 +39,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
+		reportDate = reportDate.replace(' ', '_');
 		return reportDate;
 	}
 
@@ -52,25 +53,28 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public void export(List<PatientEntity> patientList, UserEntity user,
+	public String export(List<PatientEntity> patientList, UserEntity user,
 			List<String> exports) {
 
 		logger.setLogger(ExportToXlsxServiceImpl.class);
-		writeData(patientList);
+	return	writeData(patientList);
 	}
 
-	private void writeData(List<PatientEntity>patientList) {
+	private String writeData(List<PatientEntity>patientList) {		
+		String date = getDate();
+		String name = date + ".xlsx";
+
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
-
+		File f = null;
 		String os = System.getProperty("os.name").toLowerCase();
 		if (os.indexOf("win") >= 0) {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + "patient" + getDate()
-					+ ".xlsx");
+
+			f = new File(downloadFolder + name);
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -109,7 +113,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 		// Write the output to a file
 		FileOutputStream fileOut = null;
 		try {
-			fileOut = new FileOutputStream(downloadFolder + getDate() + ".xlsx");
+			fileOut = new FileOutputStream(downloadFolder + date + ".xlsx");
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save xlsx file.",
 					e);
@@ -129,5 +133,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 					"File wasn't found when trying to close xlsx file.", e);
 			e.printStackTrace();
 		}
+		
+		return name;
 	}
 }

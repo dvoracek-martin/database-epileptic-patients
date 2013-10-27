@@ -9,5 +9,5 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  * The Interface ExportToXlsxService.
  */
 public interface  ExportToXlsxService {
-	public void export(List<PatientEntity> patientList, UserEntity user, List<String> exports);
+	public String export(List<PatientEntity> patientList, UserEntity user, List<String> exports);
 }
