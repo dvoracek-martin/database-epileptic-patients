@@ -231,8 +231,8 @@ li.sortable-placeholder {
 							value="xlsx"> xlsx
 								<input type="radio" id="docxFormat" name="exportType"
 							value="docx"> docx
-							<input type="radio" id="txtFormat" name="exportType"
-							value="txt"> txt
+							<input type="radio" id="txtFormat" name="exportType" value="txt"> txt
+								<input type="radio" id="csvFormat" name="exportType" value="csv"> csv
 						    </div>
 						</div>
 						
