@@ -66,7 +66,7 @@
 											$('#exportForm').submit();
 										});
 					</script>
-					<!-- change action URL when deleting users SET -->
+					//change action URL when deleting users SET
 						<script>
 							$('#exportParamDeleteBrn')
 									.click(
@@ -149,9 +149,9 @@ li.sortable-placeholder {
 					</div>
 					
 					<div class="span6">
-					<form id="usersSet" method="POST"
+					<form id="mySet" method="POST"
 					action="<c:url value="/patient/export/load" />">
-					<label>Users Sets</label>
+					<label>My Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
 							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
@@ -164,16 +164,16 @@ li.sortable-placeholder {
 					<button class="btn btn-primary" type="submit" />LOAD</button>
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
-					<button id="exportParamDeleteBrn" class="btn btn-primary"
+					<button id="exportMyParamDeleteBrn" class="btn btn-primary"
 							type="submit" />DELETE</button>
 						</sec:authorize>
 					</form>
 					</div>
 					
 					<div class="span6">
-					<form id="mySet" method="POST"
+					<form id="usersSet" method="POST"
 					action="<c:url value="/patient/export/load" />">
-					<label>My Sets</label>
+					<label>Users Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
 							<c:forEach items="${listOfUsersSavedConfigurations}"
@@ -231,6 +231,8 @@ li.sortable-placeholder {
 							value="xlsx"> xlsx
 								<input type="radio" id="docxormat" name="exportType"
 							value="docx"> docx
+							<input type="radio" id="docxormat" name="exportType"
+							value="txt"> txt
 						    </div>
 						</div>
 						
@@ -275,6 +277,3 @@ li.sortable-placeholder {
 		</div>
 	</jsp:body>
 </t:menuLVL3>
-
-
-

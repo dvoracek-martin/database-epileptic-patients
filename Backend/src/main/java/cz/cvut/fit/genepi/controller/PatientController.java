@@ -71,6 +71,9 @@ public class PatientController {
 
 	@Autowired
 	private ExportToDocxService exportToDocxService;
+	
+	@Autowired
+	private ExportToDocxService exportToTxtService;
 
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
@@ -284,18 +287,19 @@ public class PatientController {
 		// predelat, aby se zobrazovalo spravne + pridat logiku na zobrazovani
 		// my sets
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
-		List<ExportParamsEntity> listOfConfigurationsTmp = new ArrayList<ExportParamsEntity>();
-		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
-
-		listOfUsersSavedConfigurations = exportParamsService
+		List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
+		listOfSavedConfigurationsTmp = exportParamsService
 				.findExportParamsEntityByUserID(user.getId());
 
-		listOfConfigurationsTmp = exportParamsService
-				.findAll(ExportParamsEntity.class);
-		for (ExportParamsEntity exportEntityParams : listOfConfigurationsTmp) {
+		for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
 			if (exportEntityParams.isGeneric())
-				listOfSavedConfigurations.add(exportEntityParams);
+				;
+			listOfSavedConfigurations.add(exportEntityParams);
 		}
+
+		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfUsersSavedConfigurations = exportParamsService
+				.findAll(ExportParamsEntity.class);
 
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
@@ -304,12 +308,6 @@ public class PatientController {
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
-		for (ExportParamsEntity e : listOfUsersSavedConfigurations) {
-			System.out.println("Saved configuration " + e.getName());
-		}
-		for (ExportParamsEntity e : listOfSavedConfigurations) {
-			System.out.println("User saved configuration " + e.getName());
-		}
 		boolean isReady = false;
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
@@ -353,6 +351,10 @@ public class PatientController {
 					listOfExports);
 		} else if (exportType.equals("docx")) {
 			exportToDocxService.export(patient,
+					userService.findUserByUsername(auth.getName()),
+					listOfExports);
+		} else if (exportType.equals("txt")) {
+			exportToTxtService.export(patient,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		}
@@ -452,25 +454,17 @@ public class PatientController {
 		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
 
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
-		List<ExportParamsEntity> listOfConfigurationsTmp = new ArrayList<ExportParamsEntity>();
-		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
-
-		listOfUsersSavedConfigurations = exportParamsService
+		listOfSavedConfigurations = exportParamsService
 				.findExportParamsEntityByUserID(user.getId());
-
-		listOfConfigurationsTmp = exportParamsService
+		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
+		listOfUsersSavedConfigurations = exportParamsService
 				.findAll(ExportParamsEntity.class);
-		for (ExportParamsEntity exportEntityParams : listOfConfigurationsTmp) {
-			if (exportEntityParams.isGeneric())
-				listOfSavedConfigurations.add(exportEntityParams);
-		}
 
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
 				listOfSavedConfigurations);
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
-		
 		model.addAttribute("user", user);
 
 		boolean isReady = false;
