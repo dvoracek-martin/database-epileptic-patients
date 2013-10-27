@@ -27,7 +27,7 @@ import cz.cvut.fit.genepi.service.LoggingService;
 public class ExportToTxtServiceImpl implements ExportToTxtService {
 
 	@Autowired
-	private static MessageSource messageSource;
+	private MessageSource messageSource;
 
 	private static PatientEntity patient;
 	// private static UserEntity user;
@@ -148,7 +148,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
-				content += (messageSource.getMessage("label.anamnesis",null, locale)+"\n\n");
+			 	content += (messageSource.getMessage("label.anamnesis",null, locale)+"\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content +=messageSource.getMessage("label.dateExamination: ",null,	 locale); 
 					content += (a.getAdded() + "\n");					
