@@ -101,6 +101,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			logger.logError("Exception when trying to close txt file.", e);
 			e.printStackTrace();
 		}
+		
+		System.out.println(content);
 	}
 
 	private String addEmptyLine(String content) {
