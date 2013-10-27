@@ -139,18 +139,18 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 
-		content = addDashLine(content);
+		content += addDashLine(content);
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
-					content = addStarLine(content);
+					content += addStarLine(content);
 				}
 
 			}
-			content = addDashLine(content);
+			content += addDashLine(content);
 
 			if (s.equals(listOfPossibleCards.get(1))) {
 				content += ("Anamnesis\n\n");
@@ -195,6 +195,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 				}
 
 			}
+			content+="test";
 		}
 	}
 }
