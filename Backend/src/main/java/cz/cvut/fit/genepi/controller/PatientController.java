@@ -356,7 +356,7 @@ public class PatientController {
 					listOfExports);
 		} else if (exportType.equals("txt")) {
 			exportToTxtService.export(patient,
-					userService.findUserByUsername(auth.getName()),
+					userService.findUserByUsername(auth.getName()),locale,
 					listOfExports, listOfPossibleCards);
 		}
 		boolean isReady = true;

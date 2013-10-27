@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -29,7 +30,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 	private static MessageSource messageSource;
 
 	private static PatientEntity patient;
-
+	private static Locale locale;
 	// private static UserEntity user;
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
@@ -41,11 +42,12 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return reportDate;
 	}
 
-	public void export(PatientEntity patient, UserEntity user,
+	public void export(PatientEntity patient, UserEntity user, Locale locale,
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
 		ExportToTxtServiceImpl.patient = patient;
+		ExportToTxtServiceImpl.locale = locale;
 		// ExportToTxtServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
@@ -87,7 +89,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		}
 		String content = "";
 		content += addTitlePage(f, bw);
-		content += addContent(f, content, exports, listOfPossibleCards);
+		content += addContent(f, exports, listOfPossibleCards);
 
 		try {
 			bw.write(content);
@@ -140,21 +142,47 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return content;
 	}
 
-	private String addContent(File f, String content,
-			java.util.List<String> exports,
+	private String addContent(File f, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
-
+		String content = "";
 		content += addDashLine();
 		content += addEmptyLine();
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
-				content += ("Anamnesis\n\n");
+				content += (messageSource.getMessage("label.anamnesis",null, locale)+"\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
+					content +=messageSource.getMessage("label.dateExamination: ",null,	 locale); 
+					content += (a.getAdded() + "\n");					
+					content +=messageSource.getMessage("label.epilepsyInFamily: ",null,	 locale);
+					content += (a.getEpilepsyInFamily() + "\n");
+					content +=messageSource.getMessage("label.prenatalRisk: ",null,	 locale);
+					content += (a.getPrenatalRisk() + "\n");
+					content +=messageSource.getMessage("label.inflammationCNS: ",null,	 locale);
+					content += (a.getInflammationCns() + "\n");
+					content +=messageSource.getMessage("label.fibrilConvulsions",null,	 locale);
+					content += (a.getFibrilConvulsions() + "\n");	
+					content +=messageSource.getMessage("abel.injuryCNS: ",null,	 locale);
+					content += (a.getInjuryCns() + "\n");	
+					content +=messageSource.getMessage("label.operationCNS: ",null,	 locale);
+					content += (a.getOperationCns() + "\n");	
+					content +=messageSource.getMessage("label.earlyPMDRetardation: ",null,	 locale);
+					content += (a.getEarlyPmdRetardation() + "\n");	
+					content +=messageSource.getMessage("label.beginningEpilepsy: ",null,	 locale);
+					content += (a.getBeginningEpilepsy() + "\n");	
+					content +=messageSource.getMessage("label.firstFever: ",null,	 locale);
+					content += (a.getFirstFever() + "\n");	
+					content +=messageSource.getMessage("label.infantileSpasm: ",null,	 locale);
+					content += (a.getInfantileSpasm() + "\n");	
+					content +=messageSource.getMessage("label.epilepticSyndrome: ",null,	 locale);
+					content += (a.getSpecificSyndromeIdcom() + "\n");
+					content +=messageSource.getMessage("label.nonCNSComorbidit: ",null,	 locale);
+					content += (a.getNonCnsComorbidity() + "\n");
+					content +=messageSource.getMessage("changedPassword",null,	 locale);
+					content += (a.getComment() + "\n");
+
 					content += addStarLine();
 				}
-
 			}
 			content += addDashLine();
 			content += addEmptyLine();

@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
@@ -11,6 +12,6 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  */
 public interface ExportToTxtService {
 	
-	public void export(PatientEntity patient, UserEntity user,
+	public void export(PatientEntity patient, UserEntity user, Locale locale,
 			List<String> exports,List<String> listOfPossibleCards );
 }
