@@ -154,7 +154,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
-					+ "patient" + getDate() + ".pdf"));
+					+ getDate() + ".pdf"));
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save pdf file.",
 					e);
