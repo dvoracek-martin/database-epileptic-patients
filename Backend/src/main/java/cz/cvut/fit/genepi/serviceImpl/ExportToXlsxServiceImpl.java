@@ -36,7 +36,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	private LoggingService logger = new LoggingService();
 
 	private static String getDate() {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		return reportDate;

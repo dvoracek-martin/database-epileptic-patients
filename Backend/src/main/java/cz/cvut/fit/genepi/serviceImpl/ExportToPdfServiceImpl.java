@@ -116,13 +116,13 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * 
 	 */
 
-	public void export(PatientEntity patient, UserEntity user,
+	public void export(java.util.List<PatientEntity> patient, UserEntity user,
 			java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
-		ExportToPdfServiceImpl.patient = patient;
+		
 		ExportToPdfServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
@@ -133,7 +133,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + "patient" + patient.getId()
+			File f = new File(downloadFolder + getDate()
 					+ ".pdf");
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
@@ -150,7 +150,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(downloadFolder
-					+ "patient" + patient.getId() + ".pdf"));
+					+ "patient" +getDate() + ".pdf"));
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save pdf file.",
 					e);
