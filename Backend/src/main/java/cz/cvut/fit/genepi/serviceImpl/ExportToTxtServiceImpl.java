@@ -30,7 +30,6 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 	private static MessageSource messageSource;
 
 	private static PatientEntity patient;
-	private static Locale locale;
 	// private static UserEntity user;
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
@@ -47,7 +46,6 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
 		ExportToTxtServiceImpl.patient = patient;
-		ExportToTxtServiceImpl.locale = locale;
 		// ExportToTxtServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
@@ -88,8 +86,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			e.printStackTrace();
 		}
 		String content = "";
-		content += addTitlePage(f, bw);
-		content += addContent(f, exports, listOfPossibleCards);
+		content += addTitlePage(f, bw,locale);
+		content += addContent(f, exports, listOfPossibleCards, locale);
 
 		try {
 			bw.write(content);
@@ -129,7 +127,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return ("\n" + emptyLine + "\n");
 	}
 
-	private String addTitlePage(File f, BufferedWriter bw) {
+	private String addTitlePage(File f, BufferedWriter bw, Locale locale) {
 		String content = "Export of the patient "
 				+ patient.getContact().getFirstName() + " "
 				+ patient.getContact().getLastName() + " ,ID:"
@@ -143,7 +141,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 	}
 
 	private String addContent(File f, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards) {
+			java.util.List<String> listOfPossibleCards, Locale locale) {
 		String content = "";
 		content += addDashLine();
 		content += addEmptyLine();
