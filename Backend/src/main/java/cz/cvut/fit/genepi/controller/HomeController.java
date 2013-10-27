@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.entity.NewsMessageEntity;
 import cz.cvut.fit.genepi.service.NewsMessageService;
 
-// TODO: Auto-generated Javadoc
 /**
- * Handles requests for the application home page.
+ * This class is a controller class which handles requests connected with a home
+ * and news pages.
  */
 @Scope("session")
 @Controller
@@ -38,16 +38,18 @@ public class HomeController {
 			.getLogger(HomeController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Handles the request to access home page.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
 	 * 
 	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the user's locale.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String homeGET(Locale locale, Model model) {
+	public String homeGET(Model model, Locale locale) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		// TODO: overide findAll rto return reverted news list
@@ -61,14 +63,32 @@ public class HomeController {
 		return "homeView";
 	}
 
+	/**
+	 * Handles the request to create new news message.
+	 * 
+	 * @param newsMessage
+	 *            the news message which was filled in form at front-end. It is
+	 *            grabbed from POST string and validated.
+	 * @param result
+	 *            the result of binding form from front-end to an
+	 *            NewsMessageEntity. It is used to determine if there were some
+	 *            errors during binding.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @return the string of a view to be rendered if the binding has errors
+	 *         otherwise, the string of an address to which the user will be
+	 *         redirected.
+	 */
 	@RequestMapping(value = "/news/create", method = RequestMethod.POST)
 	public String newsMessageCreatePOST(
-			Locale locale,
-			Model model,
 			@ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
-			BindingResult result) {
+			BindingResult result, Model model, Locale locale) {
 		if (result.hasErrors()) {
-			// TODO: overide findAll rto return reverted news list
+			// TODO: override findAll to return reverted news list
 			List<NewsMessageEntity> newsMessages = newsMessageService
 					.findAll(NewsMessageEntity.class);
 			Collections.reverse(newsMessages);
@@ -79,23 +99,43 @@ public class HomeController {
 		return "redirect:/";
 	}
 
+	/**
+	 * Handles the request to edit a news message.
+	 * 
+	 * @param newsMessageID
+	 *            the id of a news message to be edited.
+	 * @param formNewsMessage
+	 *            the news message which was edited in form at front-end. It is
+	 *            grabbed from POST string and validated.
+	 * @param result
+	 *            the result of binding form from front-end to an
+	 *            NewsMessageEntity. It is used to determine if there were some
+	 *            errors during binding.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @return the string of a view to be rendered if the binding has errors
+	 *         otherwise, the string of an address to which the user will be
+	 *         redirected.
+	 */
 	@RequestMapping(value = "/news/{newsMessageID}/edit", method = RequestMethod.POST)
 	public String newsMessageEditPOST(
-			Locale locale,
-			Model model,
 			@PathVariable("newsMessageID") Integer newsMessageID,
 			@ModelAttribute("formNewsMessage") @Valid NewsMessageEntity formNewsMessage,
-			BindingResult result) {
+			BindingResult result, Model model, Locale locale) {
 
 		if (result.hasErrors()) {
-			// TODO: overide findAll rto return reverted news list
+			// TODO: override findAll to return reverted news list
 			List<NewsMessageEntity> newsMessages = newsMessageService
 					.findAll(NewsMessageEntity.class);
 			Collections.reverse(newsMessages);
 			model.addAttribute("newsMessages", newsMessages);
 			return "homeView";
 		}
-		
+
 		NewsMessageEntity realNewsMessage = newsMessageService.findByID(
 				NewsMessageEntity.class, newsMessageID);
 		realNewsMessage.setMessage(formNewsMessage.getMessage());
@@ -103,9 +143,23 @@ public class HomeController {
 		return "redirect:/";
 	}
 
+	/**
+	 * Handles the request to delete a news message.
+	 * 
+	 * @param newsMessageID
+	 *            the id of a news message to be deleted.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @return the string of an address to to which the user will be redirected.
+	 */
 	@RequestMapping(value = "/news/{newsMessageID}/delete", method = RequestMethod.GET)
-	public String newsMessageDeleteGET(Locale locale, Model model,
-			@PathVariable("newsMessageID") Integer newsMessageID) {
+	public String newsMessageDeleteGET(
+			@PathVariable("newsMessageID") Integer newsMessageID, Model model,
+			Locale locale) {
 		newsMessageService.delete(newsMessageService.findByID(
 				NewsMessageEntity.class, newsMessageID));
 		return "redirect:/";

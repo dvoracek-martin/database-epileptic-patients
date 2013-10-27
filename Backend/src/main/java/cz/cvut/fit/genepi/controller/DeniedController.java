@@ -7,22 +7,25 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class DeniedController.
+ * This class is a controller class which handles requests connected with a denied page.
  */
 @Controller
 public class DeniedController {
-	
+
 	/**
-	 * Simply selects the denied view to render by returning its name.
-	 *
-	 * @param locale the locale
-	 * @param model the model
-	 * @return the string
+	 * Handles the request to access denied page.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/denied", method = RequestMethod.GET)
-	public String deniedGET(Locale locale, Model model) {		
+	public String deniedGET(Model model, Locale locale) {
 		return "deniedView";
-	}	
+	}
 }

@@ -18,16 +18,6 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-    <script>
-					$(function() {
-						$('a[data-auto-download]').each(function() {
-							var $this = $(this);
-							setTimeout(function() {
-								window.location = $this.attr('href');
-							}, 2000);
-						});
-					});
-				</script>
 	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 					<script>
 						$(function() {
@@ -251,19 +241,7 @@ li.sortable-placeholder {
 						<input type="hidden" value="${patient.id}" name="patientId">
 						<input id="exportName" type="hidden" value="" name="exportName">
 						<input id="isGeneric" type="hidden" value="0" name="isGeneric">
-					</form:form>
-
-					<c:if test="${isReady==true}">
-					
-					<div style="display: none">
-						<a data-auto-download
-						href="/GENEPI/resources/downloads/patient${patient.id}.${exportType}"></a>
-					</div>
-					</c:if>
-					
-					
-
-						
+					</form:form>														
 						
 					<div class="span6">
 					<label>Uložit generic sestavu</label>
