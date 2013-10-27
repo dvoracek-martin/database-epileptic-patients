@@ -43,13 +43,13 @@ public class NeurologicalFindingEntity implements Comparable<NeurologicalFinding
 	private int hemisphereDominanceIdcom;
 	
 	@Column(name="abnormal_neurological_finding")
-	private int abnormalNeurologicalFinding;
+	private boolean abnormalNeurologicalFinding;
 	
 	@Column(name="hemiparesis")
-	private int hemiparesis;
+	private boolean hemiparesis;
 	
 	@Column(name="visual_cut")
-	private int visualCut;
+	private boolean visualCut;
 	
 	@Column(name="comment")
 	private String comment;
@@ -108,27 +108,27 @@ public class NeurologicalFindingEntity implements Comparable<NeurologicalFinding
 		this.hemisphereDominanceIdcom = hemisphereDominanceIdcom;
 	}
 
-	public int getAbnormalNeurologicalFinding() {
+	public boolean getAbnormalNeurologicalFinding() {
 		return abnormalNeurologicalFinding;
 	}
 
-	public void setAbnormalNeurologicalFinding(int abnormalNeurologicalFinding) {
+	public void setAbnormalNeurologicalFinding(boolean abnormalNeurologicalFinding) {
 		this.abnormalNeurologicalFinding = abnormalNeurologicalFinding;
 	}
 
-	public int getHemiparesis() {
+	public boolean getHemiparesis() {
 		return hemiparesis;
 	}
 
-	public void setHemiparesis(int hemiparesis) {
+	public void setHemiparesis(boolean hemiparesis) {
 		this.hemiparesis = hemiparesis;
 	}
 
-	public int getVisualCut() {
+	public boolean getVisualCut() {
 		return visualCut;
 	}
 
-	public void setVisualCut(int visualCut) {
+	public void setVisualCut(boolean visualCut) {
 		this.visualCut = visualCut;
 	}
 
