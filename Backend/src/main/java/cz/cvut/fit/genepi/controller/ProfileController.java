@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.service.UserService;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class MyProfileController.
+ * This class is a controller class which handles requests connected with a
+ * user's profile page.
  */
 @Controller
 public class ProfileController {
@@ -23,6 +23,16 @@ public class ProfileController {
 	@Autowired
 	private UserService userService;
 
+	/**
+	 * Handles the request to access user's profile page.
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
+	 */
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profileGET(Locale locale, Model model) {
 		Authentication auth = SecurityContextHolder.getContext()

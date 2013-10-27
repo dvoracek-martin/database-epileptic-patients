@@ -7,36 +7,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class LoginController.
+ * This class is a controller class which handles requests connected with a
+ * login page.
  */
 @Controller
 public class LoginController {
 
-	/**
-	 * Simply selects the admin view to render by returning its name.
-	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
-	 * @return the string
-	 */
-
+	// TODO: is this even used?
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String loginPOST(Locale locale, Model model) {
+	public String loginPOST(Model model, Locale locale) {
 		return "loginView";
 	}
 
 	/**
-	 * Login get.
+	 * Handles the request to access login page.
 	 * 
 	 * @param locale
-	 *            the locale
+	 *            the user's locale.
 	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginGET(Locale locale, Model model) {

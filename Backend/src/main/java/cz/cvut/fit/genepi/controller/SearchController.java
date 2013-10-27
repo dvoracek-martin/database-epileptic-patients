@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.service.LoggingService;
 
+//This controller is not doing anything right now
 @Controller
 public class SearchController {
 

@@ -20,7 +20,7 @@ import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.service.RoleService;
 
 //TODO: this controller doesnt do anything right now
-@Scope("session")
+//@Scope("session")
 @Controller
 public class RoleController {
 

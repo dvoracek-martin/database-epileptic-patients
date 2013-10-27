@@ -33,7 +33,7 @@ import cz.cvut.fit.genepi.service.UserService;
 /**
  * The Class UserController.
  */
-@Scope("session")
+//@Scope("session")
 @Controller
 public class UserController {
 
