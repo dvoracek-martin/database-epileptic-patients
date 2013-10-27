@@ -101,32 +101,30 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			logger.logError("Exception when trying to close txt file.", e);
 			e.printStackTrace();
 		}
-		
-		System.out.println(content);
 	}
 
 	private String addEmptyLine(String content) {
 		String emptyLine = "";
-		for (int i = 0; i != 30; i++) {
+		for (int i = 0; i != 50; i++) {
 			emptyLine += " ";
 		}
-		return (content + "\n" + emptyLine + "\n");
+		return ("\n" + emptyLine + "\n");
 	}
 
 	private String addDashLine(String content) {
 		String emptyLine = "";
-		for (int i = 0; i != 30; i++) {
+		for (int i = 0; i != 50; i++) {
 			emptyLine += "-";
 		}
-		return (content + "\n" + emptyLine + "\n");
+		return ("\n" + emptyLine + "\n");
 	}
 
 	private String addStarLine(String content) {
 		String emptyLine = "";
-		for (int i = 0; i != 30; i++) {
+		for (int i = 0; i != 50; i++) {
 			emptyLine += "*";
 		}
-		return (content + "\n" + emptyLine + "\n");
+		return ("\n" + emptyLine + "\n");
 	}
 
 	private String addTitlePage(File f, BufferedWriter bw, String content) {
