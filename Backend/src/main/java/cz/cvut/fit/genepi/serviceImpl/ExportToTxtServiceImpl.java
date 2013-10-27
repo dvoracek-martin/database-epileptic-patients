@@ -188,7 +188,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 							"label.epilepticSyndrome", null, locale);
 					content += (": " + a.getSpecificSyndromeIdcom() + "\n");
 					content += messageSource.getMessage(
-							"label.nonCNSComorbidit", null, locale);
+							"label.nonCNSComorbidity", null, locale);
 					content += (": " + a.getNonCnsComorbidity() + "\n");
 					content += messageSource.getMessage("label.comment", null,
 							locale);
