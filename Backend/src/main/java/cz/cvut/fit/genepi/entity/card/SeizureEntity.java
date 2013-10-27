@@ -45,7 +45,7 @@ public class SeizureEntity implements Comparable<SeizureEntity>{
 
 	/** The secondarily generalized seizure. */
 	@Column(name = "secondarily_generalized_seizure")
-	private int secondarilyGeneralizedSeizure;
+	private boolean secondarilyGeneralizedSeizure;
 
 	/** The status epilepticus. */
 	@Column(name = "status_epilepticus")
@@ -207,7 +207,7 @@ public class SeizureEntity implements Comparable<SeizureEntity>{
 	 *
 	 * @return the secondarily generalized seizure
 	 */
-	public int getSecondarilyGeneralizedSeizure() {
+	public boolean getSecondarilyGeneralizedSeizure() {
 		return secondarilyGeneralizedSeizure;
 	}
 
@@ -216,7 +216,7 @@ public class SeizureEntity implements Comparable<SeizureEntity>{
 	 *
 	 * @param secondarilyGeneralizedSeizure the new secondarily generalized seizure
 	 */
-	public void setSecondarilyGeneralizedSeizure(int secondarilyGeneralizedSeizure) {
+	public void setSecondarilyGeneralizedSeizure(boolean secondarilyGeneralizedSeizure) {
 		this.secondarilyGeneralizedSeizure = secondarilyGeneralizedSeizure;
 	}
 
