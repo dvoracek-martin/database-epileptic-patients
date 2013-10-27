@@ -339,10 +339,10 @@ public class PatientController {
 		patient = patientService.getPatientByIdWithAllLists(patient.getId());
 		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
 		patientList.add(patient);
-		
+
 		if (exportType.equals("pdf")) {
 			try {
-				exportToPdfService.export(patient,
+				exportToPdfService.export(patientList,
 						userService.findUserByUsername(auth.getName()),
 						listOfExports, listOfPossibleCards);
 			} catch (FileNotFoundException e) {
@@ -361,9 +361,10 @@ public class PatientController {
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		} else if (exportType.equals("txt")) {
-			exportToTxtService.export(patientList,
+			String url=exportToTxtService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
 					listOfExports, listOfPossibleCards);
+			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("csv")) {
 			exportToCsvService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,

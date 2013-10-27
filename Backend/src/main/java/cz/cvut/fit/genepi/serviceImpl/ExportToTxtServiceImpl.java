@@ -40,11 +40,13 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return reportDate;
 	}
 
-	public void export(List<PatientEntity> patientList, UserEntity user,
+	public String export(List<PatientEntity> patientList, UserEntity user,
 			Locale locale, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
-		// ExportToTxtServiceImpl.user = user;
+		
+		String name=getDate() + ".txt";
+		
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
@@ -54,7 +56,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			f = new File(downloadFolder + getDate() + ".txt");
+			
+			f = new File(downloadFolder+name);
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -101,6 +104,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			logger.logError("Exception when trying to close txt file.", e);
 			e.printStackTrace();
 		}
+		
+		return name;
 	}
 
 	private String addEmptyLine() {
