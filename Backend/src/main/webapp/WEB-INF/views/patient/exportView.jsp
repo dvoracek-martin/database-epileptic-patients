@@ -229,9 +229,9 @@ li.sortable-placeholder {
 							value="pdf" checked> pdf
 								<input type="radio" id="xlsxFormat" name="exportType"
 							value="xlsx"> xlsx
-								<input type="radio" id="docxormat" name="exportType"
+								<input type="radio" id="docxFormat" name="exportType"
 							value="docx"> docx
-							<input type="radio" id="docxormat" name="exportType"
+							<input type="radio" id="txtFormat" name="exportType"
 							value="txt"> txt
 						    </div>
 						</div>
