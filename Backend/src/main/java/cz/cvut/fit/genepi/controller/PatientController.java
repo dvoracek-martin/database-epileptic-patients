@@ -73,10 +73,10 @@ public class PatientController {
 
 	@Autowired
 	private ExportToDocxService exportToDocxService;
-	
+
 	@Autowired
 	private ExportToTxtService exportToTxtService;
-	
+
 	@Autowired
 	private ExportToCsvService exportToCsvService;
 
@@ -337,7 +337,9 @@ public class PatientController {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		patient = patientService.getPatientByIdWithAllLists(patient.getId());
-
+		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
+		patientList.add(patient);
+		
 		if (exportType.equals("pdf")) {
 			try {
 				exportToPdfService.export(patient,
@@ -351,20 +353,20 @@ public class PatientController {
 						"Document exception when trying to export to pdf.", e);
 			}
 		} else if (exportType.equals("xlsx")) {
-			exportToXlsxService.export(patient,
+			exportToXlsxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		} else if (exportType.equals("docx")) {
-			exportToDocxService.export(patient,
+			exportToDocxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
 					listOfExports);
 		} else if (exportType.equals("txt")) {
-			exportToTxtService.export(patient,
-					userService.findUserByUsername(auth.getName()),locale,
+			exportToTxtService.export(patientList,
+					userService.findUserByUsername(auth.getName()), locale,
 					listOfExports, listOfPossibleCards);
-		}else if (exportType.equals("csv")) {
-			exportToCsvService.export(patient,
-					userService.findUserByUsername(auth.getName()),locale,
+		} else if (exportType.equals("csv")) {
+			exportToCsvService.export(patientList,
+					userService.findUserByUsername(auth.getName()), locale,
 					listOfExports, listOfPossibleCards);
 		}
 		boolean isReady = true;

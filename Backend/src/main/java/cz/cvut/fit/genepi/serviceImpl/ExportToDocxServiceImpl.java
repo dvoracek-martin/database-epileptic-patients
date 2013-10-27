@@ -23,20 +23,16 @@ import cz.cvut.fit.genepi.service.LoggingService;
 @Service
 public class ExportToDocxServiceImpl implements ExportToDocxService {
 
-	private static PatientEntity patient;
-
-	private static UserEntity user;
-
 	private LoggingService logger = new LoggingService();
 
 	private static String getDate() {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		return reportDate;
 	}
 
-	public void export(PatientEntity patient, UserEntity user,
+	public void export(List<PatientEntity> patientList, UserEntity user,
 			List<String> exports) {
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
@@ -47,8 +43,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + "patient" + patient.getId()
-					+ ".xlsx");
+			File f = new File(downloadFolder + getDate()+ ".xlsx");
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -70,8 +65,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		tmpRun.setText("LALALALAALALAAAA");
 		tmpRun.setFontSize(18);
 		try {
-			document.write(new FileOutputStream(new File(downloadFolder
-					+ "patient" + patient.getId() + ".docx")));
+			document.write(new FileOutputStream(new File(downloadFolder+ getDate() + ".docx")));
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save docx file.",
 					e);

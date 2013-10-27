@@ -11,6 +11,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,28 +25,27 @@ import cz.cvut.fit.genepi.service.ExportToCsvService;
 import cz.cvut.fit.genepi.service.LoggingService;
 
 @Service
-public class ExportToCsvServiceImpl implements ExportToCsvService{
+public class ExportToCsvServiceImpl implements ExportToCsvService {
 
 	@Autowired
 	private MessageSource messageSource;
 
-	private static PatientEntity patient;
 	// private static UserEntity user;
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
 
 	private static String getDate() {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		return reportDate;
 	}
 
-	public void export(PatientEntity patient, UserEntity user, Locale locale,
-			java.util.List<String> exports,
+	public void export(List<PatientEntity> patientList, UserEntity user,
+			Locale locale, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToCsvServiceImpl.class);
-		ExportToCsvServiceImpl.patient = patient;
+
 		// ExportToTxtServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
@@ -56,7 +56,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService{
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			f = new File(downloadFolder + "patient" + patient.getId() + ".csv");
+			f = new File(downloadFolder + "patient" + getDate() + ".csv");
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
 			if (f.exists())
@@ -86,9 +86,11 @@ public class ExportToCsvServiceImpl implements ExportToCsvService{
 			e.printStackTrace();
 		}
 		String content = "";
-		content += addTitlePage(f, bw, locale);
-		content += addContent(f, exports, listOfPossibleCards, locale);
-
+		for (PatientEntity patient : patientList) {
+			content += addTitlePage(f, bw, locale, patient);
+			content += addContent(f, exports, listOfPossibleCards, locale,
+					patient);
+		}
 		try {
 			bw.write(content);
 		} catch (IOException e) {
@@ -127,7 +129,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService{
 		return ("\n" + emptyLine + "\n");
 	}
 
-	private String addTitlePage(File f, BufferedWriter bw, Locale locale) {
+	private String addTitlePage(File f, BufferedWriter bw, Locale locale,PatientEntity patient) {
 		String content = "Export of the patient "
 				+ patient.getContact().getFirstName() + " "
 				+ patient.getContact().getLastName() + " ,ID:"
@@ -141,7 +143,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService{
 	}
 
 	private String addContent(File f, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards, Locale locale) {
+			java.util.List<String> listOfPossibleCards, Locale locale,PatientEntity patient) {
 		String content = "";
 		content += addDashLine();
 		content += addEmptyLine();
@@ -149,8 +151,8 @@ public class ExportToCsvServiceImpl implements ExportToCsvService{
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
 				content += (messageSource.getMessage("label.anamnesis", null,
-						locale) + "-"+ (messageSource.getMessage("label.dateExamination", null,
-								locale)));
+						locale) + "-" + (messageSource.getMessage(
+						"label.dateExamination", null, locale)));
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += messageSource.getMessage(
 							"label.dateExamination", null, locale);

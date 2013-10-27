@@ -33,14 +33,10 @@ import cz.cvut.fit.genepi.service.LoggingService;
 @Service
 public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
-	private static PatientEntity patient;
-
-	private static UserEntity user;
-
 	private LoggingService logger = new LoggingService();
 
 	private static String getDate() {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy-HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 		return reportDate;
@@ -56,17 +52,14 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public void export(PatientEntity patient, UserEntity user,
+	public void export(List<PatientEntity> patientList, UserEntity user,
 			List<String> exports) {
 
-		ExportToXlsxServiceImpl.patient = patient;
-		ExportToXlsxServiceImpl.user = user;
-
 		logger.setLogger(ExportToXlsxServiceImpl.class);
-		writeData();
+		writeData(patientList);
 	}
 
-	private void writeData() {
+	private void writeData(List<PatientEntity>patientList) {
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
@@ -76,7 +69,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 			downloadFolder.replace("\\", "/");
 		} else {
 			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
-			File f = new File(downloadFolder + "patient" + patient.getId()
+			File f = new File(downloadFolder + "patient" + getDate()
 					+ ".xlsx");
 			if (!f.getParentFile().exists())
 				f.getParentFile().mkdirs();
@@ -93,6 +86,8 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();
+		
+		for (PatientEntity patient: patientList){
 		CreationHelper createHelper = wb.getCreationHelper();
 		Sheet sheet = wb.createSheet(patient.getContact().getLastName() + " "
 				+ patient.getContact().getFirstName() + " " + patient.getNin());
@@ -110,12 +105,11 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 		row.createCell(2).setCellValue(
 				createHelper.createRichTextString("This is a string"));
 		row.createCell(3).setCellValue(true);
-
+		}
 		// Write the output to a file
 		FileOutputStream fileOut = null;
 		try {
-			fileOut = new FileOutputStream(downloadFolder + "patient"
-					+ patient.getId() + ".xlsx");
+			fileOut = new FileOutputStream(downloadFolder + getDate() + ".xlsx");
 		} catch (FileNotFoundException e) {
 			logger.logError("File wasn't found when trying to save xlsx file.",
 					e);

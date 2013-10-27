@@ -12,6 +12,6 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  */
 public interface ExportToCsvService {
 	
-	public void export(PatientEntity patient, UserEntity user, Locale locale,
+	public void export(List<PatientEntity> patientList, UserEntity user, Locale locale,
 			List<String> exports,List<String> listOfPossibleCards );
 }
