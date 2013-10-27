@@ -2,8 +2,11 @@ package cz.cvut.fit.genepi.serviceImpl;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,14 +25,14 @@ import cz.cvut.fit.genepi.service.ExportToTxtService;
 import cz.cvut.fit.genepi.service.LoggingService;
 
 @Service
-public class ExportToTxtServiceImpl implements ExportToTxtService{
+public class ExportToTxtServiceImpl implements ExportToTxtService {
 
 	@Autowired
 	private static MessageSource messageSource;
 
 	private static PatientEntity patient;
 
-	//private static UserEntity user;
+	// private static UserEntity user;
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
 
@@ -45,7 +48,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 			java.util.List<String> listOfPossibleCards) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
 		ExportToTxtServiceImpl.patient = patient;
-		//ExportToTxtServiceImpl.user = user;
+		// ExportToTxtServiceImpl.user = user;
 		String downloadFolder = System.getProperty("user.home")
 				+ System.getProperty("file.separator") + "Download_Links"
 				+ System.getProperty("file.separator");
@@ -68,33 +71,32 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 						e);
 			}
 		}
-
-		FileWriter fw = null;
+		
+		BufferedWriter bw=null;
 		try {
-			fw = new FileWriter(f.getAbsoluteFile());
-		} catch (IOException e) {
-			logger.logError("Exception when trying to get FileWriter for txt file.",
-					e);
+			bw = new BufferedWriter(new OutputStreamWriter(
+					new FileOutputStream(f.getAbsoluteFile()), "UTF-8"));
+		} catch (UnsupportedEncodingException e) {
+			logger.logError("UnsupportedEncodingException when trying to init writer for txt file.", e);
+			e.printStackTrace();
+		} catch (FileNotFoundException e) {
+			logger.logError("FileNotFoundException when trying to init writer for txt file.", e);
 			e.printStackTrace();
 		}
-		BufferedWriter bw = new BufferedWriter(fw);
-
 		String content = "";
-		content+=addTitlePage(f, bw, content);
-		content+=addContent(f, content, exports, listOfPossibleCards);
-		
+		content += addTitlePage(f, bw, content);
+		content += addContent(f, content, exports, listOfPossibleCards);
+
 		try {
 			bw.write(content);
 		} catch (IOException e) {
-			logger.logError("Exception when trying to write to txt file.",
-					e);
+			logger.logError("Exception when trying to write to txt file.", e);
 			e.printStackTrace();
 		}
 		try {
 			bw.close();
 		} catch (IOException e) {
-			logger.logError("Exception when trying to close txt file.",
-					e);
+			logger.logError("Exception when trying to close txt file.", e);
 			e.printStackTrace();
 		}
 	}
@@ -141,6 +143,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 			java.util.List<String> listOfPossibleCards) {
 
 		content += addDashLine(content);
+		content = addEmptyLine(content);
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
@@ -152,51 +155,58 @@ public class ExportToTxtServiceImpl implements ExportToTxtService{
 
 			}
 			content += addDashLine(content);
+			content = addEmptyLine(content);
 
 			if (s.equals(listOfPossibleCards.get(1))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(2))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(3))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(4))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(5))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(6))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(7))) {
 				content += ("Anamnesis\n\n");
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
 					content += (a.getAdded());
+					content += addStarLine(content);
 				}
 
 			}
-			content+="test";
 		}
 		return content;
 	}
