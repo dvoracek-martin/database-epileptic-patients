@@ -6,10 +6,7 @@ import java.util.Locale;
 
 import javax.validation.Valid;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,17 +22,12 @@ import cz.cvut.fit.genepi.service.NewsMessageService;
  * This class is a controller class which handles requests connected with a home
  * and news pages.
  */
-//@Scope("session")
 @Controller
 public class HomeController {
 
 	/** The news message service. */
 	@Autowired
 	private NewsMessageService newsMessageService;
-
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
 
 	/**
 	 * Handles the request to access home page.
@@ -50,7 +42,6 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String homeGET(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
 
 		// TODO: overide findAll rto return reverted news list
 		List<NewsMessageEntity> newsMessages = newsMessageService

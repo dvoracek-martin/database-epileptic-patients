@@ -9,7 +9,6 @@ import javax.validation.Valid;
 
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,11 +28,10 @@ import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class UserController.
+ * This class is a controller class which handles requests connected with a
+ * user.
  */
-//@Scope("session")
 @Controller
 public class UserController {
 
@@ -61,33 +59,45 @@ public class UserController {
 	private LoggingService logger = new LoggingService();
 
 	/**
-	 * Creates the user get.
+	 * Handles the request to access page for creating new user.
 	 * 
+	 * @param locale
+	 *            the user's locale.
 	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.GET)
-	public String userCreateGET(Model model) {
+	public String userCreateGET(Locale locale, Model model) {
 		model.addAttribute("user", new UserEntity());
 		model.addAttribute("isUnique", "unique");
 		return "user/createView";
 	}
 
 	/**
-	 * Adds the user get.
+	 * 
+	 * Handles the request to submit a new user.
 	 * 
 	 * @param user
-	 *            the user
+	 *            the user which was filled in form at front-end. It is grabbed
+	 *            from POST string and validated.
 	 * @param result
-	 *            the result
+	 *            the result of binding form from front-end to an UserEntity. It
+	 *            is used to determine if there were some errors during binding.
+	 * @param locale
+	 *            the user's locale.
 	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered if the binding has errors and
+	 *         if there is a duplication of username otherwise, the string of an
+	 *         address to which the user will be redirected.
 	 */
 	@RequestMapping(value = "/user/create", method = RequestMethod.POST)
-	public String userCreatePOST(Model model, Locale locale,
-			@ModelAttribute("user") @Valid UserEntity user, BindingResult result) {
+	public String userCreatePOST(
+			@ModelAttribute("user") @Valid UserEntity user,
+			BindingResult result, Locale locale, Model model) {
 		if (result.hasErrors()) {
 			return "user/createView";
 		} else {
@@ -108,19 +118,20 @@ public class UserController {
 	}
 
 	/**
-	 * User overview get.
+	 * Handles the request to access page with user's overview.
 	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
 	 * @param userID
-	 *            the user id
-	 * @return the string
+	 *            the id of a user for whom the overview is to be rendered.
+	 * @param locale
+	 *            the user's locale.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
-	public String userOverviewGET(Locale locale, Model model,
-			@PathVariable("userID") Integer userID) {
+	public String userOverviewGET(@PathVariable("userID") Integer userID,
+			Locale locale, Model model) {
 		model.addAttribute("user",
 				userService.findByID(UserEntity.class, userID));
 		return "user/overviewView";
@@ -134,38 +145,46 @@ public class UserController {
 	}
 
 	/**
-	 * User edit get.
+	 * Handles the request to page where the user can be edited.
 	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
 	 * @param userID
-	 *            the user id
-	 * @return the string
+	 *            the id of a user to be edited.
+	 * @param locale
+	 *            the user's locale.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
-	public String userEditGET(Locale locale, Model model,
-			@PathVariable("userID") Integer userID) {
+	public String userEditGET(@PathVariable("userID") Integer userID,
+			Locale locale, Model model) {
 		model.addAttribute("user",
 				userService.findByID(UserEntity.class, userID));
 		return "user/editView";
 	}
 
 	/**
-	 * Edits the user get.
+	 * Handles the request to submit edited user.
 	 * 
 	 * @param user
-	 *            the user
+	 *            the user which was edited in form at front-end. It is grabbed
+	 *            from POST string and validated.
 	 * @param result
-	 *            the result
+	 *            the result of binding form from front-end to an UserEntity. It
+	 *            is used to determine if there were some errors during binding.
+	 * @param locale
+	 *            the user's locale.
 	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered if the binding has errors,
+	 *         otherwise, the string of an address to which the user will be
+	 *         redirected.
 	 */
 	@RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-	public String userEditPOST(Locale locale, Model model,
-			@Valid @ModelAttribute("user") UserEntity user, BindingResult result) {
+	public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
+			BindingResult result, Locale locale, Model model) {
 		if (result.hasErrors()) {
 			return "user/editView";
 		}
@@ -190,13 +209,14 @@ public class UserController {
 	}
 
 	/**
-	 * Users list get.
+	 * Handles the request to access list of users page.
 	 * 
 	 * @param locale
-	 *            the locale
+	 *            the user's locale.
 	 * @param model
-	 *            the model
-	 * @return the string
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/user/list", method = RequestMethod.GET)
 	public String userListGET(Locale locale, Model model) {
@@ -205,19 +225,20 @@ public class UserController {
 	}
 
 	/**
-	 * User change password get.
+	 * Handles the request to access page where user's password is changed.
 	 * 
-	 * @param locale
-	 *            the locale
-	 * @param model
-	 *            the model
 	 * @param userID
-	 *            the user id
-	 * @return the string
+	 *            the id of a user whose password is edited.
+	 * @param locale
+	 *            the user's locale.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered.
 	 */
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
-	public String userChangePasswordGET(Locale locale, Model model,
-			@PathVariable("userID") Integer userID) {
+	public String userChangePasswordGET(@PathVariable("userID") Integer userID,
+			Locale locale, Model model) {
 
 		if (logger.getLogger() == null)
 			logger.setLogger(UserController.class);
@@ -231,21 +252,29 @@ public class UserController {
 	}
 
 	/**
-	 * Change password post.
 	 * 
-	 * @param user
-	 *            the user
-	 * @param model
-	 *            the model
+	 * @param formUser
+	 *            the user whose password was edited in form at front-end. It is grabbed
+	 *            from POST string and validated.
 	 * @param result
-	 *            the result
-	 * @return the string
+	 *            the result of binding form from front-end to an UserEntity. It
+	 *            is used to determine if there were some errors during binding.
+	 * @param userID
+	 *            the id of a user whose password is edited.
+	 * @param locale
+	 *            the user's locale.
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the string of a view to be rendered if the binding has errors,
+	 *         otherwise, the string of an address to which the user will be
+	 *         redirected.
 	 */
 	@RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.POST)
 	public String userChangePasswordPOST(
-			@ModelAttribute("user") @Valid UserEntity formUser, Model model,
-			BindingResult result, Locale locale,
-			@PathVariable("userID") Integer userID) {
+			@ModelAttribute("user") @Valid UserEntity formUser,
+			BindingResult result, @PathVariable("userID") Integer userID,
+			Locale locale, Model model) {
 		UserEntity realUser = userService.findByID(UserEntity.class, userID);
 		if (result.hasErrors()) {
 			return "user/" + realUser.getId() + "/change-password";
