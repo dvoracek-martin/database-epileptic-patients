@@ -186,9 +186,6 @@
     				<label class="control-label" for="specificSyndromeIdcom"><strong>Epileptický syndrom</strong></label>
     				<div class="controls">
     					<form:select path="specificSyndromeIdcom" id="specificSyndromeIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte syndrom
-							</form:option>
 							<form:option value="1">
 								Extratemporální fokální epilepsie
 							</form:option>

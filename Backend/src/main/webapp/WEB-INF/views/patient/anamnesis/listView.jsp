@@ -179,11 +179,41 @@
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.epilepticSyndrome" /></td>
-											<td>${anamnesis.specificSyndromeIdcom}</td>
+											<c:if test="${anamnesis.specificSyndromeIdcom==1}">
+												<td>Extratemporální fokální epilepsie</td>
+											</c:if>
+
+											<c:if test="${anamnesis.specificSyndromeIdcom==2}">
+												<td>Hemisferální symtomaptická epilepsie</td>
+											</c:if>
+
+											<c:if test="${anamnesis.specificSyndromeIdcom==3}">
+												<td>Meziotemporální epilepsie (MTLE)</td>
+											</c:if>
+
+											<c:if test="${anamnesis.specificSyndromeIdcom==4}">
+												<td>Multifokální epilepsie</td>
+											</c:if>
+
+											<c:if test="${anamnesis.specificSyndromeIdcom==5}">
+												<td>Temporální epilepsie jiná než MTLE</td>
+											</c:if>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.nonCNSComorbidity" /></td>
 											<td>${anamnesis.nonCnsComorbidity}</td>
+										</tr>
+
+										<tr class="info">
+											<td><spring:message code="label.comment" /></td>
+											<c:choose>
+												<c:when test="${empty anamnesis.comment}">
+													<td>Žádný</td>
+												</c:when>
+												<c:otherwise>
+													<td>${anamnesis.comment}</td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 				              		</tbody>
 				            	</table>

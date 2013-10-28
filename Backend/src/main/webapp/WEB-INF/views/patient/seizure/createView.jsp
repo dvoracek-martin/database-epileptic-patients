@@ -220,46 +220,46 @@
 								<form:option value="1">
 									I.A.1. Jednoduchý parciální záchvat s motorickými symptomy
 								</form:option>
-								<form:option value="1">
+								<form:option value="2">
 									I.A.2. Jednoduchý parciální záchvat s psychickými symptomy
 								</form:option>
-								<form:option value="1">
+								<form:option value="3">
 									I.A.3. Jednoduchý parciální záchvat s autonomními symptomy
 								</form:option>
-								<form:option value="1">
+								<form:option value="4">
 									I.A.4. Jednoduchý parciální záchvat se somatosenzorickými symptomy
 								</form:option>
-								<form:option value="1">
+								<form:option value="5">
 									I.B.1. Komplexní parciální záchvat s jednoduchým parciálním záchvatem na počátku,  následovaným poruc
 								</form:option>
-								<form:option value="1">
+								<form:option value="6">
 									I.B.2. Komplexní parciální záchvat s poruchou vědomí na počátku
 								</form:option>
-								<form:option value="1">
+								<form:option value="7">
 									I.C. Parciální záchvat sekundárně se rozvíjející v generalizovaný
 								</form:option>
-								<form:option value="1">
+								<form:option value="8">
 									II.A.1. Generalizovaný - Typická absence
 								</form:option>
-								<form:option value="1">
+								<form:option value="9">
 									II.A.2. Generalizovaný - Atypická absence
 								</form:option>
-								<form:option value="1">
+								<form:option value="10">
 									II.B. Generalizovaný - Myoklonický
 								</form:option>	
-								<form:option value="1">
+								<form:option value="11">
 									II.C. Generalizovaný - Klonický
 								</form:option>	
-								<form:option value="1">
+								<form:option value="12">
 									II.D. Generalizovaný - Tonický
 								</form:option>	
-								<form:option value="1">
+								<form:option value="13">
 									II.E. Generalizovaný - Tonicko-klonický
 								</form:option>
-								<form:option value="1">
+								<form:option value="14">
 									II.F. Generalizovaný - Atonický
 								</form:option>		
-								<form:option value="1">
+								<form:option value="15">
 									III. Neklasifikovaný
 								</form:option>
 
