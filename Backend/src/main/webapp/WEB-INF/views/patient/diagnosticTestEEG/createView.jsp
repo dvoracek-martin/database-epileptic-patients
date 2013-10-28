@@ -96,9 +96,6 @@
     				<label class="control-label" for="basicEegActivityIdcom"><strong>Základní EEG aktivita</strong></label>
     				<div class="controls">
     					<form:select path="basicEegActivityIdcom" id="basicEegActivityIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte základní EEG aktivitu
-							</form:option>
 							<form:option value="1">
 								Normální
 							</form:option>
@@ -113,9 +110,6 @@
     				<label class="control-label" for="eegSlowIdcom"><strong>EEG zpomalení</strong></label>
     				<div class="controls">
     					<form:select path="eegSlowIdcom" id="eegSlowIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte EEG zpomalení
-							</form:option>
 							<form:option value="1">
 								Generalizované kontinuální
 							</form:option>
@@ -139,9 +133,6 @@
     				<label class="control-label" for="interictalEegSpikesIdcom"><strong>Interiktální EEG hroty</strong></label>
     				<div class="controls">
     					<form:select path="interictalEegSpikesIdcom" id="interictalEegSpikesIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte interiktálních EEG hroty
-							</form:option>
 							<form:option value="1">
 								Generalizované
 							</form:option>
@@ -195,9 +186,6 @@
     				<label class="control-label" for="ictalEegPatternsIdcom"><strong>Iktální EEG vzorce</strong></label>
     				<div class="controls">
     					<form:select path="ictalEegPatternsIdcom" id="ictalEegPatternsIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte iktální EEG vzorce
-							</form:option>
 							<form:option value="1">
 								Chybějící
 							</form:option>

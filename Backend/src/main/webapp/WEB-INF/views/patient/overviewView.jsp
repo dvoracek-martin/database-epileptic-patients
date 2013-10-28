@@ -796,52 +796,107 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Základní EEG aktivita</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].basicEegActivityIdcom==1}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].basicEegActivityIdcom==2}">
+										<td>Pomalá</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>EEG zpomalení</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegSlowIdcom==1}">
+										<td>Generalizované kontinuální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegSlowIdcom==2}">
+										<td>Generalizované přerušované</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegSlowIdcom==3}">
+										<td>Lokalizované kontinuální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegSlowIdcom==4}">
+										<td>Lokalizované přerušované</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegSlowIdcom==5}">
+										<td>Žádné</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>Interiktální EEG hroty</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==1}">
+										<td>Generalizované</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==2}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==3}">
+										<td>Multiregionální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==4}">
+										<td>Nelatralizovatelné</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==5}">
+										<td>Regionální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].interictalEegSpikesIdcom==6}">
+										<td>Žádné</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>Lokalizace interiktálních EEG hrotů</td>
+									<td>${patient.diagnosticTestEEGList[0].localizationInterictalEEGSpikes}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
+									<td>EEG status epilepticus</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegStatusEpilepticus==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].eegStatusEpilepticus==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
+									<td>Sekundární bilaterální synchronie</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].secondarySidedSynchrony==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].secondarySidedSynchrony==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
+									<td>Iktální EEG vzorce</td>
+									<c:if test="${patient.diagnosticTestEEGList[0].ictalEegPatternsIdcom==1}">
+										<td>Chybějící</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].ictalEegPatternsIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].ictalEegPatternsIdcom==3}">
+										<td>Multiregionální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].ictalEegPatternsIdcom==4}">
+										<td>Nelokalizovatelné</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestEEGList[0].ictalEegPatternsIdcom==5}">
+										<td>Regionální</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
+									<td>Lokalizace iktálních EEG vzorů</td>
+									<td>${patient.diagnosticTestEEGList[0].localizationIctalEegPattern}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.diagnosticTestEEGList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.diagnosticTestEEGList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>
@@ -864,11 +919,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.diagnosticTestMRIList}">
+				    <c:when test="${true}">
 				    	</br></br>
-				      	<div class="alert alert-block">
+				      	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
@@ -948,11 +1003,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.invasiveTestEEGList}">
+				    <c:when test="${true}">
 				    	</br></br>
-				      	<div class="alert alert-block">
+				      	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
@@ -1032,11 +1087,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.invasiveTestECOGList}">
+				    <c:when test="${true}">
 				    	</br></br>
-				      	<div class="alert alert-block">
+				      	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
@@ -1116,11 +1171,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.operationList}">
+				    <c:when test="${true}">
 				    	</br></br>
-				      	<div class="alert alert-block">
+				      	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
@@ -1200,11 +1255,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.histologyList}">
+				    <c:when test="${true}">
 				    	</br></br>
-				      	<div class="alert alert-block">
+				      	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
@@ -1284,11 +1339,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${empty patient.outcomeList}">
+				    <c:when test="${true}">
 						</br></br>
-				     	<div class="alert alert-block">
+				     	<div class="alert alert-error">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
 
