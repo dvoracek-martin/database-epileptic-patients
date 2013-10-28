@@ -319,6 +319,17 @@
 											<td>Lokalizace SPECT hyperperfuse</td>
 											<td>${diagnosticTestMRI.localizationSpectHyperperfuse}</td>
 										</tr>
+										<tr class="info">
+											<td><spring:message code="label.comment" /></td>
+											<c:choose>
+												<c:when test="${empty diagnosticTestMRI.comment}">
+													<td>Žádný</td>
+												</c:when>
+												<c:otherwise>
+													<td>${diagnosticTestMRI.comment}</td>
+												</c:otherwise>
+											</c:choose>
+										</tr>
 				              		</tbody>
 			            		</table>
 		            		</div>

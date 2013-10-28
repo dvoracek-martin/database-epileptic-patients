@@ -1161,6 +1161,17 @@
 									<td>Lokalizace SPECT hyperperfuse</td>
 									<td>${patient.diagnosticTestMRIList[0].localizationSpectHyperperfuse}</td>
 								</tr>
+								<tr class="info">
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.diagnosticTestMRIList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.diagnosticTestMRIList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
+								</tr>
 		              		</tbody>
 	            		</table>
 	            		<a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">Zobrazit vsechny</a>	
@@ -1434,11 +1445,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${true}">
+				    <c:when test="${empty patient.histologyList}">
 				    	</br></br>
-				      	<div class="alert alert-error">
+				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Prozatím nedostupné!</h4>
+		  					<h4>Žádný záznam!</h4>
 						</div>
 				    </c:when>
 
@@ -1450,52 +1461,81 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Histopatologie</td>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==1}">
+										<td>FCD</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==2}">
+										<td>Gliální léze</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==3}">
+										<td>HS</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==4}">
+										<td>Hamartom</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==5}">
+										<td>MCD jiná</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==6}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==7}">
+										<td>Nádor</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==8}">
+										<td>Posttraumatické změny</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==9}">
+										<td>SWC</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==10}">
+										<td>TSC</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==11}">
+										<td>Vaskulární léze</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyIdcom==12}">
+										<td>Zánětlivá léze</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>Klasifikace FCD</td>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==1}">
+										<td>0</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==2}">
+										<td>FCD typ lla</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==3}">
+										<td>FCD typ llb</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==4}">
+										<td>FCD typ lla</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==5}">
+										<td>FCD typ la</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==6}">
+										<td>FCD typ lb</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==7}">
+										<td>mMCD typ l</td>
+									</c:if>
+									<c:if test="${patient.histologyList[0].histopathologyClasificationIdcom==8}">
+										<td>mMCD typ ll</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.histologyList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.histologyList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>

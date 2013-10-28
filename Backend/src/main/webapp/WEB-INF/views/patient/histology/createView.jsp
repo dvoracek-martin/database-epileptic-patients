@@ -126,16 +126,16 @@
 								<form:option value="8">
 									Posttraumatické změny		
 								</form:option>
-								<form:option value="8">
+								<form:option value="9">
 									SWC		
 								</form:option>
-								<form:option value="9">
+								<form:option value="10">
 									TSC		
 								</form:option>
-								<form:option value="10">
+								<form:option value="11">
 									Vaskulární léze		
 								</form:option>
-								<form:option value="11">
+								<form:option value="12">
 									Zánětlivá léze		
 								</form:option>
 						</form:select>
