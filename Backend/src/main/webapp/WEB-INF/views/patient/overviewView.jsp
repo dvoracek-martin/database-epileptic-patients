@@ -67,9 +67,20 @@
 				</table>
 
 				<!-- print out latest anamnesis START -->
-				<h3>Anamnéza</h3>
+				<div>
+					<div class="span4">
+						<h3>Anamnéza</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/anamnesis/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+				</br>
 				<c:choose>
 				    <c:when test="${empty patient.anamnesisList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -79,10 +90,8 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		               			<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}</td>
 								</tr>
 									<tr class="info">
 											<td><spring:message code="label.epilepsyInFamily" /></td>
@@ -215,9 +224,19 @@
 				</c:choose>
 
             	<!-- print out latest  START -->
-				<h3>Záchvaty</h3>
+				<div>
+					<div class="span4">
+						<h3>Záchvaty</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/seizure/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
 				<c:choose>
 				    <c:when test="${empty patient.seizureList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -227,10 +246,8 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.seizureList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.seizureList[0].date}</td>
 								</tr>
 								<tr class="info">
 									<td>Četnost záchvatů</td>
@@ -415,9 +432,19 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Farmakoterapie</h3>
+				<div>
+					<div class="span4">
+						<h3>Farmakoterapie</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/pharmacotherapy/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
 				<c:choose>
 				    <c:when test="${empty patient.pharmacotherapyList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -427,10 +454,8 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.pharmacotherapyList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.pharmacotherapyList[0].date}</td>
 								</tr>
 								<tr class="info">
 									<td>Léčivo</td>
@@ -545,9 +570,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Neurologické nálezy</h3>
+				<div>
+					<div class="span4">
+						<h3>Neurologické nálezy</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/neurologicalFinding/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+				
 				<c:choose>
 				    <c:when test="${empty patient.neurologicalFindingList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -557,11 +593,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.neurologicalFindingList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.neurologicalFindingList[0].date}</td>
 								</tr>
+		                		
 								<tr class="info">
 									<td>Dominance hemisféry</td>
 									<c:if test="${patient.neurologicalFindingList[0].hemisphereDominanceIdcom==1}">
@@ -625,9 +660,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Neuropsychologie</h3>
+				<div>
+					<div class="span4">
+						<h3>Neuropsychologie</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/neuropsychology/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.neuropsychologyList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -637,58 +683,81 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.neuropsychologyList[0].date}</td>
+								</tr>
+
+								<tr class="info">
+									<td>Neuropsychologické vyšetření</td>
+									<c:if test="${patient.neuropsychologyList[0].neuropsychologicalExamination==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].neuropsychologicalExamination==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Věk při neuropsychologickém vyšetření</td>
+									<td><strong>N/A</strong></td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>Inteligenční úroveň</td>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==1}">
+										<td>Mírná mentální retardace</td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==2}">
+										<td>Naprůměrná inteligence</td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==3}">
+										<td>Podprůměrná inteligence</td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==4}">
+										<td>Průměrná inteligence</td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==5}">
+										<td>Středně těžká mentální retardace</td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].intelligenceLevelIdcom==6}">
+										<td>Těžká mentální retardace</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>Specifická porucha učení</td>
+									<c:if test="${patient.neuropsychologyList[0].specificLearning==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].specificLearning==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>Vývojová porucha řeči</td>
+									<c:if test="${patient.neuropsychologyList[0].developmentalLanguageDisorders==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].developmentalLanguageDisorders==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
+									<td>ADHD syndrom</td>
+									<c:if test="${patient.neuropsychologyList[0].adhdSyndrome==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.neuropsychologyList[0].adhdSyndrome==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.neuropsychologyList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.neuropsychologyList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>
@@ -699,9 +768,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Diagnostické testy - EEG</h3>
+				<div>
+					<div class="span4">
+						<h3>Diagnostické testy - EEG</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.diagnosticTestEEGList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -711,11 +791,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		               			<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.diagnosticTestEEGList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -773,9 +852,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Diagnostické testy - MRI</h3>
+				<div>
+					<div class="span4">
+						<h3>Diagnostické testy - MRI</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.diagnosticTestMRIList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -785,11 +875,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.diagnosticTestMRIList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -847,9 +936,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Invazivní testy - EEG</h3>
+				<div>
+					<div class="span4">
+						<h3>Invazivní testy - EEG</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/invasiveTestEEG/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.invasiveTestEEGList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -859,11 +959,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.invasiveTestEEGList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -921,9 +1020,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Invazivní testy - ECoG</h3>
+				<div>
+					<div class="span4">
+						<h3>Invazivní testy - ECoG</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/invasiveTestECOG/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.invasiveTestECOGList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -933,11 +1043,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.invasiveTestECOGList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -995,9 +1104,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Operace</h3>
+				<div>
+					<div class="span4">
+						<h3>Operace</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/operation/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.operationList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -1007,11 +1127,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.operationList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -1069,9 +1188,20 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Histologie</h3>
+				<div>
+					<div class="span4">
+						<h3>Histologie</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/histology/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.histologyList}">
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -1081,11 +1211,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.histologyList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -1143,10 +1272,21 @@
 				</c:choose>
 
 				<!-- print out latest  START -->
-				<h3>Outcome</h3>
+				<div>
+					<div class="span4">
+						<h3>Outcome</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/outcome/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
 				<c:choose>
 				    <c:when test="${empty patient.outcomeList}">
-				      	<div class="alert alert-block">
+						</br></br>
+				     	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
 						</div>
@@ -1155,11 +1295,10 @@
 			      	<c:otherwise>
 						<table class="table">
 		               		<tbody>
-		                		<tr>
-                					<div class="alert alert-info" style="margin: 0">
-             					 		<strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}
-            						</div>	
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.outcomeList[0].date}</td>
 								</tr>
+
 								<tr class="info">
 									<td><spring:message code="label.epilepsyInFamily" /></td>
 									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
@@ -1210,7 +1349,7 @@
 								</tr>
 		              		</tbody>
 	            		</table>
-	            		<a href="<c:url value="/patient/${patient.id}/outcome/list" />">Zobrazit vsechny</a>	
+	            		<a href="<c:url value="/patient/${patient.id}/outcome/list" />">Zobrazit všechny</a>	
 	            		</br>
 						</br>
             		</c:otherwise>

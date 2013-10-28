@@ -105,9 +105,6 @@
     				<label class="control-label" for="intelligenceLevelIdcom"><strong>Inteligenční úroveň</strong></label>
     				<div class="controls">
     					<form:select path="intelligenceLevelIdcom" id="intelligenceLevelIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte syndrom
-							</form:option>
 							<form:option value="1">
 								Mírná mentální retardace
 							</form:option>
