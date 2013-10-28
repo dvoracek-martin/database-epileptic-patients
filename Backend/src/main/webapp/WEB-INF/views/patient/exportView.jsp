@@ -154,7 +154,7 @@ li.sortable-placeholder {
 					<button class="btn btn-primary" type="submit" />LOAD</button>
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
-					<button id="exportMyParamDeleteBrn" class="btn btn-primary"
+					<button id="exportParamDeleteBrn" class="btn btn-primary"
 							type="submit" />DELETE</button>
 						</sec:authorize>
 					</form>
