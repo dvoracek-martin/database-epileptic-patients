@@ -80,7 +80,7 @@
 				</br>
 				<c:choose>
 				    <c:when test="${empty patient.anamnesisList}">
-				    	</br></br>
+				    	</br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -919,11 +919,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${true}">
-				    	</br></br>
-				      	<div class="alert alert-error">
+				    <c:when test="${empty patient.diagnosticTestMRIList}">
+				    	</br>
+				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Prozatím nedostupné!</h4>
+		  					<h4>Žádný záznam!</h4>
 						</div>
 				    </c:when>
 
@@ -935,52 +935,231 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>MRI protokol</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriProtocolIdcom==1}">
+										<td>EPI 2</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriProtocolIdcom==2}">
+										<td>Standard + 1.5 mm T1w</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriProtocolIdcom==3}">
+										<td>Standardní MRI protokol</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>MRI nález</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==1}">
+										<td>Bilaterální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==3}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==4}">
+										<td>Lobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==5}">
+										<td>Multilobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==6}">
+										<td>Neprovedeno</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==7}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mriFindingIdcom==8}">
+										<td>Postoperační</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>FDG PET</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==1}">
+										<td>Bilaterální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==3}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==4}">
+										<td>Lobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==5}">
+										<td>Multilobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==6}">
+										<td>Neprovedeno</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==7}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fdgPetIdcom==8}">
+										<td>Postoperační</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>Interiktální SPECT</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==1}">
+										<td>Bilaterální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==3}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==4}">
+										<td>Lobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==5}">
+										<td>Multilobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==6}">
+										<td>Neprovedeno</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==7}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].interictalSpectIdcom==8}">
+										<td>Postoperační</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
+									<td>FDG PET</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==1}">
+										<td>Bilaterální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==3}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==4}">
+										<td>Lobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==5}">
+										<td>Multilobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==6}">
+										<td>Neprovedeno</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==7}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].ictaliSpectIdcom==8}">
+										<td>Postoperační</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
+									<td>SISCOM</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].siscom==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].siscom==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
+									<td>MRS protokol</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsProtocolIdcom==1}">
+										<td>CSI</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsProtocolIdcom==2}">
+										<td>Single voxel</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsProtocolIdcom==3}">
+										<td>Single voxel + CSI</td>
+									</c:if>		
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
+									<td>MRS nález</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==1}">
+										<td>Bilaterální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==3}">
+										<td>Hemisferální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==4}">
+										<td>Lobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==5}">
+										<td>Multilobární</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==6}">
+										<td>Neprovedeno</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==7}">
+										<td>Normální</td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].mrsFinfingIdcom==8}">
+										<td>Postoperační</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
+									<td>DTI</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].dti==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].dti==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
+									<td>Detaily DTI studie</td>
+									<td>${patient.diagnosticTestMRIList[0].detailsDtiStudie}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
+									<td>fMRI</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].fmri==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].fmri==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td>Detaily fMRI</td>
+									<td>${patient.diagnosticTestMRIList[0].detailsFmri}</td>
+								</tr>
+								<tr class="info">
+									<td>WADA</td>
+									<c:if test="${patient.diagnosticTestMRIList[0].wada==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.diagnosticTestMRIList[0].wada==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td>Detaily WADA</td>
+									<td>${patient.diagnosticTestMRIList[0].detailsWada}</td>
+								</tr>
+								<tr class="info">
+									<td>MRI popis</td>
+									<td>${patient.diagnosticTestMRIList[0].mriDescribe}</td>
+								</tr>
+								<tr class="info">
+									<td>Lokalizace SPECT hypoperfuse</td>
+									<td>${patient.diagnosticTestMRIList[0].localizationSpectHypoperfuse}</td>
+								</tr>
+								<tr class="info">
+									<td>Lokalizace MRS abnormality</td>
+									<td>${patient.diagnosticTestMRIList[0].localizationMrsAbnormality}</td>
+								</tr>
+								<tr class="info">
+									<td>Lokalizace PET hypometabolismu</td>
+									<td>${patient.diagnosticTestMRIList[0].localizationPetHypometabolismu}</td>
+								</tr>
+								<tr class="info">
+									<td>Lokalizace SPECT hyperperfuse</td>
+									<td>${patient.diagnosticTestMRIList[0].localizationSpectHyperperfuse}</td>
 								</tr>
 		              		</tbody>
 	            		</table>
