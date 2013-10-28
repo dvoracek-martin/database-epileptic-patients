@@ -92,9 +92,6 @@
 						      	<a class="close" href="<c:url value="/patient/${patientID}/diagnosticTestEEG/${diagnosticTestEEG.id}/delete"/>">×</a>
 								<table class="table">
 				               		<tbody>
-				               			<tr class="alert-info">
-		             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${diagnosticTestEEG.date}</td>
-										</tr>
 
 										<tr class="info">
 											<td>Základní EEG aktivita</td>
