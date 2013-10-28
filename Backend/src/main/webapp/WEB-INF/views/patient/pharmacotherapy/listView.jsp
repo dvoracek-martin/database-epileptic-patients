@@ -87,7 +87,78 @@
 			               			<tbody>
 										<tr class="info">
 											<td>Léčivo</td>
-											<td>${pharmacotherapy.aedIdcom}</td>
+											<c:if test="${pharmacotherapy.aedIdcom==1}">
+												<td>ACTH</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==2}">
+												<td>CBZ</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==3}">
+												<td>CLB</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==4}">
+												<td>CZP</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==5}">
+												<td>DZP</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==6}">
+												<td>ESL</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==7}">
+												<td>ETS</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==8}">
+												<td>FBM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==9}">
+												<td>GBP</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==10}">
+												<td>LCM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==11}">
+												<td>LEV</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==12}">
+												<td>LTG</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==13}">
+												<td>OXC</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==14}">
+												<td>PB</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==15}">
+												<td>PGB</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==16}">
+												<td>PHT</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==17}">
+												<td>PRM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==18}">
+												<td>RFM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==19}">
+												<td>STM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==20}">
+												<td>TGB</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==21}">
+												<td>TPM</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==22}">
+												<td>VGB</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==23}">
+												<td>VPA</td>
+											</c:if>
+											<c:if test="${pharmacotherapy.aedIdcom==24}">
+												<td>ZNS</td>
+											</c:if>
 										</tr>
 										<tr class="info">
 											<td>Efektivita</td>
@@ -109,7 +180,14 @@
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
-											<td>${pharmacotherapy.comment}</td>
+											<c:choose>
+												<c:when test="${empty patient.pharmacotherapyList[0].comment}">
+													<td>Žádný</td>
+												</c:when>
+												<c:otherwise>
+													<td>${patient.pharmacotherapyList[0].comment}</td>
+												</c:otherwise>
+											</c:choose>
 										</tr>
 				              		</tbody>
 		            			</table>

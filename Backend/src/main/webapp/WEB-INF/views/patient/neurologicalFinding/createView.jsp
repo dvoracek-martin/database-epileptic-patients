@@ -96,9 +96,6 @@
     				<label class="control-label" for="hemisphereDominanceIdcom"><strong>Dominance hemisféry</strong></label>
     				<div class="controls">
     					<form:select path="hemisphereDominanceIdcom" id="hemisphereDominanceIdcom" type="text" class="input-large">
-								<form:option value="0">
-									Zvolte dominanci hemisféry
-								</form:option>
 								<form:option value="1">
 									Ambidexter
 								</form:option>
