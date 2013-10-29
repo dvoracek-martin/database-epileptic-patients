@@ -45,7 +45,7 @@ import cz.cvut.fit.genepi.service.LoggingService;
 public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	@Autowired
-	private static MessageSource messageSource;
+	private MessageSource messageSource;
 
 	private static UserEntity user;
 
@@ -257,8 +257,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * @throws DocumentException
 	 *             the document exception
 	 */
-	private static void addContent(Document document,
-			java.util.List<String> exports,
+	private void addContent(Document document, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards, PatientEntity patient,
 			Locale locale) throws DocumentException {
 
@@ -296,11 +295,12 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
-				// Paragraph anamnesisParahraph = new Paragraph(
-					//	messageSource.getMessage("label.anamnesis", null,
-						//		locale) + "\n\n", catFont);
-				
-				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",catFont);
+				Paragraph anamnesisParahraph = new Paragraph(
+						messageSource.getMessage("label.anamnesis", null,
+								locale) + "\n\n", catFont);
+
+				// Paragraph anamnesisParahraph = new
+				// Paragraph("Anamnesis\n\n",catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
@@ -431,7 +431,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	}
 
-	private static void printOutAnamnesis(Section subCatPart,
+	private void printOutAnamnesis(Section subCatPart,
 			AnamnesisEntity anamnesis, Locale locale)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(2);
