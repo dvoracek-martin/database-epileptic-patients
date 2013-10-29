@@ -19,7 +19,6 @@ import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.card.AnamnesisService;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class AnamnesisController.
  */
@@ -27,13 +26,25 @@ import cz.cvut.fit.genepi.service.card.AnamnesisService;
 public class AnamnesisController {
 
 	/** The patient service. */
-
 	private PatientService patientService;
 
+	/** The anamnesis service. */
 	private AnamnesisService anamnesisService;
 
+	/** The role service. */
 	private RoleService roleService;
 
+	/**
+	 * Constructor which serves to autowire services.
+	 * 
+	 * 
+	 * @param patientService
+	 *            the patientService to be autowired.
+	 * @param anamnesisService
+	 *            the anamnesisService to be autowired.
+	 * @param roleService
+	 *            the roleService to be autowired.
+	 */
 	@Autowired
 	public AnamnesisController(PatientService patientService,
 			AnamnesisService anamnesisService, RoleService roleService) {
@@ -60,8 +71,8 @@ public class AnamnesisController {
 		/* getting all docs */
 		model.addAttribute("doctors", roleService.getAllDoctors());
 
-		model.addAttribute("patient", patientService.findByID(PatientEntity.class,
-				patientID));
+		model.addAttribute("patient",
+				patientService.findByID(PatientEntity.class, patientID));
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "patient/anamnesis/createView";
 	}
@@ -84,8 +95,8 @@ public class AnamnesisController {
 			Model model, Locale locale) {
 		if (result.hasErrors()) {
 			model.addAttribute("doctors", roleService.getAllDoctors());
-			model.addAttribute("patient", patientService.findByID(PatientEntity.class,
-					patientID));
+			model.addAttribute("patient",
+					patientService.findByID(PatientEntity.class, patientID));
 			return "patient/anamnesis/createView";
 		} else {
 			anamnesis.setPatient(patientService.findByID(PatientEntity.class,
