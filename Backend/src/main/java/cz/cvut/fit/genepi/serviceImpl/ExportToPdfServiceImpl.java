@@ -296,9 +296,11 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
-				Paragraph anamnesisParahraph = new Paragraph(
-						messageSource.getMessage("label.anamnesis", null,
-								locale) + "\n\n", catFont);
+				// Paragraph anamnesisParahraph = new Paragraph(
+					//	messageSource.getMessage("label.anamnesis", null,
+						//		locale) + "\n\n", catFont);
+				
+				Paragraph anamnesisParahraph = new Paragraph("Anamnesis\n\n",catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
