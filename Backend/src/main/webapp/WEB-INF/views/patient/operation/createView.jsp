@@ -96,9 +96,6 @@
     				<label class="control-label" for="typeOperationsIdcom"><strong>Typ operace</strong></label>
     				<div class="controls">
     					<form:select path="typeOperationsIdcom" id="typeOperationsIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte typ operace
-							</form:option>
 							<form:option value="1">
 								Diskonekce
 							</form:option>
@@ -120,7 +117,7 @@
 							<form:option value="7">
 								Tailored resekce
 							</form:option>
-							<form:option value="7">
+							<form:option value="8">
 								Zákrok gamma nožem
 							</form:option>
 						</form:select>
@@ -131,9 +128,6 @@
     				<label class="control-label" for="rangeOperationsIdcom"><strong>Rozsah operace</strong></label>
     				<div class="controls">
     					<form:select path="rangeOperationsIdcom" id="rangeOperationsIdcom" type="text" class="input-large">
-							<form:option value="0">
-								Zvolte rozsah operace
-							</form:option>
 							<form:option value="1">
 								Fokální resekce
 							</form:option>

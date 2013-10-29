@@ -920,7 +920,7 @@
 
 				<c:choose>
 				    <c:when test="${empty patient.diagnosticTestMRIList}">
-				    	</br>
+				    	</br></br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Žádný záznam!</h4>
@@ -1361,11 +1361,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${true}">
+				    <c:when test="${empty patient.operationList}">
 				    	</br></br>
-				      	<div class="alert alert-error">
+				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Prozatím nedostupné!</h4>
+		  					<h4>Žádný záznam!</h4>
 						</div>
 				    </c:when>
 
@@ -1377,52 +1377,105 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Typ operace</td>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==1}">
+										<td>Diskonekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==2}">
+										<td>Hemisferektomie</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==3}">
+										<td>Kortikální resekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==4}">
+										<td>Lesionektomie</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==5}">
+										<td>Rozšíření Lesionektomie</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==6}">
+										<td>Standardizované resekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==7}">
+										<td>Tailored resekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].typeOperationsIdcom==8}">
+										<td>Zákrok gamma nožem</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>Rozsah operace</td>
+									<c:if test="${patient.operationList[0].rangeOperationsIdcom==1}">
+										<td>Fokální resekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].rangeOperationsIdcom==2}">
+										<td>Hemisferektomie</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].rangeOperationsIdcom==3}">
+										<td>Jednolobární resekce</td>
+									</c:if>
+									<c:if test="${patient.operationList[0].rangeOperationsIdcom==4}">
+										<td>Multilobární resekce</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>Lokalizace operace</td>
+									<td>${patient.operationList[0].localizationOperations}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>MST</td>
+									<c:if test="${patient.operationList[0].mst==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.operationList[0].mst==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
+									<td>Kalostomie</td>
+									<c:if test="${patient.operationList[0].kalostomie==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.operationList[0].kalostomie==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
+									<td>VNS</td>
+									<c:if test="${patient.operationList[0].vns==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.operationList[0].vns==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
+									<td>Datum imlantace VNS</td>
+									<td>${patient.operationList[0].VNSImplantationDate}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
+									<td>Detail operace</td>
+									<td>${patient.operationList[0].operationDetails}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
+									<td>Resekce kompletní</td>
+									<c:if test="${patient.operationList[0].completeResection==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.operationList[0].completeResection==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.operationList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.operationList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>

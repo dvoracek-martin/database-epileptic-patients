@@ -69,10 +69,145 @@
 				</tbody>
 			</table>
  
-			<div class="alert alert-block">
+			<c:if test="${empty patient.operationList}">
+ 				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Prozatím nejsou záznamy dostupné.</h4>
-			</div>
+		  			<h4>Žádné záznamy!</h4>
+				</div>
+ 			</c:if>
+
+			<!-- Anamnesis list START -->
+			<div class="accordion">
+				<c:forEach items="${patient.operationList}" var="operation">
+					<div >
+						<div class="accordion-heading">
+					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${operation.id}">
+					    	    <strong>Vyšetření dne:</strong> ${operation.date}
+					    	</a>
+					    </div>
+					    <div id="collapse${operation.id}" class="accordion-body collapse">
+
+					      	<div class="accordion-inner">
+					      			<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
+										<div class="pull-right">
+											<a class="close" href="<c:url value="/patient/${patientID}/operation/${operation.id}/delete"/>"><spring:message code="label.delete"/></a>
+										</div>
+										<div class="pull-left">
+											<a class="close" href="<c:url value="/patient/${patientID}/operation/list"/>"><spring:message code="label.edit"/></a>
+										</div>
+										</br>
+									</div>
+				              		<table class="table">
+					               		<tbody>
+											<tr class="info">
+												<td>Typ operace</td>
+												<c:if test="${operation.typeOperationsIdcom==1}">
+													<td>Diskonekce</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==2}">
+													<td>Hemisferektomie</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==3}">
+													<td>Kortikální resekce</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==4}">
+													<td>Lesionektomie</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==5}">
+													<td>Rozšíření Lesionektomie</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==6}">
+													<td>Standardizované resekce</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==7}">
+													<td>Tailored resekce</td>
+												</c:if>
+												<c:if test="${operation.typeOperationsIdcom==8}">
+													<td>Zákrok gamma nožem</td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td>Rozsah operace</td>
+												<c:if test="${operation.rangeOperationsIdcom==1}">
+													<td>Fokální resekce</td>
+												</c:if>
+												<c:if test="${operation.rangeOperationsIdcom==2}">
+													<td>Hemisferektomie</td>
+												</c:if>
+												<c:if test="${operation.rangeOperationsIdcom==3}">
+													<td>Jednolobární resekce</td>
+												</c:if>
+												<c:if test="${operation.rangeOperationsIdcom==4}">
+													<td>Multilobární resekce</td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td>Lokalizace operace</td>
+												<td>${operation.localizationOperations}</td>
+											</tr>
+											<tr class="info">
+												<td>MST</td>
+												<c:if test="${operation.mst==true}">
+													<td style="column-span: 2"><spring:message code="label.yes"/></td>
+												</c:if>
+												<c:if test="${operation.mst==false}">
+													<td><spring:message code="label.no"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td>Kalostomie</td>
+												<c:if test="${operation.kalostomie==true}">
+													<td style="column-span: 2"><spring:message code="label.yes"/></td>
+												</c:if>
+												<c:if test="${operation.kalostomie==false}">
+													<td><spring:message code="label.no"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td>VNS</td>
+												<c:if test="${operation.vns==true}">
+													<td style="column-span: 2"><spring:message code="label.yes"/></td>
+												</c:if>
+												<c:if test="${operation.vns==false}">
+													<td><spring:message code="label.no"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td>Datum imlantace VNS</td>
+												<td>${operation.VNSImplantationDate}</td>
+											</tr>
+											<tr class="info">
+												<td>Detail operace</td>
+												<td>${operation.operationDetails}</td>
+											</tr>
+											<tr class="info">
+												<td>Resekce kompletní</td>
+												<c:if test="${operation.completeResection==true}">
+													<td style="column-span: 2"><spring:message code="label.yes"/></td>
+												</c:if>
+												<c:if test="${operation.completeResection==false}">
+													<td><spring:message code="label.no"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td><spring:message code="label.comment" /></td>
+												<c:choose>
+													<c:when test="${empty operation.comment}">
+														<td>Žádný</td>
+													</c:when>
+													<c:otherwise>
+														<td>${operation.comment}</td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+					              		</tbody>
+				            		</table>
+		            		</div>
+					    </div>
+	            	</div>
+	            </c:forEach>
+            </div>
+        </br> 
 	</jsp:body>
 </t:menuLVL3>
 
