@@ -58,7 +58,7 @@
 							
 					</tr>
 					<tr>
-						<th><spring:message code="label.genre"/>:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
 						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>

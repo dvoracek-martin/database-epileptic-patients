@@ -52,7 +52,7 @@
 							
 					</tr>
 					<tr>
-						<th><spring:message code="label.genre"/>:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
 						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
@@ -120,7 +120,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="inflammationCns"><strong><spring:message code="label.inflammationCns"/></strong></label>
+    				<label class="control-label" for="inflammationCns"><strong><spring:message code="label.inflammationCNS"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="inflammationCns" input="inflammationCns" class="input-block-level" />
 						<form:errors path="inflammationCns" cssClass="error">
@@ -129,7 +129,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="injuryCns"><strong><spring:message code="label.injuryCns"/></strong></label>
+    				<label class="control-label" for="injuryCns"><strong><spring:message code="label.injuryCNS"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="injuryCns" input="injuryCns" class="input-block-level" />
 						<form:errors path="injuryCns" cssClass="error">
@@ -138,7 +138,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="operationCns"><strong><spring:message code="label.operationCns"/></strong></label>
+    				<label class="control-label" for="operationCns"><strong><spring:message code="label.operationCNS"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="operationCns" input="operationCns" class="input-block-level" />
 						<form:errors path="operationCns" cssClass="error">
