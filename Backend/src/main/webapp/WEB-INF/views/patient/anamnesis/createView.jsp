@@ -147,7 +147,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="earlyPmdRetardation"><strong><spring:message code="label.earlyPmdRetardation"/></strong></label>
+    				<label class="control-label" for="earlyPmdRetardation"><strong><spring:message code="label.earlyPMDRetardation"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="earlyPmdRetardation" input="earlyPmdRetardation" class="input-block-level" />
 						<form:errors path="earlyPmdRetardation" cssClass="error">
