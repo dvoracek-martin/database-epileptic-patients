@@ -132,7 +132,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="visualCut"><strong>Defekt zorného pole</strong></label>
+    				<label class="control-label" for="visualCut"><strong>Porucha zorného pole</strong></label>
     				<div class="controls">
     					<form:checkbox path="visualCut" input="visualCut" class="input-block-level" />
 						<form:errors path="visualCut" cssClass="error">
