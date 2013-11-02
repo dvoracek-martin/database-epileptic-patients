@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Anamnéza</h2>
+				<spring:message code="label.anamnesis" />
 			</div>
 
 			<table class="table">
