@@ -29,42 +29,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Komplikace</h2>
+				<h2><spring:message code="label.complication"/></h2>
 			</div>
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.genre"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -99,77 +99,77 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="complicationIdcom"><strong>Komplikace</strong></label>
+    				<label class="control-label" for="complicationIdcom"><strong><spring:message code="label.complication"/></strong></label>
     				<div class="controls">
     					<form:select path="complicationIdcom" id="complicationIdcom" type="text" class="input-large">
-								<option id="title" disabled>Neočekávané permanentní</option>
+								<option id="title" disabled><spring:message code="label.unexpectedPermanent"/></option>
 								<form:option value="1">
-									0	
+									<spring:message code="label.0"/>	
 								</form:option>
 								<form:option value="2">
-									Afázie		
+									<spring:message code="label.aphasia"/>		
 								</form:option>
 								<form:option value="3">
-									Hemipréza		
+									<spring:message code="label.hemiparesis"/>		
 								</form:option>
 								<form:option value="4">
-									Jiné	
+									<spring:message code="label.other"/>	
 								</form:option>
 								<form:option value="5">
-									Paréza hlavových nervů		
+									<spring:message code="label.paresisOfCranialNerves"/>		
 								</form:option>
 								<form:option value="6">
-									Porucha zorného pole		
+									<spring:message code="label.visualFieldDefects"/>		
 								</form:option>
 								<form:option value="7">
-									Smrt		
+									<spring:message code="label.death"/>		
 								</form:option>
-								<option id="title" disabled>Očekávané permanentní</option>
+								<option id="title" disabled><spring:message code="label.expectedPermanent"/></option>
 								<form:option value="8">
-									0	
+									<spring:message code="label.0"/>	
 								</form:option>
 								<form:option value="9">
-									Hemipréza		
+									<spring:message code="label.hemiparesis"/>			
 								</form:option>
 								<form:option value="10">
-									Jiné	
+									<spring:message code="label.other"/>	
 								</form:option>
 								<form:option value="11">
-									Paréza hlavových nervů		
+									<spring:message code="label.paresisOfCranialNerves"/>	
 								</form:option>
 								<form:option value="12">
-									Porucha zorného pole		
+									<spring:message code="label.visualFieldDefects"/>			
 								</form:option>
-								<option id="title" disabled>Přechodné</option>
+								<option id="title" disabled><spring:message code="label.transitional"/></option>
 								<form:option value="13">
-									0	
+									<spring:message code="label.0"/>	
 								</form:option>
 								<form:option value="14">
-									Afázie		
+									<spring:message code="label.aphasia"/>			
 								</form:option>
 								<form:option value="15">
-									Edém		
+									<spring:message code="label.edema"/>			
 								</form:option>
 								<form:option value="16">
-									Hemipréza		
+									<spring:message code="label.hemiparesis"/>		
 								</form:option>
 								<form:option value="17">
-									Hydrocefalus		
+									<spring:message code="label.hydrocefalus"/>			
 								</form:option>
 								<form:option value="18">
-									Ischémie		
+									<spring:message code="label.ischemia"/>			
 								</form:option>
 								<form:option value="19">
-									Jiné	
+									<spring:message code="label.other"/>	
 								</form:option>
 								<form:option value="20">
-									Krvácení	
+									<spring:message code="label.hemorrhage"/>	
 								</form:option>
 								<form:option value="21">
-									Paréza hlavových nervů			
+									<spring:message code="label.paresisOfCranialNerves"/>				
 								</form:option>
 								<form:option value="22">
-									Zánět		
+									<spring:message code="label.inflammation"/>			
 								</form:option>
 
 						</form:select>
@@ -177,7 +177,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

@@ -33,36 +33,36 @@
 			<table class="table">
 			<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.genre"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -72,7 +72,7 @@
  			<c:if test="${empty patient.anamnesisList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${anamnesis.id}">
-					    	    <strong>Vyšetření dne:</strong> ${anamnesis.date}
+					    	    <strong><spring:message code="label.dateExamination"/>:</strong> ${anamnesis.date}
 					    	</a>
 						</div>
 
@@ -188,23 +188,23 @@
 										<tr class="info">
 											<td><spring:message code="label.epilepticSyndrome" /></td>
 											<c:if test="${anamnesis.specificSyndromeIdcom==1}">
-												<td>Extratemporální fokální epilepsie</td>
+												<td><spring:message code="label.extratemporalFocalEpilepsy"/></td>
 											</c:if>
 
 											<c:if test="${anamnesis.specificSyndromeIdcom==2}">
-												<td>Hemisferální symtomaptická epilepsie</td>
+												<td><spring:message code="label.hemisphericSymptomaticEpilepsy"/></td>
 											</c:if>
 
 											<c:if test="${anamnesis.specificSyndromeIdcom==3}">
-												<td>Meziotemporální epilepsie (MTLE)</td>
+												<td><spring:message code="label.mesiotemporalEpilepsy"/></td>
 											</c:if>
 
 											<c:if test="${anamnesis.specificSyndromeIdcom==4}">
-												<td>Multifokální epilepsie</td>
+												<td><spring:message code="label.multifocalEpilepsy"/></td>
 											</c:if>
 
 											<c:if test="${anamnesis.specificSyndromeIdcom==5}">
-												<td>Temporální epilepsie jiná než MTLE</td>
+												<td><spring:message code="label.temporalEpilepsy"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
@@ -216,7 +216,7 @@
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty anamnesis.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${anamnesis.comment}</td>
