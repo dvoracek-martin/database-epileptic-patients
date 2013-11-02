@@ -23,42 +23,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<spring:message code="label.anamnesis" />
+				 <h2> <spring:message code="label.anamnesis"/></h2>
 			</div>
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.genre"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -93,7 +93,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="epilepsyInFamily"><strong>Epilepsie v rodině</strong></label>
+    				<label class="control-label" for="epilepsyInFamily"><strong><spring:message code="label.epilepsyInFamily"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="epilepsyInFamily" input="epilepsyInFamily" class="input-block-level" />
 						<form:errors path="epilepsyInFamily" cssClass="error">
@@ -102,7 +102,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="prenatalRisk"><strong>Prenatální rizika</strong></label>
+    				<label class="control-label" for="prenatalRisk"><strong><spring:message code="label.prenatalRisk"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="prenatalRisk" input="prenatalRisk" class="input-block-level" />
 						<form:errors path="prenatalRisk" cssClass="error">
@@ -111,7 +111,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="fibrilConvulsions"><strong>Fibrilní křeče</strong></label>
+    				<label class="control-label" for="fibrilConvulsions"><strong><spring:message code="label.fibrilConvulsions"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="fibrilConvulsions" input="fibrilConvulsions" class="input-block-level" />
 						<form:errors path="fibrilConvulsions" cssClass="error">
@@ -120,7 +120,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="inflammationCns"><strong>Zánět CNS</strong></label>
+    				<label class="control-label" for="inflammationCns"><strong><spring:message code="label.inflammationCns"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="inflammationCns" input="inflammationCns" class="input-block-level" />
 						<form:errors path="inflammationCns" cssClass="error">
@@ -129,7 +129,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="injuryCns"><strong>Úraz CNS</strong></label>
+    				<label class="control-label" for="injuryCns"><strong><spring:message code="label.injuryCns"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="injuryCns" input="injuryCns" class="input-block-level" />
 						<form:errors path="injuryCns" cssClass="error">
@@ -138,7 +138,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="operationCns"><strong>Operace CNS</strong></label>
+    				<label class="control-label" for="operationCns"><strong><spring:message code="label.operationCns"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="operationCns" input="operationCns" class="input-block-level" />
 						<form:errors path="operationCns" cssClass="error">
@@ -147,7 +147,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="earlyPmdRetardation"><strong>Časná PMD retardace</strong></label>
+    				<label class="control-label" for="earlyPmdRetardation"><strong><spring:message code="label.earlyPmdRetardation"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="earlyPmdRetardation" input="earlyPmdRetardation" class="input-block-level" />
 						<form:errors path="earlyPmdRetardation" cssClass="error">
@@ -156,7 +156,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="beginningEpilepsy"><strong>Začátek epilepsie</strong></label>
+    				<label class="control-label" for="beginningEpilepsy"><strong><spring:message code="label.beginningEpilepsy"/></strong></label>
     				<div class="controls">
     					<form:input path="beginningEpilepsy" id="beginningEpilepsy" type="text" class="input-medium datepicker" />
 						<form:errors path="beginningEpilepsy" cssClass="error">
@@ -165,7 +165,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="firstFever"><strong>První záchvat s horečkou</strong></label>
+    				<label class="control-label" for="firstFever"><strong><spring:message code="label.firstFever"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="firstFever" input="firstFever" class="input-block-level" />
 						<form:errors path="firstFever" cssClass="error">
@@ -174,7 +174,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="infantileSpasm"><strong>Infantilní spasmy</strong></label>
+    				<label class="control-label" for="infantileSpasm"><strong><spring:message code="label.infantileSpasm"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="infantileSpasm" input="infantileSpasm" class="input-block-level" />
 						<form:errors path="infantileSpasm" cssClass="error">
@@ -183,30 +183,30 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="specificSyndromeIdcom"><strong>Epileptický syndrom</strong></label>
+    				<label class="control-label" for="specificSyndromeIdcom"><strong><spring:message code="label.epilepticSyndrome"/></strong></label>
     				<div class="controls">
     					<form:select path="specificSyndromeIdcom" id="specificSyndromeIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Extratemporální fokální epilepsie
+								<spring:message code="label.extratemporalFocalEpilepsy"/>
 							</form:option>
 							<form:option value="2">
-								Hemisferální symtomaptická epilepsie
+								<spring:message code="label.hemisphericSymptomaticEpilepsy"/>
 							</form:option>
 							<form:option value="3">
-								Meziotemporální epilepsie (MTLE)
+								<spring:message code="label.mesiotemporalEpilepsy"/>
 							</form:option>
 							<form:option value="4">
-								Multifokální epilepsie
+								<spring:message code="label.multifocalEpilepsy"/>
 							</form:option>	
-							<form:option value="4">
-								Temporální epilepsie jiná než MTLE
+							<form:option value="5">
+								<spring:message code="label.temporalEpilepsy"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="nonCnsComorbidity"><strong>Non CNS komorbidita</strong></label>
+    				<label class="control-label" for="nonCnsComorbidity"><strong><spring:message code="label.nonCNSComorbidity"/></strong></label>
     				<div class="controls">
     					<form:input path="nonCnsComorbidity" id="nonCnsComorbidity" type="text" class="input-medium" 
     					value="porod per SC. pro gestrózu zjištěnou až během porodu" />
@@ -216,7 +216,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>
