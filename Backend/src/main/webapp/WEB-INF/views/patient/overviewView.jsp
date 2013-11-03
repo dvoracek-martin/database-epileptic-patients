@@ -60,7 +60,7 @@
 							<td></td>
 							
 							<th>Ošetřující lékař:</th>
-							<td></td>
+							<td>${patient.doctor.contact.firstName } ${patient.doctor.contact.lastName }</td>
 							
 						</tr>
 					</tbody>
