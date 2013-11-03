@@ -63,7 +63,7 @@
 						<td></td>
 							
 						<th><spring:message code="label.assignedDoctor"/>:</th>
-						<td></td>
+						<td>${patient.doctor.contact.firstName} ${patient.doctor.contact.lastName}</td>
 							
 					</tr>
 				</tbody>
