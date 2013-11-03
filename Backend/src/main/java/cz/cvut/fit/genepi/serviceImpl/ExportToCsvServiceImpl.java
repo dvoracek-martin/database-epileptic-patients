@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
@@ -38,14 +39,15 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
-	    reportDate=reportDate.replace(' ','_');
+		reportDate = reportDate.replace(' ', '_');
 		reportDate = reportDate.replace('/', '_');
 		return reportDate;
 	}
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
 			Locale locale, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards) {
+			java.util.List<String> listOfPossibleCards,
+			ExportParamsEntity exportParams) {
 		logger.setLogger(ExportToCsvServiceImpl.class);
 
 		String date = getDate();
@@ -92,7 +94,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		}
 		String content = "";
 		for (PatientEntity patient : patientList) {
-			content += addTitlePage(f, bw, locale, patient,date);
+			content += addTitlePage(f, bw, locale, patient, date);
 			content += addContent(f, exports, listOfPossibleCards, locale,
 					patient);
 		}
@@ -108,7 +110,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 			logger.logError("Exception when trying to close csv file.", e);
 			e.printStackTrace();
 		}
-		
+
 		return name;
 	}
 
@@ -136,7 +138,8 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		return ("\n" + emptyLine + "\n");
 	}
 
-	private String addTitlePage(File f, BufferedWriter bw, Locale locale,PatientEntity patient,String date) {
+	private String addTitlePage(File f, BufferedWriter bw, Locale locale,
+			PatientEntity patient, String date) {
 		String content = "Export of the patient "
 				+ patient.getContact().getFirstName() + " "
 				+ patient.getContact().getLastName() + " ,ID:"
@@ -150,7 +153,8 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 	}
 
 	private String addContent(File f, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards, Locale locale,PatientEntity patient) {
+			java.util.List<String> listOfPossibleCards, Locale locale,
+			PatientEntity patient) {
 		String content = "";
 		content += addDashLine();
 		content += addEmptyLine();

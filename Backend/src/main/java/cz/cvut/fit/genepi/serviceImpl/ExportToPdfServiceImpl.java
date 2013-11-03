@@ -31,6 +31,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
@@ -120,7 +121,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	public String export(java.util.List<PatientEntity> patientList,
 			UserEntity user, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards, Locale locale) {
+			java.util.List<String> listOfPossibleCards, Locale locale,
+			ExportParamsEntity exportParams) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
@@ -177,7 +179,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			}
 			try {
 				addContent(document, exports, listOfPossibleCards, patient,
-						locale);
+						locale, exportParams);
 			} catch (DocumentException e) {
 				logger.logError(
 						"Document exception when trying to save pdf file.", e);
@@ -259,7 +261,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 */
 	private void addContent(Document document, java.util.List<String> exports,
 			java.util.List<String> listOfPossibleCards, PatientEntity patient,
-			Locale locale) throws DocumentException {
+			Locale locale, ExportParamsEntity exportParams)
+			throws DocumentException {
 
 		Anchor anchor = new Anchor("First Chapter", catFont);
 		anchor.setName("First Chapter");
@@ -291,20 +294,17 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		addEmptyLine(patientParagraph, 2);
 		subCatPart.add(patientParagraph);
 		// Add a table
-		createTable(subCatPart, patient);
+		createTable(subCatPart, patient, exportParams, locale);
 
 		for (String s : exports) {
 			if (s.equals(listOfPossibleCards.get(0))) {
 				Paragraph anamnesisParahraph = new Paragraph(
 						messageSource.getMessage("label.anamnesis", null,
 								locale) + "\n\n", catFont);
-
-				// Paragraph anamnesisParahraph = new
-				// Paragraph("Anamnesis\n\n",catFont);
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(1))) {
@@ -313,7 +313,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(2))) {
@@ -322,7 +322,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(3))) {
@@ -331,7 +331,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(4))) {
@@ -340,7 +340,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(5))) {
@@ -349,7 +349,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(6))) {
@@ -358,7 +358,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 			if (s.equals(listOfPossibleCards.get(7))) {
@@ -367,7 +367,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				anamnesisParahraph.setAlignment(Element.ALIGN_CENTER);
 				subCatPart.add(anamnesisParahraph);
 				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					printOutAnamnesis(subCatPart, a, locale);
+					printOutAnamnesis(subCatPart, a, locale, exportParams);
 				}
 			}
 		}
@@ -399,7 +399,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	 * @throws BadElementException
 	 *             the bad element exception
 	 */
-	private static void createTable(Section subCatPart, PatientEntity patient)
+	private void createTable(Section subCatPart, PatientEntity patient,
+			ExportParamsEntity exportParams, Locale locale)
 			throws BadElementException {
 		PdfPTable table = new PdfPTable(2);
 
@@ -408,32 +409,59 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
 
-		table.addCell(new Phrase("Číslo pacienta:", normalFont));
-		table.addCell(String.valueOf(patient.getId()));
-		table.addCell(new Phrase("Rodné číslo:", normalFont));
-		table.addCell(String.valueOf(patient.getNin()));
-		table.addCell(new Phrase("Adresa:", normalFont));
-		table.addCell(String.valueOf(patient.getContact().getAddressStreet()));
-		table.addCell(new Phrase("Telefon:", normalFont));
-		table.addCell(String.valueOf(patient.getContact().getPhoneNumber()));
-		table.addCell(new Phrase("Věk:", normalFont));
-		table.addCell(String.valueOf(patient.getBirthday()));
-		table.addCell(new Phrase("Pohaví:", normalFont));
-		table.addCell(String.valueOf(patient.getGender()));
-		table.addCell(new Phrase("Email:", normalFont));
-		table.addCell(String.valueOf(patient.getContact().getEmail()));
+		if (exportParams.isPatientId()) {
+			table.addCell(new Phrase("Číslo pacienta:", normalFont));
+			table.addCell(String.valueOf(patient.getId()));
+		}
+		if (exportParams.isPatientNin()) {
+			table.addCell(new Phrase("Rodné číslo:", normalFont));
+			table.addCell(String.valueOf(patient.getNin()));
+		}
+		if (exportParams.isContactAddressCity()) {
+			table.addCell(new Phrase("Adresa:", normalFont));
+			table.addCell(String.valueOf(patient.getContact()
+					.getAddressStreet()));
+		}
+		if (exportParams.isContactAddressStreet()) {
+			table.addCell(new Phrase("Adresa:", normalFont));
+			table.addCell(String.valueOf(patient.getContact()
+					.getAddressStreet()));
+		}
+		if (exportParams.isContactAddressHn()) {
+			table.addCell(new Phrase("Adresa:", normalFont));
+			table.addCell(String.valueOf(patient.getContact()
+					.getAddressStreet()));
+		}
+		if (exportParams.isContactPhoneNumber()) {
+			table.addCell(new Phrase("Telefon:", normalFont));
+			table.addCell(String.valueOf(patient.getContact().getPhoneNumber()));
+		}
+		if (exportParams.isPatientBirthday()) {
+			table.addCell(new Phrase("Věk:", normalFont));
+			table.addCell(String.valueOf(patient.getBirthday()));
+		}
+		if (exportParams.isPatientGender()) {
+			table.addCell(new Phrase("Pohaví:", normalFont));
+			table.addCell(String.valueOf(patient.getGender()));
+		}
+		if (exportParams.isContactEmail()) {
+			table.addCell(new Phrase("Email:", normalFont));
+			table.addCell(String.valueOf(patient.getContact().getEmail()));
+		}
+
 		table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
 		table.addCell(" ");
-		table.addCell(new Phrase("Ošetřující lékař:", normalFont));
-		table.addCell(" ");
+		if (exportParams.isPatientDoctorId())
+			table.addCell(new Phrase("Ošetřující lékař:", normalFont));
+		table.addCell("");
 
 		subCatPart.add(table);
 
 	}
 
 	private void printOutAnamnesis(Section subCatPart,
-			AnamnesisEntity anamnesis, Locale locale)
-			throws BadElementException {
+			AnamnesisEntity anamnesis, Locale locale,
+			ExportParamsEntity exportParams) throws BadElementException {
 		PdfPTable table = new PdfPTable(2);
 
 		// t.setBorderColor(BaseColor.GRAY);
@@ -445,43 +473,67 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		Date dateOfAnamnesis = anamnesis.getDate();
 		String dateOfAnamnesisString = df.format(dateOfAnamnesis);
 		table.addCell(new Phrase(dateOfAnamnesisString));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.epilepsyInFamily", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getEpilepsyInFamily()));
-		table.addCell(new Phrase(messageSource.getMessage("label.prenatalRisk",
-				null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getPrenatalRisk()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.fibrilConvulsions", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getFibrilConvulsions()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.inflammationCNS", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getInflammationCns()));
-		table.addCell(new Phrase(messageSource.getMessage("label.injuryCNS",
-				null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getInjuryCns()));
-		table.addCell(new Phrase(messageSource.getMessage("label.operationCNS",
-				null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getOperationCns()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.earlyPMDRetardation", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getEarlyPmdRetardation()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.beginningEpilepsy", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getBeginningEpilepsy()));
-		table.addCell(new Phrase(messageSource.getMessage("label.firstFever",
-				null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getFirstFever()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.infantileSpasm", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getInfantileSpasm()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.epilepticSyndrome", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getSpecificSyndromeIdcom()));
-		table.addCell(new Phrase(messageSource.getMessage(
-				"label.nonCNSComorbidity", null, locale), normalFont));
-		table.addCell(String.valueOf(anamnesis.getNonCnsComorbidity()));
+		if (exportParams.isAnamnesisEpilepsyInFamily()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.epilepsyInFamily", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getEpilepsyInFamily()));
+		}
+		if (exportParams.isAnamnesisParentalRisk()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.prenatalRisk", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getPrenatalRisk()));
+		}
+		if (exportParams.isAnamnesisFibrilConvulsions()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.fibrilConvulsions", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getFibrilConvulsions()));
+		}
+		if (exportParams.isAnamnesisInflammationCns()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.inflammationCNS", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getInflammationCns()));
+		}
+		if (exportParams.isAnamnesisInjuryCns()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.injuryCNS", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getInjuryCns()));
+		}
+		if (exportParams.isAnamnesisOperationCns()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.operationCNS", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getOperationCns()));
+		}
+		if (exportParams.isAnamnesisEarlyPmdRetardation()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.earlyPMDRetardation", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getEarlyPmdRetardation()));
+		}
+		if (exportParams.isAnamnesisBeginningEpilepsy()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.beginningEpilepsy", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getBeginningEpilepsy()));
+		}
 
+		if (exportParams.isAnamnesisFirstFever()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.firstFever", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getFirstFever()));
+		}
+		if (exportParams.isAnamnesisInfantileSpasm()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.infantileSpasm", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getInfantileSpasm()));
+		}
+		if (exportParams.isAnamnesisSpecificSyndrome()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.epilepticSyndrome", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getSpecificSyndromeIdcom()));
+		}
+		if (exportParams.isAnamnesisNonCnsComorbidity()) {
+			table.addCell(new Phrase(messageSource.getMessage(
+					"label.nonCNSComorbidity", null, locale), normalFont));
+			table.addCell(String.valueOf(anamnesis.getNonCnsComorbidity()));
+		}
 		subCatPart.add(table);
 
 	}

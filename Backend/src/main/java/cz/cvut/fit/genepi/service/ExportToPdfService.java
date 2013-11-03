@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import com.itextpdf.text.DocumentException;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
@@ -26,6 +27,7 @@ public interface ExportToPdfService {
 	 *             the document exception
 	 */
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports,List<String> listOfPossibleCards, Locale locale ) throws FileNotFoundException,
-			DocumentException;
+			List<String> exports, List<String> listOfPossibleCards,
+			Locale locale, ExportParamsEntity exportParams)
+			throws FileNotFoundException, DocumentException;
 }

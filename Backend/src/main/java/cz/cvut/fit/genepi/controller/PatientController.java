@@ -327,6 +327,11 @@ public class PatientController {
 			@RequestParam("cards") String[] cards, Locale locale, Model model) {
 		logger.setLogger(PatientController.class);
 
+		// TODO:
+		// get exportParams from FE
+		ExportParamsEntity exportParams = new ExportParamsEntity();
+		
+		
 		List<String> listOfExports = new ArrayList<String>();
 		for (String s : cards) {
 			listOfExports.add(s);
@@ -342,7 +347,7 @@ public class PatientController {
 			try {
 				String url = exportToPdfService.export(patientList,
 						userService.findUserByUsername(auth.getName()),
-						listOfExports, listOfPossibleCards, locale);
+						listOfExports, listOfPossibleCards, locale, exportParams);
 				return "redirect:/resources/downloads/" + url;
 			} catch (FileNotFoundException e) {
 				logger.logError(
@@ -354,22 +359,22 @@ public class PatientController {
 		} else if (exportType.equals("xlsx")) {
 			String url = exportToXlsxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
-					listOfExports, locale);
+					listOfExports, locale, exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("docx")) {
 			String url = exportToDocxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
-					listOfExports, locale);
+					listOfExports, locale,exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("txt")) {
 			String url = exportToTxtService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards);
+					listOfExports, listOfPossibleCards,exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("csv")) {
 			String url = exportToCsvService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards);
+					listOfExports, listOfPossibleCards,exportParams);
 			return "redirect:/resources/downloads/" + url;
 		}
 		

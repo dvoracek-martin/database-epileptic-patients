@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.DocumentException;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
@@ -56,13 +57,13 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 *             Signals that an I/O exception has occurred.
 	 */
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports, Locale locale) {
+			List<String> exports, Locale locale, ExportParamsEntity exportParams) {
 
 		logger.setLogger(ExportToXlsxServiceImpl.class);
-	return	writeData(patientList);
+		return writeData(patientList);
 	}
 
-	private String writeData(List<PatientEntity>patientList) {		
+	private String writeData(List<PatientEntity> patientList) {
 		String date = getDate();
 		String name = date + ".xlsx";
 
@@ -92,25 +93,26 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
 		// Blank workbook
 		Workbook wb = new XSSFWorkbook();
-		
-		for (PatientEntity patient: patientList){
-		CreationHelper createHelper = wb.getCreationHelper();
-		Sheet sheet = wb.createSheet(patient.getContact().getLastName() + " "
-				+ patient.getContact().getFirstName() + " " + patient.getNin());
-		for (int i = 0; i != 10; i++)
-			wb.createSheet("Test" + i);
 
-		// Create a row and put some cells in it. Rows are 0 based.
-		Row row = sheet.createRow((short) 0);
-		// Create a cell and put a value in it.
-		Cell cell = row.createCell(0);
-		cell.setCellValue(1);
+		for (PatientEntity patient : patientList) {
+			CreationHelper createHelper = wb.getCreationHelper();
+			Sheet sheet = wb.createSheet(patient.getContact().getLastName()
+					+ " " + patient.getContact().getFirstName() + " "
+					+ patient.getNin());
+			for (int i = 0; i != 10; i++)
+				wb.createSheet("Test" + i);
 
-		// Or do it on one line.
-		row.createCell(1).setCellValue(1.2);
-		row.createCell(2).setCellValue(
-				createHelper.createRichTextString("This is a string"));
-		row.createCell(3).setCellValue(true);
+			// Create a row and put some cells in it. Rows are 0 based.
+			Row row = sheet.createRow((short) 0);
+			// Create a cell and put a value in it.
+			Cell cell = row.createCell(0);
+			cell.setCellValue(1);
+
+			// Or do it on one line.
+			row.createCell(1).setCellValue(1.2);
+			row.createCell(2).setCellValue(
+					createHelper.createRichTextString("This is a string"));
+			row.createCell(3).setCellValue(true);
 		}
 		// Write the output to a file
 		FileOutputStream fileOut = null;
@@ -135,7 +137,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 					"File wasn't found when trying to close xlsx file.", e);
 			e.printStackTrace();
 		}
-		
+
 		return name;
 	}
 }

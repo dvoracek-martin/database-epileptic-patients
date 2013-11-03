@@ -16,6 +16,7 @@ import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.springframework.stereotype.Service;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
@@ -34,7 +35,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports, Locale locale) {
+			List<String> exports, Locale locale, ExportParamsEntity exportParams) {
 		String date = getDate();
 		String name = date + ".docx";
 

@@ -55,6 +55,9 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	@Column(name="adhd_syndrome")
 	private Boolean adhdSyndrome;
 	
+	@Column (name ="neurological_finding_detail", nullable=false)
+	private String neurologicalFindingDetail;
+	
 	@Column(name="comment")
 	private String comment;
 	
@@ -67,7 +70,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 
 	@Column(name = "STATUS", nullable = false)
 	private int status;
-	
+		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;
@@ -144,6 +147,15 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 
 	public void setAdhdSyndrome(Boolean adhdSyndrome) {
 		this.adhdSyndrome = adhdSyndrome;
+	}
+
+	
+	public String getNeurologicalFindingDetail() {
+		return neurologicalFindingDetail;
+	}
+
+	public void setNeurologicalFindingDetail(String neurologicalFindingDetail) {
+		this.neurologicalFindingDetail = neurologicalFindingDetail;
 	}
 
 	public String getComment() {

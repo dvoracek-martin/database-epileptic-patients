@@ -79,6 +79,8 @@ public class ExportParamsEntity {
 		private boolean anamnesisAdded;
 		@Column(name = "anamnesisBeginningEpilepsy")
 		private boolean anamnesisBeginningEpilepsy;
+		@Column(name = "anamnesisFirstFever")
+		private boolean anamnesisFirstFever;
 		@Column(name = "anamnesisInfantileSpasm")
 		private boolean anamnesisInfantileSpasm;
 		@Column(name = "anamnesisSpecificSyndrome")
@@ -376,6 +378,8 @@ public class ExportParamsEntity {
 		private boolean neurolopsychologyPatientId;
 		@Column(name = "neurolopsychologyStatus")
 		private boolean neurolopsychologyStatus;
+		@Column(name="neuropsychologyFindingDetail")
+		private boolean neuropsychologyFindingDetail;
 		
 		// Operation properties
 		@Column(name = "operationId")
@@ -736,6 +740,14 @@ public class ExportParamsEntity {
 
 	public void setAnamnesisBeginningEpilepsy(boolean anamnesisBeginningEpilepsy) {
 		this.anamnesisBeginningEpilepsy = anamnesisBeginningEpilepsy;
+	}
+
+	public boolean isAnamnesisFirstFever() {
+		return anamnesisFirstFever;
+	}
+
+	public void setAnamnesisFirstFever(boolean anamnesisFirstFever) {
+		this.anamnesisFirstFever = anamnesisFirstFever;
 	}
 
 	public boolean isAnamnesisInfantileSpasm() {

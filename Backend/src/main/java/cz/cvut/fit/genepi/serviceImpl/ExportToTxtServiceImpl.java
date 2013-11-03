@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
@@ -44,7 +45,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
 			Locale locale, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards) {
+			java.util.List<String> listOfPossibleCards,
+			ExportParamsEntity exportParams) {
 		logger.setLogger(ExportToTxtServiceImpl.class);
 		String date = getDate();
 		String name = date + ".txt";
