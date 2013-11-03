@@ -56,8 +56,8 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 	 * @throws IOException
 	 *             Signals that an I/O exception has occurred.
 	 */
-	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports, Locale locale, ExportParamsEntity exportParams) {
+	public String  export(java.util.List<PatientEntity> patientList,
+			UserEntity user, Locale locale, ExportParamsEntity exportParams) {
 
 		logger.setLogger(ExportToXlsxServiceImpl.class);
 		return writeData(patientList);

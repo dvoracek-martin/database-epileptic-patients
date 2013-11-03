@@ -27,7 +27,6 @@ public interface ExportToPdfService {
 	 *             the document exception
 	 */
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports, List<String> listOfPossibleCards,
 			Locale locale, ExportParamsEntity exportParams)
 			throws FileNotFoundException, DocumentException;
 }

@@ -9,6 +9,7 @@ import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,9 +46,12 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 	}
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			Locale locale, java.util.List<String> exports,
-			java.util.List<String> listOfPossibleCards,
-			ExportParamsEntity exportParams) {
+			Locale locale, ExportParamsEntity exports) {
+
+		// TODO: fill in the list with localized names of the cards
+		List<String> listOfPossibleCards = new ArrayList<String>();
+		// !!!
+
 		logger.setLogger(ExportToCsvServiceImpl.class);
 
 		String date = getDate();
@@ -152,119 +156,74 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		return content;
 	}
 
-	private String addContent(File f, java.util.List<String> exports,
+	private String addContent(File f, ExportParamsEntity exportParams,
 			java.util.List<String> listOfPossibleCards, Locale locale,
 			PatientEntity patient) {
 		String content = "";
 		content += addDashLine();
 		content += addEmptyLine();
-
-		for (String s : exports) {
-			if (s.equals(listOfPossibleCards.get(0))) {
-				content += (messageSource.getMessage("label.anamnesis", null,
-						locale) + "-" + (messageSource.getMessage(
-						"label.dateExamination", null, locale)));
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += messageSource.getMessage(
-							"label.dateExamination", null, locale);
-					content += (": " + a.getAdded() + "\n");
-					content += messageSource.getMessage(
-							"label.epilepsyInFamily", null, locale);
-					content += (": " + a.getEpilepsyInFamily() + "\n");
-					content += messageSource.getMessage("label.prenatalRisk",
-							null, locale);
-					content += (": " + a.getPrenatalRisk() + "\n");
-					content += messageSource.getMessage(
-							"label.inflammationCNS", null, locale);
-					content += (": " + a.getInflammationCns() + "\n");
-					content += messageSource.getMessage(
-							"label.fibrilConvulsions", null, locale);
-					content += (": " + a.getFibrilConvulsions() + "\n");
-					content += messageSource.getMessage("label.injuryCNS",
-							null, locale);
-					content += (": " + a.getInjuryCns() + "\n");
-					content += messageSource.getMessage("label.operationCNS",
-							null, locale);
-					content += (": " + a.getOperationCns() + "\n");
-					content += messageSource.getMessage(
-							"label.earlyPMDRetardation", null, locale);
-					content += (": " + a.getEarlyPmdRetardation() + "\n");
-					content += messageSource.getMessage(
-							"label.beginningEpilepsy", null, locale);
-					content += (": " + a.getBeginningEpilepsy() + "\n");
-					content += messageSource.getMessage("label.firstFever",
-							null, locale);
-					content += (": " + a.getFirstFever() + "\n");
-					content += messageSource.getMessage("label.infantileSpasm",
-							null, locale);
-					content += (": " + a.getInfantileSpasm() + "\n");
-					content += messageSource.getMessage(
-							"label.epilepticSyndrome", null, locale);
-					content += (": " + a.getSpecificSyndromeIdcom() + "\n");
-					content += messageSource.getMessage(
-							"label.nonCNSComorbidity", null, locale);
-					content += (": " + a.getNonCnsComorbidity() + "\n");
-					content += messageSource.getMessage("label.comment", null,
-							locale);
-					content += (": " + a.getComment() + "\n");
-
-					content += addStarLine();
-				}
-			}
-			content += addDashLine();
-			content += addEmptyLine();
-
-			if (s.equals(listOfPossibleCards.get(1))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(2))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(3))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(4))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(5))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(6))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-			}
-			if (s.equals(listOfPossibleCards.get(7))) {
-				content += ("Anamnesis\n\n");
-				for (AnamnesisEntity a : patient.getAnamnesisList()) {
-					content += (a.getAdded());
-					content += addStarLine();
-				}
-
-			}
-		}
+		/*
+		 * for (String s : exports) { if (s.equals(listOfPossibleCards.get(0)))
+		 * { content += (messageSource.getMessage("label.anamnesis", null,
+		 * locale) + "-" + (messageSource.getMessage( "label.dateExamination",
+		 * null, locale))); for (AnamnesisEntity a : patient.getAnamnesisList())
+		 * { content += messageSource.getMessage( "label.dateExamination", null,
+		 * locale); content += (": " + a.getAdded() + "\n"); content +=
+		 * messageSource.getMessage( "label.epilepsyInFamily", null, locale);
+		 * content += (": " + a.getEpilepsyInFamily() + "\n"); content +=
+		 * messageSource.getMessage("label.prenatalRisk", null, locale); content
+		 * += (": " + a.getPrenatalRisk() + "\n"); content +=
+		 * messageSource.getMessage( "label.inflammationCNS", null, locale);
+		 * content += (": " + a.getInflammationCns() + "\n"); content +=
+		 * messageSource.getMessage( "label.fibrilConvulsions", null, locale);
+		 * content += (": " + a.getFibrilConvulsions() + "\n"); content +=
+		 * messageSource.getMessage("label.injuryCNS", null, locale); content +=
+		 * (": " + a.getInjuryCns() + "\n"); content +=
+		 * messageSource.getMessage("label.operationCNS", null, locale); content
+		 * += (": " + a.getOperationCns() + "\n"); content +=
+		 * messageSource.getMessage( "label.earlyPMDRetardation", null, locale);
+		 * content += (": " + a.getEarlyPmdRetardation() + "\n"); content +=
+		 * messageSource.getMessage( "label.beginningEpilepsy", null, locale);
+		 * content += (": " + a.getBeginningEpilepsy() + "\n"); content +=
+		 * messageSource.getMessage("label.firstFever", null, locale); content
+		 * += (": " + a.getFirstFever() + "\n"); content +=
+		 * messageSource.getMessage("label.infantileSpasm", null, locale);
+		 * content += (": " + a.getInfantileSpasm() + "\n"); content +=
+		 * messageSource.getMessage( "label.epilepticSyndrome", null, locale);
+		 * content += (": " + a.getSpecificSyndromeIdcom() + "\n"); content +=
+		 * messageSource.getMessage( "label.nonCNSComorbidity", null, locale);
+		 * content += (": " + a.getNonCnsComorbidity() + "\n"); content +=
+		 * messageSource.getMessage("label.comment", null, locale); content +=
+		 * (": " + a.getComment() + "\n");
+		 * 
+		 * content += addStarLine(); } } content += addDashLine(); content +=
+		 * addEmptyLine();
+		 * 
+		 * if (s.equals(listOfPossibleCards.get(1))) { content +=
+		 * ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(2))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(3))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(4))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(5))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(6))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(7))) {
+		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
+		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
+		 * addStarLine(); }
+		 * 
+		 * } }
+		 */
 		return content;
 	}
 }

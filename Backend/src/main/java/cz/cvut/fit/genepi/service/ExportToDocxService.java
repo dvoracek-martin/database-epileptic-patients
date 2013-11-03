@@ -8,6 +8,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
 public interface ExportToDocxService {
+
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			List<String> exports, Locale locale, ExportParamsEntity exportParams);
+			Locale locale, ExportParamsEntity exportParams);
 }

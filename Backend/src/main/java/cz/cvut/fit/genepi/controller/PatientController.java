@@ -83,8 +83,6 @@ public class PatientController {
 	/** The Constant logger. */
 	private LoggingService logger = new LoggingService();
 
-	private List<String> listOfPossibleCards;
-
 	/**
 	 * Creates the patient get.
 	 * 
@@ -97,7 +95,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
 		model.addAttribute("doctors", roleService.getAllDoctors());
-		model.addAttribute("patient", new PatientEntity());
+		model.addAttribute("patientList", new PatientEntity());
 		model.addAttribute("male",
 				messageSource.getMessage("label.male", null, locale));
 		model.addAttribute("female",
@@ -164,7 +162,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		model.addAttribute("patient",
+		model.addAttribute("patientList",
 				patientService.getPatientByIdWithAllLists(patientID));
 		return "patient/overviewView";
 	}
@@ -218,7 +216,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		model.addAttribute("patient",
+		model.addAttribute("patientList",
 				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/editView";
 	}
@@ -268,29 +266,6 @@ public class PatientController {
 				.getAuthentication();
 		UserEntity user = userService.findUserByUsername(auth.getName());
 
-		this.listOfPossibleCards = new ArrayList<String>();
-
-		listOfPossibleCards.add(messageSource.getMessage("label.anamnesis",
-				null, locale));
-		listOfPossibleCards.add("Farmakoloterapie");
-		listOfPossibleCards.add("Zachvaty");
-		listOfPossibleCards.add("Farmakoloterapie");
-		listOfPossibleCards.add("Neurologicke nalezy");
-		listOfPossibleCards.add("Neuropsychologie");
-		listOfPossibleCards.add("Diagnosticke EEG testy");
-		listOfPossibleCards.add("Diagnosticke MRI testy");
-		listOfPossibleCards.add("Invazivni EEG testy");
-		listOfPossibleCards.add("Invazivni ECoG testy");
-		listOfPossibleCards.add("Operace");
-		listOfPossibleCards.add("Histologie");
-		listOfPossibleCards.add("Komplikace");
-		listOfPossibleCards.add("Outcome");
-
-		// @TODO:
-		// chyba - tohle tedkon se predava do my sets, ale melo by se predavat
-		// do user sets
-		// predelat, aby se zobrazovalo spravne + pridat logiku na zobrazovani
-		// my sets
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
 		listOfSavedConfigurationsTmp = exportParamsService
@@ -310,47 +285,38 @@ public class PatientController {
 		if ((listOfUsersSavedConfigurations.size() > 0) && (user.getId() == 1))
 			listOfUsersSavedConfigurations.remove(0);
 
-		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
 				listOfSavedConfigurations);
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
+		model.addAttribute("exportParams",
+				exportParamsService.findByID(ExportParamsEntity.class, 1));
 
-		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientID));
-		String[] arrayOfAsignedCards = null;
-		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
+		model.addAttribute("patientList", new ArrayList<PatientEntity>().add(patientService
+				.findByID(PatientEntity.class, patientID)));
 		return "patient/exportView";
 	}
 
 	@RequestMapping(value = "/patient/export", method = RequestMethod.POST)
 	public String patientExportPOST(
-			@ModelAttribute("patient") PatientEntity patient,
-			@RequestParam("exportType") String exportType,
-			@RequestParam("cards") String[] cards, Locale locale, Model model) {
+			@ModelAttribute("exportParams") ExportParamsEntity exportParams,
+			@RequestParam("patient") Integer[] patientID,
+			@RequestParam("exportType") String exportType, Locale locale,
+			Model model) {
 		logger.setLogger(PatientController.class);
-
-		// TODO:
-		// get exportParams from FE
-		ExportParamsEntity exportParams = new ExportParamsEntity();
-
-		List<String> listOfExports = new ArrayList<String>();
-		for (String s : cards) {
-			listOfExports.add(s);
-		}
 
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
-		patient = patientService.getPatientByIdWithAllLists(patient.getId());
-		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
-		patientList.add(patient);
 
+		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
+		for (Integer patient : patientID) {
+			patientList.add(patientService.getPatientByIdWithAllLists(patient));
+		}
 		if (exportType.equals("pdf")) {
 			try {
 				String url = exportToPdfService.export(patientList,
-						userService.findUserByUsername(auth.getName()),
-						listOfExports, listOfPossibleCards, locale,
+						userService.findUserByUsername(auth.getName()), locale,
 						exportParams);
 				return "redirect:/resources/downloads/" + url;
 			} catch (FileNotFoundException e) {
@@ -362,28 +328,29 @@ public class PatientController {
 			}
 		} else if (exportType.equals("xlsx")) {
 			String url = exportToXlsxService.export(patientList,
-					userService.findUserByUsername(auth.getName()),
-					listOfExports, locale, exportParams);
+					userService.findUserByUsername(auth.getName()), locale,
+					exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("docx")) {
 			String url = exportToDocxService.export(patientList,
-					userService.findUserByUsername(auth.getName()),
-					listOfExports, locale, exportParams);
+					userService.findUserByUsername(auth.getName()), locale,
+					exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("txt")) {
 			String url = exportToTxtService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards, exportParams);
+					exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("csv")) {
 			String url = exportToCsvService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards, exportParams);
+					exportParams);
 			return "redirect:/resources/downloads/" + url;
 		}
 
-		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patient.getId()));
+		model.addAttribute("patientList",
+				new ArrayList<PatientEntity>().add(patientService.findByID(
+						PatientEntity.class, patientID[0])));
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
@@ -392,34 +359,27 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
 	public String patientExportSavePOST(
-			@RequestParam("patientId") Integer patientId,
+			@ModelAttribute("exportParams") ExportParamsEntity exportParams,
+			@RequestParam("patientId") Integer[] patientId,
 			@RequestParam("isGeneric") boolean isGeneric,
-			@RequestParam("exportName") String exportName,
-			@RequestParam("cards") String[] cards, Locale locale, Model model) {
-		ExportParamsEntity exportParams = new ExportParamsEntity();
+			@RequestParam("exportName") String exportName, Locale locale,
+			Model model) {
+
 		exportParams.setName(exportName);
-		String params = "";
-
-		for (String s : cards) {
-			params += s + ",";
-		}
-
-		params = params.substring(0, params.length() - 1);
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		exportParams.setUserID(userService.findUserByUsername(auth.getName())
 				.getId());
-		exportParams.setParams(params);
 		exportParams.setGeneric(isGeneric);
 		exportParamsService.save(exportParams);
 
-		return "redirect:/patient/" + patientId + "/export";
+		return "redirect:/patient/" + patientId[0] + "/export";
 	}
 
 	// TODO: revision
 	@RequestMapping(value = "/patient/export/load", method = RequestMethod.POST)
 	public String patientExportLoadPOST(Model model, Locale locale,
-			@RequestParam("patientId") Integer patientId,
+			@RequestParam("patientID") Integer[] patientID,
 			@RequestParam("exportId") Integer exportID) {
 
 		if (logger.getLogger() == null)
@@ -427,46 +387,12 @@ public class PatientController {
 
 		ExportParamsEntity exportParams = exportParamsService.findByID(
 				ExportParamsEntity.class, exportID);
-		String[] arrayOfAsignedCards = exportParams.getParams().split(",");
-
-		List<String> listOfAllCards = new ArrayList<String>();
-		listOfAllCards.add(messageSource.getMessage("label.anamnesis", null,
-				locale));
-		listOfAllCards.add("Farmakoloterapie");
-		listOfAllCards.add("Zachvaty");
-		listOfAllCards.add("Farmakoloterapie");
-		listOfAllCards.add("Neurologicke nalezy");
-		listOfAllCards.add("Neuropsychologie");
-		listOfAllCards.add("Diagnosticke EEG testy");
-		listOfAllCards.add("Diagnosticke MRI testy");
-		listOfAllCards.add("Invazivni EEG testy");
-		listOfAllCards.add("Invazivni ECoG testy");
-		listOfAllCards.add("Operace");
-		listOfAllCards.add("Histologie");
-		listOfAllCards.add("Komplikace");
-		listOfAllCards.add("Outcome");
-
-		List<String> listOfPossibleCards = new ArrayList<String>();
-
-		boolean found = false;
-		for (String possibleCard : listOfAllCards) {
-			found = false;
-			for (String card : arrayOfAsignedCards)
-				if (card.equals(possibleCard)) {
-					found = true;
-					continue;
-				}
-			if (!found) {
-				listOfPossibleCards.add(possibleCard);
-			}
-		}
 
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		UserEntity user = userService.findUserByUsername(auth.getName());
 
-		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
-		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
+		model.addAttribute("exportParams", exportParams);
 
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
@@ -487,15 +413,18 @@ public class PatientController {
 		if ((listOfUsersSavedConfigurations.size() > 0) && (user.getId() == 1))
 			listOfUsersSavedConfigurations.remove(0);
 
-		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
 				listOfSavedConfigurations);
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
 
-		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientId));
+		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
+		for (Integer patient : patientID) {
+			patientList.add(patientService.getPatientByIdWithAllLists(patient));
+		}
+
+		model.addAttribute("patientList", patientList);
 		return "patient/exportView";
 	}
 
