@@ -59,6 +59,9 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 
 	@Column(name = "invasive_eeg_interictal_spikes_idcom")
 	private int invasiveEegInterictalSpikesIdcom;
+	
+	@Column(name = "localization_invasive_eeg_interictal_spikes")
+	private String localizationInvasiveEegInterictalSpikes;
 
 	@Column(name = "invasive_eeg_status_epilepticus")
 	private Boolean invasiveEegStatusEpilepticus;
@@ -236,6 +239,17 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 		this.patient = patient;
 	}	
 	
+	
+	
+	public String getLocalizationInvasiveEegInterictalSpikes() {
+		return localizationInvasiveEegInterictalSpikes;
+	}
+
+	public void setLocalizationInvasiveEegInterictalSpikes(
+			String localizationInvasiveEegInterictalSpikes) {
+		this.localizationInvasiveEegInterictalSpikes = localizationInvasiveEegInterictalSpikes;
+	}
+
 	@Override
 	public int compareTo(InvasiveTestEEGEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
