@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.entity;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
@@ -18,6 +20,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+
+import cz.cvut.fit.genepi.util.CollectionConverter;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -48,6 +52,9 @@ public class UserEntity {
 	@Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
 	private String password;
 
+	@OneToMany(fetch = FetchType.LAZY)
+	private Set<PatientEntity> patients;
+
 	/** The contact. */
 	@Valid
 	@OneToOne
@@ -58,7 +65,6 @@ public class UserEntity {
 	@Cascade({ CascadeType.ALL })
 	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "role_ID", nullable = false, updatable = false) })
 	private List<RoleEntity> roles;
-	
 
 	/**
 	 * Gets the id.
@@ -142,5 +148,15 @@ public class UserEntity {
 
 	public void setRoles(List<RoleEntity> roles) {
 		this.roles = roles;
+	}
+
+	public List<PatientEntity> getPatients() {
+		CollectionConverter<PatientEntity> converter = new CollectionConverter<>();
+		return converter.toList(this.patients);
+	}
+
+	public void setPatients(List<PatientEntity> patients) {
+		CollectionConverter<PatientEntity> converter = new CollectionConverter<>();
+		this.patients = converter.toSet(patients);
 	}
 }

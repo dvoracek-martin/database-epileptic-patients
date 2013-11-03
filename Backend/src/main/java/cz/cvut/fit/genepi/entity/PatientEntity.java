@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -73,9 +75,12 @@ public class PatientEntity {
 	@Column(name = "GENDER", length = 10, nullable = false)
 	private String gender;
 
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", precision = 6, scale = 0, nullable = true)
-	private int doctorId;
+	/**
+	 * The doctor id.
+	 * 
+	 * @Column(name = "DOCTOR_ID", precision = 6, scale = 0, nullable = true)
+	 *              private int doctorId;
+	 */
 
 	/** The deleted. */
 	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
@@ -85,9 +90,13 @@ public class PatientEntity {
 	@Column(name = "CHECKED", precision = 1, scale = 0, nullable = true)
 	private Boolean checked;
 
-	/** The contact id. */
-	@Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true, insertable = false, updatable = false)
-	private int contactId;
+	/**
+	 * The contact id.
+	 * 
+	 * @Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true,
+	 *              insertable = false, updatable = false) private int
+	 *              contactId;
+	 */
 
 	/** The comment id. */
 	/*
@@ -95,6 +104,10 @@ public class PatientEntity {
 	 * private int commentId;
 	 */
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "doctor_id")
+	private UserEntity doctor;
+	
 	/** The contact. */
 	@Valid
 	@OneToOne
@@ -388,9 +401,9 @@ public class PatientEntity {
 	 * 
 	 * @return the doctor id
 	 */
-	public int getDoctorId() {
+	/*public int getDoctorId() {
 		return doctorId;
-	}
+	}*/
 
 	/**
 	 * Sets the doctor id.
@@ -398,9 +411,9 @@ public class PatientEntity {
 	 * @param doctorId
 	 *            the new doctor id
 	 */
-	public void setDoctorId(int doctorId) {
+	/*public void setDoctorId(int doctorId) {
 		this.doctorId = doctorId;
-	}
+	}*/
 
 	/**
 	 * Gets the deleted.
@@ -445,9 +458,9 @@ public class PatientEntity {
 	 * 
 	 * @return the contact id
 	 */
-	public int getContactId() {
+	/*public int getContactId() {
 		return contactId;
-	}
+	}*/
 
 	/**
 	 * Sets the contact id.
@@ -455,9 +468,9 @@ public class PatientEntity {
 	 * @param contactId
 	 *            the new contact id
 	 */
-	public void setContactId(int contactId) {
+	/*public void setContactId(int contactId) {
 		this.contactId = contactId;
-	}
+	}*/
 
 	/**
 	 * Gets the comment id.
@@ -495,4 +508,13 @@ public class PatientEntity {
 	public void setContact(ContactEntity contact) {
 		this.contact = contact;
 	}
+
+	public UserEntity getDoctor() {
+		return doctor;
+	}
+
+	public void setDoctor(UserEntity doctor) {
+		this.doctor = doctor;
+	}
+	
 }
