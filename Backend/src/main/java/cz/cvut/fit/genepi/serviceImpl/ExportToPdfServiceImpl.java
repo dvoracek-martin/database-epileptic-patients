@@ -37,6 +37,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 import cz.cvut.fit.genepi.service.LoggingService;
+import cz.cvut.fit.genepi.util.DateToAgeConverter;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -449,11 +450,21 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			table.addCell(String.valueOf(patient.getContact().getEmail()));
 		}
 
-		table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
-		table.addCell(" ");
-		if (exportParams.isPatientDoctorId())
+		// TODO:
+		// add special parameter for patient?
+		if (exportParams.isAnamnesisBeginningEpilepsy()) {
+			table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
+			table.addCell(DateToAgeConverter.getAge(Integer.parseInt(String
+					.valueOf(patient.getAnamnesisList().get(0)
+							.getBeginningEpilepsy()))));
+		}
+
+		if (exportParams.isPatientDoctorId()) {
 			table.addCell(new Phrase("Ošetřující lékař:", normalFont));
-		table.addCell("");
+			table.addCell(String.valueOf(patient.getDoctor().getContact()
+					.getLastName()
+					+ " " + patient.getDoctor().getContact().getFirstName()));
+		}
 
 		subCatPart.add(table);
 

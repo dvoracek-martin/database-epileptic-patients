@@ -18,7 +18,6 @@
 	</jsp:attribute>
 
 	<jsp:body>
-		<div>
 			<div>
 				<div class="span5">
 					<h2>Histologie</h2>

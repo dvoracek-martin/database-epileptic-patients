@@ -49,17 +49,14 @@
 								${patient.contact.lastName}</a>
 							<ul class="nav">
 								<li class="divider-vertical"><a
-							href="<c:url value="/patient/${patient.id}/anamnesis/list" />"><spring:message
-									code="label.anamnesis" /></a></li>
-								<li class="divider-vertical"><a id="export"
-							href="<c:url value="/patient/${patient.id}/export" />"><spring:message
-									code="label.export" /></a></li>
-								<li class="divider-vertical"><a
 							href="<c:url value="/patient/${patient.id}/edit" />"><spring:message
 									code="label.edit" /></a></li>
 								<li><a href="#patientDeleteConfirm${patient.id}" role="button" class="btn"
 							data-toggle="modal"><spring:message
 									code="label.deletePatient" /></a></li>
+								<li class="divider-vertical"><a id="export"
+							href="<c:url value="/patient/${patient.id}/export" />"><spring:message
+									code="label.export" /></a></li>	
 							</ul>
 						</div>
 					</div>

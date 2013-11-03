@@ -141,7 +141,7 @@ li.sortable-placeholder {
 					<div class="span6">
 					<form id="mySet" method="POST"
 					action="<c:url value="/patient/export/load" />">
-					<label>My Sets</label>
+					<label>Users Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
 							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
@@ -163,7 +163,7 @@ li.sortable-placeholder {
 					<div class="span6">
 					<form id="usersSet" method="POST"
 					action="<c:url value="/patient/export/load" />">
-					<label>Users Sets</label>
+					<label>My Sets</label>
 					
 						<select name="exportId" type="text" class="input-large">
 							<c:forEach items="${listOfUsersSavedConfigurations}"
