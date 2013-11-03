@@ -297,14 +297,16 @@ public class PatientController {
 				.findExportParamsEntityByUserID(user.getId());
 
 		for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
-			if (exportEntityParams.isGeneric()&&(exportEntityParams.getId()!=1))	;
+			if (exportEntityParams.isGeneric()
+					&& (exportEntityParams.getId() != 1))
+				;
 			listOfSavedConfigurations.add(exportEntityParams);
 		}
 
 		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		listOfUsersSavedConfigurations = exportParamsService
 				.findAll(ExportParamsEntity.class);
-		listOfUsersSavedConfigurations.remove(0);
+		listOfUsersSavedConfigurations.remove(1);
 
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
