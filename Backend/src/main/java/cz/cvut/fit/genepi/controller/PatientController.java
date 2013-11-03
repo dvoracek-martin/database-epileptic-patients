@@ -294,19 +294,22 @@ public class PatientController {
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
 		listOfSavedConfigurationsTmp = exportParamsService
-				.findExportParamsEntityByUserID(user.getId());
+				.findAll(ExportParamsEntity.class);
 
 		for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
-			if (exportEntityParams.isGeneric()
-					&& (exportEntityParams.getId() != 1))
-				;
-			listOfSavedConfigurations.add(exportEntityParams);
+			if (exportEntityParams.isGeneric())
+				listOfSavedConfigurations.add(exportEntityParams);
 		}
 
 		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		listOfUsersSavedConfigurations = exportParamsService
-				.findAll(ExportParamsEntity.class);
-		listOfUsersSavedConfigurations.remove(0);
+				.findExportParamsEntityByUserID(user.getId());
+
+		if (listOfSavedConfigurations.size() > 0)
+			listOfSavedConfigurations.remove(0);
+		if ((listOfUsersSavedConfigurations.size() > 0) && (user.getId() == 1))
+			listOfUsersSavedConfigurations.remove(0);
+
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
 				listOfSavedConfigurations);
@@ -458,13 +461,6 @@ public class PatientController {
 			}
 		}
 
-		for (String s : listOfPossibleCards) {
-			System.out.println(s);
-		}
-		for (String s : arrayOfAsignedCards) {
-			System.out.println(s);
-		}
-
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		UserEntity user = userService.findUserByUsername(auth.getName());
@@ -473,14 +469,24 @@ public class PatientController {
 		model.addAttribute("arrayOfAsignedCards", arrayOfAsignedCards);
 
 		List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
-		listOfSavedConfigurations = exportParamsService
-				.findExportParamsEntityByUserID(user.getId());
-		listOfSavedConfigurations.remove(1);
+		List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
+		listOfSavedConfigurationsTmp = exportParamsService
+				.findAll(ExportParamsEntity.class);
+
+		for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
+			if (exportEntityParams.isGeneric())
+				listOfSavedConfigurations.add(exportEntityParams);
+		}
+
 		List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
 		listOfUsersSavedConfigurations = exportParamsService
-				.findAll(ExportParamsEntity.class);
-		listOfUsersSavedConfigurations.remove(1);
-		
+				.findExportParamsEntityByUserID(user.getId());
+
+		if (listOfSavedConfigurations.size() > 0)
+			listOfSavedConfigurations.remove(0);
+		if ((listOfUsersSavedConfigurations.size() > 0) && (user.getId() == 1))
+			listOfUsersSavedConfigurations.remove(0);
+
 		model.addAttribute("listOfPossibleCards", listOfPossibleCards);
 		model.addAttribute("listOfSavedConfigurations",
 				listOfSavedConfigurations);
