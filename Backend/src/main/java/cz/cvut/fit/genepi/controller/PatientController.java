@@ -330,8 +330,7 @@ public class PatientController {
 		// TODO:
 		// get exportParams from FE
 		ExportParamsEntity exportParams = new ExportParamsEntity();
-		
-		
+
 		List<String> listOfExports = new ArrayList<String>();
 		for (String s : cards) {
 			listOfExports.add(s);
@@ -347,7 +346,8 @@ public class PatientController {
 			try {
 				String url = exportToPdfService.export(patientList,
 						userService.findUserByUsername(auth.getName()),
-						listOfExports, listOfPossibleCards, locale, exportParams);
+						listOfExports, listOfPossibleCards, locale,
+						exportParams);
 				return "redirect:/resources/downloads/" + url;
 			} catch (FileNotFoundException e) {
 				logger.logError(
@@ -364,20 +364,20 @@ public class PatientController {
 		} else if (exportType.equals("docx")) {
 			String url = exportToDocxService.export(patientList,
 					userService.findUserByUsername(auth.getName()),
-					listOfExports, locale,exportParams);
+					listOfExports, locale, exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("txt")) {
 			String url = exportToTxtService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards,exportParams);
+					listOfExports, listOfPossibleCards, exportParams);
 			return "redirect:/resources/downloads/" + url;
 		} else if (exportType.equals("csv")) {
 			String url = exportToCsvService.export(patientList,
 					userService.findUserByUsername(auth.getName()), locale,
-					listOfExports, listOfPossibleCards,exportParams);
+					listOfExports, listOfPossibleCards, exportParams);
 			return "redirect:/resources/downloads/" + url;
 		}
-		
+
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patient.getId()));
 		model.addAttribute("listOfPossibleExportParams",
@@ -448,7 +448,7 @@ public class PatientController {
 		for (String possibleCard : listOfAllCards) {
 			found = false;
 			for (String card : arrayOfAsignedCards)
-				if (card.equals(possibleCard)) {
+				if (card.equals(possibleCard) && (exportParams.getId() != 1)) {
 					found = true;
 					continue;
 				}
