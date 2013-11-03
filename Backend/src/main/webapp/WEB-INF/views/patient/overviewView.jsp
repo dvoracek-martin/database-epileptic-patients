@@ -1196,7 +1196,6 @@
 				    <c:when test="${true}">
 				    	</br></br>
 				      	<div class="alert alert-error">
-		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
@@ -1280,7 +1279,6 @@
 				    <c:when test="${true}">
 				    	</br></br>
 				      	<div class="alert alert-error">
-		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
@@ -1598,14 +1596,13 @@
             		</c:otherwise>
 				</c:choose>
 
-				<!-- print out latest  START -->
 				<div>
 					<div class="span4">
-						<h3>Outcome</h3>
+						<h3>Komplikace</h3>
 					</div>
 					<div>
 						<h3 class="pull-right">
-							<a href="<c:url value="/patient/${patient.id}/outcome/create" />"><spring:message code="label.addRecord"/></a>
+							<a href="<c:url value="/patient/${patient.id}/complication/create" />"><spring:message code="label.addRecord"/></a>
 						</h3>
 					</div>
 				</div>
@@ -1614,7 +1611,6 @@
 				    <c:when test="${true}">
 						</br></br>
 				     	<div class="alert alert-error">
-		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
 		  					<h4>Prozatím nedostupné!</h4>
 						</div>
 				    </c:when>
@@ -1673,6 +1669,134 @@
 								<tr class="info">
 									<td><spring:message code="label.nonCNSComorbidity" /></td>
 									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+								</tr>
+		              		</tbody>
+	            		</table>
+	            		<a href="<c:url value="/patient/${patient.id}/outcome/list" />">Zobrazit všechny</a>	
+	            		</br>
+						</br>
+            		</c:otherwise>
+				</c:choose>
+
+				<!-- print out latest  START -->
+				<div>
+					<div class="span4">
+						<h3>Outcome</h3>
+					</div>
+					<div>
+						<h3 class="pull-right">
+							<a href="<c:url value="/patient/${patient.id}/outcome/create" />"><spring:message code="label.addRecord"/></a>
+						</h3>
+					</div>
+				</div>
+
+				<c:choose>
+				    <c:when test="${empty patient.outcomeList}">
+						</br></br>
+				      	<div class="alert alert-block">
+		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  					<h4>Žádný záznam!</h4>
+						</div>
+				    </c:when>
+
+			      	<c:otherwise>
+						<table class="table">
+		               		<tbody>
+		                		<tr class="alert-info">
+             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.outcomeList[0].date}</td>
+								</tr>
+
+								<tr class="info">
+									<td>Seizure outcome</td>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==1}">
+										<td>0</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==2}">
+										<td>IA</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==3}">
+										<td>IB</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==4}">
+										<td>IC</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==5}">
+										<td>ID</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==6}">
+										<td>IIA</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==7}">
+										<td>IIB</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==8}">
+										<td>IIC</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==9}">
+										<td>IID</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==10}">
+										<td>IIIA</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==11}">
+										<td>IIIB</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==12}">
+										<td>IV</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==13}">
+										<td>V</td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].finallySeizuresIdcom==14}">
+										<td>VI</td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td>EEG hroty</td>
+									<c:if test="${patient.outcomeList[0].eegSpikes==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].eegSpikes==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td>AED vysazeny</td>
+									<c:if test="${patient.outcomeList[0].aedPlanted==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].aedPlanted==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td>MRI provedeno</td>
+									<c:if test="${patient.outcomeList[0].mriDone==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].mriDone==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td>Neuropsychologie</td>
+									<c:if test="${patient.outcomeList[0].neuropsychology==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.outcomeList[0].neuropsychology==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
+								</tr>
+								<tr class="info">
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.outcomeList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.outcomeList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>
