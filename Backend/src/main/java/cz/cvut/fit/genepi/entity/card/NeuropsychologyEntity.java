@@ -16,9 +16,10 @@ import javax.validation.constraints.Past;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
+
 @Entity
 @Table(name = "neuropsychlogy")
-public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
+public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> {
 	/** The id. */
 	@Id
 	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
@@ -39,38 +40,35 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	/** The added. */
 	@Column(name = "ADDED", nullable = false, insertable = false)
 	private Date added;
-	
-	@Column(name="neuropsychological_examination")
+
+	@Column(name = "neuropsychological_examination")
 	private Boolean neuropsychologicalExamination;
-	
-	@Column(name="intelligence_level_idcom")
+
+	@Column(name = "intelligence_level_idcom")
 	private int intelligenceLevelIdcom;
-	
-	@Column(name="specific_learning")
+
+	@Column(name = "specific_learning")
 	private Boolean specificLearning;
-	
-	@Column(name="developmental_language_disorders")
+
+	@Column(name = "developmental_language_disorders")
 	private Boolean developmentalLanguageDisorders;
-	
-	@Column(name="adhd_syndrome")
+
+	@Column(name = "adhd_syndrome")
 	private Boolean adhdSyndrome;
-	
-	@Column (name ="neurological_finding_detail", nullable=false)
-	private String neurologicalFindingDetail;
-	
-	@Column(name="comment")
+
+	@Column(name = "comment")
 	private String comment;
-	
-	@Column(name="deleted")
-	private Boolean deleted;	
-	
+
+	@Column(name = "deleted")
+	private Boolean deleted;
+
 	@NotNull
 	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
 	private int addUserId;
 
 	@Column(name = "STATUS", nullable = false)
 	private int status;
-		
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;
@@ -149,15 +147,6 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 		this.adhdSyndrome = adhdSyndrome;
 	}
 
-	
-	public String getNeurologicalFindingDetail() {
-		return neurologicalFindingDetail;
-	}
-
-	public void setNeurologicalFindingDetail(String neurologicalFindingDetail) {
-		this.neurologicalFindingDetail = neurologicalFindingDetail;
-	}
-
 	public String getComment() {
 		return comment;
 	}
@@ -181,6 +170,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	public void setAddUserId(int addUserId) {
 		this.addUserId = addUserId;
 	}
+
 	public int getStatus() {
 		return status;
 	}
@@ -188,15 +178,15 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
+
 	public PatientEntity getPatient() {
 		return patient;
 	}
 
 	public void setPatient(PatientEntity patient) {
 		this.patient = patient;
-	}	
-	
+	}
+
 	@Override
 	public int compareTo(NeuropsychologyEntity o) {
 		int comparison = this.date.compareTo(o.getDate());

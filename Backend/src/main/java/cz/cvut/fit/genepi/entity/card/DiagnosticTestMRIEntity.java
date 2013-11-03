@@ -63,7 +63,7 @@ public class DiagnosticTestMRIEntity implements Comparable<DiagnosticTestMRIEnti
 	@Column(name="time_aplication_rn")
 	private int timeAplicationRn;
 	
-	@Column(name="timingi_aplication_rn_idcom")
+	@Column(name="timing_aplication_rn_idcom")
 	private int timingiAplicationRnIdcom;
 	
 	@Column(name="mrs_protocol_idcom")
@@ -75,7 +75,7 @@ public class DiagnosticTestMRIEntity implements Comparable<DiagnosticTestMRIEnti
 	@Column(name="dti")
 	private Boolean dti;
 		
-	@Column(name="details_dti_studie")
+	@Column(name="details_dti_study")
 	private String detailsDtiStudie;
 		
 	@Column(name="fmri")
@@ -100,8 +100,8 @@ public class DiagnosticTestMRIEntity implements Comparable<DiagnosticTestMRIEnti
 	@Column(name="localization_mrs_abnormality")
 	private String localizationMrsAbnormality;
 	
-	@Column(name="localization_pet_hypometabolismu")
-	private String localizationPetHypometabolismu;
+	@Column(name="localization_pet_hypometabolism")
+	private String localizationPetHypometabolism;
 	
 	@Column(name="localization_spect_hyperperfuse")
 	private String localizationSpectHyperperfuse;
@@ -314,13 +314,13 @@ public class DiagnosticTestMRIEntity implements Comparable<DiagnosticTestMRIEnti
 		this.localizationMrsAbnormality = localizationMrsAbnormality;
 	}
 
-	public String getLocalizationPetHypometabolismu() {
-		return localizationPetHypometabolismu;
+	public String getLocalizationPetHypometabolism() {
+		return localizationPetHypometabolism;
 	}
 
-	public void setLocalizationPetHypometabolismu(
-			String localizationPetHypometabolismu) {
-		this.localizationPetHypometabolismu = localizationPetHypometabolismu;
+	public void setLocalizationPetHypometabolism(
+			String localizationPetHypometabolism) {
+		this.localizationPetHypometabolism = localizationPetHypometabolism;
 	}
 
 	public String getLocalizationSpectHyperperfuse() {

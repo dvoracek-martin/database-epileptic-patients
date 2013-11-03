@@ -54,8 +54,8 @@ public class OperationEntity implements Comparable<OperationEntity>{
 	@Column(name="mst")
 	private Boolean mst;
 	
-	@Column(name="kalostomie")
-	private Boolean kalostomie;
+	@Column(name="colostomy")
+	private Boolean colostomy;
 	
 	@Column(name="vns")
 	private Boolean vns;
@@ -154,12 +154,12 @@ public class OperationEntity implements Comparable<OperationEntity>{
 		this.mst = mst;
 	}
 
-	public Boolean getKalostomie() {
-		return kalostomie;
+	public Boolean getColostomy() {
+		return colostomy;
 	}
 
-	public void setKalostomie(Boolean kalostomie) {
-		this.kalostomie = kalostomie;
+	public void setColostomy(Boolean colostomy) {
+		this.colostomy = colostomy;
 	}
 
 	public Boolean getVns() {

@@ -44,6 +44,10 @@ public class NeurologicalFindingEntity implements Comparable<NeurologicalFinding
 	
 	@Column(name="abnormal_neurological_finding")
 	private boolean abnormalNeurologicalFinding;
+
+	@Column (name ="neurological_finding_detail", nullable=false)
+	private String neurologicalFindingDetail;
+
 	
 	@Column(name="hemiparesis")
 	private boolean hemiparesis;
@@ -114,6 +118,14 @@ public class NeurologicalFindingEntity implements Comparable<NeurologicalFinding
 
 	public void setAbnormalNeurologicalFinding(boolean abnormalNeurologicalFinding) {
 		this.abnormalNeurologicalFinding = abnormalNeurologicalFinding;
+	}
+	
+	public String getNeurologicalFindingDetail() {
+		return neurologicalFindingDetail;
+	}
+
+	public void setNeurologicalFindingDetail(String neurologicalFindingDetail) {
+		this.neurologicalFindingDetail = neurologicalFindingDetail;
 	}
 
 	public boolean getHemiparesis() {

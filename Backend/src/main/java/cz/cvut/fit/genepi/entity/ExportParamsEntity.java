@@ -186,16 +186,16 @@ public class ExportParamsEntity {
 		private boolean diagnosticTestMRISiscom;
 		@Column(name = "diagnosticTestMRITimeAplicationRn")
 		private boolean diagnosticTestMRITimeAplicationRn;
-		@Column(name = "diagnosticTestMRITimingiAplicationRnIdCom")
-		private boolean diagnosticTestMRITimingiAplicationRnIdCom; // ??? preklep ???
+		@Column(name = "diagnosticTestMRITimingAplicationRnIdCom")
+		private boolean diagnosticTestMRITimingAplicationRnIdCom; 
 		@Column(name = "diagnosticTestMRIMrsProtocolIdCom")
 		private boolean diagnosticTestMRIMrsProtocolIdCom;
 		@Column(name = "diagnosticTestMRIMrsFindingIdCom")
 		private boolean diagnosticTestMRIMrsFindingIdCom;
 		@Column(name = "diagnosticTestMRIDti")
 		private boolean diagnosticTestMRIDti;
-		@Column(name = "diagnosticTestMRIDtiDetailStuide")
-		private boolean diagnosticTestMRIDtiDetailStuide; // ??? neni anglicky ???
+		@Column(name = "diagnosticTestMRIDtiDetailStudy")
+		private boolean diagnosticTestMRIDtiDetailStudy;
 		@Column(name = "diagnosticTestMRIFmri")
 		private boolean diagnosticTestMRIFmri;
 		@Column(name = "diagnosticTestMRIDetailsFmri")
@@ -210,8 +210,8 @@ public class ExportParamsEntity {
 		private boolean diagnosticTestMRILocalizationSpecHypoperfuse;
 		@Column(name = "diagnosticTestMRILocalizationMrsAbnormality")
 		private boolean diagnosticTestMRILocalizationMrsAbnormality;
-		@Column(name = "diagnosticTestMRILocalizationPetHypometabolismu")
-		private boolean diagnosticTestMRILocalizationPetHypometabolismu; // ???  neni anglicky ???
+		@Column(name = "diagnosticTestMRILocalizationPetHypometabolism")
+		private boolean diagnosticTestMRILocalizationPetHypometabolism; 
 		@Column(name = "diagnosticTestMRILocalizationSpecHyperperfuse")
 		private boolean diagnosticTestMRILocalizationSpecHyperperfuse;
 		@Column(name = "diagnosticTestMRIFmriProtocols")
@@ -398,8 +398,8 @@ public class ExportParamsEntity {
 		private boolean operationLocalizationsOperations;
 		@Column(name = "operationMst")
 		private boolean operationMst;
-		@Column(name = "operationKalostomie")
-		private boolean operationKalostomie; //??? neni anglicky ???
+		@Column(name = "operationColostomy")
+		private boolean operationColostomy;
 		@Column(name = "operationVNS")
 		private boolean operationVNS;
 		@Column(name = "operationVNsImplantationDate")
@@ -1154,13 +1154,13 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRITimeAplicationRn = diagnosticTestMRITimeAplicationRn;
 	}
 
-	public boolean isDiagnosticTestMRITimingiAplicationRnIdCom() {
-		return diagnosticTestMRITimingiAplicationRnIdCom;
+	public boolean isDiagnosticTestMRITimingAplicationRnIdCom() {
+		return diagnosticTestMRITimingAplicationRnIdCom;
 	}
 
-	public void setDiagnosticTestMRITimingiAplicationRnIdCom(
-			boolean diagnosticTestMRITimingiAplicationRnIdCom) {
-		this.diagnosticTestMRITimingiAplicationRnIdCom = diagnosticTestMRITimingiAplicationRnIdCom;
+	public void setDiagnosticTestMRITimingAplicationRnIdCom(
+			boolean diagnosticTestMRITimingAplicationRnIdCom) {
+		this.diagnosticTestMRITimingAplicationRnIdCom = diagnosticTestMRITimingAplicationRnIdCom;
 	}
 
 	public boolean isDiagnosticTestMRIMrsProtocolIdCom() {
@@ -1189,13 +1189,13 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRIDti = diagnosticTestMRIDti;
 	}
 
-	public boolean isDiagnosticTestMRIDtiDetailStuide() {
-		return diagnosticTestMRIDtiDetailStuide;
+	public boolean isDiagnosticTestMRIDtiDetailStudy() {
+		return diagnosticTestMRIDtiDetailStudy;
 	}
 
-	public void setDiagnosticTestMRIDtiDetailStuide(
-			boolean diagnosticTestMRIDtiDetailStuide) {
-		this.diagnosticTestMRIDtiDetailStuide = diagnosticTestMRIDtiDetailStuide;
+	public void setDiagnosticTestMRIDtiDetailStudy(
+			boolean diagnosticTestMRIDtiDetailStudy) {
+		this.diagnosticTestMRIDtiDetailStudy = diagnosticTestMRIDtiDetailStudy;
 	}
 
 	public boolean isDiagnosticTestMRIFmri() {
@@ -1256,13 +1256,13 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRILocalizationMrsAbnormality = diagnosticTestMRILocalizationMrsAbnormality;
 	}
 
-	public boolean isDiagnosticTestMRILocalizationPetHypometabolismu() {
-		return diagnosticTestMRILocalizationPetHypometabolismu;
+	public boolean isdiagnosticTestMRILocalizationPetHypometabolism() {
+		return diagnosticTestMRILocalizationPetHypometabolism;
 	}
 
-	public void setDiagnosticTestMRILocalizationPetHypometabolismu(
-			boolean diagnosticTestMRILocalizationPetHypometabolismu) {
-		this.diagnosticTestMRILocalizationPetHypometabolismu = diagnosticTestMRILocalizationPetHypometabolismu;
+	public void setdiagnosticTestMRILocalizationPetHypometabolism(
+			boolean diagnosticTestMRILocalizationPetHypometabolism) {
+		this.diagnosticTestMRILocalizationPetHypometabolism = diagnosticTestMRILocalizationPetHypometabolism;
 	}
 
 	public boolean isDiagnosticTestMRILocalizationSpecHyperperfuse() {
@@ -1980,12 +1980,12 @@ public class ExportParamsEntity {
 		this.operationMst = operationMst;
 	}
 
-	public boolean isOperationKalostomie() {
-		return operationKalostomie;
+	public boolean isOperationColostomy() {
+		return operationColostomy;
 	}
 
-	public void setOperationKalostomie(boolean operationKalostomie) {
-		this.operationKalostomie = operationKalostomie;
+	public void setOperationColostomy(boolean operationColostomy) {
+		this.operationColostomy = operationColostomy;
 	}
 
 	public boolean isOperationVNS() {
