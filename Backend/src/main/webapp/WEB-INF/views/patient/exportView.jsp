@@ -19,21 +19,14 @@
 
 	<jsp:attribute name="script">
 	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-					<script>
-						$(function() {
-							$('#sortable1, #sortable2').sortable();
-							$('#sortable3').sortable({
-								items : ':not(.disabled)'
-							});
-							$('#sortable-with-handles').sortable({
-								handle : '.handle'
-							});
-							$('#sortable4, #sortable5').sortable({
-								connectWith : '.connected'
-							});
-						});
-					</script>
-					<!--jQuery for changing action method of rform when clicking on SAVE set-->
+		<script>
+			$(document).ready(function() {
+				$('p.tree-toggler').click(function() {
+					$(this).parent().children('ul.tree').toggle(300);
+				});
+			});
+		</script>					
+					<!--jQuery for changing action method of foorm when clicking on SAVE set-->
 					<script>
 						$('#saveSetBtn')
 								.click(
@@ -71,79 +64,21 @@
 	</jsp:attribute>
 
 	<jsp:body>
-		<style>
-#demos section {
-	overflow: hidden;
-}
 
-.sortable {
-	width: 310px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-.sortable.grid {
-	overflow: hidden;
-}
-
-.sortable li {
-	list-style: none;
-	border: 1px solid #CCC;
-	background: #F6F6F6;
-	color: #1C94C4;
-	margin: 5px;
-	padding: 5px;
-	height: 22px;
-}
-
-.sortable.grid li {
-	line-height: 80px;
-	float: left;
-	width: 80px;
-	height: 80px;
-	text-align: center;
-}
-
-.handle {
-	cursor: move;
-}
-
-.sortable.connected {
-	width: 200px;
-	min-height: 100px;
-	float: left;
-}
-
-li.disabled {
-	opacity: 0.5;
-}
-
-li.highlight {
-	background: #FEE25F;
-}
-
-li.sortable-placeholder {
-	border: 1px dashed #CCC;
-	background: none;
-}
-</style>
-			<div>
 					<div>
 						<h2>
 							<spring:message code="label.exportPatient" /> <a
-						href="<c:url value="/patient/${patient.id}/overview" />"
-						style="text-decoration: none">${patient.contact.firstName} ${patient.contact.lastName}</a>
+					href="<c:url value="/patient/${patient.id}/overview" />"
+					style="text-decoration: none">${patient.contact.firstName} ${patient.contact.lastName}</a>
 						</h2>
 					</div>
-					
+<!-- Load lists -->					
 					<div class="span6">
 					<form id="mySet" method="POST"
-					action="<c:url value="/patient/export/load" />">
-					<label>Users Sets</label>
+				action="<c:url value="/patient/export/load" />">
+					<label>My Sets</label>
 					
-						<select name="exportId" type="text" class="input-large">
+						<select name="exportId" class="input-large">
 							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
 								<option value="${exportParam.id}">
 									${exportParam.name}
@@ -151,66 +86,133 @@ li.sortable-placeholder {
 							</c:forEach>	
 						</select>
 					<input type="hidden" value="${patient.id}" name="patientId">
-					<button class="btn btn-primary" type="submit" />LOAD</button>
+					<button class="btn btn-primary" type="submit">LOAD</button>
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 					<button id="exportParamDeleteBrn" class="btn btn-primary"
-							type="submit" />DELETE</button>
+						type="submit">DELETE</button>
 						</sec:authorize>
 					</form>
 					</div>
 					
 					<div class="span6">
 					<form id="usersSet" method="POST"
-					action="<c:url value="/patient/export/load" />">
-					<label>My Sets</label>
+				action="<c:url value="/patient/export/load" />">
+					<label>Users Sets</label>
 					
-						<select name="exportId" type="text" class="input-large">
+						<select name="exportId" class="input-large">
 							<c:forEach items="${listOfUsersSavedConfigurations}"
-							var="exportParam">
+						var="exportParam">
 								<option value="${exportParam.id}">
 									${exportParam.name}
 								</option>
 							</c:forEach>	
 						</select>
 					<input type="hidden" value="${patient.id}" name="patientId">
-					<button class="btn btn-primary" type="submit" />LOAD</button>
+					<button class="btn btn-primary" type="submit">LOAD</button>
 					<button id="exportParamDeleteBrn" class="btn btn-primary"
-						type="submit" />DELETE</button>				
+					type="submit">DELETE</button>				
 					</form>
 					</div>
-					
-					
+<!-- Load lists END -->										
+						
+				
+<!-- Tree list  -->
+
 			<div class="span3">
-				<label>Dostupné karty</label>
-				<ul id="sortable4" class="connected sortable list"
-					style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">
-			
-					<c:forEach var="possibleCard" items="${listOfPossibleCards}">
-						<li draggable="true">${possibleCard}
-						<input class="btn" type="hidden" name="cards"
-							value="${possibleCard}">
-						</li>			
-					</c:forEach>
-				</ul>	
-			</div>
-			
-			<form:form id="exportForm" method="POST" modelAttribute="patient"
-				class="form-horizontal" action="/GENEPI/patient/export"
-				commandName="patient"> 
-	
-			<div class="span3">
-				<label>Vybrané karty</label>
-				<ul id="sortable5" class="connected sortable list"
-						style="border-style: solid; border-width: 5px; border-color: CornflowerBlue;">		
-					<c:forEach var="arrayOfAsignedCard" items="${arrayOfAsignedCards}">
-						<li draggable="true">${arrayOfAsignedCard}
-						<input class="btn" type="hidden" name="cards"
-								value="${arrayOfAsignedCard}">
-						</li>			
-					</c:forEach>
-				</ul>
-			</div>
+				<form:form method="POST" action="/GENEPI/patient/export"
+				commandName="exportParams">
+				
+					<!-- Hidden fields  -->
+					<!-- name of the set -->
+					<input type="hidden" name="setName" value="">
+					<!-- patient ids -->
+						<c:forEach items="${patientList}" var="patient">
+					<input type="hidden" name="patient" value="${patient.id}">
+							</c:forEach>	
+					<!-- Is Generic checkbox -->		
+					<input type="hidden" name="isGeneric" value="0">
+
+		 <ul class="nav nav-list">
+            <li><p class="tree-toggler nav-header">Anamneza<form:checkbox
+								path="anamnesis" class="input-block-level" />
+							</p>
+                <ul class="nav nav-list tree">
+                						   <li><form:label path="anamnesisId">anamnesisid</form:label>
+						<form:checkbox path="anamnesisId" class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisDate">anamnesisDate</form:label>
+						<form:checkbox path="anamnesisDate" class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisDoctorId">anamnesisDoctorId</form:label>
+						<form:checkbox path="anamnesisDoctorId" class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisAdded">anamnesisAdded</form:label>
+						<form:checkbox path="anamnesisAdded" class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisBeginningEpilepsy">anamnesisBeginningEpilepsy</form:label>
+						<form:checkbox path="anamnesisBeginningEpilepsy"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisFirstFever">anamnesisFirstFever</form:label>
+						<form:checkbox path="anamnesisFirstFever"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisInfantileSpasm">anamnesisInfantileSpasm</form:label>
+						<form:checkbox path="anamnesisInfantileSpasm"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisSpecificSyndrome">anamnesisSpecificSyndrome</form:label>
+						<form:checkbox path="anamnesisSpecificSyndrome"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisEpilepsyInFamily">anamnesisEpilepsyInFamily</form:label>
+						<form:checkbox path="anamnesisEpilepsyInFamily"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisParentalRisk">anamnesisParentalRisk</form:label>
+						<form:checkbox path="anamnesisParentalRisk"
+									class="input-block-level" /></li>
+										
+										   <li><form:label path="anamnesisFibrilConvulsions">anamnesisFibrilConvulsions</form:label>
+						<form:checkbox path="anamnesisFibrilConvulsions"
+									class="input-block-level" /></li>
+										<li><form:label path="anamnesisInflammationCns">anamnesisInflammationCns</form:label>
+						<form:checkbox path="anamnesisInflammationCns"
+									class="input-block-level" /></li>
+										
+										<li><form:label path="anamnesisInjuryCns">anamnesisInjuryCns</form:label>
+						<form:checkbox path="anamnesisInjuryCns" class="input-block-level" /></li>
+										
+										<li><form:label path="anamnesisOperationCns">anamnesisOperationCns</form:label>
+						<form:checkbox path="anamnesisOperationCns"
+									class="input-block-level" /></li>
+										
+										<li><form:label path="anamnesisEarlyPmdRetardation">anamnesisEarlyPmdRetardation</form:label>
+						<form:checkbox path="anamnesisEarlyPmdRetardation"
+									class="input-block-level" /></li>
+										
+										<li><form:label path="anamnesisNonCnsComorbidity">anamnesisNonCnsComorbidity</form:label>
+						<form:checkbox path="anamnesisNonCnsComorbidity"
+									class="input-block-level" /></li>
+										
+										<li><form:label path="anamnesisComment">anamnesisComment</form:label>
+						<form:checkbox path="anamnesisComment" class="input-block-level" /></li>
+</ul>
+</li>
+            
+            <li><p class="tree-toggler nav-header">Dalsi <input
+								type="checkbox">
+						</p>
+                <ul class="nav nav-list tree">
+                    <li>Link <input type="checkbox"></li>
+                      <li>Link <input type="checkbox"></li>
+                </ul>
+            </li>
+            </ul>
+
+
+<!-- Tree list END -->
 			
 						<div class="control-group span6">
 						    <label class="control-label" for="pdfFormat">Formát</label>
@@ -228,30 +230,29 @@ li.sortable-placeholder {
 						
 						<div class="control-group span6">
 						    <div class="controls">
-						      	<button id="submitBtn"
-							onclick='this.style.visibility = "hidden";' type="submit"
+						      	<button id="exportButton" type="submit"
 							class="btn btn-primary">
 							<spring:message code="label.export" />
 						</button>	
 						    </div>
 						</div>
-											 
-						<form:hidden path="id" id="id" />
+            </form:form>											 
 						
 						<input type="hidden" value="${patient.id}" name="patientId">
 						<input id="exportName" type="hidden" value="" name="exportName">
 						<input id="isGeneric" type="hidden" value="0" name="isGeneric">
-					</form:form>														
+																	
 						
 					<div class="span6">
-					<label>Uložit generic sestavu</label>
+					<p>Uložit generic sestavu</p>
 					<input id="exportNameToCopy" type="text" name="name">
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 						<input id="isGenericBox" type="checkbox" name="isGeneric">Is Generic???
 						</sec:authorize>
-						<button id="saveSetBtn" class="btn btn-primary" type="submit" />SAVE</button>					
+						<button id="saveButton" class="btn btn-primary" type="submit">SAVE</button>					
 				</div>
+
 		</div>
 	</jsp:body>
 </t:menuLVL3>
