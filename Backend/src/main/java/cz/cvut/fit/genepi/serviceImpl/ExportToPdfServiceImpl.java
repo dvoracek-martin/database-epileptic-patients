@@ -454,9 +454,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// add special parameter for patient?
 		if (exportParams.isAnamnesisBeginningEpilepsy()) {
 			table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
-			table.addCell(DateToAgeConverter.getAge(Integer.parseInt(String
-					.valueOf(patient.getAnamnesisList().get(0)
-							.getBeginningEpilepsy()))));
+			table.addCell(DateToAgeConverter.getAge(patient.getAnamnesisList().get(0).getBeginningEpilepsy()));
 		}
 
 		if (exportParams.isPatientDoctorId()) {
