@@ -58,7 +58,7 @@
 						</div>
 			
 				</div>
-				<p>${newsMessage.message }</p>
+				<p>${newsMessage.message}</p>
 			</div>
 				
 				<!-- Modal window>: message delete confirmation -->
@@ -104,7 +104,7 @@
 							commandName="emptyMessage">
 						<div class="modal-body">
 							<form:input type="" path="message" class="input-block-level"
-									value="" />
+									value="${newsMessage.message}" />
 						</div>
 						<div class="modal-footer">
 							<button class="btn" data-dismiss="modal" aria-hidden="true">
