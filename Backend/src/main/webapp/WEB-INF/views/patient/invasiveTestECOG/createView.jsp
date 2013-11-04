@@ -23,42 +23,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Neurologické nálezy</h2>
+				<h2>Invazivní testy - ECoG</h2>
 			</div>
 
-			<table class="table">
+						<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -68,7 +68,7 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/neurologicalFinding/create" commandName="neurologicalFinding">
+						action="/GENEPI/patient/${patientID}/invasiveTestECOG/create" commandName="invasiveTestECOG">
 
 				<div class="control-group">
     				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
@@ -93,64 +93,65 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="hemisphereDominanceIdcom"><strong>Dominance hemisféry</strong></label>
+    				<label class="control-label" for="intraoperativeEcog"><strong>Intraoperační ECoG</strong></label>
     				<div class="controls">
-    					<form:select path="hemisphereDominanceIdcom" id="hemisphereDominanceIdcom" type="text" class="input-large">
-								<form:option value="1">
-									Ambidexter
-								</form:option>
-								<form:option value="2">
-									Levák
-								</form:option>
-								<form:option value="3">
-									Nespecifikováno
-								</form:option>
-								<form:option value="4">
-									Pravák
-								</form:option>					
+    					<form:checkbox path="intraoperativeEcog" input="intraoperativeEcog" class="input-block-level" />
+						<form:errors path="intraoperativeEcog" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
 
+  				<div class="control-group">
+    				<label class="control-label" for="ecogCover"><strong>ECoG pokrytí</strong></label>
+    				<div class="controls">
+    					<form:input type="text" path="ecogCover" input="ecogCover" class="input-medium" />
+						<form:errors path="ecogCover" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="ecogPatternsIdcom"><strong>ECoG vzorce</strong></label>
+    				<div class="controls">
+    					<form:select path="ecogPatternsIdcom" id="ecogPatternsIdcom" type="text" class="input-large">
+							<form:option value="1">
+								Bez hrotů
+							</form:option>
+							<form:option value="2">
+								Burst-suppression
+							</form:option>
+							<form:option value="3">
+								Kontinuální hroty
+							</form:option>
+							<form:option value="4">
+								Nespecifická abnormalita
+							</form:option>	
+							<form:option value="5">
+								S hroty
+							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="abnormalNeurologicalFinding"><strong>Abnormální neurologický nález</strong></label>
+    				<label class="control-label" for="afterResectionEcogIdcom"><strong>ECoG po resekci</strong></label>
     				<div class="controls">
-    					<form:checkbox path="abnormalNeurologicalFinding" input="abnormalNeurologicalFinding" class="input-block-level" />
-						<form:errors path="abnormalNeurologicalFinding" cssClass="error">
-						</form:errors>
+    					<form:select path="afterResectionEcogIdcom" id="afterResectionEcogIdcom" type="text" class="input-large">
+							<form:option value="1">
+								Bez hrotů
+							</form:option>
+							<form:option value="2">
+								Neprovedena
+							</form:option>
+							<form:option value="3">
+								S hroty
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="hemiparesis"><strong>Hemiparéza</strong></label>
-    				<div class="controls">
-    					<form:checkbox path="hemiparesis" input="hemiparesis" class="input-block-level" />
-						<form:errors path="hemiparesis" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="visualCut"><strong>Porucha zorného pole</strong></label>
-    				<div class="controls">
-    					<form:checkbox path="visualCut" input="visualCut" class="input-block-level" />
-						<form:errors path="visualCut" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="neurologicalFindingDetail"><strong>Detaily neurologického nálezu</strong></label>
-    				<div class="controls">
-    					<form:input typy="text" path="neurologicalFindingDetail" input="neurologicalFindingDetail" class="input-large" />
-						<form:errors path="visualCut" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment" /></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

@@ -369,10 +369,10 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationPetHypometabolismu"><strong>Lokalizace PET hypometabolismu</strong></label>
+    				<label class="control-label" for="localizationPetHypometabolism"><strong>Lokalizace PET hypometabolismu</strong></label>
     				<div class="controls">
-    					<form:input type="text" path="localizationPetHypometabolismu" input="localizationPetHypometabolismu" class="input-medium" />
-						<form:errors path="localizationPetHypometabolismu" cssClass="error">
+    					<form:input type="text" path="localizationPetHypometabolism" input="localizationPetHypometabolism" class="input-medium" />
+						<form:errors path="localizationPetHypometabolism" cssClass="error">
 						</form:errors>
     				</div>
   				</div>

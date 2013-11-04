@@ -163,10 +163,10 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="kalostomie"><strong>Kalostomie</strong></label>
+    				<label class="control-label" for="colostomy"><strong>Kalostomie</strong></label>
     				<div class="controls">
-    					<form:checkbox path="kalostomie" input="kalostomie" class="input-large" />
-						<form:errors path="kalostomie" cssClass="error">
+    					<form:checkbox path="colostomy" input="colostomy" class="input-large" />
+						<form:errors path="colostomy" cssClass="error">
 						</form:errors>
     				</div>
   				</div>

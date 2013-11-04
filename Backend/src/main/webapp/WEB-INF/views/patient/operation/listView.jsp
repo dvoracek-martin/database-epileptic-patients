@@ -156,10 +156,10 @@
 											</tr>
 											<tr class="info">
 												<td>Kalostomie</td>
-												<c:if test="${operation.kalostomie==true}">
+												<c:if test="${operation.colostomy==true}">
 													<td style="column-span: 2"><spring:message code="label.yes"/></td>
 												</c:if>
-												<c:if test="${operation.kalostomie==false}">
+												<c:if test="${operation.colostomy==false}">
 													<td><spring:message code="label.no"/></td>
 												</c:if>
 											</tr>

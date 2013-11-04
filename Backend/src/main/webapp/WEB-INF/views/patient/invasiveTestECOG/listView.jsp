@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Invazivní testy - EEG
+      Invazivní testy - ECoG
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Invazivní testy - EEG
+      Invazivní testy - ECoG
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,12 +21,11 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Invazivní testy - EEG</h2>
+					<h2>Invazivní testy - ECoG</h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
-						<a id="export"
-					href="<c:url value="/underConstruction" />"><spring:message code="label.addRecord"/></a>
+						<a href="<c:url value="/patient/${patient.id}/invasiveTestEEG/create" />"><spring:message code="label.addRecord"/></a>
 					</h3>
 				</div>
 			</div>
@@ -68,11 +67,99 @@
 					</tr>
 				</tbody>
 			</table>
- 
-			<div class="alert alert-block">
+ 			
+ 			<c:if test="${empty patient.invasiveTestECOGList}">
+ 				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Prozatím nejsou záznamy dostupné.</h4>
-			</div>
+		  			<h4>Žádné záznamy!</h4>
+				</div>
+ 			</c:if>
+
+			<div class="accordion">
+				<c:forEach items="${patient.invasiveTestECOGList}" var="invasiveTestECOG">
+					<div >
+						<div class="accordion-heading">
+					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${invasiveTestECOG.id}">
+					    	    <strong>Vyšetření dne:</strong> ${invasiveTestECOG.date}
+					    	</a>
+						</div>
+
+					    <div id="collapse${invasiveTestECOG.id}" class="accordion-body collapse">
+
+					      	<div class="accordion-inner">
+						      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
+									<div class="pull-right">
+										<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/${invasiveTestECOG.id}/delete"/>"><spring:message code="label.delete"/></a>
+									</div>
+									<div class="pull-left">
+										<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/list"/>"><spring:message code="label.edit"/></a>
+									</div>
+									</br>
+								</div>
+								<table class="table">
+				               		<tbody>
+										<tr class="info">
+											<td>Intraoperační ECoG</td>
+											<c:if test="${invasiveTestECOG.intraoperativeEcog==true}">
+												<td style="column-span: 2"><spring:message code="label.yes"/></td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.intraoperativeEcog==false}">
+												<td><spring:message code="label.no"/></td>
+											</c:if>
+										</tr>
+										<tr class="info">
+											<td>ECoG pokrytí</td>
+											<td>${invasiveTestECOG.ecogCover}</td>
+										</tr>
+										<tr class="info">
+											<td>ECoG vzorce</td>
+											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==1}">
+												<td>Bez hrotů</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==2}">
+												<td>Burst-suppression</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==3}">
+												<td>Kontinuální hroty</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==4}">
+												<td>Nespecifická abnormalita</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==5}">
+												<td>S hroty</td>
+											</c:if>
+										</tr>
+										<tr class="info">
+											<td>ECoG po resekci</td>
+											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==1}">
+												<td>Bez hrotů</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==2}">
+												<td>Neprovedena</td>
+											</c:if>
+											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==3}">
+												<td>S hroty</td>
+											</c:if>
+										</tr>
+										<tr class="info">
+											<td><spring:message code="label.comment" /></td>
+											<c:choose>
+												<c:when test="${empty invasiveTestECOG.comment}">
+													<td>Žádný</td>
+												</c:when>
+												<c:otherwise>
+													<td>${invasiveTestECOG.comment}</td>
+												</c:otherwise>
+											</c:choose>
+										</tr>
+				              		</tbody>
+			            		</table>
+		            		</div>
+					    </div>
+	            	</div>
+	            </c:forEach>
+            </div>
+        </br> 
 	</jsp:body>
 </t:menuLVL3>
 

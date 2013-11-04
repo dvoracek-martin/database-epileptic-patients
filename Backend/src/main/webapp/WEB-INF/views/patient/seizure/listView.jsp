@@ -68,7 +68,14 @@
 					</tr>
 				</tbody>
 			</table>
- 
+
+			<c:if test="${empty patient.seizureList}">
+ 				<div class="alert alert-block">
+		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  			<h4>Žádné záznamy!</h4>
+				</div>
+ 			</c:if>
+
 			<!-- Seizure list START -->
 			<div class="accordion">
 				<c:forEach items="${patient.seizureList}" var="seizure">

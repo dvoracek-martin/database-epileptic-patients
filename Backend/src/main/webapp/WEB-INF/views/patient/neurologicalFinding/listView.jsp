@@ -143,6 +143,10 @@
 											</c:if>
 										</tr>
 										<tr class="info">
+											<td>Detaily neurologického nálezu</td>
+											<td>${neurologicalFinding.neurologicalFindingDetail}</td>
+										</tr>
+										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty neurologicalFinding.comment}">

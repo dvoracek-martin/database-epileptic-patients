@@ -321,7 +321,7 @@
 										</tr>
 										<tr class="info">
 											<td>Lokalizace PET hypometabolismu</td>
-											<td>${diagnosticTestMRI.localizationPetHypometabolismu}</td>
+											<td>${diagnosticTestMRI.localizationPetHypometabolism}</td>
 										</tr>
 										<tr class="info">
 											<td>Lokalizace SPECT hyperperfuse</td>

@@ -640,6 +640,10 @@
 									</c:if>
 								</tr>
 								<tr class="info">
+									<td>Detaily neurologického nálezu</td>
+									<td>${patient.neurologicalFindingList[0].neurologicalFindingDetail}</td>
+								</tr>
+								<tr class="info">
 									<td><spring:message code="label.comment" /></td>
 									<c:choose>
 										<c:when test="${empty patient.neurologicalFindingList[0].comment}">
@@ -1155,7 +1159,7 @@
 								</tr>
 								<tr class="info">
 									<td>Lokalizace PET hypometabolismu</td>
-									<td>${patient.diagnosticTestMRIList[0].localizationPetHypometabolismu}</td>
+									<td>${patient.diagnosticTestMRIList[0].localizationPetHypometabolism}</td>
 								</tr>
 								<tr class="info">
 									<td>Lokalizace SPECT hyperperfuse</td>
@@ -1193,10 +1197,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${true}">
+				    <c:when test="${empty patient.invasiveTestEEGList}">
 				    	</br></br>
-				      	<div class="alert alert-error">
-		  					<h4>Prozatím nedostupné!</h4>
+				      	<div class="alert alert-block">
+		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  					<h4>Žádný záznam!</h4>
 						</div>
 				    </c:when>
 
@@ -1208,52 +1213,144 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Invazivní monitorace</td>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveMonitoring==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveMonitoring==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>Kortikální mapování</td>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==1}">
+										<td>Awake craniotomy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==2}">
+										<td>Extraoperační elektrická stimulace</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==3}">
+										<td>Importovane funkcni mapovani</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==4}">
+										<td>Intraoperační elektrická stimulace</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==5}">
+										<td>Intraoperační elektrická stimulace + sledování intaktnosti drah</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].corticalMappingIdcoml==6}">
+										<td>Neprovedeno</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>Intrakraniální elektrody</td>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==1}">
+										<td>Intracereb. + subdur. stripy + gridy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==2}">
+										<td>Intracerebrální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==3}">
+										<td>Intracerebrální + subdurální gridy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==4}">
+										<td>Intracerebrální + subdurální stripy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==5}">
+										<td>Subdurální stripy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==6}">
+										<td>Subdurání gridy</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].intracranialElectrodesIdcom==7}">
+										<td>Subdurání stripy + gridy</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>Lokalizace intrakraniálních elektrod</td>
+									<td>${patient.invasiveTestEEGList[0].localizationIntracranialElectrodes}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
+									<td>Invazivní EEG zpomalení</td>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegSlowingIdcom==1}">
+										<td>Generalizované intermitentní</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegSlowingIdcom==2}">
+										<td>Generalizované kontinuální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegSlowingIdcom==3}">
+										<td>Lokalizované intermitentní</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegSlowingIdcom==4}">
+										<td>Lokalizované kontinuální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegSlowingIdcom==5}">
+										<td>Žádné</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
+									<td>Invazivní EEG interiktální hroty</td>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegInterictalSpikesIdcom==1}">
+										<td>Chybějící</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegInterictalSpikesIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegInterictalSpikesIdcom==3}">
+										<td>Multiregionální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegInterictalSpikesIdcom==4}">
+										<td>Nelokalizované</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegInterictalSpikesIdcom==5}">
+										<td>Regionální</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
+									<td>Lokalizace invazivních EEG interiktálních hrotů</td>
+									<td>${patient.invasiveTestEEGList[0].localizationInvasiveEegInterictalSpikes}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
+									<td>Invazivní EEG status epilepticus</td>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegStatusEpilepticus==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveEegStatusEpilepticus==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
+									<td>Invazivní EEG iktální vzorce</td>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveIctalEegPatternsIdcom==1}">
+										<td>Chybějící</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveIctalEegPatternsIdcom==2}">
+										<td>Fokální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveIctalEegPatternsIdcom==3}">
+										<td>Multiregionální</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveIctalEegPatternsIdcom==4}">
+										<td>Nelokalizované</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestEEGList[0].invasiveIctalEegPatternsIdcom==5}">
+										<td>Regionální</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
+									<td>Lokalizce invazivních EEG iktálních vzorců</td>
+									<td>${patient.invasiveTestEEGList[0].localizationInvasiveIctalEegPatterns}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.invasiveTestEEGList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.invasiveTestEEGList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>
@@ -1276,10 +1373,11 @@
 				</div>
 
 				<c:choose>
-				    <c:when test="${true}">
+				    <c:when test="${empty patient.invasiveTestECOGList}">
 				    	</br></br>
-				      	<div class="alert alert-error">
-		  					<h4>Prozatím nedostupné!</h4>
+				      	<div class="alert alert-block">
+		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  					<h4>Žádný záznam!</h4>
 						</div>
 				    </c:when>
 
@@ -1291,52 +1389,58 @@
 								</tr>
 
 								<tr class="info">
-									<td><spring:message code="label.epilepsyInFamily" /></td>
-									<td>${patient.anamnesisList[0].epilepsyInFamily}</td>
+									<td>Intraoperační ECoG</td>
+									<c:if test="${patient.invasiveTestECOGList[0].intraoperativeEcog==true}">
+										<td style="column-span: 2"><spring:message code="label.yes"/></td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].intraoperativeEcog==false}">
+										<td><spring:message code="label.no"/></td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.prenatalRisk" /></td>
-									<td>${patient.anamnesisList[0].prenatalRisk}</td>
+									<td>ECoG pokrytí</td>
+									<td>${patient.invasiveTestECOGList[0].ecogCover}</td>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.fibrilConvulsions" /></td>
-									<td>${patient.anamnesisList[0].fibrilConvulsions}</td>
+									<td>ECoG vzorce</td>
+									<c:if test="${patient.invasiveTestECOGList[0].ecogPatternsIdcom==1}">
+										<td>Bez hrotů</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].ecogPatternsIdcom==2}">
+										<td>Burst-suppression</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].ecogPatternsIdcom==3}">
+										<td>Kontinuální hroty</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].ecogPatternsIdcom==4}">
+										<td>Nespecifická abnormalita</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].ecogPatternsIdcom==5}">
+										<td>S hroty</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.inflammationCNS" /></td>
-									<td>${patient.anamnesisList[0].inflammationCns}</td>
+									<td>ECoG po resekci</td>
+									<c:if test="${patient.invasiveTestECOGList[0].afterResectionEcogIdcom==1}">
+										<td>Bez hrotů</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].afterResectionEcogIdcom==2}">
+										<td>Neprovedena</td>
+									</c:if>
+									<c:if test="${patient.invasiveTestECOGList[0].afterResectionEcogIdcom==3}">
+										<td>S hroty</td>
+									</c:if>
 								</tr>
 								<tr class="info">
-									<td><spring:message code="label.injuryCNS" /></td>
-									<td>${patient.anamnesisList[0].injuryCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.operationCNS" /></td>
-									<td>${patient.anamnesisList[0].operationCns}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.earlyPMDRetardation" /></td>
-									<td>${patient.anamnesisList[0].earlyPmdRetardation}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.beginningEpilepsy" /></td>
-									<td>${patient.anamnesisList[0].beginningEpilepsy}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.firstFever" /></td>
-									<td>${patient.anamnesisList[0].firstFever}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.infantileSpasm" /></td>
-									<td>${patient.anamnesisList[0].infantileSpasm}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.epilepticSyndrome" /></td>
-									<td>${patient.anamnesisList[0].specificSyndromeIdcom}</td>
-								</tr>
-								<tr class="info">
-									<td><spring:message code="label.nonCNSComorbidity" /></td>
-									<td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
+									<td><spring:message code="label.comment" /></td>
+									<c:choose>
+										<c:when test="${empty patient.operationList[0].comment}">
+											<td>Žádný</td>
+										</c:when>
+										<c:otherwise>
+											<td>${patient.invasiveTestECOGList[0].comment}</td>
+										</c:otherwise>
+									</c:choose>
 								</tr>
 		              		</tbody>
 	            		</table>
@@ -1431,10 +1535,10 @@
 								</tr>
 								<tr class="info">
 									<td>Kalostomie</td>
-									<c:if test="${patient.operationList[0].kalostomie==true}">
+									<c:if test="${patient.operationList[0].colostomy==true}">
 										<td style="column-span: 2"><spring:message code="label.yes"/></td>
 									</c:if>
-									<c:if test="${patient.operationList[0].kalostomie==false}">
+									<c:if test="${patient.operationList[0].colostomy==false}">
 										<td><spring:message code="label.no"/></td>
 									</c:if>
 								</tr>
@@ -1704,7 +1808,7 @@
 								</tr>
 		              		</tbody>
 	            		</table>
-	            		<a href="<c:url value="/patient/${patient.id}/outcome/list" />">Zobrazit všechny</a>	
+	            		<a href="<c:url value="/patient/${patient.id}/complication/list" />">Zobrazit všechny</a>	
 	            		</br>
 						</br>
             		</c:otherwise>

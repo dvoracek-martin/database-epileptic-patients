@@ -18,7 +18,7 @@
 	</jsp:attribute>
 
 	<jsp:body>
-		<div>
+		
 			<div>
 				<div class="span5">
 					<h2>Diagnostické testy - EEG</h2>
@@ -67,7 +67,8 @@
 							
 					</tr>
 				</tbody>
- 
+ 			</table>
+
 			<c:if test="${empty patient.diagnosticTestEEGList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
