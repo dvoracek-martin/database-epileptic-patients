@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class DateToAgeConverter {
+public class TimeConverter {
 
 	public static String getAge(Date beginningEpilepsy) {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -20,5 +20,12 @@ public class DateToAgeConverter {
 		int beginning=Integer.parseInt(beginningYear);	
 		
 		return Integer.toString(year-beginning);		
+	}
+	
+	public static String getDate(Date date){
+		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		String formatedDate=df.format(date);
+		formatedDate=formatedDate.substring(0,10);
+		return formatedDate;	
 	}
 }

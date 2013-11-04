@@ -38,7 +38,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 import cz.cvut.fit.genepi.service.LoggingService;
-import cz.cvut.fit.genepi.util.DateToAgeConverter;
+import cz.cvut.fit.genepi.util.TimeConverter;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -454,7 +454,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// add special parameter for patient?
 		if (exportParams.isAnamnesisBeginningEpilepsy()) {
 			table.addCell(new Phrase("Věk při začátku epilepsie:", normalFont));
-			table.addCell(DateToAgeConverter.getAge(patient.getAnamnesisList().get(0).getBeginningEpilepsy()));
+			table.addCell(TimeConverter.getAge(patient.getAnamnesisList().get(0).getBeginningEpilepsy()));
 		}
 
 		if (exportParams.isPatientDoctorId()) {
@@ -478,10 +478,8 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// t.setSpacing(4);
 		// t.setBorderWidth(1);
 		table.addCell(new Phrase("Anamnesis from date:", largerFont));
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		Date dateOfAnamnesis = anamnesis.getDate();
-		String dateOfAnamnesisString = df.format(dateOfAnamnesis);
-		table.addCell(new Phrase(dateOfAnamnesisString));
+		
+		table.addCell(new Phrase(TimeConverter.getDate(anamnesis.getDate())));
 		if (exportParams.isAnamnesisEpilepsyInFamily()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.epilepsyInFamily", null, locale), normalFont));
@@ -520,7 +518,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		if (exportParams.isAnamnesisBeginningEpilepsy()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.beginningEpilepsy", null, locale), normalFont));
-			table.addCell(String.valueOf(anamnesis.getBeginningEpilepsy()));
+			table.addCell(TimeConverter.getDate(anamnesis.getBeginningEpilepsy()));
 		}
 
 		if (exportParams.isAnamnesisFirstFever()) {
