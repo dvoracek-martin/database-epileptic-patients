@@ -381,7 +381,7 @@ public class PatientController {
 	// TODO: revision
 	@RequestMapping(value = "/patient/export/load", method = RequestMethod.POST)
 	public String patientExportLoadPOST(Model model, Locale locale,
-			@RequestParam("patientID") Integer[] patientID,
+			@RequestParam("patient") Integer[] patientID,
 			@RequestParam("exportId") Integer exportID) {
 
 		if (logger.getLogger() == null)
