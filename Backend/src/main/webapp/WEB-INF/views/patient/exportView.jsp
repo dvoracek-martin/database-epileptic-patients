@@ -25,10 +25,11 @@
 					$(this).parent().children('ul.tree').toggle(300);
 				});
 			});
-		</script>					
+		</script>
+					
 					<!--jQuery for changing action method of foorm when clicking on SAVE set-->
 					<script>
-						$('#saveSetBtn')
+						$('#saveButton')
 								.click(
 										function() {
 											$('#exportForm')
@@ -49,7 +50,7 @@
 											$('#exportForm').submit();
 										});
 					</script>
-					//change action URL when deleting users SET
+						<!--change action URL when deleting users SET-->
 						<script>
 							$('#exportParamDeleteBrn')
 									.click(
@@ -120,18 +121,18 @@
 <!-- Tree list  -->
 
 			<div class="span3">
-				<form:form method="POST" action="/GENEPI/patient/export"
+				<form:form id="exportForm" method="POST" action="/GENEPI/patient/export"
 				commandName="exportParams">
 				
 					<!-- Hidden fields  -->
-					<!-- name of the set -->
-					<input type="hidden" name="setName" value="">
+					<!-- Export name -->
+					<input id="exportName" type="hidden" name="exportName" value="">
 					<!-- patient ids -->
 						<c:forEach items="${patientList}" var="patient">
 					<input type="hidden" name="patient" value="${patient.id}">
 							</c:forEach>	
 					<!-- Is Generic checkbox -->		
-					<input type="hidden" name="isGeneric" value="0">
+					<input id="isGeneric" type="hidden" name="isGeneric" value="0">
 
 		 <ul class="nav nav-list">
             <li><p class="tree-toggler nav-header">Anamneza<form:checkbox
@@ -236,22 +237,17 @@
 						</button>	
 						    </div>
 						</div>
-            </form:form>											 
-						
-						<input type="hidden" value="${patient.id}" name="patientId">
-						<input id="exportName" type="hidden" value="" name="exportName">
-						<input id="isGeneric" type="hidden" value="0" name="isGeneric">
-																	
+            </form:form>											 																					
 						
 					<div class="span6">
-					<p>Uložit generic sestavu</p>
-					<input id="exportNameToCopy" type="text" name="name">
+					<p>Uložit sestavu</p>
+					<input id="exportNameToCopy" type="text">
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
 						<input id="isGenericBox" type="checkbox" name="isGeneric">Is Generic???
 						</sec:authorize>
 						<button id="saveButton" class="btn btn-primary" type="submit">SAVE</button>					
-				</div>
+					</div>
 
 		</div>
 	</jsp:body>
