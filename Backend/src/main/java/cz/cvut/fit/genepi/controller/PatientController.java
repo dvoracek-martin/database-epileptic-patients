@@ -362,7 +362,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
 	public String patientExportSavePOST(
 			@ModelAttribute("exportParams") ExportParamsEntity exportParams,
-			@RequestParam("patientId") Integer[] patientId,
+			@RequestParam("patientId") Integer[] patient,
 			@RequestParam("isGeneric") boolean isGeneric,
 			@RequestParam("exportName") String exportName, Locale locale,
 			Model model) {
@@ -375,7 +375,7 @@ public class PatientController {
 		exportParams.setGeneric(isGeneric);
 		exportParamsService.save(exportParams);
 
-		return "redirect:/patient/" + patientId[0] + "/export";
+		return "redirect:/patient/" + patient[0] + "/export";
 	}
 
 	// TODO: revision
