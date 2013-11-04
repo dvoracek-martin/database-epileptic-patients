@@ -46,7 +46,8 @@ public class ExportParamsEntity {
 
 	@Column(name = "neurologicalFinding")
 	private boolean neurologicalFinding;
-
+	
+	// TODO: predelat na neuropsychology
 	@Column(name = "neurolopsychology")
 	private boolean neurolopsychology;
 
