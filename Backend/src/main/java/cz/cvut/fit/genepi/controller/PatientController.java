@@ -432,7 +432,7 @@ public class PatientController {
 
 	@RequestMapping(value = "/patient/export/delete", method = RequestMethod.POST)
 	public String patientExportDeletePOST(
-			@RequestParam("patientId") Integer patientId,
+			@RequestParam("patient") Integer patientId,
 			@RequestParam("exportId") Integer exportId) {
 		exportParamsService.delete(exportParamsService.findByID(
 				ExportParamsEntity.class, exportId));
