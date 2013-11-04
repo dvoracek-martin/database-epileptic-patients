@@ -95,7 +95,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.GET)
 	public String patientCreateGET(Locale locale, Model model) {
 		model.addAttribute("doctors", roleService.getAllDoctors());
-		model.addAttribute("patientList", new PatientEntity());
+		model.addAttribute("patient", new PatientEntity());
 		model.addAttribute("male",
 				messageSource.getMessage("label.male", null, locale));
 		model.addAttribute("female",
@@ -162,7 +162,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
 	public String patientOverviewGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		model.addAttribute("patientList",
+		model.addAttribute("patient",
 				patientService.getPatientByIdWithAllLists(patientID));
 		return "patient/overviewView";
 	}
@@ -216,7 +216,7 @@ public class PatientController {
 	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		model.addAttribute("patientList",
+		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientID));
 		return "patient/editView";
 	}
