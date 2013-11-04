@@ -292,9 +292,10 @@ public class PatientController {
 		model.addAttribute("user", user);
 		model.addAttribute("exportParams",
 				exportParamsService.findByID(ExportParamsEntity.class, 1));
-
-		model.addAttribute("patientList", new ArrayList<PatientEntity>().add(patientService
-				.findByID(PatientEntity.class, patientID)));
+		List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
+		listOfPatients.add(patientService.findByID(PatientEntity.class,
+				patientID));
+		model.addAttribute("patientList", listOfPatients);
 		return "patient/exportView";
 	}
 
@@ -348,9 +349,10 @@ public class PatientController {
 			return "redirect:/resources/downloads/" + url;
 		}
 
-		model.addAttribute("patientList",
-				new ArrayList<PatientEntity>().add(patientService.findByID(
-						PatientEntity.class, patientID[0])));
+		List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
+		listOfPatients.add(patientService.findByID(
+				PatientEntity.class, patientID[0]));
+		model.addAttribute("patientList", listOfPatients);
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
