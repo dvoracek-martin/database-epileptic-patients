@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Diagnostické testy - EEG</h2>
+				<h2><spring:message code="label.diagnosticTestEEG"/></h2>
 			</div>
 
 						<table class="table">
@@ -93,70 +93,69 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="basicEegActivityIdcom"><strong>Základní EEG aktivita</strong></label>
+    				<label class="control-label" for="basicEegActivityIdcom"><strong><spring:message code="label.basicEEGActivity"/></strong></label>
     				<div class="controls">
     					<form:select path="basicEegActivityIdcom" id="basicEegActivityIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="2">
-								Pomalá
+								<spring:message code="label.slow"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
-
   				<div class="control-group">
-    				<label class="control-label" for="eegSlowIdcom"><strong>EEG zpomalení</strong></label>
+    				<label class="control-label" for="eegSlowIdcom"><strong><spring:message code="label.EEGSlow"/></strong></label>
     				<div class="controls">
     					<form:select path="eegSlowIdcom" id="eegSlowIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Generalizované kontinuální
+								<spring:message code="label.generalizedContinuous"/>
 							</form:option>
 							<form:option value="2">
-								Generalizované přerušované
+								<spring:message code="label.generalizedDiscontinuous"/>
 							</form:option>
 							<form:option value="3">
-								Lokalizované kontinuální
+								<spring:message code="label.localizatedContinuous"/>
 							</form:option>
 							<form:option value="4">
-								Lokalizované přerušované
+								<spring:message code="label.localizatedDiscontinuous"/>
 							</form:option>	
 							<form:option value="5">
-								Žádné
+								<spring:message code="label.none"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="interictalEegSpikesIdcom"><strong>Interiktální EEG hroty</strong></label>
+    				<label class="control-label" for="interictalEegSpikesIdcom"><strong><spring:message code="label.interictalEEGSpikes"/></strong></label>
     				<div class="controls">
     					<form:select path="interictalEegSpikesIdcom" id="interictalEegSpikesIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Generalizované
+								<spring:message code="label.generalized"/>
 							</form:option>
 							<form:option value="2">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="3">
-								Multiregionální
+								 <spring:message code="label.multiregional"/>
 							</form:option>
 							<form:option value="4">
 								Nelatralizovatelné
 							</form:option>	
 							<form:option value="5">
-							    Regionální
+							    <spring:message code="label.regional"/>
 							</form:option>
 							<form:option value="6">
-								Žádné
+								<spring:message code="label.none"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationInterictalEEGSpikes"><strong>Lokalizace interiktálních EEG hrotů</strong></label>
+    				<label class="control-label" for="localizationInterictalEEGSpikes"><strong><spring:message code="label.localizationInterictalEEGSpikes"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationInterictalEEGSpikes" input="localizationInterictalEEGSpikes" class="input-medium" value="0" />
 						<form:errors path="localizationInterictalEEGSpikes" cssClass="error">
@@ -165,7 +164,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="eegStatusEpilepticus"><strong>EEG status epilepticus</strong></label>
+    				<label class="control-label" for="eegStatusEpilepticus"><strong><spring:message code="label.EEGStatusEpilepticus"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="eegStatusEpilepticus" input="eegStatusEpilepticus" class="input-block-level" />
 						<form:errors path="eegStatusEpilepticus" cssClass="error">
@@ -174,7 +173,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="secondarySidedSynchrony"><strong>Sekundární bilaterální synchronie</strong></label>
+    				<label class="control-label" for="secondarySidedSynchrony"><strong><spring:message code="label.secondarySidedSynchrony"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="secondarySidedSynchrony" input="secondarySidedSynchrony" class="input-large" />
 						<form:errors path="secondarySidedSynchrony" cssClass="error">
@@ -183,30 +182,30 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ictalEegPatternsIdcom"><strong>Iktální EEG vzorce</strong></label>
+    				<label class="control-label" for="ictalEegPatternsIdcom"><strong><spring:message code="label.ictalEEGPatterns"/></strong></label>
     				<div class="controls">
     					<form:select path="ictalEegPatternsIdcom" id="ictalEegPatternsIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Chybějící
+								<spring:message code="label.missing"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Multiregionální
+								<spring:message code="label.multiregional"/>
 							</form:option>
 							<form:option value="4">
-								Nelokalizovatelné
+								<spring:message code="label.notlocalizable"/>
 							</form:option>	
 							<form:option value="5">
-								Regionální
+								 <spring:message code="label.regional"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationIctalEegPattern"><strong>Lokalizace iktálních EEG vzorů</strong></label>
+    				<label class="control-label" for="localizationIctalEegPattern"><strong><spring:message code="label.localizationIctalEEGPattern"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationIctalEegPattern" input="localizationIctalEegPattern" class="input-medium" />
 						<form:errors path="localizationIctalEegPattern" cssClass="error">
@@ -215,7 +214,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment" /></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

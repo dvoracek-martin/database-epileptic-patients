@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Diagnostické testy - EEG
+      <spring:message code="label.diagnosticTestEEG"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Diagnostické testy - EEG
+      <spring:message code="label.diagnosticTestEEG"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		
 			<div>
 				<div class="span5">
-					<h2>Diagnostické testy - EEG</h2>
+					<h2><spring:message code="label.diagnosticTestEEG"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -72,7 +72,7 @@
 			<c:if test="${empty patient.diagnosticTestEEGList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${diagnosticTestEEG.id}">
-					    	    <strong>Vyšetření dne:</strong> ${diagnosticTestEEG.date}
+					    	    <strong><spring:message code="label.dateExamination"/>:</strong> ${diagnosticTestEEG.date}
 					    	</a>
 						</div>
 
@@ -102,59 +102,59 @@
 				               		<tbody>
 
 										<tr class="info">
-											<td>Základní EEG aktivita</td>
+											<td><spring:message code="label.basicEEGActivity"/></td>
 											<c:if test="${diagnosticTestEEG.basicEegActivityIdcom==1}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.basicEegActivityIdcom==2}">
-												<td>Pomalá</td>
+												<td><spring:message code="label.slow"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>EEG zpomalení</td>
+											<td><spring:message code="label.EEGSlow"/></td>
 											<c:if test="${diagnosticTestEEG.eegSlowIdcom==1}">
-												<td>Generalizované kontinuální</td>
+												<td><spring:message code="label.generalizedContinuous"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.eegSlowIdcom==2}">
-												<td>Generalizované přerušované</td>
+												<td><spring:message code="label.generalizedDiscontinuous"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.eegSlowIdcom==3}">
-												<td>Lokalizované kontinuální</td>
+												<td><spring:message code="label.localizatedContinuous"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.eegSlowIdcom==4}">
-												<td>Lokalizované přerušované</td>
+												<td><spring:message code="label.localizatedDiscontinuous"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.eegSlowIdcom==5}">
-												<td>Žádné</td>
+												<td><spring:message code="label.none"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Interiktální EEG hroty</td>
+											<td><spring:message code="label.interictalEEGSpikes"/></td>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==1}">
-												<td>Generalizované</td>
+												<td><spring:message code="label.generalized"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==2}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==3}">
-												<td>Multiregionální</td>
+												<td><spring:message code="label.multiregional"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==4}">
 												<td>Nelatralizovatelné</td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==5}">
-												<td>Regionální</td>
+												<td><spring:message code="label.regional"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==6}">
-												<td>Žádné</td>
+												<td><spring:message code="label.none"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace interiktálních EEG hrotů</td>
+											<td><spring:message code="label.localizationInterictalEEGSpikes"/></td>
 											<td>${diagnosticTestEEG.localizationInterictalEEGSpikes}</td>
 										</tr>
 										<tr class="info">
-											<td>EEG status epilepticus</td>
+											<td><spring:message code="label.EEGStatusEpilepticus"/></td>
 											<c:if test="${diagnosticTestEEG.eegStatusEpilepticus==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -163,7 +163,7 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Sekundární bilaterální synchronie</td>
+											<td><spring:message code="label.secondarySidedSynchrony"/></td>
 											<c:if test="${diagnosticTestEEG.secondarySidedSynchrony==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -172,32 +172,32 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Iktální EEG vzorce</td>
+											<td><spring:message code="label.ictalEEGPatterns"/></td>
 											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==1}">
-												<td>Chybějící</td>
+												<td><spring:message code="label.missing"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==3}">
-												<td>Multiregionální</td>
+												<td><spring:message code="label.multiregional"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==4}">
-												<td>Nelokalizovatelné</td>
+												<td><spring:message code="label.notlocalizable"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==5}">
-												<td>Regionální</td>
+												<td><spring:message code="label.regional"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace iktálních EEG vzorů</td>
+											<td><spring:message code="label.localizationIctalEEGPattern"/></td>
 											<td>${diagnosticTestEEG.localizationIctalEegPattern}</td>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty diagnosticTestEEG.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${diagnosticTestEEG.comment}</td>

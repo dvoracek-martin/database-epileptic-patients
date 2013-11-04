@@ -23,42 +23,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Diagnostické testy - MRI</h2>
+				<h2><spring:message code="label.diagnosticTestMRI"/></h2>
 			</div>
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohlaví:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -93,7 +93,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mriProtocolIdcom"><strong>MRI protokol</strong></label>
+    				<label class="control-label" for="mriProtocolIdcom"><strong><spring:message code="label.MRIProtocol"/></strong></label>
     				<div class="controls">
     					<form:select path="mriProtocolIdcom" id="mriProtocolIdcom" type="text" class="input-large">
 							<form:option value="1">
@@ -110,32 +110,32 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mriFindingIdcom"><strong>MRI nález</strong></label>
+    				<label class="control-label" for="mriFindingIdcom"><strong><spring:message code="label.MRIFinding"/></strong></label>
     				<div class="controls">
     					<form:select path="mriFindingIdcom" id="mriFindingIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bilaterální
+								<spring:message code="label.bilateral"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="4">
-								Lobární
+								<spring:message code="label.lobar"/>
 							</form:option>	
 							<form:option value="5">
-								Multilobární
+								<spring:message code="label.multilobar"/>
 							</form:option>
 							<form:option value="6">
-								Neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="7">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="8">
-								Postoperační
+								<spring:message code="label.postoperative"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -146,60 +146,60 @@
     				<div class="controls">
     					<form:select path="fdgPetIdcom" id="fdgPetIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bilaterální
+								<spring:message code="label.bilateral"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="4">
-								Lobární
+								<spring:message code="label.lobar"/>
 							</form:option>	
 							<form:option value="5">
-								Multilobární
+								<spring:message code="label.multilobar"/>
 							</form:option>
 							<form:option value="6">
-								Neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="7">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="8">
-								Postoperační
+								<spring:message code="label.postoperative"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="interictalSpectIdcom"><strong>Interiktální SPECT</strong></label>
+    				<label class="control-label" for="interictalSpectIdcom"><strong><spring:message code="label.interictalSPECT"/></strong></label>
     				<div class="controls">
     					<form:select path="interictalSpectIdcom" id="interictalSpectIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bilaterální
+								<spring:message code="label.bilateral"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="4">
-								Lobární
+								<spring:message code="label.lobar"/>
 							</form:option>	
 							<form:option value="5">
-								Multilobární
+								<spring:message code="label.multilobar"/>
 							</form:option>
 							<form:option value="6">
-								Neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="7">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="8">
-								Postoperační
+								<spring:message code="label.postoperative"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -210,28 +210,28 @@
     				<div class="controls">
     					<form:select path="ictaliSpectIdcom" id="ictaliSpectIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bilaterální
+								<spring:message code="label.bilateral"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="4">
-								Lobární
+								<spring:message code="label.lobar"/>
 							</form:option>	
 							<form:option value="5">
-								Multilobární
+								<spring:message code="label.multilobar"/>
 							</form:option>
 							<form:option value="6">
-								Neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="7">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="8">
-								Postoperační
+								<spring:message code="label.postoperative"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -247,7 +247,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsProtocolIdcom"><strong>MRS protokol</strong></label>
+    				<label class="control-label" for="mrsProtocolIdcom"><strong><spring:message code="label.MRSProtocol"/></strong></label>
     				<div class="controls">
     					<form:select path="mrsProtocolIdcom" id="mrsProtocolIdcom" type="text" class="input-large">
 							<form:option value="1">
@@ -264,32 +264,32 @@
   				</div>	
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsFinfingIdcom"><strong>MRS nález</strong></label>
+    				<label class="control-label" for="mrsFinfingIdcom"><strong><spring:message code="label.MRSFinding"/></strong></label>
     				<div class="controls">
     					<form:select path="mrsFinfingIdcom" id="mrsFinfingIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bilaterální
+								<spring:message code="label.bilateral"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Hemisferální
+								<spring:message code="label.hemispheric"/>
 							</form:option>
 							<form:option value="4">
-								Lobární
+								<spring:message code="label.lobar"/>
 							</form:option>	
 							<form:option value="5">
-								Multilobární
+								<spring:message code="label.multilobar"/>
 							</form:option>
 							<form:option value="6">
-								Neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="7">
-								Normální
+								<spring:message code="label.normal"/>
 							</form:option>
 							<form:option value="8">
-								Postoperační
+								<spring:message code="label.postoperative"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -305,7 +305,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="detailsDtiStudie"><strong>Detaily DTI studie</strong></label>
+    				<label class="control-label" for="detailsDtiStudie"><strong><spring:message code="label.DTIStudyDetails"/></strong></label>
     				<div class="controls">
     					<form:textarea path="detailsDtiStudie" id="detailsDtiStudie" />
     				</div>
@@ -321,7 +321,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="detailsFmri"><strong>Detaily fMRI</strong></label>
+    				<label class="control-label" for="detailsFmri"><strong><spring:message code="label.FMRIDetails"/></strong></label>
     				<div class="controls">
     					<form:textarea path="detailsFmri" id="detailsFmri" />
     				</div>
@@ -337,21 +337,21 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="detailsWada"><strong>Detaily WADA</strong></label>
+    				<label class="control-label" for="detailsWada"><strong><spring:message code="label.WADADetails"/></strong></label>
     				<div class="controls">
     					<form:textarea path="detailsWada" id="detailsWada" />
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mriDescribe"><strong>MRI popis</strong></label>
+    				<label class="control-label" for="mriDescribe"><strong><spring:message code="label.descriptionMRI"/></strong></label>
     				<div class="controls">
     					<form:textarea path="mriDescribe" id="mriDescribe" />
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationSpectHypoperfuse"><strong>Lokalizace SPECT hypoperfuse</strong></label>
+    				<label class="control-label" for="localizationSpectHypoperfuse"><strong><spring:message code="label.localizationSPECTHypoperfuse"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationSpectHypoperfuse" input="localizationSpectHypoperfuse" class="input-medium" />
 						<form:errors path="localizationSpectHypoperfuse" cssClass="error">
@@ -360,7 +360,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationMrsAbnormality"><strong>Lokalizace MRS abnormality</strong></label>
+    				<label class="control-label" for="localizationMrsAbnormality"><strong><spring:message code="label.localizationMRSAbnormality"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationMrsAbnormality" input="localizationMrsAbnormality" class="input-medium" />
 						<form:errors path="localizationMrsAbnormality" cssClass="error">
@@ -369,7 +369,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationPetHypometabolism"><strong>Lokalizace PET hypometabolismu</strong></label>
+    				<label class="control-label" for="localizationPetHypometabolism"><strong><spring:message code="label.localizationPetHypometabolism"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationPetHypometabolism" input="localizationPetHypometabolism" class="input-medium" />
 						<form:errors path="localizationPetHypometabolism" cssClass="error">
@@ -378,7 +378,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationSpectHyperperfuse"><strong>Lokalizace SPECT hyperperfuse</strong></label>
+    				<label class="control-label" for="localizationSpectHyperperfuse"><strong><spring:message code="label.localizationSPECTHyperperfuse"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="localizationSpectHyperperfuse" input="localizationSpectHyperperfuse	" class="input-medium" />
 						<form:errors path="localizationSpectHyperperfuse" cssClass="error">
