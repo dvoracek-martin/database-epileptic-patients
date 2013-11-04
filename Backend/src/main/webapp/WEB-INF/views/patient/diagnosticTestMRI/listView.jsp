@@ -72,7 +72,7 @@
 			<c:if test="${empty patient.diagnosticTestMRIList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${diagnosticTestMRI.id}">
-					    	    <strong>Vyšetření dne:</strong> ${diagnosticTestMRI.date}
+					    	    <strong><spring:message code="label.dateExamination"/>:</strong> ${diagnosticTestMRI.date}
 					    	</a>
 						</div>
 
@@ -101,7 +101,7 @@
 								<table class="table">
 				               		<tbody>
 										<tr class="info">
-											<td>MRI protokol</td>
+											<td><spring:message code="label.MRIProtocol"/></td>
 											<c:if test="${diagnosticTestMRI.mriProtocolIdcom==1}">
 												<td>EPI 2</td>
 											</c:if>
@@ -113,111 +113,111 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>MRI nález</td>
+											<td><spring:message code="label.MRIFinding"/></td>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==1}">
-												<td>Bilaterální</td>
+												<td><spring:message code="label.bilateral"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==3}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==4}">
-												<td>Lobární</td>
+												<td><spring:message code="label.lobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==5}">
-												<td>Multilobární</td>
+												<td><spring:message code="label.multilobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==6}">
-												<td>Neprovedeno</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==7}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mriFindingIdcom==8}">
-												<td>Postoperační</td>
+												<td><spring:message code="label.postoperative"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
 											<td>FDG PET</td>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==1}">
-												<td>Bilaterální</td>
+												<td><spring:message code="label.bilateral"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==3}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==4}">
-												<td>Lobární</td>
+												<td><spring:message code="label.lobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==5}">
-												<td>Multilobární</td>
+												<td><spring:message code="label.multilobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==6}">
-												<td>Neprovedeno</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==7}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.fdgPetIdcom==8}">
-												<td>Postoperační</td>
+												<td><spring:message code="label.postoperative"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Interiktální SPECT</td>
+											<td><spring:message code="label.interictalSPECT"/></td>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==1}">
-												<td>Bilaterální</td>
+												<td><spring:message code="label.bilateral"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==3}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==4}">
-												<td>Lobární</td>
+												<td><spring:message code="label.lobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==5}">
-												<td>Multilobární</td>
+												<td><spring:message code="label.multilobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==6}">
-												<td>Neprovedeno</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==7}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.interictalSpectIdcom==8}">
-												<td>Postoperační</td>
+												<td><spring:message code="label.postoperative"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
 											<td>FDG PET</td>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==1}">
-												<td>Bilaterální</td>
+												<td><spring:message code="label.bilateral"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==3}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==4}">
-												<td>Lobární</td>
+												<td><spring:message code="label.lobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==5}">
-												<td>Multilobární</td>
+												<td><spring:message code="label.multilobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==6}">
-												<td>Neprovedeno</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==7}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.ictaliSpectIdcom==8}">
-												<td>Postoperační</td>
+												<td><spring:message code="label.postoperative"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
@@ -242,30 +242,30 @@
 											</c:if>		
 										</tr>
 										<tr class="info">
-											<td>MRS nález</td>
+											<td><spring:message code="label.MRSFinding"/></td>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==1}">
-												<td>Bilaterální</td>
+												<td><spring:message code="label.bilateral"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==2}">
-												<td>Fokální</td>
+												<td><spring:message code="label.focal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==3}">
-												<td>Hemisferální</td>
+												<td><spring:message code="label.hemispheric"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==4}">
-												<td>Lobární</td>
+												<td><spring:message code="label.lobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==5}">
-												<td>Multilobární</td>
+												<td><spring:message code="label.multilobar"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==6}">
-												<td>Neprovedeno</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==7}">
-												<td>Normální</td>
+												<td><spring:message code="label.normal"/></td>
 											</c:if>
 											<c:if test="${diagnosticTestMRI.mrsFinfingIdcom==8}">
-												<td>Postoperační</td>
+												<td><spring:message code="label.postoperative"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
@@ -278,7 +278,7 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Detaily DTI studie</td>
+											<td><spring:message code="label.DTIStudyDetails"/></td>
 											<td>${diagnosticTestMRI.detailsDtiStudie}</td>
 										</tr>
 										<tr class="info">
@@ -291,7 +291,7 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Detaily fMRI</td>
+											<td><strong><spring:message code="label.FMRIDetails"/></td>
 											<td>${diagnosticTestMRI.detailsFmri}</td>
 										</tr>
 										<tr class="info">
@@ -304,34 +304,34 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Detaily WADA</td>
+											<td><spring:message code="label.WADADetails"/></td>
 											<td>${diagnosticTestMRI.detailsWada}</td>
 										</tr>
 										<tr class="info">
-											<td>MRI popis</td>
+											<td><spring:message code="label.descriptionMRI"/></td>
 											<td>${diagnosticTestMRI.mriDescribe}</td>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace SPECT hypoperfuse</td>
+											<td><spring:message code="label.localizationSPECTHypoperfuse"/></td>
 											<td>${diagnosticTestMRI.localizationSpectHypoperfuse}</td>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace MRS abnormality</td>
+											<td><spring:message code="label.localizationMRSAbnormality"/></td>
 											<td>${diagnosticTestMRI.localizationMrsAbnormality}</td>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace PET hypometabolismu</td>
+											<td><spring:message code="label.localizationPetHypometabolism"/></td>
 											<td>${diagnosticTestMRI.localizationPetHypometabolism}</td>
 										</tr>
 										<tr class="info">
-											<td>Lokalizace SPECT hyperperfuse</td>
+											<td><spring:message code="label.localizationSPECTHyperperfuse"/></td>
 											<td>${diagnosticTestMRI.localizationSpectHyperperfuse}</td>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty diagnosticTestMRI.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${diagnosticTestMRI.comment}</td>
