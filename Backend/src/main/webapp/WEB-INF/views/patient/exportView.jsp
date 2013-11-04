@@ -52,13 +52,23 @@
 					</script>
 						<!--change action URL when deleting users SET-->
 						<script>
-							$('#exportParamDeleteBrn')
+							$('#genericSetDeleteButton')
 									.click(
 											function() {
-												$('#usersSet')
+												$('#genericSets')
 														.attr('action',
 																'<c:url value="/patient/export/delete" />');
-												$('#usersSet').submit();
+												$('#genericSets').submit();
+											});
+						</script>
+						<script>
+							$('#userSetDeleteButton')
+									.click(
+											function() {
+												$('#userSets')
+														.attr('action',
+																'<c:url value="/patient/export/delete" />');
+												$('#userSets').submit();
 											});
 						</script>
 				
@@ -73,11 +83,12 @@
 					style="text-decoration: none">${patient.contact.firstName} ${patient.contact.lastName}</a>
 						</h2>
 					</div>
-<!-- Load lists -->					
+<!-- Lists -->
+<!-- user Lists -->						
 					<div class="span6">
-					<form id="mySet" method="POST"
+					<form id="genericSets" method="POST"
 				action="<c:url value="/patient/export/load" />">
-					<label>My Sets</label>
+					<label>Generic Sets</label>
 					
 						<select name="exportId" class="input-large">
 							<c:forEach items="${listOfSavedConfigurations}" var="exportParam">
@@ -86,20 +97,23 @@
 								</option>
 							</c:forEach>	
 						</select>
-					<input type="hidden" value="${patient.id}" name="patientId">
+					<c:forEach items="${patientList}" var="patient">
+					<input type="hidden" name="patient" value="${patient.id}">
+							</c:forEach>	
 					<button class="btn btn-primary" type="submit">LOAD</button>
 					
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">
-					<button id="exportParamDeleteBrn" class="btn btn-primary"
+					<button id="genericSetDeleteButton" class="btn btn-primary"
 						type="submit">DELETE</button>
 						</sec:authorize>
 					</form>
 					</div>
 					
+<!-- generic Lists -->						
 					<div class="span6">
-					<form id="usersSet" method="POST"
+					<form id="userSets" method="POST"
 				action="<c:url value="/patient/export/load" />">
-					<label>Users Sets</label>
+					<label>My Sets</label>
 					
 						<select name="exportId" class="input-large">
 							<c:forEach items="${listOfUsersSavedConfigurations}"
@@ -113,18 +127,18 @@
 					<input type="hidden" name="patient" value="${patient.id}">
 							</c:forEach>	
 					<button class="btn btn-primary" type="submit">LOAD</button>
-					<button id="exportParamDeleteBrn" class="btn btn-primary"
+					<button id="userSetDeleteButton" class="btn btn-primary"
 					type="submit">DELETE</button>				
 					</form>
 					</div>
-<!-- Load lists END -->										
+<!-- Lists END -->										
 						
 				
 <!-- Tree list  -->
 
 			<div class="span3">
-				<form:form id="exportForm" method="POST" action="/GENEPI/patient/export"
-				commandName="exportParams">
+				<form:form id="exportForm" method="POST"
+				action="/GENEPI/patient/export" commandName="exportParams">
 				
 					<!-- Hidden fields  -->
 					<!-- Export name -->
