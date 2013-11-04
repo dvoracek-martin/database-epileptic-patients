@@ -109,7 +109,9 @@
 								</option>
 							</c:forEach>	
 						</select>
-					<input type="hidden" value="${patient.id}" name="patientId">
+					<c:forEach items="${patientList}" var="patient">
+					<input type="hidden" name="patient" value="${patient.id}">
+							</c:forEach>	
 					<button class="btn btn-primary" type="submit">LOAD</button>
 					<button id="exportParamDeleteBrn" class="btn btn-primary"
 					type="submit">DELETE</button>				
