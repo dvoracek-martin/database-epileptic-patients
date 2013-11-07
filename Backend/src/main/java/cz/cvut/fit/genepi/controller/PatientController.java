@@ -422,7 +422,6 @@ public class PatientController {
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
-		model.addAttribute("patient", patient);
 		
 		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
 		for (Integer patient : patientID) {
