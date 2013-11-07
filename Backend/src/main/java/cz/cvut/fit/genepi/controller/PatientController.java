@@ -296,6 +296,7 @@ public class PatientController {
 		listOfPatients.add(patientService.findByID(PatientEntity.class,
 				patientID));
 		model.addAttribute("patientList", listOfPatients);
+		model.addAttribute("patient", listOfPatients[0]);
 		return "patient/exportView";
 	}
 
@@ -356,6 +357,7 @@ public class PatientController {
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
+		model.addAttribute("patient", listOfPatients[0]);
 		return "patient/exportView";
 	}
 
@@ -420,7 +422,8 @@ public class PatientController {
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
-
+		model.addAttribute("patient", listOfPatients[0]);
+		
 		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
 		for (Integer patient : patientID) {
 			patientList.add(patientService.getPatientByIdWithAllLists(patient));
