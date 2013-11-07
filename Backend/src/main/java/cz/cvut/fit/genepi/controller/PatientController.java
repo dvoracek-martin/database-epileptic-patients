@@ -296,7 +296,7 @@ public class PatientController {
 		listOfPatients.add(patientService.findByID(PatientEntity.class,
 				patientID));
 		model.addAttribute("patientList", listOfPatients);
-		model.addAttribute("patient", listOfPatients[0]);
+		model.addAttribute("patient", listOfPatients.get(0));
 		return "patient/exportView";
 	}
 
