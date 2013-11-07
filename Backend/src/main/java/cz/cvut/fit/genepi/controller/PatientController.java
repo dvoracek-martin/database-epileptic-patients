@@ -357,7 +357,7 @@ public class PatientController {
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
 		model.addAttribute("exportType", exportType);
-		model.addAttribute("patient", listOfPatients[0]);
+		model.addAttribute("patient", listOfPatients.get(0));
 		return "patient/exportView";
 	}
 
@@ -422,7 +422,7 @@ public class PatientController {
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
-		model.addAttribute("patient", listOfPatients[0]);
+		model.addAttribute("patient", listOfPatients.get(0);
 		
 		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
 		for (Integer patient : patientID) {
