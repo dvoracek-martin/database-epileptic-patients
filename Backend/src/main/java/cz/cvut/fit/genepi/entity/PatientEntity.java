@@ -30,6 +30,7 @@ import cz.cvut.fit.genepi.entity.card.ComplicationEntity;
 import cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity;
 import cz.cvut.fit.genepi.entity.card.HistologyEntity;
+import cz.cvut.fit.genepi.entity.card.InvasiveTestCorticalMappingEntity;
 import cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity;
 import cz.cvut.fit.genepi.entity.card.InvasiveTestEEGEntity;
 import cz.cvut.fit.genepi.entity.card.NeurologicalFindingEntity;
@@ -115,6 +116,10 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private Set<HistologyEntity> histologyList;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
+	@Cascade({ CascadeType.ALL })
+	private Set<InvasiveTestCorticalMappingEntity> InvasiveTestCorticalMappingList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -300,6 +305,22 @@ public class PatientEntity {
 			List<InvasiveTestECOGEntity> invasiveTestECOGList) {
 		CollectionConverter<InvasiveTestECOGEntity> converter = new CollectionConverter<>();
 		this.invasiveTestECOGList = converter.toSet(invasiveTestECOGList);
+
+	}
+
+	public List<InvasiveTestCorticalMappingEntity> getInvasiveTestCorticalMappingList() {
+		CollectionConverter<InvasiveTestCorticalMappingEntity> converter = new CollectionConverter<>();
+		Sorter<InvasiveTestCorticalMappingEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter
+				.toList(this.InvasiveTestCorticalMappingList));
+
+	}
+
+	public void InvasiveTestCorticalMappingList(
+			List<InvasiveTestCorticalMappingEntity> InvasiveTestCorticalMappingList) {
+		CollectionConverter<InvasiveTestCorticalMappingEntity> converter = new CollectionConverter<>();
+		this.InvasiveTestCorticalMappingList = converter
+				.toSet(InvasiveTestCorticalMappingList);
 
 	}
 
