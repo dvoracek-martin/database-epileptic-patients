@@ -58,8 +58,8 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 	@Column(name = "histopathology")
 	private int histopathology;
 
-	@Column(name = "histopathology_fcd_clasification")
-	private int histopathologyFcdClasification;
+	@Column(name = "fcd_clasification")
+	private int  fcdClasification;
 
 	/** The comment. */
 	@Size(max = 800)
@@ -136,13 +136,13 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 		this.histopathology = histopathology;
 	}
 
-	public int getHistopathologyFcdClasification() {
-		return histopathologyFcdClasification;
+	public int getfcdClasification() {
+		return fcdClasification;
 	}
 
-	public void setHistopathologyFcdClasification(
+	public void setfcdClasification(
 			int histopathologyFcdClasification) {
-		this.histopathologyFcdClasification = histopathologyFcdClasification;
+		this.fcdClasification = histopathologyFcdClasification;
 	}
 
 	public String getComment() {
