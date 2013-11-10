@@ -119,7 +119,7 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<InvasiveTestCorticalMappingEntity> InvasiveTestCorticalMappingList;
+	private Set<InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -312,14 +312,14 @@ public class PatientEntity {
 		CollectionConverter<InvasiveTestCorticalMappingEntity> converter = new CollectionConverter<>();
 		Sorter<InvasiveTestCorticalMappingEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter
-				.toList(this.InvasiveTestCorticalMappingList));
+				.toList(this.invasiveTestCorticalMappingList));
 
 	}
 
-	public void InvasiveTestCorticalMappingList(
+	public void setInvasiveTestCorticalMappingList(
 			List<InvasiveTestCorticalMappingEntity> InvasiveTestCorticalMappingList) {
 		CollectionConverter<InvasiveTestCorticalMappingEntity> converter = new CollectionConverter<>();
-		this.InvasiveTestCorticalMappingList = converter
+		this.invasiveTestCorticalMappingList = converter
 				.toSet(InvasiveTestCorticalMappingList);
 
 	}
