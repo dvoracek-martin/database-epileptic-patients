@@ -45,7 +45,7 @@ public class SeizureDetailEntity implements Comparable<SeizureDetailEntity> {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "seizure_id")
-	private int seizure;
+	private SeizureEntity seizure;
 
 	@Column(name = "status", nullable = false)
 	private int status;
@@ -156,11 +156,11 @@ public class SeizureDetailEntity implements Comparable<SeizureDetailEntity> {
 		this.comment = comment;
 	}
 
-	public int getSeizure() {
+	public SeizureEntity getSeizure() {
 		return seizure;
 	}
 
-	public void setSeizure(int seizure) {
+	public void setSeizure(SeizureEntity seizure) {
 		this.seizure = seizure;
 	}
 }
