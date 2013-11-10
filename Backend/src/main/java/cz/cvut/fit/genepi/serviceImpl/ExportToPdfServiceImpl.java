@@ -567,43 +567,43 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.epilepsyInFamily", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getEpilepsyInFamily()), locale));
+					String.valueOf(anamnesis.isEpilepsyInFamily()), locale));
 		}
 		if (exportParams.isAnamnesisParentalRisk()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.prenatalRisk", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getPrenatalRisk()), locale));
+					String.valueOf(anamnesis.isPrenatalRisk()), locale));
 		}
 		if (exportParams.isAnamnesisFibrilConvulsions()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.fibrilConvulsions", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getFibrilConvulsions()), locale));
+					String.valueOf(anamnesis.isFibrilConvulsions()), locale));
 		}
 		if (exportParams.isAnamnesisInflammationCns()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.inflammationCNS", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getInflammationCns()), locale));
+					String.valueOf(anamnesis.isInflammationCns()), locale));
 		}
 		if (exportParams.isAnamnesisInjuryCns()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.injuryCNS", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getInjuryCns()), locale));
+					String.valueOf(anamnesis.isInjuryCns()), locale));
 		}
 		if (exportParams.isAnamnesisOperationCns()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.operationCNS", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getOperationCns()), locale));
+					String.valueOf(anamnesis.isOperationCns()), locale));
 		}
 		if (exportParams.isAnamnesisEarlyPmdRetardation()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.earlyPMDRetardation", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getEarlyPmdRetardation()), locale));
+					String.valueOf(anamnesis.isEarlyPmdRetardation()), locale));
 		}
 		if (exportParams.isAnamnesisBeginningEpilepsy()) {
 			table.addCell(new Phrase(messageSource.getMessage(
@@ -617,13 +617,13 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.firstFever", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getFirstFever()), locale));
+					String.valueOf(anamnesis.isFirstFever()), locale));
 		}
 		if (exportParams.isAnamnesisInfantileSpasm()) {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.infantileSpasm", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getInfantileSpasm()), locale));
+					String.valueOf(anamnesis.isInfantileSpasm()), locale));
 		}
 		if (exportParams.isAnamnesisSpecificSyndrome()) {
 			table.addCell(new Phrase(messageSource.getMessage(
