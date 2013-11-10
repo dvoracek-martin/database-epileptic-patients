@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,172 +20,61 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
 @Table(name = "outcome")
-public class OutcomeEntity implements Comparable<OutcomeEntity>{
+public class OutcomeEntity implements Comparable<OutcomeEntity> {
+
+	/* Autofilled fields */
+
+	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
+
+	/** The add user id. */
+	@NotNull
+	@Column(name = "add_user_id", nullable = false)
+	private int addUserId;
+
+	/** The added. */
+	@Column(name = "added", nullable = false, insertable = false)
+	private Date added;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;
+
+	@Column(name = "status", nullable = false)
+	private int status;
+
+	/* Other fields */
 
 	/** The date. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "DATE", nullable = false)
+	@Column(name = "date", nullable = false)
 	private Date date;
 
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
-	private int doctorId;
+	@Column(name = "seizure_outcome")
+	private int seizureOutcome;
 
-	/** The added. */
-	@Column(name = "ADDED", nullable = false, insertable = false)
-	private Date added;
-	
-	@Column(name="finally_seizures_idcom")
-	private int finallySeizuresIdcom;
-	
-	@Column(name="comment")
+	@Column(name = "aed")
+	private int aed;
+
+	@Column(name = "eeg")
+	private int eeg;
+
+	@Column(name = "mri")
+	private int mri;
+
+	@Column(name = "neuropsychology")
+	private int neuropsychology;
+
+	/** The comment. */
+	@Size(max = 800)
+	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
-	
-	@Column(name="eeg_spikes")
-	private Boolean eegSpikes;
-	
-	@Column(name="aed_planted")
-	private Boolean aedPlanted;
-	
-	@Column(name="mri_done")
-	private Boolean mriDone;
-	
-	@Column(name="neuropsychology")
-	private Boolean neuropsychology;
-	
-	@Column(name="deleted")
-	private Boolean deleted;
-		
-	/** The add user id. */
-	@NotNull
-	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
-	private int addUserId;
 
-	@Column(name = "STATUS", nullable = false)
-	private int status;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	public Date getAdded() {
-		return added;
-	}
-
-	public void setAdded(Date added) {
-		this.added = added;
-	}
-
-	public int getFinallySeizuresIdcom() {
-		return finallySeizuresIdcom;
-	}
-
-	public void setFinallySeizuresIdcom(int finallySeizuresIdcom) {
-		this.finallySeizuresIdcom = finallySeizuresIdcom;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Boolean getEegSpikes() {
-		return eegSpikes;
-	}
-
-	public void setEegSpikes(Boolean eegSpikes) {
-		this.eegSpikes = eegSpikes;
-	}
-
-	public Boolean getAedPlanted() {
-		return aedPlanted;
-	}
-
-	public void setAedPlanted(Boolean aedPlanted) {
-		this.aedPlanted = aedPlanted;
-	}
-
-	public Boolean getMriDone() {
-		return mriDone;
-	}
-
-	public void setMriDone(Boolean mriDone) {
-		this.mriDone = mriDone;
-	}
-
-	public Boolean getNeuropsychology() {
-		return neuropsychology;
-	}
-
-	public void setNeuropsychology(Boolean neuropsychology) {
-		this.neuropsychology = neuropsychology;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public int getAddUserId() {
-		return addUserId;
-	}
-
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
-
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
-	public PatientEntity getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}	
-	
 	@Override
 	public int compareTo(OutcomeEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
@@ -195,5 +85,103 @@ public class OutcomeEntity implements Comparable<OutcomeEntity>{
 		} else {
 			return 1;
 		}
+	}
+
+	/* Getters and Setters */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getAddUserId() {
+		return addUserId;
+	}
+
+	public void setAddUserId(int addUserId) {
+		this.addUserId = addUserId;
+	}
+
+	public Date getAdded() {
+		return added;
+	}
+
+	public void setAdded(Date added) {
+		this.added = added;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getSeizureOutcome() {
+		return seizureOutcome;
+	}
+
+	public void setSeizureOutcome(int seizureOutcome) {
+		this.seizureOutcome = seizureOutcome;
+	}
+
+	public int getAed() {
+		return aed;
+	}
+
+	public void setAed(int aed) {
+		this.aed = aed;
+	}
+
+	public int getEeg() {
+		return eeg;
+	}
+
+	public void setEeg(int eeg) {
+		this.eeg = eeg;
+	}
+
+	public int getMri() {
+		return mri;
+	}
+
+	public void setMri(int mri) {
+		this.mri = mri;
+	}
+
+	public int getNeuropsychology() {
+		return neuropsychology;
+	}
+
+	public void setNeuropsychology(int neuropsychology) {
+		this.neuropsychology = neuropsychology;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

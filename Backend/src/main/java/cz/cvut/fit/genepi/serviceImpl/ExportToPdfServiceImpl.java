@@ -629,7 +629,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			table.addCell(new Phrase(messageSource.getMessage(
 					"label.epilepticSyndrome", null, locale), normalFont));
 			table.addCell(translateValue(
-					String.valueOf(anamnesis.getSpecificSyndromeIdcom()),
+					String.valueOf(anamnesis.getSpecificSyndrome()),
 					locale));
 		}
 		if (exportParams.isAnamnesisNonCnsComorbidity()) {

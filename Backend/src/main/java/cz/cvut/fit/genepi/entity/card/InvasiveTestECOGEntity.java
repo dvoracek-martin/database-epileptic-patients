@@ -20,174 +20,60 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
 @Table(name = "invasive_test_ecog")
-public class InvasiveTestECOGEntity implements Comparable<InvasiveTestECOGEntity> {
+public class InvasiveTestECOGEntity implements
+		Comparable<InvasiveTestECOGEntity> {
+
+	/* Autofilled fields */
+
+	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
+
+	/** The add user id. */
+	@NotNull
+	@Column(name = "add_user_id", nullable = false)
+	private int addUserId;
+
+	/** The added. */
+	@Column(name = "added", nullable = false, insertable = false)
+	private Date added;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;
+
+	@Column(name = "status", nullable = false)
+	private int status;
+
+	/* Other fields */
 
 	/** The date. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "DATE", nullable = false)
+	@Column(name = "date", nullable = false)
 	private Date date;
 
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
-	private int doctorId;
+	@Column(name = "done")
+	private boolean done;
 
-	/** The added. */
-	@Column(name = "ADDED", nullable = false, insertable = false)
-	private Date added;
-	
-	@Column(name="intraoperative_ecog")
-	private Boolean intraoperativeEcog;
-	
-	@Column(name="ecog_patterns_idcom")
-	private int ecogPatternsIdcom;
-	
-	@Column(name="ecog_cover")
+	@Size(max = 800)
+	@Column(name = "ecog_cover", length = 800)
 	private String ecogCover;
-	
-	@Column(name="after_resection_ecog_idcom")
-	private int afterResectionEcogIdcom;
-	
-	@Column(name="awake_craniotomy")
-	private Boolean awakeCraniotomy;
-	
+
+	@Column(name = "ecog_patterns")
+	private int ecogPatterns;
+
+	@Column(name = "after_resection_ecog")
+	private int afterResectionEcog;
+
 	/** The comment. */
-	@Size(max = 400)
-	@Column(name = "COMMENT", length = 400, nullable = true)
+	@Size(max = 800)
+	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
 
-	/** The deleted. */
-	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
-	private Boolean deleted;
-
-	/** The add user id. */
-	@NotNull
-	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
-	private int addUserId;
-
-	@Column(name = "STATUS", nullable = false)
-	private int status;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	public Date getAdded() {
-		return added;
-	}
-
-	public void setAdded(Date added) {
-		this.added = added;
-	}
-
-	public Boolean getIntraoperativeEcog() {
-		return intraoperativeEcog;
-	}
-
-	public void setIntraoperativeEcog(Boolean intraoperativeEcog) {
-		this.intraoperativeEcog = intraoperativeEcog;
-	}
-
-	public int getEcogPatternsIdcom() {
-		return ecogPatternsIdcom;
-	}
-
-	public void setEcogPatternsIdcom(int ecogPatternsIdcom) {
-		this.ecogPatternsIdcom = ecogPatternsIdcom;
-	}
-
-	public String getEcogCover() {
-		return ecogCover;
-	}
-
-	public void setEcogCover(String ecogCover) {
-		this.ecogCover = ecogCover;
-	}
-
-	public int getAfterResectionEcogIdcom() {
-		return afterResectionEcogIdcom;
-	}
-
-	public void setAfterResectionEcogIdcom(int afterResectionEcogIdcom) {
-		this.afterResectionEcogIdcom = afterResectionEcogIdcom;
-	}
-
-	public Boolean getAwakeCraniotomy() {
-		return awakeCraniotomy;
-	}
-
-	public void setAwakeCraniotomy(Boolean awakeCraniotomy) {
-		this.awakeCraniotomy = awakeCraniotomy;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public int getAddUserId() {
-		return addUserId;
-	}
-
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
-	public PatientEntity getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
-	
 	@Override
 	public int compareTo(InvasiveTestECOGEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
@@ -198,5 +84,95 @@ public class InvasiveTestECOGEntity implements Comparable<InvasiveTestECOGEntity
 		} else {
 			return 1;
 		}
+	}
+
+	/* Getters and Setters */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getAddUserId() {
+		return addUserId;
+	}
+
+	public void setAddUserId(int addUserId) {
+		this.addUserId = addUserId;
+	}
+
+	public Date getAdded() {
+		return added;
+	}
+
+	public void setAdded(Date added) {
+		this.added = added;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public boolean isDone() {
+		return done;
+	}
+
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public String getEcogCover() {
+		return ecogCover;
+	}
+
+	public void setEcogCover(String ecogCover) {
+		this.ecogCover = ecogCover;
+	}
+
+	public int getEcogPatterns() {
+		return ecogPatterns;
+	}
+
+	public void setEcogPatterns(int ecogPatterns) {
+		this.ecogPatterns = ecogPatterns;
+	}
+
+	public int getAfterResectionEcog() {
+		return afterResectionEcog;
+	}
+
+	public void setAfterResectionEcog(int afterResectionEcog) {
+		this.afterResectionEcog = afterResectionEcog;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

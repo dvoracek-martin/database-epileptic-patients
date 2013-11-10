@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.entity.card;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
@@ -19,29 +26,44 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  */
 @Entity
 @Table(name = "seizure")
-public class SeizureEntity implements Comparable<SeizureEntity>{
+public class SeizureEntity implements Comparable<SeizureEntity> {
+
+	/* Autofilled fields */
 
 	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
 
-	/** The date. */
-	@Column(name = "DATE", length = 7, nullable = false)
-	private Date date;
-
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
-	private int doctorId;
+	/** The add user id. */
+	@NotNull
+	@Column(name = "add_user_id", nullable = false)
+	private int addUserId;
 
 	/** The added. */
-	@Column(name = "ADDED", length = 7, nullable = false)
+	@Column(name = "added", nullable = false, insertable = false)
 	private Date added;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;
+
+	@Column(name = "status", nullable = false)
+	private int status;
+
+	/* Other fields */
+
+	/** The date. */
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
+	@Column(name = "date", nullable = false)
+	private Date date;
+
 	/** The seizure frequency idcom. */
-	@Column(name = "seizure_frequency_idcom")
-	private int seizureFrequencyIdcom;
+	@Column(name = "seizure_frequency")
+	private int seizureFrequency;
 
 	/** The secondarily generalized seizure. */
 	@Column(name = "secondarily_generalized_seizure")
@@ -51,398 +73,32 @@ public class SeizureEntity implements Comparable<SeizureEntity>{
 	@Column(name = "status_epilepticus")
 	private boolean statusEpilepticus;
 
-	/** The ssc classification idcom. */
-	@Column(name = "ssc_classification_idcom")
-	private int sscClassificationIdcom;
-
-	/** The ilae classification idcom. */
-	@Column(name = "ilae_classification_idcom")
-	private int ilaeClassificationIdcom;
+	/** The status epilepticus. */
+	@Column(name = "nonepileptic_seizures")
+	private boolean nonepilepticSeizures;
 
 	/** The seizures while awake epi. */
-	@Column(name = "seizures_while_awake_epi")
-	private int seizuresWhileAwakeEpi;
-
-	/** The seizures while awake latent. */
-	@Column(name = "seizures_while_awake_latent")
-	private int seizuresWhileAwakeLatent;
-
-	/** The seizures while awake non epi. */
-	@Column(name = "seizures_while_awake_non_epi")
-	private int seizuresWhileAwakeNonEpi;	
+	@Column(name = "seizures_while_awake")
+	private int seizuresWhileAwake;
 
 	/** The seizures while sleep epi. */
-	@Column(name = "seizures_while_sleep_epi")
-	private int seizuresWhileSleepEpi;
+	@Column(name = "seizures_while_sleep")
+	private int seizuresWhileSleep;
 
-	/** The seizures while sleep latent. */
-	@Column(name = "seizures_while_sleep_latent")
-	private int seizuresWhileSleepLatent;
-
-	/** The seizures while sleep non epi. */
-	@Column(name = "seizures_while_sleep_non_epi")
-	private int seizuresWhileSleepNonEpi;
+	/** The seizures while sleep epi. */
+	@Column(name = "seizures_while_both")
+	private int seizuresWhileBoth;
 
 	/** The comment. */
-	@Column(name = "comment")
+	@Size(max = 800)
+	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
 
-	/** The deleted. */
-	@Column(name = "deleted")
-	private int deleted;
+	/* Relations */
 
-	/** The add user id. */
-	@Column(name = "add_user_id")
-	private int addUserId;
-	
-	@Column(name = "STATUS", nullable = false)
-	private int status;
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
-	
-	public PatientEntity getPatient() {
-		return patient;
-	}
+	@OneToMany(fetch = FetchType.EAGER)
+	private List<SeizureDetailEntity> seizureDetailList;
 
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
-
-
-	/**
-	 * Gets the id.
-	 *
-	 * @return the id
-	 */
-	public int getId() {
-		return id;
-	}
-
-	/**
-	 * Sets the id.
-	 *
-	 * @param id the new id
-	 */
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	/**
-	 * Gets the date.
-	 *
-	 * @return the date
-	 */
-	public Date getDate() {
-		return date;
-	}
-
-	/**
-	 * Sets the date.
-	 *
-	 * @param date the new date
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	/**
-	 * Gets the doctor id.
-	 *
-	 * @return the doctor id
-	 */
-	public int getDoctorId() {
-		return doctorId;
-	}
-
-	/**
-	 * Sets the doctor id.
-	 *
-	 * @param doctorId the new doctor id
-	 */
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	/**
-	 * Gets the added.
-	 *
-	 * @return the added
-	 */
-	public Date getAdded() {
-		return added;
-	}
-
-	/**
-	 * Sets the added.
-	 *
-	 * @param added the new added
-	 */
-	public void setAdded(Date added) {
-		this.added = added;
-	}
-
-	/**
-	 * Gets the seizure frequency idcom.
-	 *
-	 * @return the seizure frequency idcom
-	 */
-	public int getSeizureFrequencyIdcom() {
-		return seizureFrequencyIdcom;
-	}
-
-	/**
-	 * Sets the seizure frequency idcom.
-	 *
-	 * @param seizureFrequencyIdcom the new seizure frequency idcom
-	 */
-	public void setSeizureFrequencyIdcom(int seizureFrequencyIdcom) {
-		this.seizureFrequencyIdcom = seizureFrequencyIdcom;
-	}
-
-	/**
-	 * Gets the secondarily generalized seizure.
-	 *
-	 * @return the secondarily generalized seizure
-	 */
-	public boolean getSecondarilyGeneralizedSeizure() {
-		return secondarilyGeneralizedSeizure;
-	}
-
-	/**
-	 * Sets the secondarily generalized seizure.
-	 *
-	 * @param secondarilyGeneralizedSeizure the new secondarily generalized seizure
-	 */
-	public void setSecondarilyGeneralizedSeizure(boolean secondarilyGeneralizedSeizure) {
-		this.secondarilyGeneralizedSeizure = secondarilyGeneralizedSeizure;
-	}
-
-	/**
-	 * Gets the status epilepticus.
-	 *
-	 * @return the status epilepticus
-	 */
-	public boolean getStatusEpilepticus() {
-		return statusEpilepticus;
-	}
-
-	/**
-	 * Sets the status epilepticus.
-	 *
-	 * @param statusEpilepticus the new status epilepticus
-	 */
-	public void setStatusEpilepticus(boolean statusEpilepticus) {
-		this.statusEpilepticus = statusEpilepticus;
-	}
-
-	/**
-	 * Gets the ssc classification idcom.
-	 *
-	 * @return the ssc classification idcom
-	 */
-	public int getSscClassificationIdcom() {
-		return sscClassificationIdcom;
-	}
-
-	/**
-	 * Sets the ssc classification idcom.
-	 *
-	 * @param sscClassificationIdcom the new ssc classification idcom
-	 */
-	public void setSscClassificationIdcom(int sscClassificationIdcom) {
-		this.sscClassificationIdcom = sscClassificationIdcom;
-	}
-
-	/**
-	 * Gets the ilae classification idcom.
-	 *
-	 * @return the ilae classification idcom
-	 */
-	public int getIlaeClassificationIdcom() {
-		return ilaeClassificationIdcom;
-	}
-
-	/**
-	 * Sets the ilae classification idcom.
-	 *
-	 * @param ilaeClassificationIdcom the new ilae classification idcom
-	 */
-	public void setIlaeClassificationIdcom(int ilaeClassificationIdcom) {
-		this.ilaeClassificationIdcom = ilaeClassificationIdcom;
-	}
-
-	/**
-	 * Gets the seizures while awake epi.
-	 *
-	 * @return the seizures while awake epi
-	 */
-	public int getSeizuresWhileAwakeEpi() {
-		return seizuresWhileAwakeEpi;
-	}
-
-	/**
-	 * Sets the seizures while awake epi.
-	 *
-	 * @param seizuresWhileAwakeEpi the new seizures while awake epi
-	 */
-	public void setSeizuresWhileAwakeEpi(int seizuresWhileAwakeEpi) {
-		this.seizuresWhileAwakeEpi = seizuresWhileAwakeEpi;
-	}
-
-	/**
-	 * Gets the seizures while awake latent.
-	 *
-	 * @return the seizures while awake latent
-	 */
-	public int getSeizuresWhileAwakeLatent() {
-		return seizuresWhileAwakeLatent;
-	}
-
-	/**
-	 * Sets the seizures while awake latent.
-	 *
-	 * @param seizuresWhileAwakeLatent the new seizures while awake latent
-	 */
-	public void setSeizuresWhileAwakeLatent(int seizuresWhileAwakeLatent) {
-		this.seizuresWhileAwakeLatent = seizuresWhileAwakeLatent;
-	}
-
-	/**
-	 * Gets the seizures while awake non epi.
-	 *
-	 * @return the seizures while awake non epi
-	 */
-	public int getSeizuresWhileAwakeNonEpi() {
-		return seizuresWhileAwakeNonEpi;
-	}
-
-	/**
-	 * Sets the seizures while awake non epi.
-	 *
-	 * @param seizuresWhileAwakeNonEpi the new seizures while awake non epi
-	 */
-	public void setSeizuresWhileAwakeNonEpi(int seizuresWhileAwakeNonEpi) {
-		this.seizuresWhileAwakeNonEpi = seizuresWhileAwakeNonEpi;
-	}
-
-	/**
-	 * Gets the seizures while sleep epi.
-	 *
-	 * @return the seizures while sleep epi
-	 */
-	public int getSeizuresWhileSleepEpi() {
-		return seizuresWhileSleepEpi;
-	}
-
-	/**
-	 * Sets the seizures while sleep epi.
-	 *
-	 * @param seizuresWhileSleepEpi the new seizures while sleep epi
-	 */
-	public void setSeizuresWhileSleepEpi(int seizuresWhileSleepEpi) {
-		this.seizuresWhileSleepEpi = seizuresWhileSleepEpi;
-	}
-
-	/**
-	 * Gets the seizures while sleep latent.
-	 *
-	 * @return the seizures while sleep latent
-	 */
-	public int getSeizuresWhileSleepLatent() {
-		return seizuresWhileSleepLatent;
-	}
-
-	/**
-	 * Sets the seizures while sleep latent.
-	 *
-	 * @param seizuresWhileSleepLatent the new seizures while sleep latent
-	 */
-	public void setSeizuresWhileSleepLatent(int seizuresWhileSleepLatent) {
-		this.seizuresWhileSleepLatent = seizuresWhileSleepLatent;
-	}
-
-	/**
-	 * Gets the seizures while sleep non epi.
-	 *
-	 * @return the seizures while sleep non epi
-	 */
-	public int getSeizuresWhileSleepNonEpi() {
-		return seizuresWhileSleepNonEpi;
-	}
-
-	/**
-	 * Sets the seizures while sleep non epi.
-	 *
-	 * @param seizuresWhileSleepNonEpi the new seizures while sleep non epi
-	 */
-	public void setSeizuresWhileSleepNonEpi(int seizuresWhileSleepNonEpi) {
-		this.seizuresWhileSleepNonEpi = seizuresWhileSleepNonEpi;
-	}
-
-	/**
-	 * Gets the comment.
-	 *
-	 * @return the comment
-	 */
-	public String getComment() {
-		return comment;
-	}
-
-	/**
-	 * Sets the comment.
-	 *
-	 * @param comment the new comment
-	 */
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	/**
-	 * Gets the deleted.
-	 *
-	 * @return the deleted
-	 */
-	public int getDeleted() {
-		return deleted;
-	}
-
-	/**
-	 * Sets the deleted.
-	 *
-	 * @param deleted the new deleted
-	 */
-	public void setDeleted(int deleted) {
-		this.deleted = deleted;
-	}
-
-	/**
-	 * Gets the adds the user id.
-	 *
-	 * @return the adds the user id
-	 */
-	public int getAddUserId() {
-		return addUserId;
-	}
-
-	/**
-	 * Sets the adds the user id.
-	 *
-	 * @param addUserId the new adds the user id
-	 */
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
 	@Override
 	public int compareTo(SeizureEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
@@ -454,5 +110,127 @@ public class SeizureEntity implements Comparable<SeizureEntity>{
 			return 1;
 		}
 	}
-	
+
+	/* Getters and Setters */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getAddUserId() {
+		return addUserId;
+	}
+
+	public void setAddUserId(int addUserId) {
+		this.addUserId = addUserId;
+	}
+
+	public Date getAdded() {
+		return added;
+	}
+
+	public void setAdded(Date added) {
+		this.added = added;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getSeizureFrequency() {
+		return seizureFrequency;
+	}
+
+	public void setSeizureFrequency(int seizureFrequency) {
+		this.seizureFrequency = seizureFrequency;
+	}
+
+	public boolean isSecondarilyGeneralizedSeizure() {
+		return secondarilyGeneralizedSeizure;
+	}
+
+	public void setSecondarilyGeneralizedSeizure(
+			boolean secondarilyGeneralizedSeizure) {
+		this.secondarilyGeneralizedSeizure = secondarilyGeneralizedSeizure;
+	}
+
+	public boolean isStatusEpilepticus() {
+		return statusEpilepticus;
+	}
+
+	public void setStatusEpilepticus(boolean statusEpilepticus) {
+		this.statusEpilepticus = statusEpilepticus;
+	}
+
+	public boolean isNonepilepticSeizures() {
+		return nonepilepticSeizures;
+	}
+
+	public void setNonepilepticSeizures(boolean nonepilepticSeizures) {
+		this.nonepilepticSeizures = nonepilepticSeizures;
+	}
+
+	public int getSeizuresWhileAwake() {
+		return seizuresWhileAwake;
+	}
+
+	public void setSeizuresWhileAwake(int seizuresWhileAwake) {
+		this.seizuresWhileAwake = seizuresWhileAwake;
+	}
+
+	public int getSeizuresWhileSleep() {
+		return seizuresWhileSleep;
+	}
+
+	public void setSeizuresWhileSleep(int seizuresWhileSleep) {
+		this.seizuresWhileSleep = seizuresWhileSleep;
+	}
+
+	public int getSeizuresWhileBoth() {
+		return seizuresWhileBoth;
+	}
+
+	public void setSeizuresWhileBoth(int seizuresWhileBoth) {
+		this.seizuresWhileBoth = seizuresWhileBoth;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public List<SeizureDetailEntity> getSeizureDetailList() {
+		return seizureDetailList;
+	}
+
+	public void setSeizureDetailList(List<SeizureDetailEntity> seizureDetailList) {
+		this.seizureDetailList = seizureDetailList;
+	}
 }

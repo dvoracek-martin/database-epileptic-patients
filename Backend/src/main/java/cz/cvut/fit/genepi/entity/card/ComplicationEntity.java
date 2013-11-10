@@ -12,131 +12,62 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "COMPLICATION")
-public class ComplicationEntity implements Comparable<ComplicationEntity>{
+@Table(name = "complication")
+public class ComplicationEntity implements Comparable<ComplicationEntity> {
+
+	/* Autofilled fields */
+
+	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
+
+	/** The add user id. */
+	@NotNull
+	@Column(name = "add_user_id", nullable = false)
+	private int addUserId;
+
+	/** The added. */
+	@Column(name = "added", nullable = false, insertable = false)
+	private Date added;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "patient_id")
+	private PatientEntity patient;
+
+	@Column(name = "status", nullable = false)
+	private int status;
+
+	/* Other fields */
 
 	/** The date. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "DATE", nullable = false)
+	@Column(name = "date", nullable = false)
 	private Date date;
 
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
-	private int doctorId;
+	@Column(name = "with_complication", nullable = false)
+	private boolean withComplication;
 
-	/** The added. */
-	@Column(name = "ADDED", nullable = false, insertable = false)
-	private Date added;
+	@Column(name = "complication_type")
+	private int complicationType;
 
-	@Column(name = "complication_idcom")
-	private int complicationIdcom;
-	
-	@Column(name = "comment")
+	@Column(name = "complication")
+	private int complication;
+
+	/** The comment. */
+	@Size(max = 800)
+	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
-	
-	@Column(name = "deleted")
-	private Boolean deleted;
-	
-	@NotNull
-	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
-	private int addUserId;
-
-	@Column(name = "STATUS", nullable = false)
-	private int status;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public int getDoctorId() {
-		return doctorId;
-	}
-
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
-
-	public Date getAdded() {
-		return added;
-	}
-
-	public void setAdded(Date added) {
-		this.added = added;
-	}
-
-	public int getComplicationIdcom() {
-		return complicationIdcom;
-	}
-
-	public void setComplicationIdcom(int complicationIdcom) {
-		this.complicationIdcom = complicationIdcom;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public int getAddUserId() {
-		return addUserId;
-	}
-
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	public PatientEntity getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
 
 	@Override
 	public int compareTo(ComplicationEntity o) {
@@ -149,5 +80,86 @@ public class ComplicationEntity implements Comparable<ComplicationEntity>{
 			return 1;
 		}
 	}
-	
+
+	/* Getters and Setters */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getAddUserId() {
+		return addUserId;
+	}
+
+	public void setAddUserId(int addUserId) {
+		this.addUserId = addUserId;
+	}
+
+	public Date getAdded() {
+		return added;
+	}
+
+	public void setAdded(Date added) {
+		this.added = added;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public boolean isWithComplication() {
+		return withComplication;
+	}
+
+	public void setWithComplication(boolean withComplication) {
+		this.withComplication = withComplication;
+	}
+
+	public int getComplicationType() {
+		return complicationType;
+	}
+
+	public void setComplicationType(int complicationType) {
+		this.complicationType = complicationType;
+	}
+
+	public int getComplication() {
+		return complication;
+	}
+
+	public void setComplication(int complication) {
+		this.complication = complication;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }

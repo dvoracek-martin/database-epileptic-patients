@@ -291,7 +291,7 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td><strong><spring:message code="label.FMRIDetails"/></td>
+											<td><spring:message code="label.FMRIDetails"/></td>
 											<td>${diagnosticTestMRI.detailsFmri}</td>
 										</tr>
 										<tr class="info">

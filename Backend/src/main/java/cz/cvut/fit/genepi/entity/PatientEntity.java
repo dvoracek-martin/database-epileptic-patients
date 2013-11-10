@@ -27,7 +27,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.card.ComplicationEntity;
-import cz.cvut.fit.genepi.entity.card.DiagnosticTestEEGEntity;
+import cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity;
 import cz.cvut.fit.genepi.entity.card.HistologyEntity;
 import cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity;
@@ -46,68 +46,49 @@ import cz.cvut.fit.genepi.util.Sorter;
  * The Class PatientEntity.
  */
 @Entity
-@Table(name = "PATIENT")
+@Table(name = "patient")
 public class PatientEntity {
 
 	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
 
 	/** The nin. */
 	@Pattern(regexp = "[0-9]*")
 	@Size(max = 10)
-	@Column(name = "NIN", length = 10, nullable = true)
+	@Column(name = "nin", length = 10, nullable = true)
 	private String nin;
 
 	/** The birthday. */
 	@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "BIRTHDAY", nullable = false)
+	@Column(name = "birthday", nullable = false)
 	private Date birthday;
 
 	/** The gender. */
 	@NotBlank
 	// @NotNull
 	@Size(max = 10)
-	@Column(name = "GENDER", length = 10, nullable = false)
+	@Column(name = "gender", length = 10, nullable = false)
 	private String gender;
 
-	/**
-	 * The doctor id.
-	 * 
-	 * @Column(name = "DOCTOR_ID", precision = 6, scale = 0, nullable = true)
-	 *              private int doctorId;
-	 */
-
 	/** The deleted. */
-	@Column(name = "DELETED", precision = 1, scale = 0, nullable = true)
-	private Boolean deleted;
+	@Column(name = "status", precision = 1, scale = 0, nullable = true)
+	private int status;
 
 	/** The checked. */
-	@Column(name = "CHECKED", precision = 1, scale = 0, nullable = true)
-	private Boolean checked;
-
-	/**
-	 * The contact id.
-	 * 
-	 * @Column(name = "CONTACT_ID", precision = 6, scale = 0, nullable = true,
-	 *              insertable = false, updatable = false) private int
-	 *              contactId;
-	 */
-
-	/** The comment id. */
-	/*
-	 * @Column(name = "COMMENT_ID", precision = 6, scale = 0, nullable = true)
-	 * private int commentId;
-	 */
+	@Column(name = "checked", precision = 1, scale = 0, nullable = true)
+	private boolean checked;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "doctor_id")
 	private UserEntity doctor;
-	
+
+	/* Relations */
+
 	/** The contact. */
 	@Valid
 	@OneToOne
@@ -125,7 +106,7 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestEEGEntity> diagnosticTestEEGList;
+	private Set<DiagnosticTestScalpEEGEntity> diagnosticTestScalpEEGList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -294,16 +275,18 @@ public class PatientEntity {
 		this.diagnosticTestMRIList = converter.toSet(diagnosticTestMRIList);
 	}
 
-	public List<DiagnosticTestEEGEntity> getDiagnosticTestEEGList() {
-		CollectionConverter<DiagnosticTestEEGEntity> converter = new CollectionConverter<>();
-		Sorter<DiagnosticTestEEGEntity> sorter = new Sorter<>();
-		return sorter.sortByDate(converter.toList(this.diagnosticTestEEGList));
+	public List<DiagnosticTestScalpEEGEntity> getDiagnosticTestEEGList() {
+		CollectionConverter<DiagnosticTestScalpEEGEntity> converter = new CollectionConverter<>();
+		Sorter<DiagnosticTestScalpEEGEntity> sorter = new Sorter<>();
+		return sorter.sortByDate(converter
+				.toList(this.diagnosticTestScalpEEGList));
 	}
 
 	public void setDiagnosticTestEEGList(
-			List<DiagnosticTestEEGEntity> diagnosticTestEEGList) {
-		CollectionConverter<DiagnosticTestEEGEntity> converter = new CollectionConverter<>();
-		this.diagnosticTestEEGList = converter.toSet(diagnosticTestEEGList);
+			List<DiagnosticTestScalpEEGEntity> diagnosticTestEEGList) {
+		CollectionConverter<DiagnosticTestScalpEEGEntity> converter = new CollectionConverter<>();
+		this.diagnosticTestScalpEEGList = converter
+				.toSet(diagnosticTestEEGList);
 	}
 
 	public List<InvasiveTestECOGEntity> getInvasiveTestECOGList() {
@@ -397,49 +380,11 @@ public class PatientEntity {
 	}
 
 	/**
-	 * Gets the doctor id.
-	 * 
-	 * @return the doctor id
-	 */
-	/*public int getDoctorId() {
-		return doctorId;
-	}*/
-
-	/**
-	 * Sets the doctor id.
-	 * 
-	 * @param doctorId
-	 *            the new doctor id
-	 */
-	/*public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}*/
-
-	/**
-	 * Gets the deleted.
-	 * 
-	 * @return the deleted
-	 */
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	/**
-	 * Sets the deleted.
-	 * 
-	 * @param deleted
-	 *            the new deleted
-	 */
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	/**
 	 * Gets the checked.
 	 * 
 	 * @return the checked
 	 */
-	public Boolean getChecked() {
+	public boolean getChecked() {
 		return checked;
 	}
 
@@ -449,46 +394,9 @@ public class PatientEntity {
 	 * @param checked
 	 *            the new checked
 	 */
-	public void setChecked(Boolean checked) {
+	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
-
-	/**
-	 * Gets the contact id.
-	 * 
-	 * @return the contact id
-	 */
-	/*public int getContactId() {
-		return contactId;
-	}*/
-
-	/**
-	 * Sets the contact id.
-	 * 
-	 * @param contactId
-	 *            the new contact id
-	 */
-	/*public void setContactId(int contactId) {
-		this.contactId = contactId;
-	}*/
-
-	/**
-	 * Gets the comment id.
-	 * 
-	 * @return the comment id
-	 */
-	/*
-	 * public int getCommentId() { return commentId; }
-	 */
-	/**
-	 * Sets the comment id.
-	 * 
-	 * @param commentId
-	 *            the new comment id
-	 */
-	/*
-	 * public void setCommentId(int commentId) { this.commentId = commentId; }
-	 */
 
 	/**
 	 * Gets the contact.
@@ -516,5 +424,5 @@ public class PatientEntity {
 	public void setDoctor(UserEntity doctor) {
 		this.doctor = doctor;
 	}
-	
+
 }

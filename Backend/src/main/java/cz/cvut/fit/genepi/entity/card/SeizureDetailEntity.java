@@ -19,8 +19,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "histology")
-public class HistologyEntity implements Comparable<HistologyEntity> {
+@Table(name = "seizure_detail")
+public class SeizureDetailEntity implements Comparable<SeizureDetailEntity> {
 
 	/* Autofilled fields */
 
@@ -42,6 +42,10 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "seizure_id")
+	private int seizure;
 
 	@Column(name = "status", nullable = false)
 	private int status;
@@ -55,11 +59,11 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 	@Column(name = "date", nullable = false)
 	private Date date;
 
-	@Column(name = "histopathology")
-	private int histopathology;
+	@Column(name = "ssc_classification", nullable = true)
+	private int sscClassification;
 
-	@Column(name = "histopathology_fcd_clasification")
-	private int histopathologyFcdClasification;
+	@Column(name = "ilae_classification", nullable = true)
+	private int ilaeClassification;
 
 	/** The comment. */
 	@Size(max = 800)
@@ -67,7 +71,7 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 	private String comment;
 
 	@Override
-	public int compareTo(HistologyEntity o) {
+	public int compareTo(SeizureDetailEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
 		if (comparison > 0) {
 			return -1;
@@ -128,21 +132,20 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 		this.date = date;
 	}
 
-	public int getHistopathology() {
-		return histopathology;
+	public int getSscClassification() {
+		return sscClassification;
 	}
 
-	public void setHistopathology(int histopathology) {
-		this.histopathology = histopathology;
+	public void setSscClassification(int sscClassification) {
+		this.sscClassification = sscClassification;
 	}
 
-	public int getHistopathologyFcdClasification() {
-		return histopathologyFcdClasification;
+	public int getIlaeClassification() {
+		return ilaeClassification;
 	}
 
-	public void setHistopathologyFcdClasification(
-			int histopathologyFcdClasification) {
-		this.histopathologyFcdClasification = histopathologyFcdClasification;
+	public void setIlaeClassification(int ilaeClassification) {
+		this.ilaeClassification = ilaeClassification;
 	}
 
 	public String getComment() {
@@ -151,5 +154,13 @@ public class HistologyEntity implements Comparable<HistologyEntity> {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+	public int getSeizure() {
+		return seizure;
+	}
+
+	public void setSeizure(int seizure) {
+		this.seizure = seizure;
 	}
 }

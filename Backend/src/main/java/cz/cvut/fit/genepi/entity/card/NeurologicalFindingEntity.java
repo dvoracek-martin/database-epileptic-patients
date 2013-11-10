@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -19,170 +20,59 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
 @Table(name = "neurological_finding")
-public class NeurologicalFindingEntity implements Comparable<NeurologicalFindingEntity>{
+public class NeurologicalFindingEntity implements
+		Comparable<NeurologicalFindingEntity> {
+
+	/* Autofilled fields */
+
+	/** The id. */
 	@Id
-	@Column(name = "ID", precision = 6, scale = 0, nullable = false)
+	@Column(name = "id", nullable = false)
 	@GeneratedValue
 	private int id;
-	
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Past
-	@NotNull
-	@Column(name = "DATE", nullable = false)
-	private Date date;
 
-	/** The doctor id. */
-	@Column(name = "DOCTOR_ID", length = 6, nullable = true)
-	private int doctorId;
+	/** The add user id. */
+	@NotNull
+	@Column(name = "add_user_id", nullable = false)
+	private int addUserId;
 
 	/** The added. */
-	@Column(name = "ADDED", nullable = false, insertable = false)
+	@Column(name = "added", nullable = false, insertable = false)
 	private Date added;
-	
-	@Column(name="hemisphere_dominance_idcom")
-	private int hemisphereDominanceIdcom;
-	
-	@Column(name="abnormal_neurological_finding")
-	private boolean abnormalNeurologicalFinding;
 
-	@Column (name ="neurological_finding_detail", nullable=false)
-	private String neurologicalFindingDetail;
-
-	
-	@Column(name="hemiparesis")
-	private boolean hemiparesis;
-	
-	@Column(name="visual_cut")
-	private boolean visualCut;
-	
-	@Column(name="comment")
-	private String comment;
-	
-	@Column(name="deleted")
-	private Boolean deleted;
-	
-	@NotNull
-	@Column(name = "ADD_USER_ID", precision = 6, scale = 0, nullable = false)
-	private int addUserId;
-	
-	@Column(name = "STATUS", nullable = false)
-	private int status;
-		
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "patient_id")
 	private PatientEntity patient;
 
-	public int getId() {
-		return id;
-	}
+	@Column(name = "status", nullable = false)
+	private int status;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	/* Other fields */
 
-	public Date getDate() {
-		return date;
-	}
+	/** The date. */
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
+	@Column(name = "date", nullable = false)
+	private Date date;
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	@Column(name = "hemisphere_dominance")
+	private int hemisphereDominance;
 
-	public int getDoctorId() {
-		return doctorId;
-	}
+	@Column(name = "abnormal_neurological_finding")
+	private boolean abnormalNeurologicalFinding;
 
-	public void setDoctorId(int doctorId) {
-		this.doctorId = doctorId;
-	}
+	@Column(name = "hemiparesis")
+	private boolean hemiparesis;
 
-	public Date getAdded() {
-		return added;
-	}
+	@Column(name = "visual_field_defects")
+	private boolean visualFieldDefects;
 
-	public void setAdded(Date added) {
-		this.added = added;
-	}
+	/** The comment. */
+	@Size(max = 800)
+	@Column(name = "comment", length = 800, nullable = true)
+	private String comment;
 
-	public int getHemisphereDominanceIdcom() {
-		return hemisphereDominanceIdcom;
-	}
-
-	public void setHemisphereDominanceIdcom(int hemisphereDominanceIdcom) {
-		this.hemisphereDominanceIdcom = hemisphereDominanceIdcom;
-	}
-
-	public boolean getAbnormalNeurologicalFinding() {
-		return abnormalNeurologicalFinding;
-	}
-
-	public void setAbnormalNeurologicalFinding(boolean abnormalNeurologicalFinding) {
-		this.abnormalNeurologicalFinding = abnormalNeurologicalFinding;
-	}
-	
-	public String getNeurologicalFindingDetail() {
-		return neurologicalFindingDetail;
-	}
-
-	public void setNeurologicalFindingDetail(String neurologicalFindingDetail) {
-		this.neurologicalFindingDetail = neurologicalFindingDetail;
-	}
-
-	public boolean getHemiparesis() {
-		return hemiparesis;
-	}
-
-	public void setHemiparesis(boolean hemiparesis) {
-		this.hemiparesis = hemiparesis;
-	}
-
-	public boolean getVisualCut() {
-		return visualCut;
-	}
-
-	public void setVisualCut(boolean visualCut) {
-		this.visualCut = visualCut;
-	}
-
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-	public Boolean getDeleted() {
-		return deleted;
-	}
-
-	public void setDeleted(Boolean deleted) {
-		this.deleted = deleted;
-	}
-
-	public int getAddUserId() {
-		return addUserId;
-	}
-
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
-	public int getStatus() {
-		return status;
-	}
-
-	public void setStatus(int status) {
-		this.status = status;
-	}
-	
-	public PatientEntity getPatient() {
-		return patient;
-	}
-
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}	
-	
 	@Override
 	public int compareTo(NeurologicalFindingEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
@@ -193,5 +83,96 @@ public class NeurologicalFindingEntity implements Comparable<NeurologicalFinding
 		} else {
 			return 1;
 		}
+	}
+
+	/* Getters and Setters */
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public int getAddUserId() {
+		return addUserId;
+	}
+
+	public void setAddUserId(int addUserId) {
+		this.addUserId = addUserId;
+	}
+
+	public Date getAdded() {
+		return added;
+	}
+
+	public void setAdded(Date added) {
+		this.added = added;
+	}
+
+	public PatientEntity getPatient() {
+		return patient;
+	}
+
+	public void setPatient(PatientEntity patient) {
+		this.patient = patient;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	public int getHemisphereDominance() {
+		return hemisphereDominance;
+	}
+
+	public void setHemisphereDominance(int hemisphereDominance) {
+		this.hemisphereDominance = hemisphereDominance;
+	}
+
+	public boolean isAbnormalNeurologicalFinding() {
+		return abnormalNeurologicalFinding;
+	}
+
+	public void setAbnormalNeurologicalFinding(
+			boolean abnormalNeurologicalFinding) {
+		this.abnormalNeurologicalFinding = abnormalNeurologicalFinding;
+	}
+
+	public boolean isHemiparesis() {
+		return hemiparesis;
+	}
+
+	public void setHemiparesis(boolean hemiparesis) {
+		this.hemiparesis = hemiparesis;
+	}
+
+	public boolean isVisualFieldDefects() {
+		return visualFieldDefects;
+	}
+
+	public void setVisualFieldDefects(boolean visualFieldDefects) {
+		this.visualFieldDefects = visualFieldDefects;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 }

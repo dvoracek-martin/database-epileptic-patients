@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
-import cz.cvut.fit.genepi.entity.card.DiagnosticTestEEGEntity;
+import cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
-import cz.cvut.fit.genepi.service.card.DiagnosticTestEEGService;
+import cz.cvut.fit.genepi.service.card.DiagnosticTestScalpEEGService;
 
 @Controller
-public class DiagnosticTestEEGController {
+public class DiagnosticTestScalpEEGController {
 
 	@Autowired
 	PatientService patientService;
@@ -33,9 +33,9 @@ public class DiagnosticTestEEGController {
 	RoleService roleService;
 
 	@Autowired
-	DiagnosticTestEEGService diagnosticTestEEGService;
+	DiagnosticTestScalpEEGService diagnosticTestScalpEEGService;
 
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/create", method = RequestMethod.GET)
 	public String diagnosticTestEEGCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
@@ -48,7 +48,7 @@ public class DiagnosticTestEEGController {
 		model.addAttribute("doctors", doctors);
 
 		model.addAttribute("patient", patient);
-		model.addAttribute("diagnosticTestEEG", new DiagnosticTestEEGEntity());
+		model.addAttribute("diagnosticTestEEG", new DiagnosticTestScalpEEGEntity());
 		return "patient/diagnosticTestEEG/createView";
 	}
 
@@ -65,14 +65,14 @@ public class DiagnosticTestEEGController {
 	 */
 	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/create", method = RequestMethod.POST)
 	public String diagnosticTestEEGCreatePOST(
-			@ModelAttribute("diagnosticTestEEG") @Valid DiagnosticTestEEGEntity diagnosticTestEEG,
+			@ModelAttribute("diagnosticTestEEG") @Valid DiagnosticTestScalpEEGEntity diagnosticTestEEG,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
 			return "patient/diagnosticTestEEG/createView";
 		} else {
 			diagnosticTestEEG.setPatient(patientService.findByID(
 					PatientEntity.class, patientID));
-			diagnosticTestEEGService.save(diagnosticTestEEG);
+			diagnosticTestScalpEEGService.save(diagnosticTestEEG);
 			return "redirect:/patient/" + patientID + "/diagnosticTestEEG/list";
 		}
 	}
@@ -83,8 +83,8 @@ public class DiagnosticTestEEGController {
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("diagnosticTestEEGID") Integer diagnosticTestEEGID) {
 
-		diagnosticTestEEGService.delete(diagnosticTestEEGService.findByID(
-				DiagnosticTestEEGEntity.class, diagnosticTestEEGID));
+		diagnosticTestScalpEEGService.delete(diagnosticTestScalpEEGService.findByID(
+				DiagnosticTestScalpEEGEntity.class, diagnosticTestEEGID));
 		return "redirect:/patient/" + patientID + "/diagnosticTestEEG/list";
 	}
 

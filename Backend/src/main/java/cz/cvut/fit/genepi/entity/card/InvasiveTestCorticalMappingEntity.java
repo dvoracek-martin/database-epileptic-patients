@@ -19,8 +19,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "invasive_test_eeg")
-public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> {
+@Table(name = "seizure_detail")
+public class InvasiveTestCorticalMappingEntity implements
+		Comparable<InvasiveTestCorticalMappingEntity> {
 
 	/* Autofilled fields */
 
@@ -58,26 +59,8 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 	@Column(name = "done")
 	private boolean done;
 
-	@Column(name = "intracranial_electrodes")
-	private int intracranialElectrodes;
-
-	@Column(name = "localization_intracranial_electrodes")
-	private String localizationIntracranialElectrodes;
-
-	@Column(name = "invasive_eeg_slow")
-	private int invasiveEegSlow;
-
-	@Column(name = "invasive_eeg_interictal_spikes")
-	private int invasiveEegInterictalSpikes;
-
-	@Column(name = "invasive_eeg_status_epilepticus")
-	private boolean invasiveEegStatusEpilepticus;
-
-	@Column(name = "invasive_ictal_eeg_patterns")
-	private int invasiveIctalEegPatterns;
-
-	@Column(name = "localization_invasive_eeg_interictal_spikes")
-	private String localizationInvasiveEegInterictalSpikes;
+	@Column(name = "cortical_mapping")
+	private int corticalMapping;
 
 	/** The comment. */
 	@Size(max = 800)
@@ -85,7 +68,7 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 	private String comment;
 
 	@Override
-	public int compareTo(InvasiveTestEEGEntity o) {
+	public int compareTo(InvasiveTestCorticalMappingEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
 		if (comparison > 0) {
 			return -1;
@@ -154,63 +137,12 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 		this.done = done;
 	}
 
-	public int getIntracranialElectrodes() {
-		return intracranialElectrodes;
+	public int getCorticalMapping() {
+		return corticalMapping;
 	}
 
-	public void setIntracranialElectrodes(int intracranialElectrodes) {
-		this.intracranialElectrodes = intracranialElectrodes;
-	}
-
-	public String getLocalizationIntracranialElectrodes() {
-		return localizationIntracranialElectrodes;
-	}
-
-	public void setLocalizationIntracranialElectrodes(
-			String localizationIntracranialElectrodes) {
-		this.localizationIntracranialElectrodes = localizationIntracranialElectrodes;
-	}
-
-	public int getInvasiveEegSlow() {
-		return invasiveEegSlow;
-	}
-
-	public void setInvasiveEegSlow(int invasiveEegSlow) {
-		this.invasiveEegSlow = invasiveEegSlow;
-	}
-
-	public int getInvasiveEegInterictalSpikes() {
-		return invasiveEegInterictalSpikes;
-	}
-
-	public void setInvasiveEegInterictalSpikes(int invasiveEegInterictalSpikes) {
-		this.invasiveEegInterictalSpikes = invasiveEegInterictalSpikes;
-	}
-
-	public boolean isInvasiveEegStatusEpilepticus() {
-		return invasiveEegStatusEpilepticus;
-	}
-
-	public void setInvasiveEegStatusEpilepticus(
-			boolean invasiveEegStatusEpilepticus) {
-		this.invasiveEegStatusEpilepticus = invasiveEegStatusEpilepticus;
-	}
-
-	public int getInvasiveIctalEegPatterns() {
-		return invasiveIctalEegPatterns;
-	}
-
-	public void setInvasiveIctalEegPatterns(int invasiveIctalEegPatterns) {
-		this.invasiveIctalEegPatterns = invasiveIctalEegPatterns;
-	}
-
-	public String getLocalizationInvasiveEegInterictalSpikes() {
-		return localizationInvasiveEegInterictalSpikes;
-	}
-
-	public void setLocalizationInvasiveEegInterictalSpikes(
-			String localizationInvasiveEegInterictalSpikes) {
-		this.localizationInvasiveEegInterictalSpikes = localizationInvasiveEegInterictalSpikes;
+	public void setCorticalMapping(int corticalMapping) {
+		this.corticalMapping = corticalMapping;
 	}
 
 	public String getComment() {
