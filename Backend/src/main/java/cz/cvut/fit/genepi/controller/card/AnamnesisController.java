@@ -184,7 +184,7 @@ public class AnamnesisController {
 	}
 
 	/**
-	 * Handles the POST request to hide anamnesis.
+	 * Handles the GET request to hide anamnesis.
 	 * 
 	 * @param patientId
 	 *            the id of a patient whom we are creating an anamnesis.
@@ -199,7 +199,7 @@ public class AnamnesisController {
 	 * 
 	 * @return the address to which the user will be redirected.
 	 */
-	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/hide", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/hide", method = RequestMethod.GET)
 	public String anamnesisDeleteGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
@@ -207,6 +207,34 @@ public class AnamnesisController {
 		// TODO: implement hide
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
+		return "redirect:/patient/" + patientId + "/anamnesis/list";
+	}
+	
+	/**
+	 * Handles the GET request to unhide anamnesis.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an anamnesis.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/unhide", method = RequestMethod.GET)
+	public String anamnesisUnhideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
+			Model model) {
+		// TODO: implement unhide
+		anamnesisService.delete(anamnesisService.findByID(
+				AnamnesisEntity.class, anamnesisId));
+		//TODO: address to get back to admin module where is list od hidden records.
 		return "redirect:/patient/" + patientId + "/anamnesis/list";
 	}
 
