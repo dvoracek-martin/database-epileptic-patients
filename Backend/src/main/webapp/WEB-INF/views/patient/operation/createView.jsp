@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Operace</h2>
+				<h2><spring:message code="label.operation"/></h2>
 			</div>
 
 			<table class="table">
@@ -71,7 +71,7 @@
 						action="/GENEPI/patient/${patientID}/operation/create" commandName="operation">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong><spring:message code="label.dateOfContractAward"/></strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,74 +80,76 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="dateOperation"><strong><spring:message code="label.dateOfOperation"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
+    					<form:input path="dateOperation" id="dateOperation" type="text" class="input-medium datepicker" />
+						<form:errors path="dateOperation" cssClass="error">
+						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="typeOperationsIdcom"><strong>Typ operace</strong></label>
+    				<label class="control-label" for="typeOperationsIdcom"><strong><spring:message code="label.typeOperations"/></strong></label>
     				<div class="controls">
     					<form:select path="typeOperationsIdcom" id="typeOperationsIdcom" type="text" class="input-large">
 							<form:option value="1">
 								Diskonekce
 							</form:option>
 							<form:option value="2">
-								Hemisferektomie
+								<spring:message code="label.hemispherectomy"/>
 							</form:option>
 							<form:option value="3">
-								Kortikální resekce
+								<spring:message code="label.individualResection"/>
 							</form:option>
 							<form:option value="4">
+								<spring:message code="label.corticalResection"/>
+							</form:option>
+							<form:option value="5">
 								Lesionektomie
 							</form:option>	
-							<form:option value="5">
+							<form:option value="6">
 								Rozšíření Lesionektomie
 							</form:option>
-							<form:option value="6">
-								Standardizované resekce
-							</form:option>
 							<form:option value="7">
-								Tailored resekce
+								<spring:message code="label.standardizedResection"/>
 							</form:option>
 							<form:option value="8">
-								Zákrok gamma nožem
+								<spring:message code="label.tailoredResection"/>
+							</form:option>
+							<form:option value="9">
+								<spring:message code="label.gammaKnifeSurgery"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="rangeOperationsIdcom"><strong>Rozsah operace</strong></label>
+    				<label class="control-label" for="rangeOperationsIdcom"><strong><spring:message code="label.rangeOperations"/></strong></label>
     				<div class="controls">
     					<form:select path="rangeOperationsIdcom" id="rangeOperationsIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Fokální resekce
+								<spring:message code="label.withoutResection"/>
 							</form:option>
 							<form:option value="2">
-								Hemisferektomie
+								<spring:message code="label.focalResection"/>
 							</form:option>
 							<form:option value="3">
-								Jednolobární resekce
+								<spring:message code="label.hemispherectomy"/>
 							</form:option>
 							<form:option value="4">
-								Multilobární resekce
+								Jednolobární <spring:message code="label.resection"/>
+							</form:option>
+							<form:option value="5">
+								Multilobární <spring:message code="label.resection"/>
 							</form:option>	
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationOperations"><strong>Lokalizace operace</strong></label>
+    				<label class="control-label" for="localizationOperations"><strong><spring:message code="label.localizationOperations"/></strong></label>
     				<div class="controls">
-    					<form:input type="text" path="localizationOperations" input="localizationOperations" class="input-medium" value="pravá centrální krajina" />
+    					<form:textarea path="localizationOperations" id="localizationOperations" />
 						<form:errors path="localizationOperations" cssClass="error">
 						</form:errors>
     				</div>
@@ -163,7 +165,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="colostomy"><strong>Kalostomie</strong></label>
+    				<label class="control-label" for="colostomy"><strong><spring:message code="label.calostomy"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="colostomy" input="colostomy" class="input-large" />
 						<form:errors path="colostomy" cssClass="error">
@@ -181,7 +183,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="VNSImplantationDate"><strong>Datum imlantace VNS</strong></label>
+    				<label class="control-label" for="VNSImplantationDate"><strong><spring:message code="label.VNSImplantationDate"/></strong></label>
     				<div class="controls">
     					<form:input path="VNSImplantationDate" id="VNSImplantationDate" type="text" class="input-medium datepicker" />
 						<form:errors path="VNSImplantationDate" cssClass="error">
@@ -190,16 +192,16 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="operationDetails"><strong>Detail operace</strong></label>
+    				<label class="control-label" for="operationDetails"><strong><spring:message code="label.operationDetails"/></strong></label>
     				<div class="controls">
-    					<form:input type="text" path="operationDetails" input="operationDetails" class="input-medium" value="resekce dysplastické léze + minimální přesah do okolí (centrální krajina), vedená výsledky invazivního monitorování + neuronavigací" />
+    					<form:textarea path="operationDetails" id="operationDetails" />
 						<form:errors path="operationDetails" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="completeResection"><strong>Resekce kompletní</strong></label>
+    				<label class="control-label" for="completeResection"><strong><spring:message code="label.completeResection"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="completeResection" input="completeResection" class="input-block-level" />
 						<form:errors path="completeResection" cssClass="error">
@@ -208,7 +210,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

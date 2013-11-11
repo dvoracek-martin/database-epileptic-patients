@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Farmakoterapie</h2>
+				<h2><spring:message code="label.pharmacotherapy"/></h2>
 			</div>
 
 			<table class="table">
@@ -173,16 +173,21 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="effective"><strong>Efektivní</strong></label>
+    				<label class="control-label" for="effective"><strong><spring:message code="label.efficiency"/></strong></label>
     				<div class="controls">
-    					<form:checkbox path="effective" input="effective" class="input-block-level" />
-						<form:errors path="effective" cssClass="error">
-						</form:errors>
+    					<form:select path="effective" id="effective" type="text" class="input-large">
+								<form:option value="1">
+									<spring:message code="label.resistant"/>	
+								</form:option>
+								<form:option value="2">
+									<spring:message code="label.effective"/>
+								</form:option>				
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="duringSurgery"><strong>Při operaci</strong></label>
+    				<label class="control-label" for="duringSurgery"><strong><spring:message code="label.duringSurgery"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="duringSurgery" input="duringSurgery" class="input-block-level" />
 						<form:errors path="duringSurgery" cssClass="error">
@@ -191,7 +196,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

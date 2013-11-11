@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Neurologické nálezy</h2>
+				<h2><spring:message code="label.neurologicalFinding"/></h2>
 			</div>
 
 			<table class="table">
@@ -93,20 +93,20 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="hemisphereDominanceIdcom"><strong>Dominance hemisféry</strong></label>
+    				<label class="control-label" for="hemisphereDominanceIdcom"><strong><spring:message code="label.hemisphereDominance"/></strong></label>
     				<div class="controls">
     					<form:select path="hemisphereDominanceIdcom" id="hemisphereDominanceIdcom" type="text" class="input-large">
 								<form:option value="1">
-									Ambidexter
+									<spring:message code="label.ambidexter"/>
 								</form:option>
 								<form:option value="2">
-									Levák
+									<spring:message code="label.lefthander"/>
 								</form:option>
 								<form:option value="3">
-									Nespecifikováno
+									<spring:message code="label.unspecified"/>
 								</form:option>
 								<form:option value="4">
-									Pravák
+									<spring:message code="label.righthander"/>
 								</form:option>					
 
 						</form:select>
@@ -114,7 +114,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="abnormalNeurologicalFinding"><strong>Abnormální neurologický nález</strong></label>
+    				<label class="control-label" for="abnormalNeurologicalFinding"><strong><spring:message code="label.abnormalNeurologicalFinding"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="abnormalNeurologicalFinding" input="abnormalNeurologicalFinding" class="input-block-level" />
 						<form:errors path="abnormalNeurologicalFinding" cssClass="error">
@@ -123,7 +123,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="hemiparesis"><strong>Hemiparéza</strong></label>
+    				<label class="control-label" for="hemiparesis"><strong><spring:message code="label.hemiparesis"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="hemiparesis" input="hemiparesis" class="input-block-level" />
 						<form:errors path="hemiparesis" cssClass="error">
@@ -132,7 +132,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="visualCut"><strong>Porucha zorného pole</strong></label>
+    				<label class="control-label" for="visualCut"><strong><spring:message code="label.visualFieldDefects"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="visualCut" input="visualCut" class="input-block-level" />
 						<form:errors path="visualCut" cssClass="error">
@@ -141,16 +141,16 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="neurologicalFindingDetail"><strong>Detaily neurologického nálezu</strong></label>
+    				<label class="control-label" for="neurologicalFindingDetail"><strong><spring:message code="label.neurologicalFindingDetail"/></strong></label>
     				<div class="controls">
-    					<form:input typy="text" path="neurologicalFindingDetail" input="neurologicalFindingDetail" class="input-large" />
+    					<form:textarea path="neurologicalFindingDetail" id="neurologicalFindingDetail" />
 						<form:errors path="visualCut" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>
