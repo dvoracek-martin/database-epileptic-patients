@@ -19,7 +19,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 @Entity
-@Table(name = "seizure_detail")
+@Table(name = "invasive_test_cortical_mapping")
 public class InvasiveTestCorticalMappingEntity implements
 		Comparable<InvasiveTestCorticalMappingEntity> {
 

@@ -26,7 +26,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
 						+ " left join fetch p.diagnosticTestScalpEEGList"
 						+ " left join fetch p.diagnosticTestMRIList"
 						+ " left join fetch p.histologyList"
-						//+ " left join fetch p.invasiveTestCorticalMappingList"
+					    + " left join fetch p.invasiveTestCorticalMappingList"
 						+ " left join fetch p.invasiveTestECOGList"
 						+ " left join fetch p.invasiveTestEEGList"
 						+ " left join fetch p.neurologicalFindingList"
