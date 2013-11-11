@@ -49,10 +49,6 @@ public class AnamnesisControllerTest {
 	@Qualifier("anamnesisService")
 	private AnamnesisService anamnesisServiceMock;
 
-	@Autowired
-	@Qualifier("roleService")
-	private RoleService roleServiceMock;
-
 	// Add WebApplicationContext field here
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -62,14 +58,13 @@ public class AnamnesisControllerTest {
 	public void setUp() {
 		mockMvc = MockMvcBuilders.standaloneSetup(
 				new AnamnesisController(patientServiceMock,
-						anamnesisServiceMock, roleServiceMock)).build();
+						anamnesisServiceMock)).build();
 	}
 	
 	@After
 	public void reset_mocks() {
 		reset(patientServiceMock);
 	    reset(anamnesisServiceMock);
-	    reset(roleServiceMock);
 	}
 
 	@Test
