@@ -80,22 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="hemisphereDominance"><strong><spring:message code="label.hemisphereDominance"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="hemisphereDominanceIdcom"><strong><spring:message code="label.hemisphereDominance"/></strong></label>
-    				<div class="controls">
-    					<form:select path="hemisphereDominanceIdcom" id="hemisphereDominanceIdcom" type="text" class="input-large">
+    					<form:select path="hemisphereDominance" id="hemisphereDominance" type="text" class="input-large">
 								<form:option value="1">
 									<spring:message code="label.ambidexter"/>
 								</form:option>
@@ -132,23 +119,23 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="visualCut"><strong><spring:message code="label.visualFieldDefects"/></strong></label>
+    				<label class="control-label" for="visualFieldDefects"><strong><spring:message code="label.visualFieldDefects"/></strong></label>
     				<div class="controls">
-    					<form:checkbox path="visualCut" input="visualCut" class="input-block-level" />
-						<form:errors path="visualCut" cssClass="error">
+    					<form:checkbox path="visualFieldDefects" input="visualFieldDefects" class="input-block-level" />
+						<form:errors path="visualFieldDefects" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
-
+  				<!--
   				<div class="control-group">
     				<label class="control-label" for="neurologicalFindingDetail"><strong><spring:message code="label.neurologicalFindingDetail"/></strong></label>
     				<div class="controls">
-    					<form:textarea path="neurologicalFindingDetail" id="neurologicalFindingDetail" />
-						<form:errors path="visualCut" cssClass="error">
+    					<form:textarea path="" id="neurologicalFindingDetail" />
+						<form:errors path="" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
-
+				-->
   				<div class="control-group">
     				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">

@@ -80,19 +80,6 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
-    				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
     				<label class="control-label" for="epilepsyInFamily"><strong><spring:message code="label.epilepsyInFamily"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="epilepsyInFamily" input="epilepsyInFamily" class="input-block-level" />
@@ -183,9 +170,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="specificSyndromeIdcom"><strong><spring:message code="label.epilepticSyndrome"/></strong></label>
+    				<label class="control-label" for="specificSyndrome"><strong><spring:message code="label.epilepticSyndrome"/></strong></label>
     				<div class="controls">
-    					<form:select path="specificSyndromeIdcom" id="specificSyndromeIdcom" type="text" class="input-large">
+    					<form:select path="specificSyndrome" id="specificSyndrome" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.extratemporalFocalEpilepsy"/>
 							</form:option>

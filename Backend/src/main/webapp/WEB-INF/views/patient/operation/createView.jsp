@@ -89,9 +89,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="typeOperationsIdcom"><strong><spring:message code="label.typeOperations"/></strong></label>
+    				<label class="control-label" for="typeOperation"><strong><spring:message code="label.typeOperations"/></strong></label>
     				<div class="controls">
-    					<form:select path="typeOperationsIdcom" id="typeOperationsIdcom" type="text" class="input-large">
+    					<form:select path="typeOperation" id="typeOperation" type="text" class="input-large">
 							<form:option value="1">
 								Diskonekce
 							</form:option>
@@ -124,9 +124,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="rangeOperationsIdcom"><strong><spring:message code="label.rangeOperations"/></strong></label>
+    				<label class="control-label" for="rangeOperation"><strong><spring:message code="label.rangeOperations"/></strong></label>
     				<div class="controls">
-    					<form:select path="rangeOperationsIdcom" id="rangeOperationsIdcom" type="text" class="input-large">
+    					<form:select path="rangeOperation" id="rangeOperation" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.withoutResection"/>
 							</form:option>
@@ -147,10 +147,10 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationOperations"><strong><spring:message code="label.localizationOperations"/></strong></label>
+    				<label class="control-label" for="localizationOperation"><strong><spring:message code="label.localizationOperations"/></strong></label>
     				<div class="controls">
-    					<form:textarea path="localizationOperations" id="localizationOperations" />
-						<form:errors path="localizationOperations" cssClass="error">
+    					<form:textarea path="localizationOperation" id="localizationOperation" />
+						<form:errors path="localizationOperation" cssClass="error">
 						</form:errors>
     				</div>
   				</div>

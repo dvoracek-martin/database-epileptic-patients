@@ -80,22 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="aed"><strong>AED</strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="aedIdcom"><strong>AED</strong></label>
-    				<div class="controls">
-    					<form:select path="aedIdcom" id="aedIdcom" type="text" class="input-large">
+    					<form:select path="aed" id="aed" type="text" class="input-large">
 								<form:option value="1">
 									ACTH	
 								</form:option>
@@ -173,9 +160,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="effective"><strong><spring:message code="label.efficiency"/></strong></label>
+    				<label class="control-label" for="efficiency"><strong><spring:message code="label.efficiency"/></strong></label>
     				<div class="controls">
-    					<form:select path="effective" id="effective" type="text" class="input-large">
+    					<form:select path="efficiency" id="efficiency" type="text" class="input-large">
 								<form:option value="1">
 									<spring:message code="label.resistant"/>	
 								</form:option>
