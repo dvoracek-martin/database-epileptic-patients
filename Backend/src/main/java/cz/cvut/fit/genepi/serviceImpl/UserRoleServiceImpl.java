@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,7 @@ import cz.cvut.fit.genepi.service.UserRoleService;
  * The Class UserRoleServiceImpl.
  */
 @Service
-public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity, Serializable> implements UserRoleService {
+public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity> implements UserRoleService {
 
 	/** The user role dao. */
 	@Autowired

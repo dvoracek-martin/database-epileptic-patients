@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.service;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -10,7 +9,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 /**
  * The Interface UserService.
  */
-public interface UserService extends GenericService<UserEntity, Serializable> {
+public interface UserService extends GenericService<UserEntity> {
 
 	/**
 	 * Find user by username.

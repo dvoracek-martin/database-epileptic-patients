@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
-
 import org.springframework.stereotype.Service;
 
 import cz.cvut.fit.genepi.entity.ContactEntity;
@@ -13,7 +11,7 @@ import cz.cvut.fit.genepi.service.ContactService;
  */
 @Service
 public class ContactServiceImpl extends
-		GenericServiceImpl<ContactEntity, Serializable> implements
+		GenericServiceImpl<ContactEntity> implements
 		ContactService {
 
 }

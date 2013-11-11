@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.service;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -12,7 +11,7 @@ import org.hibernate.Query;
  * @param <T> the generic type
  * @param <ID> the generic type
  */
-public interface GenericService<T, ID extends Serializable> {
+public interface GenericService<T> {
 	
 	/**
 	 * Save.

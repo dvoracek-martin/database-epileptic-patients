@@ -135,7 +135,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			PatientEntity patient, String date) {
 		String content = "Export of the patient "
 				+ patient.getContact().getFirstName() + " "
-				+ patient.getContact().getLastName() + " ,ID:"
+				+ patient.getContact().getLastName() + " :"
 				+ patient.getId() + " " + date;
 
 		content += addEmptyLine();

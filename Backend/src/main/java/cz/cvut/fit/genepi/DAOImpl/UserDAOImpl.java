@@ -1,12 +1,11 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.UserEntity;
 
@@ -15,7 +14,7 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  * The Class UserDAOImpl.
  */
 @Repository
-public class UserDAOImpl extends GenericDAOImpl<UserEntity, Serializable>
+public class UserDAOImpl extends GenericDAOImpl<UserEntity>
 		implements UserDAO {
 	
 	/* (non-Javadoc)

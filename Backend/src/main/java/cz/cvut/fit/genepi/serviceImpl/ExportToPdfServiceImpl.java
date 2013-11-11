@@ -254,7 +254,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		// Lets write a big header
 		preface.add(new Paragraph("Export of the patient "
 				+ patient.getContact().getFirstName() + " "
-				+ patient.getContact().getLastName() + " ,ID:"
+				+ patient.getContact().getLastName() + " :"
 				+ patient.getId() + ", " + getDate(), catFont));
 
 		addEmptyLine(preface, 1);

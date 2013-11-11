@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.service;
 
-import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
@@ -9,7 +8,7 @@ import cz.cvut.fit.genepi.entity.UserRoleEntity;
 /**
  * The Interface UserRoleService.
  */
-public interface UserRoleService extends GenericService<UserRoleEntity, Serializable>   {
+public interface UserRoleService extends GenericService<UserRoleEntity>   {
 	
 	/**
 	 * Find all user roles by user id.

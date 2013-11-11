@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ import cz.cvut.fit.genepi.service.RoleService;
  */
 @Service
 public class RoleServiceImpl extends
-		GenericServiceImpl<RoleEntity, Serializable> implements RoleService {
+		GenericServiceImpl<RoleEntity> implements RoleService {
 
 	@Override
 	@Transactional

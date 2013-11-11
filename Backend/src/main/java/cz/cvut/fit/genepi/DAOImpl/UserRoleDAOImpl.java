@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -14,7 +13,7 @@ import cz.cvut.fit.genepi.entity.UserRoleEntity;
  * The Class UserRoleDAOImpl.
  */
 @Repository
-public class UserRoleDAOImpl  extends GenericDAOImpl<UserRoleEntity, Serializable>
+public class UserRoleDAOImpl  extends GenericDAOImpl<UserRoleEntity>
 implements UserRoleDAO {
 	
 	/* (non-Javadoc)

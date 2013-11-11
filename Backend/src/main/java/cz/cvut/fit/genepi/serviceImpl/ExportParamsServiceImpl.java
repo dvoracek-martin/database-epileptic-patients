@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,7 +14,7 @@ import cz.cvut.fit.genepi.service.ExportParamsService;
 
 @Service
 public class ExportParamsServiceImpl extends
-		GenericServiceImpl<ExportParamsEntity, Serializable> implements
+		GenericServiceImpl<ExportParamsEntity> implements
 		ExportParamsService {
 	@Autowired
 	private MessageSource messageSource;

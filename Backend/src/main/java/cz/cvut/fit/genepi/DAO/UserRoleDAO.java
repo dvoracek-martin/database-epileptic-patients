@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAO;
 
-import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.entity.UserRoleEntity;
@@ -9,7 +8,7 @@ import cz.cvut.fit.genepi.entity.UserRoleEntity;
 /**
  * The Interface UserRoleDAO.
  */
-public interface UserRoleDAO extends GenericDAO<UserRoleEntity, Serializable> { 
+public interface UserRoleDAO extends GenericDAO<UserRoleEntity> { 
 	
 	/**
 	 * Find all user roles by user id.

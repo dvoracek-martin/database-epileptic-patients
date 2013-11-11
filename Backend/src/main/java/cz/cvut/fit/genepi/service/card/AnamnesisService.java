@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.service.card;
 
-import java.io.Serializable;
-
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.GenericService;
 
@@ -9,6 +7,6 @@ import cz.cvut.fit.genepi.service.GenericService;
 /**
  * The Interface AnamnesisService.
  */
-public interface AnamnesisService extends GenericService<AnamnesisEntity, Serializable> {
+public interface AnamnesisService extends GenericService<AnamnesisEntity> {
 
 }

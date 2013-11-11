@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,7 +26,7 @@ import cz.cvut.fit.genepi.service.UserService;
  */
 @Service
 public class UserServiceImpl extends
-		GenericServiceImpl<UserEntity, Serializable> implements UserService {
+		GenericServiceImpl<UserEntity> implements UserService {
 
 	private LoggingService logger = new LoggingService();
 

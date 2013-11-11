@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
-import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.ExportToCsvService;
 import cz.cvut.fit.genepi.service.LoggingService;
 
@@ -146,7 +145,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 			PatientEntity patient, String date) {
 		String content = "Export of the patient "
 				+ patient.getContact().getFirstName() + " "
-				+ patient.getContact().getLastName() + " ,ID:"
+				+ patient.getContact().getLastName() + " :"
 				+ patient.getId() + " " + date;
 
 		content += addEmptyLine();

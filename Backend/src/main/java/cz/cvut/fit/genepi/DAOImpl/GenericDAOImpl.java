@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -18,8 +17,8 @@ import cz.cvut.fit.genepi.DAO.GenericDAO;
  * @param <ID> the generic type
  */
 @Repository
-public class GenericDAOImpl<T, ID extends Serializable> implements
-		GenericDAO<T, ID> {
+public class GenericDAOImpl<T> implements
+		GenericDAO<T> {
 
 	/** The session factory. */
 	@Autowired

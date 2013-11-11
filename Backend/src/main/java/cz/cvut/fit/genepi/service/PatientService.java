@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.service;
 
-import java.io.Serializable;
-
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 // TODO: Auto-generated Javadoc
@@ -9,7 +7,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Interface PatientService.
  */
 public interface PatientService extends
-		GenericService<PatientEntity, Serializable> {
+		GenericService<PatientEntity> {
 
 	public PatientEntity getPatientByIdWithAllLists(int patientId);
 

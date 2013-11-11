@@ -144,7 +144,7 @@ public class PatientController {
 	@RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
 	public String patientOverviewPOST(@RequestParam("id") int id,
 			Locale locale, Model model) {
-		model.addAttribute("id", id);
+		model.addAttribute("id");
 		return "patient/overviewView";
 	}
 

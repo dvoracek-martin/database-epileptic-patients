@@ -1,11 +1,11 @@
 package cz.cvut.fit.test;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 public class Util {

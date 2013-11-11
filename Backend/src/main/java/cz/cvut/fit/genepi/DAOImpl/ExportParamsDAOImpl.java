@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import cz.cvut.fit.genepi.DAO.ExportParamsDAO;
 import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 
 @Repository
-public class ExportParamsDAOImpl extends GenericDAOImpl<ExportParamsEntity, Serializable> implements
+public class ExportParamsDAOImpl extends GenericDAOImpl<ExportParamsEntity> implements
 		ExportParamsDAO {
 	@Override
 	public List<ExportParamsEntity> findExportParamsByUserID(int userID) {

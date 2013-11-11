@@ -27,8 +27,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.entity.card.ComplicationEntity;
-import cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity;
+import cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.entity.card.HistologyEntity;
 import cz.cvut.fit.genepi.entity.card.InvasiveTestCorticalMappingEntity;
 import cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity;

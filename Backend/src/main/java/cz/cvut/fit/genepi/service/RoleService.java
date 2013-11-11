@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.service;
 
-import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.entity.RoleEntity;
@@ -10,6 +9,6 @@ import cz.cvut.fit.genepi.entity.UserEntity;
 /**
  * The Class RoleService.
  */
-public interface RoleService extends GenericService<RoleEntity, Serializable> {
+public interface RoleService extends GenericService<RoleEntity> {
 	public List<UserEntity> getAllDoctors();
 }

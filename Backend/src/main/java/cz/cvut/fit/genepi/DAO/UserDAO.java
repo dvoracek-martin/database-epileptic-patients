@@ -1,15 +1,14 @@
 package cz.cvut.fit.genepi.DAO;
 
-import java.io.Serializable;
-
 import java.util.List;
+
 import cz.cvut.fit.genepi.entity.UserEntity;
 
 // TODO: Auto-generated Javadoc
 /**
  * The Interface UserDAO.
  */
-public interface UserDAO extends GenericDAO<UserEntity, Serializable> {
+public interface UserDAO extends GenericDAO<UserEntity> {
 
 	/**
 	 * Find user by username.

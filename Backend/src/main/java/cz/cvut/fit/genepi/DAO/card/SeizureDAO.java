@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAO.card;
 
-import java.io.Serializable;
 import java.util.List;
 
 import cz.cvut.fit.genepi.DAO.GenericDAO;
@@ -10,7 +9,7 @@ import cz.cvut.fit.genepi.entity.card.SeizureEntity;
 /**
  * The Interface SeizureDAO.
  */
-public interface SeizureDAO extends GenericDAO<SeizureEntity, Serializable> {
+public interface SeizureDAO extends GenericDAO<SeizureEntity> {
 
 	/**
 	 * Find anamnesis by patient id.

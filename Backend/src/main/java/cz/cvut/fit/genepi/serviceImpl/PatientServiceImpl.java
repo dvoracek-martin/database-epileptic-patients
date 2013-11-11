@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +14,7 @@ import cz.cvut.fit.genepi.service.PatientService;
  */
 @Service
 public class PatientServiceImpl extends
-		GenericServiceImpl<PatientEntity, Serializable> implements
+		GenericServiceImpl<PatientEntity> implements
 		PatientService {
 
 	/** The patient dao. */

@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.DAO.card;
 
-import java.io.Serializable;
-
 import cz.cvut.fit.genepi.DAO.GenericDAO;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 
@@ -10,6 +8,6 @@ import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 /**
  * The Interface AnamnesisDAO.
  */
-public interface AnamnesisDAO extends GenericDAO<AnamnesisEntity, Serializable> {
+public interface AnamnesisDAO extends GenericDAO<AnamnesisEntity> {
  
 }

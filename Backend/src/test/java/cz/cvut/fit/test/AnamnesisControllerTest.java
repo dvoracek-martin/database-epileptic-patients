@@ -31,7 +31,6 @@ import cz.cvut.fit.genepi.controller.card.AnamnesisController;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.PatientService;
-import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.card.AnamnesisService;
 
 @RunWith(SpringJUnit4ClassRunner.class)

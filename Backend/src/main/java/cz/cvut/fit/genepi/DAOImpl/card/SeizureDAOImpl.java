@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.DAOImpl.card;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +15,7 @@ import cz.cvut.fit.genepi.entity.card.SeizureEntity;
  * The Class SeizureDAOImpl.
  */
 @Repository
-public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity, Serializable>
+public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity>
 		implements SeizureDAO {
 
 	/* (non-Javadoc)

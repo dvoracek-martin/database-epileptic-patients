@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import java.io.Serializable;
-
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +11,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Class PatientDAOImpl.
  */
 @Repository
-public class PatientDAOImpl extends GenericDAOImpl<PatientEntity, Serializable>
+public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
 		implements PatientDAO {
 
 	@Override

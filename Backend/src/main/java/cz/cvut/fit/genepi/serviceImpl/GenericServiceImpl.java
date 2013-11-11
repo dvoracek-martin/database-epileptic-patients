@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.serviceImpl;
 
-import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -20,13 +19,13 @@ import cz.cvut.fit.genepi.service.GenericService;
  * @param <ID> the generic type
  */
 @Service
-public class GenericServiceImpl <T, ID extends Serializable> implements
-GenericService<T, ID> {
+public class GenericServiceImpl <T> implements
+GenericService<T> {
 
 	/** The generic dao. */
 	@Autowired
 	@Qualifier("genericDAOImpl")
-	protected GenericDAO<T, ID> genericDAO;
+	protected GenericDAO<T> genericDAO;
 	
 	/* (non-Javadoc)
 	 * @see cz.cvut.fit.genepi.service.GenericService#save(java.lang.Object)
