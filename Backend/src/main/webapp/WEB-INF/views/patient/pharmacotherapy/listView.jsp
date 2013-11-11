@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Farmakoterapie
+      <spring:message code="label.pharmacotherapy"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Farmakoterapie
+      <spring:message code="label.pharmacotherapy"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Farmakoterapie</h2>
+					<h2><spring:message code="label.pharmacotherapy"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -72,7 +72,7 @@
 			<c:if test="${empty patient.pharmacotherapyList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/></h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${pharmacotherapy.id}">
-					    	    <strong>Vyšetření dne:</strong> ${pharmacotherapy.date}
+					    	    <strong><spring:message code="label.dateOfContractAward"/>:</strong> ${pharmacotherapy.date}
 					    	</a>
 						</div>
 
@@ -96,96 +96,96 @@
 									<div class="pull-left">
 										<a class="close" href="<c:url value="/patient/${patientID}/pharmacotherapy/list"/>"><spring:message code="label.edit"/></a>
 									</div>
-									</br>
+									<br>
 								</div>
 								<table class="table">
 			               			<tbody>
 										<tr class="info">
-											<td>Léčivo</td>
-											<c:if test="${pharmacotherapy.aedIdcom==1}">
+											<td><spring:message code="label.medicines"/></td>
+											<c:if test="${pharmacotherapy.aed==1}">
 												<td>ACTH</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==2}">
+											<c:if test="${pharmacotherapy.aed==2}">
 												<td>CBZ</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==3}">
+											<c:if test="${pharmacotherapy.aed==3}">
 												<td>CLB</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==4}">
+											<c:if test="${pharmacotherapy.aed==4}">
 												<td>CZP</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==5}">
+											<c:if test="${pharmacotherapy.aed==5}">
 												<td>DZP</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==6}">
+											<c:if test="${pharmacotherapy.aed==6}">
 												<td>ESL</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==7}">
+											<c:if test="${pharmacotherapy.aed==7}">
 												<td>ETS</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==8}">
+											<c:if test="${pharmacotherapy.aed==8}">
 												<td>FBM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==9}">
+											<c:if test="${pharmacotherapy.aed==9}">
 												<td>GBP</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==10}">
+											<c:if test="${pharmacotherapy.aed==10}">
 												<td>LCM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==11}">
+											<c:if test="${pharmacotherapy.aed==11}">
 												<td>LEV</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==12}">
+											<c:if test="${pharmacotherapy.aed==12}">
 												<td>LTG</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==13}">
+											<c:if test="${pharmacotherapy.aed==13}">
 												<td>OXC</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==14}">
+											<c:if test="${pharmacotherapy.aed==14}">
 												<td>PB</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==15}">
+											<c:if test="${pharmacotherapy.aed==15}">
 												<td>PGB</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==16}">
+											<c:if test="${pharmacotherapy.aed==16}">
 												<td>PHT</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==17}">
+											<c:if test="${pharmacotherapy.aed==17}">
 												<td>PRM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==18}">
+											<c:if test="${pharmacotherapy.aed==18}">
 												<td>RFM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==19}">
+											<c:if test="${pharmacotherapy.aed==19}">
 												<td>STM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==20}">
+											<c:if test="${pharmacotherapy.aed==20}">
 												<td>TGB</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==21}">
+											<c:if test="${pharmacotherapy.aed==21}">
 												<td>TPM</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==22}">
+											<c:if test="${pharmacotherapy.aed==22}">
 												<td>VGB</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==23}">
+											<c:if test="${pharmacotherapy.aed==23}">
 												<td>VPA</td>
 											</c:if>
-											<c:if test="${pharmacotherapy.aedIdcom==24}">
+											<c:if test="${pharmacotherapy.aed==24}">
 												<td>ZNS</td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Efektivita</td>
-											<c:if test="${pharmacotherapy.effective==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
+											<td><spring:message code="label.efficiency"/></td>
+											<c:if test="${pharmacotherapy.efficiency==1}">
+												<td><spring:message code="label.resistant"/></td>
 											</c:if>
-											<c:if test="${pharmacotherapy.effective==false}">
-												<td><spring:message code="label.no"/></td>
+											<c:if test="${pharmacotherapy.efficiency==2}">
+												<td><spring:message code="label.effective"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Při operaci</td>
+											<td><spring:message code="label.duringSurgery"/></td>
 											<c:if test="${pharmacotherapy.duringSurgery==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -197,7 +197,7 @@
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty patient.pharmacotherapyList[0].comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments" /></td>
 												</c:when>
 												<c:otherwise>
 													<td>${patient.pharmacotherapyList[0].comment}</td>

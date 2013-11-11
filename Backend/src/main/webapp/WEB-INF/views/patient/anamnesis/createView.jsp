@@ -71,7 +71,7 @@
 						action="/GENEPI/patient/${patient.id}/anamnesis/create" commandName="anamnesis">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong><spring:message code="label.dateOfContractAward"/></strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">

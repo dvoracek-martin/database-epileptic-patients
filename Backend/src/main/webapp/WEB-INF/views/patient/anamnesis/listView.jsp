@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${anamnesis.id}">
-					    	    <strong><spring:message code="label.dateExamination"/>:</strong> ${anamnesis.date}
+					    	    <strong><spring:message code="label.dateOfContractAward"/>:</strong> ${anamnesis.date}
 					    	</a>
 						</div>
 
@@ -96,7 +96,7 @@
 									<div class="pull-left">
 										<a class="close" href="<c:url value="/patient/${patientID}/anamnesis/list"/>"><spring:message code="label.edit"/></a>
 									</div>
-							
+									<br>
 								</div>
 								<table class="table">
 				              		<tbody>

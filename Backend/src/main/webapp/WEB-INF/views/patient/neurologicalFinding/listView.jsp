@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Neurologické nálezy
+      <spring:message code="label.neurologicalFinding"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Neurologické nálezy
+      <spring:message code="label.neurologicalFinding"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Neurologické nálezy</h2>
+					<h2><spring:message code="label.neurologicalFinding"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -72,7 +72,7 @@
 			<c:if test="${empty patient.neurologicalFindingList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/></h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${neurologicalFinding.id}">
-					    	    <strong>Vyšetření dne:</strong> ${neurologicalFinding.date}
+					    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${neurologicalFinding.date}
 					    	</a>
 						</div>
 
@@ -101,22 +101,22 @@
 								<table class="table">
 				               		<tbody>
 										<tr class="info">
-											<td>Dominance hemisféry</td>
-											<c:if test="${neurologicalFinding.hemisphereDominanceIdcom==1}">
-												<td>Ambidexter</td>
+											<td><spring:message code="label.hemisphereDominance"/></td>
+											<c:if test="${neurologicalFinding.hemisphereDominance==1}">
+												<td><spring:message code="label.ambidexter"/></td>
 											</c:if>
-											<c:if test="${neurologicalFinding.hemisphereDominanceIdcom==2}">
-												<td>Levák</td>
+											<c:if test="${neurologicalFinding.hemisphereDominance==2}">
+												<td><spring:message code="label.lefthander"/></td>
 											</c:if>
-											<c:if test="${neurologicalFinding.hemisphereDominanceIdcom==3}">
-												<td>Nespecifikováno</td>
+											<c:if test="${neurologicalFinding.hemisphereDominance==3}">
+												<td><spring:message code="label.unspecified"/></td>
 											</c:if>
-											<c:if test="${neurologicalFinding.hemisphereDominanceIdcom==4}">
-												<td>Pravák</td>
+											<c:if test="${neurologicalFinding.hemisphereDominance==4}">
+												<td><spring:message code="label.righthander"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Abnormální neurologický nález</td>
+											<td><spring:message code="label.abnormalNeurologicalFinding"/></td>
 											<c:if test="${neurologicalFinding.abnormalNeurologicalFinding==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -125,7 +125,7 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Hemiparéza</td>
+											<td><spring:message code="label.hemiparesis"/></td>
 											<c:if test="${neurologicalFinding.hemiparesis==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -134,23 +134,19 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>Defekt zorného pole</td>
-											<c:if test="${neurologicalFinding.visualCut==true}">
+											<td><spring:message code="label.visualFieldDefects"/></td>
+											<c:if test="${neurologicalFinding.visualFieldDefects==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
-											<c:if test="${neurologicalFinding.visualCut==false}">
+											<c:if test="${neurologicalFinding.visualFieldDefects==false}">
 												<td><spring:message code="label.no"/></td>
 											</c:if>
-										</tr>
-										<tr class="info">
-											<td>Detaily neurologického nálezu</td>
-											<td>${neurologicalFinding.neurologicalFindingDetail}</td>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty neurologicalFinding.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments" /></td>
 												</c:when>
 												<c:otherwise>
 													<td>${neurologicalFinding.comment}</td>
