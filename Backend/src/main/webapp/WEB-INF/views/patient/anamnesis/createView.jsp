@@ -68,7 +68,7 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/anamnesis/create" commandName="anamnesis">
+						action="/GENEPI/patient/${patient.id}/anamnesis/create" commandName="anamnesis">
 
 				<div class="control-group">
     				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
