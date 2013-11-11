@@ -18,7 +18,7 @@
 	</jsp:attribute>
 
 	<jsp:body>
-		<div>
+
 			<div>
 				<div class="span5">
 					<h2><spring:message code="label.anamnesis" /></h2>
@@ -96,7 +96,7 @@
 									<div class="pull-left">
 										<a class="close" href="<c:url value="/patient/${patientID}/anamnesis/list"/>"><spring:message code="label.edit"/></a>
 									</div>
-									</br>
+							
 								</div>
 								<table class="table">
 				              		<tbody>
@@ -187,23 +187,23 @@
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.epilepticSyndrome" /></td>
-											<c:if test="${anamnesis.specificSyndromeIdcom==1}">
+											<c:if test="${anamnesis.specificSyndrome==1}">
 												<td><spring:message code="label.extratemporalFocalEpilepsy"/></td>
 											</c:if>
 
-											<c:if test="${anamnesis.specificSyndromeIdcom==2}">
+											<c:if test="${anamnesis.specificSyndrome==2}">
 												<td><spring:message code="label.hemisphericSymptomaticEpilepsy"/></td>
 											</c:if>
 
-											<c:if test="${anamnesis.specificSyndromeIdcom==3}">
+											<c:if test="${anamnesis.specificSyndrome==3}">
 												<td><spring:message code="label.mesiotemporalEpilepsy"/></td>
 											</c:if>
 
-											<c:if test="${anamnesis.specificSyndromeIdcom==4}">
+											<c:if test="${anamnesis.specificSyndrome==4}">
 												<td><spring:message code="label.multifocalEpilepsy"/></td>
 											</c:if>
 
-											<c:if test="${anamnesis.specificSyndromeIdcom==5}">
+											<c:if test="${anamnesis.specificSyndrome==5}">
 												<td><spring:message code="label.temporalEpilepsy"/></td>
 											</c:if>
 										</tr>
@@ -230,7 +230,6 @@
 	            	</div>
 	            </c:forEach>
             </div>
-        </br> 
 			<!-- Anamnesis list END -->
 	</jsp:body>
 </t:menuLVL3>
