@@ -156,7 +156,7 @@
 			<form:form method="POST" modelAttribute="emptyMessage"
 					action="/GENEPI/news/create" commandName="emptyMessage">
 				<div class="modal-body">
-					<form:textarea path="message" class="input-block-level"/>
+					<form:textarea path="message" class="input-block-level" style="resize:vertical;"/>
 				</div>
 				<div class="modal-footer">
 					<button class="btn" data-dismiss="modal" aria-hidden="true">

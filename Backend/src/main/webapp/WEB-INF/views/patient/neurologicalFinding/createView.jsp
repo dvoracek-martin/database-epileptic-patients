@@ -126,16 +126,6 @@
 						</form:errors>
     				</div>
   				</div>
-  				<!--
-  				<div class="control-group">
-    				<label class="control-label" for="neurologicalFindingDetail"><strong><spring:message code="label.neurologicalFindingDetail"/></strong></label>
-    				<div class="controls">
-    					<form:textarea path="" id="neurologicalFindingDetail" />
-						<form:errors path="" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-				-->
   				<div class="control-group">
     				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
