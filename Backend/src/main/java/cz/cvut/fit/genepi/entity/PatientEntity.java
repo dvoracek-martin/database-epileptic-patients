@@ -81,8 +81,8 @@ public class PatientEntity {
 	private int status;
 
 	/** The checked. */
-	@Column(name = "checked", precision = 1, scale = 0, nullable = true)
-	private boolean checked;
+	@Column(name = "verified", precision = 1, scale = 0, nullable = true)
+	private boolean verified;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "doctor_id")
@@ -406,7 +406,7 @@ public class PatientEntity {
 	 * @return the checked
 	 */
 	public boolean getChecked() {
-		return checked;
+		return verified;
 	}
 
 	/**
@@ -416,7 +416,7 @@ public class PatientEntity {
 	 *            the new checked
 	 */
 	public void setChecked(boolean checked) {
-		this.checked = checked;
+		this.verified = checked;
 	}
 
 	/**

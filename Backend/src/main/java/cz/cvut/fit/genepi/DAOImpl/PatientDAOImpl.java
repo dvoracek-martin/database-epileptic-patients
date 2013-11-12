@@ -57,7 +57,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.complicationList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.complicationList c"
+								+ " where p.id = :patientId AND c.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -67,7 +68,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestEEGList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestEEGList d"
+								+ " where p.id = :patientId AND d.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -77,7 +79,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestMRIList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestMRIList d"
+								+ " where p.id = :patientId AND d.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -87,7 +90,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.histologyList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.histologyList h"
+								+ " where p.id = :patientId AND h.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -98,7 +102,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList i"
+								+ " where p.id = :patientId AND i.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -108,7 +113,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestECOGList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestECOGList i"
+								+ " where p.id = :patientId AND i.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -118,7 +124,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestEEGList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestEEGList i"
+								+ " where p.id = :patientId AND i.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -128,7 +135,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList n"
+								+ " where p.id = :patientId  AND n.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -138,7 +146,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList n"
+								+ " where p.id = :patientId AND n.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -148,7 +157,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList o"
+								+ " where p.id = :patientId AND o.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -158,7 +168,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.outcomeList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.outcomeList o"
+								+ " where p.id = :patientId AND o.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -168,7 +179,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.pharmacotherapyList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.pharmacotherapyList p"
+								+ " where p.id = :patientId AND p.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -178,7 +190,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.seizureList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.seizureList s"
+								+ " where p.id = :patientId AND s.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
