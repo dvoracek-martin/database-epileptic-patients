@@ -31,11 +31,11 @@ import cz.cvut.fit.genepi.service.ExportToDocxService;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
 import cz.cvut.fit.genepi.service.ExportToTxtService;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
-import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.PatientService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
 import cz.cvut.fit.genepi.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 // TODO: Auto-generated Javadoc
 /**

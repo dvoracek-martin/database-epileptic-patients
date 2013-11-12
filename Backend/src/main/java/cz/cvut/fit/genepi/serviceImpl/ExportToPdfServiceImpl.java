@@ -37,7 +37,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.service.ExportToPdfService;
-import cz.cvut.fit.genepi.service.LoggingService;
+import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
 
 // TODO: Auto-generated Javadoc

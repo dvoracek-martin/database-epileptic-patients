@@ -19,7 +19,7 @@ import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToDocxService;
-import cz.cvut.fit.genepi.service.LoggingService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 @Service
 public class ExportToDocxServiceImpl implements ExportToDocxService {

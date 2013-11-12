@@ -22,11 +22,11 @@ import cz.cvut.fit.genepi.entity.ContactEntity;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ContactService;
-import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.MailService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserRoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 /**
  * This class is a controller class which handles requests connected with a

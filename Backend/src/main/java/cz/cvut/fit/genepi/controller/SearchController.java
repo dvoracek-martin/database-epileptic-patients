@@ -9,7 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.service.LoggingService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 //This controller is not doing anything right now
 @Controller

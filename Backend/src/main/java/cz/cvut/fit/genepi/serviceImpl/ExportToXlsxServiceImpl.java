@@ -25,7 +25,7 @@ import cz.cvut.fit.genepi.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.service.ExportToXlsxService;
-import cz.cvut.fit.genepi.service.LoggingService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 // TODO: Auto-generated Javadoc
 /**

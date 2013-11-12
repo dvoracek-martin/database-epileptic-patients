@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 import cz.cvut.fit.genepi.DAO.UserDAO;
 import cz.cvut.fit.genepi.entity.RoleEntity;
 import cz.cvut.fit.genepi.entity.UserEntity;
-import cz.cvut.fit.genepi.service.LoggingService;
 import cz.cvut.fit.genepi.service.MailService;
 import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.UserService;
+import cz.cvut.fit.genepi.util.LoggingService;
 
 // TODO: Auto-generated Javadoc
 

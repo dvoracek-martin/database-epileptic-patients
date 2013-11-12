@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.service;
+package cz.cvut.fit.genepi.util;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
