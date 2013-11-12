@@ -120,7 +120,7 @@ public class OutcomeController {
 	 * 
 	 * @return the address to which the user will be redirected.
 	 */
-	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/unhide", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/outcome/{anamnesisId}/unhide", method = RequestMethod.GET)
 	public String outcomeUnhideGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("outcomeId") Integer outcomeId, Locale locale,

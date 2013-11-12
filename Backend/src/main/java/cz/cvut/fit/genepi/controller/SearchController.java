@@ -27,7 +27,7 @@ public class SearchController {
 	}
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public String postGET(Locale locale, Model model) {
+	public String searchPost(Locale locale, Model model) {
 		
 		return "searchResults";
 	}
