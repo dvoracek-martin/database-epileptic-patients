@@ -204,8 +204,8 @@ public class AnamnesisController {
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
 			Model model) {
-		// TODO: implement hide
-		anamnesisService.delete(anamnesisService.findByID(
+
+		anamnesisService.hide(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
 		return "redirect:/patient/" + patientId + "/anamnesis/list";
 	}
@@ -231,8 +231,8 @@ public class AnamnesisController {
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
 			Model model) {
-		// TODO: implement unhide
-		anamnesisService.delete(anamnesisService.findByID(
+
+		anamnesisService.unhide(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
 		//TODO: address to get back to admin module where is list od hidden records.
 		return "redirect:/patient/" + patientId + "/anamnesis/list";

@@ -87,6 +87,16 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
+	
+	@Override
+	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(int patientId) {
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList where p.id = :patientId");
+		query.setParameter("patientId", patientId);
+		return this.findOne(query);
+	}
 
 	@Override
 	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId) {

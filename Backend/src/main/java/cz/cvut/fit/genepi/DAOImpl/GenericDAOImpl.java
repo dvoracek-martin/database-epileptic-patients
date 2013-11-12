@@ -14,7 +14,6 @@ import cz.cvut.fit.genepi.DAO.GenericDAO;
  * The Class GenericDAOImpl.
  *
  * @param <T> the generic type
- * @param <ID> the generic type
  */
 @Repository
 public class GenericDAOImpl<T> implements

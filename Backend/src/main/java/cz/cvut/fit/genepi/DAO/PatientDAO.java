@@ -20,20 +20,23 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 
 	public PatientEntity getPatientByIdWithHistologyList(int patientId);
 
+	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
+			int patientId);
+
 	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId);
 
 	public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId);
 
 	public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId);
-	
+
 	public PatientEntity getPatientByIdWithNeuropsychologyList(int patientId);
-	
+
 	public PatientEntity getPatientByIdWithOperationList(int patientId);
-	
+
 	public PatientEntity getPatientByIdWithOutcomeList(int patientId);
-	
+
 	public PatientEntity getPatientByIdWithPharmacotherapyList(int patientId);
-	
+
 	public PatientEntity getPatientByIdWithSeizureList(int patientId);
 
 }
