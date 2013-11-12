@@ -1,6 +1,9 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.DAO.PatientDAO;
@@ -11,8 +14,8 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
  * The Class PatientDAOImpl.
  */
 @Repository
-public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
-		implements PatientDAO {
+public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
+		PatientDAO {
 
 	@Override
 	public PatientEntity getPatientByIdWithAllLists(int patientId) {
@@ -24,11 +27,11 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
 						+ " left join fetch p.diagnosticTestScalpEEGList"
 						+ " left join fetch p.diagnosticTestMRIList"
 						+ " left join fetch p.histologyList"
-					    + " left join fetch p.invasiveTestCorticalMappingList"
+						+ " left join fetch p.invasiveTestCorticalMappingList"
 						+ " left join fetch p.invasiveTestECOGList"
 						+ " left join fetch p.invasiveTestEEGList"
 						+ " left join fetch p.neurologicalFindingList"
-					//	+ " left join fetch p.neuropsychologyList"
+						// + " left join fetch p.neuropsychologyList"
 						+ " left join fetch p.operationList "
 						+ " left join fetch p.outcomeList"
 						+ " left join fetch p.pharmacotherapyList"
@@ -43,7 +46,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.anamnesisList where p.id = :patientId");
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.anamnesisList a"
+								+ " where p.id = :patientId AND a.status=1");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
@@ -87,9 +91,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity>
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
-	
+
 	@Override
-	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(int patientId) {
+	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
+			int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
