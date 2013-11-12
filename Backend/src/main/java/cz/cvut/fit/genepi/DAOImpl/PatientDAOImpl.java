@@ -1,9 +1,6 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.Query;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.DAO.PatientDAO;

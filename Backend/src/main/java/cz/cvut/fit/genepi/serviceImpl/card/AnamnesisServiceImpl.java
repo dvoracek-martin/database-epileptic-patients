@@ -18,14 +18,14 @@ public class AnamnesisServiceImpl extends GenericServiceImpl<AnamnesisEntity>
 	@Override
 	@Transactional
 	public void hide(AnamnesisEntity entity) {
-		entity.setStatus(0);
+		entity.setStatus(1);
 		genericDAO.save(entity);
 	}
 
 	@Override
 	@Transactional
 	public void unhide(AnamnesisEntity entity) {
-		entity.setStatus(1);
+		entity.setStatus(0);
 		genericDAO.save(entity);
 	}
 }
