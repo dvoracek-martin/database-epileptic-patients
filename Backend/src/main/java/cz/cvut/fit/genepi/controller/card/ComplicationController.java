@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.controller.card;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -16,36 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
-import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.ComplicationEntity;
 import cz.cvut.fit.genepi.service.PatientService;
-import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.card.ComplicationService;
 
 @Controller
 public class ComplicationController {
 
-	@Autowired
-	PatientService patientService;
+	private PatientService patientService;
+
+	private ComplicationService complicationService;
 
 	@Autowired
-	RoleService roleService;
-
-	@Autowired
-	ComplicationService complicationService;
+	public ComplicationController(PatientService patientService,
+			ComplicationService complicationService) {
+		this.patientService = patientService;
+		this.complicationService = complicationService;
+	}
 
 	@RequestMapping(value = "/patient/{patientID}/complication/create", method = RequestMethod.GET)
 	public String complicationCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
-
-		/* getting all docs */
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
-		doctors = doctorRole.getUsers();
-		model.addAttribute("doctors", doctors);
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("complication", new ComplicationEntity());
@@ -77,7 +68,6 @@ public class ComplicationController {
 		}
 	}
 
-	
 	@RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/delete", method = RequestMethod.GET)
 	public String complicationDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
@@ -88,18 +78,74 @@ public class ComplicationController {
 		return "redirect:/patient/" + patientID + "/complication/list";
 	}
 
+	/**
+	 * Handles the GET request to hide complication.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an complication.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/hide", method = RequestMethod.GET)
+	public String complicationHideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("complicationId") Integer complicationId,
+			Locale locale, Model model) {
+
+		complicationService.hide(complicationService.findByID(
+				ComplicationEntity.class, complicationId));
+		return "redirect:/patient/" + patientId + "/complication/list";
+	}
+
+	/**
+	 * Handles the GET request to unhide complication.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an complication.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/unhide", method = RequestMethod.GET)
+	public String complicationUnhideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("complicationId") Integer complicationId,
+			Locale locale, Model model) {
+
+		complicationService.unhide(complicationService.findByID(
+				ComplicationEntity.class, complicationId));
+		// TODO: address to get back to admin module where is list od hidden
+		// records.
+		return "redirect:/patient/" + patientId + "/xomplication/list";
+	}
+
 	@RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/export", method = RequestMethod.GET)
 	public String complicationExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("complicationID") Integer complicationID) {
 		return "redirect:/patient/" + patientID + "/complication/list";
 	}
-	
-	
+
 	@RequestMapping(value = "/patient/{patientID}/complication/list", method = RequestMethod.GET)
 	public String complicationListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.getPatientByIdWithComplicationList(patientID);
+		PatientEntity patient = patientService
+				.getPatientByIdWithComplicationList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/complication/listView";
 	}

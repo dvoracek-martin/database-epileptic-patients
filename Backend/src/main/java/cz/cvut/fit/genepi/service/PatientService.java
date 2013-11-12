@@ -6,8 +6,7 @@ import cz.cvut.fit.genepi.entity.PatientEntity;
 /**
  * The Interface PatientService.
  */
-public interface PatientService extends
-		GenericService<PatientEntity> {
+public interface PatientService extends GenericService<PatientEntity> {
 
 	public PatientEntity getPatientByIdWithAllLists(int patientId);
 
@@ -20,6 +19,9 @@ public interface PatientService extends
 	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId);
 
 	public PatientEntity getPatientByIdWithHistologyList(int patientId);
+
+	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
+			int patientId);
 
 	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId);
 

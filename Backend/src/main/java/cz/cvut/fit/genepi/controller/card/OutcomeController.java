@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.controller.card;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -16,36 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
-import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.OutcomeEntity;
 import cz.cvut.fit.genepi.service.PatientService;
-import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.card.OutcomeService;
 
 @Controller
 public class OutcomeController {
 
-	@Autowired
-	PatientService patientService;
+	private PatientService patientService;
+
+	private OutcomeService outcomeService;
 
 	@Autowired
-	RoleService roleService;
-
-	@Autowired
-	OutcomeService outcomeService;
+	public OutcomeController(PatientService patientService,
+			OutcomeService outcomeService) {
+		this.patientService = patientService;
+		this.outcomeService = outcomeService;
+	}
 
 	@RequestMapping(value = "/patient/{patientID}/outcome/create", method = RequestMethod.GET)
 	public String outcomeCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
-
-		/* getting all docs */
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
-		doctors = doctorRole.getUsers();
-		model.addAttribute("doctors", doctors);
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("outcome", new OutcomeEntity());
@@ -70,22 +61,76 @@ public class OutcomeController {
 		if (result.hasErrors()) {
 			return "patient/outcome/createView";
 		} else {
-			outcome.setPatient(patientService.findByID(
-					PatientEntity.class, patientID));
+			outcome.setPatient(patientService.findByID(PatientEntity.class,
+					patientID));
 			outcomeService.save(outcome);
 			return "redirect:/patient/" + patientID + "/outcome/list";
 		}
 	}
 
-	
 	@RequestMapping(value = "/patient/{patientID}/outcome/{outcomeID}/delete", method = RequestMethod.GET)
 	public String outcomeDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("outcomeID") Integer outcomeID) {
 
-		outcomeService.delete(outcomeService.findByID(
-				OutcomeEntity.class, outcomeID));
+		outcomeService.delete(outcomeService.findByID(OutcomeEntity.class,
+				outcomeID));
 		return "redirect:/patient/" + patientID + "/outcome/list";
+	}
+
+	/**
+	 * Handles the GET request to hide outcome.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an outcome.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/outcome/{outcomeId}/hide", method = RequestMethod.GET)
+	public String outcomeHideGET(@PathVariable("patientId") Integer patientId,
+			@PathVariable("outcomeId") Integer outcomeId, Locale locale,
+			Model model) {
+
+		outcomeService.hide(outcomeService.findByID(OutcomeEntity.class,
+				outcomeId));
+		return "redirect:/patient/" + patientId + "/outcome/list";
+	}
+
+	/**
+	 * Handles the GET request to unhide outcome.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an outcome.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/unhide", method = RequestMethod.GET)
+	public String outcomeUnhideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("outcomeId") Integer outcomeId, Locale locale,
+			Model model) {
+
+		outcomeService.unhide(outcomeService.findByID(OutcomeEntity.class,
+				outcomeId));
+		// TODO: address to get back to admin module where is list od hidden
+		// records.
+		return "redirect:/patient/" + patientId + "/outcome/list";
 	}
 
 	@RequestMapping(value = "/patient/{patientID}/outcome/{outcomeID}/export", method = RequestMethod.GET)
@@ -94,12 +139,12 @@ public class OutcomeController {
 			@PathVariable("outcomeID") Integer outcomeID) {
 		return "redirect:/patient/" + patientID + "/outcome/list";
 	}
-	
-	
+
 	@RequestMapping(value = "/patient/{patientID}/outcome/list", method = RequestMethod.GET)
 	public String outcomeListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.getPatientByIdWithOutcomeList(patientID);
+		PatientEntity patient = patientService
+				.getPatientByIdWithOutcomeList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/outcome/listView";
 	}

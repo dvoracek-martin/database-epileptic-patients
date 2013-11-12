@@ -13,9 +13,8 @@ import cz.cvut.fit.genepi.service.PatientService;
  * The Class PatientServiceImpl.
  */
 @Service
-public class PatientServiceImpl extends
-		GenericServiceImpl<PatientEntity> implements
-		PatientService {
+public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
+		implements PatientService {
 
 	/** The patient dao. */
 	@Autowired
@@ -58,6 +57,15 @@ public class PatientServiceImpl extends
 	@Transactional
 	public PatientEntity getPatientByIdWithHistologyList(int patientId) {
 		return patientDAO.getPatientByIdWithHistologyList(patientId);
+
+	}
+
+	@Override
+	@Transactional
+	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
+			int patientId) {
+		return patientDAO
+				.getPatientByIdWithInvasiveTestCorticalMappingList(patientId);
 
 	}
 

@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.controller.card;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import javax.validation.Valid;
@@ -16,36 +14,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.RoleEntity;
-import cz.cvut.fit.genepi.entity.UserEntity;
 import cz.cvut.fit.genepi.entity.card.PharmacotherapyEntity;
 import cz.cvut.fit.genepi.service.PatientService;
-import cz.cvut.fit.genepi.service.RoleService;
 import cz.cvut.fit.genepi.service.card.PharmacotherapyService;
 
 @Controller
 public class PharmacotherapyController {
 
-	@Autowired
-	PatientService patientService;
+	private PatientService patientService;
+
+	private PharmacotherapyService pharmacotherapyService;
 
 	@Autowired
-	RoleService roleService;
-
-	@Autowired
-	PharmacotherapyService pharmacotherapyService;
+	public PharmacotherapyController(PatientService patientService,
+			PharmacotherapyService pharmacotherapyService) {
+		this.patientService = patientService;
+		this.pharmacotherapyService = pharmacotherapyService;
+	}
 
 	@RequestMapping(value = "/patient/{patientID}/pharmacotherapy/create", method = RequestMethod.GET)
 	public String pharmacotherapyCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
-
-		/* getting all docs */
-		List<UserEntity> doctors = new ArrayList<UserEntity>();
-		RoleEntity doctorRole = roleService.findByID(RoleEntity.class, 2);
-		doctors = doctorRole.getUsers();
-		model.addAttribute("doctors", doctors);
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("pharmacotherapy", new PharmacotherapyEntity());
@@ -77,7 +68,6 @@ public class PharmacotherapyController {
 		}
 	}
 
-	
 	@RequestMapping(value = "/patient/{patientID}/pharmacotherapy/{pharmacotherapyID}/delete", method = RequestMethod.GET)
 	public String pharmacotherapyDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
@@ -88,18 +78,74 @@ public class PharmacotherapyController {
 		return "redirect:/patient/" + patientID + "/pharmacotherapy/list";
 	}
 
+	/**
+	 * Handles the GET request to hide pharmacotherapy.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an pharmacotherapy.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/hide", method = RequestMethod.GET)
+	public String pharmacotherapyHideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
+			Locale locale, Model model) {
+
+		pharmacotherapyService.hide(pharmacotherapyService.findByID(
+				PharmacotherapyEntity.class, pharmacotherapyId));
+		return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
+	}
+
+	/**
+	 * Handles the GET request to unhide pharmacotherapy.
+	 * 
+	 * @param patientId
+	 *            the id of a patient whom we are creating an pharmacotherapy.
+	 * @param anamnesisId
+	 * 
+	 * 
+	 * @param locale
+	 *            the user's locale.
+	 * 
+	 * @param model
+	 *            the model to be filled for view.
+	 * 
+	 * @return the address to which the user will be redirected.
+	 */
+	@RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{anamnesisId}/unhide", method = RequestMethod.GET)
+	public String pharmacotherapyUnhideGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
+			Locale locale, Model model) {
+
+		pharmacotherapyService.unhide(pharmacotherapyService.findByID(
+				PharmacotherapyEntity.class, pharmacotherapyId));
+		// TODO: address to get back to admin module where is list od hidden
+		// records.
+		return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
+	}
+
 	@RequestMapping(value = "/patient/{patientID}/pharmacotherapy/{pharmacotherapyID}/export", method = RequestMethod.GET)
 	public String pharmacotherapyExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("pharmacotherapyID") Integer pharmacotherapyID) {
 		return "redirect:/patient/" + patientID + "/pharmacotherapy/list";
 	}
-	
-	
+
 	@RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
 	public String pharmacotherapyListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.getPatientByIdWithPharmacotherapyList(patientID);
+		PatientEntity patient = patientService
+				.getPatientByIdWithPharmacotherapyList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/pharmacotherapy/listView";
 	}

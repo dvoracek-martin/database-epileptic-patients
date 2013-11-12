@@ -200,7 +200,7 @@ public class AnamnesisController {
 	 * @return the address to which the user will be redirected.
 	 */
 	@RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/hide", method = RequestMethod.GET)
-	public String anamnesisDeleteGET(
+	public String anamnesisHideGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
 			Model model) {
