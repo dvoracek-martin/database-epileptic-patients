@@ -91,7 +91,7 @@
 					      	<div class="accordion-inner">
 						      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
 									<div class="pull-right">
-										<a class="close" href="<c:url value="/patient/${patientID}/neurologicalFinding/${neurologicalFinding.id}/delete"/>"><spring:message code="label.delete"/></a>
+										<a class="close" href="<c:url value="/patient/${patientID}/neurologicalFinding/${neurologicalFinding.id}/hide"/>"><spring:message code="label.delete"/></a>
 									</div>
 									<div class="pull-left">
 										<a class="close" href="<c:url value="/patient/${patientID}/neurologicalFinding/list"/>"><spring:message code="label.edit"/></a>
