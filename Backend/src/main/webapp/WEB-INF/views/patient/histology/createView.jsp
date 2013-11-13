@@ -29,42 +29,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Histologie</h2>
+				<h2><spring:message code="label.histology"/></h2>
 			</div>
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -86,96 +86,83 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="histopathology"><strong><spring:message code="label.histopathology"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="histopathologyIdcom"><strong>Histopatologie</strong></label>
-    				<div class="controls">
-    					<form:select path="histopathologyIdcom" id="histopathologyIdcom" type="text" class="input-large">
+    					<form:select path="histopathology" id="histopathology" type="text" class="input-large">
 								<form:option value="1">
 									FCD	
 								</form:option>
 								<form:option value="2">
-									Gliální léze		
+									<spring:message code="label.glialLesions"/>		
 								</form:option>
 								<form:option value="3">
 									HS		
 								</form:option>
 								<form:option value="4">
-									Hamartom	
+									<spring:message code="label.hamartoma"/>		
 								</form:option>
 								<form:option value="5">
-									MCD jiná
+									MCD <spring:message code="label.other"/>
 								</form:option>
 								<form:option value="6">
-									Normální		
+									<spring:message code="label.unavialable"/>		
 								</form:option>
 								<form:option value="7">
-									Nádor		
+									<spring:message code="label.normal"/>		
 								</form:option>
 								<form:option value="8">
-									Posttraumatické změny		
+									<spring:message code="label.tumor"/>			
 								</form:option>
 								<form:option value="9">
-									SWC		
+									<spring:message code="label.post-traumaticChanges"/>			
 								</form:option>
 								<form:option value="10">
-									TSC		
+									SWC		
 								</form:option>
 								<form:option value="11">
-									Vaskulární léze		
+									TSC		
 								</form:option>
 								<form:option value="12">
-									Zánětlivá léze		
+									<spring:message code="label.vascularLesions"/>	
+								</form:option>
+								<form:option value="13">
+									<spring:message code="label.inflammatoryLesions"/>	
 								</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="histopathologyClasificationIdcom"><strong>Klasifikace FCD</strong></label>
+    				<label class="control-label" for="fcdClasification"><strong><spring:message code="label.FCDClasification"/></strong></label>
     				<div class="controls">
-    					<form:select path="histopathologyClasificationIdcom" id="histopathologyClasificationIdcom" type="text" class="input-large">
+    					<form:select path="fcdClasification" id="fcdClasification" type="text" class="input-large">
 								<form:option value="1">
 									0	
 								</form:option>
 								<form:option value="2">
-									FCD typ lla		
+									FCD <spring:message code="label.type"/> lla		
 								</form:option>
 								<form:option value="3">
-									FCD typ llb			
+									FCD <spring:message code="label.type"/> llb			
 								</form:option>
 								<form:option value="4">
-									FCD typ lla		
+									FCD <spring:message code="label.type"/> la	
 								</form:option>
 								<form:option value="5">
-									FCD typ la	
+									FCD <spring:message code="label.type"/> lb		
 								</form:option>
 								<form:option value="6">
-									FCD typ lb		
+									mMCD <spring:message code="label.type"/> l		
 								</form:option>
 								<form:option value="7">
-									mMCD typ l		
-								</form:option>
-								<form:option value="8">
-									mMCD typ ll		
+									mMCD <spring:message code="label.type"/> ll		
 								</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>

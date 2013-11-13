@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Komplikace
+      <spring:message code="label.complication"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Komplikace
+      <spring:message code="label.complication"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -20,7 +20,7 @@
 	<jsp:body>
 			<div>
 				<div class="span5">
-					<h2>Komplikace</h2>
+					<h2><spring:message code="label.complication"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -71,7 +71,7 @@
 			<c:if test="${empty patient.complicationList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -81,7 +81,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${complication.id}">
-					    	    <strong>Vyšetření dne:</strong> ${complication.date}
+					    	    <strong><spring:message code="label.dateOfContractAward"/>:</strong> ${complication.date}
 					    	</a>
 						</div>
 
@@ -90,7 +90,7 @@
 					      	<div class="accordion-inner">
 						      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
 									<div class="pull-right">
-										<a class="close" href="<c:url value="/patient/${patientID}/complication/${complication.id}/delete"/>"><spring:message code="label.delete"/></a>
+										<a class="close" href="<c:url value="/patient/${patientID}/complication/${complication.id}/hide"/>"><spring:message code="label.delete"/></a>
 									</div>
 									<div class="pull-left">
 										<a class="close" href="<c:url value="/patient/${patientID}/complication/list"/>"><spring:message code="label.edit"/></a>
@@ -100,79 +100,67 @@
 								<table class="table">
 				               		<tbody>
 										<tr class="info">
+											<td><spring:message code="label.process"/></td>
+											<c:if test="${complication.withComplication==true}">
+												<td><spring:message code="label.withComplications"/></td>
+											</c:if>
+											<c:if test="${complication.withComplication==false}">
+												<td><spring:message code="label.withoutComplications"/></td>
+											</c:if>
+										</tr>
+										<tr class="info">
+											<td><spring:message code="label.typeComplication"/></td>
+											<c:if test="${complication.complicationType==1}">
+												<td><spring:message code="label.unexpectedPermanent"/></td>
+											</c:if>
+											<c:if test="${complication.complicationType==2}">
+												<td><spring:message code="label.expectedPermanent"/></td>
+											</c:if>
+											<c:if test="${complication.complicationType==3}">
+												<td><spring:message code="label.transitional"/></td>
+											</c:if>
+										</tr>
+										<tr class="info">
 											<td><spring:message code="label.complication"/></td>
-											<c:if test="${complication.complicationIdcom==1}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.0"/></td>
+											<c:if test="${complication.complication==1}">
+												<td><spring:message code="label.aphasia"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==2}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.aphasia"/></td>
+											<c:if test="${complication.complication==2}">
+												<td><spring:message code="label.edema"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==3}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.hemiparesis"/></td>
+											<c:if test="${complication.complication==3}">
+												<td><spring:message code="label.hemiparesis"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==4}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.other"/></td>
+											<c:if test="${complication.complication==4}">
+												<td><spring:message code="label.hydrocefalus"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==5}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.paresisOfCranialNerves"/></td>
+											<c:if test="${complication.complication==5}">
+												<td><spring:message code="label.ischemia"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==6}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.visualFieldDefects"/></td>
+											<c:if test="${complication.complication==6}">
+												<td><spring:message code="label.other"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==7}">
-												<td><spring:message code="label.unexpectedPermanent"/> - <spring:message code="label.death"/></td>
+											<c:if test="${complication.complication==7}">
+												<td><spring:message code="label.hemorrhage"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==8}">
-												<td><spring:message code="label.expectedPermanent"/> - <spring:message code="label.0"/></td>
+											<c:if test="${complication.complication==8}">
+												<td><spring:message code="label.paresisOfCranialNerves"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==9}">
-												<td><spring:message code="label.expectedPermanent"/> - <spring:message code="label.hemiparesis"/></td>
+											<c:if test="${complication.complication==9}">
+												<td><spring:message code="label.visualFieldDefects"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==10}">
-												<td><spring:message code="label.expectedPermanent"/> - <spring:message code="label.other"/></td>
+											<c:if test="${complication.complication==10}">
+												<td><spring:message code="label.death"/></td>
 											</c:if>
-											<c:if test="${complication.complicationIdcom==11}">
-												<td><spring:message code="label.expectedPermanent"/> - <spring:message code="label.paresisOfCranialNerves"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==12}">
-												<td><spring:message code="label.expectedPermanent"/> - <spring:message code="label.visualFieldDefects"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==13}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.0"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==14}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.aphasia"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==15}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.edema"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==16}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.hemiparesis"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==17}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.hydrocefalus"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==18}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.ischemia"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==19}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.other"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==20}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.hemorrhage"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==21}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.paresisOfCranialNerves"/></td>
-											</c:if>
-											<c:if test="${complication.complicationIdcom==22}">
-												<td><spring:message code="label.transitional"/> - <spring:message code="label.inflammation"/></td>
+											<c:if test="${complication.complication==11}">
+												<td><spring:message code="label.inflammation"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty complication.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${complication.comment}</td>

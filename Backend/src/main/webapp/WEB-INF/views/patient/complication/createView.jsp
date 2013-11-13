@@ -86,95 +86,78 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="withComplication"><strong><spring:message code="label.process"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
+    					<form:select path="withComplication" id="withComplication" type="text" class="input-large">
+								<form:option value="false">
+									<spring:message code="label.withoutComplications"/>	
 								</form:option>
-							</c:forEach>	
+								<form:option value="true">
+									<spring:message code="label.withComplications"/>		
+								</form:option>
 						</form:select>
     				</div>
   				</div>
 
-  				<div class="control-group">
-    				<label class="control-label" for="complicationIdcom"><strong><spring:message code="label.complication"/></strong></label>
-    				<div class="controls">
-    					<form:select path="complicationIdcom" id="complicationIdcom" type="text" class="input-large">
-								<option id="title" disabled><spring:message code="label.unexpectedPermanent"/></option>
-								<form:option value="1">
-									<spring:message code="label.0"/>	
-								</form:option>
-								<form:option value="2">
-									<spring:message code="label.aphasia"/>		
-								</form:option>
-								<form:option value="3">
-									<spring:message code="label.hemiparesis"/>		
-								</form:option>
-								<form:option value="4">
-									<spring:message code="label.other"/>	
-								</form:option>
-								<form:option value="5">
-									<spring:message code="label.paresisOfCranialNerves"/>		
-								</form:option>
-								<form:option value="6">
-									<spring:message code="label.visualFieldDefects"/>		
-								</form:option>
-								<form:option value="7">
-									<spring:message code="label.death"/>		
-								</form:option>
-								<option id="title" disabled><spring:message code="label.expectedPermanent"/></option>
-								<form:option value="8">
-									<spring:message code="label.0"/>	
-								</form:option>
-								<form:option value="9">
-									<spring:message code="label.hemiparesis"/>			
-								</form:option>
-								<form:option value="10">
-									<spring:message code="label.other"/>	
-								</form:option>
-								<form:option value="11">
-									<spring:message code="label.paresisOfCranialNerves"/>	
-								</form:option>
-								<form:option value="12">
-									<spring:message code="label.visualFieldDefects"/>			
-								</form:option>
-								<option id="title" disabled><spring:message code="label.transitional"/></option>
-								<form:option value="13">
-									<spring:message code="label.0"/>	
-								</form:option>
-								<form:option value="14">
-									<spring:message code="label.aphasia"/>			
-								</form:option>
-								<form:option value="15">
-									<spring:message code="label.edema"/>			
-								</form:option>
-								<form:option value="16">
-									<spring:message code="label.hemiparesis"/>		
-								</form:option>
-								<form:option value="17">
-									<spring:message code="label.hydrocefalus"/>			
-								</form:option>
-								<form:option value="18">
-									<spring:message code="label.ischemia"/>			
-								</form:option>
-								<form:option value="19">
-									<spring:message code="label.other"/>	
-								</form:option>
-								<form:option value="20">
-									<spring:message code="label.hemorrhage"/>	
-								</form:option>
-								<form:option value="21">
-									<spring:message code="label.paresisOfCranialNerves"/>				
-								</form:option>
-								<form:option value="22">
-									<spring:message code="label.inflammation"/>			
-								</form:option>
+  				<div id="complications">
+	  				<div class="control-group">
+	    				<label class="control-label" for="complicationType"><strong><spring:message code="label.typeComplication"/></strong></label>
+	    				<div class="controls">
+	    					<form:select path="complicationType" id="complicationType" type="text" class="input-large">
+									<form:option value="1">
+										<spring:message code="label.unexpectedPermanent"/>	
+									</form:option>
+									<form:option value="2">
+										<spring:message code="label.expectedPermanent"/>		
+									</form:option>
+									<form:option value="3">
+										<spring:message code="label.transitional"/>		
+									</form:option>
+							</form:select>
+	    				</div>
+	  				</div>
 
-						</form:select>
-    				</div>
-  				</div>
+	  				<div class="control-group">
+	    				<label class="control-label" for="complication"><strong><spring:message code="label.complication"/></strong></label>
+	    				<div class="controls">
+	    					<form:select path="complication" id="complication" type="text" class="input-large">
+									<form:option value="1">
+										<spring:message code="label.aphasia"/>		
+									</form:option>
+									<form:option value="2">
+										<spring:message code="label.edema"/>		
+									</form:option>
+									<form:option value="3">
+										<spring:message code="label.hemiparesis"/>	
+									</form:option>
+									<form:option value="4">
+										<spring:message code="label.hydrocefalus"/>		
+									</form:option>
+									<form:option value="5">
+										<spring:message code="label.ischemia"/>		
+									</form:option>
+									<form:option value="6">
+										<spring:message code="label.other"/>		
+									</form:option>
+									<form:option value="7">
+										<spring:message code="label.hemorrhage"/>		
+									</form:option>
+									<form:option value="8">
+										<spring:message code="label.paresisOfCranialNerves"/>		
+									</form:option>
+									<form:option value="9">
+										<spring:message code="label.visualFieldDefects"/>		
+									</form:option>
+									<form:option value="10">
+										<spring:message code="label.death"/>		
+									</form:option>
+									<form:option value="11">
+										<spring:message code="label.inflammation"/>		
+									</form:option>
+							</form:select>
+	    				</div>
+	  				</div>
+	  			</div>
 
   				<div class="control-group">
     				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
