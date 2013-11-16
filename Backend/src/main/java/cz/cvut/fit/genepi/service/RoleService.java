@@ -10,5 +10,6 @@ import cz.cvut.fit.genepi.entity.UserEntity;
  * The Class RoleService.
  */
 public interface RoleService extends GenericService<RoleEntity> {
+	//TODO:unused method
 	public List<UserEntity> getAllDoctors();
 }
