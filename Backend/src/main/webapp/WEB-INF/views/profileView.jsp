@@ -6,10 +6,10 @@
 <t:menuLVL2>
 
 	<jsp:attribute name="title">
-      Profil
+      <spring:message code="label.profile"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Profil
+      <spring:message code="label.profile"/>
     </jsp:attribute>
 
 	<jsp:body>

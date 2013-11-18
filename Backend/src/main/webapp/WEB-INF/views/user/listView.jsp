@@ -59,7 +59,7 @@
 <h3 id="myModalLabel">User deletion</h3>
 </div>
 <div class="modal-body">
-<p>Do you really wnat ot delete this user?</p>
+<p>Do you really want to delete this user?</p>
 </div>
 <div class="modal-footer">
 <button class="btn" data-dismiss="modal" aria-hidden="true">NO</button>

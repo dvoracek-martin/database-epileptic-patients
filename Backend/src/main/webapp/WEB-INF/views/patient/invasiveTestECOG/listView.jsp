@@ -96,7 +96,7 @@
 									<table class="table">
 					               		<tbody>
 											<tr class="info">
-												<td>Invazivní test ECoG</td>
+												<td><spring:message code="label.invasiveTestECoG"/></td>
 												<c:if test="${invasiveTestECOG.done==true}">
 													<td style="column-span: 2"><spring:message code="label.done"/></td>
 												</c:if>
