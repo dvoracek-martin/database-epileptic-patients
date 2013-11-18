@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Invazivní testy - ECoG
+      <spring:message code="label.invasiveTestECoG"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Invazivní testy - ECoG
+      <spring:message code="label.invasiveTestECoG"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Invazivní testy - ECoG</h2>
+					<h2><spring:message code="label.invasiveTestECoG"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -71,7 +71,7 @@
  			<c:if test="${empty patient.invasiveTestECOGList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/></h4>
 				</div>
  			</c:if>
 
@@ -80,7 +80,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${invasiveTestECOG.id}">
-					    	    <strong>Vyšetření dne:</strong> ${invasiveTestECOG.date}
+					    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${invasiveTestECOG.date}
 					    	</a>
 						</div>
 
@@ -99,7 +99,7 @@
 								<table class="table">
 				               		<tbody>
 										<tr class="info">
-											<td>Intraoperační ECoG</td>
+											<td><spring:message code="label.intraoperativeECoG"/></td>
 											<c:if test="${invasiveTestECOG.intraoperativeEcog==true}">
 												<td style="column-span: 2"><spring:message code="label.yes"/></td>
 											</c:if>
@@ -108,44 +108,44 @@
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>ECoG pokrytí</td>
+											<td><spring:message code="label.ECoG_cover"/></td>
 											<td>${invasiveTestECOG.ecogCover}</td>
 										</tr>
 										<tr class="info">
-											<td>ECoG vzorce</td>
+											<td><spring:message code="label.ECoG_patterns"/></td>
 											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==1}">
-												<td>Bez hrotů</td>
+												<td><spring:message code="label.noSpikes"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==2}">
-												<td>Burst-suppression</td>
+												<td><spring:message code="label.burstSuppresion"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==3}">
-												<td>Kontinuální hroty</td>
+												<td><spring:message code="label.continuousSpikes"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==4}">
-												<td>Nespecifická abnormalita</td>
+												<td><spring:message code="label.ECoGAbnormality"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==5}">
-												<td>S hroty</td>
+												<td><spring:message code="label.spikes"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
-											<td>ECoG po resekci</td>
+											<td><spring:message code="label.afterResectionECoG"/></td>
 											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==1}">
-												<td>Bez hrotů</td>
+												<td><spring:message code="label.noSpikes"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==2}">
-												<td>Neprovedena</td>
+												<td><spring:message code="label.notDone"/></td>
 											</c:if>
 											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==3}">
-												<td>S hroty</td>
+												<td><spring:message code="label.spikes"/></td>
 											</c:if>
 										</tr>
 										<tr class="info">
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty invasiveTestECOG.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${invasiveTestECOG.comment}</td>

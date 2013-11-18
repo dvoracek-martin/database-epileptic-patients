@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Invazivní testy - ECoG</h2>
+				<h2><spring:message code="label.invasiveTestECoG"/></h2>
 			</div>
 
 						<table class="table">
@@ -93,7 +93,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intraoperativeEcog"><strong>Intraoperační ECoG</strong></label>
+    				<label class="control-label" for="intraoperativeEcog"><strong><spring:message code="label.intraoperativeECoG"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="intraoperativeEcog" input="intraoperativeEcog" class="input-block-level" />
 						<form:errors path="intraoperativeEcog" cssClass="error">
@@ -102,7 +102,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ecogCover"><strong>ECoG pokrytí</strong></label>
+    				<label class="control-label" for="ecogCover"><strong><spring:message code="label.ECoG_cover"/></strong></label>
     				<div class="controls">
     					<form:input type="text" path="ecogCover" input="ecogCover" class="input-medium" />
 						<form:errors path="ecogCover" cssClass="error">
@@ -111,40 +111,40 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ecogPatternsIdcom"><strong>ECoG vzorce</strong></label>
+    				<label class="control-label" for="ecogPatternsIdcom"><strong><spring:message code="label.ECoG_patterns"/></strong></label>
     				<div class="controls">
     					<form:select path="ecogPatternsIdcom" id="ecogPatternsIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bez hrotů
+								<spring:message code="label.noSpikes"/>
 							</form:option>
 							<form:option value="2">
-								Burst-suppression
+								<spring:message code="label.burstSuppresion"/>
 							</form:option>
 							<form:option value="3">
-								Kontinuální hroty
+								<spring:message code="label.continuousSpikes"/>
 							</form:option>
 							<form:option value="4">
-								Nespecifická abnormalita
+								<spring:message code="label.ECoGAbnormality"/>
 							</form:option>	
 							<form:option value="5">
-								S hroty
+								<spring:message code="label.spikes"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="afterResectionEcogIdcom"><strong>ECoG po resekci</strong></label>
+    				<label class="control-label" for="afterResectionEcogIdcom"><strong><spring:message code="label.afterResectionECoG"/></strong></label>
     				<div class="controls">
     					<form:select path="afterResectionEcogIdcom" id="afterResectionEcogIdcom" type="text" class="input-large">
 							<form:option value="1">
-								Bez hrotů
+								<spring:message code="label.noSpikes"/>
 							</form:option>
 							<form:option value="2">
-								Neprovedena
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="3">
-								S hroty
+								<spring:message code="label.spikes"/>
 							</form:option>
 						</form:select>
     				</div>

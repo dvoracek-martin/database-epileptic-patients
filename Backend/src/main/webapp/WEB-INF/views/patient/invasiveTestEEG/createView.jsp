@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Invazivní testy - EEG</h2>
+				<h2><spring:message code="label.invasiveTestEEG"/></h2>
 			</div>
 
 						<table class="table">

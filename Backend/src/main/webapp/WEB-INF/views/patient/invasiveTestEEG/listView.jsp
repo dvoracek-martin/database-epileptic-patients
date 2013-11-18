@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Invazivní testy - EEG
+     <spring:message code="label.invasiveTestEEG"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Invazivní testy - EEG
+      <spring:message code="label.invasiveTestEEG"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Invazivní testy - EEG</h2>
+					<h2><spring:message code="label.invasiveTestEEG"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -71,7 +71,7 @@
 			<c:if test="${empty patient.invasiveTestEEGList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -231,7 +231,7 @@
 											<td><spring:message code="label.comment" /></td>
 											<c:choose>
 												<c:when test="${empty invasiveTestEEG.comment}">
-													<td>Žádný</td>
+													<td><spring:message code="label.noComments"/></td>
 												</c:when>
 												<c:otherwise>
 													<td>${invasiveTestEEG.comment}</td>
