@@ -67,97 +67,104 @@
 					</tr>
 				</tbody>
 			</table>
- 			
- 			<c:if test="${empty patient.invasiveTestECOGList}">
- 				<div class="alert alert-block">
-		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4><spring:message code="label.noRecords"/></h4>
-				</div>
- 			</c:if>
 
+			<!-- invasiveTestECOG list START -->
 			<div class="accordion">
+				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${patient.invasiveTestECOGList}" var="invasiveTestECOG">
-					<div >
-						<div class="accordion-heading">
-					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${invasiveTestECOG.id}">
-					    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${invasiveTestECOG.date}
-					    	</a>
-						</div>
+					<c:if test="${invasiveTestECOG.status==0}">
+						<c:set var="count" value="${count + 1}" scope="page"/>
+						<div>
+							<div class="accordion-heading">
+						    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${invasiveTestECOG.id}">
+						    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${invasiveTestECOG.date}
+						    	</a>
+							</div>
 
-					    <div id="collapse${invasiveTestECOG.id}" class="accordion-body collapse">
+						    <div id="collapse${invasiveTestECOG.id}" class="accordion-body collapse">
 
-					      	<div class="accordion-inner">
-						      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
-									<div class="pull-right">
-										<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/${invasiveTestECOG.id}/delete"/>"><spring:message code="label.delete"/></a>
+						      	<div class="accordion-inner">
+							      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
+										<div class="pull-right">
+											<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/${invasiveTestECOG.id}/hide"/>"><spring:message code="label.delete"/></a>
+										</div>
+										<div class="pull-left">
+											<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/list"/>"><spring:message code="label.edit"/></a>
+										</div>
+										</br>
 									</div>
-									<div class="pull-left">
-										<a class="close" href="<c:url value="/patient/${patientID}/invasiveTestECOG/list"/>"><spring:message code="label.edit"/></a>
-									</div>
-									</br>
-								</div>
-								<table class="table">
-				               		<tbody>
-										<tr class="info">
-											<td><spring:message code="label.intraoperativeECoG"/></td>
-											<c:if test="${invasiveTestECOG.intraoperativeEcog==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.intraoperativeEcog==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.ECoG_cover"/></td>
-											<td>${invasiveTestECOG.ecogCover}</td>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.ECoG_patterns"/></td>
-											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==1}">
-												<td><spring:message code="label.noSpikes"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==2}">
-												<td><spring:message code="label.burstSuppresion"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==3}">
-												<td><spring:message code="label.continuousSpikes"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==4}">
-												<td><spring:message code="label.ECoGAbnormality"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.ecogPatternsIdcom==5}">
-												<td><spring:message code="label.spikes"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.afterResectionECoG"/></td>
-											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==1}">
-												<td><spring:message code="label.noSpikes"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==2}">
-												<td><spring:message code="label.notDone"/></td>
-											</c:if>
-											<c:if test="${invasiveTestECOG.afterResectionEcogIdcom==3}">
-												<td><spring:message code="label.spikes"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.comment" /></td>
-											<c:choose>
-												<c:when test="${empty invasiveTestECOG.comment}">
-													<td><spring:message code="label.noComments"/></td>
-												</c:when>
-												<c:otherwise>
-													<td>${invasiveTestECOG.comment}</td>
-												</c:otherwise>
-											</c:choose>
-										</tr>
-				              		</tbody>
-			            		</table>
-		            		</div>
-					    </div>
-	            	</div>
+									<table class="table">
+					               		<tbody>
+											<tr class="info">
+												<td>Invazivní test ECoG</td>
+												<c:if test="${invasiveTestECOG.done==true}">
+													<td style="column-span: 2"><spring:message code="label.done"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.done==false}">
+													<td><spring:message code="label.notDone"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td><spring:message code="label.ECoG_cover"/></td>
+												<td>${invasiveTestECOG.ecogCover}</td>
+											</tr>
+											<tr class="info">
+												<td><spring:message code="label.ECoG_patterns"/></td>
+												<c:if test="${invasiveTestECOG.ecogPatterns==1}">
+													<td><spring:message code="label.noSpikes"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.ecogPatterns==2}">
+													<td><spring:message code="label.burstSuppresion"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.ecogPatterns==3}">
+													<td><spring:message code="label.continuousSpikes"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.ecogPatterns==4}">
+													<td><spring:message code="label.ECoGAbnormality"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.ecogPatterns==5}">
+													<td><spring:message code="label.spikes"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td><spring:message code="label.afterResectionECoG"/></td>
+												<c:if test="${invasiveTestECOG.afterResectionEcog==1}">
+													<td><spring:message code="label.noSpikes"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.afterResectionEcog==2}">
+													<td><spring:message code="label.notDone"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.afterResectionEcog==3}">
+													<td><spring:message code="label.done"/></td>
+												</c:if>
+												<c:if test="${invasiveTestECOG.afterResectionEcog==4}">
+													<td><spring:message code="label.spikes"/></td>
+												</c:if>
+											</tr>
+											<tr class="info">
+												<td><spring:message code="label.comment" /></td>
+												<c:choose>
+													<c:when test="${empty invasiveTestECOG.comment}">
+														<td><spring:message code="label.noComments"/></td>
+													</c:when>
+													<c:otherwise>
+														<td>${invasiveTestECOG.comment}</td>
+													</c:otherwise>
+												</c:choose>
+											</tr>
+					              		</tbody>
+				            		</table>
+			            		</div>
+						    </div>
+		            	</div>
+		            </c:if>
 	            </c:forEach>
+	            <c:if test="${count==0}">
+		            <div class="alert alert-block">
+		  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  				<h4><spring:message code="label.noRecords"/></h4>
+					</div>
+		       	</c:if>
             </div>
         </br> 
 	</jsp:body>

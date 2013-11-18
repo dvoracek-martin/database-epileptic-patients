@@ -74,7 +74,7 @@
 				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${patient.anamnesisList}" var="anamnesis">
 					<c:if test="${anamnesis.status==0}">
-					<c:set var="count" value="${count + 1}" scope="page"/>
+						<c:set var="count" value="${count + 1}" scope="page"/>
 						<div>
 							<div class="accordion-heading">
 						    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${anamnesis.id}">

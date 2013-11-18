@@ -80,40 +80,32 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="done"><strong>Invazivní test ECoG</strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
+    					<form:select path="done" id="done" type="text" class="input-large">
+							<form:option value="false">
+								<spring:message code="label.notDone"/>
+							</form:option>
+							<form:option value="true">
+								<spring:message code="label.done"/>
+							</form:option>
 						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="intraoperativeEcog"><strong><spring:message code="label.intraoperativeECoG"/></strong></label>
-    				<div class="controls">
-    					<form:checkbox path="intraoperativeEcog" input="intraoperativeEcog" class="input-block-level" />
-						<form:errors path="intraoperativeEcog" cssClass="error">
-						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
     				<label class="control-label" for="ecogCover"><strong><spring:message code="label.ECoG_cover"/></strong></label>
     				<div class="controls">
-    					<form:input type="text" path="ecogCover" input="ecogCover" class="input-medium" />
+    					<form:textarea path="ecogCover" id="ecogCover" input="ecogCover" />
 						<form:errors path="ecogCover" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ecogPatternsIdcom"><strong><spring:message code="label.ECoG_patterns"/></strong></label>
+    				<label class="control-label" for="ecogPatterns"><strong><spring:message code="label.ECoG_patterns"/></strong></label>
     				<div class="controls">
-    					<form:select path="ecogPatternsIdcom" id="ecogPatternsIdcom" type="text" class="input-large">
+    					<form:select path="ecogPatterns" id="ecogPatterns" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.noSpikes"/>
 							</form:option>
@@ -134,9 +126,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="afterResectionEcogIdcom"><strong><spring:message code="label.afterResectionECoG"/></strong></label>
+    				<label class="control-label" for="afterResectionEcog"><strong><spring:message code="label.afterResectionECoG"/></strong></label>
     				<div class="controls">
-    					<form:select path="afterResectionEcogIdcom" id="afterResectionEcogIdcom" type="text" class="input-large">
+    					<form:select path="afterResectionEcog" id="afterResectionEcog" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.noSpikes"/>
 							</form:option>
@@ -144,6 +136,9 @@
 								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="3">
+								<spring:message code="label.done"/>
+							</form:option>
+							<form:option value="4">
 								<spring:message code="label.spikes"/>
 							</form:option>
 						</form:select>
