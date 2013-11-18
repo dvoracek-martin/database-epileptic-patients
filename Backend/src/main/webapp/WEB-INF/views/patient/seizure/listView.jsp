@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Záchvaty
+      <spring:message code="label.seizures"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Záchvaty
+      <spring:message code="label.seizures"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Záchvaty</h2>
+					<h2><spring:message code="label.seizures"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -72,7 +72,7 @@
 			<c:if test="${empty patient.seizureList}">
  				<div class="alert alert-block">
 		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4>Žádné záznamy!</h4>
+		  			<h4><spring:message code="label.noRecords"/>!</h4>
 				</div>
  			</c:if>
 
@@ -82,7 +82,7 @@
 					<div >
 						<div class="accordion-heading">
 					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${seizure.id}">
-					    	    <strong>Vyšetření dne:</strong> ${seizure.date}
+					    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${seizure.date}
 					    	</a>
 						</div>
 
@@ -101,18 +101,18 @@
 								<table class="table">
 		               		<tbody>
 								<tr class="info">
-									<td>Četnost záchvatů</td>
+									<td><spring:message code="label.seizureFrequency"/></td>
 									<c:if test="${seizure.seizureFrequencyIdcom==1}">
-										<td>Denně</td>
+										<td><spring:message code="label.daily"/></td>
 									</c:if>
 									<c:if test="${seizure.seizureFrequencyIdcom==2}">
-										<td>Týdně</td>
+										<td><spring:message code="label.weekly"/></td>
 									</c:if>
 									<c:if test="${seizure.seizureFrequencyIdcom==3}">
-										<td>Méně než měsíčně</td>
+										<td><spring:message code="label.monthly"/></td>
 									</c:if>
 									<c:if test="${seizure.seizureFrequencyIdcom==4}">
-										<td>Měsíčně</td>
+										<td><spring:message code="label.lessThanMonthly"/></td>
 									</c:if>
 								</tr>
 								
@@ -126,141 +126,141 @@
 									</c:if>
 								</tr>
 								<tr class="info">
-									<td>SSC klasifikace</td>
+									<td><spring:message code="label.SSCClassification"/></td>
 									<c:if test="${seizure.sscClassificationIdcom==1}">
-										<td>1. Epileptický záchvat</td>
+										<td><spring:message code="label.epilepticSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==2}">
-										<td>2. Aura</td>
+										<td><spring:message code="label.aura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==3}">
-										<td>2.a. Somastosenzorická aura</td>
+										<td><spring:message code="label.somatosenzoryAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==4}">
-										<td>2.b. Zraková aura</td>
+										<td><spring:message code="label.visualAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==5}">
-										<td>2.c. Sluchová aura</td>
+										<td><spring:message code="label.auditoryAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==6}">
-										<td>2.d. Čichová aura</td>
+										<td><spring:message code="label.olfactoryAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==7}">
-										<td>2.e. Chuťová aura</td>
+										<td><spring:message code="label.gustatoryAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==8}">
-										<td>2.f. Autonomní aura</td>
+										<td><spring:message code="label.autonomicAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==9}">
-										<td>2.g. Epigastrická aura</td>
+										<td><spring:message code="label.epigastricAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==10}">
-										<td>2.h. Psychická aura</td>
+										<td><spring:message code="label.psychicAura"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==11}">
-										<td>3. Absence</td>
+										<td><spring:message code="label.absence"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==12}">
-										<td>4. Autonomní záchvat</td>
+										<td><spring:message code="label.autonomicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==13}">
-										<td>5. Psychomotorický záchvat</td>
+										<td><spring:message code="label.psychomotorSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==14}">
-										<td>6. Motorický záchvat</td>
+										<td><spring:message code="label.motorSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==15}">
-										<td>6.a. Klonický záchvat</td>
+										<td><spring:message code="label.clonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==16}">
-										<td>6.b. Tonický záchvat</td>
+										<td><spring:message code="label.tonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==17}">
-										<td>6.c. Tonicko-klonický záchvat</td>
+										<td><spring:message code="label.tonicClonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==18}">
-										<td>6.d. Atonický záchvat</td>
+										<td><spring:message code="label.atonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==19}">
-										<td>6.e. Akinetický záchvat</td>
+										<td><spring:message code="label.akineticSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==20}">
-										<td>6.f. Versivní záchvat</td>
+										<td><spring:message code="label.versiveSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==21}">
-										<td>6.g. Myoklonický záchvat</td>
+										<td><spring:message code="label.myoclonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==22}">
-										<td>6.h. Hypermotorický záchvat</td>
+										<td><spring:message code="label.hypermotorSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==23}">
-										<td>6.i. Hypomotorický záchvat</td>
+										<td><spring:message code="label.hypomotorSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==24}">
-										<td>6.j. Negativní myoklonický záchvat</td>
+										<td><spring:message code="label.negativeMyoclonicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==25}">
-										<td>6.k. Astatický záchvat</td>
+										<td><spring:message code="label.askatikSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==26}">
-										<td>6.l. Akinetický záchvat</td>
+										<td><spring:message code="label.akineticSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==27}">
-										<td>6.m. Afázický záchvat</td>
+										<td><spring:message code="label.aphasicSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==28}">
-										<td>6.n. Gelastický záchvat</td>
+										<td><spring:message code="label.gelasticSeizure"/></td>
 									</c:if>
 									<c:if test="${seizure.sscClassificationIdcom==29}">
-										<td>7. Paroxysmální příhoda</td>
+										<td><spring:message code="label.paroxymalEvent"/></td>
 									</c:if>
 								</tr>
 								<tr class="info">
-									<td>ILAE klasifikace</td>
+									<td><spring:message code="label.ILAEClassification"/></td>
 									<c:if test="${seizure.ilaeClassificationIdcom==1}">
-										<td>I.A.1. Jednoduchý parciální záchvat s motorickými symptomy</td>
+										<td><spring:message code="label.simplePartialMotor"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==2}">
-										<td>I.A.2. Jednoduchý parciální záchvat s psychickými symptomy</td>
+										<td><spring:message code="label.simplePartialPsychic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==3}">
-										<td>I.A.3. Jednoduchý parciální záchvat s autonomními symptomy</td>
+										<td><spring:message code="label.simplePartialMotor"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==4}">
-										<td>I.A.4. Jednoduchý parciální záchvat se somatosenzorickými symptomy</td>
+										<td>spring:message code="label.simplePartialPsychic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==5}">
-										<td>I.B.1. Komplexní parciální záchvat s jednoduchým parciálním záchvatem na počátku,  následovaným poruc</td>
+										<td><spring:message code="label.simplePartialSimple"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==6}">
-										<td>I.B.2. Komplexní parciální záchvat s poruchou vědomí na počátku</td>
+										<td><spring:message code="label.simplePartialImpairment"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==7}">
-										<td>I.C. Parciální záchvat sekundárně se rozvíjející v generalizovaný</td>
+										<td><spring:message code="label.simplePartialEvolving"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==8}">
-										<td>II.A.1. Generalizovaný - Typická absence</td>
+										<td><spring:message code="label.generalizedTypical"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==9}">
-										<td>II.A.2. Generalizovaný - Atypická absence</td>
+										<td><spring:message code="label.generalizedAtypical"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==10}">
-										<td>II.B. Generalizovaný - Myoklonický</td>
+										<td><spring:message code="label.generalizedMyoclonic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==11}">
-										<td>II.C. Generalizovaný - Klonický</td>
+										<td><spring:message code="label.generalizedClonic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==12}">
-										<td>II.D. Generalizovaný - Tonický</td>
+										<td><spring:message code="label.generalizedTonic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==13}">
-										<td>II.E. Generalizovaný - Tonicko-klonický</td>
+										<td><spring:message code="label.generalizedTonicClonic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==14}">
-										<td>II.F. Generalizovaný - Atonický</td>
+										<td><spring:message code="label.generalizedAtonic"/></td>
 									</c:if>
 									<c:if test="${seizure.ilaeClassificationIdcom==15}">
-										<td>III. Neklasifikovaný</td>
+										<td><spring:message code="label.unclassified"/></td>
 									</c:if>
 								</tr>
 
@@ -268,7 +268,7 @@
 									<td><spring:message code="label.comment" /></td>
 									<c:choose>
 										<c:when test="${empty seizure.comment}">
-											<td>Žádný</td>
+											<td><spring:message code="label.noComment"/></td>
 										</c:when>
 										<c:otherwise>
 											<td>${seizure.comment}</td>

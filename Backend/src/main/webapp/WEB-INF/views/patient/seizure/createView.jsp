@@ -23,42 +23,42 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2>Záchvaty</h2>
+				<h2><spring:message code="label.seizures"/></h2>
 			</div>
 
 			<table class="table">
 				<tbody>
 					<tr>
-						<th>Pacient:</th>
+						<th><spring:message code="label.patient"/>:</th>
 						<td>${patient.contact.firstName}</td>
 
-						<th>Rodné číslo:</th>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
 						<td>${patient.nin}</td>
 
-						<th>Datum narození:</th>
+						<th><spring:message code="label.birthdate"/>:</th>
 						<td>${patient.birthday}</td>
 							
 					</tr>
 					<tr>	
-						<th>Adresa:</th>
+						<th><spring:message code="label.address"/>:</th>
 						<td>${patient.contact.addressStreet}</td>
 							
-						<th>Telefon:</th>
+						<th><spring:message code="label.telephone"/>:</th>
 						<td>${patient.contact.phoneNumber}</td>
 							
-						<th>Email:</th>
+						<th><spring:message code="label.email"/>:</th>
 						<td>${patient.contact.email}</td>
 												
 							
 					</tr>
 					<tr>
-						<th>Pohaví:</th>
+						<th><spring:message code="label.gender"/>:</th>
 						<td>${patient.gender}</td>
 							
-						<th>Věk při začátku epilepsie:</th>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
 						<td></td>
 							
-						<th>Ošetřující lékař:</th>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
 						<td></td>
 							
 					</tr>
@@ -93,21 +93,21 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="seizureFrequencyIdcom"><strong>Četnost záchvatů</strong></label>
+    				<label class="control-label" for="seizureFrequencyIdcom"><strong><spring:message code="label.seizureFrequency"/></strong></label>
     				<div class="controls">
     					<form:select path="seizureFrequencyIdcom" id="seizureFrequencyIdcom" type="text" class="input-large">
 							
 								<form:option value="1">
-									Denně
+									<spring:message code="label.daily"/>
 								</form:option>
 								<form:option value="2">
-									Týdně
+									<spring:message code="label.weekly"/>
 								</form:option>
 								<form:option value="3">
-									Méně než měsíčně
+									<spring:message code="label.monthly"/>
 								</form:option>
 								<form:option value="4">
-									Měsíčně
+									<spring:message code="label.lessThanMonthly"/>
 								</form:option>					
 
 						</form:select>
@@ -115,96 +115,96 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="sscClassificationIdcom"><strong>SSC klasifikace</strong></label>
+    				<label class="control-label" for="sscClassificationIdcom"><strong><spring:message code="label.SSCClassification"/></strong></label>
     				<div class="controls">
     					<form:select path="sscClassificationIdcom" id="sscClassificationIdcom" type="text" class="input-large">
 							
 								<form:option value="1">
-									1. Epileptický záchvat
+									<spring:message code="label.epilepticSeizure"/>
 								</form:option>
 								<form:option value="2">
-									2. Aura
+									<spring:message code="label.aura"/>
 								</form:option>
 								<form:option value="3">
-									2.a. Somastosenzorická aura
+									<spring:message code="label.somatosenzoryAura"/>
 								</form:option>
 								<form:option value="4">
-									2.b. Zraková aura
+									<spring:message code="label.visualAura"/>
 								</form:option>	
 								<form:option value="5">
-									2.c. Sluchová aura
+									<spring:message code="label.auditoryAura"/>
 								</form:option>
 								<form:option value="6">
-									2.d. Čichová aura
+									<spring:message code="label.olfactoryAura"/>
 								</form:option>
 								<form:option value="7">
-									2.e. Chuťová aura
+									<spring:message code="label.gustatoryAura"/>
 								</form:option>
 								<form:option value="8">
-									2.f. Autonomní aura
+									<spring:message code="label.autonomicAura"/>
 								</form:option>
 								<form:option value="9">
-									2.g. Epigastrická aura
+									<spring:message code="label.epigastricAura"/>
 								</form:option>	
 								<form:option value="10">
-									2.h. Psychická aura
+									<spring:message code="label.psychicAura"/>
 								</form:option>	
 								<form:option value="11">
-									3. Absence
+									<spring:message code="label.absence"/>
 								</form:option>		
 								<form:option value="12">
-									4. Autonomní záchvat
+									<spring:message code="label.autonomicSeizure"/>
 								</form:option>	
 								<form:option value="13">
-									5. Psychomotorický záchvat
+									<spring:message code="label.psychomotorSeizure"/>
 								</form:option>	
 								<form:option value="14">
-									6. Motorický záchvat
+									<spring:message code="label.motorSeizure"/>
 								</form:option>	
 								<form:option value="15">
-									6.a. Klonický záchvat
+									<spring:message code="label.clonicSeizure"/>
 								</form:option>	
 								<form:option value="16">
-									6.b. Tonický záchvat
+									<spring:message code="label.tonicSeizure"/>
 								</form:option>	
 								<form:option value="17">
-									6.c. Tonicko-klonický záchvat
+									<spring:message code="label.tonicClonicSeizure"/>
 								</form:option>	
 								<form:option value="18">
-									6.d. Atonický záchvat
+									<spring:message code="label.atonicSeizure"/>
 								</form:option>	
 								<form:option value="19">
-									6.e. Akinetický záchvat
+									<spring:message code="label.akineticSeizure"/>
 								</form:option>	
 								<form:option value="20">
-									6.f. Versivní záchvat
+									<spring:message code="label.versiveSeizure"/>
 								</form:option>	
 								<form:option value="21">
-									6.g. Myoklonický záchvat
+									<spring:message code="label.myoclonicSeizure"/>
 								</form:option>	
 								<form:option value="22">
-									6.h. Hypermotorický záchvat
+									<spring:message code="label.hypermotorSeizure"/>
 								</form:option>	
 								<form:option value="23">
-									6.i. Hypomotorický záchvat
+									<spring:message code="label.hypomotorSeizure"/>
 								</form:option>	
 								<form:option value="24">
-									6.j. Negativní myoklonický záchvat
+									<spring:message code="label.negativeMyoclonicSeizure"/>
 								</form:option>	
 								<form:option value="25">
-									6.k. Astatický záchvat
+									<spring:message code="label.askatikSeizure"/>
 								</form:option>	
 								<form:option value="26">
-									6.l. Akinetický záchvat
+									<spring:message code="label.akineticSeizure"/>
 								</form:option>	
 								<form:option value="27">
-									6.m. Afázický záchvat
+									<spring:message code="label.aphasicSeizure"/>
 								</form:option>	
 								<form:option value="28">
-									6.n. Gelastický záchvat
+									<spring:message code="label.gelasticSeizure"/>
 								</form:option>	
 								<form:option value="29">
-									7. Paroxysmální příhoda
+									<spring:message code="label.paroxymalEvent"/>
 								</form:option>	
 
 
@@ -213,54 +213,54 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ilaeClassificationIdcom"><strong>ILAE klasifikace</strong></label>
+    				<label class="control-label" for="ilaeClassificationIdcom"><strong><spring:message code="label.ILAEClassification"/></strong></label>
     				<div class="controls">
     					<form:select path="ilaeClassificationIdcom" id="ilaeClassificationIdcom" type="text" class="input-large">
 							
 								<form:option value="1">
-									I.A.1. Jednoduchý parciální záchvat s motorickými symptomy
+									<spring:message code="label.simplePartialMotor"/>
 								</form:option>
 								<form:option value="2">
-									I.A.2. Jednoduchý parciální záchvat s psychickými symptomy
+									<spring:message code="label.simplePartialPsychic"/>
 								</form:option>
 								<form:option value="3">
-									I.A.3. Jednoduchý parciální záchvat s autonomními symptomy
+									<spring:message code="label.simplePartialAutonomic"/>
 								</form:option>
 								<form:option value="4">
-									I.A.4. Jednoduchý parciální záchvat se somatosenzorickými symptomy
+									<spring:message code="label.simplePartialSomatosensory"/>
 								</form:option>
 								<form:option value="5">
-									I.B.1. Komplexní parciální záchvat s jednoduchým parciálním záchvatem na počátku,  následovaným poruc
+									<spring:message code="label.simplePartialSimple"/>
 								</form:option>
 								<form:option value="6">
-									I.B.2. Komplexní parciální záchvat s poruchou vědomí na počátku
+									<spring:message code="label.simplePartialImpairment"/>
 								</form:option>
 								<form:option value="7">
-									I.C. Parciální záchvat sekundárně se rozvíjející v generalizovaný
+									<spring:message code="label.simplePartialEvolving"/>
 								</form:option>
 								<form:option value="8">
-									II.A.1. Generalizovaný - Typická absence
+									<spring:message code="label.generalizedTypical"/>
 								</form:option>
 								<form:option value="9">
-									II.A.2. Generalizovaný - Atypická absence
+									<spring:message code="label.generalizedAtypical"/>
 								</form:option>
 								<form:option value="10">
-									II.B. Generalizovaný - Myoklonický
+									<spring:message code="label.generalizedMyoclonic"/>
 								</form:option>	
 								<form:option value="11">
-									II.C. Generalizovaný - Klonický
+									<spring:message code="label.generalizedClonic"/>
 								</form:option>	
 								<form:option value="12">
-									II.D. Generalizovaný - Tonický
+									<spring:message code="label.generalizedTonic"/>
 								</form:option>	
 								<form:option value="13">
-									II.E. Generalizovaný - Tonicko-klonický
+									<spring:message code="label.generalizedTonicClonic"/>
 								</form:option>
 								<form:option value="14">
-									II.F. Generalizovaný - Atonický
+									<spring:message code="label.generalizedAtonic"/>
 								</form:option>		
 								<form:option value="15">
-									III. Neklasifikovaný
+									<spring:message code="label.unclassified"/>
 								</form:option>
 
 						</form:select>
@@ -269,7 +269,7 @@
   				
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>
