@@ -9,6 +9,12 @@
       <link
 			href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
 			rel="stylesheet">
+	  <style>
+	  #title {
+	  	color: black; 
+	  	font-weight: bold;
+	  	}
+	  </style>
     </jsp:attribute>
 	<jsp:attribute name="title">
       <spring:message code="label.addRecord"/>
@@ -23,7 +29,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2><spring:message code="label.neuropsychology"/></h2>
+				<h2><spring:message code="label.corticalMapping"/></h2>
 			</div>
 
 			<table class="table">
@@ -68,7 +74,7 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/neuropsychology/create" commandName="neuropsychology">
+						action="/GENEPI/patient/${patient.id}/invasiveTestCorticalMapping/create" commandName="invasiveTestCorticalMapping">
 
 				<div class="control-group">
     				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
@@ -80,70 +86,42 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.intelligenceLevel"/></strong></label>
+    				<label class="control-label" for="done"><strong><spring:message code="label.invasiveCorticalMappingTest"/></strong></label>
     				<div class="controls">
-    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
-							<form:option value="1">
-								<spring:message code="label.notAvailable"/>
-							</form:option>
-							<form:option value="2">
-								<spring:message code="label.neurodevelopmentalExamination"/>
-							</form:option>
-							<form:option value="3">
-								<spring:message code="label.intellectualPerformance"/>
-							</form:option>
+    					<form:select path="done" id="done" type="text" class="input-large">
+								<form:option value="true">
+									<spring:message code="label.done"/>
+								</form:option>
+								<form:option value="false">
+									<spring:message code="label.notDone"/>	
+								</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.neuropsychologicalProfile"/></strong></label>
+    				<label class="control-label" for="corticalMapping"><strong><spring:message code="label.corticalMapping"/></strong></label>
     				<div class="controls">
-    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
-							<form:option value="1">
-								<spring:message code="label.notAvailable"/>
-							</form:option>
-							<form:option value="2">
-								<spring:message code="label.concern"/>
-							</form:option>
-							<form:option value="3">
-								<spring:message code="label.notConcern"/>
-							</form:option>
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="neuropsychologicalExamination"><strong><spring:message code="label.neuropsychologicalExamination"/></strong></label>
-    				<div class="controls">
-    					<form:checkbox path="neuropsychologicalExamination" input="neuropsychologicalExamination" class="input-block-level" checked="checked" />
-						<form:errors path="neuropsychologicalExamination" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevelIdcom"><strong>Inteligenční úroveň</strong></label>
-    				<div class="controls">
-    					<form:select path="intelligenceLevelIdcom" id="intelligenceLevelIdcom" type="text" class="input-large">
-							<form:option value="1">
-								Mírná mentální retardace
-							</form:option>
-							<form:option value="2">
-								Naprůměrná inteligence
-							</form:option>
-							<form:option value="3">
-								Podprůměrná inteligence
-							</form:option>
-							<form:option value="4">
-								Průměrná inteligence
-							</form:option>	
-							<form:option value="5">
-								Středně těžká mentální retardace
-							</form:option>
-							<form:option value="6">
-								Těžká mentální retardace
-							</form:option>
+    					<form:select path="corticalMapping" id="corticalMapping" type="text" class="input-large">
+								<form:option value="1">
+									Awake craniotomy	
+								</form:option>
+								<form:option value="2">
+									<spring:message code="label.extraoperativeElectricalStimulation"/>
+								</form:option>
+								<form:option value="3">
+									<spring:message code="label.functionalMappingDone"/>	 	
+								</form:option>
+								<form:option value="4">
+									<spring:message code="label.intraoperativeElectricalStimulation"/>
+								</form:option>
+								<form:option value="5">
+									<spring:message code="label.intraoperativeElectricalStimulation"/> + 
+									<spring:message code="label.intactnessMonitoringRailways"/>
+								</form:option>
+								<form:option value="6">
+									<spring:message code="label.notDone"/>		
+								</form:option>
 						</form:select>
     				</div>
   				</div>

@@ -40,15 +40,16 @@
 					<li style="color: DodgerBlue">Diagnostické testy</li>
 					<li>
 						<ul>
-							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/list" />">EEG testy</a></li>
-							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">MRI testy</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/list" />">Skalpové EEG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">Neurozobraz. testy</a></li>
 						</ul>
 					</li>
 					<li style="color: DodgerBlue">Invazivní testy</li>
 					<li>
 						<ul>
-							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestECOG/list" />">EEG testy</a></li>
 							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestEEG/list" />">ECoG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestECOG/list" />">iEEG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/invasiveTestCorticalMapping/list" />">Kortikální mapování</a></li>
 						</ul>
 					</li>
 					<li><a href="<c:url value="/patient/${patient.id}/operation/list" />">Operace</a></li>

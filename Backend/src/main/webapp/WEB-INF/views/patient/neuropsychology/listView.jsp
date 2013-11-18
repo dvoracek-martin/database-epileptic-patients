@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Neuropsychologie
+      <spring:message code="label.neuropsychology"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Neuropsychologie
+      <spring:message code="label.neuropsychology"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,7 +21,7 @@
 		<div>
 			<div>
 				<div class="span5">
-					<h2>Neuropsychologie</h2>
+					<h2><spring:message code="label.neuropsychology"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
