@@ -103,114 +103,115 @@
 													<td><spring:message code="label.notDone"/></td>
 												</c:if>
 											</tr>
-											
-											<tr class="info">
-												<td>Intrakraniální elektrody</td>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==1}">
-													<td>Intracereb. + subdur. stripy + gridy</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==2}">
-													<td>Intracerebrální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==3}">
-													<td>Intracerebrální + subdurální gridy</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==4}">
-													<td>Intracerebrální + subdurální stripy</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==5}">
-													<td>Subdurální stripy</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==6}">
-													<td>Subdurání gridy</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.intracranialElectrodes==7}">
-													<td>Subdurání stripy + gridy</td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td>Lokalizace intrakraniálních elektrod</td>
-												<td>${invasiveTestEEG.localizationIntracranialElectrodes}</td>
-											</tr>
-											<tr class="info">
-												<td>Invazivní EEG zpomalení</td>
-												<c:if test="${invasiveTestEEG.invasiveEegSlow==1}">
-													<td>Generalizované intermitentní</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegSlow==2}">
-													<td>Generalizované kontinuální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegSlow==3}">
-													<td>Lokalizované intermitentní</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegSlow==4}">
-													<td>Lokalizované kontinuální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegSlow==5}">
-													<td>Žádné</td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td>Invazivní EEG interiktální hroty</td>
-												<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==1}">
-													<td>Chybějící</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==2}">
-													<td>Fokální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==3}">
-													<td>Multiregionální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==4}">
-													<td>Nelokalizované</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==5}">
-													<td>Regionální</td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td>Lokalizace invazivních EEG interiktálních hrotů</td>
-												<td>${invasiveTestEEG.localizationInvasiveEegInterictalSpikes}</td>
-											</tr>
-											<tr class="info">
-												<td>Invazivní EEG status epilepticus</td>
-												<c:if test="${invasiveTestEEG.invasiveEegStatusEpilepticus==true}">
-													<td style="column-span: 2"><spring:message code="label.yes"/></td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveEegStatusEpilepticus==false}">
-													<td><spring:message code="label.no"/></td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td>Invazivní EEG iktální vzorce</td>
-												<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==1}">
-													<td>Chybějící</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==2}">
-													<td>Fokální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==3}">
-													<td>Multiregionální</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==4}">
-													<td>Nelokalizované</td>
-												</c:if>
-												<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==5}">
-													<td>Regionální</td>
-												</c:if>
-											</tr>
-											
-											<tr class="info">
-												<td><spring:message code="label.comment" /></td>
-												<c:choose>
-													<c:when test="${empty invasiveTestEEG.comment}">
-														<td><spring:message code="label.noComments"/></td>
-													</c:when>
-													<c:otherwise>
-														<td>${invasiveTestEEG.comment}</td>
-													</c:otherwise>
-												</c:choose>
-											</tr>
+											<c:if test="${invasiveTestEEG.done==true}">
+												<tr class="info">
+													<td>Intrakraniální elektrody</td>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==1}">
+														<td>Intracereb. + subdur. stripy + gridy</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==2}">
+														<td>Intracerebrální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==3}">
+														<td>Intracerebrální + subdurální gridy</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==4}">
+														<td>Intracerebrální + subdurální stripy</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==5}">
+														<td>Subdurální stripy</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==6}">
+														<td>Subdurání gridy</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.intracranialElectrodes==7}">
+														<td>Subdurání stripy + gridy</td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td>Lokalizace intrakraniálních elektrod</td>
+													<td>${invasiveTestEEG.localizationIntracranialElectrodes}</td>
+												</tr>
+												<tr class="info">
+													<td>Invazivní EEG zpomalení</td>
+													<c:if test="${invasiveTestEEG.invasiveEegSlow==1}">
+														<td>Generalizované intermitentní</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegSlow==2}">
+														<td>Generalizované kontinuální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegSlow==3}">
+														<td>Lokalizované intermitentní</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegSlow==4}">
+														<td>Lokalizované kontinuální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegSlow==5}">
+														<td>Žádné</td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td>Invazivní EEG interiktální hroty</td>
+													<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==1}">
+														<td>Chybějící</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==2}">
+														<td>Fokální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==3}">
+														<td>Multiregionální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==4}">
+														<td>Nelokalizované</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegInterictalSpikes==5}">
+														<td>Regionální</td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td>Lokalizace invazivních EEG interiktálních hrotů</td>
+													<td>${invasiveTestEEG.localizationInvasiveEegInterictalSpikes}</td>
+												</tr>
+												<tr class="info">
+													<td>Invazivní EEG status epilepticus</td>
+													<c:if test="${invasiveTestEEG.invasiveEegStatusEpilepticus==true}">
+														<td style="column-span: 2"><spring:message code="label.yes"/></td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveEegStatusEpilepticus==false}">
+														<td><spring:message code="label.no"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td>Invazivní EEG iktální vzorce</td>
+													<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==1}">
+														<td>Chybějící</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==2}">
+														<td>Fokální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==3}">
+														<td>Multiregionální</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==4}">
+														<td>Nelokalizované</td>
+													</c:if>
+													<c:if test="${invasiveTestEEG.invasiveIctalEegPatterns==5}">
+														<td>Regionální</td>
+													</c:if>
+												</tr>
+												
+												<tr class="info">
+													<td><spring:message code="label.comment" /></td>
+													<c:choose>
+														<c:when test="${empty invasiveTestEEG.comment}">
+															<td><spring:message code="label.noComments"/></td>
+														</c:when>
+														<c:otherwise>
+															<td>${invasiveTestEEG.comment}</td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
+											</c:if>
 					              		</tbody>
 				            		</table>
 			            		</div>
