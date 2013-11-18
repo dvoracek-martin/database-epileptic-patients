@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2><spring:message code="label.diagnosticTestEEG"/></h2>
+				<h2><spring:message code="label.diagnosticTestScalpEEG"/></h2>
 			</div>
 
 						<table class="table">
@@ -68,10 +68,10 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/diagnosticTestEEG/create" commandName="diagnosticTestEEG">
+						action="/GENEPI/patient/${patientID}/diagnosticTestScalpEEG/create" commandName="diagnosticTestScalpEEG">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong><spring:message code="label.dateOfContractAward"/></strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,22 +80,24 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="done"><strong><spring:message code="label.diagnosticTestScalpEEG"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
+    					<form:select path="done" id="done" type="text" class="input-large">
+								<form:option value="true">
+									<spring:message code="label.done"/>
 								</form:option>
-							</c:forEach>	
+								<form:option value="false">
+									<spring:message code="label.notDone"/>	
+								</form:option>
 						</form:select>
     				</div>
   				</div>
 
+
   				<div class="control-group">
-    				<label class="control-label" for="basicEegActivityIdcom"><strong><spring:message code="label.basicEEGActivity"/></strong></label>
+    				<label class="control-label" for="basicEegActivity"><strong><spring:message code="label.basicEEGActivity"/></strong></label>
     				<div class="controls">
-    					<form:select path="basicEegActivityIdcom" id="basicEegActivityIdcom" type="text" class="input-large">
+    					<form:select path="basicEegActivity" id="basicEegActivity" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.normal"/>
 							</form:option>
@@ -106,9 +108,9 @@
     				</div>
   				</div>
   				<div class="control-group">
-    				<label class="control-label" for="eegSlowIdcom"><strong><spring:message code="label.EEGSlow"/></strong></label>
+    				<label class="control-label" for="eegSlow"><strong><spring:message code="label.EEGSlow"/></strong></label>
     				<div class="controls">
-    					<form:select path="eegSlowIdcom" id="eegSlowIdcom" type="text" class="input-large">
+    					<form:select path="eegSlow" id="eegSlow" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.generalizedContinuous"/>
 							</form:option>
@@ -129,9 +131,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="interictalEegSpikesIdcom"><strong><spring:message code="label.interictalEEGSpikes"/></strong></label>
+    				<label class="control-label" for="interictalEegSpikes"><strong><spring:message code="label.interictalEEGSpikes"/></strong></label>
     				<div class="controls">
-    					<form:select path="interictalEegSpikesIdcom" id="interictalEegSpikesIdcom" type="text" class="input-large">
+    					<form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.generalized"/>
 							</form:option>
@@ -157,8 +159,8 @@
   				<div class="control-group">
     				<label class="control-label" for="localizationInterictalEEGSpikes"><strong><spring:message code="label.localizationInterictalEEGSpikes"/></strong></label>
     				<div class="controls">
-    					<form:input type="text" path="localizationInterictalEEGSpikes" input="localizationInterictalEEGSpikes" class="input-medium" value="0" />
-						<form:errors path="localizationInterictalEEGSpikes" cssClass="error">
+    					<form:textarea path="localizationInterictalEEGSpikes" id="localizationInterictalEEGSpikes" input="localizationInterictalEEGSpikes"/>
+    					<form:errors path="localizationInterictalEEGSpikes" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
@@ -182,9 +184,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ictalEegPatternsIdcom"><strong><spring:message code="label.ictalEEGPatterns"/></strong></label>
+    				<label class="control-label" for="ictalEegPatterns"><strong><spring:message code="label.ictalEEGPatterns"/></strong></label>
     				<div class="controls">
-    					<form:select path="ictalEegPatternsIdcom" id="ictalEegPatternsIdcom" type="text" class="input-large">
+    					<form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.missing"/>
 							</form:option>
@@ -207,7 +209,7 @@
   				<div class="control-group">
     				<label class="control-label" for="localizationIctalEegPattern"><strong><spring:message code="label.localizationIctalEEGPattern"/></strong></label>
     				<div class="controls">
-    					<form:input type="text" path="localizationIctalEegPattern" input="localizationIctalEegPattern" class="input-medium" />
+    					<form:textarea path="localizationIctalEegPattern" id="localizationIctalEegPattern" input="localizationIctalEegPattern"/>
 						<form:errors path="localizationIctalEegPattern" cssClass="error">
 						</form:errors>
     				</div>
@@ -216,7 +218,7 @@
   				<div class="control-group">
     				<label class="control-label" for="comment"><strong><spring:message code="label.comment" /></strong></label>
     				<div class="controls">
-    					<form:textarea path="comment" id="comment" />
+    					<form:textarea path="comment" id="comment"/>
     				</div>
   				</div>
 

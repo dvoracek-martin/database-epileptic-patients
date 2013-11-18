@@ -40,7 +40,7 @@
 					<li style="color: DodgerBlue">Diagnostické testy</li>
 					<li>
 						<ul>
-							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestEEG/list" />">Skalpové EEG</a></li>
+							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestScalpEeg/list" />">Skalpové EEG</a></li>
 							<li><a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">Neurozobraz. testy</a></li>
 						</ul>
 					</li>

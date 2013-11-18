@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.diagnosticTestEEG"/>
+      <spring:message code="label.diagnosticTestScalpEEG"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.diagnosticTestEEG"/>
+      <spring:message code="label.diagnosticTestScalpEEG"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -21,12 +21,12 @@
 		
 			<div>
 				<div class="span5">
-					<h2><spring:message code="label.diagnosticTestEEG"/></h2>
+					<h2><spring:message code="label.diagnosticTestScalpEEG"/></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
 						<a id="export"
-					href="<c:url value="/patient/${patientID}/diagnosticTestEEG/create"  />"><spring:message code="label.addRecord"/></a>
+					href="<c:url value="/patient/${patientID}/diagnosticTesScalptEEG/create"  />"><spring:message code="label.addRecord"/></a>
 					</h3>
 				</div>
 			</div>
