@@ -1,9 +1,15 @@
 package cz.cvut.fit.genepi.DAOImpl;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.DAO.PatientDAO;
+import cz.cvut.fit.genepi.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 // TODO: Auto-generated Javadoc
@@ -203,6 +209,17 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 								+ " where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch){
+		Criteria criteria = sessionFactory
+				.getCurrentSession().createCriteria(PatientEntity.class, "patient");
+		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
+		criteria.createAlias("patient.contact", "contact");
+		criteria.add(Restrictions.like("contact.firstName", "%"+advancedSearch.getPatientName()+"%"));
+		return (List<PatientEntity>) criteria.list();
 	}
 
 }

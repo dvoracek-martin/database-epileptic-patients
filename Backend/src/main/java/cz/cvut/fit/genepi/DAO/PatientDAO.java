@@ -1,5 +1,8 @@
 package cz.cvut.fit.genepi.DAO;
 
+import java.util.List;
+
+import cz.cvut.fit.genepi.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.entity.PatientEntity;
 
 // TODO: Auto-generated Javadoc
@@ -40,5 +43,7 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 	public PatientEntity getPatientByIdWithPharmacotherapyList(int patientId);
 
 	public PatientEntity getPatientByIdWithSeizureList(int patientId);
+	
+	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch);
 
 }

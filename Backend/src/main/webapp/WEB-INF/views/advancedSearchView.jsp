@@ -28,6 +28,14 @@
 						</form:errors>
     				</div>
   				</div>
-  				</form:form>
+  					<div class="control-group">
+			    	<div class="controls">
+			     		<button class="btn btn-primary" type="submit">
+						<spring:message code="label.add" />
+					</button>
+			    	</div>
+			</div>
+  				
+		</form:form>
 </jsp:body>
 </t:menuLVL2>
