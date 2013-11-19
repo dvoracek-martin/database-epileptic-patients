@@ -80,7 +80,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="done"><strong>Invazivní test iEEG</strong></label>
+    				<label class="control-label" for="done"><strong><spring:message code="label.invasiveTestEEG"/></strong></label>
     				<div class="controls">
     					<form:select path="done" id="done" type="text" class="input-large">
 							<form:option value="false">
@@ -94,36 +94,36 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intracranialElectrodes"><strong>Intrakraniální elektrody</strong></label>
+    				<label class="control-label" for="intracranialElectrodes"><strong><spring:message code="label.intracranialElectrodes"/></strong></label>
     				<div class="controls">
     					<form:select path="intracranialElectrodes" id="intracranialElectrodes" type="text" class="input-large">
 							<form:option value="1">
-								Intracereb. + subdur. stripy + gridy
+								<spring:message code="label.IC"/>
 							</form:option>
 							<form:option value="2">
-								Intracerebrální
+								<spring:message code="label.IcSd"/>
 							</form:option>
 							<form:option value="3">
-								Intracerebrální + subdurální gridy
+								<spring:message code="label.IcSdStripsGrids"/>
 							</form:option>
 							<form:option value="4">
-								Intracerebrální + subdurální stripy
+								<spring:message code="label.Sd"/>
 							</form:option>	
 							<form:option value="5">
-								Subdurální stripy
+								<spring:message code="label.SdGrids"/>
 							</form:option>
 							<form:option value="6">
-								Subdurání gridy
+								<spring:message code="label.Grids"/>
 							</form:option>
 							<form:option value="7">
-								Subdurání stripy + gridy
+								<spring:message code="label.IcSdGrids"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationIntracranialElectrodes"><strong>Lokalizace intrakraniálních elektrod</strong></label>
+    				<label class="control-label" for="localizationIntracranialElectrodes"><strong><spring:message code="label.localizationIntracranialElectrodes"/></strong></label>
     				<div class="controls">
     					<form:textarea path="localizationIntracranialElectrodes" id="localizationIntracranialElectrodes" input="localizationIntracranialElectrodes"/>
 						<form:errors path="localizationIntracranialElectrodes" cssClass="error">
@@ -132,53 +132,53 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="invasiveEegSlow"><strong>Invazivní EEG zpomalení</strong></label>
+    				<label class="control-label" for="invasiveEegSlow"><strong><spring:message code="label.invasiveEEGSlowing"/></strong></label>
     				<div class="controls">
     					<form:select path="invasiveEegSlow" id="invasiveEegSlow" type="text" class="input-large">
 							<form:option value="1">
-								Generalizované intermitentní
+								<spring:message code="label.generalizedIntermittent"/>
 							</form:option>
 							<form:option value="2">
-								Generalizované kontinuální
+								<spring:message code="label.generalizedContinuous"/>
 							</form:option>
 							<form:option value="3">
-								Lokalizované intermitentní
+								<spring:message code="label.localizedIntermittent"/>
 							</form:option>
 							<form:option value="4">
-								Lokalizované kontinuální
+								<spring:message code="label.localizedContinuous"/>
 							</form:option>	
 							<form:option value="5">
-								Žádné
+								<spring:message code="label.absent"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="invasiveEegInterictalSpikes"><strong>Invazivní EEG interiktální hroty</strong></label>
+    				<label class="control-label" for="invasiveEegInterictalSpikes"><strong><spring:message code="label.invasiveEEGInterictalSpikes"/></strong></label>
     				<div class="controls">
     					<form:select path="invasiveEegInterictalSpikes" id="invasiveEegInterictalSpikes" type="text" class="input-large">
 							<form:option value="1">
-								Chybějící
+								<spring:message code="label.missing"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Multiregionální
+								<spring:message code="label.multiregional"/>
 							</form:option>
 							<form:option value="4">
-								Nelokalizované
+								<spring:message code="label.notlocalizable"/>
 							</form:option>
 							<form:option value="5">
-								Regionální
+								<spring:message code="label.regional"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="localizationInvasiveEegInterictalSpikes"><strong>Lokalizace invazivních EEG interiktálních hrotů</strong></label>
+    				<label class="control-label" for="localizationInvasiveEegInterictalSpikes"><strong><spring:message code="label.localizationInvasiveEEGInterictalSpikes"/></strong></label>
     				<div class="controls">
     					<form:textarea path="localizationInvasiveEegInterictalSpikes" id="localizationInvasiveEegInterictalSpikes" input="localizationInvasiveEegInterictalSpikes" />
 						<form:errors path="localizationInvasiveEegInterictalSpikes" cssClass="error">
@@ -187,7 +187,7 @@
   				</div>
   				
   				<div class="control-group">
-    				<label class="control-label" for="invasiveEegStatusEpilepticus"><strong>Invazivní EEG status epilepticus</strong></label>
+    				<label class="control-label" for="invasiveEegStatusEpilepticus"><strong><spring:message code="label.invasiveEEGStatusEpilepticus"/></strong></label>
     				<div class="controls">
     					<form:checkbox path="invasiveEegStatusEpilepticus" input="invasiveEegStatusEpilepticus" class="input-block-level" />
 						<form:errors path="invasiveEegStatusEpilepticus" cssClass="error">
@@ -197,23 +197,22 @@
 
 
   				<div class="control-group">
-    				<label class="control-label" for="invasiveIctalEegPatterns"><strong>Invazivní EEG iktální vzorce</strong></label>
+    				<label class="control-label" for="invasiveIctalEegPatterns"><strong><spring:message code="label.invasiveIctalEEGPatterns"/></strong></label>
     				<div class="controls">
     					<form:select path="invasiveIctalEegPatterns" id="invasiveIctalEegPatterns" type="text" class="input-large">
 							<form:option value="1">
-								Chybějící
+								<spring:message code="label.missing"/>
 							</form:option>
 							<form:option value="2">
-								Fokální
+								<spring:message code="label.focal"/>
 							</form:option>
 							<form:option value="3">
-								Multiregionální
+								<spring:message code="label.multiregional"/>
 							</form:option>
 							<form:option value="4">
-								Nelokalizované
 							</form:option>
 							<form:option value="5">
-								Regionální
+								<spring:message code="label.regional"/>
 							</form:option>
 						</form:select>
     				</div>
