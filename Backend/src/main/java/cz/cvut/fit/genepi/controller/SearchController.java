@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import cz.cvut.fit.genepi.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.util.LoggingService;
 
 //This controller is not doing anything right now
@@ -28,6 +29,19 @@ public class SearchController {
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchPost(Locale locale, Model model) {
+		
+		return "searchResults";
+	}
+	
+	@RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
+	public String advancedSearchGET(Locale locale, Model model) {
+		
+		model.addAttribute("advancedSearch", new AdvancedSearchEntity());
+		return "advancedSearchView";
+	}
+	
+	@RequestMapping(value = "/advanced-search", method = RequestMethod.POST)
+	public String advancedSearchPOST(Locale locale, Model model) {
 		
 		return "searchResults";
 	}
