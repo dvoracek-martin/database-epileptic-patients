@@ -281,13 +281,6 @@
 			    	</div>
 			  	</div>				
 			</form:form>
-	
-		<datalist id="doctors">
-	<c:forEach items="${doctors}" var="doctor">
-		<option value="${doctor.id}">dfdf</option>
-	
-			</c:forEach>
-	</datalist>
 	</jsp:body>
 </t:menuLVL3>
 
