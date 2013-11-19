@@ -24,8 +24,8 @@
 
 			<div class="span5">
 				<h2>
-				<spring:message code="label.diagnosticTestMRI" />
-			</h2>
+					Diagnostické testy - Neurozobrazovací testy
+				</h2>
 			</div>
 
 			<table class="table">
@@ -85,10 +85,25 @@
   				</div>  				
 
   				<div class="control-group">
+    				<label class="control-label" for="done"><strong>Diagnostický test - Neurozobrazovací test</strong></label>
+    				<div class="controls">
+    					<form:select path="done" id="done"
+						type="text" class="input-large">
+							<form:option value="true">
+								<spring:message code="label.done" />
+							</form:option>
+							<form:option value="false">
+								<spring:message code="label.notDone" />
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
     				<label class="control-label" for="mriFinding"><strong><spring:message
 							code="label.MRIFinding" /></strong></label>
     				<div class="controls">
-    					<form:select path="mriFindingIdcom" id="mriFindingIdcom"
+    					<form:select path="mriFinding" id="mriFinding"
 						type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.bilateral" />
@@ -119,9 +134,18 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="fdgPetIdcom"><strong>FDG PET</strong></label>
+    				<label class="control-label" for="mriDescription"><strong>MRI popis</strong></label>
     				<div class="controls">
-    					<form:select path="fdgPetIdcom" id="fdgPetIdcom" type="text"
+    					<form:textarea path="mriDescription" id="mriDescription" />
+    					<form:errors path="mriDescription" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="fdgPet"><strong>FDG PET</strong></label>
+    				<div class="controls">
+    					<form:select path="fdgPet" id="fdgPet" type="text"
 						class="input-large">
 							<form:option value="1">
 								<spring:message code="label.bilateral" />
@@ -152,11 +176,20 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="interictalSpectIdcom"><strong><spring:message
+    				<label class="control-label" for="descriptionPetHypometabolism"><strong>Lokalizace PET hypometabolismu</strong></label>
+    				<div class="controls">
+    					<form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism" />
+    					<form:errors path="descriptionPetHypometabolism" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="interictalSpect"><strong><spring:message
 							code="label.interictalSPECT" /></strong></label>
     				<div class="controls">
-    					<form:select path="interictalSpectIdcom"
-						id="interictalSpectIdcom" type="text" class="input-large">
+    					<form:select path="interictalSpect"
+						id="interictalSpect" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.bilateral" />
 							</form:option>
@@ -186,10 +219,19 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ictaliSpectIdcom"><strong>FDG PET</strong></label>
+    				<label class="control-label" for="descriptionSpectHypoperfuse"><strong>Lokalizace SPECT hypoperfuse</strong></label>
     				<div class="controls">
-    					<form:select path="ictaliSpectIdcom" id="ictaliSpectIdcom"
-						type="text" class="input-large">
+    					<form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse" />
+    					<form:errors path="descriptionSpectHypoperfuse" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="ictalSpect"><strong>Iktální SPECT</strong></label>
+    				<div class="controls">
+    					<form:select path="ictalSpect"
+						id="ictalSpect" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.bilateral" />
 							</form:option>
@@ -216,7 +258,16 @@
 							</form:option>
 						</form:select>
     				</div>
-  				</div>				
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="descriptionSpectHyperperfuse"><strong>Lokalizace SPECT hyperperfuse</strong></label>
+    				<div class="controls">
+    					<form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse" />
+    					<form:errors path="descriptionSpectHyperperfuse" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
 
   				<div class="control-group">
     				<label class="control-label" for="siscom"><strong>SISCOM</strong></label>
@@ -229,10 +280,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsProtocolIdcom"><strong><spring:message
-							code="label.MRSProtocol" /></strong></label>
+    				<label class="control-label" for="mrsProtocol"><strong>MRS protokol</strong></label>
     				<div class="controls">
-    					<form:select path="mrsProtocolIdcom" id="mrsProtocolIdcom"
+    					<form:select path="mrsProtocol" id="mrsProtocol"
 						type="text" class="input-large">
 							<form:option value="1">
 								CSI
@@ -248,10 +298,9 @@
   				</div>	
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsFinfingIdcom"><strong><spring:message
-							code="label.MRSFinding" /></strong></label>
+    				<label class="control-label" for="mrsFinding"><strong>MRS nález</strong></label>
     				<div class="controls">
-    					<form:select path="mrsFinfingIdcom" id="mrsFinfingIdcom"
+    					<form:select path="mrsFinding" id="mrsFinding"
 						type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.bilateral" />
@@ -282,19 +331,11 @@
   				</div>	
 
   				<div class="control-group">
-    				<label class="control-label" for="dti"><strong>DTI</strong></label>
+    				<label class="control-label" for="descriptionMrsAbnormality"><strong>Lokalizace MRS abnormality</strong></label>
     				<div class="controls">
-    					<form:checkbox path="dti" input="dti" class="input-large" />
-						<form:errors path="dti" cssClass="error">
+    					<form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality" />
+    					<form:errors path="descriptionMrsAbnormality" cssClass="error">
 						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="detailsDtiStudie"><strong><spring:message
-							code="label.DTIStudyDetails" /></strong></label>
-    				<div class="controls">
-    					<form:textarea path="detailsDtiStudie" id="detailsDtiStudie" />
     				</div>
   				</div>
 
@@ -316,6 +357,23 @@
   				</div>
 
   				<div class="control-group">
+    				<label class="control-label" for="dti"><strong>DTI</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="dti" input="dti" class="input-large" />
+						<form:errors path="dti" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="detailsDtiStudie"><strong><spring:message
+							code="label.DTIStudyDetails" /></strong></label>
+    				<div class="controls">
+    					<form:textarea path="detailsDtiStudie" id="detailsDtiStudie" />
+    				</div>
+  				</div>
+
+  				<div class="control-group">
     				<label class="control-label" for="wada"><strong>WADA</strong></label>
     				<div class="controls">
     					<form:checkbox path="wada" input="wada" class="input-large" />
@@ -329,58 +387,6 @@
 							code="label.WADADetails" /></strong></label>
     				<div class="controls">
     					<form:textarea path="detailsWada" id="detailsWada" />
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="mriDescribe"><strong><spring:message
-							code="label.descriptionMRI" /></strong></label>
-    				<div class="controls">
-    					<form:textarea path="mriDescribe" id="mriDescribe" />
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="localizationSpectHypoperfuse"><strong><spring:message
-							code="label.localizationSPECTHypoperfuse" /></strong></label>
-    				<div class="controls">
-    					<form:input type="text" path="localizationSpectHypoperfuse"
-						input="localizationSpectHypoperfuse" class="input-medium" />
-						<form:errors path="localizationSpectHypoperfuse" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="localizationMrsAbnormality"><strong><spring:message
-							code="label.localizationMRSAbnormality" /></strong></label>
-    				<div class="controls">
-    					<form:input type="text" path="localizationMrsAbnormality"
-						input="localizationMrsAbnormality" class="input-medium" />
-						<form:errors path="localizationMrsAbnormality" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="localizationPetHypometabolism"><strong><spring:message
-							code="label.localizationPetHypometabolism" /></strong></label>
-    				<div class="controls">
-    					<form:input type="text" path="localizationPetHypometabolism"
-						input="localizationPetHypometabolism" class="input-medium" />
-						<form:errors path="localizationPetHypometabolism" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="localizationSpectHyperperfuse"><strong><spring:message
-							code="label.localizationSPECTHyperperfuse" /></strong></label>
-    				<div class="controls">
-    					<form:input type="text" path="localizationSpectHyperperfuse"
-						input="localizationSpectHyperperfuse	" class="input-medium" />
-						<form:errors path="localizationSpectHyperperfuse" cssClass="error">
-						</form:errors>
     				</div>
   				</div>
 

@@ -104,54 +104,56 @@
 													<td><spring:message code="label.notDone"/></td>
 												</c:if>
 											</tr>
-											<tr class="info">
-												<td><spring:message code="label.ECoG_cover"/></td>
-												<td>${invasiveTestECOG.ecogCover}</td>
-											</tr>
-											<tr class="info">
-												<td><spring:message code="label.ECoG_patterns"/></td>
-												<c:if test="${invasiveTestECOG.ecogPatterns==1}">
-													<td><spring:message code="label.noSpikes"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.ecogPatterns==2}">
-													<td><spring:message code="label.burstSuppresion"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.ecogPatterns==3}">
-													<td><spring:message code="label.continuousSpikes"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.ecogPatterns==4}">
-													<td><spring:message code="label.ECoGAbnormality"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.ecogPatterns==5}">
-													<td><spring:message code="label.spikes"/></td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td><spring:message code="label.afterResectionECoG"/></td>
-												<c:if test="${invasiveTestECOG.afterResectionEcog==1}">
-													<td><spring:message code="label.noSpikes"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.afterResectionEcog==2}">
-													<td><spring:message code="label.notDone"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.afterResectionEcog==3}">
-													<td><spring:message code="label.done"/></td>
-												</c:if>
-												<c:if test="${invasiveTestECOG.afterResectionEcog==4}">
-													<td><spring:message code="label.spikes"/></td>
-												</c:if>
-											</tr>
-											<tr class="info">
-												<td><spring:message code="label.comment" /></td>
-												<c:choose>
-													<c:when test="${empty invasiveTestECOG.comment}">
-														<td><spring:message code="label.noComments"/></td>
-													</c:when>
-													<c:otherwise>
-														<td>${invasiveTestECOG.comment}</td>
-													</c:otherwise>
-												</c:choose>
-											</tr>
+											<c:if test="${invasiveTestECOG.done==true}">
+												<tr class="info">
+													<td><spring:message code="label.ECoG_cover"/></td>
+													<td>${invasiveTestECOG.ecogCover}</td>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.ECoG_patterns"/></td>
+													<c:if test="${invasiveTestECOG.ecogPatterns==1}">
+														<td><spring:message code="label.noSpikes"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.ecogPatterns==2}">
+														<td><spring:message code="label.burstSuppresion"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.ecogPatterns==3}">
+														<td><spring:message code="label.continuousSpikes"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.ecogPatterns==4}">
+														<td><spring:message code="label.ECoGAbnormality"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.ecogPatterns==5}">
+														<td><spring:message code="label.spikes"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.afterResectionECoG"/></td>
+													<c:if test="${invasiveTestECOG.afterResectionEcog==1}">
+														<td><spring:message code="label.noSpikes"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.afterResectionEcog==2}">
+														<td><spring:message code="label.notDone"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.afterResectionEcog==3}">
+														<td><spring:message code="label.done"/></td>
+													</c:if>
+													<c:if test="${invasiveTestECOG.afterResectionEcog==4}">
+														<td><spring:message code="label.spikes"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.comment" /></td>
+													<c:choose>
+														<c:when test="${empty invasiveTestECOG.comment}">
+															<td><spring:message code="label.noComments"/></td>
+														</c:when>
+														<c:otherwise>
+															<td>${invasiveTestECOG.comment}</td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
+											</c:if>
 					              		</tbody>
 				            		</table>
 			            		</div>
