@@ -37,6 +37,7 @@
 					<li><a href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">Farmakoterapie</a></li>
 					<li><a href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">Neurologické nálezy</a></li>
 					<li><a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">Neuropsychologie</a></li>
+					<li><a href="<c:url value="/patient/${patient.id}/neuropsychology-old/list" />">Neuropsychologie - Old</a></li>
 					<li style="color: DodgerBlue">Diagnostické testy</li>
 					<li>
 						<ul>

@@ -29,6 +29,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 						+ " left join fetch p.invasiveTestEEGList"
 						+ " left join fetch p.neurologicalFindingList"
 						// + " left join fetch p.neuropsychologyList"
+						// + " left join fetch p.neuropsychologyOldList"
 						+ " left join fetch p.operationList "
 						+ " left join fetch p.outcomeList"
 						+ " left join fetch p.pharmacotherapyList"
@@ -144,6 +145,17 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 				.getCurrentSession()
 				.createQuery(
 						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList"
+								+ " where p.id = :patientId");
+		query.setParameter("patientId", patientId);
+		return this.findOne(query);
+	}
+	
+	@Override
+	public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId) {
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyOldList"
 								+ " where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);

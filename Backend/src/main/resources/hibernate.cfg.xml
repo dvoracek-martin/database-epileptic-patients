@@ -26,6 +26,7 @@
 		<mapping class="cz.cvut.fit.genepi.entity.card.InvasiveTestEEGEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.NeurologicalFindingEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.NeuropsychologyEntity" />
+				<mapping class="cz.cvut.fit.genepi.entity.card.NeuropsychologyOldEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.OperationEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.OutcomeEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.card.PharmacotherapyEntity" />
