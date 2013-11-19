@@ -68,7 +68,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	}
 
 	@Override
-	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId) {
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(
+			int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
@@ -155,7 +156,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
-	
+
 	@Override
 	public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId) {
 		Query query = sessionFactory
@@ -210,15 +211,22 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch){
-		Criteria criteria = sessionFactory
-				.getCurrentSession().createCriteria(PatientEntity.class, "patient");
+	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				PatientEntity.class, "patient");
+
+		/* fetching and creating aliases for sub collections */
 		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
 		criteria.createAlias("patient.contact", "contact");
-		criteria.add(Restrictions.like("contact.firstName", "%"+advancedSearch.getPatientName()+"%"));
+
+		/* Setting criterias from search */
+		if (advancedSearch.getPatientName() != "") {
+			criteria.add(Restrictions.like("contact.firstName", "%"
+					+ advancedSearch.getPatientName() + "%"));
+		}
 		return (List<PatientEntity>) criteria.list();
 	}
 
