@@ -70,14 +70,17 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 	@Column(name = "invasive_eeg_interictal_spikes")
 	private int invasiveEegInterictalSpikes;
 
+	@Column(name = "localization_invasive_eeg_interictal_spikes")
+	private String localizationInvasiveEegInterictalSpikes;
+
 	@Column(name = "invasive_eeg_status_epilepticus")
 	private boolean invasiveEegStatusEpilepticus;
 
 	@Column(name = "invasive_ictal_eeg_patterns")
 	private int invasiveIctalEegPatterns;
 
-	@Column(name = "localization_invasive_eeg_interictal_spikes")
-	private String localizationInvasiveEegInterictalSpikes;
+	@Column(name = "localization_invasive_ictal_eeg_patterns")
+	private int localizationInvasiveIctalEegPatterns;
 
 	/** The comment. */
 	@Size(max = 800)
@@ -187,6 +190,15 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 		this.invasiveEegInterictalSpikes = invasiveEegInterictalSpikes;
 	}
 
+	public String getLocalizationInvasiveEegInterictalSpikes() {
+		return localizationInvasiveEegInterictalSpikes;
+	}
+
+	public void setLocalizationInvasiveEegInterictalSpikes(
+			String localizationInvasiveEegInterictalSpikes) {
+		this.localizationInvasiveEegInterictalSpikes = localizationInvasiveEegInterictalSpikes;
+	}
+
 	public boolean isInvasiveEegStatusEpilepticus() {
 		return invasiveEegStatusEpilepticus;
 	}
@@ -204,13 +216,13 @@ public class InvasiveTestEEGEntity implements Comparable<InvasiveTestEEGEntity> 
 		this.invasiveIctalEegPatterns = invasiveIctalEegPatterns;
 	}
 
-	public String getLocalizationInvasiveEegInterictalSpikes() {
-		return localizationInvasiveEegInterictalSpikes;
+	public int getLocalizationInvasiveIctalEegPatterns() {
+		return localizationInvasiveIctalEegPatterns;
 	}
 
-	public void setLocalizationInvasiveEegInterictalSpikes(
-			String localizationInvasiveEegInterictalSpikes) {
-		this.localizationInvasiveEegInterictalSpikes = localizationInvasiveEegInterictalSpikes;
+	public void setLocalizationInvasiveIctalEegPatterns(
+			int localizationInvasiveIctalEegPatterns) {
+		this.localizationInvasiveIctalEegPatterns = localizationInvasiveIctalEegPatterns;
 	}
 
 	public String getComment() {
