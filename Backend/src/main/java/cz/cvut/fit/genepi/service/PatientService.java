@@ -14,7 +14,7 @@ public interface PatientService extends GenericService<PatientEntity> {
 
 	public PatientEntity getPatientByIdWithComplicationList(int patientId);
 
-	public PatientEntity getPatientByIdWithDiagnosticTestEEGList(int patientId);
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId);
 
 	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId);
 

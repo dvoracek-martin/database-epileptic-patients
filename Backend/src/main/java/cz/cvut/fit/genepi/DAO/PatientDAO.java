@@ -14,7 +14,7 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 
 	public PatientEntity getPatientByIdWithComplicationList(int patientId);
 
-	public PatientEntity getPatientByIdWithDiagnosticTestEEGList(int patientId);
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId);
 
 	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId);
 

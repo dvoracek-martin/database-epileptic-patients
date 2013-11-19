@@ -61,11 +61,11 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	}
 
 	@Override
-	public PatientEntity getPatientByIdWithDiagnosticTestEEGList(int patientId) {
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
-						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestEEGList"
+						"select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEEGList"
 								+ " where p.id = :patientId");
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);

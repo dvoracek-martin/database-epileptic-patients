@@ -41,8 +41,8 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 
 	@Override
 	@Transactional
-	public PatientEntity getPatientByIdWithDiagnosticTestEEGList(int patientId) {
-		return patientDAO.getPatientByIdWithDiagnosticTestEEGList(patientId);
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId) {
+		return patientDAO.getPatientByIdWithDiagnosticTestScalpEEGList(patientId);
 
 	}
 

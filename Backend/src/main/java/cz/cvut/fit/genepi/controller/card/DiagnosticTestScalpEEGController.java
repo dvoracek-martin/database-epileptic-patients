@@ -33,51 +33,51 @@ public class DiagnosticTestScalpEEGController {
 	}
 
 	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/create", method = RequestMethod.GET)
-	public String diagnosticTestEEGCreateGET(Locale locale, Model model,
+	public String diagnosticTestScalpEEGCreateGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 
 		model.addAttribute("patient", patient);
-		model.addAttribute("diagnosticTestEEG",
+		model.addAttribute("diagnosticTestScalpEEG",
 				new DiagnosticTestScalpEEGEntity());
-		return "patient/diagnosticTestEEG/createView";
+		return "patient/diagnosticTestScalpEEG/createView";
 	}
 
 	/**
-	 * Adds the diagnosticTestEEG.
+	 * Adds the diagnosticTestScalpEEG.
 	 * 
-	 * @param diagnosticTestEEG
-	 *            the diagnosticTestEEG
+	 * @param diagnosticTestScalpEEG
+	 *            the diagnosticTestScalpEEG
 	 * @param result
 	 *            the result
 	 * @param patientID
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/create", method = RequestMethod.POST)
-	public String diagnosticTestEEGCreatePOST(
-			@ModelAttribute("diagnosticTestEEG") @Valid DiagnosticTestScalpEEGEntity diagnosticTestEEG,
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/create", method = RequestMethod.POST)
+	public String diagnosticTestScalpEEGCreatePOST(
+			@ModelAttribute("diagnosticTestScalpEEG") @Valid DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG,
 			BindingResult result, @PathVariable("patientID") Integer patientID) {
 		if (result.hasErrors()) {
-			return "patient/diagnosticTestEEG/createView";
+			return "patient/diagnosticTestScalpEEG/createView";
 		} else {
-			diagnosticTestEEG.setPatient(patientService.findByID(
+			diagnosticTestScalpEEG.setPatient(patientService.findByID(
 					PatientEntity.class, patientID));
-			diagnosticTestScalpEEGService.save(diagnosticTestEEG);
-			return "redirect:/patient/" + patientID + "/diagnosticTestEEG/list";
+			diagnosticTestScalpEEGService.save(diagnosticTestScalpEEG);
+			return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
 		}
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/{diagnosticTestEEGID}/delete", method = RequestMethod.GET)
-	public String diagnosticTestEEGDeleteGET(Locale locale, Model model,
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/{diagnosticTestScalpEEGID}/delete", method = RequestMethod.GET)
+	public String diagnosticTestScalpEEGDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
-			@PathVariable("diagnosticTestEEGID") Integer diagnosticTestEEGID) {
+			@PathVariable("diagnosticTestScalpEEGID") Integer diagnosticTestScalpEEGID) {
 
 		diagnosticTestScalpEEGService.delete(diagnosticTestScalpEEGService
 				.findByID(DiagnosticTestScalpEEGEntity.class,
-						diagnosticTestEEGID));
-		return "redirect:/patient/" + patientID + "/diagnosticTestEEG/list";
+						diagnosticTestScalpEEGID));
+		return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
 	}
 
 	/**
@@ -140,19 +140,19 @@ public class DiagnosticTestScalpEEGController {
 		return "redirect:/patient/" + patientId + "/anamnesis/list";
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/{diagnosticTestEEGID}/export", method = RequestMethod.GET)
-	public String diagnosticTestEEGExportGET(Locale locale, Model model,
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/{diagnosticTestScalpEEGID}/export", method = RequestMethod.GET)
+	public String diagnosticTestScalpEEGExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
-			@PathVariable("diagnosticTestEEGID") Integer diagnosticTestEEGID) {
-		return "redirect:/patient/" + patientID + "/diagnosticTestEEG/list";
+			@PathVariable("diagnosticTestScalpEEGID") Integer diagnosticTestScalpEEGID) {
+		return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/diagnosticTestEEG/list", method = RequestMethod.GET)
-	public String diagnosticTestEEGListGET(Locale locale, Model model,
+	@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/list", method = RequestMethod.GET)
+	public String diagnosticTestScalpEEGListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService
-				.getPatientByIdWithDiagnosticTestEEGList(patientID);
+				.getPatientByIdWithDiagnosticTestScalpEEGList(patientID);
 		model.addAttribute("patient", patient);
-		return "patient/diagnosticTestEEG/listView";
+		return "patient/diagnosticTestScalpEEG/listView";
 	}
 }
