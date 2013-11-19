@@ -130,7 +130,7 @@
 				</div>
 
 	<datalist id="countries">
-		<option value="<spring:message code="country.AD" />" />
+			<option value="<spring:message code="country.AD" />" />
 			<option value="<spring:message code="country.AE" />" />
 			<option value="<spring:message code="country.AF" />" />
 			<option value="<spring:message code="country.AG" />" />
@@ -200,941 +200,122 @@
 			<option value="<spring:message code="country.ET" />" />
 			<option value="<spring:message code="country.FI" />" />
 			<option value="<spring:message code="country.FJ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.FK" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.FM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.FO" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.FR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GA" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GB" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GD" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GF" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GG" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GH" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GI" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GL" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GP" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GQ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GS" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GU" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GW" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.GY" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HK" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.HU" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.CH" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.ID" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IL" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IO" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IQ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IS" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.IT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.JE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.JM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.JO" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.JP" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KG" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KH" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KI" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KP" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KW" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KY" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.KZ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LA" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LB" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LC" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LI" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LK" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LS" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LU" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LV" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.LY" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MA" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MC" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MD" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.ME" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MF" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MG" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MH" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MK" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.ML" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MO" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MP" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MQ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MS" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MU" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MV" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MW" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MX" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MY" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.MZ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NA" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NC" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NF" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NG" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NI" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NL" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NO" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NP" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NU" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.NZ" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.OM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PA" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PE" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PF" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PG" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PH" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PK" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PL" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PM" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PN" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PR" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PS" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PT" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PW" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.PY" />" />
-		
-			
-			
-			
-			
-			
-			
 			<option value="<spring:message code="country.QA" />" />
 			<option value="<spring:message code="country.RE" />" />
 			<option value="<spring:message code="country.RO" />" />
