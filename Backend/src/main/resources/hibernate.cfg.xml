@@ -6,6 +6,7 @@
 	<session-factory>
 
 		<!-- Other entities -->
+		<mapping class="cz.cvut.fit.genepi.entity.AdvancedSearchEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.ContactEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.PatientEntity" />
 		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
