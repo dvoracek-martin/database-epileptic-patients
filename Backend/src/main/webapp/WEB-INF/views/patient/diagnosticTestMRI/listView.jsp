@@ -7,10 +7,10 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Diagnostické testy - Neurozobrazovací testy
+     <spring:message code="label.diagnosticTestMriMulti" />
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Diagnostické testy - Neurozobrazovací testy
+     <spring:message code="label.diagnosticTestMriMulti" />
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -20,7 +20,7 @@
 	<jsp:body>
 			<div>
 				<div class="span5">
-					<h2>Diagnostické testy - Neurozobrazovací testy</h2>
+					<h2><spring:message code="label.diagnosticTestMriMulti" /></h2>
 				</div>
 				<div>
 					<h3 class="pull-right">
@@ -80,7 +80,7 @@
 							<div class="accordion-heading">
 						    	<a class="accordion-toggle" data-toggle="collapse"
 								data-parent="#accordion" href="#collapse${diagnosticTestMRI.id}">
-						    	    <strong>Zadáno dne:</strong> ${diagnosticTestMRI.date}
+						    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${diagnosticTestMRI.date}
 						    	</a>
 							</div>
 
@@ -99,7 +99,7 @@
 									<table class="table">
 					               		<tbody>
 					               			<tr class="info">
-												<td>Diagnostický test - Neurozobrazovací test</td>
+												<td><spring:message code="label.diagnosticTestMri" /></td>
 												<c:if test="${diagnosticTestMRI.done==false}">
 													<td><spring:message code="label.notDone" /></td>
 												</c:if>
@@ -137,7 +137,8 @@
 												</tr>
 
 												<tr class="info">
-													<td>MRI popis</td>
+													<td><spring:message
+														code="label.descriptionMRI" /></td>
 													<td>${diagnosticTestMRI.mriDescription}</td>
 												</tr>
 
@@ -171,7 +172,7 @@
 
 												<tr class="info">
 													<td><spring:message
-														code="label.localizationPetHypometabolism" /></td>
+														code="label.descriptionPetHypometabolism" /></td>
 													<td>${diagnosticTestMRI.descriptionPetHypometabolism}</td>
 												</tr>
 
@@ -210,7 +211,7 @@
 												</tr>
 
 												<tr class="info">
-													<td>Iktální SPECT</td>
+													<td><spring:message code="label.interictalSPECT" /></td>
 													<c:if test="${diagnosticTestMRI.ictalSpect==1}">
 														<td><spring:message code="label.bilateral" /></td>
 													</c:if>
@@ -239,7 +240,7 @@
 
 												<tr class="info">
 													<td><spring:message
-														code="label.localizationSPECTHyperperfuse" /></td>
+														code="label.descriptionSPECTHyperperfuse" /></td>
 													<td>${diagnosticTestMRI.descriptionSpectHyperperfuse}</td>
 												</tr>
 
@@ -255,7 +256,7 @@
 												</tr>
 
 												<tr class="info">
-													<td>MRS protokol</td>
+													<td><spring:message	code="label.MrsProtocol" /></td>
 													<c:if test="${diagnosticTestMRI.mrsProtocol==1}">
 														<td>CSI</td>
 													</c:if>
@@ -297,7 +298,7 @@
 
 												<tr class="info">
 													<td><spring:message
-														code="label.localizationMRSAbnormality" /></td>
+														code="label.descriptionMrsAbnormality" /></td>
 													<td>${diagnosticTestMRI.descriptionMrsAbnormality}</td>
 												</tr>
 

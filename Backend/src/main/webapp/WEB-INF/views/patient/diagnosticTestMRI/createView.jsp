@@ -24,7 +24,7 @@
 
 			<div class="span5">
 				<h2>
-					Diagnostické testy - Neurozobrazovací testy
+					<spring:message code="label.diagnosticTestMriMulti" />
 				</h2>
 			</div>
 
@@ -85,7 +85,7 @@
   				</div>  				
 
   				<div class="control-group">
-    				<label class="control-label" for="done"><strong>Diagnostický test - Neurozobrazovací test</strong></label>
+    				<label class="control-label" for="done"><strong><spring:message code="label.diagnosticTestMri" /></strong></label>
     				<div class="controls">
     					<form:select path="done" id="done"
 						type="text" class="input-large">
@@ -134,7 +134,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mriDescription"><strong>MRI popis</strong></label>
+    				<label class="control-label" for="mriDescription"><strong><spring:message code="label.descriptionMRI" /></strong></label>
     				<div class="controls">
     					<form:textarea path="mriDescription" id="mriDescription" />
     					<form:errors path="mriDescription" cssClass="error">
@@ -176,7 +176,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="descriptionPetHypometabolism"><strong>Lokalizace PET hypometabolismu</strong></label>
+    				<label class="control-label" for="descriptionPetHypometabolism"><strong><spring:message code="label.descriptionPetHypometabolism" /></strong></label>
     				<div class="controls">
     					<form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism" />
     					<form:errors path="descriptionPetHypometabolism" cssClass="error">
@@ -219,7 +219,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="descriptionSpectHypoperfuse"><strong>Lokalizace SPECT hypoperfuse</strong></label>
+    				<label class="control-label" for="descriptionSpectHypoperfuse"><strong><spring:message code="label.descriptionSPECTHypoperfuse" /></strong></label>
     				<div class="controls">
     					<form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse" />
     					<form:errors path="descriptionSpectHypoperfuse" cssClass="error">
@@ -228,7 +228,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ictalSpect"><strong>Iktální SPECT</strong></label>
+    				<label class="control-label" for="ictalSpect"><strong><spring:message code="label.ictalSpect" /></strong></label>
     				<div class="controls">
     					<form:select path="ictalSpect"
 						id="ictalSpect" type="text" class="input-large">
@@ -261,7 +261,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="descriptionSpectHyperperfuse"><strong>Lokalizace SPECT hyperperfuse</strong></label>
+    				<label class="control-label" for="descriptionSpectHyperperfuse"><strong><strong><spring:message code="label.descriptionSPECTHyperperfuse" /></strong></label>
     				<div class="controls">
     					<form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse" />
     					<form:errors path="descriptionSpectHyperperfuse" cssClass="error">
@@ -280,7 +280,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsProtocol"><strong>MRS protokol</strong></label>
+    				<label class="control-label" for="mrsProtocol"><strong><spring:message code="label.MrsProtocol" /></strong></label>
     				<div class="controls">
     					<form:select path="mrsProtocol" id="mrsProtocol"
 						type="text" class="input-large">
@@ -298,7 +298,7 @@
   				</div>	
 
   				<div class="control-group">
-    				<label class="control-label" for="mrsFinding"><strong>MRS nález</strong></label>
+    				<label class="control-label" for="mrsFinding"><strong><spring:message code="label.MrsFinding" /></strong></label>
     				<div class="controls">
     					<form:select path="mrsFinding" id="mrsFinding"
 						type="text" class="input-large">
@@ -331,7 +331,7 @@
   				</div>	
 
   				<div class="control-group">
-    				<label class="control-label" for="descriptionMrsAbnormality"><strong>Lokalizace MRS abnormality</strong></label>
+    				<label class="control-label" for="descriptionMrsAbnormality"><strong><spring:message code="label.descriptionMrsAbnormality" /></strong></label>
     				<div class="controls">
     					<form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality" />
     					<form:errors path="descriptionMrsAbnormality" cssClass="error">
@@ -391,7 +391,7 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="comment"><strong>Komentář</strong></label>
+    				<label class="control-label" for="comment"><strong><spring:message code="label.comment" /></strong></label>
     				<div class="controls">
     					<form:textarea path="comment" id="comment" />
     				</div>
