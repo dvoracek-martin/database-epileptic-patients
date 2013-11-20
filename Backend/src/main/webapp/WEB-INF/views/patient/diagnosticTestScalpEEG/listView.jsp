@@ -69,147 +69,159 @@
 				</tbody>
  			</table>
 
-			<c:if test="${empty patient.diagnosticTestEEGList}">
- 				<div class="alert alert-block">
-		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4><spring:message code="label.noRecords"/>!</h4>
-				</div>
- 			</c:if>
-
-			<!-- Anamnesis list START -->
+			<!-- diagnosticTestScalpEEG list START -->
 			<div class="accordion">
 				<c:forEach items="${patient.diagnosticTestEEGList}" var="diagnosticTestEEG">
-					<div >
-						<div class="accordion-heading">
-					    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${diagnosticTestEEG.id}">
-					    	    <strong><spring:message code="label.dateExamination"/>:</strong> ${diagnosticTestEEG.date}
-					    	</a>
-						</div>
+					<c:if test="${diagnosticTestEEG.status==0}">
+						<c:set var="count" value="${count + 1}" scope="page"/>
+						<div>
+							<div class="accordion-heading">
+						    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${diagnosticTestEEG.id}">
+						    	    <strong>Zadáno dne:</strong> ${diagnosticTestEEG.date}
+						    	</a>
+							</div>
 
-					    <div id="collapse${diagnosticTestEEG.id}" class="accordion-body collapse">
+						    <div id="collapse${diagnosticTestEEG.id}" class="accordion-body collapse">
 
-					      	<div class="accordion-inner">
-						      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
-									<div class="pull-right">
-										<a class="close" href="<c:url value="/patient/${patientID}/diagnosticTestEEG/${diagnosticTestEEG.id}/delete"/>"><spring:message code="label.delete"/></a>
+						      	<div class="accordion-inner">
+							      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
+										<div class="pull-right">
+											<a class="close" href="<c:url value="/patient/${patientID}/diagnosticTestScalpEEG/${diagnosticTestEEG.id}/hide"/>"><spring:message code="label.delete"/></a>
+										</div>
+										<div class="pull-left">
+											<a class="close" href="<c:url value="/patient/${patientID}/diagnosticTestScalpEEG/list"/>"><spring:message code="label.edit"/></a>
+										</div>
+										</br>
 									</div>
-									<div class="pull-left">
-										<a class="close" href="<c:url value="/patient/${patientID}/diagnosticTestEEG/list"/>"><spring:message code="label.edit"/></a>
-									</div>
-									</br>
-								</div>
-								<table class="table">
-				               		<tbody>
-
-										<tr class="info">
-											<td><spring:message code="label.basicEEGActivity"/></td>
-											<c:if test="${diagnosticTestEEG.basicEegActivityIdcom==1}">
-												<td><spring:message code="label.normal"/></td>
+									<table class="table">
+					               		<tbody>
+					               			<tr class="info">
+												<td><spring:message code="label.diagnosticTestScalpEEG"/></td>
+												<c:if test="${diagnosticTestEEG.done==false}">
+													<td><spring:message code="label.notDone"/></td>
+												</c:if>
+												<c:if test="${diagnosticTestEEG.done==true}">
+													<td><spring:message code="label.done"/></td>
+												</c:if>
+											</tr>
+											<c:if test="${diagnosticTestEEG.done==true}">
+												<tr class="info">
+													<td><spring:message code="label.basicEEGActivity"/></td>
+													<c:if test="${diagnosticTestEEG.basicEegActivity==1}">
+														<td><spring:message code="label.normal"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.basicEegActivity==2}">
+														<td><spring:message code="label.slow"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.EEGSlow"/></td>
+													<c:if test="${diagnosticTestEEG.eegSlow==1}">
+														<td><spring:message code="label.generalizedContinuous"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.eegSlow==2}">
+														<td><spring:message code="label.generalizedDiscontinuous"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.eegSlow==3}">
+														<td><spring:message code="label.localizatedContinuous"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.eegSlow==4}">
+														<td><spring:message code="label.localizatedDiscontinuous"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.eegSlow==5}">
+														<td><spring:message code="label.none"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.interictalEEGSpikes"/></td>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==1}">
+														<td><spring:message code="label.generalized"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==2}">
+														<td><spring:message code="label.hemispheric"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==3}">
+														<td><spring:message code="label.multiregional"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==4}">
+														<td>Nelatralizovatelné</td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==5}">
+														<td><spring:message code="label.regional"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.interictalEegSpikes==6}">
+														<td><spring:message code="label.none"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.localizationInterictalEEGSpikes"/></td>
+													<td>${diagnosticTestEEG.localizationInterictalEEGSpikes}</td>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.EEGStatusEpilepticus"/></td>
+													<c:if test="${diagnosticTestEEG.eegStatusEpilepticus==true}">
+														<td style="column-span: 2"><spring:message code="label.yes"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.eegStatusEpilepticus==false}">
+														<td><spring:message code="label.no"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.secondarySidedSynchrony"/></td>
+													<c:if test="${diagnosticTestEEG.secondarySidedSynchrony==true}">
+														<td style="column-span: 2"><spring:message code="label.yes"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.secondarySidedSynchrony==false}">
+														<td><spring:message code="label.no"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.ictalEEGPatterns"/></td>
+													<c:if test="${diagnosticTestEEG.ictalEegPatterns==1}">
+														<td><spring:message code="label.missing"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.ictalEegPatterns==2}">
+														<td><spring:message code="label.focal"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.ictalEegPatterns==3}">
+														<td><spring:message code="label.multiregional"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.ictalEegPatterns==4}">
+														<td><spring:message code="label.notlocalizable"/></td>
+													</c:if>
+													<c:if test="${diagnosticTestEEG.ictalEegPatterns==5}">
+														<td><spring:message code="label.regional"/></td>
+													</c:if>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.localizationIctalEEGPattern"/></td>
+													<td>${diagnosticTestEEG.localizationIctalEegPattern}</td>
+												</tr>
+												<tr class="info">
+													<td><spring:message code="label.comment" /></td>
+													<c:choose>
+														<c:when test="${empty diagnosticTestEEG.comment}">
+															<td><spring:message code="label.noComments"/></td>
+														</c:when>
+														<c:otherwise>
+															<td>${diagnosticTestEEG.comment}</td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
 											</c:if>
-											<c:if test="${diagnosticTestEEG.basicEegActivityIdcom==2}">
-												<td><spring:message code="label.slow"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.EEGSlow"/></td>
-											<c:if test="${diagnosticTestEEG.eegSlowIdcom==1}">
-												<td><spring:message code="label.generalizedContinuous"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.eegSlowIdcom==2}">
-												<td><spring:message code="label.generalizedDiscontinuous"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.eegSlowIdcom==3}">
-												<td><spring:message code="label.localizatedContinuous"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.eegSlowIdcom==4}">
-												<td><spring:message code="label.localizatedDiscontinuous"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.eegSlowIdcom==5}">
-												<td><spring:message code="label.none"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.interictalEEGSpikes"/></td>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==1}">
-												<td><spring:message code="label.generalized"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==2}">
-												<td><spring:message code="label.hemispheric"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==3}">
-												<td><spring:message code="label.multiregional"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==4}">
-												<td>Nelatralizovatelné</td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==5}">
-												<td><spring:message code="label.regional"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.interictalEegSpikesIdcom==6}">
-												<td><spring:message code="label.none"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.localizationInterictalEEGSpikes"/></td>
-											<td>${diagnosticTestEEG.localizationInterictalEEGSpikes}</td>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.EEGStatusEpilepticus"/></td>
-											<c:if test="${diagnosticTestEEG.eegStatusEpilepticus==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.eegStatusEpilepticus==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.secondarySidedSynchrony"/></td>
-											<c:if test="${diagnosticTestEEG.secondarySidedSynchrony==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.secondarySidedSynchrony==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.ictalEEGPatterns"/></td>
-											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==1}">
-												<td><spring:message code="label.missing"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==2}">
-												<td><spring:message code="label.focal"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==3}">
-												<td><spring:message code="label.multiregional"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==4}">
-												<td><spring:message code="label.notlocalizable"/></td>
-											</c:if>
-											<c:if test="${diagnosticTestEEG.ictalEegPatternsIdcom==5}">
-												<td><spring:message code="label.regional"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.localizationIctalEEGPattern"/></td>
-											<td>${diagnosticTestEEG.localizationIctalEegPattern}</td>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.comment" /></td>
-											<c:choose>
-												<c:when test="${empty diagnosticTestEEG.comment}">
-													<td><spring:message code="label.noComments"/></td>
-												</c:when>
-												<c:otherwise>
-													<td>${diagnosticTestEEG.comment}</td>
-												</c:otherwise>
-											</c:choose>
-										</tr>
-				              		</tbody>
-	            				</table>
-		            		</div>
-					    </div>
-	            	</div>
+					              		</tbody>
+		            				</table>
+			            		</div>
+						    </div>
+		            	</div>
+		            </c:if>
 	            </c:forEach>
+	             <c:if test="${count==0}">
+		            <div class="alert alert-block">
+		  				<button type="button" class="close" data-dismiss="alert">&times;</button>
+		  				<h4><spring:message code="label.noRecords"/></h4>
+					</div>
+		       	</c:if>
             </div>
         </br> 
 	</jsp:body>
