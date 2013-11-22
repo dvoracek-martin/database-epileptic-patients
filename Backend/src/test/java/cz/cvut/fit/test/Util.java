@@ -1,5 +1,8 @@
 package cz.cvut.fit.test;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
@@ -12,7 +15,7 @@ public class Util {
 
 	private static final String CHARACTER = "a";
 
-	public static byte[] convertObjectToFormUrlEncodedBytes(Object object) {
+	public static String convertObjectToFormUrlEncodedBytes(Object object) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
@@ -37,7 +40,7 @@ public class Util {
 			}
 		}
 
-		return formUrlEncoded.toString().getBytes();
+		return formUrlEncoded.toString();
 	}
 
 	public static String createRedirectViewPath(String path) {
@@ -55,5 +58,12 @@ public class Util {
 		}
 
 		return builder.toString();
+	}
+	
+	public static String getDate(Date date){
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String formatedDate=df.format(date);
+		//formatedDate=formatedDate.substring(0,10);
+		return formatedDate;	
 	}
 }

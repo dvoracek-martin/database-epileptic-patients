@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import cz.cvut.fit.genepi.entity.PatientEntity;
 import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
@@ -23,6 +24,7 @@ import cz.cvut.fit.genepi.service.card.AnamnesisService;
  * anamnesis.
  */
 @Controller
+//@SessionAttributes({"anamnesis"})
 public class AnamnesisController {
 
 	/** The patient service. */
@@ -102,7 +104,7 @@ public class AnamnesisController {
 			BindingResult result, @PathVariable("patientId") Integer patientId,
 			Locale locale, Model model) {
 
-		if (result.hasErrors()) {
+		if (result.hasErrors()) {		
 			model.addAttribute("patient",
 					patientService.findByID(PatientEntity.class, patientId));
 			return "patient/anamnesis/createView";
