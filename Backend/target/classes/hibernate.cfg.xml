@@ -6,33 +6,33 @@
 	<session-factory>
 
 		<!-- Other entities -->
-		<mapping class="cz.cvut.fit.genepi.entity.AdvancedSearchEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.ContactEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.PatientEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.UserEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.UserRoleEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.RoleEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.NewsMessageEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.ExportParamsEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.ContactEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.PatientEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.UserEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.RoleEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity" />
 
 		<!-- Card entities -->
-		<mapping class="cz.cvut.fit.genepi.entity.card.AnamnesisEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.ComplicationEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.DiagnosticTestMRIEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.DiagnosticTestScalpEEGEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.HistologyEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity" />
 		<mapping
-			class="cz.cvut.fit.genepi.entity.card.InvasiveTestCorticalMappingEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.InvasiveTestECOGEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.InvasiveTestEEGEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.NeurologicalFindingEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.NeuropsychologyEntity" />
-				<mapping class="cz.cvut.fit.genepi.entity.card.NeuropsychologyOldEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.OperationEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.OutcomeEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.PharmacotherapyEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.SeizureDetailEntity" />
-		<mapping class="cz.cvut.fit.genepi.entity.card.SeizureEntity" />
+			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity" />
+				<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity" />
+		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity" />
 
 	</session-factory>
 </hibernate-configuration>
