@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
+import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
@@ -223,10 +224,20 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		criteria.createAlias("patient.contact", "contact");
 
 		/* Setting criterias from search */
-		if (advancedSearch.getPatientName() != "") {
+		if (advancedSearch.getPatientFirstname() != "") {
 			criteria.add(Restrictions.like("contact.firstName", "%"
-					+ advancedSearch.getPatientName() + "%"));
+					+ advancedSearch.getPatientFirstname() + "%"));
 		}
+		
+		
+		criteria.add(Restrictions.like("contact.lastName", "%"+advancedSearch.getPatientLastname() + "%"));
+		
+		/*calculating years*/
+		LocalDate now = new LocalDate();
+		LocalDate birth = now.minusYears(Integer.parseInt(advancedSearch.getPatientAge()));
+		System.out.println(birth.toDate());
+		criteria.add(Restrictions.gt("birthday", birth.toDate()));
+		
 		return (List<PatientEntity>) criteria.list();
 	}
 

@@ -33,11 +33,11 @@ public class AdvancedSearchEntity {
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 
-	@Column(name = "patient_name")
-	private String patientName;
+	@Column(name = "patient_firstname")
+	private String patientFirstname;
 
-	@Column(name = "patient_surname")
-	private String patientSurname;
+	@Column(name = "patient_lastname")
+	private String patientLastname;
 
 	@Column(name = "patient_nin")
 	private String patientNin;
@@ -106,20 +106,20 @@ public class AdvancedSearchEntity {
 		this.user = user;
 	}
 
-	public String getPatientName() {
-		return patientName;
+	public String getPatientFirstname() {
+		return patientFirstname;
 	}
 
-	public void setPatientName(String patientName) {
-		this.patientName = patientName;
+	public void setPatientFirstname(String patientFirstname) {
+		this.patientFirstname =patientFirstname;
 	}
 
-	public String getPatientSurname() {
-		return patientSurname;
+	public String getPatientLastname() {
+		return patientLastname;
 	}
 
-	public void setPatientSurname(String patientSurname) {
-		this.patientSurname = patientSurname;
+	public void setPatientLastname(String patientLastname) {
+		this.patientLastname = patientLastname;
 	}
 
 	public String getPatientNin() {

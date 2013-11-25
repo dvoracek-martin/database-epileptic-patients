@@ -20,11 +20,29 @@
 			action="/GENEPI/advanced-search" commandName="advancedSearch">
 
 				<div class="control-group">
-    				<label class="control-label" for="patientName"><strong><spring:message
+    				<label class="control-label" for="patientFirstname"><strong><spring:message
 							code="label.firstname" /></strong></label>
     				<div class="controls">
-    					<form:input path="patientName" type="text" class="input-medium" />
-						<form:errors path="patientName" cssClass="error">
+    					<form:input path="patientFirstname" type="text" class="input-medium" />
+						<form:errors path="patientFirstname" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for="patientLastname"><strong><spring:message
+							code="label.firstname" /></strong></label>
+    				<div class="controls">
+    					<form:input path="patientLastname" type="text" class="input-medium" />
+						<form:errors path="patientLastname" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for="patientAge"><strong><spring:message
+							code="label.firstname" /></strong></label>
+    				<div class="controls">
+    					<form:input path="patientAge" type="text" class="input-medium" />
+						<form:errors path="patientAge" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
