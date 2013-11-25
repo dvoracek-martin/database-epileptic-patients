@@ -29,11 +29,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import cz.cvut.fit.genepi.controller.card.AnamnesisController;
-import cz.cvut.fit.genepi.entity.PatientEntity;
-import cz.cvut.fit.genepi.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.service.PatientService;
-import cz.cvut.fit.genepi.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
+import cz.cvut.fit.genepi.presentationLayer.controller.card.AnamnesisController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:anamnesisControllerTestContext.xml" })

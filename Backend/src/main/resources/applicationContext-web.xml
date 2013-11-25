@@ -15,7 +15,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<context:component-scan base-package="cz.cvut.fit.genepi.controller" />
+	<context:component-scan base-package="cz.cvut.fit.genepi.presentationLayer.controller" />
 
 	<!-- Exception Resolver renders proper pages when Exception occurs <bean 
 		id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 

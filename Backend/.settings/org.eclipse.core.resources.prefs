@@ -1,6 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
-encoding//src/main/java/cz/cvut/fit/genepi/entity/ContactEntity.java=UTF-8
+encoding//src/main/java/cz/cvut/fit/genepi/dataLayer/entity/ContactEntity.java=UTF-8
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/messages_cs.properties=UTF-8
 encoding//src/main/resources/messages_en.properties=UTF-8
