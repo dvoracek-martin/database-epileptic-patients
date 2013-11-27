@@ -34,9 +34,10 @@ public class SeizureDetailController {
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.GET)
 	public String seizureDetailCreateGET(
-			@PathVariable("patientId") Integer patientId, Locale locale,
+			@PathVariable("patientId") Integer patientId,@PathVariable("seizureId") Integer seizureId, Locale locale,
 			Model model) {
 
+		model.addAttribute("seizureId",seizureId);
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientId));
 		model.addAttribute("seizureDetail", new SeizureDetailEntity());
