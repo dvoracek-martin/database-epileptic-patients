@@ -152,7 +152,6 @@
 									<tr class="info">
 										<td>Výskyt</td>
 										<td style="color: red">Nedostupné</td>
-										</c:if>
 									</tr>
 
 									<tr class="info">
