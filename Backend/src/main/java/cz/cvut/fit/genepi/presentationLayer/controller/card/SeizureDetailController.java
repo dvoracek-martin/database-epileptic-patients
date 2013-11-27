@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
+import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 
 @Controller
 public class SeizureDetailController {
@@ -25,11 +27,14 @@ public class SeizureDetailController {
 
 	private SeizureDetailService seizureDetailService;
 	
+	private SeizureService seizureService;
+	
 	@Autowired
 	public SeizureDetailController(PatientService patientService,
-			SeizureDetailService seizureDetailService) {
+			SeizureDetailService seizureDetailService, SeizureService seizureService) {
 		this.patientService = patientService;
 		this.seizureDetailService = seizureDetailService;
+		this.seizureService = seizureService;
 	}
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.GET)
@@ -48,7 +53,7 @@ public class SeizureDetailController {
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.POST)
 	public String seizureDetailCreatePOST(
 			@ModelAttribute("seizureDetail") @Valid SeizureDetailEntity seizureDetail,
-			BindingResult result, @PathVariable("patientId") Integer patientId,
+			BindingResult result, @PathVariable("patientId") Integer patientId,@PathVariable("seizureId") Integer seizureId,
 			Locale locale, Model model) {
 
 		if (result.hasErrors()) {		
@@ -56,6 +61,8 @@ public class SeizureDetailController {
 					patientService.findByID(PatientEntity.class, patientId));
 			return "patient/seizure/detail/createView";
 		} else {
+			seizureDetail.setSeizure(seizureService.findByID(SeizureEntity.class,
+					seizureId));
 			seizureDetail.setPatient(patientService.findByID(PatientEntity.class,
 					patientId));
 			seizureDetailService.save(seizureDetail);
