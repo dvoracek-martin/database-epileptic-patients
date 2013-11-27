@@ -62,7 +62,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	@Column(name = "neurodevelopmental_examination_adaptability", nullable = false)
 	private int neurodevelopmental_examination_adaptability;
 	
-	@Column(name = "neurodevelopmentalexamination_speech_expressively", nullable = false)
+	@Column(name = "neurodevelopmental_examination_speech_expressively", nullable = false)
 	private int neurodevelopmental_examination_speech_expressively;
 	
 	@Column(name = "neurodevelopmental_examination_speech_receptively", nullable = false)
