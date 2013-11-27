@@ -69,13 +69,6 @@
 				</tbody>
 			</table>
 
-			<c:if test="${empty patient.seizureList}">
- 				<div class="alert alert-block">
-		  			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  			<h4><spring:message code="label.noRecords"/>!</h4>
-				</div>
- 			</c:if>
-
 			<!-- Seizure list START -->
 			<div class="accordion">
 				<c:set var="count" value="0" scope="page" />
