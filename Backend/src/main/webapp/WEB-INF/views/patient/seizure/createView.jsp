@@ -68,10 +68,10 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/seizure/create" commandName="seizure">
+						action="/GENEPI/patient/${patient.id}/seizure/create" commandName="seizure">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong>Datum zadání</strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,22 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="seizureFrequency"><strong><spring:message code="label.seizureFrequency"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="seizureFrequencyIdcom"><strong><spring:message code="label.seizureFrequency"/></strong></label>
-    				<div class="controls">
-    					<form:select path="seizureFrequencyIdcom" id="seizureFrequencyIdcom" type="text" class="input-large">
+    					<form:select path="seizureFrequency" id="seizureFrequency" type="text" class="input-large">
 							
 								<form:option value="1">
 									<spring:message code="label.daily"/>
@@ -115,155 +102,36 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="sscClassificationIdcom"><strong><spring:message code="label.SSCClassification"/></strong></label>
+    				<label class="control-label" for="secondarilyGeneralizedSeizure"><strong>Sekundárně generalizované záchvaty</strong></label>
     				<div class="controls">
-    					<form:select path="sscClassificationIdcom" id="sscClassificationIdcom" type="text" class="input-large">
-							
-								<form:option value="1">
-									<spring:message code="label.epilepticSeizure"/>
-								</form:option>
-								<form:option value="2">
-									<spring:message code="label.aura"/>
-								</form:option>
-								<form:option value="3">
-									<spring:message code="label.somatosenzoryAura"/>
-								</form:option>
-								<form:option value="4">
-									<spring:message code="label.visualAura"/>
-								</form:option>	
-								<form:option value="5">
-									<spring:message code="label.auditoryAura"/>
-								</form:option>
-								<form:option value="6">
-									<spring:message code="label.olfactoryAura"/>
-								</form:option>
-								<form:option value="7">
-									<spring:message code="label.gustatoryAura"/>
-								</form:option>
-								<form:option value="8">
-									<spring:message code="label.autonomicAura"/>
-								</form:option>
-								<form:option value="9">
-									<spring:message code="label.epigastricAura"/>
-								</form:option>	
-								<form:option value="10">
-									<spring:message code="label.psychicAura"/>
-								</form:option>	
-								<form:option value="11">
-									<spring:message code="label.absence"/>
-								</form:option>		
-								<form:option value="12">
-									<spring:message code="label.autonomicSeizure"/>
-								</form:option>	
-								<form:option value="13">
-									<spring:message code="label.psychomotorSeizure"/>
-								</form:option>	
-								<form:option value="14">
-									<spring:message code="label.motorSeizure"/>
-								</form:option>	
-								<form:option value="15">
-									<spring:message code="label.clonicSeizure"/>
-								</form:option>	
-								<form:option value="16">
-									<spring:message code="label.tonicSeizure"/>
-								</form:option>	
-								<form:option value="17">
-									<spring:message code="label.tonicClonicSeizure"/>
-								</form:option>	
-								<form:option value="18">
-									<spring:message code="label.atonicSeizure"/>
-								</form:option>	
-								<form:option value="19">
-									<spring:message code="label.akineticSeizure"/>
-								</form:option>	
-								<form:option value="20">
-									<spring:message code="label.versiveSeizure"/>
-								</form:option>	
-								<form:option value="21">
-									<spring:message code="label.myoclonicSeizure"/>
-								</form:option>	
-								<form:option value="22">
-									<spring:message code="label.hypermotorSeizure"/>
-								</form:option>	
-								<form:option value="23">
-									<spring:message code="label.hypomotorSeizure"/>
-								</form:option>	
-								<form:option value="24">
-									<spring:message code="label.negativeMyoclonicSeizure"/>
-								</form:option>	
-								<form:option value="25">
-									<spring:message code="label.askatikSeizure"/>
-								</form:option>	
-								<form:option value="26">
-									<spring:message code="label.akineticSeizure"/>
-								</form:option>	
-								<form:option value="27">
-									<spring:message code="label.aphasicSeizure"/>
-								</form:option>	
-								<form:option value="28">
-									<spring:message code="label.gelasticSeizure"/>
-								</form:option>	
-								<form:option value="29">
-									<spring:message code="label.paroxymalEvent"/>
-								</form:option>	
-
-
-						</form:select>
+    					<form:checkbox path="secondarilyGeneralizedSeizure" input="secondarilyGeneralizedSeizure" class="input-block-level" />
+						<form:errors path="secondarilyGeneralizedSeizure" cssClass="error">
+						</form:errors>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ilaeClassificationIdcom"><strong><spring:message code="label.ILAEClassification"/></strong></label>
+    				<label class="control-label" for="statusEpilepticus"><strong>Status epilepticus</strong></label>
     				<div class="controls">
-    					<form:select path="ilaeClassificationIdcom" id="ilaeClassificationIdcom" type="text" class="input-large">
-							
-								<form:option value="1">
-									<spring:message code="label.simplePartialMotor"/>
-								</form:option>
-								<form:option value="2">
-									<spring:message code="label.simplePartialPsychic"/>
-								</form:option>
-								<form:option value="3">
-									<spring:message code="label.simplePartialAutonomic"/>
-								</form:option>
-								<form:option value="4">
-									<spring:message code="label.simplePartialSomatosensory"/>
-								</form:option>
-								<form:option value="5">
-									<spring:message code="label.simplePartialSimple"/>
-								</form:option>
-								<form:option value="6">
-									<spring:message code="label.simplePartialImpairment"/>
-								</form:option>
-								<form:option value="7">
-									<spring:message code="label.simplePartialEvolving"/>
-								</form:option>
-								<form:option value="8">
-									<spring:message code="label.generalizedTypical"/>
-								</form:option>
-								<form:option value="9">
-									<spring:message code="label.generalizedAtypical"/>
-								</form:option>
-								<form:option value="10">
-									<spring:message code="label.generalizedMyoclonic"/>
-								</form:option>	
-								<form:option value="11">
-									<spring:message code="label.generalizedClonic"/>
-								</form:option>	
-								<form:option value="12">
-									<spring:message code="label.generalizedTonic"/>
-								</form:option>	
-								<form:option value="13">
-									<spring:message code="label.generalizedTonicClonic"/>
-								</form:option>
-								<form:option value="14">
-									<spring:message code="label.generalizedAtonic"/>
-								</form:option>		
-								<form:option value="15">
-									<spring:message code="label.unclassified"/>
-								</form:option>
+    					<form:checkbox path="statusEpilepticus" input="statusEpilepticus" class="input-block-level" />
+						<form:errors path="statusEpilepticus" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
 
-						</form:select>
+  				<div class="control-group">
+    				<label class="control-label" for="nonepilepticSeizures"><strong>Neepileptické záchvaty</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="nonepilepticSeizures" input="nonepilepticSeizures" class="input-block-level" />
+						<form:errors path="nonepilepticSeizures" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="vyskyt"><strong>Výskyt</strong></label>
+    				<div class="controls">
+    					<h2 style="color: red" id="vyskyt"><b>Prozatím nedostupné</b></h2>
     				</div>
   				</div>
   				
