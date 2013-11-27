@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -95,6 +97,11 @@ public class OperationEntity implements Comparable<OperationEntity> {
 	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
 
+	/* Relations */
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "operation")
+	private List<OutcomeEntity> outcomeList;
+	
 	@Override
 	public int compareTo(OperationEntity o) {
 		int comparison = this.date.compareTo(o.getDate());
@@ -243,5 +250,14 @@ public class OperationEntity implements Comparable<OperationEntity> {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+	
+
+	public List<OutcomeEntity> getOutcomeList() {
+		return outcomeList;
+	}
+
+	public void setOutcomeList(List<OutcomeEntity> outcomeList) {
+		this.outcomeList = outcomeList;
 	}
 }

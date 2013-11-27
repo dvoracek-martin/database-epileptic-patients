@@ -70,6 +70,9 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	@Column(name = "neuropsychology")
 	private int neuropsychology;
 
+	@Column(name = "distance")
+	private int distance;
+	
 	/** The comment. */
 	@Size(max = 800)
 	@Column(name = "comment", length = 800, nullable = true)
@@ -169,6 +172,14 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 		this.mri = mri;
 	}
 
+	public int getDistance() {
+		return neuropsychology;
+	}
+
+	public void setDistancey(int distance) {
+		this.distance = distance;
+	}
+	
 	public int getNeuropsychology() {
 		return neuropsychology;
 	}

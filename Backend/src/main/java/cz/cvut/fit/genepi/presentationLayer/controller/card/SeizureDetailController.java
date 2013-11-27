@@ -107,11 +107,11 @@ public class SeizureDetailController {
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/hide", method = RequestMethod.GET)
 	public String seizureDetailHideGET(
 			@PathVariable("patientId") Integer patientId,
-			@PathVariable("seizureId") Integer seizureId, Locale locale,
+			@PathVariable("seizureId") Integer seizureDetailId, Locale locale,
 			Model model) {
 
 		seizureDetailService.hide(seizureDetailService.findByID(
-				SeizureDetailEntity.class, seizureId));
+				SeizureDetailEntity.class, seizureDetailId));
 		return "redirect:/patient/" + patientId + "/seizure/list";
 	}
 	
