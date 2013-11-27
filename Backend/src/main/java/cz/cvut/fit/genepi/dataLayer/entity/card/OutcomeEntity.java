@@ -73,6 +73,10 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	@Column(name = "distance")
 	private int distance;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "operation_id")
+	private OperationEntity operation;
+	
 	/** The comment. */
 	@Size(max = 800)
 	@Column(name = "comment", length = 800, nullable = true)
@@ -187,7 +191,15 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	public void setNeuropsychology(int neuropsychology) {
 		this.neuropsychology = neuropsychology;
 	}
+	
+	public OperationEntity getOperation() {
+		return operation;
+	}
 
+	public void setOperation(OperationEntity operation) {
+		this.operation = operation;
+	}
+	
 	public String getComment() {
 		return comment;
 	}
