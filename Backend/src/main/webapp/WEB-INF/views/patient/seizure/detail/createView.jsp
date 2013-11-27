@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				<h2><spring:message code="label.seizures"/></h2>
+				<h2>Záchvaty - Přidání záchvatu</h2>
 			</div>
 
 			<table class="table">
@@ -68,10 +68,10 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/seizure/create" commandName="seizure">
+						action="/GENEPI/patient/${patient.id}/seizure-detail/create" commandName="seizureDetail">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong>Datum zadání</strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,44 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="sscClassification"><strong><spring:message code="label.SSCClassification"/></strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="seizureFrequencyIdcom"><strong><spring:message code="label.seizureFrequency"/></strong></label>
-    				<div class="controls">
-    					<form:select path="seizureFrequencyIdcom" id="seizureFrequencyIdcom" type="text" class="input-large">
-							
-								<form:option value="1">
-									<spring:message code="label.daily"/>
-								</form:option>
-								<form:option value="2">
-									<spring:message code="label.weekly"/>
-								</form:option>
-								<form:option value="3">
-									<spring:message code="label.monthly"/>
-								</form:option>
-								<form:option value="4">
-									<spring:message code="label.lessThanMonthly"/>
-								</form:option>					
-
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="sscClassificationIdcom"><strong><spring:message code="label.SSCClassification"/></strong></label>
-    				<div class="controls">
-    					<form:select path="sscClassificationIdcom" id="sscClassificationIdcom" type="text" class="input-large">
+    					<form:select path="sscClassification" id="sscClassification" type="text" class="input-large">
 							
 								<form:option value="1">
 									<spring:message code="label.epilepticSeizure"/>
@@ -213,9 +178,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="ilaeClassificationIdcom"><strong><spring:message code="label.ILAEClassification"/></strong></label>
+    				<label class="control-label" for="ilaeClassification"><strong><spring:message code="label.ILAEClassification"/></strong></label>
     				<div class="controls">
-    					<form:select path="ilaeClassificationIdcom" id="ilaeClassificationIdcom" type="text" class="input-large">
+    					<form:select path="ilaeClassification" id="ilaeClassification" type="text" class="input-large">
 							
 								<form:option value="1">
 									<spring:message code="label.simplePartialMotor"/>

@@ -73,13 +73,13 @@
 			<div class="accordion">
 				<c:set var="count" value="0" scope="page" />
 				<c:forEach items="${patient.seizureList}" var="seizure">
-					<c:if test="${anamnesis.status==0}">
+					<c:if test="${seizure.status==0}">
 						<c:set var="count" value="${count + 1}" scope="page"/>
 						<div >
 							<div class="accordion-heading">
-						    	<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${seizure.id}">
-						    	    <strong><spring:message code="label.examinationDate"/>:</strong> ${seizure.date}
-						    	</a>
+							    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse${seizure.id}">
+							    	   <strong><spring:message code="label.examinationDate"/>:</strong> ${seizure.date}
+							    </a>
 							</div>
 
 						    <div id="collapse${seizure.id}" class="accordion-body collapse">
@@ -88,6 +88,9 @@
 							      	<div class="label-info" style="border-radius: 5px; padding-top: 5px; padding-left: 5px; padding-right: 5px">
 										<div class="pull-right">
 											<a class="close" href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/hide"/>"><spring:message code="label.delete"/></a>
+										</div>
+										<div>
+											<a class="close" href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/seizure-detail/create"/>">Přidat záchvat</a>
 										</div>
 										<div class="pull-left">
 											<a class="close" href="<c:url value="/patient/${patient.id}/seizure/list"/>"><spring:message code="label.edit"/></a>
@@ -151,7 +154,7 @@
 										<td><spring:message code="label.comment" /></td>
 										<c:choose>
 											<c:when test="${empty seizure.comment}">
-												<td><spring:message code="label.noComment"/></td>
+												<td><spring:message code="label.noComments"/></td>
 											</c:when>
 											<c:otherwise>
 												<td>${seizure.comment}</td>
