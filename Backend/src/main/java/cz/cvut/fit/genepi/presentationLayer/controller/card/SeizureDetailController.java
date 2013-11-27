@@ -107,7 +107,7 @@ public class SeizureDetailController {
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/hide", method = RequestMethod.GET)
 	public String seizureDetailHideGET(
 			@PathVariable("patientId") Integer patientId,
-			@PathVariable("seizureId") Integer seizureDetailId, Locale locale,
+			@PathVariable("seizureDetailId") Integer seizureDetailId, Locale locale,
 			Model model) {
 
 		seizureDetailService.hide(seizureDetailService.findByID(
