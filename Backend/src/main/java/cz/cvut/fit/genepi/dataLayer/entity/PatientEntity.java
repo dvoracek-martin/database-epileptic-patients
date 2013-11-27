@@ -34,6 +34,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntit
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
@@ -135,7 +136,7 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<NeuropsychologyOldEntity> neuropsychologyList;
+	private Set<NeuropsychologyEntity> neuropsychologyList;
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -226,15 +227,15 @@ public class PatientEntity {
 		this.histologyList = converter.toSet(histologyList);
 	}
 
-	public List<NeuropsychologyOldEntity> getNeuropsychologyList() {
-		CollectionConverter<NeuropsychologyOldEntity> converter = new CollectionConverter<>();
-		Sorter<NeuropsychologyOldEntity> sorter = new Sorter<>();
+	public List<NeuropsychologyEntity> getNeuropsychologyList() {
+		CollectionConverter<NeuropsychologyEntity> converter = new CollectionConverter<>();
+		Sorter<NeuropsychologyEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter.toList(this.neuropsychologyList));
 	}
 
 	public void setNeuropsychologyList(
-			List<NeuropsychologyOldEntity> neuropsychologyList) {
-		CollectionConverter<NeuropsychologyOldEntity> converter = new CollectionConverter<>();
+			List<NeuropsychologyEntity> neuropsychologyList) {
+		CollectionConverter<NeuropsychologyEntity> converter = new CollectionConverter<>();
 		this.neuropsychologyList = converter.toSet(neuropsychologyList);
 	}
 	
@@ -247,7 +248,7 @@ public class PatientEntity {
 	public void setNeuropsychologyOldList(
 			List<NeuropsychologyOldEntity> neuropsychologyOldList) {
 		CollectionConverter<NeuropsychologyOldEntity> converter = new CollectionConverter<>();
-		this.neuropsychologyList = converter.toSet(neuropsychologyOldList);
+		this.neuropsychologyOldList = converter.toSet(neuropsychologyOldList);
 	}
 
 	public List<OutcomeEntity> getOutcomeList() {
