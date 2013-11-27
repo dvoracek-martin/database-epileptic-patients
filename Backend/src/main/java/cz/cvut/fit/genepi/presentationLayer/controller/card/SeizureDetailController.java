@@ -33,19 +33,19 @@ public class SeizureDetailController {
 	}
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.GET)
-	public String anamnesisCreateGET(
+	public String seizureDetailCreateGET(
 			@PathVariable("patientId") Integer patientId, Locale locale,
 			Model model) {
 
 		model.addAttribute("patient",
 				patientService.findByID(PatientEntity.class, patientId));
 		model.addAttribute("seizureDetail", new SeizureDetailEntity());
-		return "patient/anamnesis/createView";
+		return "patient/seizure/detail/createView";
 	}
 
 
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.POST)
-	public String anamnesisCreatePOST(
+	public String seizureDetailCreatePOST(
 			@ModelAttribute("seizureDetail") @Valid SeizureDetailEntity seizureDetail,
 			BindingResult result, @PathVariable("patientId") Integer patientId,
 			Locale locale, Model model) {
@@ -64,7 +64,7 @@ public class SeizureDetailController {
 
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.GET)
-	public String anamnesisEditGET(
+	public String seizureDetailEditGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("seizureId") Integer seizureId, Locale locale,
 			Model model) {
@@ -78,7 +78,7 @@ public class SeizureDetailController {
 
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.POST)
-	public String anamnesisEditPOST(
+	public String seizureDetailEditPOST(
 			@ModelAttribute("seizureDetail") @Valid SeizureDetailEntity seizureDetail,
 			BindingResult result, @PathVariable("patientId") Integer patientId,
 			Locale locale, Model model) {
@@ -97,7 +97,7 @@ public class SeizureDetailController {
 
 	
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/hide", method = RequestMethod.GET)
-	public String anamnesisHideGET(
+	public String seizureDetailHideGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("seizureId") Integer seizureId, Locale locale,
 			Model model) {
@@ -109,7 +109,7 @@ public class SeizureDetailController {
 	
 
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/unhide", method = RequestMethod.GET)
-	public String anamnesisUnhideGET(
+	public String seizureDetailUnhideGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("seizureId") Integer seizureId, Locale locale,
 			Model model) {

@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-public interface NeuropsychologyService {
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
+
+public interface NeuropsychologyService extends GenericCardService<NeuropsychologyEntity> {
 
 }

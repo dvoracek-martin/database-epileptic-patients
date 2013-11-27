@@ -19,33 +19,22 @@ public class NeuropsychologyOldController {
 
 	private PatientService patientService;
 
-	private NeuropsychologyOldService neuropsychologyService;
+	private NeuropsychologyOldService neuropsychologyOldService;
 
 	@Autowired
 	public NeuropsychologyOldController(PatientService patientService,
-			NeuropsychologyOldService neuropsychologyService) {
+			NeuropsychologyOldService neuropsychologyOldService) {
 		this.patientService = patientService;
-		this.neuropsychologyService = neuropsychologyService;
-	}
+		this.neuropsychologyOldService = neuropsychologyOldService;
+	}	
 
-	@RequestMapping(value = "/patient/{patientID}/neuropsychology-old/create", method = RequestMethod.GET)
-	public String neuropsychologyCreateGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
-
-		model.addAttribute("patient", patient);
-		model.addAttribute("neuropsychology", new NeuropsychologyOldEntity());
-		return "patient/neuropsychologyOld/createView";
-	}
-
-	@RequestMapping(value = "/patient/{patientID}/neuropsychology-old/{neuropsychologyID}/delete", method = RequestMethod.GET)
-	public String neuropsychologyDeleteGET(Locale locale, Model model,
+	@RequestMapping(value = "/patient/{patientID}/neuropsychology-old/{neuropsychologyOldID}/delete", method = RequestMethod.GET)
+	public String neuropsychologyOldDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
-			@PathVariable("neuropsychologyID") Integer neuropsychologyID) {
+			@PathVariable("neuropsychologyOldID") Integer neuropsychologyOldID) {
 
-		neuropsychologyService.delete(neuropsychologyService.findByID(
-				NeuropsychologyOldEntity.class, neuropsychologyID));
+		neuropsychologyOldService.delete(neuropsychologyOldService.findByID(
+				NeuropsychologyOldEntity.class, neuropsychologyOldID));
 		return "redirect:/patient/" + patientID + "/neuropsychology-old/list";
 	}
 
@@ -71,7 +60,7 @@ public class NeuropsychologyOldController {
 			@PathVariable("neuropsychologyId") Integer neuropsychologyId,
 			Locale locale, Model model) {
 
-		neuropsychologyService.hide(neuropsychologyService.findByID(
+		neuropsychologyOldService.hide(neuropsychologyOldService.findByID(
 				NeuropsychologyOldEntity.class, neuropsychologyId));
 		return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
 	}
@@ -98,7 +87,7 @@ public class NeuropsychologyOldController {
 			@PathVariable("neuropsychologyId") Integer neuropsychologyId,
 			Locale locale, Model model) {
 
-		neuropsychologyService.unhide(neuropsychologyService.findByID(
+		neuropsychologyOldService.unhide(neuropsychologyOldService.findByID(
 				NeuropsychologyOldEntity.class, neuropsychologyId));
 		// TODO: address to get back to admin module where is list od hidden
 		// records.
