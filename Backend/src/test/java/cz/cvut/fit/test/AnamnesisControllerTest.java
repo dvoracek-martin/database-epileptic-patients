@@ -91,27 +91,27 @@ public class AnamnesisControllerTest {
 
 	// FIXME: set all properties which has validation. Anamnesis which is saved
 
-//	@Test
-//	public void anamnesisCreatePOST_AnamnesisEntityValid() throws Exception {
-//
-//		AnamnesisEntity anamnesis = new AnamnesisEntity();
-//		anamnesis.setNonCnsComorbidity("nonCnsComorbidity");
-//		anamnesis.setBeginningEpilepsy(new Date());
-//		System.out.println(anamnesis.getBeginningEpilepsy());
-//
-//		mockMvc.perform(
-//				post("/patient/{patientID}/anamnesis/create", 1)
-//						.contentType(MediaType.APPLICATION_FORM_URLENCODED)
-//						.content(""
-//								/*Util.convertObjectToFormUrlEncodedBytes(anamnesis)*/)
-//						.sessionAttr("anamnesis", anamnesis))
-//				.andExpect(model().attributeHasNoErrors("anamnesis"))
-//				.andExpect(status().isMovedTemporarily())
-//				.andExpect(view().name("redirect:/patient/1/anamnesis/list"));
-//
-//		verify(anamnesisServiceMock, times(1)).save(anamnesis);
-//		verifyNoMoreInteractions(anamnesisServiceMock);
-//	}
+	// @Test
+	// public void anamnesisCreatePOST_AnamnesisEntityValid() throws Exception {
+	//
+	// AnamnesisEntity anamnesis = new AnamnesisEntity();
+	// anamnesis.setNonCnsComorbidity("nonCnsComorbidity");
+	// anamnesis.setBeginningEpilepsy(new Date());
+	// System.out.println(anamnesis.getBeginningEpilepsy());
+	//
+	// mockMvc.perform(
+	// post("/patient/{patientID}/anamnesis/create", 1)
+	// .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+	// .content(""
+	// /*Util.convertObjectToFormUrlEncodedBytes(anamnesis)*/)
+	// .sessionAttr("anamnesis", anamnesis))
+	// .andExpect(model().attributeHasNoErrors("anamnesis"))
+	// .andExpect(status().isMovedTemporarily())
+	// .andExpect(view().name("redirect:/patient/1/anamnesis/list"));
+	//
+	// verify(anamnesisServiceMock, times(1)).save(anamnesis);
+	// verifyNoMoreInteractions(anamnesisServiceMock);
+	// }
 
 	@Test
 	public void anamnesisCreatePOST_AnamnesisEntityNotValid() throws Exception {
@@ -129,9 +129,9 @@ public class AnamnesisControllerTest {
 						.sessionAttr("anamnesis", anamnesis))
 				.andExpect(status().isOk())
 				.andExpect(view().name("patient/anamnesis/createView"))
-				.andExpect(model().attributeHasFieldErrors("anamnesis", "date"));
-		// .andExpect(model().attributeHasFieldErrors("anamnesis",
-		// "nonCnsComorbidity"));
+				.andExpect(model().attributeHasFieldErrors("anamnesis", "date"))
+		 .andExpect(model().attributeHasFieldErrors("anamnesis",
+		 "nonCnsComorbidity"));
 		verifyZeroInteractions(anamnesisServiceMock);
 	}
 
