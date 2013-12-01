@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
@@ -37,11 +38,11 @@ public class OutcomeController {
 		this.operationService = operationService;
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/outcome/create?distance={distance}&operation={operationId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/outcome/create", method = RequestMethod.GET)
 	public String outcomeCreateGET(
 			@PathVariable("patientID") Integer patientID,
-			@PathVariable("distance") Integer distance,
-			@PathVariable("operationId") Integer operationId, Locale locale,
+			@RequestParam("distance") Integer distance,
+			@RequestParam("operation") Integer operationId, Locale locale,
 			Model model) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
