@@ -95,7 +95,7 @@
 						              				<td><b>6 měsíců</b></td>
 						              				<c:set var="count2" value="0" scope="page" />
 						              				<c:forEach items="${operation.outcomeList}" var="outcome">
-						              					<c:if test="outcome.distance==6">
+						              					<c:if test="${outcome.distance==6}">
 															<c:set var="count" value="${count + 1}" scope="page"/>
 															<c:if test="${outcome.seizureOutcome==1}">
 																<td>0</td>
@@ -193,7 +193,7 @@
 						              				<td><b>1 rok</b></td>
 						              				<c:set var="count2" value="0" scope="page" />
 						              				<c:forEach items="${operation.outcomeList}" var="outcome">
-						              					<c:if test="outcome.distance==12">
+						              					<c:if test="${outcome.distance==12}">
 															<c:set var="count" value="${count + 1}" scope="page"/>
 															<c:if test="${outcome.seizureOutcome==1}">
 																<td>0</td>
@@ -291,7 +291,7 @@
 						              				<td><b>2 rok</b></td>
 						              				<c:set var="count2" value="0" scope="page" />
 						              				<c:forEach items="${operation.outcomeList}" var="outcome">
-						              					<c:if test="outcome.distance==24">
+						              					<c:if test="${outcome.distance==24}">
 															<c:set var="count" value="${count + 1}" scope="page"/>
 															<c:if test="${outcome.seizureOutcome==1}">
 																<td>0</td>
@@ -389,7 +389,7 @@
 						              				<td><b>5 let</b></td>
 						              				<c:set var="count2" value="0" scope="page" />
 						              				<c:forEach items="${operation.outcomeList}" var="outcome">
-						              					<c:if test="outcome.distance==60">
+						              					<c:if test="${outcome.distance==60}">
 															<c:set var="count" value="${count + 1}" scope="page"/>
 															<c:if test="${outcome.seizureOutcome==1}">
 																<td>0</td>
@@ -487,7 +487,7 @@
 						              				<td><b>10 let</b></td>
 						              				<c:set var="count2" value="0" scope="page" />
 						              				<c:forEach items="${operation.outcomeList}" var="outcome">
-						              					<c:if test="outcome.distance==120">
+						              					<c:if test="${outcome.distance==120}">
 															<c:set var="count" value="${count + 1}" scope="page"/>
 															<c:if test="${outcome.seizureOutcome==1}">
 																<td>0</td>
