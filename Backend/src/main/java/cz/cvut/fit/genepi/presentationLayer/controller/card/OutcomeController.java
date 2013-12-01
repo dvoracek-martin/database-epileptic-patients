@@ -1,6 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -69,9 +71,14 @@ public class OutcomeController {
 			@ModelAttribute("outcome") @Valid OutcomeEntity outcome,
 			BindingResult result, @PathVariable("patientID") Integer patientID,
 			@RequestParam("distance") Integer distance,
-			@RequestParam("operationId") Integer operationId) {
+			@RequestParam("operationId") Integer operationId, Locale locale,
+			Model model) {
 		if (result.hasErrors()) {
-			System.out.println(result.toString());
+			PatientEntity patient = patientService.findByID(
+					PatientEntity.class, patientID);
+			model.addAttribute("distance", distance);
+			model.addAttribute("operation", operationId);
+			model.addAttribute("patient", patient);
 			return "patient/outcome/createView";
 		} else {
 			outcome.setDistance(distance);
@@ -162,6 +169,20 @@ public class OutcomeController {
 		PatientEntity patient = patientService
 				.getPatientByIdWithOperationList(patientID);
 		model.addAttribute("patient", patient);
+		List<OperationEntity> list = patient.getOperationList();
+		System.out.println("sss");
+		for (Iterator<OperationEntity> i = list.iterator(); i.hasNext();) {
+			System.out.println("sssIN");
+			OperationEntity o = i.next();
+			List<OutcomeEntity> ou = o.getOutcomeList();
+			for (Iterator<OutcomeEntity> j = ou.iterator(); i.hasNext();) {
+				System.out.println("sssIN2");
+				OutcomeEntity out = j.next();
+				System.out.println(out.getEeg());
+			}
+
+		}
+		System.out.println("sss2");
 		return "patient/outcome/listView";
 	}
 }
