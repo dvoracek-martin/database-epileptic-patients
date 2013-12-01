@@ -15,7 +15,7 @@
 		up static resources in the ${webappRoot}/resources directory -->
 	<mvc:resources mapping="/resources/**" location="/resources/" />
 
-	<context:component-scan base-package="cz.cvut.fit.genepi.controller.AnamnesisController" />
+	<context:component-scan base-package="cz.cvut.fit.genepi.presentationLayer.controller.AnamnesisController" />
 
 	<!-- Exception Resolver renders proper pages when Exception occurs <bean 
 		id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver"> 
@@ -35,11 +35,11 @@
 
 	<bean id="patientService" name="patientService" class="org.mockito.Mockito"
 		factory-method="mock">
-		<constructor-arg value="cz.cvut.fit.genepi.service.PatientService" />
+		<constructor-arg value="cz.cvut.fit.genepi.businessLayer.service.PatientService" />
 	</bean>
 
 	<bean id="anamnesisService" name="anamnesisService" class="org.mockito.Mockito"
 		factory-method="mock">
-		<constructor-arg value="cz.cvut.fit.genepi.service.card.AnamnesisService" />
+		<constructor-arg value="cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService" />
 	</bean>
 </beans>
