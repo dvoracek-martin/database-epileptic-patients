@@ -67,8 +67,8 @@ public class OutcomeController {
 	public String outcomeCreatePOST(
 			@ModelAttribute("outcome") @Valid OutcomeEntity outcome,
 			BindingResult result, @PathVariable("patientID") Integer patientID,
-			@PathVariable("distance") Integer distance,
-			@PathVariable("operationId") Integer operationId) {
+			@RequestParam("distance") Integer distance,
+			@RequestParam("operation") Integer operationId) {
 		if (result.hasErrors()) {
 			return "patient/outcome/createView";
 		} else {
