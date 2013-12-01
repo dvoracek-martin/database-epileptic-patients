@@ -42,11 +42,12 @@ public class OutcomeController {
 	public String outcomeCreateGET(
 			@PathVariable("patientID") Integer patientID,
 			@RequestParam("distance") Integer distance,
-			@RequestParam("operation") Integer operationId, Locale locale,
+			@RequestParam("operation") Integer operation, Locale locale,
 			Model model) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
-
+		model.addAttribute("distance", distance);
+		model.addAttribute("operation", operation);
 		model.addAttribute("patient", patient);
 		model.addAttribute("outcome", new OutcomeEntity());
 		return "patient/outcome/createView";
@@ -68,8 +69,9 @@ public class OutcomeController {
 			@ModelAttribute("outcome") @Valid OutcomeEntity outcome,
 			BindingResult result, @PathVariable("patientID") Integer patientID,
 			@RequestParam("distance") Integer distance,
-			@RequestParam("operation") Integer operationId) {
+			@RequestParam("operationId") Integer operationId) {
 		if (result.hasErrors()) {
+			System.out.println(result.toString());
 			return "patient/outcome/createView";
 		} else {
 			outcome.setPatient(patientService.findByID(PatientEntity.class,

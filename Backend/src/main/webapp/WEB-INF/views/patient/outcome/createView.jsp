@@ -193,7 +193,7 @@
 
   				<input type="hidden" name="distance" value="${distance}">
 
-  				<input type="hidden" name="operation" value="${operation}">
+  				<input type="hidden" name="operationId" value="${operation}">
 
   				<div class="control-group">
 			    	<div class="controls">
