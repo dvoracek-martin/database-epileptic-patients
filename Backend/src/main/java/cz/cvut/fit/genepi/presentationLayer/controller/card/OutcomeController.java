@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 
 @Controller
 public class OutcomeController {
@@ -25,16 +27,22 @@ public class OutcomeController {
 
 	private OutcomeService outcomeService;
 
+	private OperationService operationService;
+
 	@Autowired
 	public OutcomeController(PatientService patientService,
-			OutcomeService outcomeService) {
+			OutcomeService outcomeService, OperationService operationService) {
 		this.patientService = patientService;
 		this.outcomeService = outcomeService;
+		this.operationService = operationService;
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/outcome/create", method = RequestMethod.GET)
-	public String outcomeCreateGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
+	@RequestMapping(value = "/patient/{patientID}/outcome/create?distance={distance}&operation={operationId}", method = RequestMethod.GET)
+	public String outcomeCreateGET(
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("distance") Integer distance,
+			@PathVariable("operationId") Integer operationId, Locale locale,
+			Model model) {
 		PatientEntity patient = patientService.findByID(PatientEntity.class,
 				patientID);
 
@@ -57,12 +65,16 @@ public class OutcomeController {
 	@RequestMapping(value = "/patient/{patientID}/outcome/create", method = RequestMethod.POST)
 	public String outcomeCreatePOST(
 			@ModelAttribute("outcome") @Valid OutcomeEntity outcome,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {
+			BindingResult result, @PathVariable("patientID") Integer patientID,
+			@PathVariable("distance") Integer distance,
+			@PathVariable("operationId") Integer operationId) {
 		if (result.hasErrors()) {
 			return "patient/outcome/createView";
 		} else {
 			outcome.setPatient(patientService.findByID(PatientEntity.class,
 					patientID));
+			outcome.setOperation(operationService.findByID(
+					OperationEntity.class, operationId));
 			outcomeService.save(outcome);
 			return "redirect:/patient/" + patientID + "/outcome/list";
 		}
