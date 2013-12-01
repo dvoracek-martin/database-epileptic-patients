@@ -71,7 +71,7 @@
 						action="/GENEPI/patient/${patientID}/outcome/create" commandName="outcome">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+    				<label class="control-label" for="date"><strong>Datum zadání</strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,22 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="doctorId"><strong><spring:message code="label.doctor"/></strong></label>
+    				<label class="control-label" for="seizureOutcome"><strong>Seizure outcome</strong></label>
     				<div class="controls">
-    					<form:select path="doctorId" id="doctorId" type="text" class="input-large">
-							<c:forEach items="${doctors}" var="doctor">
-								<form:option value="${doctor.id}">
-									${doctor.contact.firstName} ${doctor.contact.lastName}
-								</form:option>
-							</c:forEach>	
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="finallySeizuresIdcom"><strong>Seizure outcome</strong></label>
-    				<div class="controls">
-    					<form:select path="finallySeizuresIdcom" id="finallySeizuresIdcom" type="text" class="input-large">
+    					<form:select path="seizureOutcome" id="seizureOutcome" type="text" class="input-large">
 							<form:option value="1">
 								0
 							</form:option>
@@ -143,45 +130,64 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="eegSpikes"><strong>EEG hroty</strong></label>
+    				<label class="control-label" for="aed"><strong>AED</strong></label>
     				<div class="controls">
-    					<form:checkbox path="eegSpikes" input="eegSpikes" class="input-block-level" />
-						<form:errors path="eegSpikes" cssClass="error">
-						</form:errors>
+    					<form:select path="aed" id="aed" type="text" class="input-large">
+							<form:option value="1">
+								nevysazený
+							</form:option>
+							<form:option value="2">
+								vysazený
+							</form:option>
+							<form:option value="3">
+								redukovaný
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="aedPlanted"><strong>AED vysazeny</strong></label>
+    				<label class="control-label" for="eeg"><strong>EEG</strong></label>
     				<div class="controls">
-    					<form:checkbox path="aedPlanted" input="aedPlanted" class="input-block-level" />
-						<form:errors path="aedPlanted" cssClass="error">
-						</form:errors>
+    					<form:select path="eeg" id="eeg" type="text" class="input-large">
+							<form:option value="1">
+								neprovedeno
+							</form:option>
+							<form:option value="2">
+								s hroty
+							</form:option>
+							<form:option value="3">
+								bez hrotů
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="mriDone"><strong>MRI provedeno</strong></label>
+    				<label class="control-label" for="mri"><strong>MRI</strong></label>
     				<div class="controls">
-    					<form:checkbox path="mriDone" input="mriDone" class="input-block-level" />
-						<form:errors path="mriDone" cssClass="error">
-						</form:errors>
+    					<form:select path="mri" id="mri" type="text" class="input-large">
+							<form:option value="1">
+								neprovedeno
+							</form:option>
+							<form:option value="2">
+								provedeno
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
     				<label class="control-label" for="neuropsychology"><strong>Neuropsychologie</strong></label>
     				<div class="controls">
-    					<form:checkbox path="neuropsychology" input="neuropsychology" class="input-block-level" />
-						<form:errors path="neuropsychology" cssClass="error">
-						</form:errors>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="comment"><strong><spring:message code="label.comment"/></strong></label>
-    				<div class="controls">
-    					<form:textarea path="comment" id="comment" />
+    					<form:select path="neuropsychology" id="neuropsychology" type="text" class="input-large">
+							<form:option value="1">
+								neprovedeno
+							</form:option>
+							<form:option value="2">
+								provedeno
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
