@@ -177,7 +177,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	}
 
 	public int getDistance() {
-		return neuropsychology;
+		return distance;
 	}
 
 	public void setDistance(int distance) {

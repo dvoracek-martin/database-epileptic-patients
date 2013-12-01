@@ -174,11 +174,13 @@ public class OutcomeController {
 		for (Iterator<OperationEntity> i = list.iterator(); i.hasNext();) {
 			System.out.println("sssIN");
 			OperationEntity o = i.next();
+			System.out.println(o.getId());
 			List<OutcomeEntity> ou = o.getOutcomeList();
-			for (Iterator<OutcomeEntity> j = ou.iterator(); i.hasNext();) {
+			System.out.println(ou.size());
+			for (Iterator<OutcomeEntity> j = ou.iterator(); j.hasNext();) {
 				System.out.println("sssIN2");
 				OutcomeEntity out = j.next();
-				System.out.println(out.getEeg());
+				System.out.println(out.getDistance());
 			}
 
 		}
