@@ -68,7 +68,7 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patientID}/outcome/create" commandName="outcome">
+						action="/GENEPI/patient/${patient.id}/outcome/create" commandName="outcome">
 
 				<div class="control-group">
     				<label class="control-label" for="date"><strong>Datum zadání</strong></label>
@@ -190,6 +190,10 @@
 						</form:select>
     				</div>
   				</div>
+
+  				<input type="hidden" name="distance" value="${distance}">
+
+  				<input type="hidden" name="operation" value="${operation}">
 
   				<div class="control-group">
 			    	<div class="controls">

@@ -281,7 +281,7 @@
 									      				<td></td>
 									      				<td></td>
 									      				<td></td>
-									      				<<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=12&operation=${operation.id}" />">
+									      				<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=12&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
 											       	</c:if>
