@@ -23,7 +23,7 @@
 	<jsp:body>
 
 			<div class="span5">
-				 <h2>Outcome</h2>
+				<h2><spring:message code="label.neuropsychology"/></h2>
 			</div>
 
 			<table class="table">
@@ -68,10 +68,10 @@
 			<!-- form for adding new record -->
 			<!-- mapping resource in action with c:url caused errors -->
 			<form:form class="form-horizontal" method="POST"
-						action="/GENEPI/patient/${patient.id}/outcome/create" commandName="outcome">
+						action="/GENEPI/patient/${patientID}/neuropsychology/create" commandName="neuropsychology">
 
 				<div class="control-group">
-    				<label class="control-label" for="date"><strong>Datum zadání</strong></label>
+    				<label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
     				<div class="controls">
     					<form:input path="date" id="date" type="text" class="input-medium datepicker" />
 						<form:errors path="date" cssClass="error">
@@ -80,112 +80,69 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="seizureOutcome"><strong>Seizure outcome</strong></label>
+    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.intelligenceLevel"/></strong></label>
     				<div class="controls">
-    					<form:select path="seizureOutcome" id="seizureOutcome" type="text" class="input-large">
+    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
 							<form:option value="1">
-								0
+								<spring:message code="label.notAvailable"/>
 							</form:option>
 							<form:option value="2">
-								IA
+								<spring:message code="label.neurodevelopmentalExamination"/>
 							</form:option>
 							<form:option value="3">
-								IB
+								<spring:message code="label.intellectualPerformance"/>
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.neuropsychologicalProfile"/></strong></label>
+    				<div class="controls">
+    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
+							<form:option value="1">
+								<spring:message code="label.notAvailable"/>
+							</form:option>
+							<form:option value="2">
+								<spring:message code="label.concern"/>
+							</form:option>
+							<form:option value="3">
+								<spring:message code="label.notConcern"/>
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="neuropsychologicalExamination"><strong><spring:message code="label.neuropsychologicalExamination"/></strong></label>
+    				<div class="controls">
+    					<form:checkbox path="neuropsychologicalExamination" input="neuropsychologicalExamination" class="input-block-level" checked="checked" />
+						<form:errors path="neuropsychologicalExamination" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="intelligenceLevelIdcom"><strong>Inteligenční úroveň</strong></label>
+    				<div class="controls">
+    					<form:select path="intelligenceLevelIdcom" id="intelligenceLevelIdcom" type="text" class="input-large">
+							<form:option value="1">
+								Mírná mentální retardace
+							</form:option>
+							<form:option value="2">
+								Naprůměrná inteligence
+							</form:option>
+							<form:option value="3">
+								Podprůměrná inteligence
 							</form:option>
 							<form:option value="4">
-								IC
+								Průměrná inteligence
 							</form:option>	
 							<form:option value="5">
-								ID
+								Středně těžká mentální retardace
 							</form:option>
 							<form:option value="6">
-								IIA
-							</form:option>
-							<form:option value="7">
-								IIB
-							</form:option>
-							<form:option value="8">
-								IIC
-							</form:option>
-							<form:option value="9">
-								IID
-							</form:option>
-							<form:option value="10">
-								IIIA
-							</form:option>
-							<form:option value="11">
-								IIIB
-							</form:option>
-							<form:option value="12">
-								IV
-							</form:option>
-							<form:option value="13">
-								V
-							</form:option>
-							<form:option value="14">
-								VI
-							</form:option>
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="aed"><strong>AED</strong></label>
-    				<div class="controls">
-    					<form:select path="aed" id="aed" type="text" class="input-large">
-							<form:option value="1">
-								nevysazený
-							</form:option>
-							<form:option value="2">
-								vysazený
-							</form:option>
-							<form:option value="3">
-								redukovaný
-							</form:option>
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="eeg"><strong>EEG</strong></label>
-    				<div class="controls">
-    					<form:select path="eeg" id="eeg" type="text" class="input-large">
-							<form:option value="1">
-								neprovedeno
-							</form:option>
-							<form:option value="2">
-								s hroty
-							</form:option>
-							<form:option value="3">
-								bez hrotů
-							</form:option>
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="mri"><strong>MRI</strong></label>
-    				<div class="controls">
-    					<form:select path="mri" id="mri" type="text" class="input-large">
-							<form:option value="1">
-								neprovedeno
-							</form:option>
-							<form:option value="2">
-								provedeno
-							</form:option>
-						</form:select>
-    				</div>
-  				</div>
-
-  				<div class="control-group">
-    				<label class="control-label" for="neuropsychology"><strong>Neuropsychologie</strong></label>
-    				<div class="controls">
-    					<form:select path="neuropsychology" id="neuropsychology" type="text" class="input-large">
-							<form:option value="1">
-								neprovedeno
-							</form:option>
-							<form:option value="2">
-								provedeno
+								Těžká mentální retardace
 							</form:option>
 						</form:select>
     				</div>
@@ -197,10 +154,6 @@
     					<form:textarea path="comment" id="comment" />
     				</div>
   				</div>
-
-  				<input type="hidden" name="distance" value="${distance}">
-
-  				<input type="hidden" name="operationId" value="${operation}">
 
   				<div class="control-group">
 			    	<div class="controls">

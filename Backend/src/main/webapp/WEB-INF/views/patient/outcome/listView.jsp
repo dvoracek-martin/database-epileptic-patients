@@ -153,24 +153,24 @@
 															<c:if test="${outcome.eeg==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==2}">
 																<td>s hroty</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==3}">
 																<td>bez hrotů</td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.mri==1}">
+															<c:if test="${outcome.mri==2}">
 																<td>provedeno</td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.neuropsychology==1}">
+															<c:if test="${outcome.neuropsychology==2}">
 																<td>provedeno</td>
 															</c:if>
 
@@ -178,11 +178,11 @@
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
-											            <td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
+											            <td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
 									      				<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=6&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
@@ -251,24 +251,24 @@
 															<c:if test="${outcome.eeg==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==2}">
 																<td>s hroty</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==3}">
 																<td>bez hrotů</td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.mri==1}">
+															<c:if test="${outcome.mri==2}">
 																<td>provedeno</td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.neuropsychology==1}">
+															<c:if test="${outcome.neuropsychology==2}">
 																<td>provedeno</td>
 															</c:if>
 
@@ -276,11 +276,11 @@
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
-											            <td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
+											            <td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
 									      				<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=12&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
@@ -349,24 +349,24 @@
 															<c:if test="${outcome.eeg==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==2}">
 																<td>s hroty</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==3}">
 																<td>bez hrotů</td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.mri==1}">
+															<c:if test="${outcome.mri==2}">
 																<td>provedeno</td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.neuropsychology==1}">
+															<c:if test="${outcome.neuropsychology==2}">
 																<td>provedeno</td>
 															</c:if>
 
@@ -374,11 +374,11 @@
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
-											            <td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
+											            <td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
 									      				<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=24&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
@@ -447,24 +447,24 @@
 															<c:if test="${outcome.eeg==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==2}">
 																<td>s hroty</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==3}">
 																<td>bez hrotů</td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.mri==1}">
+															<c:if test="${outcome.mri==2}">
 																<td>provedeno</td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.neuropsychology==1}">
+															<c:if test="${outcome.neuropsychology==2}">
 																<td>provedeno</td>
 															</c:if>
 
@@ -472,11 +472,11 @@
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
-											            <td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
+											            <td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
 									      				<td><a href="<c:url value="/patient/${patientID}/outcome/create?distance=60&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
@@ -545,24 +545,24 @@
 															<c:if test="${outcome.eeg==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==2}">
 																<td>s hroty</td>
 															</c:if>
-															<c:if test="${outcome.eeg==1}">
+															<c:if test="${outcome.eeg==3}">
 																<td>bez hrotů</td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.mri==1}">
+															<c:if test="${outcome.mri==2}">
 																<td>provedeno</td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
 																<td>neprovedeno</td>
 															</c:if>
-															<c:if test="${outcome.neuropsychology==1}">
+															<c:if test="${outcome.neuropsychology==2}">
 																<td>provedeno</td>
 															</c:if>
 
@@ -570,11 +570,11 @@
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
-											            <td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
-									      				<td></td>
+											            <td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
+									      				<td>-</td>
 									      				<td><a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operation.id}" />">
 									      				<spring:message code="label.addRecord"/>
 									      				</a></td>
