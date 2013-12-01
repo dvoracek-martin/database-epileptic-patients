@@ -49,9 +49,9 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	/* Other fields */
 
 	/** The date. */
-//	@DateTimeFormat(pattern = "dd/MM/yyyy")
-//	@Past
-//	@NotNull
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@Past
+	@NotNull
 	@Column(name = "date", nullable = false)
 	private Date date;
 
@@ -78,7 +78,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 	private OperationEntity operation;
 	
 	/** The comment. */
-//	@Size(max = 800)
+	@Size(max = 800)
 	@Column(name = "comment", length = 800, nullable = true)
 	private String comment;
 

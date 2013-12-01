@@ -24,7 +24,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
  * anamnesis.
  */
 @Controller
-//@SessionAttributes({"anamnesis"})
+@SessionAttributes({"anamnesis"})
 public class AnamnesisController {
 
 	/** The patient service. */
