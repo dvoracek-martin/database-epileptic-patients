@@ -74,6 +74,7 @@ public class OutcomeController {
 			System.out.println(result.toString());
 			return "patient/outcome/createView";
 		} else {
+			outcome.setDistance(distance);
 			outcome.setPatient(patientService.findByID(PatientEntity.class,
 					patientID));
 			outcome.setOperation(operationService.findByID(

@@ -180,7 +180,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 		return neuropsychology;
 	}
 
-	public void setDistancey(int distance) {
+	public void setDistance(int distance) {
 		this.distance = distance;
 	}
 	
