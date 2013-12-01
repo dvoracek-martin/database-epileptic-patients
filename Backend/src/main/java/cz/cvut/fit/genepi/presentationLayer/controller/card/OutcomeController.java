@@ -156,7 +156,7 @@ public class OutcomeController {
 	public String outcomeListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService
-				.getPatientByIdWithOutcomeList(patientID);
+				.getPatientByIdWithOperationList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/outcome/listView";
 	}
