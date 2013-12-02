@@ -224,20 +224,47 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		criteria.createAlias("patient.contact", "contact");
 
 		/* Setting criterias from search */
-		if (advancedSearch.getPatientFirstname() != "") {
+
+		if (!advancedSearch.getPatientFirstname().equals("")) {
 			criteria.add(Restrictions.like("contact.firstName", "%"
 					+ advancedSearch.getPatientFirstname() + "%"));
 		}
+
+		if (!advancedSearch.getPatientLastname().equals("")) {
+			criteria.add(Restrictions.like("contact.lastName", "%"
+					+ advancedSearch.getPatientLastname() + "%"));
+		}
+
+		if (!advancedSearch.getPatientNin().equals("")) {
+			criteria.add(Restrictions.like("contact.nin",
+					advancedSearch.getPatientNin() + "%"));
+		}
+
+		if (!advancedSearch.getPatientTown().equals("")) {
+			criteria.add(Restrictions.like("contact.addressTown",
+					advancedSearch.getPatientTown() + "%"));
+		}
+
+		if (!advancedSearch.getPatientCountry().equals("")) {		
+			criteria.add(Restrictions.like("contact.addressCountry",
+					advancedSearch.getPatientCountry() + "%"));
+		}
+
+		if (advancedSearch.getPatientGender().equals("F")) {
+			criteria.add(Restrictions.eq("gender","female"));
+		} else 	if (advancedSearch.getPatientGender().equals("M")) {
+			criteria.add(Restrictions.eq("gender","male"));
+		}
 		
-		
-		criteria.add(Restrictions.like("contact.lastName", "%"+advancedSearch.getPatientLastname() + "%"));
-		
-		/*calculating years*/
-		LocalDate now = new LocalDate();
-		LocalDate birth = now.minusYears(Integer.parseInt(advancedSearch.getPatientAge()));
-		System.out.println(birth.toDate());
-		criteria.add(Restrictions.gt("birthday", birth.toDate()));
-		
+		if (advancedSearch.getPatientAge() != "") {
+			/* calculating years */
+			LocalDate now = new LocalDate();
+			LocalDate birth = now.minusYears(Integer.parseInt(advancedSearch
+					.getPatientAge()));
+			System.out.println(birth.toDate());
+			criteria.add(Restrictions.gt("birthday", birth.toDate()));
+		}
+
 		return (List<PatientEntity>) criteria.list();
 	}
 

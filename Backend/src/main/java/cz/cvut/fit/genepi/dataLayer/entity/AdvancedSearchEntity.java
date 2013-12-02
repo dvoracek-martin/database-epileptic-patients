@@ -33,6 +33,8 @@ public class AdvancedSearchEntity {
 	@JoinColumn(name = "user_id")
 	private UserEntity user;
 
+	
+	
 	@Column(name = "patient_firstname")
 	private String patientFirstname;
 

@@ -23,34 +23,83 @@
     				<label class="control-label" for="patientFirstname"><strong><spring:message
 							code="label.firstname" /></strong></label>
     				<div class="controls">
-    					<form:input path="patientFirstname" type="text" class="input-medium" />
+    					<form:input path="patientFirstname" type="text"
+						class="input-medium" />
 						<form:errors path="patientFirstname" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
+  				
   				<div class="control-group">
     				<label class="control-label" for="patientLastname"><strong><spring:message
-							code="label.firstname" /></strong></label>
+							code="label.firstname" />patientLastname</strong></label>
     				<div class="controls">
-    					<form:input path="patientLastname" type="text" class="input-medium" />
+    					<form:input path="patientLastname" type="text"
+						class="input-medium" />
 						<form:errors path="patientLastname" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
+  				
+  				<div class="control-group">
+    				<label class="control-label" for="patientNin"><strong><spring:message
+							code="label.firstname" />patientNin</strong></label>
+    				<div class="controls">
+    					<form:input path="patientNin" type="text" class="input-medium" />
+						<form:errors path="patientNin" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>  
+  				
+  				<div class="control-group">
+    				<label class="control-label" for="patientTown"><strong><spring:message
+							code="label.firstname" />patientTown</strong></label>
+    				<div class="controls">
+    					<form:input path="patientTown" type="text" class="input-medium" />
+						<form:errors path="patientTown" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>  		
+  				
+  				<div class="control-group">
+    				<label class="control-label" for="patientCountry"><strong><spring:message
+							code="label.firstname" />patientCountry</strong></label>
+    				<div class="controls">
+    					<form:input path="patientCountry" type="text"
+						class="input-medium" />
+						<form:errors path="patientCountry" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>  			
+  				
+  				<div class="control-group">
+    				<label class="control-label" for="patientGender"><strong><spring:message
+							code="label.firstname" />patientGender</strong></label>
+    				<div class="controls">
+    					  	<form:radiobutton path="patientGender" value="M" />Male 
+							<form:radiobutton path="patientGender" value="F" />Female
+							<form:radiobutton path="patientGender" value="N" />Nerozlisovat
+    				</div>
+  				</div>    											  				  	
+  				
+  				
+
+
   				<div class="control-group">
     				<label class="control-label" for="patientAge"><strong><spring:message
-							code="label.firstname" /></strong></label>
+							code="label.firstname" />patientAge</strong></label>
     				<div class="controls">
     					<form:input path="patientAge" type="text" class="input-medium" />
 						<form:errors path="patientAge" cssClass="error">
 						</form:errors>
     				</div>
   				</div>
+  				
   					<div class="control-group">
 			    	<div class="controls">
 			     		<button class="btn btn-primary" type="submit">
 						<spring:message code="label.add" />
-					</button>
+					</button>					
 			    	</div>
 			</div>
   				
