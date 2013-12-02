@@ -82,7 +82,28 @@
     				</div>
   				</div>    											  				  	
   				
-  				
+				<div class="control-group">
+    				<label class="control-label" for="patientAgeFilter"><strong><spring:message
+							code="label.firstname" />patientAgeFilter</strong></label>
+    				<div class="controls">
+    					<form:select path="patientAgeFilter" id="patientAgeFilter"
+						type="text" class="input-large">
+							<form:option value="=">=</form:option>
+							<form:option value=">">
+							>
+							</form:option>
+							<form:option value="<">
+								<
+							</form:option>
+							<form:option value=">=">
+								>=
+							</form:option>	
+							<form:option value="<=">
+								<=
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>  				
 
 
   				<div class="control-group">

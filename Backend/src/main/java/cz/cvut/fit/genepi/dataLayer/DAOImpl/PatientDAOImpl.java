@@ -225,47 +225,111 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
 		/* Setting criterias from search */
 
+		/* General parameters - specific person section */
+
+		/* Firstname */
 		if (!advancedSearch.getPatientFirstname().equals("")) {
 			criteria.add(Restrictions.like("contact.firstName", "%"
 					+ advancedSearch.getPatientFirstname() + "%"));
 		}
 
+		/* Lastname */
 		if (!advancedSearch.getPatientLastname().equals("")) {
 			criteria.add(Restrictions.like("contact.lastName", "%"
 					+ advancedSearch.getPatientLastname() + "%"));
 		}
 
+		/* Birth number */
 		if (!advancedSearch.getPatientNin().equals("")) {
 			criteria.add(Restrictions.like("contact.nin",
 					advancedSearch.getPatientNin() + "%"));
 		}
 
+		/* Town */
 		if (!advancedSearch.getPatientTown().equals("")) {
 			criteria.add(Restrictions.like("contact.addressTown",
 					advancedSearch.getPatientTown() + "%"));
 		}
 
-		if (!advancedSearch.getPatientCountry().equals("")) {		
+		/* Country */
+		if (!advancedSearch.getPatientCountry().equals("")) {
 			criteria.add(Restrictions.like("contact.addressCountry",
 					advancedSearch.getPatientCountry() + "%"));
 		}
 
+		/* General parameters section */
+
+		/* Gender */
 		if (advancedSearch.getPatientGender().equals("F")) {
-			criteria.add(Restrictions.eq("gender","female"));
-		} else 	if (advancedSearch.getPatientGender().equals("M")) {
-			criteria.add(Restrictions.eq("gender","male"));
+			criteria.add(Restrictions.eq("gender", "female"));
+		} else if (advancedSearch.getPatientGender().equals("M")) {
+			criteria.add(Restrictions.eq("gender", "male"));
 		}
-		
+
+		/* Age of patient */
 		if (advancedSearch.getPatientAge() != "") {
 			/* calculating years */
 			LocalDate now = new LocalDate();
-			LocalDate birth = now.minusYears(Integer.parseInt(advancedSearch
-					.getPatientAge()));
-			System.out.println(birth.toDate());
-			criteria.add(Restrictions.gt("birthday", birth.toDate()));
+			LocalDate dateBeforeInput = now.minusYears(Integer
+					.parseInt(advancedSearch.getPatientAge()));
+			LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
+					.parseInt(advancedSearch.getPatientAge()) + 1);
+
+			if (advancedSearch.getPatientAgeFilter().equals("=")) {
+				criteria.add(Restrictions.gt("birthday",
+						dateBeforeInputPlusOneYear.toDate()));
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeFilter().equals(">")) {
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInputPlusOneYear.toDate()));
+			} else if (advancedSearch.getPatientAgeFilter().equals("<")) {
+				criteria.add(Restrictions.gt("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeFilter().equals(">=")) {
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeFilter().equals("<=")) {
+				criteria.add(Restrictions.ge("birthday",
+						dateBeforeInput.toDate()));
+			}
+
 		}
+
+		/* Age when epilepsy began */
+		if (advancedSearch.getPatientAgeEpilepsy() != "") {
+			/* calculating years */
+			LocalDate now = new LocalDate();
+			LocalDate dateBeforeInput = now.minusYears(Integer
+					.parseInt(advancedSearch.getPatientAgeEpilepsy()));
+			LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
+					.parseInt(advancedSearch.getPatientAgeEpilepsy()) + 1);
+
+			if (advancedSearch.getPatientAgeEpilepsyFilter().equals("=")) {
+				criteria.add(Restrictions.gt("birthday",
+						dateBeforeInputPlusOneYear.toDate()));
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeEpilepsyFilter().equals(">")) {
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInputPlusOneYear.toDate()));
+			} else if (advancedSearch.getPatientAgeEpilepsyFilter().equals("<")) {
+				criteria.add(Restrictions.gt("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeEpilepsyFilter()
+					.equals(">=")) {
+				criteria.add(Restrictions.le("birthday",
+						dateBeforeInput.toDate()));
+			} else if (advancedSearch.getPatientAgeEpilepsyFilter()
+					.equals("<=")) {
+				criteria.add(Restrictions.ge("birthday",
+						dateBeforeInput.toDate()));
+			}
+
+		}
+
+		/* Include parameters from section */
 
 		return (List<PatientEntity>) criteria.list();
 	}
-
 }
