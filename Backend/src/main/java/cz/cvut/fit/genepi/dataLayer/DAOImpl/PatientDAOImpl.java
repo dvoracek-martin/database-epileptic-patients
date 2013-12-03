@@ -223,6 +223,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
 		criteria.createAlias("patient.contact", "contact");
 
+		/* doctor */
+		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
+		criteria.createAlias("patient.doctor", "doctor");
+
 		/* Setting criterias from search */
 
 		/* General parameters - specific person section */
@@ -267,7 +271,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		}
 
 		/* Age of patient */
-		if (advancedSearch.getPatientAge() != "") {
+		if (advancedSearch.getPatientAge() != "") {//equals
 			/* calculating years */
 			LocalDate now = new LocalDate();
 			LocalDate dateBeforeInput = now.minusYears(Integer
@@ -293,11 +297,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 				criteria.add(Restrictions.ge("birthday",
 						dateBeforeInput.toDate()));
 			}
-
 		}
 
 		/* Age when epilepsy began */
-		if (advancedSearch.getPatientAgeEpilepsy() != "") {
+		if (advancedSearch.getPatientAgeEpilepsy() != "") {//equals
 			/* calculating years */
 			LocalDate now = new LocalDate();
 			LocalDate dateBeforeInput = now.minusYears(Integer
@@ -325,9 +328,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 				criteria.add(Restrictions.ge("birthday",
 						dateBeforeInput.toDate()));
 			}
-
 		}
 
+		if (advancedSearch.getPatientAgeEpilepsy() != "0") {//equals
+			criteria.add(Restrictions.eq("doctor.id",
+					advancedSearch.getPatientDoctor()));
+		}
 		/* Include parameters from section */
 
 		return (List<PatientEntity>) criteria.list();

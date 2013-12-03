@@ -19,7 +19,8 @@ public class RoleServiceImpl extends
 	@Override
 	@Transactional
 	public List<UserEntity> getAllDoctors() {
-		RoleEntity doctorRole = this.findByID(RoleEntity.class, 2);
+		//TODO move to DAO
+		RoleEntity doctorRole = this.findByID(RoleEntity.class, 3);
 		return doctorRole.getUsers();
 	}
 

@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
@@ -32,6 +34,8 @@ public class SearchController {
 	/** The anamnesis service. */
 	private SearchService searchService;
 
+	private RoleService roleService;
+
 	/**
 	 * Constructor which serves to autowire services.
 	 * 
@@ -42,8 +46,9 @@ public class SearchController {
 	 *            the anamnesisService to be autowired.
 	 */
 	@Autowired
-	public SearchController(SearchService searchService) {
+	public SearchController(SearchService searchService, RoleService roleService) {
 		this.searchService = searchService;
+		this.roleService = roleService;
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
@@ -60,7 +65,7 @@ public class SearchController {
 
 	@RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
 	public String advancedSearchGET(Locale locale, Model model) {
-
+		model.addAttribute("doctors", roleService.getAllDoctors());
 		model.addAttribute("advancedSearch", new AdvancedSearchEntity());
 		return "advancedSearchView";
 	}
@@ -69,7 +74,8 @@ public class SearchController {
 	public String advancedSearchPOST(
 			@ModelAttribute("advancedSearch") @Valid AdvancedSearchEntity advancedSearch,
 			BindingResult result, Locale locale, Model model) {
-		model.addAttribute("patients", searchService.performAdvancedSearch(advancedSearch));
+		model.addAttribute("patients",
+				searchService.performAdvancedSearch(advancedSearch));
 		return "searchResults";
 	}
 }

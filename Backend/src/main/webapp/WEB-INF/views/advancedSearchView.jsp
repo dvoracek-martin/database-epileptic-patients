@@ -116,6 +116,52 @@
     				</div>
   				</div>
   				
+				<div class="control-group">
+    				<label class="control-label" for="patientAgeEpilepsyFilter"><strong><spring:message
+							code="label.firstname" />patientAgeEpilepsyFilter</strong></label>
+    				<div class="controls">
+    					<form:select path="patientAgeEpilepsyFilter"
+						id="patientAgeEpilepsyFilter" type="text" class="input-large">
+							<form:option value="=">=</form:option>
+							<form:option value=">">
+							>
+							</form:option>
+							<form:option value="<">
+								<
+							</form:option>
+							<form:option value=">=">
+								>=
+							</form:option>	
+							<form:option value="<=">
+								<=
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>  				
+
+
+  				<div class="control-group">
+    				<label class="control-label" for="patientAgeEpilepsy"><strong><spring:message
+							code="label.firstname" />patientAgeEpilepsy</strong></label>
+    				<div class="controls">
+    					<form:input path="patientAgeEpilepsy" type="text"
+						class="input-medium" />
+						<form:errors path="patientAgeEpilepsy" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>  				
+
+				<form:label path="patientDoctor">
+					<spring:message code="label.doctor" />
+				</form:label>
+						<form:select path="patientDoctor" type="text"
+				class="input-block-level">
+						<form:option value="0">choose</form:option>
+						<c:forEach items="${doctors}" var="doctor">
+								<form:option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+						</c:forEach>
+				</form:select>
+			  				
   					<div class="control-group">
 			    	<div class="controls">
 			     		<button class="btn btn-primary" type="submit">
