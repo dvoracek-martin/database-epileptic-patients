@@ -37,7 +37,7 @@ public class NeuropsychologyController {
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("neuropsychology", new NeuropsychologyOldEntity());
-		return "patient/neuropsychologyOld/createView";
+		return "patient/neuropsychology/createView";
 	}
 
 	@RequestMapping(value = "/patient/{patientId}/neuropsychology/{neuropsychologyId}/delete", method = RequestMethod.GET)
