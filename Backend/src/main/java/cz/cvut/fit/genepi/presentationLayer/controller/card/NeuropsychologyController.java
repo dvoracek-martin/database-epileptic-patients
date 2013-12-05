@@ -45,7 +45,7 @@ public class NeuropsychologyController {
 		return "patient/neuropsychology/createView";
 	}
 	
-	@RequestMapping(value = "/patient/{patientID}/neuropsychology/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientId}/neuropsychology/create", method = RequestMethod.POST)
 	public String neuropsychologyCreatePOST(
 			@ModelAttribute("neuropsychology") @Valid NeuropsychologyEntity neuropsychology,
 			BindingResult result, @PathVariable("patientId") Integer patientId,
