@@ -80,9 +80,9 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.intelligenceLevel"/></strong></label>
+    				<label class="control-label" for="intellect"><strong>Intelekt</strong></label>
     				<div class="controls">
-    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
+    					<form:select path="intellect" id="intellect" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.notAvailable"/>
 							</form:option>
@@ -97,9 +97,391 @@
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevel"><strong><spring:message code="label.neuropsychologicalProfile"/></strong></label>
+    				<label class="control-label" for="neurodevelopmentalExamination"><strong>Neurovývojové vyšetření</strong></label>
     				<div class="controls">
-    					<form:select path="intelligenceLevel" id="intelligenceLevel" type="text" class="input-large">
+    					<form:select path="neurodevelopmentalExamination" id="neurodevelopmentalExamination" type="text" class="input-large">
+    						<form:option value="0">
+									-
+								</form:option>
+							<form:option value="1">
+								Deficit
+							</form:option>
+							<form:option value="2">
+								Hranice deficitu
+							</form:option>
+							<form:option value="3">
+								Mírný nadprůměr
+							</form:option>
+							<form:option value="4">
+								Nadprůměr
+							</form:option>
+							<form:option value="5">
+								Nezjištěno
+							</form:option>
+							<form:option value="6">
+								Podprůměr
+							</form:option>
+							<form:option value="7">
+								Průměr
+							</form:option>
+							<form:option value="8">
+								Těžký deficit
+							</form:option>
+						</form:select>
+    				</div>
+  				</div>
+
+  				<div style="border: 1px solid gray; padding: 1em; margin: 2em">
+  					<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationAdaptability"><strong>Adaptabilita</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationAdaptability" id="neurodevelopmentalExaminationAdaptability" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+	    						<form:option value="1">
+								Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+    				<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationSpeechExpressively"><strong>Řeč expresivně</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationSpeechExpressively" id="neurodevelopmentalExaminationSpeechExpressively" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+		    					<form:option value="1">
+									Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+    				<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationSpeechReceptively"><strong>Řeč receptivně</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationSpeechReceptively" id="neurodevelopmentalExaminationSpeechReceptively" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+	    						<form:option value="1">
+								Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+    				<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationFineMotorSkills"><strong>Jemná motorika</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationFineMotorSkills" id="neurodevelopmentalExaminationFineMotorSkills" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+		    					<form:option value="1">
+									Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+    				<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationGrossMotorSkills"><strong>Hrubá motorika</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationGrossMotorSkills" id="neurodevelopmentalExaminationGrossMotorSkills" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+	    						<form:option value="1">
+								Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+    				<div class="control-group">
+	    				<label class="control-label" for="neurodevelopmentalExaminationSocialBehavior"><strong>Sociální chování</strong></label>
+	    				<div class="controls">
+	    					<form:select path="neurodevelopmentalExaminationSocialBehavior" id="neurodevelopmentalExaminationSocialBehavior" type="text" class="input-large">
+	    						<form:option value="0">
+									-
+								</form:option>
+		    					<form:option value="1">
+									Deficit
+								</form:option>
+								<form:option value="2">
+									Hranice deficitu
+								</form:option>
+								<form:option value="3">
+									Mírný nadprůměr
+								</form:option>
+								<form:option value="4">
+									Nadprůměr
+								</form:option>
+								<form:option value="5">
+									Nezjištěno
+								</form:option>
+								<form:option value="6">
+									Podprůměr
+								</form:option>
+								<form:option value="7">
+									Průměr
+								</form:option>
+								<form:option value="8">
+									Těžký deficit
+								</form:option>
+							</form:select>
+	    				</div>
+    				</div>
+  				</div>
+
+  				<div class="control-group">
+	    			<label class="control-label" for="intellectualPerformance"><strong>Intelektový výkon</strong></label>
+	    			<div class="controls">
+	    				<form:select path="intellectualPerformance" id="intellectualPerformance" type="text" class="input-large">
+	    					<form:option value="0">
+									-
+							</form:option>
+		    				<form:option value="1">
+									Deficit
+							</form:option>
+							<form:option value="2">
+									Hranice deficitu
+							</form:option>
+							<form:option value="3">
+									Mírný nadprůměr
+							</form:option>
+							<form:option value="4">
+									Nadprůměr
+							</form:option>
+							<form:option value="5">
+									Nezjištěno
+							</form:option>
+							<form:option value="6">
+									Podprůměr
+							</form:option>
+							<form:option value="7">
+									Průměr
+							</form:option>
+							<form:option value="8">
+									Těžký deficit
+							</form:option>
+						</form:select>
+	    			</div>
+    			</div>
+
+    			<div class="control-group">
+	    			<label class="control-label" for="intellectualPerformanceVerbally"><strong>Verbálne</strong></label>
+	    			<div class="controls">
+	    				<form:select path="intellectualPerformanceVerbally" id="intellectualPerformanceVerbally" type="text" class="input-large">
+	    					<form:option value="0">
+									-
+							</form:option>
+		    				<form:option value="1">
+									Deficit
+							</form:option>
+							<form:option value="2">
+									Hranice deficitu
+							</form:option>
+							<form:option value="3">
+									Mírný nadprůměr
+							</form:option>
+							<form:option value="4">
+									Nadprůměr
+							</form:option>
+							<form:option value="5">
+									Nezjištěno
+							</form:option>
+							<form:option value="6">
+									Podprůměr
+							</form:option>
+							<form:option value="7">
+									Průměr
+							</form:option>
+							<form:option value="8">
+									Těžký deficit
+							</form:option>
+						</form:select>
+	    			</div>
+    			</div>
+
+    			<div class="control-group">
+	    			<label class="control-label" for="intellectualPerformanceNonverbalAbstraction"><strong>Neverbální - abstrakce</strong></label>
+	    			<div class="controls">
+	    				<form:select path="intellectualPerformanceNonverbalAbstraction" id="intellectualPerformanceNonverbalAbstraction" type="text" class="input-large">
+	    					<form:option value="0">
+									-
+							</form:option>
+		    				<form:option value="1">
+									Deficit
+							</form:option>
+							<form:option value="2">
+									Hranice deficitu
+							</form:option>
+							<form:option value="3">
+									Mírný nadprůměr
+							</form:option>
+							<form:option value="4">
+									Nadprůměr
+							</form:option>
+							<form:option value="5">
+									Nezjištěno
+							</form:option>
+							<form:option value="6">
+									Podprůměr
+							</form:option>
+							<form:option value="7">
+									Průměr
+							</form:option>
+							<form:option value="8">
+									Těžký deficit
+							</form:option>
+						</form:select>
+	    			</div>
+    			</div>
+
+    			<div class="control-group">
+	    			<label class="control-label" for="intellectualPerformanceNonverbalDesignCapabilities"><strong>Neverbální - konstrukční schopnosti</strong></label>
+	    			<div class="controls">
+	    				<form:select path="intellectualPerformanceNonverbalDesignCapabilities" id="intellectualPerformanceNonverbalDesignCapabilities" type="text" class="input-large">
+	    					<form:option value="0">
+									-
+							</form:option>
+		    				<form:option value="1">
+									Deficit
+							</form:option>
+							<form:option value="2">
+									Hranice deficitu
+							</form:option>
+							<form:option value="3">
+									Mírný nadprůměr
+							</form:option>
+							<form:option value="4">
+									Nadprůměr
+							</form:option>
+							<form:option value="5">
+									Nezjištěno
+							</form:option>
+							<form:option value="6">
+									Podprůměr
+							</form:option>
+							<form:option value="7">
+									Průměr
+							</form:option>
+							<form:option value="8">
+									Těžký deficit
+							</form:option>
+						</form:select>
+	    			</div>
+    			</div>
+
+  				<div class="control-group">
+    				<label class="control-label" for="neuropsychologicalProfile"><strong><spring:message code="label.neuropsychologicalProfile"/></strong></label>
+    				<div class="controls">
+    					<form:select path="neuropsychologicalProfile" id="neuropsychologicalProfile" type="text" class="input-large">
 							<form:option value="1">
 								<spring:message code="label.notAvailable"/>
 							</form:option>
@@ -113,36 +495,49 @@
     				</div>
   				</div>
 
+  				<%@include file="createExtract.jsp" %>
+
   				<div class="control-group">
-    				<label class="control-label" for="neuropsychologicalExamination"><strong><spring:message code="label.neuropsychologicalExamination"/></strong></label>
+    				<label class="control-label" for="presenceOfChanges"><strong>Přítomnost změn v čase</strong></label>
     				<div class="controls">
-    					<form:checkbox path="neuropsychologicalExamination" input="neuropsychologicalExamination" class="input-block-level" checked="checked" />
-						<form:errors path="neuropsychologicalExamination" cssClass="error">
-						</form:errors>
+    					<form:select path="presenceOfChanges" id="presenceOfChanges" type="text" class="input-large">
+							<form:option value="1">
+								Deteriorace
+							</form:option>
+							<form:option value="2">
+								Progrese
+							</form:option>
+							<form:option value="3">
+								Nezjištěno
+							</form:option>
+						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="intelligenceLevelIdcom"><strong>Inteligenční úroveň</strong></label>
+    				<label class="control-label" for="emotionalStatus"><strong>Emoční status</strong></label>
     				<div class="controls">
-    					<form:select path="intelligenceLevelIdcom" id="intelligenceLevelIdcom" type="text" class="input-large">
+    					<form:select path="emotionalStatus" id="emotionalStatus" type="text" class="input-large">
 							<form:option value="1">
-								Mírná mentální retardace
+								ADHD
 							</form:option>
 							<form:option value="2">
-								Naprůměrná inteligence
+								Bez nápadností
 							</form:option>
 							<form:option value="3">
-								Podprůměrná inteligence
+								Depresivní poruchy
 							</form:option>
 							<form:option value="4">
-								Průměrná inteligence
-							</form:option>	
+								Porucha autistického spektra
+							</form:option>
 							<form:option value="5">
-								Středně těžká mentální retardace
+								Porucha chování
 							</form:option>
 							<form:option value="6">
-								Těžká mentální retardace
+								Porucha přizpůsobení
+							</form:option>
+							<form:option value="7">
+								Úzkost
 							</form:option>
 						</form:select>
     				</div>

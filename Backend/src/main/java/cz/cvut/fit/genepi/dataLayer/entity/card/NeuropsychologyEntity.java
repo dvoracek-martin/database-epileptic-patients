@@ -69,7 +69,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	private int neurodevelopmentalExaminationSpeechReceptively;
 	
 	@Column(name = "neurodevelopmental_examination_fine_motor_skills", nullable = false)
-	private int neurodevelopmentalExaminationFine_motorSkills;
+	private int neurodevelopmentalExaminationFineMotorSkills;
 	
 	@Column(name = "neurodevelopmental_examination_gross_motor_skills", nullable = false)
 	private int neurodevelopmentalExaminationGrossMotorSkills;
@@ -250,13 +250,13 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 		this.neurodevelopmentalExaminationSpeechReceptively = neurodevelopmentalExaminationSpeechReceptively;
 	}
 
-	public int getNeurodevelopmentalExaminationFine_motorSkills() {
-		return neurodevelopmentalExaminationFine_motorSkills;
+	public int getNeurodevelopmentalExaminationFineMotorSkills() {
+		return neurodevelopmentalExaminationFineMotorSkills;
 	}
 
-	public void setNeurodevelopmentalExaminationFine_motorSkills(
-			int neurodevelopmentalExaminationFine_motorSkills) {
-		this.neurodevelopmentalExaminationFine_motorSkills = neurodevelopmentalExaminationFine_motorSkills;
+	public void setNeurodevelopmentalExaminationFineMotorSkills(
+			int neurodevelopmentalExaminationFineMotorSkills) {
+		this.neurodevelopmentalExaminationFineMotorSkills = neurodevelopmentalExaminationFineMotorSkills;
 	}
 
 	public int getNeurodevelopmentalExaminationGrossMotorSkills() {

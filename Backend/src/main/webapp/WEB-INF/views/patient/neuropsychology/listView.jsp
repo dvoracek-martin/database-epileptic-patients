@@ -100,78 +100,7 @@
 								</div>
 								<table class="table">
 				               		<tbody>
-										<tr class="info">
-											<td>Neuropsychologické vyšetření</td>
-											<c:if test="${neuropsychology.neuropsychologicalExamination==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${neuropsychology.neuropsychologicalExamination==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td>Věk při neuropsychologickém vyšetření</td>
-											<td><strong>N/A</strong></td>
-										</tr>
-										<tr class="info">
-											<td>Inteligenční úroveň</td>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==1}">
-												<td>Mírná mentální retardace</td>
-											</c:if>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==2}">
-												<td>Naprůměrná inteligence</td>
-											</c:if>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==3}">
-												<td>Podprůměrná inteligence</td>
-											</c:if>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==4}">
-												<td>Průměrná inteligence</td>
-											</c:if>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==5}">
-												<td>Středně těžká mentální retardace</td>
-											</c:if>
-											<c:if test="${neuropsychology.intelligenceLevelIdcom==6}">
-												<td>Těžká mentální retardace</td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td>Specifická porucha učení</td>
-											<c:if test="${neuropsychology.specificLearning==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${neuropsychology.specificLearning==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td>Vývojová porucha řeči</td>
-											<c:if test="${neuropsychology.developmentalLanguageDisorders==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${neuropsychology.developmentalLanguageDisorders==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td>ADHD syndrom</td>
-											<c:if test="${neuropsychology.adhdSyndrome==true}">
-												<td style="column-span: 2"><spring:message code="label.yes"/></td>
-											</c:if>
-											<c:if test="${neuropsychology.adhdSyndrome==false}">
-												<td><spring:message code="label.no"/></td>
-											</c:if>
-										</tr>
-										<tr class="info">
-											<td><spring:message code="label.comment" /></td>
-											<c:choose>
-												<c:when test="${empty neuropsychology.comment}">
-													<td>Žádný</td>
-												</c:when>
-												<c:otherwise>
-													<td>${neuropsychology.comment}</td>
-												</c:otherwise>
-											</c:choose>
-										</tr>
+										
 				              		</tbody>
 	            				</table>
 		            		</div>
