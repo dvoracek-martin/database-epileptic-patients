@@ -227,6 +227,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
 		criteria.createAlias("patient.doctor", "doctor");
 
+		/* anamnesisCollection */
+		criteria.setFetchMode("patient.anamnesisList", FetchMode.JOIN);
+		criteria.createAlias("patient.anamnesisList", "anamnesisList");
+
 		/* Setting criterias from search */
 
 		/* General parameters - specific person section */
@@ -271,7 +275,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		}
 
 		/* Age of patient */
-		if (advancedSearch.getPatientAge() != "") {//equals
+		if (!advancedSearch.getPatientAge().equals("")) {
 			/* calculating years */
 			LocalDate now = new LocalDate();
 			LocalDate dateBeforeInput = now.minusYears(Integer
@@ -300,7 +304,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		}
 
 		/* Age when epilepsy began */
-		if (advancedSearch.getPatientAgeEpilepsy() != "") {//equals
+		if (!advancedSearch.getPatientAgeEpilepsy().equals("")) {
 			/* calculating years */
 			LocalDate now = new LocalDate();
 			LocalDate dateBeforeInput = now.minusYears(Integer
@@ -330,12 +334,22 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 			}
 		}
 
-		if (advancedSearch.getPatientAgeEpilepsy() != "0") {//equals
+		if (advancedSearch.getPatientDoctor() != 0) {
 			criteria.add(Restrictions.eq("doctor.id",
 					advancedSearch.getPatientDoctor()));
 		}
 		/* Include parameters from section */
 
+		/* anamnesis specific section */
+		if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
+			if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
+				criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
+						true));
+			} else {
+				criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
+						false));
+			}
+		}
 		return (List<PatientEntity>) criteria.list();
 	}
 }

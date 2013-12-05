@@ -78,7 +78,7 @@
     				<div class="controls">
     					  	<form:radiobutton path="patientGender" value="M" />Male 
 							<form:radiobutton path="patientGender" value="F" />Female
-							<form:radiobutton path="patientGender" value="N" />Nerozlisovat
+							<form:radiobutton path="patientGender" value="N" checked="true" />Nerozlisovat
     				</div>
   				</div>    											  				  	
   				
@@ -162,6 +162,32 @@
 						</c:forEach>
 				</form:select>
 			  				
+			  			
+			  				
+			  				<div class="control-group">
+    				<label class="control-label" for="anamnesis"><strong><spring:message
+							code="label.firstname" />anamnesis</strong></label>
+    				<div class="controls">
+    					<form:checkbox path="anamnesis"
+						class="input-medium" checked="true"/>
+						<form:errors path="anamnesis" cssClass="error">
+						</form:errors>
+    				</div>
+  				</div>  		
+  	<!--  other checkboxes for cards and functionality -->
+  	
+  	
+  	
+  	  				<div class="control-group">
+    				<label class="control-label" for="anamnesisEpilepsyInFamily"><strong><spring:message
+							code="label.firstname" />anamnesisEpilepsyInFamily</strong></label>
+    				<div class="controls">
+    					  	<form:radiobutton path="anamnesisEpilepsyInFamily" value="1" />ano 
+							<form:radiobutton path="anamnesisEpilepsyInFamily" value="2" />ne
+							<form:radiobutton path="anamnesisEpilepsyInFamily" value="0" checked="true" />Nerozlisovat
+    				</div>
+  				</div>  
+  				
   					<div class="control-group">
 			    	<div class="controls">
 			     		<button class="btn btn-primary" type="submit">
