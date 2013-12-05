@@ -57,91 +57,91 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	private int intellect;
 	
 	@Column(name = "neurodevelopmental_examination", nullable = false)
-	private int neurodevelopmental_examination;
+	private int neurodevelopmentalExamination;
 	
 	@Column(name = "neurodevelopmental_examination_adaptability", nullable = false)
-	private int neurodevelopmental_examination_adaptability;
+	private int neurodevelopmentalExaminationAdaptability;
 	
 	@Column(name = "neurodevelopmental_examination_speech_expressively", nullable = false)
-	private int neurodevelopmental_examination_speech_expressively;
+	private int neurodevelopmentalExaminationSpeechExpressively;
 	
 	@Column(name = "neurodevelopmental_examination_speech_receptively", nullable = false)
-	private int neurodevelopmental_examination_speech_receptively;
+	private int neurodevelopmentalExaminationSpeechReceptively;
 	
 	@Column(name = "neurodevelopmental_examination_fine_motor_skills", nullable = false)
-	private int neurodevelopmental_examination_fine_motor_skills;
+	private int neurodevelopmentalExaminationFine_motorSkills;
 	
 	@Column(name = "neurodevelopmental_examination_gross_motor_skills", nullable = false)
-	private int neurodevelopmental_examination_gross_motor_skills;
+	private int neurodevelopmentalExaminationGrossMotorSkills;
 	
 	@Column(name = "neurodevelopmental_examination_social_behavior", nullable = false)
-	private int neurodevelopmental_examination_social_behavior;
+	private int neurodevelopmentalExaminationSocialBehavior;
 	
 	@Column(name = "intellectual_performance", nullable = false)
-	private int intellectual_performance;
+	private int intellectualPerformance;
 	
 	@Column(name = "intellectual_performance_verbally", nullable = false)
-	private int intellectual_performance_verbally;
+	private int intellectualPerformanceVerbally;
 	
 	@Column(name = "intellectual_performance_nonverbal_abstraction", nullable = false)
-	private int intellectual_performance_nonverbal_abstraction;
+	private int intellectualPerformanceNonverbalAbstraction;
 	
 	@Column(name = "intellectual_performance_nonverbal_design_capabilities", nullable = false)
-	private int intellectual_performance_nonverbal_design_capabilities;
+	private int intellectualPerformanceNonverbalDesignCapabilities;
 	
 	@Column(name = "neuropsychological_profile", nullable = false)
-	private int neuropsychological_profile;
+	private int neuropsychologicalProfile;
 	
 	@Column(name = "neuropsychological_profile_attention", nullable = false)
-	private int neuropsychological_profile_attention;
+	private int neuropsychologicalProfileAttention;
 	
 	@Column(name = "neuropsychological_profile_executive_function", nullable = false)
-	private int neuropsychological_profile_executive_function;
+	private int neuropsychologicalProfileExecutiveFunction;
 	
 	@Column(name = "neuropsychological_profile_cognitive_speed", nullable = false)
-	private int neuropsychological_profile_cognitive_speed;
+	private int neuropsychologicalProfileCognitiveSpeed;
 	
 	@Column(name = "neuropsychological_profile_speech_expressively", nullable = false)
-	private int neuropsychological_profile_speech_expressively;
+	private int neuropsychologicalProfileSpeechExpressively;
 	
 	@Column(name = "neuropsychological_profile_speech_understanding", nullable = false)
-	private int neuropsychological_profile_speech_understanding;
+	private int neuropsychologicalProfileSpeechUnderstanding;
 	
 	@Column(name = "neuropsychological_profile_memory_operating", nullable = false)
-	private int neuropsychological_profile_memory_operating;
+	private int neuropsychologicalProfileMemoryOperating;
 	
 	@Column(name = "neuropsychological_profile_memory_verbal", nullable = false)
-	private int neuropsychological_profile_memory_verbal;
+	private int neuropsychologicalProfileMemoryVerbal;
 	
 	@Column(name = "neuropsychological_profile_memory_nonverbal", nullable = false)
-	private int neuropsychological_profile_memory_nonverbal;
+	private int neuropsychologicalProfileMemoryNonverbal;
 	
 	@Column(name = "neuropsychological_profile_memory_learning", nullable = false)
-	private int neuropsychological_profile_memory_learning;
+	private int neuropsychologicalProfileMemoryLearning;
 	
 	@Column(name = "neuropsychological_profile_perception_speech", nullable = false)
-	private int neuropsychological_profile_perception_speech;
+	private int neuropsychologicalProfilePerceptionSpeech;
 	
 	@Column(name = "neuropsychological_profile_perception_visual", nullable = false)
-	private int neuropsychological_profile_perception_visual;
+	private int neuropsychologicalProfilePerceptionVisual;
 	
 	@Column(name = "neuropsychological_profile_perception_spatial", nullable = false)
-	private int neuropsychological_profile_perception_spatial;
+	private int neuropsychologicalProfilePerceptionSpatial;
 	
 	@Column(name = "neuropsychological_profile_motor_skills_dexterity", nullable = false)
-	private int neuropsychological_profile_motor_skills_dexterity;
+	private int neuropsychologicalProfileMotorSkillsDexterity;
 	
 	@Column(name = "neuropsychological_profile_motor_coordination", nullable = false)
-	private int neuropsychological_profile_motor_coordination;
+	private int neuropsychologicalProfileMotorCoordination;
 	
 	@Column(name = "presence_of_changes", nullable = false)
-	private int presence_of_changes;
+	private int presenceOfChanges;
 	
 	@Column(name = "presence_of_changes_detail", nullable = false)
-	private int presence_of_changes_detail;
+	private int presenceOfChangesDetail;
 	
 	@Column(name = "emotional_status", nullable = false)
-	private int emotional_status;
+	private int emotionalStatus;
 	
 	@Column(name = "comment", nullable = false)
 	private int comment;
@@ -159,7 +159,6 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 	}
 
 	/* Getters and Setters */
-	
 	public int getId() {
 		return id;
 	}
@@ -216,259 +215,259 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 		this.intellect = intellect;
 	}
 
-	public int getNeurodevelopmental_examination() {
-		return neurodevelopmental_examination;
+	public int getNeurodevelopmentalExamination() {
+		return neurodevelopmentalExamination;
 	}
 
-	public void setNeurodevelopmental_examination(int neurodevelopmental_examination) {
-		this.neurodevelopmental_examination = neurodevelopmental_examination;
+	public void setNeurodevelopmentalExamination(int neurodevelopmentalExamination) {
+		this.neurodevelopmentalExamination = neurodevelopmentalExamination;
 	}
 
-	public int getNeurodevelopmental_examination_adaptability() {
-		return neurodevelopmental_examination_adaptability;
+	public int getNeurodevelopmentalExaminationAdaptability() {
+		return neurodevelopmentalExaminationAdaptability;
 	}
 
-	public void setNeurodevelopmental_examination_adaptability(
-			int neurodevelopmental_examination_adaptability) {
-		this.neurodevelopmental_examination_adaptability = neurodevelopmental_examination_adaptability;
+	public void setNeurodevelopmentalExaminationAdaptability(
+			int neurodevelopmentalExaminationAdaptability) {
+		this.neurodevelopmentalExaminationAdaptability = neurodevelopmentalExaminationAdaptability;
 	}
 
-	public int getNeurodevelopmental_examination_speech_expressively() {
-		return neurodevelopmental_examination_speech_expressively;
+	public int getNeurodevelopmentalExaminationSpeechExpressively() {
+		return neurodevelopmentalExaminationSpeechExpressively;
 	}
 
-	public void setNeurodevelopmental_examination_speech_expressively(
-			int neurodevelopmental_examination_speech_expressively) {
-		this.neurodevelopmental_examination_speech_expressively = neurodevelopmental_examination_speech_expressively;
+	public void setNeurodevelopmentalExaminationSpeechExpressively(
+			int neurodevelopmentalExaminationSpeechExpressively) {
+		this.neurodevelopmentalExaminationSpeechExpressively = neurodevelopmentalExaminationSpeechExpressively;
 	}
 
-	public int getNeurodevelopmental_examination_speech_receptively() {
-		return neurodevelopmental_examination_speech_receptively;
+	public int getNeurodevelopmentalExaminationSpeechReceptively() {
+		return neurodevelopmentalExaminationSpeechReceptively;
 	}
 
-	public void setNeurodevelopmental_examination_speech_receptively(
-			int neurodevelopmental_examination_speech_receptively) {
-		this.neurodevelopmental_examination_speech_receptively = neurodevelopmental_examination_speech_receptively;
+	public void setNeurodevelopmentalExaminationSpeechReceptively(
+			int neurodevelopmentalExaminationSpeechReceptively) {
+		this.neurodevelopmentalExaminationSpeechReceptively = neurodevelopmentalExaminationSpeechReceptively;
 	}
 
-	public int getNeurodevelopmental_examination_fine_motor_skills() {
-		return neurodevelopmental_examination_fine_motor_skills;
+	public int getNeurodevelopmentalExaminationFine_motorSkills() {
+		return neurodevelopmentalExaminationFine_motorSkills;
 	}
 
-	public void setNeurodevelopmental_examination_fine_motor_skills(
-			int neurodevelopmental_examination_fine_motor_skills) {
-		this.neurodevelopmental_examination_fine_motor_skills = neurodevelopmental_examination_fine_motor_skills;
+	public void setNeurodevelopmentalExaminationFine_motorSkills(
+			int neurodevelopmentalExaminationFine_motorSkills) {
+		this.neurodevelopmentalExaminationFine_motorSkills = neurodevelopmentalExaminationFine_motorSkills;
 	}
 
-	public int getNeurodevelopmental_examination_gross_motor_skills() {
-		return neurodevelopmental_examination_gross_motor_skills;
+	public int getNeurodevelopmentalExaminationGrossMotorSkills() {
+		return neurodevelopmentalExaminationGrossMotorSkills;
 	}
 
-	public void setNeurodevelopmental_examination_gross_motor_skills(
-			int neurodevelopmental_examination_gross_motor_skills) {
-		this.neurodevelopmental_examination_gross_motor_skills = neurodevelopmental_examination_gross_motor_skills;
+	public void setNeurodevelopmentalExaminationGrossMotorSkills(
+			int neurodevelopmentalExaminationGrossMotorSkills) {
+		this.neurodevelopmentalExaminationGrossMotorSkills = neurodevelopmentalExaminationGrossMotorSkills;
 	}
 
-	public int getNeurodevelopmental_examination_social_behavior() {
-		return neurodevelopmental_examination_social_behavior;
+	public int getNeurodevelopmentalExaminationSocialBehavior() {
+		return neurodevelopmentalExaminationSocialBehavior;
 	}
 
-	public void setNeurodevelopmental_examination_social_behavior(
-			int neurodevelopmental_examination_social_behavior) {
-		this.neurodevelopmental_examination_social_behavior = neurodevelopmental_examination_social_behavior;
+	public void setNeurodevelopmentalExaminationSocialBehavior(
+			int neurodevelopmentalExaminationSocialBehavior) {
+		this.neurodevelopmentalExaminationSocialBehavior = neurodevelopmentalExaminationSocialBehavior;
 	}
 
-	public int getIntellectual_performance() {
-		return intellectual_performance;
+	public int getIntellectualPerformance() {
+		return intellectualPerformance;
 	}
 
-	public void setIntellectual_performance(int intellectual_performance) {
-		this.intellectual_performance = intellectual_performance;
+	public void setIntellectualPerformance(int intellectualPerformance) {
+		this.intellectualPerformance = intellectualPerformance;
 	}
 
-	public int getIntellectual_performance_verbally() {
-		return intellectual_performance_verbally;
+	public int getIntellectualPerformanceVerbally() {
+		return intellectualPerformanceVerbally;
 	}
 
-	public void setIntellectual_performance_verbally(
-			int intellectual_performance_verbally) {
-		this.intellectual_performance_verbally = intellectual_performance_verbally;
+	public void setIntellectualPerformanceVerbally(
+			int intellectualPerformanceVerbally) {
+		this.intellectualPerformanceVerbally = intellectualPerformanceVerbally;
 	}
 
-	public int getIntellectual_performance_nonverbal_abstraction() {
-		return intellectual_performance_nonverbal_abstraction;
+	public int getIntellectualPerformanceNonverbalAbstraction() {
+		return intellectualPerformanceNonverbalAbstraction;
 	}
 
-	public void setIntellectual_performance_nonverbal_abstraction(
-			int intellectual_performance_nonverbal_abstraction) {
-		this.intellectual_performance_nonverbal_abstraction = intellectual_performance_nonverbal_abstraction;
+	public void setIntellectualPerformanceNonverbalAbstraction(
+			int intellectualPerformanceNonverbalAbstraction) {
+		this.intellectualPerformanceNonverbalAbstraction = intellectualPerformanceNonverbalAbstraction;
 	}
 
-	public int getIntellectual_performance_nonverbal_design_capabilities() {
-		return intellectual_performance_nonverbal_design_capabilities;
+	public int getIntellectualPerformanceNonverbalDesignCapabilities() {
+		return intellectualPerformanceNonverbalDesignCapabilities;
 	}
 
-	public void setIntellectual_performance_nonverbal_design_capabilities(
-			int intellectual_performance_nonverbal_design_capabilities) {
-		this.intellectual_performance_nonverbal_design_capabilities = intellectual_performance_nonverbal_design_capabilities;
+	public void setIntellectualPerformanceNonverbalDesignCapabilities(
+			int intellectualPerformanceNonverbalDesignCapabilities) {
+		this.intellectualPerformanceNonverbalDesignCapabilities = intellectualPerformanceNonverbalDesignCapabilities;
 	}
 
-	public int getNeuropsychological_profile() {
-		return neuropsychological_profile;
+	public int getNeuropsychologicalProfile() {
+		return neuropsychologicalProfile;
 	}
 
-	public void setNeuropsychological_profile(int neuropsychological_profile) {
-		this.neuropsychological_profile = neuropsychological_profile;
+	public void setNeuropsychologicalProfile(int neuropsychologicalProfile) {
+		this.neuropsychologicalProfile = neuropsychologicalProfile;
 	}
 
-	public int getNeuropsychological_profile_attention() {
-		return neuropsychological_profile_attention;
+	public int getNeuropsychologicalProfileAttention() {
+		return neuropsychologicalProfileAttention;
 	}
 
-	public void setNeuropsychological_profile_attention(
-			int neuropsychological_profile_attention) {
-		this.neuropsychological_profile_attention = neuropsychological_profile_attention;
+	public void setNeuropsychologicalProfileAttention(
+			int neuropsychologicalProfileAttention) {
+		this.neuropsychologicalProfileAttention = neuropsychologicalProfileAttention;
 	}
 
-	public int getNeuropsychological_profile_executive_function() {
-		return neuropsychological_profile_executive_function;
+	public int getNeuropsychologicalProfileExecutiveFunction() {
+		return neuropsychologicalProfileExecutiveFunction;
 	}
 
-	public void setNeuropsychological_profile_executive_function(
-			int neuropsychological_profile_executive_function) {
-		this.neuropsychological_profile_executive_function = neuropsychological_profile_executive_function;
+	public void setNeuropsychologicalProfileExecutiveFunction(
+			int neuropsychologicalProfileExecutiveFunction) {
+		this.neuropsychologicalProfileExecutiveFunction = neuropsychologicalProfileExecutiveFunction;
 	}
 
-	public int getNeuropsychological_profile_cognitive_speed() {
-		return neuropsychological_profile_cognitive_speed;
+	public int getNeuropsychologicalProfileCognitiveSpeed() {
+		return neuropsychologicalProfileCognitiveSpeed;
 	}
 
-	public void setNeuropsychological_profile_cognitive_speed(
-			int neuropsychological_profile_cognitive_speed) {
-		this.neuropsychological_profile_cognitive_speed = neuropsychological_profile_cognitive_speed;
+	public void setNeuropsychologicalProfileCognitiveSpeed(
+			int neuropsychologicalProfileCognitiveSpeed) {
+		this.neuropsychologicalProfileCognitiveSpeed = neuropsychologicalProfileCognitiveSpeed;
 	}
 
-	public int getNeuropsychological_profile_speech_expressively() {
-		return neuropsychological_profile_speech_expressively;
+	public int getNeuropsychologicalProfileSpeechExpressively() {
+		return neuropsychologicalProfileSpeechExpressively;
 	}
 
-	public void setNeuropsychological_profile_speech_expressively(
-			int neuropsychological_profile_speech_expressively) {
-		this.neuropsychological_profile_speech_expressively = neuropsychological_profile_speech_expressively;
+	public void setNeuropsychologicalProfileSpeechExpressively(
+			int neuropsychologicalProfileSpeechExpressively) {
+		this.neuropsychologicalProfileSpeechExpressively = neuropsychologicalProfileSpeechExpressively;
 	}
 
-	public int getNeuropsychological_profile_speech_understanding() {
-		return neuropsychological_profile_speech_understanding;
+	public int getNeuropsychologicalProfileSpeechUnderstanding() {
+		return neuropsychologicalProfileSpeechUnderstanding;
 	}
 
-	public void setNeuropsychological_profile_speech_understanding(
-			int neuropsychological_profile_speech_understanding) {
-		this.neuropsychological_profile_speech_understanding = neuropsychological_profile_speech_understanding;
+	public void setNeuropsychologicalProfileSpeechUnderstanding(
+			int neuropsychologicalProfileSpeechUnderstanding) {
+		this.neuropsychologicalProfileSpeechUnderstanding = neuropsychologicalProfileSpeechUnderstanding;
 	}
 
-	public int getNeuropsychological_profile_memory_operating() {
-		return neuropsychological_profile_memory_operating;
+	public int getNeuropsychologicalProfileMemoryOperating() {
+		return neuropsychologicalProfileMemoryOperating;
 	}
 
-	public void setNeuropsychological_profile_memory_operating(
-			int neuropsychological_profile_memory_operating) {
-		this.neuropsychological_profile_memory_operating = neuropsychological_profile_memory_operating;
+	public void setNeuropsychologicalProfileMemoryOperating(
+			int neuropsychologicalProfileMemoryOperating) {
+		this.neuropsychologicalProfileMemoryOperating = neuropsychologicalProfileMemoryOperating;
 	}
 
-	public int getNeuropsychological_profile_memory_verbal() {
-		return neuropsychological_profile_memory_verbal;
+	public int getNeuropsychologicalProfileMemoryVerbal() {
+		return neuropsychologicalProfileMemoryVerbal;
 	}
 
-	public void setNeuropsychological_profile_memory_verbal(
-			int neuropsychological_profile_memory_verbal) {
-		this.neuropsychological_profile_memory_verbal = neuropsychological_profile_memory_verbal;
+	public void setNeuropsychologicalProfileMemoryVerbal(
+			int neuropsychologicalProfileMemoryVerbal) {
+		this.neuropsychologicalProfileMemoryVerbal = neuropsychologicalProfileMemoryVerbal;
 	}
 
-	public int getNeuropsychological_profile_memory_nonverbal() {
-		return neuropsychological_profile_memory_nonverbal;
+	public int getNeuropsychologicalProfileMemoryNonverbal() {
+		return neuropsychologicalProfileMemoryNonverbal;
 	}
 
-	public void setNeuropsychological_profile_memory_nonverbal(
-			int neuropsychological_profile_memory_nonverbal) {
-		this.neuropsychological_profile_memory_nonverbal = neuropsychological_profile_memory_nonverbal;
+	public void setNeuropsychologicalProfileMemoryNonverbal(
+			int neuropsychologicalProfileMemoryNonverbal) {
+		this.neuropsychologicalProfileMemoryNonverbal = neuropsychologicalProfileMemoryNonverbal;
 	}
 
-	public int getNeuropsychological_profile_memory_learning() {
-		return neuropsychological_profile_memory_learning;
+	public int getNeuropsychologicalProfileMemoryLearning() {
+		return neuropsychologicalProfileMemoryLearning;
 	}
 
-	public void setNeuropsychological_profile_memory_learning(
-			int neuropsychological_profile_memory_learning) {
-		this.neuropsychological_profile_memory_learning = neuropsychological_profile_memory_learning;
+	public void setNeuropsychologicalProfileMemoryLearning(
+			int neuropsychologicalProfileMemoryLearning) {
+		this.neuropsychologicalProfileMemoryLearning = neuropsychologicalProfileMemoryLearning;
 	}
 
-	public int getNeuropsychological_profile_perception_speech() {
-		return neuropsychological_profile_perception_speech;
+	public int getNeuropsychologicalProfilePerceptionSpeech() {
+		return neuropsychologicalProfilePerceptionSpeech;
 	}
 
-	public void setNeuropsychological_profile_perception_speech(
-			int neuropsychological_profile_perception_speech) {
-		this.neuropsychological_profile_perception_speech = neuropsychological_profile_perception_speech;
+	public void setNeuropsychologicalProfilePerceptionSpeech(
+			int neuropsychologicalProfilePerceptionSpeech) {
+		this.neuropsychologicalProfilePerceptionSpeech = neuropsychologicalProfilePerceptionSpeech;
 	}
 
-	public int getNeuropsychological_profile_perception_visual() {
-		return neuropsychological_profile_perception_visual;
+	public int getNeuropsychologicalProfilePerceptionVisual() {
+		return neuropsychologicalProfilePerceptionVisual;
 	}
 
-	public void setNeuropsychological_profile_perception_visual(
-			int neuropsychological_profile_perception_visual) {
-		this.neuropsychological_profile_perception_visual = neuropsychological_profile_perception_visual;
+	public void setNeuropsychologicalProfilePerceptionVisual(
+			int neuropsychologicalProfilePerceptionVisual) {
+		this.neuropsychologicalProfilePerceptionVisual = neuropsychologicalProfilePerceptionVisual;
 	}
 
-	public int getNeuropsychological_profile_perception_spatial() {
-		return neuropsychological_profile_perception_spatial;
+	public int getNeuropsychologicalProfilePerceptionSpatial() {
+		return neuropsychologicalProfilePerceptionSpatial;
 	}
 
-	public void setNeuropsychological_profile_perception_spatial(
-			int neuropsychological_profile_perception_spatial) {
-		this.neuropsychological_profile_perception_spatial = neuropsychological_profile_perception_spatial;
+	public void setNeuropsychologicalProfilePerceptionSpatial(
+			int neuropsychologicalProfilePerceptionSpatial) {
+		this.neuropsychologicalProfilePerceptionSpatial = neuropsychologicalProfilePerceptionSpatial;
 	}
 
-	public int getNeuropsychological_profile_motor_skills_dexterity() {
-		return neuropsychological_profile_motor_skills_dexterity;
+	public int getNeuropsychologicalProfileMotorSkillsDexterity() {
+		return neuropsychologicalProfileMotorSkillsDexterity;
 	}
 
-	public void setNeuropsychological_profile_motor_skills_dexterity(
-			int neuropsychological_profile_motor_skills_dexterity) {
-		this.neuropsychological_profile_motor_skills_dexterity = neuropsychological_profile_motor_skills_dexterity;
+	public void setNeuropsychologicalProfileMotorSkillsDexterity(
+			int neuropsychologicalProfileMotorSkillsDexterity) {
+		this.neuropsychologicalProfileMotorSkillsDexterity = neuropsychologicalProfileMotorSkillsDexterity;
 	}
 
-	public int getNeuropsychological_profile_motor_coordination() {
-		return neuropsychological_profile_motor_coordination;
+	public int getNeuropsychologicalProfileMotorCoordination() {
+		return neuropsychologicalProfileMotorCoordination;
 	}
 
-	public void setNeuropsychological_profile_motor_coordination(
-			int neuropsychological_profile_motor_coordination) {
-		this.neuropsychological_profile_motor_coordination = neuropsychological_profile_motor_coordination;
+	public void setNeuropsychologicalProfileMotorCoordination(
+			int neuropsychologicalProfileMotorCoordination) {
+		this.neuropsychologicalProfileMotorCoordination = neuropsychologicalProfileMotorCoordination;
 	}
 
-	public int getPresence_of_changes() {
-		return presence_of_changes;
+	public int getPresenceOfChanges() {
+		return presenceOfChanges;
 	}
 
-	public void setPresence_of_changes(int presence_of_changes) {
-		this.presence_of_changes = presence_of_changes;
+	public void setPresenceOfChanges(int presenceOfChanges) {
+		this.presenceOfChanges = presenceOfChanges;
 	}
 
-	public int getPresence_of_changes_detail() {
-		return presence_of_changes_detail;
+	public int getPresenceOfChangesDetail() {
+		return presenceOfChangesDetail;
 	}
 
-	public void setPresence_of_changes_detail(int presence_of_changes_detail) {
-		this.presence_of_changes_detail = presence_of_changes_detail;
+	public void setPresenceOfChangesDetail(int presenceOfChangesDetail) {
+		this.presenceOfChangesDetail = presenceOfChangesDetail;
 	}
 
-	public int getEmotional_status() {
-		return emotional_status;
+	public int getEmotionalStatus() {
+		return emotionalStatus;
 	}
 
-	public void setEmotional_status(int emotional_status) {
-		this.emotional_status = emotional_status;
+	public void setEmotionalStatus(int emotionalStatus) {
+		this.emotionalStatus = emotionalStatus;
 	}
 
 	public int getComment() {
@@ -479,4 +478,6 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity>{
 		this.comment = comment;
 	}
 
+
+	
 }
