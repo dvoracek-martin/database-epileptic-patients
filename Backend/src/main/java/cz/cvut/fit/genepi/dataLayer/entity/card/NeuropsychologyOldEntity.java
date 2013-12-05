@@ -20,7 +20,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 //TODO: Merge with pszchology NEW??
 @Entity
-@Table(name = "neuropsychlogy")
+@Table(name = "neuropsychlogy_old")
 public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEntity> {
 
 	/* Autofilled fields */
