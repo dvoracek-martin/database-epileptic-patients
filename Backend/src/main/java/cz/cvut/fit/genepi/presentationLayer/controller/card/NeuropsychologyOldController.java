@@ -105,7 +105,7 @@ public class NeuropsychologyOldController {
 	public String neuropsychologyListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService
-				.getPatientByIdWithNeuropsychologyList(patientID);
+				.getPatientByIdWithNeuropsychologyOldList(patientID);
 		model.addAttribute("patient", patient);
 		return "patient/neuropsychologyOld/listView";
 	}

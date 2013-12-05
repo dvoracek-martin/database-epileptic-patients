@@ -30,6 +30,8 @@ public interface PatientService extends GenericService<PatientEntity> {
 	public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId);
 
 	public PatientEntity getPatientByIdWithNeuropsychologyList(int patientId);
+	
+	public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId);
 
 	public PatientEntity getPatientByIdWithOperationList(int patientId);
 

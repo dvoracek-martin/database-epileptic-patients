@@ -96,6 +96,13 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 		return patientDAO.getPatientByIdWithNeuropsychologyList(patientId);
 
 	}
+	
+	@Override
+	@Transactional
+	public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId) {
+		return patientDAO.getPatientByIdWithNeuropsychologyOldList(patientId);
+
+	}
 
 	@Override
 	@Transactional
