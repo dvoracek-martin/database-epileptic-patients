@@ -2,9 +2,13 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import java.util.Locale;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 
@@ -38,6 +43,24 @@ public class NeuropsychologyController {
 		model.addAttribute("patient", patient);
 		model.addAttribute("neuropsychology", new NeuropsychologyEntity());
 		return "patient/neuropsychology/createView";
+	}
+	
+	@RequestMapping(value = "/patient/{patientID}/neuropsychology/create", method = RequestMethod.POST)
+	public String neuropsychologyCreatePOST(
+			@ModelAttribute("neuropsychology") @Valid NeuropsychologyEntity neuropsychology,
+			BindingResult result, @PathVariable("patientId") Integer patientId,
+			Locale locale, Model model) {
+
+		if (result.hasErrors()) {		
+			model.addAttribute("patient",
+					patientService.findByID(PatientEntity.class, patientId));
+			return "patient/neuropsychology/createView";
+		} else {
+			neuropsychology.setPatient(patientService.findByID(PatientEntity.class,
+					patientId));
+			neuropsychologyService.save(neuropsychology);
+			return "redirect:/patient/" + patientId + "/neuropsychology/list";
+		}
 	}
 
 	@RequestMapping(value = "/patient/{patientId}/neuropsychology/{neuropsychologyId}/delete", method = RequestMethod.GET)
