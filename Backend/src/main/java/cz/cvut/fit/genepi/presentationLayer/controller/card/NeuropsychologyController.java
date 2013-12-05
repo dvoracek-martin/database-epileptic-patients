@@ -36,7 +36,7 @@ public class NeuropsychologyController {
 				patientID);
 
 		model.addAttribute("patient", patient);
-		model.addAttribute("neuropsychology", new NeuropsychologyOldEntity());
+		model.addAttribute("neuropsychology", new NeuropsychologyEntity());
 		return "patient/neuropsychology/createView";
 	}
 
