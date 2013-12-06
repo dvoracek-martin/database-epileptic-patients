@@ -20,22 +20,36 @@
     </jsp:attribute>
 
 	<jsp:body>
-	
+	<div class="row">
+	<div class="col-xs-6">
 						<h2>
 							<spring:message code="label.cardIndex" />
 						</h2>
-						<!-- <form class="form-search">
-  								<div class="input-append">
-    								<input type="text" class="span2 search-query">
-    								<button type="submit" class="btn">Search</button>
-  								</div>
-  						</form> -->
-						<h3>
+						
+  						</div>
+  						<div class="col-xs-6">
+						<h3 class="pull-right">
 							<a href="<c:url value="/patient/create" />"
-				style="text-decoration: none"><spring:message
-					code="label.addPatient" /></a>
+						style="text-decoration: none"><spring:message
+							code="label.addPatient" /></a>
 						</h3>
-
+						</div>
+</div>
+	<div class="row">
+	<div class="col-xs-12">
+		<form class="form-horizontal" role="form">
+	 			<div class="form-group">
+    					<label for="search" class="col-xs-2 control-label">Filtruj:</label>
+    				<div class="col-xs-4 input-group">
+  						<span class="input-group-addon glyphicon glyphicon-search"></span>
+  						<input type="text" class="form-control" id="search"
+								placeholder="jmeno/prijmeni">
+					</div>
+  				</div>
+		</form>
+			
+	</div>
+			</div>
    <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
