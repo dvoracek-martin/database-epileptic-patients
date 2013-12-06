@@ -34,19 +34,26 @@
 	<%-- Menu hook --%>
 	<jsp:invoke fragment="menuLVL2" />
 				<div class="panel panel-default">
-					<div class="panel-heading">Pacienti</div>
+					<div class="panel-heading">
+				<spring:message code="label.patients" />
+			</div>
 					<div class="panel-body">
 						<ul class="nav">
-							<li><a href="<c:url value="/patient/list"/>">Kartotéka</a></li>
-							<li><a href="<c:url value="/advanced-search"/>">Pokročilé vyhledávání</a></li>
+							<li><a href="<c:url value="/patient/list"/>"><spring:message
+								code="label.cardIndex" /></a></li>
+							<li><a href="<c:url value="/advanced-search"/>"><spring:message
+								code="label.advancedSearch" /></a></li>
 						</ul>
 					</div>
 				</div>
 				<div class="panel panel-default">
-					<div class="panel-heading">Administrace</div>
+					<div class="panel-heading">
+				<spring:message code="label.administration" />
+			</div>
 					<div class="panel-body">
 						<ul class="nav">
-							<li><a href="<c:url value="/user/list"/>">Správa uživatelů</a></li>						
+							<li><a href="<c:url value="/user/list"/>"><spring:message
+								code="label.users" /></a></li>						
 						</ul>
 					</div>
 				</div>

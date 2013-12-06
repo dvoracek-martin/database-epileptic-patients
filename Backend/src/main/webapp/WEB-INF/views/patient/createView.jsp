@@ -61,8 +61,8 @@
 							<spring:message code="label.gender" />
 						</form:label>
 						<form:select path="gender" class="input-block-level">
-							<form:option value="male" label="${male}" />
-							<form:option value="female" label="${female}" />
+							<form:option value="1" label="${male}" />
+							<form:option value="2" label="${female}" />
 						</form:select>
 
 						<form:label path="contact.addressStreet">
@@ -114,14 +114,14 @@
 					class="input-block-level" />
 						<form:errors path="contact.email" cssClass="error" />
 
-							<form:label path="doctorId">
+							<label>
 					<spring:message code="label.doctor" />
-				</form:label>
-						<form:select path="doctorId" type="text" class="input-block-level">
+				</label>
+						<select name="doctorId" class="input-block-level">
 						<c:forEach items="${doctors}" var="doctor">
-	<form:option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+	<option value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</option>
 			</c:forEach>
-			</form:select>
+			</select>
 
 						<button class="btn btn-small btn-primary" type="submit">
 							<spring:message code="label.add" />

@@ -47,24 +47,28 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="<c:url value="/" />"><img src="<c:url value="/resources/img/logo.ico" />">GENEPI</a>
+				<a class="navbar-brand" href="<c:url value="/" />"><img
+					src="<c:url value="/resources/img/logo.ico" />">GENEPI</a>
 			</div>
 
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+				
+					<%--<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
 							Pepa Nový//send me UserEntity from BE</a>
 						<ul class="dropdown-menu">
-							<li><a href="<c:url value="/profile" />">Profil</a></li>
+							<li><a href="<c:url value="/profile" />"><spring:message code="label.profile" /></a></li>
 							<li><a
-								href="<c:url value="/user/BE give me ID/change-password" />">Zmena
-									hesla</a></li>
-						</ul></li>
+								href="<c:url value="/user/BE give me ID/change-password" />"><spring:message code="label.changePassword" /></a></li>
+						</ul></li>--%>
+						<li><a href="<c:url value="/profile"/>"><span class="glyphicon glyphicon-user"></span>
+							<sec:authentication property="principal.username" /></a>
+						</li>
 					<li><a href="<c:url value="/j_spring_security_logout"/>"><span
-							class="glyphicon glyphicon-off"></span><spring:message
-					code="label.logOut" /></a></li>
+							class="glyphicon glyphicon-off"></span>
+						<spring:message code="label.logOut" /></a></li>
 					<li><a href="?lang=cs">CZ</a></li>
 					<li><a href="?lang=en">EN</a></li>
 				</ul>
@@ -93,14 +97,14 @@
 				<%-- Hook for body --%>
 				<jsp:doBody />
 			</div>
-
-			<%-- Footer section --%>
-			<hr>
-			<footer>
-				<p>&copy; GENEPI 2013</p>
-			</footer>
-
 		</div>
+
+		<%-- Footer section --%>
+		<hr>
+		<footer>
+			<p>&copy; GENEPI 2013</p>
+		</footer>
+
 	</div>
 
 	<%-- Script section --%>

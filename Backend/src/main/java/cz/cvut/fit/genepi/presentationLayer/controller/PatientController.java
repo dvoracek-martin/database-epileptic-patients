@@ -113,9 +113,9 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
-	public String patientCreatePOST(Locale locale, Model model,
+	public String patientCreatePOST(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result) {
+			BindingResult result, @RequestParam("doctorId") Integer doctorId ,Locale locale, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("doctors", roleService.getAllDoctors());
 			model.addAttribute("male",
@@ -124,6 +124,7 @@ public class PatientController {
 					messageSource.getMessage("label.female", null, locale));
 			return "patient/createView";
 		} else {
+			patient.setDoctor(userService.findByID(UserEntity.class, doctorId));
 			patientService.save(patient);
 			return "redirect:/patient/" + Integer.toString(patient.getId())
 					+ "/overview";
