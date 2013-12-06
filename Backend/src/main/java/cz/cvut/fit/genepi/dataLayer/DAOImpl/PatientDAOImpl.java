@@ -6,6 +6,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
 
@@ -217,24 +218,23 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	@Override
 	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				PatientEntity.class, "patient");
+				PatientEntity.class, "patient").setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
 
 		/* fetching and creating aliases for sub collections */
-		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
-		criteria.createAlias("patient.contact", "contact");
 
-		/* doctor */
-		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
-		criteria.createAlias("patient.doctor", "doctor");
 
-		/* anamnesisCollection */
-		criteria.setFetchMode("patient.anamnesisList", FetchMode.JOIN);
-		criteria.createAlias("patient.anamnesisList", "anamnesisList");
+
+
+
 
 		/* Setting criterias from search */
 
 		/* General parameters - specific person section */
 
+		/* Fetching and creating alias for sub collection contact */
+		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
+		criteria.createAlias("patient.contact", "contact");
+		
 		/* Firstname */
 		if (!advancedSearch.getPatientFirstname().equals("")) {
 			criteria.add(Restrictions.like("contact.firstName", "%"
@@ -334,13 +334,22 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 			}
 		}
 
+		/* Fetching and creating alias for sub collection doctor */
+		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
+		criteria.createAlias("patient.doctor", "doctor");
+		
 		if (advancedSearch.getPatientDoctor() != 0) {
 			criteria.add(Restrictions.eq("doctor.id",
 					advancedSearch.getPatientDoctor()));
 		}
 		/* Include parameters from section */
+		//...
 
 		/* anamnesis specific section */
+		
+		/* Fetching and creating alias for sub collection contact anamnesisList */
+		criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
+		
 		if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
 			if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
 				criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
@@ -350,6 +359,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 						false));
 			}
 		}
+
 		return (List<PatientEntity>) criteria.list();
 	}
 }
