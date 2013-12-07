@@ -15,7 +15,7 @@ public class Util {
 
 	private static final String CHARACTER = "a";
 
-	public  String convertObjectToFormUrlEncodedBytes(Object object) {
+	public static String convertObjectToFormUrlEncodedBytes(Object object) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
