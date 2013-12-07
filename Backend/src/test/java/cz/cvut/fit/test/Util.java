@@ -11,11 +11,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 
-public class Util <T> {
+public class Util {
 
 	private static final String CHARACTER = "a";
 
-	public  String convertObjectToFormUrlEncodedBytes(T object) {
+	public  String convertObjectToFormUrlEncodedBytes(Object object) {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
