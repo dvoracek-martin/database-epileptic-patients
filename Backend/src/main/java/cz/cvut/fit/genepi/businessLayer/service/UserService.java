@@ -5,9 +5,8 @@ import java.util.Locale;
 
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface UserService.
+ * The Interface UserService extends GenericService
  */
 public interface UserService extends GenericService<UserEntity> {
 
@@ -26,5 +25,10 @@ public interface UserService extends GenericService<UserEntity> {
 	 */
 	public List<UserEntity> getDoctors();
 
+	/** creates new user with his locale
+	 * 
+	 * @param user as UserEntity
+	 * @param locale as Locale
+	 */
 	public void create(UserEntity user, Locale locale);
 }

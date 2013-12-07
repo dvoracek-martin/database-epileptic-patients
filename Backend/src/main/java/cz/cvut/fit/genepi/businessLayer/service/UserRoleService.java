@@ -4,9 +4,8 @@ import java.util.List;
 
 import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface UserRoleService.
+ * The Interface UserRoleService extends GenericService
  */
 public interface UserRoleService extends GenericService<UserRoleEntity>   {
 	

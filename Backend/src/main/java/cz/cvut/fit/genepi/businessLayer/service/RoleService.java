@@ -5,11 +5,14 @@ import java.util.List;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class RoleService.
+ * The Interface RoleService extends GenericService
  */
 public interface RoleService extends GenericService<RoleEntity> {
-	//TODO:unused method
+
+	/**
+	 * Finds all users, that are doctors
+	 * @return List of UserEntity
+	 */
 	public List<UserEntity> getAllDoctors();
 }
