@@ -6,7 +6,7 @@ import cz.cvut.fit.genepi.dataLayer.DAO.card.SeizureDetailDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 
-/*
+/**
  * Implementation of SeizureDetailDAO
  * Extending implementation of GenericDAO
  */

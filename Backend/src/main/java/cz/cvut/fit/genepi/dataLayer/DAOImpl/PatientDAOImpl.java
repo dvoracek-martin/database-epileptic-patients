@@ -14,7 +14,7 @@ import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
-/*
+/**
  * Implementation of PatientDAO
  * Extending implementation of GenericDAO
  */

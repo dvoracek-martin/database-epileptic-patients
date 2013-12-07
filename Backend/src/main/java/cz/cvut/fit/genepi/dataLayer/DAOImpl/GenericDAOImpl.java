@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 
 
-/**
+/***
  * Implements GenericDAO.
  *
  * @param <T> the generic type

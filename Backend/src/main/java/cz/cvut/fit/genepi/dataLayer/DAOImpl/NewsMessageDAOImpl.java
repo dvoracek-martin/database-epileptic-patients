@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.NewsMessageDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
 
-/*
+/**
  * Implementation of NewsMessageFindingDAO
  * Extending implementation of GenericDAO
  */

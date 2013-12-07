@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.ExportParamsDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 
-/*
+/**
  * Implementation of ExportParamsDAO
  * Extending implementation of GenericDAO
  */

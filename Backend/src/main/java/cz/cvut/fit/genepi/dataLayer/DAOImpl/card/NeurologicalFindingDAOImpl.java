@@ -8,7 +8,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 
 @Repository
 
-/*
+/**
  * Implementation of NeurologicalFindingDAO
  * Extending implementation of GenericDAO
  */

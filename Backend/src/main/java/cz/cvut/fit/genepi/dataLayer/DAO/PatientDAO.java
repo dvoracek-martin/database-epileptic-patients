@@ -5,9 +5,8 @@ import java.util.List;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface PatientDAO.
+ * PatientDAO interface
  */
 public interface PatientDAO extends GenericDAO<PatientEntity> {
 

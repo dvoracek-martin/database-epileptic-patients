@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.ContactDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 
-/*
+/**
  * Implementation of ContactDAO
  * Extending implementation of GenericDAO
  */

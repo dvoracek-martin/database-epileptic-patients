@@ -6,7 +6,7 @@ import cz.cvut.fit.genepi.dataLayer.DAO.card.AnamnesisDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
-/*
+/**
  * Implementation of AnamnesisFindingDAO
  * Extending implementation of GenericDAO
  */

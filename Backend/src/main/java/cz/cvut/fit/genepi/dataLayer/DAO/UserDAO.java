@@ -4,9 +4,8 @@ import java.util.List;
 
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Interface UserDAO.
+ * UserDAO interface
  */
 public interface UserDAO extends GenericDAO<UserEntity> {
 
@@ -19,7 +18,7 @@ public interface UserDAO extends GenericDAO<UserEntity> {
 	UserEntity findUserByUsername(String username);
 
 	/**
-	 * Gets the doctors.
+	 * Gets the list of all doctors.
 	 *
 	 * @return the doctors
 	 */

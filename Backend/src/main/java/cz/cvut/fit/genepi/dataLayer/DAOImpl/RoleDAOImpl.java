@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.RoleDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 
-/*
+/**
  * Implementation of RoleDAO
  * Extending implementation of GenericDAO
  */

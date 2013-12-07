@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.UserDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
-/*
+/**
  * Implementation of UserDAO
  * Extending implementation of GenericDAO
  */
