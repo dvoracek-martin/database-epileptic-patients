@@ -27,10 +27,6 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 
-	/** The Constant logger. */
-	private static final Logger logger = LoggerFactory
-			.getLogger(RoleController.class);
-
 	@RequestMapping(value = "/role/create", method = RequestMethod.GET)
 	public String roleCreateGET(Model model) {
 		model.addAttribute("role", new RoleEntity());
