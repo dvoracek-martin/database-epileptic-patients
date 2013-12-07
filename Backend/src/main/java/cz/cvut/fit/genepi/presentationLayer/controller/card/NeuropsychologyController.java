@@ -16,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 
 @Controller
 public class NeuropsychologyController {

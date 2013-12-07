@@ -13,21 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.util.LoggingService;
 
 //This controller is not doing anything right now
 @Controller
 public class SearchController {
-
-	private LoggingService logger = new LoggingService();
-
 	@Autowired
 	private MessageSource messageSource;
 
@@ -53,13 +45,11 @@ public class SearchController {
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public String searchGET(Locale locale, Model model) {
-
 		return "search";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public String searchPost(Locale locale, Model model) {
-
 		return "searchResults";
 	}
 
