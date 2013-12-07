@@ -5,11 +5,11 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.NewsMessageDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
 
-/**
- * The Class NewsMessageDAOImpl.
+/*
+ * Implementation of NewsMessageFindingDAO
+ * Extending implementation of GenericDAO
  */
 @Repository
-public class NewsMessageDAOImpl extends
-		GenericDAOImpl<NewsMessageEntity> implements
-		NewsMessageDAO {
+public class NewsMessageDAOImpl extends GenericDAOImpl<NewsMessageEntity>
+		implements NewsMessageDAO {
 }

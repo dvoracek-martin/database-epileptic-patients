@@ -14,14 +14,21 @@ import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class PatientDAOImpl.
+/*
+ * Implementation of PatientDAO
+ * Extending implementation of GenericDAO
  */
 @Repository
 public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		PatientDAO {
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithAllLists
+	 * (int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithAllLists(int patientId) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
@@ -47,6 +54,13 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithAnamnesisList
+	 * (int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithAnamnesisList(int patientId) {
 		Query query = sessionFactory
@@ -58,6 +72,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithComplicationList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithComplicationList(int patientId) {
 		Query query = sessionFactory
@@ -69,6 +89,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithDiagnosticTestScalpEEGList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(
 			int patientId) {
@@ -81,6 +107,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithDiagnosticTestMRIList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId) {
 		Query query = sessionFactory
@@ -103,6 +135,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithInvasiveTestCorticalMappingList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
 			int patientId) {
@@ -126,6 +164,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithInvasiveTestEEGList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId) {
 		Query query = sessionFactory
@@ -137,6 +181,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithNeurologicalFindingList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
 		Query query = sessionFactory
@@ -148,6 +198,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithNeuropsychologyList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithNeuropsychologyList(int patientId) {
 		Query query = sessionFactory
@@ -159,6 +215,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithNeuropsychologyOldList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId) {
 		Query query = sessionFactory
@@ -170,6 +232,13 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithOperationList
+	 * (int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithOperationList(int patientId) {
 		Query query = sessionFactory
@@ -181,6 +250,13 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithOutcomeList
+	 * (int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithOutcomeList(int patientId) {
 		Query query = sessionFactory
@@ -192,6 +268,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
+	 * getPatientByIdWithPharmacotherapyList(int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithPharmacotherapyList(int patientId) {
 		Query query = sessionFactory
@@ -203,6 +285,13 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithSeizureList
+	 * (int)
+	 */
 	@Override
 	public PatientEntity getPatientByIdWithSeizureList(int patientId) {
 		Query query = sessionFactory
@@ -214,18 +303,22 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		return this.findOne(query);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#performSearch(cz.cvut.fit
+	 * .genepi.dataLayer.entity.AdvancedSearchEntity)
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch) {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				PatientEntity.class, "patient").setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);;
+		Criteria criteria = sessionFactory.getCurrentSession()
+				.createCriteria(PatientEntity.class, "patient")
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		;
 
 		/* fetching and creating aliases for sub collections */
-
-
-
-
-
 
 		/* Setting criterias from search */
 
@@ -234,7 +327,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		/* Fetching and creating alias for sub collection contact */
 		criteria.setFetchMode("patient.contact", FetchMode.JOIN);
 		criteria.createAlias("patient.contact", "contact");
-		
+
 		/* Firstname */
 		if (!advancedSearch.getPatientFirstname().equals("")) {
 			criteria.add(Restrictions.like("contact.firstName", "%"
@@ -337,19 +430,20 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		/* Fetching and creating alias for sub collection doctor */
 		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
 		criteria.createAlias("patient.doctor", "doctor");
-		
+
 		if (advancedSearch.getPatientDoctor() != 0) {
 			criteria.add(Restrictions.eq("doctor.id",
 					advancedSearch.getPatientDoctor()));
 		}
 		/* Include parameters from section */
-		//...
+		// ...
 
 		/* anamnesis specific section */
-		
+
 		/* Fetching and creating alias for sub collection contact anamnesisList */
-		criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
-		
+		criteria.createAlias("patient.anamnesisList", "anamnesisList",
+				JoinType.LEFT_OUTER_JOIN);
+
 		if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
 			if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
 				criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",

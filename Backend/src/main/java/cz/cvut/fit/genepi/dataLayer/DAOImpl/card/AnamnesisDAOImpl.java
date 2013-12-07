@@ -6,12 +6,12 @@ import cz.cvut.fit.genepi.dataLayer.DAO.card.AnamnesisDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class AnamnesisDAOImpl.
+/*
+ * Implementation of AnamnesisFindingDAO
+ * Extending implementation of GenericDAO
  */
 @Repository
-public class AnamnesisDAOImpl extends
-		GenericDAOImpl<AnamnesisEntity> implements AnamnesisDAO {
+public class AnamnesisDAOImpl extends GenericDAOImpl<AnamnesisEntity> implements
+		AnamnesisDAO {
 
 }

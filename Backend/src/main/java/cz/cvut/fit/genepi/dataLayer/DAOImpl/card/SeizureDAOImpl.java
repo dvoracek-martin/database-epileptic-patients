@@ -10,9 +10,9 @@ import cz.cvut.fit.genepi.dataLayer.DAO.card.SeizureDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class SeizureDAOImpl.
+/*
+ * Implementation of SeizureDAO
+ * Extending implementation of GenericDAO
  */
 @Repository
 public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity>

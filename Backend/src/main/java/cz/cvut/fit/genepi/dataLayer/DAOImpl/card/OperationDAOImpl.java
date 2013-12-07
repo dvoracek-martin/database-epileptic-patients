@@ -6,8 +6,11 @@ import cz.cvut.fit.genepi.dataLayer.DAO.card.OperationDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 
+/*
+ * Implementation of OperationDAO
+ * Extending implementation of GenericDAO
+ */
 @Repository
-public class OperationDAOImpl  extends
-GenericDAOImpl<OperationEntity> implements
- OperationDAO  {
+public class OperationDAOImpl extends GenericDAOImpl<OperationEntity> implements
+		OperationDAO {
 }

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.UserDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class UserDAOImpl.
+/*
+ * Implementation of UserDAO
+ * Extending implementation of GenericDAO
  */
 @Repository
 public class UserDAOImpl extends GenericDAOImpl<UserEntity>

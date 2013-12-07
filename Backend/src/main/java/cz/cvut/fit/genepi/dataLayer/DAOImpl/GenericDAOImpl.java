@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class GenericDAOImpl.
+ * Implements GenericDAO.
  *
  * @param <T> the generic type
  */
