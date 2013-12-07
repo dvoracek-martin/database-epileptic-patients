@@ -133,6 +133,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		return ("\n" + emptyLine + "\n");
 	}
 
+	/*
 	private String addStarLine() {
 		String emptyLine = "";
 		for (int i = 0; i != 50; i++) {
@@ -140,6 +141,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 		}
 		return ("\n" + emptyLine + "\n");
 	}
+	*/
 
 	private String addTitlePage(File f, BufferedWriter bw, Locale locale,
 			PatientEntity patient, String date) {
