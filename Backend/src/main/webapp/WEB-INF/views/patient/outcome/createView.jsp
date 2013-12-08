@@ -134,13 +134,13 @@
     				<div class="controls">
     					<form:select path="aed" id="aed" type="text" class="input-large">
 							<form:option value="1">
-								nevysazený
+								<spring:message code="label.notDropped"/>
 							</form:option>
 							<form:option value="2">
-								vysazený
+								<spring:message code="label.dropped"/>
 							</form:option>
 							<form:option value="3">
-								redukovaný
+								<spring:message code="label.reduced"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -151,13 +151,13 @@
     				<div class="controls">
     					<form:select path="eeg" id="eeg" type="text" class="input-large">
 							<form:option value="1">
-								neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="2">
-								s hroty
+								<spring:message code="label.spikes"/>
 							</form:option>
 							<form:option value="3">
-								bez hrotů
+								<spring:message code="label.noSpikes"/>
 							</form:option>
 						</form:select>
     				</div>
@@ -168,24 +168,24 @@
     				<div class="controls">
     					<form:select path="mri" id="mri" type="text" class="input-large">
 							<form:option value="1">
-								neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="2">
-								provedeno
+								<spring:message code="label.done"/>
 							</form:option>
 						</form:select>
     				</div>
   				</div>
 
   				<div class="control-group">
-    				<label class="control-label" for="neuropsychology"><strong>Neuropsychologie</strong></label>
+    				<label class="control-label" for="neuropsychology"><strong><spring:message code="label.neuropsychology"/></strong></label>
     				<div class="controls">
     					<form:select path="neuropsychology" id="neuropsychology" type="text" class="input-large">
 							<form:option value="1">
-								neprovedeno
+								<spring:message code="label.notDone"/>
 							</form:option>
 							<form:option value="2">
-								provedeno
+								<spring:message code="label.done"/>
 							</form:option>
 						</form:select>
     				</div>

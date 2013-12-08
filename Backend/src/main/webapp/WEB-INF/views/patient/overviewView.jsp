@@ -8,68 +8,67 @@
 <t:menuLVL3>
 
 	<jsp:attribute name="title">
-      Pacient
+      <spring:message code="label.patient"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Pacient
+      <spring:message code="label.patient"/>
     </jsp:attribute>
 
 	<jsp:body>
 				<div>
 					<div class="span5">
-						<h2>Přehled pacienta</h2>
+						<h2><spring:message code="label.exportPatient"/></h2>
 					</div>
 					<div>
 						<h3 class="pull-right">
 							<a id="export"
-						href="<c:url value="/patient/${patient.id}/export" />">Export
-								pacienta</a>
+						href="<c:url value="/patient/${patient.id}/export" />"><spring:message code="label.exportPatient"/></a>
 						</h3>
 					</div>
 				</div>
-				<table class="table">
+							<table class="table">
 				<tbody>
-						<tr>
-							<th>Pacient:</th>
-							<td>${patient.contact.firstName}</td>
+					<tr>
+						<th><spring:message code="label.patient"/>:</th>
+						<td>${patient.contact.firstName}</td>
 
-							<th>Rodné číslo:</th>
-							<td>${patient.nin}</td>
+						<th><spring:message code="label.birthIdentificationNumber"/>:</th>
+						<td>${patient.nin}</td>
 
-							<th>Datum narození:</th>
-							<td>${patient.birthday}</td>
+						<th><spring:message code="label.birthdate"/>:</th>
+						<td>${patient.birthday}</td>
 							
-						</tr>
-						<tr>	
-							<th>Adresa:</th>
-							<td>${patient.contact.addressStreet}</td>
+					</tr>
+					<tr>	
+						<th><spring:message code="label.address"/>:</th>
+						<td>${patient.contact.addressStreet}</td>
 							
-							<th>Telefon:</th>
-							<td>${patient.contact.phoneNumber}</td>
+						<th><spring:message code="label.telephone"/>:</th>
+						<td>${patient.contact.phoneNumber}</td>
 							
-							<th>Email:</th>
-							<td>${patient.contact.email}</td>
+						<th><spring:message code="label.email"/>:</th>
+						<td>${patient.contact.email}</td>
 												
 							
-						</tr>
-						<tr>
-							<th>Pohaví:</th>
-							<td>${patient.gender}</td>
+					</tr>
+					<tr>
+						<th><spring:message code="label.gender"/>:</th>
+						<td>${patient.gender}</td>
 							
-							<th>Věk při začátku epilepsie:</th>
-							<td></td>
+						<th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
+						<td></td>
 							
-							<th>Ošetřující lékař:</th>
-							<td>${patient.doctor.contact.firstName} ${patient.doctor.contact.lastName}</td>
+						<th><spring:message code="label.assignedDoctor"/>:</th>
+						<td></td>
 							
-						</tr>
-					</tbody>
-				</table>
+					</tr>
+				</tbody>
+			</table>
 
 				<!-- print out latest anamnesis START -->
 				<div>
 					<div class="span4">
-						<h3>Anamnéza</h3>
+						<h3><spring:message code="label.anamnesis"/></h3>
 					</div>
 					<div>
 						<h3 class="pull-right">
@@ -83,7 +82,7 @@
 				    	</br>
 				      	<div class="alert alert-block">
 		  					<button type="button" class="close" data-dismiss="alert">&times;</button>
-		  					<h4>Žádný záznam!</h4>
+		  					<h4><spring:message code="label.noRecord"/>!</h4>
 						</div>
 				    </c:when>
 
@@ -91,7 +90,7 @@
 						<table class="table">
 		               		<tbody>
 		               			<tr class="alert-info">
-             					 		<td colspan="2"><strong>Vyšetření dne:</strong> ${patient.anamnesisList[0].date}</td>
+             					 		<td colspan="2"><strong><spring:message code="label.examinationDate"/>:</strong> ${patient.anamnesisList[0].date}</td>
 								</tr>
 									<tr class="info">
 											<td><spring:message code="label.epilepsyInFamily" /></td>

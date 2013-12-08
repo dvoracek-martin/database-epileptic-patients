@@ -103,31 +103,31 @@
     						<form:option value="0">
 									-
 								</form:option>
-							<form:option value="1">
-								Deficit
-							</form:option>
-							<form:option value="2">
-								Hranice deficitu
-							</form:option>
-							<form:option value="3">
-								Mírný nadprůměr
-							</form:option>
-							<form:option value="4">
-								Nadprůměr
-							</form:option>
-							<form:option value="5">
-								Nezjištěno
-							</form:option>
-							<form:option value="6">
-								Podprůměr
-							</form:option>
-							<form:option value="7">
-								Průměr
-							</form:option>
-							<form:option value="8">
-								Těžký deficit
-							</form:option>
-						</form:select>
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
+								</form:option>
+								<form:option value="2">
+										<spring:message code="label.boundDeficit"/>
+								</form:option>
+								<form:option value="3">
+										<spring:message code="label.overAverage"/>
+								</form:option>
+								<form:option value="4">
+										<spring:message code="label.aboveAverage"/>
+								</form:option>
+								<form:option value="5">
+										<spring:message code="label.notIdentified"/>
+								</form:option>
+								<form:option value="6">
+										<spring:message code="label.belowAverage"/>
+								</form:option>
+								<form:option value="7">
+										<spring:message code="label.average"/>
+								</form:option>
+								<form:option value="8">
+										<spring:message code="label.hardDeficit"/>
+								</form:option>
+							</form:select>
     				</div>
   				</div>
 
@@ -139,29 +139,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-	    						<form:option value="1">
-								Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -173,29 +173,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-		    					<form:option value="1">
-									Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -207,29 +207,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-	    						<form:option value="1">
-								Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -241,29 +241,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-		    					<form:option value="1">
-									Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -275,29 +275,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-	    						<form:option value="1">
-								Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -309,29 +309,29 @@
 	    						<form:option value="0">
 									-
 								</form:option>
-		    					<form:option value="1">
-									Deficit
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
 								</form:option>
 								<form:option value="2">
-									Hranice deficitu
+										<spring:message code="label.boundDeficit"/>
 								</form:option>
 								<form:option value="3">
-									Mírný nadprůměr
+										<spring:message code="label.overAverage"/>
 								</form:option>
 								<form:option value="4">
-									Nadprůměr
+										<spring:message code="label.aboveAverage"/>
 								</form:option>
 								<form:option value="5">
-									Nezjištěno
+										<spring:message code="label.notIdentified"/>
 								</form:option>
 								<form:option value="6">
-									Podprůměr
+										<spring:message code="label.belowAverage"/>
 								</form:option>
 								<form:option value="7">
-									Průměr
+										<spring:message code="label.average"/>
 								</form:option>
 								<form:option value="8">
-									Těžký deficit
+										<spring:message code="label.hardDeficit"/>
 								</form:option>
 							</form:select>
 	    				</div>
@@ -344,32 +344,32 @@
 	    				<form:select path="intellectualPerformance" id="intellectualPerformance" type="text" class="input-large">
 	    					<form:option value="0">
 									-
-							</form:option>
-		    				<form:option value="1">
-									Deficit
-							</form:option>
-							<form:option value="2">
-									Hranice deficitu
-							</form:option>
-							<form:option value="3">
-									Mírný nadprůměr
-							</form:option>
-							<form:option value="4">
-									Nadprůměr
-							</form:option>
-							<form:option value="5">
-									Nezjištěno
-							</form:option>
-							<form:option value="6">
-									Podprůměr
-							</form:option>
-							<form:option value="7">
-									Průměr
-							</form:option>
-							<form:option value="8">
-									Těžký deficit
-							</form:option>
-						</form:select>
+								</form:option>
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
+								</form:option>
+								<form:option value="2">
+										<spring:message code="label.boundDeficit"/>
+								</form:option>
+								<form:option value="3">
+										<spring:message code="label.overAverage"/>
+								</form:option>
+								<form:option value="4">
+										<spring:message code="label.aboveAverage"/>
+								</form:option>
+								<form:option value="5">
+										<spring:message code="label.notIdentified"/>
+								</form:option>
+								<form:option value="6">
+										<spring:message code="label.belowAverage"/>
+								</form:option>
+								<form:option value="7">
+										<spring:message code="label.average"/>
+								</form:option>
+								<form:option value="8">
+										<spring:message code="label.hardDeficit"/>
+								</form:option>
+							</form:select>
 	    			</div>
     			</div>
 
@@ -379,32 +379,32 @@
 	    				<form:select path="intellectualPerformanceVerbally" id="intellectualPerformanceVerbally" type="text" class="input-large">
 	    					<form:option value="0">
 									-
-							</form:option>
-		    				<form:option value="1">
-									Deficit
-							</form:option>
-							<form:option value="2">
-									Hranice deficitu
-							</form:option>
-							<form:option value="3">
-									Mírný nadprůměr
-							</form:option>
-							<form:option value="4">
-									Nadprůměr
-							</form:option>
-							<form:option value="5">
-									Nezjištěno
-							</form:option>
-							<form:option value="6">
-									Podprůměr
-							</form:option>
-							<form:option value="7">
-									Průměr
-							</form:option>
-							<form:option value="8">
-									Těžký deficit
-							</form:option>
-						</form:select>
+								</form:option>
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
+								</form:option>
+								<form:option value="2">
+										<spring:message code="label.boundDeficit"/>
+								</form:option>
+								<form:option value="3">
+										<spring:message code="label.overAverage"/>
+								</form:option>
+								<form:option value="4">
+										<spring:message code="label.aboveAverage"/>
+								</form:option>
+								<form:option value="5">
+										<spring:message code="label.notIdentified"/>
+								</form:option>
+								<form:option value="6">
+										<spring:message code="label.belowAverage"/>
+								</form:option>
+								<form:option value="7">
+										<spring:message code="label.average"/>
+								</form:option>
+								<form:option value="8">
+										<spring:message code="label.hardDeficit"/>
+								</form:option>
+							</form:select>
 	    			</div>
     			</div>
 
@@ -414,32 +414,32 @@
 	    				<form:select path="intellectualPerformanceNonverbalAbstraction" id="intellectualPerformanceNonverbalAbstraction" type="text" class="input-large">
 	    					<form:option value="0">
 									-
-							</form:option>
-		    				<form:option value="1">
-									Deficit
-							</form:option>
-							<form:option value="2">
-									Hranice deficitu
-							</form:option>
-							<form:option value="3">
-									Mírný nadprůměr
-							</form:option>
-							<form:option value="4">
-									Nadprůměr
-							</form:option>
-							<form:option value="5">
-									Nezjištěno
-							</form:option>
-							<form:option value="6">
-									Podprůměr
-							</form:option>
-							<form:option value="7">
-									Průměr
-							</form:option>
-							<form:option value="8">
-									Těžký deficit
-							</form:option>
-						</form:select>
+								</form:option>
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
+								</form:option>
+								<form:option value="2">
+										<spring:message code="label.boundDeficit"/>
+								</form:option>
+								<form:option value="3">
+										<spring:message code="label.overAverage"/>
+								</form:option>
+								<form:option value="4">
+										<spring:message code="label.aboveAverage"/>
+								</form:option>
+								<form:option value="5">
+										<spring:message code="label.notIdentified"/>
+								</form:option>
+								<form:option value="6">
+										<spring:message code="label.belowAverage"/>
+								</form:option>
+								<form:option value="7">
+										<spring:message code="label.average"/>
+								</form:option>
+								<form:option value="8">
+										<spring:message code="label.hardDeficit"/>
+								</form:option>
+							</form:select>
 	    			</div>
     			</div>
 
@@ -449,32 +449,32 @@
 	    				<form:select path="intellectualPerformanceNonverbalDesignCapabilities" id="intellectualPerformanceNonverbalDesignCapabilities" type="text" class="input-large">
 	    					<form:option value="0">
 									-
-							</form:option>
-		    				<form:option value="1">
-									Deficit
-							</form:option>
-							<form:option value="2">
-									Hranice deficitu
-							</form:option>
-							<form:option value="3">
-									Mírný nadprůměr
-							</form:option>
-							<form:option value="4">
-									Nadprůměr
-							</form:option>
-							<form:option value="5">
-									Nezjištěno
-							</form:option>
-							<form:option value="6">
-									Podprůměr
-							</form:option>
-							<form:option value="7">
-									Průměr
-							</form:option>
-							<form:option value="8">
-									Těžký deficit
-							</form:option>
-						</form:select>
+								</form:option>
+			    				<form:option value="1">
+										<spring:message code="label.deficit"/>
+								</form:option>
+								<form:option value="2">
+										<spring:message code="label.boundDeficit"/>
+								</form:option>
+								<form:option value="3">
+										<spring:message code="label.overAverage"/>
+								</form:option>
+								<form:option value="4">
+										<spring:message code="label.aboveAverage"/>
+								</form:option>
+								<form:option value="5">
+										<spring:message code="label.notIdentified"/>
+								</form:option>
+								<form:option value="6">
+										<spring:message code="label.belowAverage"/>
+								</form:option>
+								<form:option value="7">
+										<spring:message code="label.average"/>
+								</form:option>
+								<form:option value="8">
+										<spring:message code="label.hardDeficit"/>
+								</form:option>
+							</form:select>
 	    			</div>
     			</div>
 

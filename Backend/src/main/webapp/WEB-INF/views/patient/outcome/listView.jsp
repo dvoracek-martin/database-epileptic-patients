@@ -86,7 +86,7 @@
 							      					<td><b>AED</b></td>
 							      					<td><b>EEG</b></td>
 							      					<td><b>MRI</b></td>
-							      					<td><b>Neuropsychologie</b></td>
+							      					<td><b><spring:message code="label.neuropsychology"/></b></td>
 							      					<td></td>
 							      				</tr>
 							      			</thead>
@@ -141,40 +141,40 @@
 															</c:if>
 
 															<c:if test="${outcome.aed==1}">
-																<td>nevysazený</td>
+																<td><spring:message code="label.reduced"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==2}">
-																<td>vysazený</td>
+																<td><spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==3}">
-																<td>redukovaný</td>
+																<td><spring:message code="label.notDropped"/></td>
 															</c:if>
 
 															<c:if test="${outcome.eeg==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==2}">
-																<td>s hroty</td>
+																<td><spring:message code="label.spikes"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==3}">
-																<td>bez hrotů</td>
+																<td><spring:message code="label.noSpikes"/></td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.mri==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.neuropsychology==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
-									      					<td><a>Upravit záznam</a></td>
+									      					<td><a><spring:message code="label.editRecord"/></a></td>
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
@@ -239,40 +239,40 @@
 															</c:if>
 
 															<c:if test="${outcome.aed==1}">
-																<td>nevysazený</td>
+																<td><spring:message code="label.notDropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==2}">
-																<td>vysazený</td>
+																<td><spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==3}">
-																<td>redukovaný</td>
+																<td><spring:message code="label.reduced"/></td>
 															</c:if>
 
 															<c:if test="${outcome.eeg==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==2}">
-																<td>s hroty</td>
+																<td><spring:message code="label.spikes"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==3}">
-																<td>bez hrotů</td>
+																<td><spring:message code="label.noSpikes"/></td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.mri==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.neuropsychology==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
-									      					<td><a>Upravit záznam</a></td>
+									      					<td><a><spring:message code="label.editRecord"/></a></td>
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
@@ -337,40 +337,40 @@
 															</c:if>
 
 															<c:if test="${outcome.aed==1}">
-																<td>nevysazený</td>
+																<td>ne<spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==2}">
-																<td>vysazený</td>
+																<td><spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==3}">
-																<td>redukovaný</td>
+																<td><spring:message code="label.reduced"/></td>
 															</c:if>
 
 															<c:if test="${outcome.eeg==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==2}">
-																<td>s hroty</td>
+																<td><spring:message code="label.spikes"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==3}">
-																<td>bez hrotů</td>
+																<td><spring:message code="label.noSpikes"/></td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.mri==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.neuropsychology==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
-									      					<td><a>Upravit záznam</a></td>
+									      					<td><a><spring:message code="label.editRecord"/></a></td>
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
@@ -435,40 +435,40 @@
 															</c:if>
 
 															<c:if test="${outcome.aed==1}">
-																<td>nevysazený</td>
+																<td>ne<spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==2}">
-																<td>vysazený</td>
+																<td><spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==3}">
-																<td>redukovaný</td>
+																<td><spring:message code="label.reduced"/></td>
 															</c:if>
 
 															<c:if test="${outcome.eeg==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==2}">
-																<td>s hroty</td>
+																<td><spring:message code="label.spikes"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==3}">
-																<td>bez hrotů</td>
+																<td><spring:message code="label.noSpikes"/></td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.mri==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.neuropsychology==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
-									      					<td><a>Upravit záznam</a></td>
+									      					<td><a><spring:message code="label.editRecord"/></a></td>
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">
@@ -533,40 +533,40 @@
 															</c:if>
 
 															<c:if test="${outcome.aed==1}">
-																<td>nevysazený</td>
+																<td>ne<spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==2}">
-																<td>vysazený</td>
+																<td><spring:message code="label.dropped"/></td>
 															</c:if>
 															<c:if test="${outcome.aed==3}">
-																<td>redukovaný</td>
+																<td><spring:message code="label.reduced"/></td>
 															</c:if>
 
 															<c:if test="${outcome.eeg==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==2}">
-																<td>s hroty</td>
+																<td><spring:message code="label.spikes"/></td>
 															</c:if>
 															<c:if test="${outcome.eeg==3}">
-																<td>bez hrotů</td>
+																<td><spring:message code="label.noSpikes"/></td>
 															</c:if>
 
 															<c:if test="${outcome.mri==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.mri==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
 															<c:if test="${outcome.neuropsychology==1}">
-																<td>neprovedeno</td>
+																<td><spring:message code="label.notDone"/></td>
 															</c:if>
 															<c:if test="${outcome.neuropsychology==2}">
-																<td>provedeno</td>
+																<td><spring:message code="label.done"/></td>
 															</c:if>
 
-									      					<td><a>Upravit záznam</a></td>
+									      					<td><a><spring:message code="label.editRecord"/></a></td>
 														</c:if>
 													</c:forEach>
 													<c:if test="${count2==0}">

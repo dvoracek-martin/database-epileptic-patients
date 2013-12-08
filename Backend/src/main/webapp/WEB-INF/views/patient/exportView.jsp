@@ -11,10 +11,10 @@
 <t:menuLVL3>
 
 <jsp:attribute name="title">
-      Pacient
+      <spring:message code="label.patient"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      Pacient
+      <spring:message code="label.patient"/>
     </jsp:attribute>
 
 	<jsp:attribute name="script">
