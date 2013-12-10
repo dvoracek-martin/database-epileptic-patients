@@ -66,4 +66,12 @@ public interface GenericDAO<T> {
 	 * @return the t
 	 */
 	public T findByID(Class<T> myClass, int id);
+	
+	/**
+	 * The same as findAll(Class<T> myClass), but this method can paginate the results
+	 *
+	 * @param myClass the my class
+	 * @return the list
+	 */
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber);
 }

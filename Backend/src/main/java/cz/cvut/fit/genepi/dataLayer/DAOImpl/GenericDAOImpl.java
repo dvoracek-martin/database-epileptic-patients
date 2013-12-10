@@ -9,15 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 
-
 /***
  * Implements GenericDAO.
- *
- * @param <T> the generic type
+ * 
+ * @param <T>
+ *            the generic type
  */
 @Repository
-public class GenericDAOImpl<T> implements
-		GenericDAO<T> {
+public class GenericDAOImpl<T> implements GenericDAO<T> {
 
 	/** The session factory. */
 	@Autowired
@@ -101,6 +100,19 @@ public class GenericDAOImpl<T> implements
 		List<T> T = null;
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from " + myClass.getName());
+		T = query.list();
+		return T;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
+		List<T> T = null;
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from " + myClass.getName());
+
+		query.setFirstResult(maxResults * (pageNumber - 1));
+		query.setMaxResults(maxResults);
+		
 		T = query.list();
 		return T;
 	}
