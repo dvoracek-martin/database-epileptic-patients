@@ -85,6 +85,15 @@ GenericService<T> {
 	public List<T> findAll(Class<T> myClass) {
 		return genericDAO.findAll(myClass);
 	}
+	
+	/* (non-Javadoc)
+	 * @see cz.cvut.fit.genepi.service.GenericService#findAll(java.lang.Class)
+	 */
+	@Override
+	@Transactional
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
+		return genericDAO.findAllWithPagination(myClass, maxResults, pageNumber);
+	}
 
 	/* (non-Javadoc)
 	 * @see cz.cvut.fit.genepi.service.GenericService#findByID(java.lang.Class, int)

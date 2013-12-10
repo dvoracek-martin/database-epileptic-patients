@@ -103,7 +103,12 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		T = query.list();
 		return T;
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.models.GenericDAO#findAllWithPagination(java.lang.Class)
+	 */
 	@SuppressWarnings("unchecked")
 	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
 		List<T> T = null;

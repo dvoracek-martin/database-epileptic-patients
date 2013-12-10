@@ -115,7 +115,8 @@ public class PatientController {
 	@RequestMapping(value = "/patient/create", method = RequestMethod.POST)
 	public String patientCreatePOST(
 			@ModelAttribute("patient") @Valid PatientEntity patient,
-			BindingResult result, @RequestParam("doctorId") Integer doctorId ,Locale locale, Model model) {
+			BindingResult result, @RequestParam("doctorId") Integer doctorId,
+			Locale locale, Model model) {
 		if (result.hasErrors()) {
 			model.addAttribute("doctors", roleService.getAllDoctors());
 			model.addAttribute("male",
@@ -176,11 +177,34 @@ public class PatientController {
 	 * @param model
 	 *            the model
 	 * @return the string
+	 * 
+	 *         =====================================
+	 * 
+	 *         DEPRECATED
+	 * 
+	 *         =====================================
+	 * @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
+	 *                       public String patientsListGET(Locale locale, Model
+	 *                       model) { model.addAttribute("patientList",
+	 *                       patientService.findAll(PatientEntity.class));
+	 *                       return "patient/listView"; }
+	 */
+
+	/**
+	 * Patients list get.
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/list", method = RequestMethod.GET)
-	public String patientsListGET(Locale locale, Model model) {
-		model.addAttribute("patientList",
-				patientService.findAll(PatientEntity.class));
+	public String patientsListGET(Locale locale, Model model,
+			@RequestParam("maxResults") int maxResults,
+			@RequestParam("pageNumber") int pageNumber) {
+		model.addAttribute("patientList", patientService.findAllWithPagination(
+				PatientEntity.class, maxResults, pageNumber));
 		return "patient/listView";
 	}
 
@@ -352,8 +376,8 @@ public class PatientController {
 		}
 
 		List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
-		listOfPatients.add(patientService.findByID(
-				PatientEntity.class, patientID[0]));
+		listOfPatients.add(patientService.findByID(PatientEntity.class,
+				patientID[0]));
 		model.addAttribute("patientList", listOfPatients);
 		model.addAttribute("listOfPossibleExportParams",
 				exportParamsService.findAll(ExportParamsEntity.class));
@@ -423,8 +447,8 @@ public class PatientController {
 		model.addAttribute("listOfUsersSavedConfigurations",
 				listOfUsersSavedConfigurations);
 		model.addAttribute("user", user);
-		model.addAttribute("patient", /*patientService.delete(*/patientService.findByID(PatientEntity.class,
-				patientID[0]))/*)*/;
+		model.addAttribute("patient", /* patientService.delete( */
+				patientService.findByID(PatientEntity.class, patientID[0]))/* ) */;
 		List<PatientEntity> patientList = new ArrayList<PatientEntity>();
 		for (Integer patient : patientID) {
 			patientList.add(patientService.getPatientByIdWithAllLists(patient));

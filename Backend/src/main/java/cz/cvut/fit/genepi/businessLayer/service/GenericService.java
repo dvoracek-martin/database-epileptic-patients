@@ -63,6 +63,10 @@ public interface GenericService<T> {
 	 */
 	public List<T> findAll(Class<T> myClass);
 
+	
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber);
+	
+	
 	/**
 	 * Find by id.
 	 * 
