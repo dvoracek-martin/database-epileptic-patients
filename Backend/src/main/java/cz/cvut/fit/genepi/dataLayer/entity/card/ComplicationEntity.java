@@ -66,7 +66,7 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
 
 	/** The comment. */
 	@Size(max = 800)
-	@Column(name = "comment", length = 800, nullable = true)
+	@Column(name = "comment", length = 800)
 	private String comment;
 
 	@Override

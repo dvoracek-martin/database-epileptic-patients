@@ -78,17 +78,20 @@ public class SeizureEntity implements Comparable<SeizureEntity> {
 	private boolean nonepilepticSeizures;
 
 	/** The seizures while awake epi. */
-	@Column(name = "seizures_while_awake")
-	private int seizuresWhileAwake;
+//	@Column(name = "seizures_while_awake")
+//	private int seizuresWhileAwake;
 
 	/** The seizures while sleep epi. */
-	@Column(name = "seizures_while_sleep")
-	private int seizuresWhileSleep;
+//	@Column(name = "seizures_while_sleep")
+//	private int seizuresWhileSleep;
 
 	/** The seizures while sleep epi. */
-	@Column(name = "seizures_while_both")
-	private int seizuresWhileBoth;
+//	@Column(name = "seizures_while_both")
+//	private int seizuresWhileBoth;
 
+	@Column(name = "seizure_occurrence", length = 800, nullable = true)
+	private String seizureOccurrence;
+	
 	/** The comment. */
 	@Size(max = 800)
 	@Column(name = "comment", length = 800, nullable = true)
