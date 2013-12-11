@@ -205,6 +205,8 @@ public class PatientController {
 			@RequestParam("pageNumber") int pageNumber) {
 		model.addAttribute("patientList", patientService.findAllWithPagination(
 				PatientEntity.class, maxResults, pageNumber));
+		model.addAttribute("maxResults", maxResults);
+		model.addAttribute("pageNumber", pageNumber);
 		return "patient/listView";
 	}
 
