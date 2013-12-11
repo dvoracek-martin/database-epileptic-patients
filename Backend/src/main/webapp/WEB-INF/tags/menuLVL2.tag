@@ -30,7 +30,7 @@
 	<jsp:attribute name="menuLVL2">
 	<jsp:invoke fragment="menuLVL3" />
 		<li class="nav-header"><spring:message code="label.patients" /></li>
-		<li><a href="<c:url value="/patient/list"/>"><spring:message
+		<li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=1"/>"><spring:message
 					code="label.cardIndex" /></a></li>
 		<li><a href=""><spring:message
 					code="label.advancedSearch" /></a></li>

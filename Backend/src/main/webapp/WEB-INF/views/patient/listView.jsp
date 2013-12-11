@@ -1,6 +1,8 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="UTF-8"%>
 
 <t:menuLVL1.NEW303>
@@ -82,7 +84,42 @@
                     </tbody>
                 </table>
             </div>
-            Paginator here
+            <c:set var="temp" value="${fn:length(patientList)/maxResults}" scope="page" />
+
+            <div class="text-center">
+                <ul class="pagination">
+                    <c:choose>
+                        <c:when test="${pageNumber<=1}">
+                            <li class="disabled"><a href="#">&laquo;</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${pageNumber-1}" />">&laquo;</a></li>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <c:set var="last" value="0" scope="page" />
+                    <c:forEach var="i" begin="0" end="${temp}">
+                        <c:set var="last" value="${i}" scope="page" />
+                        <c:choose>
+                            <c:when test="${pageNumber==(i+1)}">
+                                <li class="active"><a href="#">${i+1} <span class="sr-only"></span></a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${i+1}" />" >${i+1} <span class="sr-only"></span></a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+
+                    <c:choose>
+                        <c:when test="${pageNumber==(last+1)}">
+                            <li class="disabled"><a href="#">&raquo;</a></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${pageNumber+1}" />">&raquo;</a></li>
+                        </c:otherwise>
+                    </c:choose>                 
+                </ul>
+            </div>
             								
 	</jsp:body>
 </t:menuLVL1.NEW303>
