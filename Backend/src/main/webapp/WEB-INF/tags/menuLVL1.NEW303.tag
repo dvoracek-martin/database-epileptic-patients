@@ -38,7 +38,7 @@
 				<spring:message code="label.patients" />
 			</div>
 					<div class="panel-body">
-						<ul class="nav">
+						<ul>
 							<li><a href="<c:url value="/patient/list"/>"><spring:message
 								code="label.cardIndex" /></a></li>
 							<li><a href="<c:url value="/advanced-search"/>"><spring:message
@@ -51,7 +51,7 @@
 				<spring:message code="label.administration" />
 			</div>
 					<div class="panel-body">
-						<ul class="nav">
+						<ul>
 							<li><a href="<c:url value="/user/list"/>"><spring:message
 								code="label.users" /></a></li>						
 						</ul>

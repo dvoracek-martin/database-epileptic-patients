@@ -26,7 +26,7 @@
 
 <link rel="icon" type="image/png"
 	href="<c:url value="/resources/img/logoIcon.ico" />">
-<link href="<c:url value="/resources/css/bootstrap.min.NEW303.css" />"
+<link href="<c:url value="/resources/css/bootstrap.NEW303.css" />"
 	rel="stylesheet">
 <link href="<c:url value="/resources/css/menu.NEW303.css" />"
 	rel="stylesheet">
@@ -86,14 +86,14 @@
 				class="btn btn-default btn-lg btn-block visible-xs">menu/content</button>
 			<br>
 			<%-- Menu section --%>
-			<div id="menu" class="hide-content col-sm-3 col-md-3 col-lg-3"
+			<div id="menu" class="hide-content col-sm-4 col-md-4 col-lg-3"
 				role="navigation">
 				<%-- Menu hook --%>
 				<jsp:invoke fragment="menuLVL1" />
 			</div>
 
 			<%-- Content section --%>
-			<div id="content" class="col-sm-9 col-md-9 col-lg-9">
+			<div id="content" class="col-sm-8 col-md-8 col-lg-9">
 				<%-- Hook for body --%>
 				<jsp:doBody />
 			</div>
