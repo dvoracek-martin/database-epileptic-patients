@@ -69,7 +69,7 @@ public class AnamnesisController {
 			Model model) {
 
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientId));
+				patientService.getPatientByIdWithDoctor(patientId));
 		model.addAttribute("anamnesis", new AnamnesisEntity());
 		return "patient/anamnesis/createView";
 	}
@@ -106,7 +106,7 @@ public class AnamnesisController {
 
 		if (result.hasErrors()) {		
 			model.addAttribute("patient",
-					patientService.findByID(PatientEntity.class, patientId));
+					patientService.getPatientByIdWithDoctor( patientId));
 			return "patient/anamnesis/createView";
 		} else {
 			anamnesis.setPatient(patientService.findByID(PatientEntity.class,

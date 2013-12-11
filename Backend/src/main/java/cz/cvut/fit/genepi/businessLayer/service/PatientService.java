@@ -122,4 +122,11 @@ public interface PatientService extends GenericService<PatientEntity> {
 	 * @return PateintEntity
 	 */
 	public PatientEntity getPatientByIdWithSeizureList(int patientId);
+	
+	/**
+	 * Finds Patient with his doctor
+	 * @param patientId the ID of the pateint
+	 * @return Pateint as the PateintEntity
+	 */
+	public PatientEntity getPatientByIdWithDoctor(int patientId);
 }

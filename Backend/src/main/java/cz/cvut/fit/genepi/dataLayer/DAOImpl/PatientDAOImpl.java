@@ -456,4 +456,15 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
 		return (List<PatientEntity>) criteria.list();
 	}
+	
+	@Override
+	public PatientEntity getPatientByIdWithDoctor(int patientId) {
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"select p from PatientEntity p left join fetch p.doctor"
+								+ " where p.id = :patientId");
+		query.setParameter("patientId", patientId);
+		return this.findOne(query);
+	}
 }

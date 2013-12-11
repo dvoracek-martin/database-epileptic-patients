@@ -130,4 +130,11 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 	 * @return List of PatientEntity
 	 */
 	public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch);
+	
+	/**
+	 * Finds Patient with his doctor
+	 * @param patientId the ID of the pateint
+	 * @return Pateint as the PateintEntity
+	 */
+	public PatientEntity getPatientByIdWithDoctor(int patientId);
 }

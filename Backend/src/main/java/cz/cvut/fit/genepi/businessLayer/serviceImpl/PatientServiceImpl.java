@@ -131,5 +131,12 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 		return patientDAO.getPatientByIdWithSeizureList(patientId);
 
 	}
+	
+	@Override
+	@Transactional
+	public PatientEntity getPatientByIdWithDoctor(int patientId) {
+		return patientDAO.getPatientByIdWithDoctor(patientId);
+
+	}
 
 }
