@@ -60,60 +60,60 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 	private Date date;
 
 	/** The epilepsy in family. */
-	@Column(name = "epilepsy_in_family", nullable = true)
+	@Column(name = "epilepsy_in_family")
 	private boolean epilepsyInFamily;
 
 	/** The prenatal risk. */
-	@Column(name = "prenatal_risk", nullable = true)
+	@Column(name = "prenatal_risk")
 	private boolean prenatalRisk;
 
 	/** The fibril convulsions. */
-	@Column(name = "fibril_convulsions", nullable = true)
+	@Column(name = "fibril_convulsions")
 	private boolean fibrilConvulsions;
 
 	/** The inflammation cns. */
-	@Column(name = "inflammation_cns", nullable = true)
+	@Column(name = "inflammation_cns")
 	private boolean inflammationCns;
 
 	/** The injury cns. */
-	@Column(name = "injury_cns", nullable = true)
+	@Column(name = "injury_cns")
 	private boolean injuryCns;
 
 	/** The operation cns. */
-	@Column(name = "operation_cns", nullable = true)
+	@Column(name = "operation_cns")
 	private boolean operationCns;
 
 	/** The early pmd retardation. */
-	@Column(name = "early_pmd_retardation", nullable = true)
+	@Column(name = "early_pmd_retardation")
 	private boolean earlyPmdRetardation;
 
 	/** The beginning epilepsy. */
 	//@DateTimeFormat(pattern = "dd/MM/yyyy")
 	@Past
 	@NotNull
-	@Column(name = "beginning_epilepsy", length = 7, nullable = true)
+	@Column(name = "beginning_epilepsy", length = 7)
 	private Date beginningEpilepsy;
 
 	/** The first fever. */
-	@Column(name = "first_fever", nullable = true)
+	@Column(name = "first_fever")
 	private boolean firstFever;
 
 	/** The infantile spasm. */
-	@Column(name = "infantile_spasm", nullable = true)
+	@Column(name = "infantile_spasm")
 	private boolean infantileSpasm;
 
 	/** The specific syndrome idcom. */
-	@Column(name = "specific_syndrome", nullable = true)
+	@Column(name = "specific_syndrome")
 	private int specificSyndrome;
 
 	/** The non cns comorbidity. */
 	@Size(max = 800)
-	@Column(name = "non_cns_comorbidity", length = 800, nullable = true)
+	@Column(name = "non_cns_comorbidity", length = 800)
 	private String nonCnsComorbidity;
 
 	/** The comment. */
 	@Size(max = 800)
-	@Column(name = "comment", length = 800, nullable = true)
+	@Column(name = "comment", length = 800)
 	private String comment;
 
 	@Override

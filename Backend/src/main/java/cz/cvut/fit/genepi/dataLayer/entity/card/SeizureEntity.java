@@ -197,28 +197,12 @@ public class SeizureEntity implements Comparable<SeizureEntity> {
 		this.nonepilepticSeizures = nonepilepticSeizures;
 	}
 
-	public int getSeizuresWhileAwake() {
-		return seizuresWhileAwake;
+	public String getSeizureOccurrence() {
+		return seizureOccurrence;
 	}
 
-	public void setSeizuresWhileAwake(int seizuresWhileAwake) {
-		this.seizuresWhileAwake = seizuresWhileAwake;
-	}
-
-	public int getSeizuresWhileSleep() {
-		return seizuresWhileSleep;
-	}
-
-	public void setSeizuresWhileSleep(int seizuresWhileSleep) {
-		this.seizuresWhileSleep = seizuresWhileSleep;
-	}
-
-	public int getSeizuresWhileBoth() {
-		return seizuresWhileBoth;
-	}
-
-	public void setSeizuresWhileBoth(int seizuresWhileBoth) {
-		this.seizuresWhileBoth = seizuresWhileBoth;
+	public void setSeizureOccurrence(String seizureOccurrence) {
+		this.seizureOccurrence = seizureOccurrence;
 	}
 
 	public String getComment() {

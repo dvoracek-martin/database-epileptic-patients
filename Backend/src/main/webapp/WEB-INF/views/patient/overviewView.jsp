@@ -15,7 +15,7 @@
     </jsp:attribute>
 
 	<jsp:body>
-				<div>
+				<%--<div>
 					<div class="span5">
 						<h2><spring:message code="label.exportPatient"/></h2>
 					</div>
@@ -1939,7 +1939,7 @@
 	            		</br>
 						</br>
             		</c:otherwise>
-				</c:choose>
+				</c:choose> --%>
 	</jsp:body>
 </t:menuLVL3>
 
