@@ -29,8 +29,7 @@
   						</div>
   						<div class="col-xs-6">
 						<h3 class="pull-right">
-							<a href="<c:url value="/patient/create" />"
-						style="text-decoration: none"><spring:message
+							<a href="<c:url value="/patient/create" />"><spring:message
 							code="label.addPatient" /></a>
 						</h3>
 						</div>
