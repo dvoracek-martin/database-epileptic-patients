@@ -76,17 +76,21 @@ public class PatientEntity {
 	@Size(max = 10)
 	@Column(name = "gender", length = 10, nullable = false)
 	private String gender;
+	
 
+	@Column(name = "doctor_id", precision = 1, scale = 0)
+	private int doctorId;
+	
 	/** The deleted. */
 	@Column(name = "status", precision = 1, scale = 0)
 	private int status;
 
 	/** The checked. */
 	@Column(name = "verified", precision = 1, scale = 0)
-	private boolean verified;
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "doctor_id")
+	private boolean verified;	
+	
+	@ManyToOne(fetch = FetchType.LAZY )
+	@JoinColumn(name = "doctor_id", insertable =  false, updatable = false)
 	private UserEntity doctor;
 
 	/* Relations */
@@ -415,6 +419,16 @@ public class PatientEntity {
 	 */
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+
+	
+	
+	public int getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
 	}
 
 	/**

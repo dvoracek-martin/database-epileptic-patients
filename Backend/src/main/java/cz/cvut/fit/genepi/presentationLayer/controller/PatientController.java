@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -14,6 +15,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -96,10 +98,6 @@ public class PatientController {
 	public String patientCreateGET(Locale locale, Model model) {
 		model.addAttribute("doctors", roleService.getAllDoctors());
 		model.addAttribute("patient", new PatientEntity());
-		model.addAttribute("male",
-				messageSource.getMessage("label.male", null, locale));
-		model.addAttribute("female",
-				messageSource.getMessage("label.female", null, locale));
 		return "patient/createView";
 	}
 
@@ -118,14 +116,10 @@ public class PatientController {
 			BindingResult result, @RequestParam("doctorId") Integer doctorId,
 			Locale locale, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("doctors", roleService.getAllDoctors());
-			model.addAttribute("male",
-					messageSource.getMessage("label.male", null, locale));
-			model.addAttribute("female",
-					messageSource.getMessage("label.female", null, locale));
+			model.addAttribute("doctors", roleService.getAllDoctors());		
 			return "patient/createView";
 		} else {
-			patient.setDoctor(userService.findByID(UserEntity.class, doctorId));
+			//patient.setDoctor(userService.findByID(UserEntity.class, doctorId));
 			patientService.save(patient);
 			return "redirect:/patient/" + Integer.toString(patient.getId())
 					+ "/overview";
@@ -240,11 +234,12 @@ public class PatientController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/edit", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.GET)
 	public String patientEditGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
+			@PathVariable("patientId") Integer patientId) {
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientID));
+				patientService.getPatientByIdWithDoctor(patientId));
+		model.addAttribute("doctors", roleService.getAllDoctors());
 		return "patient/editView";
 	}
 
@@ -259,16 +254,17 @@ public class PatientController {
 	 *            the patient
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
 	public String patientEditPOST(Locale locale, Model model,
 			@Valid @ModelAttribute("patient") PatientEntity patient,
 			BindingResult result) {
 
 		if (result.hasErrors()) {
+			model.addAttribute("doctors", roleService.getAllDoctors());
 			return "patient/editView";
 		} else {
 			patientService.save(patient);
-			return "redirect:/patient/" + Integer.toString(patient.getId())
+			return "redirect:/patient/" + /*Integer.toString(*/patient.getId()/*)*/
 					+ "/overview";
 		}
 	}
