@@ -12,7 +12,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.addRecord"/>
+      <spring:message code="label.addRecord"/> upravit zaznam
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -36,13 +36,13 @@
     <!-- form for adding new record -->
     <%-- mapping resource in action with c:url caused errors --%>
     <form:form class="form-horizontal" role="form" method="POST"
-               action="/GENEPI/patient/${patient.id}/anamnesis/create" commandName="anamnesis">
+               action="/GENEPI/patient/${patient.id}/anamnesis/${anamnesis.id}/edit" commandName="anamnesis">
 
         <%@include file="formView.jsp" %>
 
         <div class="form-group">
             <div class="col-xs-offset-3 col-xs-8">
-                <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+                <button class="btn btn-primary" type="submit"><spring:message code="label.add"/>ulozit</button>
             </div>
         </div>
     </form:form>

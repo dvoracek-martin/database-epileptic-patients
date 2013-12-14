@@ -18,6 +18,7 @@ import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
 
 /**
  * This class is a controller class which handles requests connected with
@@ -115,6 +116,16 @@ public class AnamnesisController {
 			return "redirect:/patient/" + patientId + "/anamnesis/list";
 		}
 	}
+	
+	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisId}/delete", method = RequestMethod.GET)
+	public String complicationDeleteGET(Locale locale, Model model,
+			@PathVariable("patientID") Integer patientID,
+			@PathVariable("anamnesisId") Integer anamnesisId) {
+
+		anamnesisService.delete(anamnesisService.findByID(
+				AnamnesisEntity.class, anamnesisId));
+		return "redirect:/patient/" + patientID + "/anamnesis/list";
+	}
 
 	/**
 	 * Handles the GET request to access page for editing anamnesis.
@@ -137,7 +148,7 @@ public class AnamnesisController {
 			Model model) {
 
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientId));
+				patientService.getPatientByIdWithDoctor(patientId));
 		model.addAttribute("anamnesis",
 				anamnesisService.findByID(AnamnesisEntity.class, anamnesisId));
 		return "patient/anamnesis/editView";
@@ -175,7 +186,7 @@ public class AnamnesisController {
 
 		if (result.hasErrors()) {
 			model.addAttribute("patient",
-					patientService.findByID(PatientEntity.class, patientId));
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/anamnesis/editView";
 		} else {
 			anamnesis.setPatient(patientService.findByID(PatientEntity.class,

@@ -53,7 +53,7 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 	/* Other fields */
 
 	/** The date. */
-	//@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past
 	@NotNull
 	@Column(name = "date", nullable = false)
@@ -88,7 +88,7 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 	private boolean earlyPmdRetardation;
 
 	/** The beginning epilepsy. */
-	//@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past
 	@NotNull
 	@Column(name = "beginning_epilepsy", length = 7)

@@ -50,11 +50,11 @@
 
                                 <a class="pull-right"
                                    href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
-                                    delete
+                                    <span class="glyphicon glyphicon-remove-circle"></span> delete
                                 </a>
                                 <a class="pull-right"
                                    href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
-                                    edit&nbsp;
+                                    <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
                                 </a>
                             </h4>
                         </div>
@@ -73,11 +73,11 @@
 
                                     <a class="pull-right"
                                        href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/delete"/>">
-                                        perma delete
+                                        <span class="glyphicon glyphicon-trash"></span> perma delete
                                     </a>
                                     <a class="pull-right"
                                        href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/unhide"/>">
-                                        recover&nbsp;
+                                        <span class="glyphicon glyphicon-refresh"></span> recover&nbsp;
                                     </a>
                                 </h4>
                             </div>

@@ -1,8 +1,8 @@
-			$(function() {
-				$(".datepicker").datepicker({
-					dateFormat : "dd/mm/yy",
-					changeYear : true,
-					yearRange : "1900:c"
-				});
-
-			});
+$(function() {
+	$(".datepicker").datepicker({
+		dateFormat : "yy-mm-dd",
+		changeYear : true,
+		yearRange : "1900:c",
+	});
+	$(".datepicker").datepicker("setDate", "+0");
+});
