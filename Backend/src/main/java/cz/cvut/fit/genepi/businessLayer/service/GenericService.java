@@ -63,7 +63,12 @@ public interface GenericService<T> {
 	 */
 	public List<T> findAll(Class<T> myClass);
 
-	
+	/**
+	 * The same as findAll(Class<T> myClass), but this method can paginate the results
+	 *
+	 * @param myClass the my class
+	 * @return the list
+	 */	
 	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber);
 	
 	
