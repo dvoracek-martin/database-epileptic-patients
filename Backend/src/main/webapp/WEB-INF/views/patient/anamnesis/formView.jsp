@@ -9,7 +9,7 @@
             code="label.dateOfContractAward"/></label>
 
     <div class="col-xs-8">
-        <form:input path="date" id="date" type="text" class="form-control datepicker"/>
+        <form:input path="date" id="date" type="text" class="form-control datepicker-today"/>
         <form:errors path="date" cssClass="error">
         </form:errors>
     </div>
@@ -98,7 +98,7 @@
 
     <div class="col-xs-8">
         <form:input path="beginningEpilepsy" id="beginningEpilepsy" type="text"
-                    class="form-control datepicker"/>
+                    class="form-control datepicker-roday"/>
         <form:errors path="beginningEpilepsy" cssClass="error">
         </form:errors>
     </div>

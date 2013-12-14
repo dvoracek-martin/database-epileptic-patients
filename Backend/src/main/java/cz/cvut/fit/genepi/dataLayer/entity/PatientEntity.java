@@ -60,11 +60,11 @@ public class PatientEntity {
 	/** The nin. */
 	@Pattern(regexp = "[0-9]*")
 	@Size(max = 10)
-	@Column(name = "nin", length = 10, nullable = true)
+	@Column(name = "nin", length = 10)
 	private String nin;
 
 	/** The birthday. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past
 	@NotNull
 	@Column(name = "birthday", nullable = false)
@@ -78,11 +78,11 @@ public class PatientEntity {
 	private String gender;
 
 	/** The deleted. */
-	@Column(name = "status", precision = 1, scale = 0, nullable = true)
+	@Column(name = "status", precision = 1, scale = 0)
 	private int status;
 
 	/** The checked. */
-	@Column(name = "verified", precision = 1, scale = 0, nullable = true)
+	@Column(name = "verified", precision = 1, scale = 0)
 	private boolean verified;
 
 	@ManyToOne(fetch = FetchType.LAZY)

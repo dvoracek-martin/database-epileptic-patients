@@ -236,8 +236,6 @@ public class AnamnesisControllerTest {
 		verifyZeroInteractions(anamnesisServiceMock);
 	}
 	
-	// anamnesisEditGET
-	// anamnesisEditPOST
 	// anamnesisHideGET
 	// anamnesisUnhideGET
 
