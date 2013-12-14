@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,12 +14,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itextpdf.text.DocumentException;
 
@@ -116,10 +115,11 @@ public class PatientController {
 			BindingResult result, @RequestParam("doctorId") Integer doctorId,
 			Locale locale, Model model) {
 		if (result.hasErrors()) {
-			model.addAttribute("doctors", roleService.getAllDoctors());		
+			model.addAttribute("doctors", roleService.getAllDoctors());
 			return "patient/createView";
 		} else {
-			//patient.setDoctor(userService.findByID(UserEntity.class, doctorId));
+			// patient.setDoctor(userService.findByID(UserEntity.class,
+			// doctorId));
 			patientService.save(patient);
 			return "redirect:/patient/" + Integer.toString(patient.getId())
 					+ "/overview";
@@ -205,6 +205,25 @@ public class PatientController {
 	}
 
 	/**
+	 * Patients list search get.
+	 * This method is used to provide results for AJAX calls
+	 * 
+	 * @param locale
+	 *            the locale
+	 * @param model
+	 *            the model
+	 * @return the string
+	 */
+	@RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
+	public @ResponseBody
+	List<PatientEntity> patientsListSearchGET(Locale locale, Model model,
+			@RequestParam("maxResults") int maxResults,
+			@RequestParam("pageNumber") int pageNumber) {
+		return patientService.findAllWithPagination(PatientEntity.class,
+				maxResults, pageNumber);
+	}
+
+	/**
 	 * Patient delete get.
 	 * 
 	 * @param locale
@@ -264,7 +283,7 @@ public class PatientController {
 			return "patient/editView";
 		} else {
 			patientService.save(patient);
-			return "redirect:/patient/" + /*Integer.toString(*/patient.getId()/*)*/
+			return "redirect:/patient/" + /* Integer.toString( */patient.getId()/* ) */
 					+ "/overview";
 		}
 	}
