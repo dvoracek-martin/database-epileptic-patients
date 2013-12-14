@@ -18,14 +18,13 @@ import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
 
 /**
  * This class is a controller class which handles requests connected with
  * anamnesis.
  */
 @Controller
-@SessionAttributes({"anamnesis"})
+@SessionAttributes({ "anamnesis" })
 public class AnamnesisController {
 
 	/** The patient service. */
@@ -105,9 +104,9 @@ public class AnamnesisController {
 			BindingResult result, @PathVariable("patientId") Integer patientId,
 			Locale locale, Model model) {
 
-		if (result.hasErrors()) {		
+		if (result.hasErrors()) {
 			model.addAttribute("patient",
-					patientService.getPatientByIdWithDoctor( patientId));
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/anamnesis/createView";
 		} else {
 			anamnesis.setPatient(patientService.findByID(PatientEntity.class,
@@ -116,11 +115,12 @@ public class AnamnesisController {
 			return "redirect:/patient/" + patientId + "/anamnesis/list";
 		}
 	}
-	
+
 	@RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisId}/delete", method = RequestMethod.GET)
-	public String complicationDeleteGET(Locale locale, Model model,
+	public String anamnesisDeleteGET(
 			@PathVariable("patientID") Integer patientID,
-			@PathVariable("anamnesisId") Integer anamnesisId) {
+			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
+			Model model) {
 
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
@@ -218,11 +218,11 @@ public class AnamnesisController {
 			@PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
 			Model model) {
 
-		anamnesisService.hide(anamnesisService.findByID(
-				AnamnesisEntity.class, anamnesisId));
+		anamnesisService.hide(anamnesisService.findByID(AnamnesisEntity.class,
+				anamnesisId));
 		return "redirect:/patient/" + patientId + "/anamnesis/list";
 	}
-	
+
 	/**
 	 * Handles the GET request to unhide anamnesis.
 	 * 
@@ -247,7 +247,8 @@ public class AnamnesisController {
 
 		anamnesisService.unhide(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
-		//TODO: address to get back to admin module where is list od hidden records.
+		// TODO: address to get back to admin module where is list od hidden
+		// records.
 		return "redirect:/patient/" + patientId + "/anamnesis/list";
 	}
 
