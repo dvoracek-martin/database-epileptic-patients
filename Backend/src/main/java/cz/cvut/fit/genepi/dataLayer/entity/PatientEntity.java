@@ -22,6 +22,12 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.FilterDefs;
+import org.hibernate.annotations.FilterJoinTable;
+import org.hibernate.annotations.Filters;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.ParamDef;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -49,6 +55,8 @@ import cz.cvut.fit.genepi.util.Sorter;
  */
 @Entity
 @Table(name = "patient")
+@FilterDefs({@FilterDef(name = "nonHidden"),
+	})
 public class PatientEntity {
 
 	/** The id. */
@@ -76,21 +84,20 @@ public class PatientEntity {
 	@Size(max = 10)
 	@Column(name = "gender", length = 10, nullable = false)
 	private String gender;
-	
 
 	@Column(name = "doctor_id", precision = 1, scale = 0)
 	private int doctorId;
-	
+
 	/** The deleted. */
 	@Column(name = "status", precision = 1, scale = 0)
 	private int status;
 
 	/** The checked. */
 	@Column(name = "verified", precision = 1, scale = 0)
-	private boolean verified;	
-	
-	@ManyToOne(fetch = FetchType.LAZY )
-	@JoinColumn(name = "doctor_id", insertable =  false, updatable = false)
+	private boolean verified;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "doctor_id", insertable = false, updatable = false)
 	private UserEntity doctor;
 
 	/* Relations */
@@ -104,6 +111,8 @@ public class PatientEntity {
 	/* AnamnesisList */
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
+	@Filters({
+			@Filter(name = "nonHidden", condition = "status != 1") })
 	private Set<AnamnesisEntity> anamnesisList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
@@ -141,7 +150,7 @@ public class PatientEntity {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private Set<NeuropsychologyEntity> neuropsychologyList;
-	
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
 	private Set<NeuropsychologyOldEntity> neuropsychologyOldList;
@@ -242,7 +251,7 @@ public class PatientEntity {
 		CollectionConverter<NeuropsychologyEntity> converter = new CollectionConverter<>();
 		this.neuropsychologyList = converter.toSet(neuropsychologyList);
 	}
-	
+
 	public List<NeuropsychologyOldEntity> getNeuropsychologyOldList() {
 		CollectionConverter<NeuropsychologyOldEntity> converter = new CollectionConverter<>();
 		Sorter<NeuropsychologyOldEntity> sorter = new Sorter<>();
@@ -421,8 +430,6 @@ public class PatientEntity {
 		this.gender = gender;
 	}
 
-	
-	
 	public int getDoctorId() {
 		return doctorId;
 	}

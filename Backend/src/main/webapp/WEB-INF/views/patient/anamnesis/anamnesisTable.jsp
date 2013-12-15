@@ -5,7 +5,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse${anamnesis.id}" class="panel-collapse collapse <c:if test="${count == 1}">in</c:if> ">
+<div id="collapse${anamnesis.id}" class="panel-collapse collapse <c:if test="${count == 0}">in</c:if> ">
     <div class="panel-body">
         <table class="table">
             <tbody>

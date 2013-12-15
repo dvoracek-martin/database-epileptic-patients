@@ -5,7 +5,13 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.FetchMode;
+import org.hibernate.Session;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.Subqueries;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
@@ -13,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
 /**
  * Implementation of PatientDAO
@@ -31,7 +38,44 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	 */
 	@Override
 	public PatientEntity getPatientByIdWithAllLists(int patientId) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
+		/*Criteria criteria = sessionFactory.getCurrentSession()
+				.createCriteria(PatientEntity.class, "patient")
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		
+		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
+		criteria.createAlias("patient.doctor", "doctor");
+		
+		criteria.setFetchMode("doctor.contact", FetchMode.JOIN);
+		criteria.createAlias("doctor.contact", "contact");
+		
+		criteria.setFetchMode("patient.anamnesisList", FetchMode.JOIN);
+		criteria.createAlias("patient.anamnesisList", "anamnesisList");
+		
+		criteria.add(Restrictions.eq("id", patientId));
+		
+		criteria.add(Restrictions.eq("anamnesisList.status", 0));
+
+		
+
+
+		
+		DetachedCriteria maxDateQuery = DetachedCriteria.forClass(AnamnesisEntity.class);
+		ProjectionList proj = Projections.projectionList();
+		proj.add(Projections.max("date"));
+		//proj.add(Projections.groupProperty("connectionid"));
+		maxDateQuery.setProjection(proj);
+
+		criteria.add(Subqueries.eq("anamnesisList.date", maxDateQuery));
+		
+		return (PatientEntity) criteria.uniqueResult();
+*/
+		
+		
+		Session session = sessionFactory
+				.getCurrentSession();
+		session.enableFilter("nonHidden");
+
+		Query query = session.createQuery(
 				"select p from PatientEntity p"
 						+ " left join fetch p.doctor"
 						+ " left join fetch p.anamnesisList"
@@ -63,8 +107,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	 */
 	@Override
 	public PatientEntity getPatientByIdWithAnamnesisList(int patientId) {
-		Query query = sessionFactory
-				.getCurrentSession()
+		Session session = sessionFactory
+				.getCurrentSession();
+		session.enableFilter("nonHidden");
+		Query query = session
 				.createQuery(
 						"select p from PatientEntity p left join fetch p.doctor left join fetch p.anamnesisList"
 								+ " where p.id = :patientId");
@@ -316,7 +362,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		Criteria criteria = sessionFactory.getCurrentSession()
 				.createCriteria(PatientEntity.class, "patient")
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		;
+		
 
 		/* fetching and creating aliases for sub collections */
 

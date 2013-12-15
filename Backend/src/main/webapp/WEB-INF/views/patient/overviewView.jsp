@@ -30,30 +30,31 @@
 
 <%@include file="patientDetails.jsp" %>
 
-<%--
+
 <!-- print out latest anamnesis START -->
-<div>
-    <div class="span4">
-        <h3><spring:message code="label.anamnesis"/></h3>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.anamnesis"/>
+        </h2>
+    
     </div>
-    <div>
+    <div class="col-xs-6">
         <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />"><spring:message code="label.addRecord"/></a>
+            <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />"><spring:message
+                    code="label.addRecord"/></a>
         </h3>
     </div>
 </div>
-</br>
+
 <c:choose>
     <c:when test="${empty patient.anamnesisList}">
-        </br>
-          <div class="alert alert-block">
-              <button type="button" class="close" data-dismiss="alert">&times;</button>
-              <h4><spring:message code="label.noRecord"/>!</h4>
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
         </div>
     </c:when>
-
-      <c:otherwise>
-        <table class="table">
+    <c:otherwise>
+        <%--<table class="table">
                <tbody>
                    <tr class="alert-info">
                           <td colspan="2"><strong><spring:message code="label.examinationDate"/>:</strong> ${patient.anamnesisList[0].date}</td>
@@ -181,13 +182,11 @@
                             </c:choose>
                         </tr>
               </tbody>
-        </table>
+        </table>--%>
         <a href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit vsechny</a>
-        </br>
-        </br>
     </c:otherwise>
 </c:choose>
-
+<%--
 <!-- print out latest  START -->
 <div>
     <div class="span4">

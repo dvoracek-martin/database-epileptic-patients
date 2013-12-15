@@ -33,65 +33,44 @@
             </div>
         </div>
 
-         <%@include file="../patientDetails.jsp" %>
+        <%@include file="../patientDetails.jsp" %>
 
         <!-- anamnesis list START -->
-        <div class="panel-group" id="accordion">
-            <c:set var="count" value="0" scope="page"/>
-            <c:forEach items="${patient.anamnesisList}" var="anamnesis">
-                <c:if test="${anamnesis.status == 0}">
-                    <c:set var="count" value="${count + 1}" scope="page"/>
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
-                                    Zadano dne: ${anamnesis.date}
-                                </a>
 
-                                <a class="pull-right"
-                                   href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
-                                    <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                </a>
-                                <a class="pull-right"
-                                   href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
-                                    <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
-                                </a>
-                            </h4>
-                        </div>
-                        <%@include file="anamnesisTable.jsp" %>
-                    </div>
-                </c:if>
-                <c:if test="${anamnesis.status == 1}">
-                    <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                        <c:set var="count" value="${count + 1}" scope="page"/>
+        <c:choose>
+            <c:when test="${empty patient.anamnesisList}">
+                <div class="alert alert-info">
+                    <spring:message code="label.noRecords"/>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <c:set var="count" value="0" scope="page"/>
+                <div class="panel-group" id="accordion">
+                    <c:forEach items="${patient.anamnesisList}" var="anamnesis">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
-                                        Zadano dne: ${anamnesis.date} -Hidden
+                                        Zadano dne: ${anamnesis.date}
                                     </a>
 
                                     <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/delete"/>">
-                                        <span class="glyphicon glyphicon-trash"></span> perma delete
+                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
+                                        <span class="glyphicon glyphicon-remove-circle"></span> delete
                                     </a>
                                     <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/unhide"/>">
-                                        <span class="glyphicon glyphicon-refresh"></span> recover&nbsp;
+                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
+                                        <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
                                     </a>
                                 </h4>
                             </div>
                             <%@include file="anamnesisTable.jsp" %>
                         </div>
-                    </sec:authorize>
-                </c:if>
-            </c:forEach>
-        </div>
-        <c:if test="${count == 0}">
-            <div class="alert alert-info">
-                <spring:message code="label.noRecords"/>
-            </div>
-        </c:if>
+                        <c:set var="count" value="1" scope="page"/>
+                    </c:forEach>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <!-- anamnesis list END -->
     </jsp:body>
 </t:menuLVL2.NEW303>
