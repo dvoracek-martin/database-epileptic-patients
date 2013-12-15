@@ -216,11 +216,16 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
 	public @ResponseBody
-	List<PatientEntity> patientsListSearchGET(Locale locale, Model model,
+	Model patientsListSearchGET(Locale locale, Model model,
 			@RequestParam("maxResults") int maxResults,
 			@RequestParam("pageNumber") int pageNumber) {
-		return patientService.findAllWithPagination(PatientEntity.class,
-				maxResults, pageNumber);
+		model.addAttribute("patientList", patientService.findAllWithPagination(
+				PatientEntity.class, maxResults, pageNumber));
+		model.addAttribute("maxResults", maxResults);
+		model.addAttribute("pageNumber", pageNumber);
+		//hotfix - there will be some method for getting the count yet
+		model.addAttribute("countOfPatients", 13);
+	return model;
 	}
 
 	/**
