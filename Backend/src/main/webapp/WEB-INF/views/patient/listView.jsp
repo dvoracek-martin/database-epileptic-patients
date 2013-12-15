@@ -84,7 +84,7 @@
                     </tbody>
                 </table>
             </div>
-            <c:set var="temp" value="${fn:length(patientList)/maxResults}" scope="page" />
+            <c:set var="temp" value="${countOfPatients/maxResults}" scope="page" />
 
             <div class="text-center">
                 <ul class="pagination">
@@ -93,7 +93,7 @@
                             <li class="disabled"><a href="#">&laquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${pageNumber-1}" />">&laquo;</a></li>
+                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />">&laquo;</a></li>
                         </c:otherwise>
                     </c:choose>
 
@@ -105,7 +105,7 @@
                                 <li class="active"><a href="#">${i+1} <span class="sr-only"></span></a></li>
                             </c:when>
                             <c:otherwise>
-                                <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${i+1}" />" >${i+1} <span class="sr-only"></span></a></li>
+                                <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${i+1}" />" >${i+1} <span class="sr-only"></span></a></li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -115,7 +115,7 @@
                             <li class="disabled"><a href="#">&raquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=${pageNumber+1}" />">&raquo;</a></li>
+                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+1}" />">&raquo;</a></li>
                         </c:otherwise>
                     </c:choose>                 
                 </ul>
