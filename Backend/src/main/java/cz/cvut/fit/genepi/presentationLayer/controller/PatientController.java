@@ -201,6 +201,8 @@ public class PatientController {
 				PatientEntity.class, maxResults, pageNumber));
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
+		//hotfix - there will be some method for getting the count yet
+				model.addAttribute("countOfPatients", 13);
 		return "patient/listView";
 	}
 
