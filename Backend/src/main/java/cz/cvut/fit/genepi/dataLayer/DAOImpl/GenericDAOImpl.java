@@ -81,6 +81,32 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	/*
 	 * (non-Javadoc)
 	 * 
+	 * @see cz.cvut.fit.genepi.models.GenericDAO#getCount(java.lang.Class)
+	 */
+	public int getCount(Class<T> myClass) {
+		int i;
+		i = ((Long) sessionFactory.getCurrentSession()
+				.createQuery("select count(*) from " + myClass.getName())
+				.uniqueResult()).intValue();
+		return i;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
+	 */
+	public int getCountOfUnhidden(Class<T> myClass) {
+		int i;
+		i = ((Long) sessionFactory.getCurrentSession()
+				.createQuery("select count(*) from " + myClass.getName()+" where status==0")
+				.uniqueResult()).intValue();
+		return i;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see cz.cvut.fit.genepi.models.GenericDAO#findByID(java.lang.Class, int)
 	 */
 	@SuppressWarnings("unchecked")
@@ -103,21 +129,24 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		T = query.list();
 		return T;
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see cz.cvut.fit.genepi.models.GenericDAO#findAllWithPagination(java.lang.Class)
+	 * @see
+	 * cz.cvut.fit.genepi.models.GenericDAO#findAllWithPagination(java.lang.
+	 * Class)
 	 */
 	@SuppressWarnings("unchecked")
-	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults,
+			int pageNumber) {
 		List<T> T = null;
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from " + myClass.getName());
 
 		query.setFirstResult(maxResults * (pageNumber - 1));
 		query.setMaxResults(maxResults);
-		
+
 		T = query.list();
 		return T;
 	}

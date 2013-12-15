@@ -202,7 +202,7 @@ public class PatientController {
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
 		//hotfix - there will be some method for getting the count yet
-				model.addAttribute("countOfPatients", 13);
+				model.addAttribute("countOfPatients", patientService.getCount(PatientEntity.class));
 		return "patient/listView";
 	}
 
@@ -226,7 +226,7 @@ public class PatientController {
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
 		//hotfix - there will be some method for getting the count yet
-		model.addAttribute("countOfPatients", 13);
+		model.addAttribute("countOfPatients", patientService.getCountOfUnhidden(PatientEntity.class));
 	return model;
 	}
 

@@ -103,4 +103,16 @@ GenericService<T> {
 	public T findByID(Class<T> myClass, int id) {
 		return genericDAO.findByID(myClass, id);
 	}
+	
+	@Override
+	@Transactional
+	public int getCount(Class<T> myClass){
+		return genericDAO.getCount(myClass);
+	}
+	
+	@Override
+	@Transactional
+	public int getCountOfUnhidden(Class<T> myClass){
+		return genericDAO.getCountOfUnhidden(myClass);
+	}
 }

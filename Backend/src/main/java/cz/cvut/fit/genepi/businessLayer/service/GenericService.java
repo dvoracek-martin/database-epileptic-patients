@@ -82,4 +82,23 @@ public interface GenericService<T> {
 	 * @return the t
 	 */
 	public T findByID(Class<T> myClass, int id);
+	
+	/**
+	 * Get count.
+	 * 
+	 * @param myClass
+	 *            the my class
+	 * @return int
+	 */
+	
+	public int getCount(Class<T> myClass);
+	
+	/**
+	 * Get count of unhidden
+	 * 
+	 * @param myClass
+	 *            the my class
+	 * @return int
+	 */	
+	public int getCountOfUnhidden(Class<T> myClass);
 }

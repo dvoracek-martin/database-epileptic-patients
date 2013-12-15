@@ -49,7 +49,23 @@ public interface GenericDAO<T> {
 	 * @return the t
 	 */
 	public T findOne(Query query);
-
+	
+	/**
+	 * get count
+	 *
+	 * @param myClass the my class
+	 * @return int
+	 */
+	public int getCount(Class<T> myClass);
+	
+	/**
+	 * get count of unhidden
+	 *
+	 * @param myClass the my class
+	 * @return int
+	 */
+	public int getCountOfUnhidden(Class<T> myClass);
+	
 	/**
 	 * Find all.
 	 *
