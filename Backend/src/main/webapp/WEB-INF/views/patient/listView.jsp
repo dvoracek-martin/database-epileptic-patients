@@ -98,7 +98,7 @@
                     </c:choose>
 
                     <c:set var="last" value="0" scope="page" />
-                    <c:forEach var="i" begin="0" end="${temp}">
+                    <c:forEach var="i" begin="0" end="${temp-1}">
                         <c:set var="last" value="${i}" scope="page" />
                         <c:choose>
                             <c:when test="${pageNumber==(i+1)}">
