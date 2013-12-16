@@ -85,39 +85,51 @@
                 </table>
             </div>
             <c:set var="temp" value="${countOfPatients/maxResults}" scope="page" />
+            ${temp}
+            <fmt:formatNumber var="countOfPages" value="${temp}" maxFractionDigits="0" />
 
+            <c:if test="${countOfPages<temp}">
+            	<c:set var="countOfPages" value="${countOfPages+1}" scope="page" />	
+            </c:if>
+            
             <div class="text-center">
                 <ul class="pagination">
+                    <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=1" />">&laquo;</a></li>
                     <c:choose>
                         <c:when test="${pageNumber<=1}">
-                            <li class="disabled"><a href="#">&laquo;</a></li>
+                            <li class="disabled"><a href="#">&lsaquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />">&laquo;</a></li>
+                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />">&lsaquo;</a></li>
                         </c:otherwise>
                     </c:choose>
 
-                    <c:set var="last" value="0" scope="page" />
-                    <c:forEach var="i" begin="0" end="${temp-1}">
-                        <c:set var="last" value="${i}" scope="page" />
-                        <c:choose>
-                            <c:when test="${pageNumber==(i+1)}">
-                                <li class="active"><a href="#">${i+1} <span class="sr-only"></span></a></li>
-                            </c:when>
-                            <c:otherwise>
-                                <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${i+1}" />" >${i+1} <span class="sr-only"></span></a></li>
-                            </c:otherwise>
-                        </c:choose>
+                    <c:if test="${pageNumber-2>0}">
+                        <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-2}" />" >${pageNumber-2} <span class="sr-only"></span></a></li>
+                    </c:if>
+
+                    <c:if test="${pageNumber-1>0}">
+                        <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />" >${pageNumber-1} <span class="sr-only"></span></a></li>
+                     </c:if>
+                  
+                    <li class="active"><a href="#">${pageNumber-i}<span class="sr-only"></span></a></li>
+
+                    <c:forEach var="i" begin="1" end="2">
+                        <c:if test="${countOfPages>=pageNumber+i}">
+                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+i}" />" >${pageNumber+i} <span class="sr-only"></span></a></li>
+                        </c:if>
                     </c:forEach>
 
                     <c:choose>
-                        <c:when test="${pageNumber==(last+1)}">
-                            <li class="disabled"><a href="#">&raquo;</a></li>
+                        <c:when test="${countOfPages<=pageNumber}">
+                            <li class="disabled"><a href="#">&rsaquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+1}" />">&raquo;</a></li>
+                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+1}" />">&rsaquo;</a></li>
                         </c:otherwise>
-                    </c:choose>                 
+                    </c:choose>  
+
+                    <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${countOfPages}" />">&raquo;</a></li>           
                 </ul>
             </div>
             								
