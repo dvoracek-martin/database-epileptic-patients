@@ -20,27 +20,6 @@
 	<jsp:attribute name="script">
  	<script src="<c:url value="/resources/js/clickable-row.NEW303.js"/>"></script>
     </jsp:attribute>
-    
-    <jsp:attribute name="script">
-    	<script>  
-   		function filter() {  
-      
-      
-		    var name = $('#search').val(); 
-		    var maxResults = ${maxResults};
-		    var pageNumber = ${pageNumber};
-		  
-		    $.ajax({  
-		     type : "Get",   
-		     url : "<c:url value="/patient/${patient.id}/listSearch" />",   
-		     data :  "name=" + name + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
-		     success: function(response){
-		    	 alert("ds");
-		     }
-		    });  
-   		}  
-  		</script>  
-    </jsp:attribute>
 
 	<jsp:body>
 	<div class="row">
