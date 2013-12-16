@@ -159,19 +159,16 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
 			int pageNumber, List<String> parameters, String name) {
 		List<T> T = null;
-		String[] arr = name.split(" ");
-		// TODO
-		// find out what to do, when count of expected parameters doesnt match
-		// the count of parsed names - if it's even needed to use more params
-		int tmp = 0;
+		
 		String q = "from " + myClass.getName() + " where ";
-		for (String parameter : parameters) {
-			q += parameter + " like \'" + arr[tmp++] + "\' ";
+		for (int i =0;i!=parameters.size();i++) {
+			q += parameters.get(i) + " like '" + name + "%'";
+			if (i!=parameters.size()-1)
+				{q+=" or ";
+				}
 		}
 		Query query = sessionFactory.getCurrentSession().createQuery(q);
 		
-		System.out.println(q);
-
 		query.setFirstResult(maxResults * (pageNumber - 1));
 		query.setMaxResults(maxResults);
 

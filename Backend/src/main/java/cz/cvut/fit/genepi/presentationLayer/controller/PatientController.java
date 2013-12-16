@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itextpdf.text.DocumentException;
 
@@ -217,22 +218,17 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
-	// public @ResponseBody
-	String patientsListSearchGET(Locale locale, Model model,
+	public @ResponseBody
+	Model patientsListSearchGET(Locale locale, Model model,
 			@RequestParam("maxResults") int maxResults,
 			@RequestParam("pageNumber") int pageNumber,
 			@RequestParam("name") String name) {
-		
+
 		List<String> tmpList = new ArrayList<String>();
 		tmpList.add("contact.firstName");
-		
-		List<PatientEntity> test = patientService
-				.findByNameWithPagination(PatientEntity.class, maxResults,
-						pageNumber, tmpList, name);
-		for (PatientEntity e : test) {
-			System.out.println(e.getContact().getLastName());
-		}
-		
+		tmpList.add("contact.lastName");
+		tmpList.add("nin");
+
 		model.addAttribute("patientList", patientService
 				.findByNameWithPagination(PatientEntity.class, maxResults,
 						pageNumber, tmpList, name));
@@ -240,8 +236,7 @@ public class PatientController {
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("countOfPatients",
 				patientService.getCountOfUnhidden(PatientEntity.class));
-		// return model;
-		return "patient/listView";
+		return model;
 	}
 
 	/**
