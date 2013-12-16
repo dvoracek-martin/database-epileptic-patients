@@ -20,6 +20,27 @@
 	<jsp:attribute name="script">
  	<script src="<c:url value="/resources/js/clickable-row.NEW303.js"/>"></script>
     </jsp:attribute>
+    
+    <jsp:attribute name="script">
+    	<script>  
+   		function filter() {  
+      
+      
+		    var name = $('#search').val(); 
+		    var maxResults = ${maxResults};
+		    var pageNumber = ${pageNumber};
+		  
+		    $.ajax({  
+		     type : "Get",   
+		     url : "<c:url value="/patient/${patient.id}/listSearch" />",   
+		     data :  "name=" + name + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
+		     success: function(response){
+		    	 alert("ds");
+		     }
+		    });  
+   		}  
+  		</script>  
+    </jsp:attribute>
 
 	<jsp:body>
 	<div class="row">
@@ -38,16 +59,16 @@
 </div>
 	<div class="row">
 	<div class="col-xs-12">
-		<form class="form-horizontal" role="form">
+	<!-- <form class="form-horizontal" role="form"> -->	
 	 			<div class="form-group">
     					<label for="search" class="col-xs-2 control-label">Filtruj:</label>
     				<div class="col-xs-4 input-group">
   						<span class="input-group-addon glyphicon glyphicon-search"></span>
   						<input type="text" class="form-control" id="search"
-								placeholder="jmeno/prijmeni">
+								placeholder="jmeno/prijmeni" onkeyup="filter()">
 					</div>
   				</div>
-		</form>
+		<!-- </form> -->	
 			
 	</div>
 			</div>
