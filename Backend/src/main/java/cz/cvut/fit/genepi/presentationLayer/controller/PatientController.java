@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itextpdf.text.DocumentException;
 
@@ -201,14 +200,15 @@ public class PatientController {
 				PatientEntity.class, maxResults, pageNumber));
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
-		//hotfix - there will be some method for getting the count yet
-				model.addAttribute("countOfPatients", patientService.getCount(PatientEntity.class));
+		// hotfix - there will be some method for getting the count yet
+		model.addAttribute("countOfPatients",
+				patientService.getCount(PatientEntity.class));
 		return "patient/listView";
 	}
 
 	/**
-	 * Patients list search get.
-	 * This method is used to provide results for AJAX calls
+	 * Patients list search get. This method is used to provide results for AJAX
+	 * calls
 	 * 
 	 * @param locale
 	 *            the locale
@@ -217,17 +217,31 @@ public class PatientController {
 	 * @return the string
 	 */
 	@RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
-	public @ResponseBody
-	Model patientsListSearchGET(Locale locale, Model model,
+	// public @ResponseBody
+	String patientsListSearchGET(Locale locale, Model model,
 			@RequestParam("maxResults") int maxResults,
-			@RequestParam("pageNumber") int pageNumber) {
-		model.addAttribute("patientList", patientService.findAllWithPagination(
-				PatientEntity.class, maxResults, pageNumber));
+			@RequestParam("pageNumber") int pageNumber,
+			@RequestParam("name") String name) {
+		
+		List<String> tmpList = new ArrayList<String>();
+		tmpList.add("contact.firstName");
+		
+		List<PatientEntity> test = patientService
+				.findByNameWithPagination(PatientEntity.class, maxResults,
+						pageNumber, tmpList, name);
+		for (PatientEntity e : test) {
+			System.out.println(e.getContact().getLastName());
+		}
+		
+		model.addAttribute("patientList", patientService
+				.findByNameWithPagination(PatientEntity.class, maxResults,
+						pageNumber, tmpList, name));
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
-		//hotfix - there will be some method for getting the count yet
-		model.addAttribute("countOfPatients", patientService.getCountOfUnhidden(PatientEntity.class));
-	return model;
+		model.addAttribute("countOfPatients",
+				patientService.getCountOfUnhidden(PatientEntity.class));
+		// return model;
+		return "patient/listView";
 	}
 
 	/**

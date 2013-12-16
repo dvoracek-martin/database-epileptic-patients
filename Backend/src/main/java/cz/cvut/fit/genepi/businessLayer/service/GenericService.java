@@ -6,12 +6,14 @@ import org.hibernate.Query;
 
 /**
  * The Interface GenericService.
- *
- * @param <T> the generic type
- * @param <ID> the generic type
+ * 
+ * @param <T>
+ *            the generic type
+ * @param <ID>
+ *            the generic type
  */
 public interface GenericService<T> {
-	
+
 	/**
 	 * Save.
 	 * 
@@ -64,14 +66,16 @@ public interface GenericService<T> {
 	public List<T> findAll(Class<T> myClass);
 
 	/**
-	 * The same as findAll(Class<T> myClass), but this method can paginate the results
-	 *
-	 * @param myClass the my class
+	 * The same as findAll(Class<T> myClass), but this method can paginate the
+	 * results
+	 * 
+	 * @param myClass
+	 *            the my class
 	 * @return the list
-	 */	
-	public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber);
-	
-	
+	 */
+	public List<T> findAllWithPagination(Class<T> myClass, int maxResults,
+			int pageNumber);
+
 	/**
 	 * Find by id.
 	 * 
@@ -82,7 +86,7 @@ public interface GenericService<T> {
 	 * @return the t
 	 */
 	public T findByID(Class<T> myClass, int id);
-	
+
 	/**
 	 * Get count.
 	 * 
@@ -90,15 +94,25 @@ public interface GenericService<T> {
 	 *            the my class
 	 * @return int
 	 */
-	
+
 	public int getCount(Class<T> myClass);
-	
+
 	/**
 	 * Get count of unhidden
 	 * 
 	 * @param myClass
 	 *            the my class
 	 * @return int
-	 */	
+	 */
 	public int getCountOfUnhidden(Class<T> myClass);
+
+	/**
+	 * Get list according to string pattern - for quick search
+	 * 
+	 * @param myClass
+	 *            the my class
+	 * @return List<T>
+	 */
+	public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
+			int pageNumber, List<String> parameters, String name);
 }

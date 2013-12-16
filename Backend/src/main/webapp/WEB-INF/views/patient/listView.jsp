@@ -94,29 +94,29 @@
             
             <div class="text-center">
                 <ul class="pagination">
-                    <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=1" />">&laquo;</a></li>
+                    <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=1" />">&laquo;</a></li>
                     <c:choose>
                         <c:when test="${pageNumber<=1}">
                             <li class="disabled"><a href="#">&lsaquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />">&lsaquo;</a></li>
+                            <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />">&lsaquo;</a></li>
                         </c:otherwise>
                     </c:choose>
 
                     <c:if test="${pageNumber-2>0}">
-                        <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-2}" />" >${pageNumber-2} <span class="sr-only"></span></a></li>
+                        <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${pageNumber-2}" />" >${pageNumber-2} <span class="sr-only"></span></a></li>
                     </c:if>
 
                     <c:if test="${pageNumber-1>0}">
-                        <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />" >${pageNumber-1} <span class="sr-only"></span></a></li>
+                        <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${pageNumber-1}" />" >${pageNumber-1} <span class="sr-only"></span></a></li>
                      </c:if>
                   
                     <li class="active"><a href="#">${pageNumber-i}<span class="sr-only"></span></a></li>
 
                     <c:forEach var="i" begin="1" end="2">
                         <c:if test="${countOfPages>=pageNumber+i}">
-                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+i}" />" >${pageNumber+i} <span class="sr-only"></span></a></li>
+                            <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${pageNumber+i}" />" >${pageNumber+i} <span class="sr-only"></span></a></li>
                         </c:if>
                     </c:forEach>
 
@@ -125,11 +125,11 @@
                             <li class="disabled"><a href="#">&rsaquo;</a></li>
                         </c:when>
                         <c:otherwise>
-                            <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${pageNumber+1}" />">&rsaquo;</a></li>
+                            <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${pageNumber+1}" />">&rsaquo;</a></li>
                         </c:otherwise>
                     </c:choose>  
 
-                    <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=${countOfPages}" />">&raquo;</a></li>           
+                    <li><a href="<c:url value="/patient/listSearch?maxResults=${maxResults}&pageNumber=${countOfPages}" />">&raquo;</a></li>           
                 </ul>
             </div>
             								

@@ -94,13 +94,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 	/*
 	 * (non-Javadoc)
 	 * 
-	 * @see cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
+	 * @see
+	 * cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
 	 */
 	public int getCountOfUnhidden(Class<T> myClass) {
 		int i;
-		i = ((Long) sessionFactory.getCurrentSession()
-				.createQuery("select count(*) from " + myClass.getName()+" where status==0")
-				.uniqueResult()).intValue();
+		i = ((Long) sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"select count(*) from " + myClass.getName()
+								+ " where status=0").uniqueResult())
+				.intValue();
 		return i;
 	}
 
@@ -150,4 +154,29 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
 		T = query.list();
 		return T;
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
+			int pageNumber, List<String> parameters, String name) {
+		List<T> T = null;
+		String[] arr = name.split(" ");
+		// TODO
+		// find out what to do, when count of expected parameters doesnt match
+		// the count of parsed names - if it's even needed to use more params
+		int tmp = 0;
+		String q = "from " + myClass.getName() + " where ";
+		for (String parameter : parameters) {
+			q += parameter + " like \'" + arr[tmp++] + "\' ";
+		}
+		Query query = sessionFactory.getCurrentSession().createQuery(q);
+		
+		System.out.println(q);
+
+		query.setFirstResult(maxResults * (pageNumber - 1));
+		query.setMaxResults(maxResults);
+
+		T = query.list();
+		return T;
+	}
+
 }

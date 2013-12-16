@@ -115,4 +115,11 @@ GenericService<T> {
 	public int getCountOfUnhidden(Class<T> myClass){
 		return genericDAO.getCountOfUnhidden(myClass);
 	}
+	
+	@Override
+	@Transactional
+	public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
+			int pageNumber, List<String> parameters, String name) {
+		return genericDAO.findByNameWithPagination(myClass, maxResults, pageNumber, parameters, name);
+	}
 }
