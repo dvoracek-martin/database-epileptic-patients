@@ -32,9 +32,23 @@
             url : "<c:url value="/patient/listSearch" />",   
             data :  "search=" + search + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
             success: function(response){
-                alert("yes");
                 var obj = JSON.parse(response);
-                alert(obj.maxResults);
+                console.log(obj.patientList[0][0]);
+                console.log(obj.patientList.length);
+                var countOfPatients = obj.patientList.length;
+                $("#patientList").html("");
+                for (var i=0; i<countOfPatients; i++)
+                {   
+                    var firstName=obj.patientList[i][0].patientFirstName;
+                    var lastName=obj.patientList[i][0].patientLastName;
+                    var patientID=obj.patientList[i][0].patientID;
+                    $("#patientList").html($("#patientList").html()+'<tr class="clickable-row" href="<c:url value="/patient/'+patientID+'/overview" />"><td>'+firstName+'</td><td>'+lastName+'</td><td></td><td></td><td></td></tr>');
+                }
+
+                if(search==="")
+                    document.getElementById("paginator").style.display="block";
+                else
+                    document.getElementById("paginator").style.display="none";
             },
             error: function(e) {  
                 alert("Error "+e);   
@@ -45,68 +59,66 @@
     </jsp:attribute>
 
 	<jsp:body>
-	<div class="row">
-	<div class="col-xs-6">
-						<h2>
-							<spring:message code="label.cardIndex" />
-						</h2>
-						
-  						</div>
-  						<div class="col-xs-6">
-						<h3 class="pull-right">
-							<a href="<c:url value="/patient/create" />"><spring:message
-							code="label.addPatient" /></a>
-						</h3>
-						</div>
-</div>
-	<div class="row">
-	<div class="col-xs-12">
-	<!-- <form class="form-horizontal" role="form"> -->	
+	   <div class="row">
+    	   <div class="col-xs-6">
+        		<h2>
+        			<spring:message code="label.cardIndex" />
+        		</h2>				
+      		</div>
+      		<div class="col-xs-6">
+    			<h3 class="pull-right">
+    			     <a href="<c:url value="/patient/create" />"><spring:message
+    				code="label.addPatient" /></a>
+    			</h3>
+    		</div>
+        </div>
+	   <div class="row">
+	       <div class="col-xs-12">
+	       <!-- <form class="form-horizontal" role="form"> -->	
 	 			<div class="form-group">
     					<label for="search" class="col-xs-2 control-label">Filtruj:</label>
-    				<div class="col-xs-4 input-group">
-  						<span class="input-group-addon glyphicon glyphicon-search"></span>
-  						<input type="text" class="form-control" id="search"
+    				    <div class="col-xs-4 input-group">
+  						    <span class="input-group-addon glyphicon glyphicon-search"></span>
+  						    <input type="text" class="form-control" id="search"
 								placeholder="jmeno/prijmeni" onkeyup="filter()">
-					</div>
+					   </div>
   				</div>
 		<!-- </form> -->	
-			
-	</div>
-			</div>
-   <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead>
+	       </div>
+		</div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
                     <tr>
                         <td><b><spring:message
-									code="label.firstname" /></b></td>
+    									code="label.firstname" /></b></td>
                         <td><b><spring:message
-									code="label.lastname" /></b></td>
+    									code="label.lastname" /></b></td>
                         <td><b><spring:message
-									code="label.birthIdentificationNumber" /></b></td>
+    									code="label.birthIdentificationNumber" /></b></td>
                         <td><b><spring:message
-									code="label.address" /></b></td>
+    									code="label.address" /></b></td>
                         <td><b><spring:message
-									code="label.addressCity" /></b></td>
+    									code="label.addressCity" /></b></td>
                     </tr>
-                    </thead>
-                    <tbody>
+                </thead>
+                <tbody id="patientList"> 
                     <c:forEach items="${patientList}" var="patient">
-                    <tr class="clickable-row"
-							href="<c:url value="/patient/${patient.id}/overview" />">
-                        <td>${patient.contact.firstName}
-						</td>
-                        <td>${patient.contact.lastName}
-                        </td>
-                        <td>${patient.nin}</td>
-                        <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}</td>
-                        <td>${patient.contact.addressCity}</td>
-                    </tr>
- 
-                    				</c:forEach>
-                    </tbody>
-                </table>
-            </div>
+                        <tr class="clickable-row"
+            							href="<c:url value="/patient/${patient.id}/overview" />">
+                            <td>${patient.contact.firstName}
+            				</td>
+                            <td>${patient.contact.lastName}
+                            </td>
+                            <td>${patient.nin}</td>
+                            <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}</td>
+                            <td>${patient.contact.addressCity}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+        </div>
+
             <c:set var="temp" value="${countOfPatients/maxResults}" scope="page" />
             ${temp}
             <fmt:formatNumber var="countOfPages" value="${temp}" maxFractionDigits="0" />
@@ -115,7 +127,7 @@
             	<c:set var="countOfPages" value="${countOfPages+1}" scope="page" />	
             </c:if>
             
-            <div class="text-center">
+            <div id="paginator" class="text-center">
                 <ul class="pagination">
                     <li><a href="<c:url value="/patient/list?maxResults=${maxResults}&pageNumber=1" />">&laquo;</a></li>
                     <c:choose>
