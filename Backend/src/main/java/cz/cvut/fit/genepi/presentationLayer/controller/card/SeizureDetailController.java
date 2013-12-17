@@ -44,7 +44,7 @@ public class SeizureDetailController {
 
 		model.addAttribute("seizureId",seizureId);
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientId));
+				patientService.getPatientByIdWithDoctor(patientId));
 		model.addAttribute("seizureDetail", new SeizureDetailEntity());
 		return "patient/seizure/detail/createView";
 	}
@@ -58,7 +58,7 @@ public class SeizureDetailController {
 
 		if (result.hasErrors()) {		
 			model.addAttribute("patient",
-					patientService.findByID(PatientEntity.class, patientId));
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/seizure/detail/createView";
 		} else {
 			seizureDetail.setSeizure(seizureService.findByID(SeizureEntity.class,

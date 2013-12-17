@@ -33,8 +33,8 @@ public class SeizureController {
 	}
 
 	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
-	public String seizureCreateGET(Locale locale, Model model,
-			@PathVariable("patientId") Integer patientId) {
+	public String seizureCreateGET(
+			@PathVariable("patientId") Integer patientId,Locale locale, Model model) {
 		PatientEntity patient = patientService.getPatientByIdWithDoctor(patientId);
 
 		model.addAttribute("patient", patient);
@@ -53,17 +53,19 @@ public class SeizureController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/seizure/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.POST)
 	public String seizureCreatePOST(
 			@ModelAttribute("seizure") @Valid SeizureEntity seizure,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {
+			BindingResult result, @PathVariable("patientId") Integer patientId,Locale locale, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("patient",
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/seizure/createView";
 		} else {
 			seizure.setPatient(patientService.findByID(PatientEntity.class,
-					patientID));
+					patientId));
 			seizureService.save(seizure);
-			return "redirect:/patient/" + patientID + "/seizure/list";
+			return "redirect:/patient/" + patientId + "/seizure/list";
 		}
 	}
 

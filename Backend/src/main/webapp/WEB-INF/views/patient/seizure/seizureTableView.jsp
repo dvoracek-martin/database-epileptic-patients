@@ -81,9 +81,9 @@
                 </c:choose>
             </tr>
             <tr>
-
-            <%@include file="detail/seizureDetailTable.jsp" %>
-
+                <td colspan="2">
+                    <%@include file="detail/seizureDetailTableView.jsp" %>
+                </td>
             </tr>
             </tbody>
         </table>
