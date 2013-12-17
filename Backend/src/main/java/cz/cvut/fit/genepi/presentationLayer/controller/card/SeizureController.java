@@ -32,11 +32,10 @@ public class SeizureController {
 		this.seizureService = seizureService;
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/seizure/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
 	public String seizureCreateGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
+			@PathVariable("patientId") Integer patientId) {
+		PatientEntity patient = patientService.getPatientByIdWithDoctor(patientId);
 
 		model.addAttribute("patient", patient);
 		model.addAttribute("seizure", new SeizureEntity());
