@@ -36,6 +36,7 @@ import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
 
 // TODO: Auto-generated Javadoc
@@ -219,24 +220,27 @@ public class PatientController {
 	 */
 	@RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
 	public @ResponseBody
-	Model patientsListSearchGET(Locale locale, Model model,
+	String patientsListSearchGET(Locale locale, Model model,
 			@RequestParam("maxResults") int maxResults,
 			@RequestParam("pageNumber") int pageNumber,
 			@RequestParam("search") String name) {
 
-		List<String> tmpList = new ArrayList<String>();
-		tmpList.add("contact.firstName");
-		tmpList.add("contact.lastName");
-		tmpList.add("nin");
+		List<String> searchParams = new ArrayList<String>();
+		searchParams.add("contact.firstName");
+		searchParams.add("contact.lastName");
+		searchParams.add("nin");
 
 		model.addAttribute("patientList", patientService
 				.findByNameWithPagination(PatientEntity.class, maxResults,
-						pageNumber, tmpList, name));
+						pageNumber, searchParams, name));
 		model.addAttribute("maxResults", maxResults);
 		model.addAttribute("pageNumber", pageNumber);
 		model.addAttribute("countOfPatients",
 				patientService.getCountOfUnhidden(PatientEntity.class));
-		return model;
+		JSONEncoder e = new JSONEncoder();
+		return (e.encode( patientService
+				.findByNameWithPagination(PatientEntity.class, maxResults,
+						pageNumber, searchParams, name),maxResults,pageNumber));
 	}
 
 	/**

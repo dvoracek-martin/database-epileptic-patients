@@ -79,8 +79,8 @@ public class HiddenController {
 	 */
 	@RequestMapping(value = "/hidden", method = RequestMethod.GET)
 	public String userListGET(Locale locale, Model model) {
-		model.addAttribute("patientList", patientService.findAllHidden(PatientEntity.class));
-		model.addAttribute("anamnesisList", anamnesisService.findAllHidden(AnamnesisEntity.class));
+		//model.addAttribute("patientList", patientService.findAllHidden(PatientEntity.class));
+		//model.addAttribute("anamnesisList", anamnesisService.findAllHidden(AnamnesisEntity.class));
 		return "hiddenView";
 	}
 	
