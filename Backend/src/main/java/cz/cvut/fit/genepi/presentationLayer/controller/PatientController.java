@@ -222,7 +222,7 @@ public class PatientController {
 	Model patientsListSearchGET(Locale locale, Model model,
 			@RequestParam("maxResults") int maxResults,
 			@RequestParam("pageNumber") int pageNumber,
-			@RequestParam("name") String name) {
+			@RequestParam("search") String name) {
 
 		List<String> tmpList = new ArrayList<String>();
 		tmpList.add("contact.firstName");
