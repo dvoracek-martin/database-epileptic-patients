@@ -47,8 +47,8 @@
     </tbody>
 </table>
 
-<div style="background-color: rgb(245, 245, 245)" id="collapseOne" class="collapse in">
-    <table class="table">
+<div  id="collapseOne" class="collapse in">
+    <table style="background-color: rgb(245, 245, 245)" class="table">
         <tr>
             <td class="col-xs-4">Epilepsie v rodine</td>
             <td colspan="3" class="col-xs-8">Ano</td>
