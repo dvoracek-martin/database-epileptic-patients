@@ -98,7 +98,7 @@
 
     <div class="col-xs-8">
         <form:input path="beginningEpilepsy" id="beginningEpilepsy" type="text"
-                    class="form-control datepicker-today"/>
+                    class="form-control datepicker"/>
         <form:errors path="beginningEpilepsy" cssClass="error">
         </form:errors>
     </div>

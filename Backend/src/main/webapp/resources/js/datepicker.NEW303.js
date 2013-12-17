@@ -3,8 +3,11 @@ $(function() {
 		dateFormat : "yy-mm-dd",
 		changeYear : true,
 		yearRange : "1900:c",
+
 	});
-	$(".datepicker-today").datepicker("setDate", "+0");
+	if ($(".datepicker-today").val() == "") {
+		$(".datepicker-today").datepicker("setDate", "+0");
+	}
 });
 
 $(function() {
@@ -12,5 +15,6 @@ $(function() {
 		dateFormat : "yy-mm-dd",
 		changeYear : true,
 		yearRange : "1900:c",
+		defaultDate : new Date()
 	});
 });

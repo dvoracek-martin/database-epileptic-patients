@@ -53,7 +53,7 @@ public class SeizureDetailEntity implements Comparable<SeizureDetailEntity> {
 	/* Other fields */
 
 	/** The date. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Past
 	@NotNull
 	@Column(name = "date", nullable = false)

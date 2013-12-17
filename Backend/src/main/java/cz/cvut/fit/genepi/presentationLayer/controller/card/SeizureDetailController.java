@@ -78,7 +78,7 @@ public class SeizureDetailController {
 			Model model) {
 
 		model.addAttribute("patient",
-				patientService.findByID(PatientEntity.class, patientId));
+				patientService.getPatientByIdWithDoctor(patientId));
 		model.addAttribute("seizureDetail",
 				seizureDetailService.findByID(SeizureDetailEntity.class, seizureId));
 		return "patient/seizure/detail/editView";
@@ -88,16 +88,18 @@ public class SeizureDetailController {
 	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.POST)
 	public String seizureDetailEditPOST(
 			@ModelAttribute("seizureDetail") @Valid SeizureDetailEntity seizureDetail,
-			BindingResult result, @PathVariable("patientId") Integer patientId,
+			BindingResult result, @PathVariable("patientId") Integer patientId, @PathVariable("seizureId") Integer seizureId,
 			Locale locale, Model model) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("patient",
-					patientService.findByID(PatientEntity.class, patientId));
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/seizure/detail/editView";
 		} else {
 			seizureDetail.setPatient(patientService.findByID(PatientEntity.class,
 					patientId));
+			seizureDetail.setSeizure(seizureService.findByID(SeizureEntity.class,
+					seizureId));
 			seizureDetailService.save(seizureDetail);
 			return "redirect:/patient/" + patientId + "/seizure/list";
 		}

@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 
 @Controller
@@ -24,12 +26,15 @@ public class SeizureController {
 	private PatientService patientService;
 
 	private SeizureService seizureService;
+	
+	private SeizureDetailService seizureDetailService;
 
 	@Autowired
 	public SeizureController(PatientService patientService,
-			SeizureService seizureService) {
+			SeizureService seizureService, SeizureDetailService seizureDetailService) {
 		this.patientService = patientService;
 		this.seizureService = seizureService;
+		this.seizureDetailService = seizureDetailService;
 	}
 
 	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
@@ -64,6 +69,38 @@ public class SeizureController {
 		} else {
 			seizure.setPatient(patientService.findByID(PatientEntity.class,
 					patientId));
+			seizureService.save(seizure);
+			return "redirect:/patient/" + patientId + "/seizure/list";
+		}
+	}
+	
+	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.GET)
+	public String anamnesisEditGET(
+			@PathVariable("patientId") Integer patientId,
+			@PathVariable("seizureId") Integer seizureId, Locale locale,
+			Model model) {
+
+		model.addAttribute("patient",
+				patientService.getPatientByIdWithDoctor(patientId));
+		model.addAttribute("seizure",
+				seizureService.findByID(SeizureEntity.class, seizureId));
+		return "patient/seizure/editView";
+	}
+
+	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.POST)
+	public String anamnesisEditPOST(
+			@ModelAttribute("seizure") @Valid SeizureEntity seizure,
+			BindingResult result, @PathVariable("patientId") Integer patientId,@PathVariable("seizureId") Integer seizureId,
+			Locale locale, Model model) {
+
+		if (result.hasErrors()) {
+			model.addAttribute("patient",
+					patientService.getPatientByIdWithDoctor(patientId));
+			return "patient/seizure/editView";
+		} else {
+			seizure.setPatient(patientService.findByID(PatientEntity.class,
+					patientId));
+			seizure.setSeizureDetailList(seizureService.findByID(SeizureEntity.class, seizureId).getSeizureDetailList());
 			seizureService.save(seizure);
 			return "redirect:/patient/" + patientId + "/seizure/list";
 		}
