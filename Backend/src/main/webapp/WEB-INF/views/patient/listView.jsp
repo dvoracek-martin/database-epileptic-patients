@@ -33,6 +33,8 @@
             data :  "search=" + search + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
             success: function(response){
                 alert("yes");
+                var obj = JSON.parse(response);
+                alert(obj.maxResults);
             },
             error: function(e) {  
                 alert("Error "+e);   

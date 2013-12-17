@@ -16,6 +16,7 @@ public class JSONEncoder {
 	@Autowired
 	private PatientService patientService;
 	
+	@SuppressWarnings("unchecked")
 	public  String encode(List<PatientEntity> patientList,
 			int maxResults, int pageNumber) {
 		JSONArray patientListJSON = new JSONArray();
@@ -31,13 +32,13 @@ public class JSONEncoder {
 					.getFirstName());
 			patientInfoJSON.add(patientContactInfoJSON);
 
-			JSONArray anamnesisListJSON = new JSONArray();
+			/*JSONArray anamnesisListJSON = new JSONArray();
 			for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
 				anamnesisListJSON.add(anamnesis.getId());
 				anamnesisListJSON.add(anamnesis.getBeginningEpilepsy());
 
 			}
-			patientInfoJSON.add(anamnesisListJSON);
+			patientInfoJSON.add(anamnesisListJSON);*/
 
 			patientListJSON.add(patientInfoJSON);
 		}
