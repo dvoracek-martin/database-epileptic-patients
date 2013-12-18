@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
 public class JSONEncoder {
 	@Autowired
@@ -30,15 +29,14 @@ public class JSONEncoder {
 					.getLastName());
 			patientContactInfoJSON.put("patientFirstName", patient.getContact()
 					.getFirstName());
+			patientContactInfoJSON.put("nin", patient.getNin());
+			patientContactInfoJSON.put("addressCity", patient.getContact()
+					.getAddressCity());
+			patientContactInfoJSON.put("addressStreet", patient.getContact()
+					.getAddressStreet());
+			patientContactInfoJSON.put("addressHn", patient.getContact()
+					.getAddressHn());
 			patientInfoJSON.add(patientContactInfoJSON);
-
-			/*JSONArray anamnesisListJSON = new JSONArray();
-			for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-				anamnesisListJSON.add(anamnesis.getId());
-				anamnesisListJSON.add(anamnesis.getBeginningEpilepsy());
-
-			}
-			patientInfoJSON.add(anamnesisListJSON);*/
 
 			patientListJSON.add(patientInfoJSON);
 		}
