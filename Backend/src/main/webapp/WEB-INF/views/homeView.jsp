@@ -6,13 +6,10 @@
 	prefix="sec"%>
 <%@ page pageEncoding="UTF-8"%>
 
-<t:menuLVL2>
+<t:menuLVL1.NEW303>
 
 	<jsp:attribute name="title">
       Domovská stránka
-    </jsp:attribute>
-	<jsp:attribute name="header">
-      PŘEHLED
     </jsp:attribute>
 
 	<jsp:body>
@@ -181,4 +178,4 @@
 		</script>
 
 </jsp:body>
-</t:menuLVL2>
+</t:menuLVL1.NEW303>
