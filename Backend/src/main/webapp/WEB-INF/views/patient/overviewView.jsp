@@ -54,6 +54,37 @@
         </div>
     </c:when>
     <c:otherwise>
+        <%-- this is not OK. this is hot fix. we have to return only last anamnesisi from DB a ns use anamnesiTable (use it on anamnesisi and here as well) --%>
+        <c:set var="count" value="0" scope="page"/>
+        <div class="panel-group" id="accordion">
+            <%-- <c:forEach items="${patient.anamnesisList}" var="anamnesis">--%>
+                <c:set var="anamnesis" value="${patient.anamnesisList[0]}" scope="page"/>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
+                                Zadano dne: ${anamnesis.date}
+                            </a>
+
+                            <%--<a class="pull-right"
+                               href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
+                                <span class="glyphicon glyphicon-remove-circle"></span> delete
+                            </a>
+                            <a class="pull-right"
+                               href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
+                                <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
+                            </a> --%>
+
+                           <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit vsechny</a>
+
+                        </h4>
+                    </div>
+                    <%@include file="anamnesis/anamnesisTable.jsp" %>
+                </div>
+                <c:set var="count" value="1" scope="page"/>
+          <%--  </c:forEach> --%>
+        </div>
+
         <%--<table class="table">
                <tbody>
                    <tr class="alert-info">
@@ -183,7 +214,7 @@
                         </tr>
               </tbody>
         </table>--%>
-        <a href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit vsechny</a>
+
     </c:otherwise>
 </c:choose>
 <%--
