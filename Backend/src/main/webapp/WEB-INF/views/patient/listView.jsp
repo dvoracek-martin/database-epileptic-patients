@@ -125,7 +125,7 @@
                                     <td></td>
                                 </c:when>
                                 <c:otherwise>
-                                    <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}<</td>
+                                    <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}</td>
                                 </c:otherwise>
                             </c:choose>
                             <td>${patient.contact.addressCity}</td>
