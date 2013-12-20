@@ -124,7 +124,7 @@ public class AnamnesisController {
 
 		anamnesisService.delete(anamnesisService.findByID(
 				AnamnesisEntity.class, anamnesisId));
-		return "redirect:/patient/" + patientID + "/anamnesis/list";
+		return "redirect:/hidden";
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class AnamnesisController {
 				AnamnesisEntity.class, anamnesisId));
 		// TODO: address to get back to admin module where is list od hidden
 		// records.
-		return "redirect:/patient/" + patientId + "/anamnesis/list";
+		return "redirect:/hidden";
 	}
 
 	// TODO: not used now, is not present in original App
