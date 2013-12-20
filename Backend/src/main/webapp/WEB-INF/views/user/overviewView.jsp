@@ -3,19 +3,22 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ page pageEncoding="UTF-8"%>
 
-<t:menuLVL2>
+<t:menuLVL1.NEW303>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.user" />
-    </jsp:attribute>
-	<jsp:attribute name="header">
-      <spring:message code="label.user" />
+      <spring:message code="label.profile"/>
     </jsp:attribute>
 
-	<jsp:body>
-				<h2>
-					<spring:message code="label.user" />
-				</h2>
+    <jsp:body>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.myProfile"/>
+                </h2>
+
+            </div>
+
+        </div>
 
 				<spring:message code="label.userID" />
 				&nbsp;
@@ -78,7 +81,7 @@
 			value="<spring:message code="label.changePassword" />">
 	
 	</jsp:body>
-</t:menuLVL2>
+</t:menuLVL1.NEW303>
 
 
 
