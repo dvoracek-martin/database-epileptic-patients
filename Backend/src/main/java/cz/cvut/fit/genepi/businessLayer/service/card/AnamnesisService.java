@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
+import java.util.List;
+
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
 
@@ -8,4 +10,5 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
  */
 public interface AnamnesisService extends GenericCardService<AnamnesisEntity> {
 
+	public List<AnamnesisEntity> findAllHidden();
 }

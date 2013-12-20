@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -137,6 +139,12 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 	public PatientEntity getPatientByIdWithDoctor(int patientId) {
 		return patientDAO.getPatientByIdWithDoctor(patientId);
 
+	}
+	
+	@Override
+	@Transactional
+	public List<PatientEntity> findAllHidden(){
+		return patientDAO.findAllHidden();
 	}
 
 }

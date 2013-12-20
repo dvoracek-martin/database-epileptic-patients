@@ -137,4 +137,6 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 	 * @return Pateint as the PateintEntity
 	 */
 	public PatientEntity getPatientByIdWithDoctor(int patientId);
+	
+	public List<PatientEntity> findAllHidden();
 }

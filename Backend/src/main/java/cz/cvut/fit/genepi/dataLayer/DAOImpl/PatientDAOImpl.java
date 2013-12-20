@@ -513,4 +513,16 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 		query.setParameter("patientId", patientId);
 		return this.findOne(query);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<PatientEntity> findAllHidden(){
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from PatientEntity p left join fetch p.doctor"
+								+ " where p.status = 1");
+		
+		return query.list();
+	}
 }
