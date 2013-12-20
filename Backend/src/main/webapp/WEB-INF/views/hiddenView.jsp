@@ -105,6 +105,88 @@
 			</h3>	
   		</div>     
 	</div>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="table-responsive">
+				<c:choose>
+					<c:when test="${empty anamnesisList}">
+						<div class="text-center">
+							<h4>
+								Žádné skryté anamnézy.
+							</h4>
+						</div>
+					</c:when>
+					<c:otherwise>
+		                <table class="table table-striped table-hover">
+		                    <thead>
+		                    <tr>
+		                        <td><b><spring:message
+											code="label.firstname" /></b></td>
+		                        <td><b><spring:message
+											code="label.lastname" /></b></td>
+		                        <td><b><spring:message
+											code="label.birthIdentificationNumber" /></b></td>
+		                        <td><b><spring:message
+											code="label.address" /></b></td>
+		                        <td><b><spring:message
+											code="label.addressCity" /></b></td>
+								<td> </td>
+								<td> </td>
+		                    </tr>
+		                    </thead>
+		                    <tbody>
+		                    	<c:forEach items="${anamnesisList}" var="anamnesis">
+			                        <div class="panel panel-default">
+			                            <div class="panel-heading">
+			                                <h4 class="panel-title">
+			                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
+			                                        Zadano dne: ${anamnesis.date}
+			                                    </a>
+
+		                                    	<a class="pull-right" href="#">
+		                                        	<span class="glyphicon glyphicon-retweet"></span> recover&nbsp;
+		                                    	</a>
+
+								                 <a class="pull-right" href="#">
+			                                        <span class="glyphicon glyphicon-fire"></span> permanent delete
+			                                    </a>
+			                                </h4>
+			                            </div>
+			                             
+			                        </div>
+			                        <c:set var="count" value="1" scope="page"/>
+			                    </c:forEach>
+
+			                    <c:forEach items="${patientList}" var="patient">
+					                <tr <%-- class="clickable-row" --%>
+												href="<c:url value="/patient/${patient.id}/overview" />">
+										<td>${patient.contact.firstName}
+										</td>
+					                    <td>${patient.contact.lastName}
+					                    </td>
+					                    <td>${patient.nin}</td>
+					                    <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}</td>
+					                    <td>${patient.contact.addressCity}</td>
+					                    <td>
+                                    		<a href="#">
+                                        		<span class="glyphicon glyphicon-retweet"></span> recover&nbsp;
+                                    		</a>
+                                    	</td>
+					                    <td>
+						                    <a href="#">
+	                                        	<span class="glyphicon glyphicon-fire"></span> permanent delete
+	                                    	</a>
+	                                    </td>
+					                </tr>
+			                    </c:forEach>
+		                    </tbody>
+		                </table>
+		            </c:otherwise>
+	            </c:choose>
+            </div>	
+  		</div>     
+	</div>
             								
 	</jsp:body>
 </t:menuLVL1.NEW303>

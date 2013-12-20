@@ -15,14 +15,22 @@
     <jsp:attribute name="script">
      	<script>
      		function prepareEdit(messageID) {
-     			$('#editForm').attr( 'action','/GENEPI/news/'+messageID+'/edit')
+     			$('#editForm').attr( 'action','/GENEPI/news/'+messageID+'/edit');
      			var message=$("#message"+messageID).html();
      			$("#editContent").val(message);
      		}
 
+            function prepareDelete(messageID) {
+                $('#confirmDelete').attr( 'href','/GENEPI/news/'+messageID+'/delete')
+            }
+
      		function cleanEdit() {
-     			$("#editContent").val("a");
+     			$("#editContent").val("");
      		}
+
+            function cleanCreate() {
+                $("#createContent").val("");
+            }
      	</script>
     </jsp:attribute>
 
@@ -33,6 +41,13 @@
         		<spring:message code="label.news" />
         	</h2>				
       	</div>
+        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+            <div class="col-xs-6">
+                <h3 class="pull-right">
+                     <a data-toggle="modal" data-target="#create">Přidat zprávu</a>
+                </h3>
+            </div>
+        </sec:authorize>
     </div>
 
     <div class="panel-group" id="accordion">
@@ -45,8 +60,7 @@
                         </span>
 							  	
 						<sec:authorize ifAnyGranted="ROLE_ADMIN">	  					
-							<a class="pull-right"
-	                            href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
+							<a class="pull-right" data-toggle="modal" data-target="#delete" onclick="prepareDelete(${newsMessage.id})">
 	                            <span class="glyphicon glyphicon-remove-circle"></span> delete
 	                        </a>
 	                        <a class="pull-right" data-toggle="modal" data-target="#edit" onclick="prepareEdit(${newsMessage.id})">
@@ -89,6 +103,48 @@
 		    </div>
 		</div>
 	</div>
+
+    <div class="modal fade" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Smaz zprávu</h4>
+                </div>
+
+                <div class="modal-body">
+                    <h5>Opravdu chcete smazat zprávu?</h5>  
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Ne</button>
+                    <a id="confirmDelete" class="btn btn-primary" href="">Ano</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="create">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Přidat novou zprávu</h4>
+                </div>
+
+                <form:form method="POST" modelAttribute="emptyMessage"
+                   action="/GENEPI/news/create" commandName="emptyMessage">
+
+                    <div class="modal-body">
+                        <form:input type="text" path="message" class="form-control" id="createContent"/>  
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cleanCreate()">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form:form>
+            </div>
+        </div>
+    </div>
 
 </jsp:body>
 </t:menuLVL1.NEW303>
