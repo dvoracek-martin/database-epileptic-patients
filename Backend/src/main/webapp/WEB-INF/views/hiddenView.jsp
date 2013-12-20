@@ -79,12 +79,12 @@
 					                    <td>${patient.contact.addressStreet}, ${patient.contact.addressHn}</td>
 					                    <td>${patient.contact.addressCity}</td>
 					                    <td>
-                                    		<a href="#">
+                                    		<a href="<c:url value="/patient/${patient.id}/unhide" />">
                                         		<span class="glyphicon glyphicon-retweet"></span> recover&nbsp;
                                     		</a>
                                     	</td>
 					                    <td>
-						                    <a href="#">
+						                    <a href="<c:url value="/patient/${patient.id}/delete" />">
 	                                        	<span class="glyphicon glyphicon-fire"></span> permanent delete
 	                                    	</a>
 	                                    </td>
@@ -108,7 +108,6 @@
 
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="table-responsive">
 				<c:choose>
 					<c:when test="${empty anamnesisList}">
 						<div class="text-center">
@@ -126,23 +125,22 @@
 			                                        Zadano dne: ${anamnesis.date}
 			                                    </a>
 
-		                                    	<a class="pull-right" href="#">
+		                                    	<a class="pull-right" href="<c:url value="/patient/${anamnesis.patient.id}/anamnesis/${anamnesis.id}/unhide" />">
 		                                        	<span class="glyphicon glyphicon-retweet"></span> recover&nbsp;
 		                                    	</a>
 
-								                 <a class="pull-right" href="#">
+								                 <a class="pull-right" href="<c:url value="/patient/${anamnesis.patient.id}/anamnesis/${anamnesis.id}/delete" />">
 			                                        <span class="glyphicon glyphicon-fire"></span> permanent delete
 			                                    </a>
 			                                </h4>
 			                            </div>
-			                             
+			                             <%@include file="patient/anamnesis/anamnesisTable.jsp" %>
 			                        </div>
 			                        <c:set var="count" value="1" scope="page"/>
 			                    </c:forEach>
 		            </c:otherwise>
 	            </c:choose>
-            </div>	
-  		</div>     
+            </div>	     
 	</div>
             								
 	</jsp:body>
