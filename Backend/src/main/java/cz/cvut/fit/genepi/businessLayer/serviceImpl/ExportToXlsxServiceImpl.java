@@ -17,6 +17,8 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.DocumentException;
@@ -34,9 +36,23 @@ import cz.cvut.fit.genepi.util.LoggingService;
 
 @Service
 public class ExportToXlsxServiceImpl implements ExportToXlsxService {
-
+	
+	@Autowired
+	private MessageSource messageSource;
+	
 	private LoggingService logger = new LoggingService();
 
+	private String translateValue(String value, Locale locale) {
+		if (value.equals("true"))
+			return messageSource.getMessage("label.yes", null, locale);
+		else if (value.equals("false"))
+			return messageSource.getMessage("label.no", null, locale);
+		else if (value.equals("null")||value.equals(null)){
+			return messageSource.getMessage("label.null",null,locale);
+		}
+		return value;
+	}
+	
 	private static String getDate() {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
