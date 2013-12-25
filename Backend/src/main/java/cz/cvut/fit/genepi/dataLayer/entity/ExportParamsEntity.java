@@ -35,8 +35,9 @@ public class ExportParamsEntity {
 	@Column(name = "diagnosticTestMRI")
 	private boolean diagnosticTestMRI;
 
+	// TODO: rename to histology
 	@Column(name = "histiology")
-	private boolean histiology;
+	private boolean histology;
 
 	@Column(name = "invasiveTestECOG")
 	private boolean invasiveTestECOG;
@@ -47,10 +48,14 @@ public class ExportParamsEntity {
 	@Column(name = "neurologicalFinding")
 	private boolean neurologicalFinding;
 	
-	// TODO: predelat na neuropsychology
+	// TODO: rename to neuropsychology
 	@Column(name = "neurolopsychology")
-	private boolean neurolopsychology;
-
+	private boolean neuropsychology;
+	
+	//TODO: add NEUROPSYCHOLOGY OLD	
+	// TODO: Neurozobraz. testy
+	// TODO: Kortikální mapování
+	
 	@Column(name = "operation")
 	private boolean operation;
 
@@ -615,12 +620,12 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRI = diagnosticTestMRI;
 	}
 
-	public boolean isHistiology() {
-		return histiology;
+	public boolean isHistology() {
+		return histology;
 	}
 
-	public void setHistiology(boolean histiology) {
-		this.histiology = histiology;
+	public void setHistology(boolean histology) {
+		this.histology = histology;
 	}
 
 	public boolean isInvasiveTestECOG() {
@@ -647,12 +652,12 @@ public class ExportParamsEntity {
 		this.neurologicalFinding = neurologicalFinding;
 	}
 
-	public boolean isNeurolopsychology() {
-		return neurolopsychology;
+	public boolean isNeuropsychology() {
+		return neuropsychology;
 	}
 
-	public void setNeurolopsychology(boolean neurolopsychology) {
-		this.neurolopsychology = neurolopsychology;
+	public void setNeuropsychology(boolean neuropsychology) {
+		this.neuropsychology = neuropsychology;
 	}
 
 	public boolean isOperation() {
