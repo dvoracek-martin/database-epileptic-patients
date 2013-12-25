@@ -84,7 +84,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 			return messageSource.getMessage("label.yes", null, locale);
 		else if (value.equals("false"))
 			return messageSource.getMessage("label.no", null, locale);
-		// TODO: add some value for NULL - for example when there is no comment
+		else if (value.equals("null")||value.equals(null)){
+			return messageSource.getMessage("label.null",null,locale);
+		}
 		return value;
 	}
 
@@ -364,7 +366,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 				printOutAnamnesis(subCatPart, a, locale, exportParams);
 			}
 		}
-		if (exportParams.isNeurolopsychology()) {
+		if (exportParams.isNeuropsychology()) {
 			Paragraph anamnesisParahraph = new Paragraph(
 					messageSource.getMessage("label.neuropsychology", null,
 							locale) + "\n\n", catFont);
