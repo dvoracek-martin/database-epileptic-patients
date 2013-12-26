@@ -50,18 +50,17 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
 	private LoggingService logger = new LoggingService();
 
-
 	private String translateValue(String value, Locale locale) {
 		if (value.equals("true"))
 			return messageSource.getMessage("label.yes", null, locale);
 		else if (value.equals("false"))
 			return messageSource.getMessage("label.no", null, locale);
-		else if (value.equals("null")||value.equals(null)){
-			return messageSource.getMessage("label.null",null,locale);
+		else if (value.equals("null") || value.equals(null)) {
+			return messageSource.getMessage("label.null", null, locale);
 		}
 		return value;
 	}
-	
+
 	private static String getDate() {
 		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		Date today = Calendar.getInstance().getTime();
@@ -118,7 +117,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		for (PatientEntity patient : patientList) {
 			XWPFDocument document = new XWPFDocument();
 			this.addTitlePage(document, patient, locale, exportParams);
-			
+
 			try {
 				document.write(new FileOutputStream(downloadFolder + name));
 			} catch (FileNotFoundException e) {
@@ -156,7 +155,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 			tmpRun.setText(messageSource.getMessage("label.anamnesis", null,
 					locale));
 			for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-				this.printOutAnamnesis(document, patient, anamnesis, locale,exportParams);
+				this.printOutAnamnesis(document, patient, anamnesis, locale,
+						exportParams);
 			}
 		}
 
@@ -186,110 +186,139 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		}
 	}
 
-	private void printOutAnamnesis(XWPFDocument document, PatientEntity patient,
-			AnamnesisEntity anamnesis, Locale locale,ExportParamsEntity exportParams) {
+	private void printOutAnamnesis(XWPFDocument document,
+			PatientEntity patient, AnamnesisEntity anamnesis, Locale locale,
+			ExportParamsEntity exportParams) {
 		XWPFTable anamnesisTable = document.createTable();
 		XWPFTableRow anamnesisTableDateRow = anamnesisTable.getRow(0);
-		anamnesisTableDateRow.getCell(0).setText("Anamnesis from date:          ");		
+		anamnesisTableDateRow.getCell(0).setText(
+				"Anamnesis from date:          ");
 		anamnesisTableDateRow.addNewTableCell().setText(
-				TimeConverter.getDate(anamnesis.getDate())+"          ");
-		
-		if (exportParams.isAnamnesisEpilepsyInFamily()) {			
+				TimeConverter.getDate(anamnesis.getDate()) + "          ");
+
+		if (exportParams.isAnamnesisEpilepsyInFamily()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.epilepsyInFamily", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isEpilepsyInFamily()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.epilepsyInFamily", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.isEpilepsyInFamily()),
+							locale));
 		}
 		if (exportParams.isAnamnesisParentalRisk()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.prenatalRisk", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isPrenatalRisk()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource
+							.getMessage("label.prenatalRisk", null, locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(String.valueOf(anamnesis.isPrenatalRisk()),
+							locale));
 		}
 		if (exportParams.isAnamnesisFibrilConvulsions()) {
 			XWPFTableRow tableTwoRowThree = anamnesisTable.createRow();
-			tableTwoRowThree.getCell(0).setText(messageSource.getMessage(
-					"label.fibrilConvulsions", null, locale));
-			tableTwoRowThree.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isFibrilConvulsions()), locale));
+			tableTwoRowThree.getCell(0).setText(
+					messageSource.getMessage("label.fibrilConvulsions", null,
+							locale));
+			tableTwoRowThree.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.isFibrilConvulsions()),
+							locale));
 		}
 		if (exportParams.isAnamnesisInflammationCns()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.inflammationCNS", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isInflammationCns()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.inflammationCNS", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.isInflammationCns()),
+							locale));
 		}
-		if (exportParams.isAnamnesisInjuryCns()) {			
+		if (exportParams.isAnamnesisInjuryCns()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.injuryCNS", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isInjuryCns()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.injuryCNS", null, locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(String.valueOf(anamnesis.isInjuryCns()),
+							locale));
 		}
 		if (exportParams.isAnamnesisOperationCns()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.operationCNS", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isOperationCns()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource
+							.getMessage("label.operationCNS", null, locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(String.valueOf(anamnesis.isOperationCns()),
+							locale));
 		}
 		if (exportParams.isAnamnesisEarlyPmdRetardation()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.earlyPMDRetardation", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isEarlyPmdRetardation()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.earlyPMDRetardation", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.isEarlyPmdRetardation()),
+							locale));
 		}
 		if (exportParams.isAnamnesisBeginningEpilepsy()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.beginningEpilepsy", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
-					locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.beginningEpilepsy", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(TimeConverter.getDate(anamnesis
+							.getBeginningEpilepsy()), locale));
 		}
 		if (exportParams.isAnamnesisFirstFever()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.firstFever", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isFirstFever()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.firstFever", null, locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(String.valueOf(anamnesis.isFirstFever()),
+							locale));
 		}
 		if (exportParams.isAnamnesisInfantileSpasm()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.infantileSpasm", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.isInfantileSpasm()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.infantileSpasm", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.isInfantileSpasm()),
+							locale));
 		}
 		if (exportParams.isAnamnesisSpecificSyndrome()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.epilepticSyndrome", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.getSpecificSyndrome()),
-					locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.epilepticSyndrome", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.getSpecificSyndrome()),
+							locale));
 		}
 		if (exportParams.isAnamnesisNonCnsComorbidity()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.nonCNSComorbidity", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.getNonCnsComorbidity()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.nonCNSComorbidity", null,
+							locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(
+							String.valueOf(anamnesis.getNonCnsComorbidity()),
+							locale));
 		}
 		if (exportParams.isAnamnesisComment()) {
 			XWPFTableRow tableTwoRowTwo = anamnesisTable.createRow();
-			tableTwoRowTwo.getCell(0).setText(messageSource.getMessage(
-					"label.comment", null, locale));
-			tableTwoRowTwo.getCell(1).setText(translateValue(
-					String.valueOf(anamnesis.getComment()), locale));
+			tableTwoRowTwo.getCell(0).setText(
+					messageSource.getMessage("label.comment", null, locale));
+			tableTwoRowTwo.getCell(1).setText(
+					translateValue(String.valueOf(anamnesis.getComment()),
+							locale));
 		}
 	}
-	
-	
+
 	private String printOutSeizure(PatientEntity patient,
 			SeizureEntity seizure, Locale locale,
 			ExportParamsEntity exportParams) {
