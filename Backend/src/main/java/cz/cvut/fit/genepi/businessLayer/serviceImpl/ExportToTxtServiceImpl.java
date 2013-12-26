@@ -399,7 +399,6 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return content;
 	}
 
-	// TODO: nejasnosti + chybejici properties v export params
 	private String printOutSeizure(PatientEntity patient,
 			SeizureEntity seizure, Locale locale,
 			ExportParamsEntity exportParams) {
