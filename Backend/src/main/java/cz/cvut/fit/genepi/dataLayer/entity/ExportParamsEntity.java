@@ -209,32 +209,44 @@ public class ExportParamsEntity {
 	// DiagnosticTestMRI properties
 	@Column(name = "diagnosticTestMRIId")
 	private boolean diagnosticTestMRIId;
+	@Column(name = "diagnosticTestMRIDone")
+	private boolean diagnosticTestMRIDone;
 	@Column(name = "diagnosticTestMRIate")
 	private boolean diagnosticTestMRIate;
 	@Column(name = "diagnosticTestMRIDoctorId")
 	private boolean diagnosticTestMRIDoctorId;
 	@Column(name = "diagnosticTestMRIAdded")
 	private boolean diagnosticTestMRIAdded;
-	@Column(name = "diagnosticTestMRIProtocolIdCom")
-	private boolean diagnosticTestMRIProtocolIdCom;
-	@Column(name = "diagnosticTestMRIFindingIdCom")
-	private boolean diagnosticTestMRIFindingIdCom;
-	@Column(name = "diagnosticTestMRIFdgPetIdCom")
-	private boolean diagnosticTestMRIFdgPetIdCom;
-	@Column(name = "diagnosticTestMRIInterictalSpectIdCom")
-	private boolean diagnosticTestMRIInterictalSpectIdCom;
-	@Column(name = "diagnosticTestMRIIntaliSpectIdCom")
-	private boolean diagnosticTestMRIIntaliSpectIdCom;
+	@Column(name = "diagnosticTestMRIProtocol")
+	private boolean diagnosticTestMRIProtocol;
+	@Column(name = "diagnosticTestMRIFdgPet")
+	private boolean diagnosticTestMRIFdgPet;
+	@Column(name = "diagnosticTestMRIInterictalSpect")
+	private boolean diagnosticTestMRIInterictalSpect;
 	@Column(name = "diagnosticTestMRISiscom")
 	private boolean diagnosticTestMRISiscom;
 	@Column(name = "diagnosticTestMRITimeAplicationRn")
 	private boolean diagnosticTestMRITimeAplicationRn;
-	@Column(name = "diagnosticTestMRITimingAplicationRnIdCom")
-	private boolean diagnosticTestMRITimingAplicationRnIdCom;
-	@Column(name = "diagnosticTestMRIMrsProtocolIdCom")
-	private boolean diagnosticTestMRIMrsProtocolIdCom;
-	@Column(name = "diagnosticTestMRIMrsFindingIdCom")
-	private boolean diagnosticTestMRIMrsFindingIdCom;
+	@Column(name = "diagnosticTestMRITimingAplicationRn")
+	private boolean diagnosticTestMRITimingAplicationRn;
+	@Column(name = "diagnosticTestMRIMrsProtocol")
+	private boolean diagnosticTestMRIMrsProtocol;
+	@Column(name = "diagnosticTestMRIMrsFinding")
+	private boolean diagnosticTestMRIMrsFinding;
+	@Column(name = "diagnosticTestMRIFinding")
+	private boolean diagnosticTestMRIFinding;
+	@Column(name = "diagnosticTestMRIDescription")
+	private boolean diagnosticTestMRIDescription;
+	@Column(name = "diagnosticTestMRIDescriptionPetHypometabolism")
+	private boolean diagnosticTestMRIDescriptionPetHypometabolism;
+	@Column(name = "diagnosticTestMRIDescriptionSpectHyperperfuse")
+	private boolean diagnosticTestMRIDescriptionSpectHypoperfuse;
+	@Column(name = "diagnosticTestMRIDescriptionSpectHypoperfuse")
+	private boolean diagnosticTestMRIDescriptionMrsAbnormality;
+	@Column(name = "diagnosticTestMRIDescriptionMrsAbnormality")
+	private boolean diagnosticTestMRIDescriptionSpectHyperperfuse;
+	@Column(name = "diagnosticTestMRIIctalSpect")
+	private boolean diagnosticTestMRIIctalSpect;
 	@Column(name = "diagnosticTestMRIDti")
 	private boolean diagnosticTestMRIDti;
 	@Column(name = "diagnosticTestMRIDtiDetailStudy")
@@ -243,6 +255,8 @@ public class ExportParamsEntity {
 	private boolean diagnosticTestMRIFmri;
 	@Column(name = "diagnosticTestMRIDetailsFmri")
 	private boolean diagnosticTestMRIDetailsFmri;
+	@Column(name = "diagnosticTestMRIDetailsDtiStudy")
+	private boolean diagnosticTestMRIDetailsDtiStudy;
 	@Column(name = "diagnosticTestMRIWada")
 	private boolean diagnosticTestMRIWada;
 	@Column(name = "diagnosticTestMRIDetailsWada")
@@ -299,18 +313,20 @@ public class ExportParamsEntity {
 	private boolean invasiveTestECOGId;
 	@Column(name = "invasiveTestECOGDate")
 	private boolean invasiveTestECOGDate;
+	@Column(name = "invasiveTestECOGDone")
+	private boolean invasiveTestECOGDone;
 	@Column(name = "invasiveTestECOGDoctorId")
 	private boolean invasiveTestECOGDoctorId;
 	@Column(name = "invasiveTestECOGAdded")
 	private boolean invasiveTestECOGAdded;
 	@Column(name = "invasiveTestECOGIntraOperativeEcog")
 	private boolean invasiveTestECOGIntraOperativeEcog;
-	@Column(name = "invasiveTestECOGEcogPatternsIdCom")
-	private boolean invasiveTestECOGEcogPatternsIdCom;
+	@Column(name = "invasiveTestECOGEcogPatterns")
+	private boolean invasiveTestECOGEcogPatterns;
 	@Column(name = "invasiveTestECOGEcogCover")
 	private boolean invasiveTestECOGEcogCover;
-	@Column(name = "invasiveTestECOGAfterResectiomEcogIdCom")
-	private boolean invasiveTestECOGAfterResectiomEcogIdCom;
+	@Column(name = "invasiveTestECOGAfterResectiomEcog")
+	private boolean invasiveTestECOGAfterResectiomEcog;
 	@Column(name = "invasiveTestECOGAwakeCraniotomy")
 	private boolean invasiveTestECOGAwakeCraniotomy;
 	@Column(name = "invasiveTestECOGComment")
@@ -349,8 +365,8 @@ public class ExportParamsEntity {
 	private boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
 	@Column(name = "invasiveTestEEGStatusEpilepticus")
 	private boolean invasiveTestEEGStatusEpilepticus;
-	@Column(name = "invasiveTestEEGInvasiveIctalEEGPatternsIdCom")
-	private boolean invasiveTestEEGInvasiveIctalEEGPatternsIdCom;
+	@Column(name = "invasiveTestEEGInvasiveIctalEEgPatterns")
+	private boolean invasiveTestEEGInvasiveIctalEEgPatterns;
 	@Column(name = "invasiveTestEEGLocalizationIctalEEGPatterns")
 	private boolean invasiveTestEEGLocalizationIctalEEGPatterns;
 	@Column(name = "invasiveTestEEGComment")
@@ -405,7 +421,6 @@ public class ExportParamsEntity {
 	private boolean neuropsychologyIntellect;
 	@Column(name = "neuropsychologyNeurodevelopmentalExamination")
 	private boolean neuropsychologyNeurodevelopmentalExamination;
-
 	@Column(name = "neuropsychologyNeurodevelopmentalExaminationAdaptability")
 	private boolean neuropsychologyNeurodevelopmentalExaminationAdaptability;
 	@Column(name = "neuropsychologyNeurodevelopmentalExaminationSpeechExpressively")
@@ -462,7 +477,6 @@ public class ExportParamsEntity {
 	private boolean neuropsychologyPresenceOfChangesDetail;
 	@Column(name = "neuropsychologyEmotionalStatus")
 	private boolean neuropsychologyEmotionalStatus;
-
 	@Column(name = "neuropsychologyComment")
 	private boolean neuropsychologyComment;
 	@Column(name = "neuropsychologyDeleted")
@@ -1354,49 +1368,29 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRIAdded = diagnosticTestMRIAdded;
 	}
 
-	public boolean isDiagnosticTestMRIProtocolIdCom() {
-		return diagnosticTestMRIProtocolIdCom;
+	public boolean isDiagnosticTestMRIProtocol() {
+		return diagnosticTestMRIProtocol;
 	}
 
-	public void setDiagnosticTestMRIProtocolIdCom(
-			boolean diagnosticTestMRIProtocolIdCom) {
-		this.diagnosticTestMRIProtocolIdCom = diagnosticTestMRIProtocolIdCom;
+	public void setDiagnosticTestMRIProtocol(boolean diagnosticTestMRIProtocol) {
+		this.diagnosticTestMRIProtocol = diagnosticTestMRIProtocol;
 	}
 
-	public boolean isDiagnosticTestMRIFindingIdCom() {
-		return diagnosticTestMRIFindingIdCom;
+	public boolean isDiagnosticTestMRIFdgPet() {
+		return diagnosticTestMRIFdgPet;
 	}
 
-	public void setDiagnosticTestMRIFindingIdCom(
-			boolean diagnosticTestMRIFindingIdCom) {
-		this.diagnosticTestMRIFindingIdCom = diagnosticTestMRIFindingIdCom;
+	public void setDiagnosticTestMRIFdgPet(boolean diagnosticTestMRIFdgPet) {
+		this.diagnosticTestMRIFdgPet = diagnosticTestMRIFdgPet;
 	}
 
-	public boolean isDiagnosticTestMRIFdgPetIdCom() {
-		return diagnosticTestMRIFdgPetIdCom;
+	public boolean isdiagnosticTestMRIInterictalSpect() {
+		return diagnosticTestMRIInterictalSpect;
 	}
 
-	public void setDiagnosticTestMRIFdgPetIdCom(
-			boolean diagnosticTestMRIFdgPetIdCom) {
-		this.diagnosticTestMRIFdgPetIdCom = diagnosticTestMRIFdgPetIdCom;
-	}
-
-	public boolean isDiagnosticTestMRIInterictalSpectIdCom() {
-		return diagnosticTestMRIInterictalSpectIdCom;
-	}
-
-	public void setDiagnosticTestMRIInterictalSpectIdCom(
-			boolean diagnosticTestMRIInterictalSpectIdCom) {
-		this.diagnosticTestMRIInterictalSpectIdCom = diagnosticTestMRIInterictalSpectIdCom;
-	}
-
-	public boolean isDiagnosticTestMRIIntaliSpectIdCom() {
-		return diagnosticTestMRIIntaliSpectIdCom;
-	}
-
-	public void setDiagnosticTestMRIIntaliSpectIdCom(
-			boolean diagnosticTestMRIIntaliSpectIdCom) {
-		this.diagnosticTestMRIIntaliSpectIdCom = diagnosticTestMRIIntaliSpectIdCom;
+	public void setdiagnosticTestMRIInterictalSpect(
+			boolean diagnosticTestMRIInterictalSpect) {
+		this.diagnosticTestMRIInterictalSpect = diagnosticTestMRIInterictalSpect;
 	}
 
 	public boolean isDiagnosticTestMRISiscom() {
@@ -1416,31 +1410,22 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRITimeAplicationRn = diagnosticTestMRITimeAplicationRn;
 	}
 
-	public boolean isDiagnosticTestMRITimingAplicationRnIdCom() {
-		return diagnosticTestMRITimingAplicationRnIdCom;
+	public boolean isDiagnosticTestMRITimingAplicationRn() {
+		return diagnosticTestMRITimingAplicationRn;
 	}
 
-	public void setDiagnosticTestMRITimingAplicationRnIdCom(
-			boolean diagnosticTestMRITimingAplicationRnIdCom) {
-		this.diagnosticTestMRITimingAplicationRnIdCom = diagnosticTestMRITimingAplicationRnIdCom;
+	public void setDiagnosticTestMRITimingAplicationRn(
+			boolean diagnosticTestMRITimingAplicationRn) {
+		this.diagnosticTestMRITimingAplicationRn = diagnosticTestMRITimingAplicationRn;
 	}
 
-	public boolean isDiagnosticTestMRIMrsProtocolIdCom() {
-		return diagnosticTestMRIMrsProtocolIdCom;
+	public boolean isDiagnosticTestMRIMrsProtocol() {
+		return diagnosticTestMRIMrsProtocol;
 	}
 
-	public void setDiagnosticTestMRIMrsProtocolIdCom(
-			boolean diagnosticTestMRIMrsProtocolIdCom) {
-		this.diagnosticTestMRIMrsProtocolIdCom = diagnosticTestMRIMrsProtocolIdCom;
-	}
-
-	public boolean isDiagnosticTestMRIMrsFindingIdCom() {
-		return diagnosticTestMRIMrsFindingIdCom;
-	}
-
-	public void setDiagnosticTestMRIMrsFindingIdCom(
-			boolean diagnosticTestMRIMrsFindingIdCom) {
-		this.diagnosticTestMRIMrsFindingIdCom = diagnosticTestMRIMrsFindingIdCom;
+	public void setDiagnosticTestMRIMrsProtocol(
+			boolean diagnosticTestMRIMrsProtocol) {
+		this.diagnosticTestMRIMrsProtocol = diagnosticTestMRIMrsProtocol;
 	}
 
 	public boolean isDiagnosticTestMRIDti() {
@@ -1718,13 +1703,13 @@ public class ExportParamsEntity {
 		this.invasiveTestECOGIntraOperativeEcog = invasiveTestECOGIntraOperativeEcog;
 	}
 
-	public boolean isInvasiveTestECOGEcogPatternsIdCom() {
-		return invasiveTestECOGEcogPatternsIdCom;
+	public boolean isInvasiveTestECOGEcogPatterns() {
+		return invasiveTestECOGEcogPatterns;
 	}
 
-	public void setInvasiveTestECOGEcogPatternsIdCom(
-			boolean invasiveTestECOGEcogPatternsIdCom) {
-		this.invasiveTestECOGEcogPatternsIdCom = invasiveTestECOGEcogPatternsIdCom;
+	public void setInvasiveTestECOGEcogPatterns(
+			boolean invasiveTestECOGEcogPatterns) {
+		this.invasiveTestECOGEcogPatterns = invasiveTestECOGEcogPatterns;
 	}
 
 	public boolean isInvasiveTestECOGEcogCover() {
@@ -1735,13 +1720,13 @@ public class ExportParamsEntity {
 		this.invasiveTestECOGEcogCover = invasiveTestECOGEcogCover;
 	}
 
-	public boolean isInvasiveTestECOGAfterResectiomEcogIdCom() {
-		return invasiveTestECOGAfterResectiomEcogIdCom;
+	public boolean isInvasiveTestECOGAfterResectiomEcog() {
+		return invasiveTestECOGAfterResectiomEcog;
 	}
 
-	public void setInvasiveTestECOGAfterResectiomEcogIdCom(
-			boolean invasiveTestECOGAfterResectiomEcogIdCom) {
-		this.invasiveTestECOGAfterResectiomEcogIdCom = invasiveTestECOGAfterResectiomEcogIdCom;
+	public void setInvasiveTestECOGAfterResectiomEcog(
+			boolean invasiveTestECOGAfterResectiomEcog) {
+		this.invasiveTestECOGAfterResectiomEcog = invasiveTestECOGAfterResectiomEcog;
 	}
 
 	public boolean isInvasiveTestECOGAwakeCraniotomy() {
@@ -1897,13 +1882,13 @@ public class ExportParamsEntity {
 		this.invasiveTestEEGStatusEpilepticus = invasiveTestEEGStatusEpilepticus;
 	}
 
-	public boolean isInvasiveTestEEGInvasiveIctalEEGPatternsIdCom() {
-		return invasiveTestEEGInvasiveIctalEEGPatternsIdCom;
+	public boolean isInvasiveTestEEGInvasiveIctalEEgPatterns() {
+		return invasiveTestEEGInvasiveIctalEEgPatterns;
 	}
 
-	public void setInvasiveTestEEGInvasiveIctalEEGPatternsIdCom(
-			boolean invasiveTestEEGInvasiveIctalEEGPatternsIdCom) {
-		this.invasiveTestEEGInvasiveIctalEEGPatternsIdCom = invasiveTestEEGInvasiveIctalEEGPatternsIdCom;
+	public void setInvasiveTestEEGInvasiveIctalEEgPatterns(
+			boolean invasiveTestEEGInvasiveIctalEEgPatterns) {
+		this.invasiveTestEEGInvasiveIctalEEgPatterns = invasiveTestEEGInvasiveIctalEEgPatterns;
 	}
 
 	public boolean isInvasiveTestEEGLocalizationIctalEEGPatterns() {
@@ -3176,6 +3161,119 @@ public class ExportParamsEntity {
 	public void setDiagnosticTestEEGDescriptionVideoEEG(
 			boolean diagnosticTestEEGDescriptionVideoEEG) {
 		this.diagnosticTestEEGDescriptionVideoEEG = diagnosticTestEEGDescriptionVideoEEG;
+	}
+
+	public boolean isDiagnosticTestMRIDone() {
+		return diagnosticTestMRIDone;
+	}
+
+	public void setDiagnosticTestMRIDone(boolean diagnosticTestMRIDone) {
+		this.diagnosticTestMRIDone = diagnosticTestMRIDone;
+	}
+
+	public boolean isDiagnosticTestMRIInterictalSpect() {
+		return diagnosticTestMRIInterictalSpect;
+	}
+
+	public void setDiagnosticTestMRIInterictalSpect(
+			boolean diagnosticTestMRIInterictalSpect) {
+		this.diagnosticTestMRIInterictalSpect = diagnosticTestMRIInterictalSpect;
+	}
+
+	public boolean isDiagnosticTestMRIFinding() {
+		return diagnosticTestMRIFinding;
+	}
+
+	public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
+		this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
+	}
+
+	public boolean isDiagnosticTestMRIDescription() {
+		return diagnosticTestMRIDescription;
+	}
+
+	public void setDiagnosticTestMRIDescription(
+			boolean diagnosticTestMRIDescription) {
+		this.diagnosticTestMRIDescription = diagnosticTestMRIDescription;
+	}
+
+	public boolean isNeuropsychologyIntellectualPerformanceNonverbalDesignCap() {
+		return neuropsychologyIntellectualPerformanceNonverbalDesignCap;
+	}
+
+	public void setNeuropsychologyIntellectualPerformanceNonverbalDesignCap(
+			boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap) {
+		this.neuropsychologyIntellectualPerformanceNonverbalDesignCap = neuropsychologyIntellectualPerformanceNonverbalDesignCap;
+	}
+
+	public boolean isDiagnosticTestMRIDescriptionPetHypometabolism() {
+		return diagnosticTestMRIDescriptionPetHypometabolism;
+	}
+
+	public void setDiagnosticTestMRIDescriptionPetHypometabolism(
+			boolean diagnosticTestMRIDescriptionPetHypometabolism) {
+		this.diagnosticTestMRIDescriptionPetHypometabolism = diagnosticTestMRIDescriptionPetHypometabolism;
+	}
+
+	public boolean isDiagnosticTestMRIDescriptionSpectHypoperfuse() {
+		return diagnosticTestMRIDescriptionSpectHypoperfuse;
+	}
+
+	public void setDiagnosticTestMRIDescriptionSpectHypoperfuse(
+			boolean diagnosticTestMRIDescriptionSpectHypoperfuse) {
+		this.diagnosticTestMRIDescriptionSpectHypoperfuse = diagnosticTestMRIDescriptionSpectHypoperfuse;
+	}
+
+	public boolean isDiagnosticTestMRIDescriptionSpectHyperperfuse() {
+		return diagnosticTestMRIDescriptionSpectHyperperfuse;
+	}
+
+	public void setDiagnosticTestMRIDescriptionSpectHyperperfuse(
+			boolean diagnosticTestMRIDescriptionSpectHyperperfuse) {
+		this.diagnosticTestMRIDescriptionSpectHyperperfuse = diagnosticTestMRIDescriptionSpectHyperperfuse;
+	}
+
+	public boolean isDiagnosticTestMRIIctalSpect() {
+		return diagnosticTestMRIIctalSpect;
+	}
+
+	public void setDiagnosticTestMRIIctalSpect(
+			boolean diagnosticTestMRIIctalSpect) {
+		this.diagnosticTestMRIIctalSpect = diagnosticTestMRIIctalSpect;
+	}
+
+	public boolean isDiagnosticTestMRIMrsFinding() {
+		return diagnosticTestMRIMrsFinding;
+	}
+
+	public void setDiagnosticTestMRIMrsFinding(boolean diagnosticTestMRIMrsFinding) {
+		this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
+	}
+
+	public boolean isDiagnosticTestMRIDescriptionMrsAbnormality() {
+		return diagnosticTestMRIDescriptionMrsAbnormality;
+	}
+
+	public void setDiagnosticTestMRIDescriptionMrsAbnormality(
+			boolean diagnosticTestMRIDescriptionMrsAbnormality) {
+		this.diagnosticTestMRIDescriptionMrsAbnormality = diagnosticTestMRIDescriptionMrsAbnormality;
+	}
+
+	public boolean isDiagnosticTestMRIDetailsDtiStudy() {
+		return diagnosticTestMRIDetailsDtiStudy;
+	}
+
+	public void setDiagnosticTestMRIDetailsDtiStudy(
+			boolean diagnosticTestMRIDetailsDtiStudy) {
+		this.diagnosticTestMRIDetailsDtiStudy = diagnosticTestMRIDetailsDtiStudy;
+	}
+
+	public boolean isInvasiveTestECOGDone() {
+		return invasiveTestECOGDone;
+	}
+
+	public void setInvasiveTestECOGDone(boolean invasiveTestECOGDone) {
+		this.invasiveTestECOGDone = invasiveTestECOGDone;
 	}
 
 }

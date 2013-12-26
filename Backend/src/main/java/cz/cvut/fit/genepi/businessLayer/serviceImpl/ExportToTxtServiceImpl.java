@@ -504,7 +504,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 				.isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
 
 		}
-		if (exportParams.isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+		if (exportParams
+				.isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
 
 		}
 		if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
@@ -642,6 +643,67 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isDiagnosticTestMRIDone()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIFinding()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDescription()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIFdgPet()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDescriptionPetHypometabolism()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIInterictalSpect()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIIctalSpect()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRISiscom()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIMrsFinding()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDescriptionMrsAbnormality()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIFmri()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDti()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIWada()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIDetailsWada()) {
+
+		}
+		if (exportParams.isDiagnosticTestMRIComment()) {
+
+		}
 		return content;
 	}
 
@@ -649,6 +711,22 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isInvasiveTestECOGDone()) {
+
+		}
+		if (exportParams.isInvasiveTestECOGEcogCover()) {
+
+		}
+		if (exportParams.isInvasiveTestECOGEcogPatterns()) {
+
+		}
+		if (exportParams.isInvasiveTestECOGAfterResectiomEcog()) {
+
+		}
+		if (exportParams.isInvasiveTestECOGComment()) {
+
+		}
 		return content;
 	}
 
