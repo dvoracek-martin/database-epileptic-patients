@@ -92,7 +92,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 				f.createNewFile();
 			} catch (IOException e) {
 				logger.logError(
-						"Couldn't create new file when trying to save pdf file.",
+						"Couldn't create new file when trying to save txt file.",
 						e);
 			}
 
