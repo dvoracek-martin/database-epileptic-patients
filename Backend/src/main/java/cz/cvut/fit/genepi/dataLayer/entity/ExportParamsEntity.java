@@ -35,8 +35,7 @@ public class ExportParamsEntity {
 	@Column(name = "diagnosticTestMRI")
 	private boolean diagnosticTestMRI;
 
-	// TODO: rename to histology
-	@Column(name = "histiology")
+	@Column(name = "histology")
 	private boolean histology;
 
 	@Column(name = "invasiveTestECOG")
@@ -47,15 +46,16 @@ public class ExportParamsEntity {
 
 	@Column(name = "neurologicalFinding")
 	private boolean neurologicalFinding;
-	
-	// TODO: rename to neuropsychology
-	@Column(name = "neurolopsychology")
+
+	@Column(name = "neuropsychology")
 	private boolean neuropsychology;
-	
-	//TODO: add NEUROPSYCHOLOGY OLD	
-	// TODO: Neurozobraz. testy
-	// TODO: Kortikální mapování
-	
+
+	@Column(name = "neuropsychologyOld")
+	private boolean neuropsychologyOld;
+
+	@Column(name = "invasiveTestCorticalMapping")
+	private boolean invasiveTestCorticalMapping;
+
 	@Column(name = "operation")
 	private boolean operation;
 
@@ -171,24 +171,26 @@ public class ExportParamsEntity {
 	private boolean diagnosticTestEEGId;
 	@Column(name = "diagnosticTestEEGDate")
 	private boolean diagnosticTestEEGDate;
+	@Column(name = "diagnosticTestEEGDone")
+	private boolean diagnosticTestEEGDone;
 	@Column(name = "diagnosticTestEEGDoctorId")
 	private boolean diagnosticTestEEGDoctorId;
 	@Column(name = "diagnosticTestEEGAdded")
 	private boolean diagnosticTestEEGAdded;
-	@Column(name = "diagnosticTestEEGActivityIdCom")
-	private boolean diagnosticTestEEGActivityIdCom;
-	@Column(name = "diagnosticTestEEGSlowId")
-	private boolean diagnosticTestEEGSlowId;
-	@Column(name = "diagnosticTestEEGInterictalEEGSpikesComId")
-	private boolean diagnosticTestEEGInterictalEEGSpikesComId;
+	@Column(name = "diagnosticTestEEGBasicActivity")
+	private boolean diagnosticTestEEGBasicActivity;
+	@Column(name = "diagnosticTestEEGSlow")
+	private boolean diagnosticTestEEGSlow;
+	@Column(name = "diagnosticTestEEGInterictalEEGSpikes")
+	private boolean diagnosticTestEEGInterictalEEGSpikes;
 	@Column(name = "diagnosticTestEEGLocalizationInerictalEEGSpikes")
 	private boolean diagnosticTestEEGLocalizationInerictalEEGSpikes;
 	@Column(name = "diagnosticTestEEGStatusEpilepticus")
 	private boolean diagnosticTestEEGStatusEpilepticus;
 	@Column(name = "diagnosticTestEEGSecondarySidedSynchrony")
 	private boolean diagnosticTestEEGSecondarySidedSynchrony;
-	@Column(name = "diagnosticTestEEGIctalEEGPatternsIdCom")
-	private boolean diagnosticTestEEGIctalEEGPatternsIdCom;
+	@Column(name = "diagnosticTestEEGIctalEEGPatterns")
+	private boolean diagnosticTestEEGIctalEEGPatterns;
 	@Column(name = "diagnosticTestEEGLocalizationIctalEEGPattern")
 	private boolean diagnosticTestEEGLocalizationIctalEEGPattern;
 	@Column(name = "diagnosticTestEEGComment")
@@ -201,6 +203,8 @@ public class ExportParamsEntity {
 	private boolean diagnosticTestEEGPatientId;
 	@Column(name = "diagnosticTestEEGStatus")
 	private boolean diagnosticTestEEGStatus;
+	@Column(name = "diagnosticTestEEGDescriptionVideoEEG")
+	private boolean diagnosticTestEEGDescriptionVideoEEG;
 
 	// DiagnosticTestMRI properties
 	@Column(name = "diagnosticTestMRIId")
@@ -266,29 +270,29 @@ public class ExportParamsEntity {
 	@Column(name = "diagnosticTestMRIStatus")
 	private boolean diagnosticTestMRIStatus;
 
-	// Histiology properties
-	@Column(name = "histiologyId")
-	private boolean histiologyId;
-	@Column(name = "histiologyDate")
-	private boolean histiologyDate;
-	@Column(name = "histiologyDoctorId")
-	private boolean histiologyDoctorId;
-	@Column(name = "histiologyAdded")
-	private boolean histiologyAdded;
-	@Column(name = "histiologyHistopathologyIdCom")
-	private boolean histiologyHistopathologyIdCom;
-	@Column(name = "histiologyClassificationIdCom")
-	private boolean histiologyClassificationIdCom;
-	@Column(name = "histiologyComment")
-	private boolean histiologyComment;
-	@Column(name = "histiologyDeleted")
-	private boolean histiologyDeleted;
-	@Column(name = "histiologyPatientId")
-	private boolean histiologyPatientId;
-	@Column(name = "histiologyAddUserId")
-	private boolean histiologyAddUserId;
-	@Column(name = "histiologyStatus")
-	private boolean histiologyStatus;
+	// Histology properties
+	@Column(name = "histologyId")
+	private boolean histologyId;
+	@Column(name = "histologyDate")
+	private boolean histologyDate;
+	@Column(name = "histologyDoctorId")
+	private boolean histologyDoctorId;
+	@Column(name = "histologyAdded")
+	private boolean histologyAdded;
+	@Column(name = "histologyHistopathologyIdCom")
+	private boolean histologyHistopathologyIdCom;
+	@Column(name = "histologyClassificationIdCom")
+	private boolean histologyClassificationIdCom;
+	@Column(name = "histologyComment")
+	private boolean histologyComment;
+	@Column(name = "histologyDeleted")
+	private boolean histologyDeleted;
+	@Column(name = "histologyPatientId")
+	private boolean histologyPatientId;
+	@Column(name = "histologyAddUserId")
+	private boolean histologyAddUserId;
+	@Column(name = "histologyStatus")
+	private boolean histologyStatus;
 
 	// InvasiveTestECOG properties
 	@Column(name = "invasiveTestECOGId")
@@ -331,8 +335,8 @@ public class ExportParamsEntity {
 	private boolean invasiveTestEEGAdded;
 	@Column(name = "invasiveTestEEGInvasiveMonitoring")
 	private boolean invasiveTestEEGInvasiveMonitoring;
-	@Column(name = "invasiveTestEEGCoticalMappingIdCom")
-	private boolean invasiveTestEEGCoticalMappingIdCom;
+	@Column(name = "invasiveTestEEGCorticalMapping")
+	private boolean invasiveTestEEGCorticalMapping;
 	@Column(name = "invasiveTestEEGLocalizationIntracranialElectrodes")
 	private boolean invasiveTestEEGLocalizationIntracranialElectrodes;
 	@Column(name = "invasiveTestEEGIntracranialElectrodesIdCom")
@@ -369,14 +373,14 @@ public class ExportParamsEntity {
 	private boolean neurologicalFindingDoctorId;
 	@Column(name = "neurologicalFindingAdded")
 	private boolean neurologicalFindingAdded;
-	@Column(name = "neurologicalFindingHemisphereDominanceIdCom")
-	private boolean neurologicalFindingHemisphereDominanceIdCom;
+	@Column(name = "neurologicalFindingHemisphereDominance")
+	private boolean neurologicalFindingHemisphereDominance;
 	@Column(name = "neurologicalFindingAbnormalNeurologicalFinding")
 	private boolean neurologicalFindingAbnormalNeurologicalFinding;
 	@Column(name = "neurologicalFindingHemiparesis")
 	private boolean neurologicalFindingHemiparesis;
-	@Column(name = "neurologicalFindingVisualCut")
-	private boolean neurologicalFindingVisualCut;
+	@Column(name = "neurologicalFindingVisualFieldDefects")
+	private boolean neurologicalFindingVisualFieldDefects;
 	@Column(name = "neurologicalFindingComment")
 	private boolean neurologicalFindingComment;
 	@Column(name = "neurologicalFindingDeleted")
@@ -389,34 +393,86 @@ public class ExportParamsEntity {
 	private boolean neurologicalFindingStatus;
 
 	// Neuropsychology properties
-	@Column(name = "neurolopsychologyId")
-	private boolean neurolopsychologyId;
-	@Column(name = "neurolopsychologyDate")
-	private boolean neurolopsychologyDate;
-	@Column(name = "neurolopsychologyDoctorId")
-	private boolean neurolopsychologyDoctorId;
-	@Column(name = "neurolopsychologyAdded")
-	private boolean neurolopsychologyAdded;
-	@Column(name = "neurolopsychologyNeuropsychologicalExamination")
-	private boolean neurolopsychologyNeuropsychologicalExamination;
-	@Column(name = "neurolopsychologyIntelligenceLevelIdCom")
-	private boolean neurolopsychologyIntelligenceLevelIdCom;
-	@Column(name = "neurolopsychologySpecificLearning")
-	private boolean neurolopsychologySpecificLearning;
-	@Column(name = "neurolopsychologyDevelopmentLanguageDisorders")
-	private boolean neurolopsychologyDevelopmentLanguageDisorders;
-	@Column(name = "neurolopsychologyAdhdSyndome")
-	private boolean neurolopsychologyAdhdSyndome;
-	@Column(name = "neurolopsychologyComment")
-	private boolean neurolopsychologyComment;
-	@Column(name = "neurolopsychologyDeleted")
-	private boolean neurolopsychologyDeleted;
-	@Column(name = "neurolopsychologyAddUserId")
-	private boolean neurolopsychologyAddUserId;
-	@Column(name = "neurolopsychologyPatientId")
-	private boolean neurolopsychologyPatientId;
-	@Column(name = "neurolopsychologyStatus")
-	private boolean neurolopsychologyStatus;
+	@Column(name = "neuropsychologyId")
+	private boolean neuropsychologyId;
+	@Column(name = "neuropsychologyDate")
+	private boolean neuropsychologyDate;
+	@Column(name = "neuropsychologyDoctorId")
+	private boolean neuropsychologyDoctorId;
+	@Column(name = "neuropsychologyAdded")
+	private boolean neuropsychologyAdded;
+	@Column(name = "neuropsychologyIntellect")
+	private boolean neuropsychologyIntellect;
+	@Column(name = "neuropsychologyNeurodevelopmentalExamination")
+	private boolean neuropsychologyNeurodevelopmentalExamination;
+
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationAdaptability")
+	private boolean neuropsychologyNeurodevelopmentalExaminationAdaptability;
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationSpeechExpressively")
+	private boolean neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationSpeechReceptively")
+	private boolean neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationFineMotorSkills")
+	private boolean neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills")
+	private boolean neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
+	@Column(name = "neuropsychologyNeurodevelopmentalExaminationSocialBehavior")
+	private boolean neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
+	@Column(name = "neuropsychologyIntellectualPerformance")
+	private boolean neuropsychologyIntellectualPerformance;
+	@Column(name = "neuropsychologyIntellectualPerformanceVerbally")
+	private boolean neuropsychologyIntellectualPerformanceVerbally;
+	@Column(name = "neuropsychologyIntellectualPerformanceNonverbalAbstraction")
+	private boolean neuropsychologyIntellectualPerformanceNonverbalAbstraction;
+	@Column(name = "neuropsychologyIntellectualPerformanceNonverbalDesignCap")
+	private boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap;
+	@Column(name = "neuropsychologyNeuropsychologicalProfile")
+	private boolean neuropsychologyNeuropsychologicalProfile;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileAttention")
+	private boolean neuropsychologyNeuropsychologicalProfileAttention;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileExecutiveFunction")
+	private boolean neuropsychologyNeuropsychologicalProfileExecutiveFunction;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileCognitiveSpeed")
+	private boolean neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileSpeechExpressively")
+	private boolean neuropsychologyNeuropsychologicalProfileSpeechExpressively;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileSpeechUnderstanding")
+	private boolean neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMemoryOperating")
+	private boolean neuropsychologyNeuropsychologicalProfileMemoryOperating;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMemoryVerbal")
+	private boolean neuropsychologyNeuropsychologicalProfileMemoryVerbal;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMemoryNonverbal")
+	private boolean neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMemoryLearning")
+	private boolean neuropsychologyNeuropsychologicalProfileMemoryLearning;
+	@Column(name = "neuropsychologyNeuropsychologicalProfilePerceptionSpeech")
+	private boolean neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
+	@Column(name = "neuropsychologyNeuropsychologicalProfilePerceptionVisual")
+	private boolean neuropsychologyNeuropsychologicalProfilePerceptionVisual;
+	@Column(name = "neuropsychologyNeuropsychologicalProfilePerceptionSpatial")
+	private boolean neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity")
+	private boolean neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
+	@Column(name = "neuropsychologyNeuropsychologicalProfileMotorCoordination")
+	private boolean neuropsychologyNeuropsychologicalProfileMotorCoordination;
+	@Column(name = "neuropsychologyPresenceOfChanges")
+	private boolean neuropsychologyPresenceOfChanges;
+	@Column(name = "neuropsychologyPresenceOfChangesDetail")
+	private boolean neuropsychologyPresenceOfChangesDetail;
+	@Column(name = "neuropsychologyEmotionalStatus")
+	private boolean neuropsychologyEmotionalStatus;
+
+	@Column(name = "neuropsychologyComment")
+	private boolean neuropsychologyComment;
+	@Column(name = "neuropsychologyDeleted")
+	private boolean neuropsychologyDeleted;
+	@Column(name = "neuropsychologyAddUserId")
+	private boolean neuropsychologyAddUserId;
+	@Column(name = "neuropsychologyPatientId")
+	private boolean neuropsychologyPatientId;
+	@Column(name = "neuropsychologyStatus")
+	private boolean neuropsychologyStatus;
 	@Column(name = "neuropsychologyFindingDetail")
 	private boolean neuropsychologyFindingDetail;
 
@@ -497,8 +553,8 @@ public class ExportParamsEntity {
 	private boolean pharmacotherapyDoctorId;
 	@Column(name = "pharmacotherapyAdded")
 	private boolean pharmacotherapyAdded;
-	@Column(name = "pharmacotherapyAEDIdCom")
-	private boolean pharmacotherapyAEDIdCom;
+	@Column(name = "pharmacotherapyAED")
+	private boolean pharmacotherapyAED;
 	@Column(name = "pharmacotherapyEffective")
 	private boolean pharmacotherapyEffective;
 	@Column(name = "pharmacotherapyDuringSurgery")
@@ -523,8 +579,8 @@ public class ExportParamsEntity {
 	private boolean seizureDoctorId;
 	@Column(name = "seizureAdded")
 	private boolean seizureAdded;
-	@Column(name = "seizureSeizureFrequencyIdCom")
-	private boolean seizureSeizureFrequencyIdCom;
+	@Column(name = "seizureFrequency")
+	private boolean seizureFrequency;
 	@Column(name = "seizureSecondarilyGeneralizedSeizure")
 	private boolean seizureSecondarilyGeneralizedSeizure;
 	@Column(name = "seizureStatusEpilepticus")
@@ -555,6 +611,58 @@ public class ExportParamsEntity {
 	private boolean seizurePatientId;
 	@Column(name = "seizureStatus")
 	private boolean seizureStatus;
+
+	// NeuropsychologyOld properties
+	@Column(name = "neuropsychologyOldId")
+	private boolean neuropsychologyOldId;
+	@Column(name = "neuropsychologyOldDate")
+	private boolean neuropsychologyOldDate;
+	@Column(name = "neuropsychologyOldDoctorId")
+	private boolean neuropsychologyOldDoctorId;
+	@Column(name = "neuropsychologyOldAdded")
+	private boolean neuropsychologyOldAdded;
+	@Column(name = "neuropsychologyOldComment")
+	private boolean neuropsychologyOldComment;
+	@Column(name = "neuropsychologyOldDeleted")
+	private boolean neuropsychologyOldDeleted;
+	@Column(name = "neuropsychologyOldAddUserId")
+	private boolean neuropsychologyOldAddUserId;
+	@Column(name = "neuropsychologyOldPatientId")
+	private boolean neuropsychologyOldPatientId;
+	@Column(name = "neuropsychologyOldNeuropsychologicalExamination")
+	private boolean neuropsychologyOldNeuropsychologicalExamination;
+	@Column(name = "neuropsychologyOldIntelligenceLevel")
+	private boolean neuropsychologyOldIntelligenceLevel;
+	@Column(name = "neuropsychologyOldSpecificLearning")
+	private boolean neuropsychologyOldSpecificLearning;
+	@Column(name = "neuropsychologyOldDevelopmentalLanguageDisorders")
+	private boolean neuropsychologyOldDevelopmentalLanguageDisorders;
+	@Column(name = "neuropsychologyOldAdhdSyndrome")
+	private boolean neuropsychologyOldAdhdSyndrome;
+
+	// InvasiveTestCorticalMapping properties
+	@Column(name = "invasiveTestCorticalMappingId")
+	private boolean invasiveTestCorticalMappingId;
+	@Column(name = "invasiveTestCorticalMappingDate")
+	private boolean invasiveTestCorticalMappingDate;
+	@Column(name = "invasiveTestCorticalMappingDoctorId")
+	private boolean invasiveTestCorticalMappingDoctorId;
+	@Column(name = "invasiveTestCorticalMappingAdded")
+	private boolean invasiveTestCorticalMappingAdded;
+	@Column(name = "invasiveTestCorticalMappingComment")
+	private boolean invasiveTestCorticalMappingComment;
+	@Column(name = "invasiveTestCorticalMappingDeleted")
+	private boolean invasiveTestCorticalMappingDeleted;
+	@Column(name = "invasiveTestCorticalMappingAddUserId")
+	private boolean invasiveTestCorticalMappingAddUserId;
+	@Column(name = "invasiveTestCorticalMappingPatientId")
+	private boolean invasiveTestCorticalMappingPatientId;
+	@Column(name = "invasiveTestCorticalMappingStatus")
+	private boolean invasiveTestCorticalMappingStatus;
+	@Column(name = "invasiveTestCorticalMappingDone")
+	private boolean invasiveTestCorticalMappingDone;
+	@Column(name = "invasiveTestCorticalMappingCorticalMapping")
+	private boolean invasiveTestCorticalMappingCorticalMapping;
 
 	public int getId() {
 		return id;
@@ -1103,30 +1211,30 @@ public class ExportParamsEntity {
 		this.diagnosticTestEEGAdded = diagnosticTestEEGAdded;
 	}
 
-	public boolean isDiagnosticTestEEGActivityIdCom() {
-		return diagnosticTestEEGActivityIdCom;
+	public boolean isDiagnosticTestEEGBasicActivity() {
+		return diagnosticTestEEGBasicActivity;
 	}
 
-	public void setDiagnosticTestEEGActivityIdCom(
-			boolean diagnosticTestEEGActivityIdCom) {
-		this.diagnosticTestEEGActivityIdCom = diagnosticTestEEGActivityIdCom;
+	public void setDiagnosticTestEEGBasicActivity(
+			boolean diagnosticTestEEGBasicActivity) {
+		this.diagnosticTestEEGBasicActivity = diagnosticTestEEGBasicActivity;
 	}
 
-	public boolean isDiagnosticTestEEGSlowId() {
-		return diagnosticTestEEGSlowId;
+	public boolean isDiagnosticTestEEGSlow() {
+		return diagnosticTestEEGSlow;
 	}
 
-	public void setDiagnosticTestEEGSlowId(boolean diagnosticTestEEGSlowId) {
-		this.diagnosticTestEEGSlowId = diagnosticTestEEGSlowId;
+	public void setDiagnosticTestEEGSlow(boolean diagnosticTestEEGSlow) {
+		this.diagnosticTestEEGSlow = diagnosticTestEEGSlow;
 	}
 
-	public boolean isDiagnosticTestEEGInterictalEEGSpikesComId() {
-		return diagnosticTestEEGInterictalEEGSpikesComId;
+	public boolean isDiagnosticTestEEGInterictalEEGSpikes() {
+		return diagnosticTestEEGInterictalEEGSpikes;
 	}
 
-	public void setDiagnosticTestEEGInterictalEEGSpikesComId(
-			boolean diagnosticTestEEGInterictalEEGSpikesComId) {
-		this.diagnosticTestEEGInterictalEEGSpikesComId = diagnosticTestEEGInterictalEEGSpikesComId;
+	public void setDiagnosticTestEEGInterictalEEGSpikes(
+			boolean diagnosticTestEEGInterictalEEGSpikes) {
+		this.diagnosticTestEEGInterictalEEGSpikes = diagnosticTestEEGInterictalEEGSpikes;
 	}
 
 	public boolean isDiagnosticTestEEGLocalizationInerictalEEGSpikes() {
@@ -1156,13 +1264,13 @@ public class ExportParamsEntity {
 		this.diagnosticTestEEGSecondarySidedSynchrony = diagnosticTestEEGSecondarySidedSynchrony;
 	}
 
-	public boolean isDiagnosticTestEEGIctalEEGPatternsIdCom() {
-		return diagnosticTestEEGIctalEEGPatternsIdCom;
+	public boolean isDiagnosticTestEEGIctalEEGPatterns() {
+		return diagnosticTestEEGIctalEEGPatterns;
 	}
 
-	public void setDiagnosticTestEEGIctalEEGPatternsIdCom(
-			boolean diagnosticTestEEGIctalEEGPatternsIdCom) {
-		this.diagnosticTestEEGIctalEEGPatternsIdCom = diagnosticTestEEGIctalEEGPatternsIdCom;
+	public void setDiagnosticTestEEGIctalEEGPatterns(
+			boolean diagnosticTestEEGIctalEEGPatterns) {
+		this.diagnosticTestEEGIctalEEGPatterns = diagnosticTestEEGIctalEEGPatterns;
 	}
 
 	public boolean isDiagnosticTestEEGLocalizationIctalEEGPattern() {
@@ -1479,94 +1587,94 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRIStatus = diagnosticTestMRIStatus;
 	}
 
-	public boolean isHistiologyId() {
-		return histiologyId;
+	public boolean isHistologyId() {
+		return histologyId;
 	}
 
-	public void setHistiologyId(boolean histiologyId) {
-		this.histiologyId = histiologyId;
+	public void setHistologyId(boolean histologyId) {
+		this.histologyId = histologyId;
 	}
 
-	public boolean isHistiologyDate() {
-		return histiologyDate;
+	public boolean isHistologyDate() {
+		return histologyDate;
 	}
 
-	public void setHistiologyDate(boolean histiologyDate) {
-		this.histiologyDate = histiologyDate;
+	public void setHistologyDate(boolean histologyDate) {
+		this.histologyDate = histologyDate;
 	}
 
-	public boolean isHistiologyDoctorId() {
-		return histiologyDoctorId;
+	public boolean isHistologyDoctorId() {
+		return histologyDoctorId;
 	}
 
-	public void setHistiologyDoctorId(boolean histiologyDoctorId) {
-		this.histiologyDoctorId = histiologyDoctorId;
+	public void setHistologyDoctorId(boolean histologyDoctorId) {
+		this.histologyDoctorId = histologyDoctorId;
 	}
 
-	public boolean isHistiologyAdded() {
-		return histiologyAdded;
+	public boolean isHistologyAdded() {
+		return histologyAdded;
 	}
 
-	public void setHistiologyAdded(boolean histiologyAdded) {
-		this.histiologyAdded = histiologyAdded;
+	public void setHistologyAdded(boolean histologyAdded) {
+		this.histologyAdded = histologyAdded;
 	}
 
-	public boolean isHistiologyHistopathologyIdCom() {
-		return histiologyHistopathologyIdCom;
+	public boolean isHistologyHistopathologyIdCom() {
+		return histologyHistopathologyIdCom;
 	}
 
-	public void setHistiologyHistopathologyIdCom(
-			boolean histiologyHistopathologyIdCom) {
-		this.histiologyHistopathologyIdCom = histiologyHistopathologyIdCom;
+	public void setHistologyHistopathologyIdCom(
+			boolean histologyHistopathologyIdCom) {
+		this.histologyHistopathologyIdCom = histologyHistopathologyIdCom;
 	}
 
-	public boolean isHistiologyClassificationIdCom() {
-		return histiologyClassificationIdCom;
+	public boolean isHistologyClassificationIdCom() {
+		return histologyClassificationIdCom;
 	}
 
-	public void setHistiologyClassificationIdCom(
-			boolean histiologyClassificationIdCom) {
-		this.histiologyClassificationIdCom = histiologyClassificationIdCom;
+	public void setHistologyClassificationIdCom(
+			boolean histologyClassificationIdCom) {
+		this.histologyClassificationIdCom = histologyClassificationIdCom;
 	}
 
-	public boolean isHistiologyComment() {
-		return histiologyComment;
+	public boolean isHistologyComment() {
+		return histologyComment;
 	}
 
-	public void setHistiologyComment(boolean histiologyComment) {
-		this.histiologyComment = histiologyComment;
+	public void setHistologyComment(boolean histologyComment) {
+		this.histologyComment = histologyComment;
 	}
 
-	public boolean isHistiologyDeleted() {
-		return histiologyDeleted;
+	public boolean isHistologyDeleted() {
+		return histologyDeleted;
 	}
 
-	public void setHistiologyDeleted(boolean histiologyDeleted) {
-		this.histiologyDeleted = histiologyDeleted;
+	public void setHistologyDeleted(boolean histologyDeleted) {
+		this.histologyDeleted = histologyDeleted;
 	}
 
-	public boolean isHistiologyPatientId() {
-		return histiologyPatientId;
+	public boolean isHistologyPatientId() {
+		return histologyPatientId;
 	}
 
-	public void setHistiologyPatientId(boolean histiologyPatientId) {
-		this.histiologyPatientId = histiologyPatientId;
+	public void setHistologyPatientId(boolean histologyPatientId) {
+		this.histologyPatientId = histologyPatientId;
 	}
 
-	public boolean isHistiologyAddUserId() {
-		return histiologyAddUserId;
+	public boolean isHistologyAddUserId() {
+		return histologyAddUserId;
 	}
 
-	public void setHistiologyAddUserId(boolean histiologyAddUserId) {
-		this.histiologyAddUserId = histiologyAddUserId;
+	public void setHistologyAddUserId(boolean histologyAddUserId) {
+		this.histologyAddUserId = histologyAddUserId;
 	}
 
-	public boolean isHistiologyStatus() {
-		return histiologyStatus;
+	public boolean isHistologyStatus() {
+		return histologyStatus;
 	}
 
-	public void setHistiologyStatus(boolean histiologyStatus) {
-		this.histiologyStatus = histiologyStatus;
+	public void setHistologyStatus(boolean histologyStatus) {
+		this.histologyStatus = histologyStatus;
 	}
 
 	public boolean isInvasiveTestECOGId() {
@@ -1726,13 +1834,13 @@ public class ExportParamsEntity {
 		this.invasiveTestEEGInvasiveMonitoring = invasiveTestEEGInvasiveMonitoring;
 	}
 
-	public boolean isInvasiveTestEEGCoticalMappingIdCom() {
-		return invasiveTestEEGCoticalMappingIdCom;
+	public boolean isInvasiveTestEEGCorticalMapping() {
+		return invasiveTestEEGCorticalMapping;
 	}
 
-	public void setInvasiveTestEEGCoticalMappingIdCom(
-			boolean invasiveTestEEGCoticalMappingIdCom) {
-		this.invasiveTestEEGCoticalMappingIdCom = invasiveTestEEGCoticalMappingIdCom;
+	public void setInvasiveTestEEGCorticalMapping(
+			boolean invasiveTestEEGCorticalMapping) {
+		this.invasiveTestEEGCorticalMapping = invasiveTestEEGCorticalMapping;
 	}
 
 	public boolean isInvasiveTestEEGLocalizationIntracranialElectrodes() {
@@ -1880,13 +1988,13 @@ public class ExportParamsEntity {
 		this.neurologicalFindingAdded = neurologicalFindingAdded;
 	}
 
-	public boolean isNeurologicalFindingHemisphereDominanceIdCom() {
-		return neurologicalFindingHemisphereDominanceIdCom;
+	public boolean isNeurologicalFindingHemisphereDominance() {
+		return neurologicalFindingHemisphereDominance;
 	}
 
-	public void setNeurologicalFindingHemisphereDominanceIdCom(
-			boolean neurologicalFindingHemisphereDominanceIdCom) {
-		this.neurologicalFindingHemisphereDominanceIdCom = neurologicalFindingHemisphereDominanceIdCom;
+	public void setNeurologicalFindingHemisphereDominance(
+			boolean neurologicalFindingHemisphereDominance) {
+		this.neurologicalFindingHemisphereDominance = neurologicalFindingHemisphereDominance;
 	}
 
 	public boolean isNeurologicalFindingAbnormalNeurologicalFinding() {
@@ -1907,13 +2015,13 @@ public class ExportParamsEntity {
 		this.neurologicalFindingHemiparesis = neurologicalFindingHemiparesis;
 	}
 
-	public boolean isNeurologicalFindingVisualCut() {
-		return neurologicalFindingVisualCut;
+	public boolean isNeurologicalFindingVisualFieldDefects() {
+		return neurologicalFindingVisualFieldDefects;
 	}
 
-	public void setNeurologicalFindingVisualCut(
-			boolean neurologicalFindingVisualCut) {
-		this.neurologicalFindingVisualCut = neurologicalFindingVisualCut;
+	public void setNeurologicalFindingVisualFieldDefects(
+			boolean neurologicalFindingVisualFieldDefects) {
+		this.neurologicalFindingVisualFieldDefects = neurologicalFindingVisualFieldDefects;
 	}
 
 	public boolean isNeurologicalFindingComment() {
@@ -1958,121 +2066,345 @@ public class ExportParamsEntity {
 		this.neurologicalFindingStatus = neurologicalFindingStatus;
 	}
 
-	public boolean isNeurolopsychologyId() {
-		return neurolopsychologyId;
+	public boolean isNeuropsychologyId() {
+		return neuropsychologyId;
 	}
 
-	public void setNeurolopsychologyId(boolean neurolopsychologyId) {
-		this.neurolopsychologyId = neurolopsychologyId;
+	public void setNeuropsychologyId(boolean neuropsychologyId) {
+		this.neuropsychologyId = neuropsychologyId;
 	}
 
-	public boolean isNeurolopsychologyDate() {
-		return neurolopsychologyDate;
+	public boolean isNeuropsychologyDate() {
+		return neuropsychologyDate;
 	}
 
-	public void setNeurolopsychologyDate(boolean neurolopsychologyDate) {
-		this.neurolopsychologyDate = neurolopsychologyDate;
+	public boolean isNeuropsychologyIntellect() {
+		return neuropsychologyIntellect;
 	}
 
-	public boolean isNeurolopsychologyDoctorId() {
-		return neurolopsychologyDoctorId;
+	public void setNeuropsychologyIntellect(boolean neuropsychologyIntellect) {
+		this.neuropsychologyIntellect = neuropsychologyIntellect;
 	}
 
-	public void setNeurolopsychologyDoctorId(boolean neurolopsychologyDoctorId) {
-		this.neurolopsychologyDoctorId = neurolopsychologyDoctorId;
+	public void setNeuropsychologyDate(boolean neuropsychologyDate) {
+		this.neuropsychologyDate = neuropsychologyDate;
 	}
 
-	public boolean isNeurolopsychologyAdded() {
-		return neurolopsychologyAdded;
+	public boolean isNeuropsychologyDoctorId() {
+		return neuropsychologyDoctorId;
 	}
 
-	public void setNeurolopsychologyAdded(boolean neurolopsychologyAdded) {
-		this.neurolopsychologyAdded = neurolopsychologyAdded;
+	public void setNeuropsychologyDoctorId(boolean neuropsychologyDoctorId) {
+		this.neuropsychologyDoctorId = neuropsychologyDoctorId;
 	}
 
-	public boolean isNeurolopsychologyNeuropsychologicalExamination() {
-		return neurolopsychologyNeuropsychologicalExamination;
+	public boolean isNeuropsychologyAdded() {
+		return neuropsychologyAdded;
 	}
 
-	public void setNeurolopsychologyNeuropsychologicalExamination(
-			boolean neurolopsychologyNeuropsychologicalExamination) {
-		this.neurolopsychologyNeuropsychologicalExamination = neurolopsychologyNeuropsychologicalExamination;
+	public void setNeuropsychologyAdded(boolean neuropsychologyAdded) {
+		this.neuropsychologyAdded = neuropsychologyAdded;
 	}
 
-	public boolean isNeurolopsychologyIntelligenceLevelIdCom() {
-		return neurolopsychologyIntelligenceLevelIdCom;
+	public boolean isNeuropsychologyNeurodevelopmentalExamination() {
+		return neuropsychologyNeurodevelopmentalExamination;
 	}
 
-	public void setNeurolopsychologyIntelligenceLevelIdCom(
-			boolean neurolopsychologyIntelligenceLevelIdCom) {
-		this.neurolopsychologyIntelligenceLevelIdCom = neurolopsychologyIntelligenceLevelIdCom;
+	public void setNeuropsychologyNeurodevelopmentalExamination(
+			boolean neuropsychologyNeurodevelopmentalExamination) {
+		this.neuropsychologyNeurodevelopmentalExamination = neuropsychologyNeurodevelopmentalExamination;
 	}
 
-	public boolean isNeurolopsychologySpecificLearning() {
-		return neurolopsychologySpecificLearning;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationAdaptability() {
+		return neuropsychologyNeurodevelopmentalExaminationAdaptability;
 	}
 
-	public void setNeurolopsychologySpecificLearning(
-			boolean neurolopsychologySpecificLearning) {
-		this.neurolopsychologySpecificLearning = neurolopsychologySpecificLearning;
+	public void setNeuropsychologyNeurodevelopmentalExaminationAdaptability(
+			boolean neuropsychologyNeurodevelopmentalExaminationAdaptability) {
+		this.neuropsychologyNeurodevelopmentalExaminationAdaptability = neuropsychologyNeurodevelopmentalExaminationAdaptability;
 	}
 
-	public boolean isNeurolopsychologyDevelopmentLanguageDisorders() {
-		return neurolopsychologyDevelopmentLanguageDisorders;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively() {
+		return neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
 	}
 
-	public void setNeurolopsychologyDevelopmentLanguageDisorders(
-			boolean neurolopsychologyDevelopmentLanguageDisorders) {
-		this.neurolopsychologyDevelopmentLanguageDisorders = neurolopsychologyDevelopmentLanguageDisorders;
+	public void setNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively(
+			boolean neuropsychologyNeurodevelopmentalExaminationSpeechExpressively) {
+		this.neuropsychologyNeurodevelopmentalExaminationSpeechExpressively = neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
 	}
 
-	public boolean isNeurolopsychologyAdhdSyndome() {
-		return neurolopsychologyAdhdSyndome;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively() {
+		return neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
 	}
 
-	public void setNeurolopsychologyAdhdSyndome(
-			boolean neurolopsychologyAdhdSyndome) {
-		this.neurolopsychologyAdhdSyndome = neurolopsychologyAdhdSyndome;
+	public void setNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively(
+			boolean neuropsychologyNeurodevelopmentalExaminationSpeechReceptively) {
+		this.neuropsychologyNeurodevelopmentalExaminationSpeechReceptively = neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
 	}
 
-	public boolean isNeurolopsychologyComment() {
-		return neurolopsychologyComment;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills() {
+		return neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
 	}
 
-	public void setNeurolopsychologyComment(boolean neurolopsychologyComment) {
-		this.neurolopsychologyComment = neurolopsychologyComment;
+	public void setNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills(
+			boolean neuropsychologyNeurodevelopmentalExaminationFineMotorSkills) {
+		this.neuropsychologyNeurodevelopmentalExaminationFineMotorSkills = neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
 	}
 
-	public boolean isNeurolopsychologyDeleted() {
-		return neurolopsychologyDeleted;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills() {
+		return neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
 	}
 
-	public void setNeurolopsychologyDeleted(boolean neurolopsychologyDeleted) {
-		this.neurolopsychologyDeleted = neurolopsychologyDeleted;
+	public void setNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills(
+			boolean neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills) {
+		this.neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills = neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
 	}
 
-	public boolean isNeurolopsychologyAddUserId() {
-		return neurolopsychologyAddUserId;
+	public boolean isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior() {
+		return neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
 	}
 
-	public void setNeurolopsychologyAddUserId(boolean neurolopsychologyAddUserId) {
-		this.neurolopsychologyAddUserId = neurolopsychologyAddUserId;
+	public void setNeuropsychologyNeurodevelopmentalExaminationSocialBehavior(
+			boolean neuropsychologyNeurodevelopmentalExaminationSocialBehavior) {
+		this.neuropsychologyNeurodevelopmentalExaminationSocialBehavior = neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
 	}
 
-	public boolean isNeurolopsychologyPatientId() {
-		return neurolopsychologyPatientId;
+	public boolean isNeuropsychologyIntellectualPerformance() {
+		return neuropsychologyIntellectualPerformance;
 	}
 
-	public void setNeurolopsychologyPatientId(boolean neurolopsychologyPatientId) {
-		this.neurolopsychologyPatientId = neurolopsychologyPatientId;
+	public void setNeuropsychologyIntellectualPerformance(
+			boolean neuropsychologyIntellectualPerformance) {
+		this.neuropsychologyIntellectualPerformance = neuropsychologyIntellectualPerformance;
 	}
 
-	public boolean isNeurolopsychologyStatus() {
-		return neurolopsychologyStatus;
+	public boolean isNeuropsychologyIntellectualPerformanceVerbally() {
+		return neuropsychologyIntellectualPerformanceVerbally;
 	}
 
-	public void setNeurolopsychologyStatus(boolean neurolopsychologyStatus) {
-		this.neurolopsychologyStatus = neurolopsychologyStatus;
+	public void setNeuropsychologyIntellectualPerformanceVerbally(
+			boolean neuropsychologyIntellectualPerformanceVerbally) {
+		this.neuropsychologyIntellectualPerformanceVerbally = neuropsychologyIntellectualPerformanceVerbally;
+	}
+
+	public boolean isNeuropsychologyIntellectualPerformanceNonverbalAbstraction() {
+		return neuropsychologyIntellectualPerformanceNonverbalAbstraction;
+	}
+
+	public void setNeuropsychologyIntellectualPerformanceNonverbalAbstraction(
+			boolean neuropsychologyIntellectualPerformanceNonverbalAbstraction) {
+		this.neuropsychologyIntellectualPerformanceNonverbalAbstraction = neuropsychologyIntellectualPerformanceNonverbalAbstraction;
+	}
+
+	public boolean isneuropsychologyIntellectualPerformanceNonverbalDesignCap() {
+		return neuropsychologyIntellectualPerformanceNonverbalDesignCap;
+	}
+
+	public void setneuropsychologyIntellectualPerformanceNonverbalDesignCap(
+			boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap) {
+		this.neuropsychologyIntellectualPerformanceNonverbalDesignCap = neuropsychologyIntellectualPerformanceNonverbalDesignCap;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfile() {
+		return neuropsychologyNeuropsychologicalProfile;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfile(
+			boolean neuropsychologyNeuropsychologicalProfile) {
+		this.neuropsychologyNeuropsychologicalProfile = neuropsychologyNeuropsychologicalProfile;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileAttention() {
+		return neuropsychologyNeuropsychologicalProfileAttention;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileAttention(
+			boolean neuropsychologyNeuropsychologicalProfileAttention) {
+		this.neuropsychologyNeuropsychologicalProfileAttention = neuropsychologyNeuropsychologicalProfileAttention;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileExecutiveFunction() {
+		return neuropsychologyNeuropsychologicalProfileExecutiveFunction;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileExecutiveFunction(
+			boolean neuropsychologyNeuropsychologicalProfileExecutiveFunction) {
+		this.neuropsychologyNeuropsychologicalProfileExecutiveFunction = neuropsychologyNeuropsychologicalProfileExecutiveFunction;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed() {
+		return neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileCognitiveSpeed(
+			boolean neuropsychologyNeuropsychologicalProfileCognitiveSpeed) {
+		this.neuropsychologyNeuropsychologicalProfileCognitiveSpeed = neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileSpeechExpressively() {
+		return neuropsychologyNeuropsychologicalProfileSpeechExpressively;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileSpeechExpressively(
+			boolean neuropsychologyNeuropsychologicalProfileSpeechExpressively) {
+		this.neuropsychologyNeuropsychologicalProfileSpeechExpressively = neuropsychologyNeuropsychologicalProfileSpeechExpressively;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding() {
+		return neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(
+			boolean neuropsychologyNeuropsychologicalProfileSpeechUnderstanding) {
+		this.neuropsychologyNeuropsychologicalProfileSpeechUnderstanding = neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMemoryOperating() {
+		return neuropsychologyNeuropsychologicalProfileMemoryOperating;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMemoryOperating(
+			boolean neuropsychologyNeuropsychologicalProfileMemoryOperating) {
+		this.neuropsychologyNeuropsychologicalProfileMemoryOperating = neuropsychologyNeuropsychologicalProfileMemoryOperating;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMemoryVerbal() {
+		return neuropsychologyNeuropsychologicalProfileMemoryVerbal;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMemoryVerbal(
+			boolean neuropsychologyNeuropsychologicalProfileMemoryVerbal) {
+		this.neuropsychologyNeuropsychologicalProfileMemoryVerbal = neuropsychologyNeuropsychologicalProfileMemoryVerbal;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal() {
+		return neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMemoryNonverbal(
+			boolean neuropsychologyNeuropsychologicalProfileMemoryNonverbal) {
+		this.neuropsychologyNeuropsychologicalProfileMemoryNonverbal = neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMemoryLearning() {
+		return neuropsychologyNeuropsychologicalProfileMemoryLearning;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMemoryLearning(
+			boolean neuropsychologyNeuropsychologicalProfileMemoryLearning) {
+		this.neuropsychologyNeuropsychologicalProfileMemoryLearning = neuropsychologyNeuropsychologicalProfileMemoryLearning;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech() {
+		return neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpeech(
+			boolean neuropsychologyNeuropsychologicalProfilePerceptionSpeech) {
+		this.neuropsychologyNeuropsychologicalProfilePerceptionSpeech = neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfilePerceptionVisual() {
+		return neuropsychologyNeuropsychologicalProfilePerceptionVisual;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(
+			boolean neuropsychologyNeuropsychologicalProfilePerceptionVisual) {
+		this.neuropsychologyNeuropsychologicalProfilePerceptionVisual = neuropsychologyNeuropsychologicalProfilePerceptionVisual;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial() {
+		return neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpatial(
+			boolean neuropsychologyNeuropsychologicalProfilePerceptionSpatial) {
+		this.neuropsychologyNeuropsychologicalProfilePerceptionSpatial = neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity() {
+		return neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(
+			boolean neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity) {
+		this.neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity = neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
+	}
+
+	public boolean isNeuropsychologyNeuropsychologicalProfileMotorCoordination() {
+		return neuropsychologyNeuropsychologicalProfileMotorCoordination;
+	}
+
+	public void setNeuropsychologyNeuropsychologicalProfileMotorCoordination(
+			boolean neuropsychologyNeuropsychologicalProfileMotorCoordination) {
+		this.neuropsychologyNeuropsychologicalProfileMotorCoordination = neuropsychologyNeuropsychologicalProfileMotorCoordination;
+	}
+
+	public boolean isNeuropsychologyPresenceOfChanges() {
+		return neuropsychologyPresenceOfChanges;
+	}
+
+	public void setNeuropsychologyPresenceOfChanges(
+			boolean neuropsychologyPresenceOfChanges) {
+		this.neuropsychologyPresenceOfChanges = neuropsychologyPresenceOfChanges;
+	}
+
+	public boolean isNeuropsychologyPresenceOfChangesDetail() {
+		return neuropsychologyPresenceOfChangesDetail;
+	}
+
+	public void setNeuropsychologyPresenceOfChangesDetail(
+			boolean neuropsychologyPresenceOfChangesDetail) {
+		this.neuropsychologyPresenceOfChangesDetail = neuropsychologyPresenceOfChangesDetail;
+	}
+
+	public boolean isNeuropsychologyEmotionalStatus() {
+		return neuropsychologyEmotionalStatus;
+	}
+
+	public void setNeuropsychologyEmotionalStatus(
+			boolean neuropsychologyEmotionalStatus) {
+		this.neuropsychologyEmotionalStatus = neuropsychologyEmotionalStatus;
+	}
+
+	public boolean isNeuropsychologyComment() {
+		return neuropsychologyComment;
+	}
+
+	public void setNeuropsychologyComment(boolean neuropsychologyComment) {
+		this.neuropsychologyComment = neuropsychologyComment;
+	}
+
+	public boolean isNeuropsychologyDeleted() {
+		return neuropsychologyDeleted;
+	}
+
+	public void setNeuropsychologyDeleted(boolean neuropsychologyDeleted) {
+		this.neuropsychologyDeleted = neuropsychologyDeleted;
+	}
+
+	public boolean isNeuropsychologyAddUserId() {
+		return neuropsychologyAddUserId;
+	}
+
+	public void setNeuropsychologyAddUserId(boolean neuropsychologyAddUserId) {
+		this.neuropsychologyAddUserId = neuropsychologyAddUserId;
+	}
+
+	public boolean isNeuropsychologyPatientId() {
+		return neuropsychologyPatientId;
+	}
+
+	public void setNeuropsychologyPatientId(boolean neuropsychologyPatientId) {
+		this.neuropsychologyPatientId = neuropsychologyPatientId;
+	}
+
+	public boolean isNeuropsychologyStatus() {
+		return neuropsychologyStatus;
+	}
+
+	public void setNeuropsychologyStatus(boolean neuropsychologyStatus) {
+		this.neuropsychologyStatus = neuropsychologyStatus;
 	}
 
 	public boolean isOperationId() {
@@ -2368,12 +2700,12 @@ public class ExportParamsEntity {
 		this.pharmacotherapyAdded = pharmacotherapyAdded;
 	}
 
-	public boolean isPharmacotherapyAEDIdCom() {
-		return pharmacotherapyAEDIdCom;
+	public boolean isPharmacotherapyAED() {
+		return pharmacotherapyAED;
 	}
 
-	public void setPharmacotherapyAEDIdCom(boolean pharmacotherapyAEDIdCom) {
-		this.pharmacotherapyAEDIdCom = pharmacotherapyAEDIdCom;
+	public void setPharmacotherapyAED(boolean pharmacotherapyAED) {
+		this.pharmacotherapyAED = pharmacotherapyAED;
 	}
 
 	public boolean isPharmacotherapyEffective() {
@@ -2465,13 +2797,12 @@ public class ExportParamsEntity {
 		this.seizureAdded = seizureAdded;
 	}
 
-	public boolean isSeizureSeizureFrequencyIdCom() {
-		return seizureSeizureFrequencyIdCom;
+	public boolean isSeizureFrequency() {
+		return seizureFrequency;
 	}
 
-	public void setSeizureSeizureFrequencyIdCom(
-			boolean seizureSeizureFrequencyIdCom) {
-		this.seizureSeizureFrequencyIdCom = seizureSeizureFrequencyIdCom;
+	public void setSeizureFrequency(boolean seizureFrequency) {
+		this.seizureFrequency = seizureFrequency;
 	}
 
 	public boolean isSeizureSecondarilyGeneralizedSeizure() {
@@ -2602,4 +2933,249 @@ public class ExportParamsEntity {
 	public void setSeizureStatus(boolean seizureStatus) {
 		this.seizureStatus = seizureStatus;
 	}
+
+	public boolean isNeuropsychologyOld() {
+		return neuropsychologyOld;
+	}
+
+	public void setNeuropsychologyOld(boolean neuropsychologyOld) {
+		this.neuropsychologyOld = neuropsychologyOld;
+	}
+
+	public boolean isInvasiveTestCorticalMapping() {
+		return invasiveTestCorticalMapping;
+	}
+
+	public void setInvasiveTestCorticalMapping(
+			boolean invasiveTestCorticalMapping) {
+		this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
+	}
+
+	public boolean isNeuropsychologyOldId() {
+		return neuropsychologyOldId;
+	}
+
+	public void setNeuropsychologyOldId(boolean neuropsychologyOldId) {
+		this.neuropsychologyOldId = neuropsychologyOldId;
+	}
+
+	public boolean isNeuropsychologyOldDate() {
+		return neuropsychologyOldDate;
+	}
+
+	public void setNeuropsychologyOldDate(boolean neuropsychologyOldDate) {
+		this.neuropsychologyOldDate = neuropsychologyOldDate;
+	}
+
+	public boolean isNeuropsychologyOldDoctorId() {
+		return neuropsychologyOldDoctorId;
+	}
+
+	public void setNeuropsychologyOldDoctorId(boolean neuropsychologyOldDoctorId) {
+		this.neuropsychologyOldDoctorId = neuropsychologyOldDoctorId;
+	}
+
+	public boolean isNeuropsychologyOldAdded() {
+		return neuropsychologyOldAdded;
+	}
+
+	public void setNeuropsychologyOldAdded(boolean neuropsychologyOldAdded) {
+		this.neuropsychologyOldAdded = neuropsychologyOldAdded;
+	}
+
+	public boolean isNeuropsychologyOldComment() {
+		return neuropsychologyOldComment;
+	}
+
+	public void setNeuropsychologyOldComment(boolean neuropsychologyOldComment) {
+		this.neuropsychologyOldComment = neuropsychologyOldComment;
+	}
+
+	public boolean isNeuropsychologyOldDeleted() {
+		return neuropsychologyOldDeleted;
+	}
+
+	public void setNeuropsychologyOldDeleted(boolean neuropsychologyOldDeleted) {
+		this.neuropsychologyOldDeleted = neuropsychologyOldDeleted;
+	}
+
+	public boolean isNeuropsychologyOldAddUserId() {
+		return neuropsychologyOldAddUserId;
+	}
+
+	public void setNeuropsychologyOldAddUserId(
+			boolean neuropsychologyOldAddUserId) {
+		this.neuropsychologyOldAddUserId = neuropsychologyOldAddUserId;
+	}
+
+	public boolean isNeuropsychologyOldPatientId() {
+		return neuropsychologyOldPatientId;
+	}
+
+	public void setNeuropsychologyOldPatientId(
+			boolean neuropsychologyOldPatientId) {
+		this.neuropsychologyOldPatientId = neuropsychologyOldPatientId;
+	}
+
+	public boolean isNeuropsychologyOldNeuropsychologicalExamination() {
+		return neuropsychologyOldNeuropsychologicalExamination;
+	}
+
+	public void setNeuropsychologyOldNeuropsychologicalExamination(
+			boolean neuropsychologyOldNeuropsychologicalExamination) {
+		this.neuropsychologyOldNeuropsychologicalExamination = neuropsychologyOldNeuropsychologicalExamination;
+	}
+
+	public boolean isNeuropsychologyOldIntelligenceLevel() {
+		return neuropsychologyOldIntelligenceLevel;
+	}
+
+	public void setNeuropsychologyOldIntelligenceLevel(
+			boolean neuropsychologyOldIntelligenceLevel) {
+		this.neuropsychologyOldIntelligenceLevel = neuropsychologyOldIntelligenceLevel;
+	}
+
+	public boolean isNeuropsychologyOldSpecificLearning() {
+		return neuropsychologyOldSpecificLearning;
+	}
+
+	public void setNeuropsychologyOldSpecificLearning(
+			boolean neuropsychologyOldSpecificLearning) {
+		this.neuropsychologyOldSpecificLearning = neuropsychologyOldSpecificLearning;
+	}
+
+	public boolean isNeuropsychologyOldDevelopmentalLanguageDisorders() {
+		return neuropsychologyOldDevelopmentalLanguageDisorders;
+	}
+
+	public void setNeuropsychologyOldDevelopmentalLanguageDisorders(
+			boolean neuropsychologyOldDevelopmentalLanguageDisorders) {
+		this.neuropsychologyOldDevelopmentalLanguageDisorders = neuropsychologyOldDevelopmentalLanguageDisorders;
+	}
+
+	public boolean isNeuropsychologyOldAdhdSyndrome() {
+		return neuropsychologyOldAdhdSyndrome;
+	}
+
+	public void setNeuropsychologyOldAdhdSyndrome(
+			boolean neuropsychologyOldAdhdSyndrome) {
+		this.neuropsychologyOldAdhdSyndrome = neuropsychologyOldAdhdSyndrome;
+	}
+
+	public boolean isInvasiveTestCorticalMappingId() {
+		return invasiveTestCorticalMappingId;
+	}
+
+	public void setInvasiveTestCorticalMappingId(
+			boolean invasiveTestCorticalMappingId) {
+		this.invasiveTestCorticalMappingId = invasiveTestCorticalMappingId;
+	}
+
+	public boolean isInvasiveTestCorticalMappingDate() {
+		return invasiveTestCorticalMappingDate;
+	}
+
+	public void setInvasiveTestCorticalMappingDate(
+			boolean invasiveTestCorticalMappingDate) {
+		this.invasiveTestCorticalMappingDate = invasiveTestCorticalMappingDate;
+	}
+
+	public boolean isInvasiveTestCorticalMappingDoctorId() {
+		return invasiveTestCorticalMappingDoctorId;
+	}
+
+	public void setInvasiveTestCorticalMappingDoctorId(
+			boolean invasiveTestCorticalMappingDoctorId) {
+		this.invasiveTestCorticalMappingDoctorId = invasiveTestCorticalMappingDoctorId;
+	}
+
+	public boolean isInvasiveTestCorticalMappingAdded() {
+		return invasiveTestCorticalMappingAdded;
+	}
+
+	public void setInvasiveTestCorticalMappingAdded(
+			boolean invasiveTestCorticalMappingAdded) {
+		this.invasiveTestCorticalMappingAdded = invasiveTestCorticalMappingAdded;
+	}
+
+	public boolean isInvasiveTestCorticalMappingComment() {
+		return invasiveTestCorticalMappingComment;
+	}
+
+	public void setInvasiveTestCorticalMappingComment(
+			boolean invasiveTestCorticalMappingComment) {
+		this.invasiveTestCorticalMappingComment = invasiveTestCorticalMappingComment;
+	}
+
+	public boolean isInvasiveTestCorticalMappingDeleted() {
+		return invasiveTestCorticalMappingDeleted;
+	}
+
+	public void setInvasiveTestCorticalMappingDeleted(
+			boolean invasiveTestCorticalMappingDeleted) {
+		this.invasiveTestCorticalMappingDeleted = invasiveTestCorticalMappingDeleted;
+	}
+
+	public boolean isInvasiveTestCorticalMappingAddUserId() {
+		return invasiveTestCorticalMappingAddUserId;
+	}
+
+	public void setInvasiveTestCorticalMappingAddUserId(
+			boolean invasiveTestCorticalMappingAddUserId) {
+		this.invasiveTestCorticalMappingAddUserId = invasiveTestCorticalMappingAddUserId;
+	}
+
+	public boolean isInvasiveTestCorticalMappingPatientId() {
+		return invasiveTestCorticalMappingPatientId;
+	}
+
+	public void setInvasiveTestCorticalMappingPatientId(
+			boolean invasiveTestCorticalMappingPatientId) {
+		this.invasiveTestCorticalMappingPatientId = invasiveTestCorticalMappingPatientId;
+	}
+
+	public boolean isInvasiveTestCorticalMappingStatus() {
+		return invasiveTestCorticalMappingStatus;
+	}
+
+	public void setInvasiveTestCorticalMappingStatus(
+			boolean invasiveTestCorticalMappingStatus) {
+		this.invasiveTestCorticalMappingStatus = invasiveTestCorticalMappingStatus;
+	}
+
+	public boolean isInvasiveTestCorticalMappingDone() {
+		return invasiveTestCorticalMappingDone;
+	}
+
+	public void setInvasiveTestCorticalMappingDone(
+			boolean invasiveTestCorticalMappingDone) {
+		this.invasiveTestCorticalMappingDone = invasiveTestCorticalMappingDone;
+	}
+
+	public boolean isInvasiveTestCorticalMappingCorticalMapping() {
+		return invasiveTestCorticalMappingCorticalMapping;
+	}
+
+	public void setInvasiveTestCorticalMappingCorticalMapping(
+			boolean invasiveTestCorticalMappingCorticalMapping) {
+		this.invasiveTestCorticalMappingCorticalMapping = invasiveTestCorticalMappingCorticalMapping;
+	}
+
+	public boolean isDiagnosticTestEEGDone() {
+		return diagnosticTestEEGDone;
+	}
+
+	public void setDiagnosticTestEEGDone(boolean diagnosticTestEEGDone) {
+		this.diagnosticTestEEGDone = diagnosticTestEEGDone;
+	}
+
+	public boolean isDiagnosticTestEEGDescriptionVideoEEG() {
+		return diagnosticTestEEGDescriptionVideoEEG;
+	}
+
+	public void setDiagnosticTestEEGDescriptionVideoEEG(
+			boolean diagnosticTestEEGDescriptionVideoEEG) {
+		this.diagnosticTestEEGDescriptionVideoEEG = diagnosticTestEEGDescriptionVideoEEG;
+	}
+
 }

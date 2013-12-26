@@ -23,12 +23,15 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
@@ -161,10 +164,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return ("\n" + emptyLine + "\n");
 	}
 
-	/*
-	 * private String addStarLine() { String emptyLine = ""; for (int i = 0; i
-	 * != 50; i++) { emptyLine += "*"; } return ("\n" + emptyLine + "\n"); }
-	 */
+	private String addStarLine() {
+		String emptyLine = "";
+		for (int i = 0; i != 50; i++) {
+			emptyLine += "*";
+		}
+		return ("\n" + emptyLine + "\n");
+	}
+
 	private String addTitlePage(Locale locale, PatientEntity patient,
 			String date) {
 		String content = "Export of the patient "
@@ -216,8 +223,15 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 						neuropsychology, locale, exportParams);
 			}
 		}
-		// TODO: NEUROPSYCHOLOGY OLD
-		
+
+		if (exportParams.isNeuropsychologyOld()) {
+			for (NeuropsychologyOldEntity neuropsychologyOld : patient
+					.getNeuropsychologyOldList()) {
+				content += this.printOutNeuropsychologyOld(patient,
+						neuropsychologyOld, locale, exportParams);
+			}
+		}
+
 		if (exportParams.isDiagnosticTestEEG()) {
 			for (DiagnosticTestScalpEEGEntity diagnosticTestEEG : patient
 					.getDiagnosticTestEEGList()) {
@@ -225,15 +239,23 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 						diagnosticTestEEG, locale, exportParams);
 			}
 		}
-		// TODO: Neurozobraz. testy
 
-		if (exportParams.isInvasiveTestECOG()) {
-			for (InvasiveTestECOGEntity ivasiveTestECOG : patient
-					.getInvasiveTestECOGList()) {
-				content += this.printOutInvasiveTestECOG(patient,
-						ivasiveTestECOG, locale, exportParams);
+		if (exportParams.isDiagnosticTestMRI()) {
+			for (DiagnosticTestMRIEntity diagnosticTestMRI : patient
+					.getDiagnosticTestMRIList()) {
+				content += this.printOutDiagnosticTestMRI(patient,
+						diagnosticTestMRI, locale, exportParams);
 			}
 		}
+
+		if (exportParams.isInvasiveTestECOG()) {
+			for (InvasiveTestECOGEntity invasiveTestECOG : patient
+					.getInvasiveTestECOGList()) {
+				content += this.printOutInvasiveTestECOG(patient,
+						invasiveTestECOG, locale, exportParams);
+			}
+		}
+
 		if (exportParams.isInvasiveTestEEG()) {
 			for (InvasiveTestEEGEntity invasiveTestEEG : patient
 					.getInvasiveTestEEGList()) {
@@ -242,8 +264,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			}
 		}
 
-		// TODO : Kortikální mapování
-		
+		if (exportParams.isInvasiveTestCorticalMapping()) {
+			for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
+					.getInvasiveTestCorticalMappingList()) {
+				content += this
+						.printOutInvasiveTestCorticalMapping(patient,
+								invasiveTestCorticalMappingEntity, locale,
+								exportParams);
+			}
+		}
+
 		if (exportParams.isOperation()) {
 			for (OperationEntity operation : patient.getOperationList()) {
 				content += this.printOutOperation(patient, operation, locale,
@@ -368,10 +398,24 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return content;
 	}
 
+	// TODO: nejasnosti + chybejici properties v export params
 	private String printOutSeizure(PatientEntity patient,
 			SeizureEntity seizure, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isSeizureFrequency()) {
+
+		}
+		if (exportParams.isSeizureSecondarilyGeneralizedSeizure()) {
+
+		}
+		if (exportParams.isSeizureStatusEpilepticus()) {
+
+		}
+		if (exportParams.isSeizureComment()) {
+
+		}
 		return content;
 	}
 
@@ -379,6 +423,18 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			PharmacotherapyEntity pharmacotherapy, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+		if (exportParams.isPharmacotherapyAED()) {
+
+		}
+		if (exportParams.isPharmacotherapyEffective()) {
+
+		}
+		if (exportParams.isPharmacotherapyDuringSurgery()) {
+
+		}
+		if (exportParams.isPharmacotherapyComment()) {
+
+		}
 		return content;
 	}
 
@@ -386,6 +442,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			NeurologicalFindingEntity neurologicalFinding, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+		if (exportParams.isNeurologicalFindingHemisphereDominance()) {
+
+		}
+		if (exportParams.isNeurologicalFindingAbnormalNeurologicalFinding()) {
+
+		}
+		if (exportParams.isNeurologicalFindingHemiparesis()) {
+
+		}
+		if (exportParams.isNeurologicalFindingVisualFieldDefects()) {
+
+		}
+		if (exportParams.isNeurologicalFindingComment()) {
+
+		}
 		return content;
 	}
 
@@ -393,19 +464,186 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			NeuropsychologyEntity neuropsychology, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+		if (exportParams.isNeuropsychologyIntellect()) {
+
+		}
+		if (exportParams.isNeuropsychologyNeurodevelopmentalExamination()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationAdaptability()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior()) {
+
+		}
+		if (exportParams.isNeuropsychologyIntellectualPerformance()) {
+
+		}
+		if (exportParams.isNeuropsychologyIntellectualPerformanceVerbally()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
+
+		}
+		if (exportParams.isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+
+		}
+		if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
+
+		}
+		if (exportParams.isNeuropsychologyNeuropsychologicalProfileAttention()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMemoryLearning()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfilePerceptionVisual()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity()) {
+
+		}
+		if (exportParams
+				.isNeuropsychologyNeuropsychologicalProfileMotorCoordination()) {
+
+		}
+		if (exportParams.isNeuropsychologyPresenceOfChanges()) {
+
+		}
+		if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
+
+		}
 		return content;
 	}
 
-	// TODO: NEUROPSYCHOLOGY OLD
+	private String printOutNeuropsychologyOld(PatientEntity patient,
+			NeuropsychologyOldEntity neuropsychologyOld, Locale locale,
+			ExportParamsEntity exportParams) {
+		String content = "";
+		if (exportParams.isNeuropsychologyOldNeuropsychologicalExamination()) {
+
+		}
+		if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
+
+		}
+		if (exportParams.isNeuropsychologyOldSpecificLearning()) {
+
+		}
+		if (exportParams.isNeuropsychologyOldDevelopmentalLanguageDisorders()) {
+
+		}
+		if (exportParams.isNeuropsychologyOldAdhdSyndrome()) {
+
+		}
+		if (exportParams.isNeuropsychologyOldComment()) {
+
+		}
+
+		return content;
+	}
 
 	private String printOutDiagnosticTestEEG(PatientEntity patient,
 			DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isDiagnosticTestEEGDone()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGBasicActivity()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGSlow()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGSecondarySidedSynchrony()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGDescriptionVideoEEG()) {
+
+		}
+		if (exportParams.isDiagnosticTestEEGComment()) {
+
+		}
 		return content;
 	}
 
-	// TODO: Neurozobraz. testy
+	private String printOutDiagnosticTestMRI(PatientEntity patient,
+			DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
+			ExportParamsEntity exportParams) {
+		String content = "";
+		return content;
+	}
 
 	private String printOutInvasiveTestECOG(PatientEntity patient,
 			InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
@@ -421,8 +659,13 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		return content;
 	}
 
-	// TODO : Kortikální mapování
-	
+	private String printOutInvasiveTestCorticalMapping(PatientEntity patient,
+			InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
+			Locale locale, ExportParamsEntity exportParams) {
+		String content = "";
+		return content;
+	}
+
 	private String printOutOperation(PatientEntity patient,
 			OperationEntity operation, Locale locale,
 			ExportParamsEntity exportParams) {
