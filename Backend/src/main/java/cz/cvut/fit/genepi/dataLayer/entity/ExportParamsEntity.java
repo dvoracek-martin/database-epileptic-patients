@@ -564,12 +564,12 @@ public class ExportParamsEntity {
 	@Column(name = "outcomeStatus")
 	private boolean outcomeStatus;
 	@Column(name = "outcomeSeizureOutcome")
-	private boolean outcomeSeizureOutcome;	
+	private boolean outcomeSeizureOutcome;
 	@Column(name = "outcomeDistance")
-	private boolean outcomeDistance;	
+	private boolean outcomeDistance;
 	@Column(name = "outcomeOperationId")
 	private boolean outcomeOperationId;
-	
+
 	// Pharmacotherapy properties
 	@Column(name = "pharmacotherapyId")
 	private boolean pharmacotherapyId;
@@ -637,6 +637,14 @@ public class ExportParamsEntity {
 	private boolean seizurePatientId;
 	@Column(name = "seizureStatus")
 	private boolean seizureStatus;
+
+	// SeizureDetail properties
+	@Column(name = "seizureDetailSSCClassification")
+	private boolean seizureDetailSSCClassification;
+	@Column(name = "seizureDetailILAEClassification")
+	private boolean seizureDetailILAEClassification;
+	@Column(name = "seizureDetailComment")
+	private boolean seizureDetailComment;
 
 	// NeuropsychologyOld properties
 	@Column(name = "neuropsychologyOldId")
@@ -3285,7 +3293,8 @@ public class ExportParamsEntity {
 		return ComplicationWithCompication;
 	}
 
-	public void setComplicationWithCompication(boolean complicationWithCompication) {
+	public void setComplicationWithCompication(
+			boolean complicationWithCompication) {
 		ComplicationWithCompication = complicationWithCompication;
 	}
 
@@ -3293,7 +3302,8 @@ public class ExportParamsEntity {
 		return ComplicationComplicationType;
 	}
 
-	public void setComplicationComplicationType(boolean complicationComplicationType) {
+	public void setComplicationComplicationType(
+			boolean complicationComplicationType) {
 		ComplicationComplicationType = complicationComplicationType;
 	}
 
@@ -3327,6 +3337,32 @@ public class ExportParamsEntity {
 
 	public void setOutcomeOperationId(boolean outcomeOperationId) {
 		this.outcomeOperationId = outcomeOperationId;
+	}
+
+	public boolean isSeizureDetailSSCClassification() {
+		return seizureDetailSSCClassification;
+	}
+
+	public void setSeizureDetailSSCClassification(
+			boolean seizureDetailSSCClassification) {
+		this.seizureDetailSSCClassification = seizureDetailSSCClassification;
+	}
+
+	public boolean isSeizureDetailILAEClassification() {
+		return seizureDetailILAEClassification;
+	}
+
+	public void setSeizureDetailILAEClassification(
+			boolean seizureDetailILAEClassification) {
+		this.seizureDetailILAEClassification = seizureDetailILAEClassification;
+	}
+
+	public boolean isSeizureDetailComment() {
+		return seizureDetailComment;
+	}
+
+	public void setSeizureDetailComment(boolean seizureDetailComment) {
+		this.seizureDetailComment = seizureDetailComment;
 	}
 
 }

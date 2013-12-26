@@ -35,6 +35,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
@@ -415,6 +416,17 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		}
 		if (exportParams.isSeizureComment()) {
 
+		}
+		for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
+			if (exportParams.isSeizureDetailSSCClassification()) {
+
+			}
+			if (exportParams.isSeizureDetailILAEClassification()) {
+
+			}
+			if (exportParams.isSeizureDetailComment()) {
+
+			}
 		}
 		return content;
 	}
@@ -869,7 +881,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			OutcomeEntity outcome, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
-		
+
 		if (exportParams.isOutcomeSeizureOutcome()) {
 
 		}
@@ -894,8 +906,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 		if (exportParams.isOutcomeComment()) {
 
 		}
-		
-		
+
 		return content;
 	}
 
