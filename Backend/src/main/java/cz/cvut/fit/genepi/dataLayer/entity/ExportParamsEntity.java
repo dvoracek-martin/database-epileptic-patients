@@ -225,10 +225,6 @@ public class ExportParamsEntity {
 	private boolean diagnosticTestMRIInterictalSpect;
 	@Column(name = "diagnosticTestMRISiscom")
 	private boolean diagnosticTestMRISiscom;
-	@Column(name = "diagnosticTestMRITimeAplicationRn")
-	private boolean diagnosticTestMRITimeAplicationRn;
-	@Column(name = "diagnosticTestMRITimingAplicationRn")
-	private boolean diagnosticTestMRITimingAplicationRn;
 	@Column(name = "diagnosticTestMRIMrsProtocol")
 	private boolean diagnosticTestMRIMrsProtocol;
 	@Column(name = "diagnosticTestMRIMrsFinding")
@@ -365,8 +361,8 @@ public class ExportParamsEntity {
 	private boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
 	@Column(name = "invasiveTestEEGStatusEpilepticus")
 	private boolean invasiveTestEEGStatusEpilepticus;
-	@Column(name = "invasiveTestEEGInvasiveIctalEEgPatterns")
-	private boolean invasiveTestEEGInvasiveIctalEEgPatterns;
+	@Column(name = "invasiveTestEEGInvasiveIctalEEGPatterns")
+	private boolean invasiveTestEEGInvasiveIctalEEGPatterns;
 	@Column(name = "invasiveTestEEGLocalizationIctalEEGPatterns")
 	private boolean invasiveTestEEGLocalizationIctalEEGPatterns;
 	@Column(name = "invasiveTestEEGComment")
@@ -1401,24 +1397,6 @@ public class ExportParamsEntity {
 		this.diagnosticTestMRISiscom = diagnosticTestMRISiscom;
 	}
 
-	public boolean isDiagnosticTestMRITimeAplicationRn() {
-		return diagnosticTestMRITimeAplicationRn;
-	}
-
-	public void setDiagnosticTestMRITimeAplicationRn(
-			boolean diagnosticTestMRITimeAplicationRn) {
-		this.diagnosticTestMRITimeAplicationRn = diagnosticTestMRITimeAplicationRn;
-	}
-
-	public boolean isDiagnosticTestMRITimingAplicationRn() {
-		return diagnosticTestMRITimingAplicationRn;
-	}
-
-	public void setDiagnosticTestMRITimingAplicationRn(
-			boolean diagnosticTestMRITimingAplicationRn) {
-		this.diagnosticTestMRITimingAplicationRn = diagnosticTestMRITimingAplicationRn;
-	}
-
 	public boolean isDiagnosticTestMRIMrsProtocol() {
 		return diagnosticTestMRIMrsProtocol;
 	}
@@ -1882,13 +1860,13 @@ public class ExportParamsEntity {
 		this.invasiveTestEEGStatusEpilepticus = invasiveTestEEGStatusEpilepticus;
 	}
 
-	public boolean isInvasiveTestEEGInvasiveIctalEEgPatterns() {
-		return invasiveTestEEGInvasiveIctalEEgPatterns;
+	public boolean isInvasiveTestEEGInvasiveIctalEEGPatterns() {
+		return invasiveTestEEGInvasiveIctalEEGPatterns;
 	}
 
-	public void setInvasiveTestEEGInvasiveIctalEEgPatterns(
-			boolean invasiveTestEEGInvasiveIctalEEgPatterns) {
-		this.invasiveTestEEGInvasiveIctalEEgPatterns = invasiveTestEEGInvasiveIctalEEgPatterns;
+	public void setInvasiveTestEEGInvasiveIctalEEGPatterns(
+			boolean invasiveTestEEGInvasiveIctalEEGPatterns) {
+		this.invasiveTestEEGInvasiveIctalEEGPatterns = invasiveTestEEGInvasiveIctalEEGPatterns;
 	}
 
 	public boolean isInvasiveTestEEGLocalizationIctalEEGPatterns() {
