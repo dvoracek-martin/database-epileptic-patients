@@ -734,6 +734,38 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			InvasiveTestEEGEntity operation, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isInvasiveTestEEGDone()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGLocalizationIntracranialElectrodes()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
+
+		}
+		if (exportParams
+				.isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
+
+		}
+		if (exportParams.isInvasiveTestEEGComment()) {
+
+		}
 		return content;
 	}
 
@@ -741,6 +773,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
 			Locale locale, ExportParamsEntity exportParams) {
 		String content = "";
+		if (exportParams.isInvasiveTestCorticalMappingDone()) {
+
+		}
+		if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
+
+		}
+		if (exportParams.isInvasiveTestCorticalMappingComment()) {
+
+		}
+
 		return content;
 	}
 
@@ -748,6 +790,41 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			OperationEntity operation, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isOperationDateOperation()) {
+
+		}
+		if (exportParams.isOperationRangeOperation()) {
+
+		}
+		if (exportParams.isOperationTypeOperation()) {
+
+		}
+		if (exportParams.isOperationLocalizationOperation()) {
+
+		}
+		if (exportParams.isOperationMst()) {
+
+		}
+		if (exportParams.isOperationColostomy()) {
+
+		}
+		if (exportParams.isOperationVNS()) {
+
+		}
+		if (exportParams.isOperationVNsImplantationDate()) {
+
+		}
+		if (exportParams.isOperationOperationDetails()) {
+
+		}
+		if (exportParams.isOperationCompleteResection()) {
+
+		}
+		if (exportParams.isOperationComment()) {
+
+		}
+
 		return content;
 	}
 
@@ -755,6 +832,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			HistologyEntity histology, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isHistologyHistopathology()) {
+
+		}
+		if (exportParams.isHistologyFcdClassification()) {
+
+		}
+		if (exportParams.isHistologyComment()) {
+
+		}
 		return content;
 	}
 
@@ -762,6 +849,19 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			ComplicationEntity complication, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+
+		if (exportParams.isComplicationWithCompication()) {
+
+		}
+		if (exportParams.isComplicationComplicationType()) {
+
+		}
+		if (exportParams.isComplicationComplication()) {
+
+		}
+		if (exportParams.isComplicationComment()) {
+		}
+
 		return content;
 	}
 
@@ -769,6 +869,33 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 			OutcomeEntity outcome, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
+		
+		if (exportParams.isOutcomeSeizureOutcome()) {
+
+		}
+		if (exportParams.isOutcomeEEG()) {
+
+		}
+		if (exportParams.isOutcomeAED()) {
+
+		}
+		if (exportParams.isOutcomeMRI()) {
+
+		}
+		if (exportParams.isOutcomeNeuropsychology()) {
+
+		}
+		if (exportParams.isOutcomeDistance()) {
+
+		}
+		if (exportParams.isOutcomeOperationId()) {
+
+		}
+		if (exportParams.isOutcomeComment()) {
+
+		}
+		
+		
 		return content;
 	}
 

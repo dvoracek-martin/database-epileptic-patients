@@ -165,6 +165,12 @@ public class ExportParamsEntity {
 	private boolean complicationAddUserId;
 	@Column(name = "complicationStatus")
 	private boolean complicationStatus;
+	@Column(name = "ComplicationWithCompication")
+	private boolean ComplicationWithCompication;
+	@Column(name = "ComplicationComplicationType")
+	private boolean ComplicationComplicationType;
+	@Column(name = "ComplicationComplication")
+	private boolean ComplicationComplication;
 
 	// DiagnosticTestEEG properties
 	@Column(name = "diagnosticTestEEGId")
@@ -289,10 +295,10 @@ public class ExportParamsEntity {
 	private boolean histologyDoctorId;
 	@Column(name = "histologyAdded")
 	private boolean histologyAdded;
-	@Column(name = "histologyHistopathologyIdCom")
-	private boolean histologyHistopathologyIdCom;
-	@Column(name = "histologyClassificationIdCom")
-	private boolean histologyClassificationIdCom;
+	@Column(name = "histologyHistopathology")
+	private boolean histologyHistopathology;
+	@Column(name = "histologyFcdClassification")
+	private boolean histologyFcdClassification;
 	@Column(name = "histologyComment")
 	private boolean histologyComment;
 	@Column(name = "histologyDeleted")
@@ -311,6 +317,8 @@ public class ExportParamsEntity {
 	private boolean invasiveTestECOGDate;
 	@Column(name = "invasiveTestECOGDone")
 	private boolean invasiveTestECOGDone;
+	@Column(name = "invasiveTestECOGIntracranialElectrodes")
+	private boolean invasiveTestECOGIntracranialElectrodes;
 	@Column(name = "invasiveTestECOGDoctorId")
 	private boolean invasiveTestECOGDoctorId;
 	@Column(name = "invasiveTestECOGAdded")
@@ -341,22 +349,22 @@ public class ExportParamsEntity {
 	private boolean invasiveTestEEGId;
 	@Column(name = "invasiveTestEEGDate")
 	private boolean invasiveTestEEGDate;
+	@Column(name = "invasiveTestEEGDone")
+	private boolean invasiveTestEEGDone;
 	@Column(name = "invasiveTestEEGDoctorId")
 	private boolean invasiveTestEEGDoctorId;
 	@Column(name = "invasiveTestEEGAdded")
 	private boolean invasiveTestEEGAdded;
 	@Column(name = "invasiveTestEEGInvasiveMonitoring")
 	private boolean invasiveTestEEGInvasiveMonitoring;
-	@Column(name = "invasiveTestEEGCorticalMapping")
-	private boolean invasiveTestEEGCorticalMapping;
 	@Column(name = "invasiveTestEEGLocalizationIntracranialElectrodes")
 	private boolean invasiveTestEEGLocalizationIntracranialElectrodes;
-	@Column(name = "invasiveTestEEGIntracranialElectrodesIdCom")
-	private boolean invasiveTestEEGIntracranialElectrodesIdCom;
-	@Column(name = "invasiveTestEEGInvasiveEEGSlowingIdCom")
-	private boolean invasiveTestEEGInvasiveEEGSlowingIdCom;
-	@Column(name = "invasiveTestEEGInvasiveEEGInterictalSpikesIdCom")
-	private boolean invasiveTestEEGInvasiveEEGInterictalSpikesIdCom;
+	@Column(name = "invasiveTestEEGIntracranialElectrodes")
+	private boolean invasiveTestEEGIntracranialElectrodes;
+	@Column(name = "invasiveTestEEGInvasiveEEGSlow")
+	private boolean invasiveTestEEGInvasiveEEGSlow;
+	@Column(name = "invasiveTestEEGInvasiveEEGInterictalSpikes")
+	private boolean invasiveTestEEGInvasiveEEGInterictalSpikes;
 	@Column(name = "invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes")
 	private boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
 	@Column(name = "invasiveTestEEGStatusEpilepticus")
@@ -491,16 +499,18 @@ public class ExportParamsEntity {
 	private boolean operationId;
 	@Column(name = "operationDate")
 	private boolean operationDate;
+	@Column(name = "operationDateOperation")
+	private boolean operationDateOperation;
 	@Column(name = "operationDoctorId")
 	private boolean operationDoctorId;
 	@Column(name = "operationAdded")
 	private boolean operationAdded;
-	@Column(name = "operationTypeOperationsIdCom")
-	private boolean operationTypeOperationsIdCom;
-	@Column(name = "operationRangeOpertationsIdCom")
-	private boolean operationRangeOpertationsIdCom;
-	@Column(name = "operationLocalizationsOperations")
-	private boolean operationLocalizationsOperations;
+	@Column(name = "operationTypeOperation")
+	private boolean operationTypeOperation;
+	@Column(name = "operationRangeOperation")
+	private boolean operationRangeOperation;
+	@Column(name = "operationLocalizationOperation")
+	private boolean operationLocalizationOperation;
 	@Column(name = "operationMst")
 	private boolean operationMst;
 	@Column(name = "operationColostomy")
@@ -535,14 +545,14 @@ public class ExportParamsEntity {
 	private boolean outcomeAdded;
 	@Column(name = "outcomeFinallySeizuresIdCom")
 	private boolean outcomeFinallySeizuresIdCom;
-	@Column(name = "outcomeEEGSpikes")
-	private boolean outcomeEEGSpikes;
-	@Column(name = "outcomeAEDPlanted")
-	private boolean outcomeAEDPlanted;
-	@Column(name = "outcomeMRIDone")
-	private boolean outcomeMRIDone;
-	@Column(name = "outcomeNeuroPsychology")
-	private boolean outcomeNeuroPsychology;
+	@Column(name = "outcomeEEG")
+	private boolean outcomeEEG;
+	@Column(name = "outcomeAED")
+	private boolean outcomeAED;
+	@Column(name = "outcomeMRI")
+	private boolean outcomeMRI;
+	@Column(name = "outcomeNeuropsychology")
+	private boolean outcomeNeuropsychology;
 	@Column(name = "outcomeComment")
 	private boolean outcomeComment;
 	@Column(name = "outcomeDeleted")
@@ -553,7 +563,13 @@ public class ExportParamsEntity {
 	private boolean outcomePatientId;
 	@Column(name = "outcomeStatus")
 	private boolean outcomeStatus;
-
+	@Column(name = "outcomeSeizureOutcome")
+	private boolean outcomeSeizureOutcome;	
+	@Column(name = "outcomeDistance")
+	private boolean outcomeDistance;	
+	@Column(name = "outcomeOperationId")
+	private boolean outcomeOperationId;
+	
 	// Pharmacotherapy properties
 	@Column(name = "pharmacotherapyId")
 	private boolean pharmacotherapyId;
@@ -595,10 +611,10 @@ public class ExportParamsEntity {
 	private boolean seizureSecondarilyGeneralizedSeizure;
 	@Column(name = "seizureStatusEpilepticus")
 	private boolean seizureStatusEpilepticus;
-	@Column(name = "seizureSSCClassificationIdCom")
-	private boolean seizureSSCClassificationIdCom;
-	@Column(name = "seizureILAEClassificationIdCom")
-	private boolean seizureILAEClassificationIdCom;
+	@Column(name = "seizureSSCClassification")
+	private boolean seizureSSCClassification;
+	@Column(name = "seizureILAEClassification")
+	private boolean seizureILAEClassification;
 	@Column(name = "seizureSeizuresWhileAwakeEpi")
 	private boolean seizureSeizuresWhileAwakeEpi;
 	@Column(name = "seizureSeizuresWhileAwakeLatent")
@@ -1582,22 +1598,20 @@ public class ExportParamsEntity {
 		this.histologyAdded = histologyAdded;
 	}
 
-	public boolean isHistologyHistopathologyIdCom() {
-		return histologyHistopathologyIdCom;
+	public boolean isHistologyHistopathology() {
+		return histologyHistopathology;
 	}
 
-	public void setHistologyHistopathologyIdCom(
-			boolean histologyHistopathologyIdCom) {
-		this.histologyHistopathologyIdCom = histologyHistopathologyIdCom;
+	public void setHistologyHistopathology(boolean histologyHistopathology) {
+		this.histologyHistopathology = histologyHistopathology;
 	}
 
-	public boolean isHistologyClassificationIdCom() {
-		return histologyClassificationIdCom;
+	public boolean isHistologyFcdClassification() {
+		return histologyFcdClassification;
 	}
 
-	public void setHistologyClassificationIdCom(
-			boolean histologyClassificationIdCom) {
-		this.histologyClassificationIdCom = histologyClassificationIdCom;
+	public void setHistologyFcdClassification(boolean histologyFcdClassification) {
+		this.histologyFcdClassification = histologyFcdClassification;
 	}
 
 	public boolean isHistologyComment() {
@@ -1797,15 +1811,6 @@ public class ExportParamsEntity {
 		this.invasiveTestEEGInvasiveMonitoring = invasiveTestEEGInvasiveMonitoring;
 	}
 
-	public boolean isInvasiveTestEEGCorticalMapping() {
-		return invasiveTestEEGCorticalMapping;
-	}
-
-	public void setInvasiveTestEEGCorticalMapping(
-			boolean invasiveTestEEGCorticalMapping) {
-		this.invasiveTestEEGCorticalMapping = invasiveTestEEGCorticalMapping;
-	}
-
 	public boolean isInvasiveTestEEGLocalizationIntracranialElectrodes() {
 		return invasiveTestEEGLocalizationIntracranialElectrodes;
 	}
@@ -1815,31 +1820,31 @@ public class ExportParamsEntity {
 		this.invasiveTestEEGLocalizationIntracranialElectrodes = invasiveTestEEGLocalizationIntracranialElectrodes;
 	}
 
-	public boolean isInvasiveTestEEGIntracranialElectrodesIdCom() {
-		return invasiveTestEEGIntracranialElectrodesIdCom;
+	public boolean isInvasiveTestEEGIntracranialElectrodes() {
+		return invasiveTestEEGIntracranialElectrodes;
 	}
 
-	public void setInvasiveTestEEGIntracranialElectrodesIdCom(
-			boolean invasiveTestEEGIntracranialElectrodesIdCom) {
-		this.invasiveTestEEGIntracranialElectrodesIdCom = invasiveTestEEGIntracranialElectrodesIdCom;
+	public void setInvasiveTestEEGIntracranialElectrodes(
+			boolean invasiveTestEEGIntracranialElectrodes) {
+		this.invasiveTestEEGIntracranialElectrodes = invasiveTestEEGIntracranialElectrodes;
 	}
 
-	public boolean isInvasiveTestEEGInvasiveEEGSlowingIdCom() {
-		return invasiveTestEEGInvasiveEEGSlowingIdCom;
+	public boolean isInvasiveTestEEGInvasiveEEGSlow() {
+		return invasiveTestEEGInvasiveEEGSlow;
 	}
 
-	public void setInvasiveTestEEGInvasiveEEGSlowingIdCom(
-			boolean invasiveTestEEGInvasiveEEGSlowingIdCom) {
-		this.invasiveTestEEGInvasiveEEGSlowingIdCom = invasiveTestEEGInvasiveEEGSlowingIdCom;
+	public void setInvasiveTestEEGInvasiveEEGSlow(
+			boolean invasiveTestEEGInvasiveEEGSlow) {
+		this.invasiveTestEEGInvasiveEEGSlow = invasiveTestEEGInvasiveEEGSlow;
 	}
 
-	public boolean isInvasiveTestEEGInvasiveEEGInterictalSpikesIdCom() {
-		return invasiveTestEEGInvasiveEEGInterictalSpikesIdCom;
+	public boolean isInvasiveTestEEGInvasiveEEGInterictalSpikes() {
+		return invasiveTestEEGInvasiveEEGInterictalSpikes;
 	}
 
-	public void setInvasiveTestEEGInvasiveEEGInterictalSpikesIdCom(
-			boolean invasiveTestEEGInvasiveEEGInterictalSpikesIdCom) {
-		this.invasiveTestEEGInvasiveEEGInterictalSpikesIdCom = invasiveTestEEGInvasiveEEGInterictalSpikesIdCom;
+	public void setInvasiveTestEEGInvasiveEEGInterictalSpikes(
+			boolean invasiveTestEEGInvasiveEEGInterictalSpikes) {
+		this.invasiveTestEEGInvasiveEEGInterictalSpikes = invasiveTestEEGInvasiveEEGInterictalSpikes;
 	}
 
 	public boolean isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes() {
@@ -2402,31 +2407,29 @@ public class ExportParamsEntity {
 		this.operationAdded = operationAdded;
 	}
 
-	public boolean isOperationTypeOperationsIdCom() {
-		return operationTypeOperationsIdCom;
+	public boolean isOperationTypeOperation() {
+		return operationTypeOperation;
 	}
 
-	public void setOperationTypeOperationsIdCom(
-			boolean operationTypeOperationsIdCom) {
-		this.operationTypeOperationsIdCom = operationTypeOperationsIdCom;
+	public void setOperationTypeOperation(boolean operationTypeOperation) {
+		this.operationTypeOperation = operationTypeOperation;
 	}
 
-	public boolean isOperationRangeOpertationsIdCom() {
-		return operationRangeOpertationsIdCom;
+	public boolean isOperationRangeOperation() {
+		return operationRangeOperation;
 	}
 
-	public void setOperationRangeOpertationsIdCom(
-			boolean operationRangeOpertationsIdCom) {
-		this.operationRangeOpertationsIdCom = operationRangeOpertationsIdCom;
+	public void setOperationRangeOperation(boolean operationRangeOperation) {
+		this.operationRangeOperation = operationRangeOperation;
 	}
 
-	public boolean isOperationLocalizationsOperations() {
-		return operationLocalizationsOperations;
+	public boolean isOperationLocalizationOperation() {
+		return operationLocalizationOperation;
 	}
 
-	public void setOperationLocalizationsOperations(
-			boolean operationLocalizationsOperations) {
-		this.operationLocalizationsOperations = operationLocalizationsOperations;
+	public void setOperationLocalizationOperation(
+			boolean operationLocalizationOperation) {
+		this.operationLocalizationOperation = operationLocalizationOperation;
 	}
 
 	public boolean isOperationMst() {
@@ -2559,36 +2562,36 @@ public class ExportParamsEntity {
 		this.outcomeFinallySeizuresIdCom = outcomeFinallySeizuresIdCom;
 	}
 
-	public boolean isOutcomeEEGSpikes() {
-		return outcomeEEGSpikes;
+	public boolean isOutcomeEEG() {
+		return outcomeEEG;
 	}
 
-	public void setOutcomeEEGSpikes(boolean outcomeEEGSpikes) {
-		this.outcomeEEGSpikes = outcomeEEGSpikes;
+	public void setOutcomeEEG(boolean outcomeEEG) {
+		this.outcomeEEG = outcomeEEG;
 	}
 
-	public boolean isOutcomeAEDPlanted() {
-		return outcomeAEDPlanted;
+	public boolean isOutcomeAED() {
+		return outcomeAED;
 	}
 
-	public void setOutcomeAEDPlanted(boolean outcomeAEDPlanted) {
-		this.outcomeAEDPlanted = outcomeAEDPlanted;
+	public void setOutcomeAED(boolean outcomeAED) {
+		this.outcomeAED = outcomeAED;
 	}
 
-	public boolean isOutcomeMRIDone() {
-		return outcomeMRIDone;
+	public boolean isOutcomeMRI() {
+		return outcomeMRI;
 	}
 
-	public void setOutcomeMRIDone(boolean outcomeMRIDone) {
-		this.outcomeMRIDone = outcomeMRIDone;
+	public void setOutcomeMRI(boolean outcomeMRI) {
+		this.outcomeMRI = outcomeMRI;
 	}
 
-	public boolean isOutcomeNeuroPsychology() {
-		return outcomeNeuroPsychology;
+	public boolean isOutcomeNeuropsychology() {
+		return outcomeNeuropsychology;
 	}
 
-	public void setOutcomeNeuroPsychology(boolean outcomeNeuroPsychology) {
-		this.outcomeNeuroPsychology = outcomeNeuroPsychology;
+	public void setOutcomeNeuropsychology(boolean outcomeNeuropsychology) {
+		this.outcomeNeuropsychology = outcomeNeuropsychology;
 	}
 
 	public boolean isOutcomeComment() {
@@ -2785,22 +2788,20 @@ public class ExportParamsEntity {
 		this.seizureStatusEpilepticus = seizureStatusEpilepticus;
 	}
 
-	public boolean isSeizureSSCClassificationIdCom() {
-		return seizureSSCClassificationIdCom;
+	public boolean isSeizureSSCClassification() {
+		return seizureSSCClassification;
 	}
 
-	public void setSeizureSSCClassificationIdCom(
-			boolean seizureSSCClassificationIdCom) {
-		this.seizureSSCClassificationIdCom = seizureSSCClassificationIdCom;
+	public void setSeizureSSCClassification(boolean seizureSSCClassification) {
+		this.seizureSSCClassification = seizureSSCClassification;
 	}
 
-	public boolean isSeizureILAEClassificationIdCom() {
-		return seizureILAEClassificationIdCom;
+	public boolean isSeizureILAEClassification() {
+		return seizureILAEClassification;
 	}
 
-	public void setSeizureILAEClassificationIdCom(
-			boolean seizureILAEClassificationIdCom) {
-		this.seizureILAEClassificationIdCom = seizureILAEClassificationIdCom;
+	public void setSeizureILAEClassification(boolean seizureILAEClassification) {
+		this.seizureILAEClassification = seizureILAEClassification;
 	}
 
 	public boolean isSeizureSeizuresWhileAwakeEpi() {
@@ -3224,7 +3225,8 @@ public class ExportParamsEntity {
 		return diagnosticTestMRIMrsFinding;
 	}
 
-	public void setDiagnosticTestMRIMrsFinding(boolean diagnosticTestMRIMrsFinding) {
+	public void setDiagnosticTestMRIMrsFinding(
+			boolean diagnosticTestMRIMrsFinding) {
 		this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
 	}
 
@@ -3252,6 +3254,79 @@ public class ExportParamsEntity {
 
 	public void setInvasiveTestECOGDone(boolean invasiveTestECOGDone) {
 		this.invasiveTestECOGDone = invasiveTestECOGDone;
+	}
+
+	public boolean isInvasiveTestECOGIntracranialElectrodes() {
+		return invasiveTestECOGIntracranialElectrodes;
+	}
+
+	public void setInvasiveTestECOGIntracranialElectrodes(
+			boolean invasiveTestECOGIntracranialElectrodes) {
+		this.invasiveTestECOGIntracranialElectrodes = invasiveTestECOGIntracranialElectrodes;
+	}
+
+	public boolean isInvasiveTestEEGDone() {
+		return invasiveTestEEGDone;
+	}
+
+	public void setInvasiveTestEEGDone(boolean invasiveTestEEGDone) {
+		this.invasiveTestEEGDone = invasiveTestEEGDone;
+	}
+
+	public boolean isOperationDateOperation() {
+		return operationDateOperation;
+	}
+
+	public void setOperationDateOperation(boolean operationDateOperation) {
+		this.operationDateOperation = operationDateOperation;
+	}
+
+	public boolean isComplicationWithCompication() {
+		return ComplicationWithCompication;
+	}
+
+	public void setComplicationWithCompication(boolean complicationWithCompication) {
+		ComplicationWithCompication = complicationWithCompication;
+	}
+
+	public boolean isComplicationComplicationType() {
+		return ComplicationComplicationType;
+	}
+
+	public void setComplicationComplicationType(boolean complicationComplicationType) {
+		ComplicationComplicationType = complicationComplicationType;
+	}
+
+	public boolean isComplicationComplication() {
+		return ComplicationComplication;
+	}
+
+	public void setComplicationComplication(boolean complicationComplication) {
+		ComplicationComplication = complicationComplication;
+	}
+
+	public boolean isOutcomeSeizureOutcome() {
+		return outcomeSeizureOutcome;
+	}
+
+	public void setOutcomeSeizureOutcome(boolean outcomeSeizureOutcome) {
+		this.outcomeSeizureOutcome = outcomeSeizureOutcome;
+	}
+
+	public boolean isOutcomeDistance() {
+		return outcomeDistance;
+	}
+
+	public void setOutcomeDistance(boolean outcomeDistance) {
+		this.outcomeDistance = outcomeDistance;
+	}
+
+	public boolean isOutcomeOperationId() {
+		return outcomeOperationId;
+	}
+
+	public void setOutcomeOperationId(boolean outcomeOperationId) {
+		this.outcomeOperationId = outcomeOperationId;
 	}
 
 }
