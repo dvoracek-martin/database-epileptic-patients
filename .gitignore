@@ -15,3 +15,6 @@ Backend/target/m2e-wtp/web-resources/META-INF/maven/cz.cvut/GENEPI/pom.propertie
 **/workspace.xml
 **/tasks.xml
 **.iws
+
+**.iml
+**.idea
