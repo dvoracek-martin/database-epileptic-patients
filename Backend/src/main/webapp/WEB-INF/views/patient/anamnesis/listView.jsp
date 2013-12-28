@@ -48,11 +48,13 @@
                 <div class="list-striped">
                     <c:forEach items="${patient.anamnesisList}" var="anamnesis">
                         <div>
-                            <table  class="record-head table">
+                            <table class="record-head table">
                                 <tbody>
                                 <tr>
-                                    <th class="col-xs-8"><a data-toggle="collapse" href="#collapse${anamnesis.id}">
-                                        Zadano dne: ${anamnesis.date}</a>
+                                    <th class="col-xs-8">
+                                        <a data-toggle="collapse" href="#collapse${anamnesis.id}">
+                                            Zadano dne: ${anamnesis.date}
+                                        </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
@@ -70,7 +72,7 @@
                                 </tbody>
                             </table>
 
-                            <%@include file="anamnesisTable.jsp" %>
+                            <%@include file="anamnesisTableView.jsp" %>
                         </div>
                         <c:set var="count" value="1" scope="page"/>
                     </c:forEach>

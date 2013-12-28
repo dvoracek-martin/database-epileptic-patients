@@ -134,7 +134,7 @@
 			                                    </a>
 			                                </h4>
 			                            </div>
-			                             <%@include file="patient/anamnesis/anamnesisTable.jsp" %>
+			                             <%@include file="patient/anamnesis/anamnesisTableView.jsp" %>
 			                        </div>
 			                        <c:set var="count" value="1" scope="page"/>
 			                    </c:forEach>

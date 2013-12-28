@@ -45,7 +45,7 @@
 					<li><a
 						href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">Farmakoterapie</a></li>
 					<li><a
-						href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">Neurologické nálezy</a></li>
+						href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">Neurologické nálezy</a></li>
 					<li><a
 						href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">Neuropsychologie</a></li>
 					<li><a

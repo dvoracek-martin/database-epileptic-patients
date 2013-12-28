@@ -79,7 +79,7 @@
 
                         </h4>
                     </div>
-                    <%@include file="anamnesis/anamnesisTable.jsp" %>
+                    <%@include file="anamnesis/anamnesisTableView.jsp" %>
                 </div>
                 <c:set var="count" value="1" scope="page"/>
           <%--  </c:forEach> --%>

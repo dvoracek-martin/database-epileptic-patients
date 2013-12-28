@@ -32,13 +32,12 @@ public class NeurologicalFindingController {
 		this.neurologicalFindingService = neurologicalFindingService;
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/neurologicalFinding/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.GET)
 	public String neurologicalFindingCreateGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService.findByID(PatientEntity.class,
-				patientID);
-
-		model.addAttribute("patient", patient);
+			@PathVariable("patientId") Integer patientId) {
+		
+		model.addAttribute("patient",
+				patientService.getPatientByIdWithDoctor(patientId));
 		model.addAttribute("neurologicalFinding",
 				new NeurologicalFindingEntity());
 		return "patient/neurologicalFinding/createView";
@@ -55,29 +54,31 @@ public class NeurologicalFindingController {
 	 *            the patient id
 	 * @return the string
 	 */
-	@RequestMapping(value = "/patient/{patientID}/neurologicalFinding/create", method = RequestMethod.POST)
+	@RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
 	public String neurologicalFindingCreatePOST(
 			@ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingEntity neurologicalFinding,
-			BindingResult result, @PathVariable("patientID") Integer patientID) {
+			BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 		if (result.hasErrors()) {
+			model.addAttribute("patient",
+					patientService.getPatientByIdWithDoctor(patientId));
 			return "patient/neurologicalFinding/createView";
 		} else {
 			neurologicalFinding.setPatient(patientService.findByID(
-					PatientEntity.class, patientID));
+					PatientEntity.class, patientId));
 			neurologicalFindingService.save(neurologicalFinding);
-			return "redirect:/patient/" + patientID
-					+ "/neurologicalFinding/list";
+			return "redirect:/patient/" + patientId
+					+ "/neurological-finding/list";
 		}
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/neurologicalFinding/{neurologicalFindingID}/delete", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/neurological-finding/{neurologicalFindingID}/delete", method = RequestMethod.GET)
 	public String neurologicalFindingDeleteGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("neurologicalFindingID") Integer neurologicalFindingID) {
 
 		neurologicalFindingService.delete(neurologicalFindingService.findByID(
 				NeurologicalFindingEntity.class, neurologicalFindingID));
-		return "redirect:/patient/" + patientID + "/neurologicalFinding/list";
+		return "redirect:/patient/" + patientID + "/neurological-finding/list";
 	}
 
 	/**
@@ -97,7 +98,7 @@ public class NeurologicalFindingController {
 	 * 
 	 * @return the address to which the user will be redirected.
 	 */
-	@RequestMapping(value = "/patient/{patientId}/neurologicalFinding/{neurologicalFindingId}/hide", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/hide", method = RequestMethod.GET)
 	public String neurologicalFindingHideGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
@@ -105,7 +106,7 @@ public class NeurologicalFindingController {
 
 		neurologicalFindingService.hide(neurologicalFindingService.findByID(
 				NeurologicalFindingEntity.class, neurologicalFindingId));
-		return "redirect:/patient/" + patientId + "/neurologicalFinding/list";
+		return "redirect:/patient/" + patientId + "/neurological-finding/list";
 	}
 
 	/**
@@ -125,7 +126,7 @@ public class NeurologicalFindingController {
 	 * 
 	 * @return the address to which the user will be redirected.
 	 */
-	@RequestMapping(value = "/patient/{patientId}/neurologicalFinding/{anamnesisId}/unhide", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientId}/neurological-finding/{anamnesisId}/unhide", method = RequestMethod.GET)
 	public String neurologicalFindingGET(
 			@PathVariable("patientId") Integer patientId,
 			@PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
@@ -135,17 +136,17 @@ public class NeurologicalFindingController {
 				NeurologicalFindingEntity.class, neurologicalFindingId));
 		// TODO: address to get back to admin module where is list od hidden
 		// records.
-		return "redirect:/patient/" + patientId + "/neurologicalFinding/list";
+		return "redirect:/patient/" + patientId + "/neurological-finding/list";
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/neurologicalFinding/{neurologicalFindingID}/export", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/neurological-finding/{neurologicalFindingID}/export", method = RequestMethod.GET)
 	public String neurologicalFindingExportGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID,
 			@PathVariable("neurologicalFindingID") Integer neurologicalFindingID) {
-		return "redirect:/patient/" + patientID + "/neurologicalFinding/list";
+		return "redirect:/patient/" + patientID + "/neurological-finding/list";
 	}
 
-	@RequestMapping(value = "/patient/{patientID}/neurologicalFinding/list", method = RequestMethod.GET)
+	@RequestMapping(value = "/patient/{patientID}/neurological-finding/list", method = RequestMethod.GET)
 	public String neurologicalFindingListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
 		PatientEntity patient = patientService
