@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="GENEPI:war">
-    <output-path>$PROJECT_DIR$/Backend/target</output-path>
-    <root id="archive" name="GENEPI.war">
-      <element id="artifact" artifact-name="GENEPI:war exploded" />
-    </root>
-  </artifact>
-</component>
