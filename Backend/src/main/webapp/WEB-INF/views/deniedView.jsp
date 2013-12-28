@@ -8,10 +8,10 @@
 <t:menuLVL1>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.permisionDenied"/>
+      <spring:message code="label.permissionDenied"/>
     </jsp:attribute>
 	<jsp:attribute name="header">
-      <spring:message code="label.permisionDenied"/>
+      <spring:message code="label.permissionDenied"/>
     </jsp:attribute>
 
 	<jsp:body>
