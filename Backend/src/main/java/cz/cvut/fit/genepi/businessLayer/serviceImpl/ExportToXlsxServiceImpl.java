@@ -8,6 +8,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -330,17 +331,15 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         content += TimeConverter.getDate(anamnesis.getDate());
 
         CreationHelper createHelper = sheet.getWorkbook().getCreationHelper();
-        // Create a row and put some cells in it. Rows are 0 based.
-        Row row = sheet.createRow((int) 0);
-        // Create a cell and put a value in it.
-        Cell cell = row.createCell(0);
-        cell.setCellValue(1);
+        Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
 
-        // Or do it on one line.
-        row.createCell(1).setCellValue(1.2);
-        row.createCell(2).setCellValue(
-                createHelper.createRichTextString("This is a string"));
-        row.createCell(3).setCellValue(true);
+        Row titleRow = sheet.createRow(0);
+        titleRow.setHeightInPoints(45);
+        Cell titleCell = titleRow.createCell(0);
+        titleCell.setCellValue("Weekly Timesheet");
+        titleCell.setCellStyle(styles.get("title"));
+        sheet.addMergedRegion(new CellRangeAddress(1,1,4,1));
+
 
         if (exportParams.isAnamnesisEpilepsyInFamily()) {
 
