@@ -13,7 +13,7 @@
     </jsp:attribute>
 
 <jsp:attribute name="head">
-     <link href="<c:url value="/resources/css/hidden.NEW303.css" />"
+     <link href="<c:url value="/resources/css/custom.NEW303.css" />"
            rel="stylesheet">
     </jsp:attribute>
 
@@ -45,25 +45,31 @@
             </c:when>
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
-                <div class="panel-group" id="accordion">
+                <div class="list-striped">
                     <c:forEach items="${patient.anamnesisList}" var="anamnesis">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
-                                        Zadano dne: ${anamnesis.date}
-                                    </a>
+                        <div>
+                            <table  class="record-head table">
+                                <tbody>
+                                <tr>
+                                    <th class="col-xs-8"><a data-toggle="collapse" href="#collapse${anamnesis.id}">
+                                        Zadano dne: ${anamnesis.date}</a>
+                                    </th>
+                                    <th class="col-xs-2">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
+                                            <span class="glyphicon glyphicon-edit"></span> edit
+                                        </a>
+                                    </th>
+                                    <th class="col-xs-2">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
+                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
+                                        </a>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
-                                        <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                    </a>
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
-                                        <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
-                                    </a>
-                                </h4>
-                            </div>
                             <%@include file="anamnesisTable.jsp" %>
                         </div>
                         <c:set var="count" value="1" scope="page"/>
@@ -71,6 +77,7 @@
                 </div>
             </c:otherwise>
         </c:choose>
+
         <!-- anamnesis list END -->
     </jsp:body>
 </t:menuLVL2.NEW303>

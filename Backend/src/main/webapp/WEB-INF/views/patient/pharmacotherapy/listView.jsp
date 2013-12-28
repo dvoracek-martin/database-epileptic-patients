@@ -33,60 +33,6 @@
 
 <%@include file="../patientDetails.jsp" %>
 
-<h1>typ anamneza</h1>
-
-<table style="margin-bottom: 0px; background-color: rgb(245, 245, 245)" class="table">
-    <tbody>
-    <tr>
-        <th class="col-xs-8"><a data-toggle="collapse" href="#collapseOne">Zaznam za dne: 12.11.2013</a>
-        </th>
-
-        <th class="col-xs-2"> <span class="glyphicon glyphicon-edit"></span> edit</th>
-        <th class="col-xs-2"> <span class="glyphicon glyphicon-remove-circle"></span> delete</th>
-    </tr>
-    </tbody>
-</table>
-
-<div  id="collapseOne" class="collapse in">
-    <table style="background-color: rgb(245, 245, 245)" class="table">
-        <tr>
-            <td class="col-xs-4">Epilepsie v rodine</td>
-            <td colspan="3" class="col-xs-8">Ano</td>
-        </tr>
-        <tr>
-            <td class="col-xs-4">prenatal</td>
-            <td colspan="3" class="col-xs-8">NE</td>
-        </tr>
-    </table>
-</div>
-
-<table style="margin-bottom: 0px" class="table">
-    <tbody>
-    <tr>
-        <th class="col-xs-8"><a data-toggle="collapse" href="#collapseTwo">Zaznam za dne: 10.11.2013</a>
-        </th>
-
-        <th class="col-xs-2"> <span class="glyphicon glyphicon-edit"></span> edit</th>
-        <th class="col-xs-2"> <span class="glyphicon glyphicon-remove-circle"></span> delete</th>
-    </tr>
-    </tbody>
-</table>
-
-<div id="collapseTwo" class="collapse">
-    <table class="table">
-        <tr>
-            <td class="col-xs-4">Epilepsie v rodine</td>
-            <td colspan="3" class="col-xs-8">Ano</td>
-        </tr>
-        <tr>
-            <td class="col-xs-4">prenatal</td>
-            <td colspan="3" class="col-xs-8">NE</td>
-        </tr>
-    </table>
-</div>
-
-<h1>typ farmakoterapie</h1>
-<%-- 2 --%>
 <table style="margin-bottom: 0px" class="table">
     <tr>
         <th class="col-xs-2">Datum</th>
@@ -97,40 +43,44 @@
     </tr>
 </table>
 
-<table style="margin-bottom: 0px; background-color: rgb(245, 245, 245)"  class="table">
+<table style="margin-bottom: 0px; background-color: rgb(245, 245, 245)" class="table">
     <tr>
         <td class="col-xs-2"><a data-toggle="collapse" href="#collapseThree">06.08.2013</a></td>
         <td class="col-xs-2"> DFG</td>
         <td class="col-xs-2">rezsitentni</td>
         <td class="col-xs-2"> ANO</td>
         <td class="col-xs-2"><span class="glyphicon glyphicon-edit"></span>Upravit</td>
-        <td class="col-xs-2">  <span class="glyphicon glyphicon-remove-circle"></span>Odstranit</td>
+        <td class="col-xs-2"><span class="glyphicon glyphicon-remove-circle"></span>Odstranit</td>
     </tr>
 </table>
 <div style="background-color: rgb(245, 245, 245)" id="collapseThree" class="collapse">
     <table class="table">
         <tr>
             <td class="col-xs-4">Koment</td>
-            <td colspan="3" class="col-xs-8">bergerhger45thkjnrtjgnrsuhjgnrjfuhkgnsdrujfnusfrhnjgkujsndfgiokusdrtniudrtng</td>
+            <td colspan="3" class="col-xs-8">
+                bergerhger45thkjnrtjgnrsuhjgnrjfuhkgnsdrujfnusfrhnjgkujsndfgiokusdrtniudrtng
+            </td>
         </tr>
     </table>
 </div>
 
-<table style="margin-bottom: 0px"  class="table">
+<table style="margin-bottom: 0px" class="table">
     <tr>
         <td class="col-xs-2"><a data-toggle="collapse" href="#collapseFour">06.08.2013</a></td>
         <td class="col-xs-2"> DFG</td>
         <td class="col-xs-2">rezsitentni</td>
         <td class="col-xs-2"> ANO</td>
         <td class="col-xs-2"><span class="glyphicon glyphicon-edit"></span>Upravit</td>
-        <td class="col-xs-2">  <span class="glyphicon glyphicon-remove-circle"></span>Odstranit</td>
+        <td class="col-xs-2"><span class="glyphicon glyphicon-remove-circle"></span>Odstranit</td>
     </tr>
 </table>
 <div id="collapseFour" class="collapse">
     <table class="table">
         <tr>
             <td class="col-xs-4">Koment</td>
-            <td colspan="3" class="col-xs-8">bergerhger45thkjnrtjgnrsuhjgnrjfuhkgnsdrujfnusfrhnjgkujsndfgiokusdrtniudrtng</td>
+            <td colspan="3" class="col-xs-8">
+                bergerhger45thkjnrtjgnrsuhjgnrjfuhkgnsdrujfnusfrhnjgkujsndfgiokusdrtniudrtng
+            </td>
         </tr>
     </table>
 </div>
