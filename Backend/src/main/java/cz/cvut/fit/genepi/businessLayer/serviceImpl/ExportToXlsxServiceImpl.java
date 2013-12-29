@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -121,7 +122,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
         logger.setLogger(ExportToTxtServiceImpl.class);
         String date = getDate();
-        String name = date + ".xlsx";
+        String name = date + ".xls";
 
         String downloadFolder = System.getProperty("user.home")
                 + System.getProperty("file.separator") + "Download_Links"
@@ -162,7 +163,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         }
 
         // Blank workbook
-        Workbook wb = new XSSFWorkbook();
+        Workbook wb = new HSSFWorkbook();
 
         for (PatientEntity patient : patientList) {
 
@@ -333,12 +334,17 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         CreationHelper createHelper = sheet.getWorkbook().getCreationHelper();
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
 
-        Row titleRow = sheet.createRow(0);
-        titleRow.setHeightInPoints(45);
-        Cell titleCell = titleRow.createCell(0);
-        titleCell.setCellValue("Weekly Timesheet");
-        titleCell.setCellStyle(styles.get("title"));
-        sheet.addMergedRegion(new CellRangeAddress(1,1,4,1));
+
+        Row row = sheet.createRow((short) 0);
+        Cell cell = row.createCell((short) 0);
+        cell.setCellValue("This is a test of merging");
+        cell.setCellStyle(styles.get("title"));
+        sheet.addMergedRegion(new CellRangeAddress(
+                0, //first row (0-based)
+                2, //last row  (0-based)
+                0, //first column (0-based)
+                6  //last column  (0-based)
+        ));
 
 
         if (exportParams.isAnamnesisEpilepsyInFamily()) {
