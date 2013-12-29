@@ -30,6 +30,11 @@
             </div>
         </div>
 
+
+        <p>${nf.id}</p>
+        <p>${nf.date}</p>
+        <spring:message code="${nf.comment}"/></a>
+<%--
         <%@include file="../patientDetails.jsp" %>
 
         <!-- neurologicalFinding list START -->
@@ -76,7 +81,7 @@
                 </div>
             </c:otherwise>
         </c:choose>
-
+--%>
         <!-- neurologicalFinding list END -->
     </jsp:body>
 </t:menuLVL2.NEW303>

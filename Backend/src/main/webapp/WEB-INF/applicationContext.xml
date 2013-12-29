@@ -55,4 +55,25 @@
 		</property>
 	</bean>
 
+    <bean id="dozer" class="org.dozer.spring.DozerBeanMapperFactoryBean">
+        <property name="mappingFiles"
+                  value="classpath*:/mapping/*mapping.xml"/>
+        <!--<property name="customConverters">
+            <list>
+                <bean class=
+                              "org.dozer.converters.CustomConverter"/>
+            </list>
+        </property>
+        <property name="eventListeners">
+            <list>
+                <bean class="org.dozer.listeners.EventListener"/>
+            </list>
+        </property>
+        <property name="factories">
+            <map>
+                <entry key="id" value-ref="bean-factory-ref"/>
+            </map>
+        </property>-->
+    </bean>
+
 </beans>

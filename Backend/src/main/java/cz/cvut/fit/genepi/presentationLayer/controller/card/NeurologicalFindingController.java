@@ -149,9 +149,11 @@ public class NeurologicalFindingController {
 	@RequestMapping(value = "/patient/{patientID}/neurological-finding/list", method = RequestMethod.GET)
 	public String neurologicalFindingListGET(Locale locale, Model model,
 			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService
+		/*PatientEntity patient = patientService
 				.getPatientByIdWithNeurologicalFindingList(patientID);
-		model.addAttribute("patient", patient);
+		model.addAttribute("patient", patient);*/
+
+        model.addAttribute("nf",neurologicalFindingService.getById());
 		return "patient/neurologicalFinding/listView";
 	}
 }
