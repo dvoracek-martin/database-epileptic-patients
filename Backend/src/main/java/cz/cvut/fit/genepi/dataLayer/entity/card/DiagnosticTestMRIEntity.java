@@ -112,7 +112,7 @@ public class DiagnosticTestMRIEntity implements
 
 	@Size(max = 800)
 	@Column(name = "details_dti_study", length = 800)
-	private String detailsDtiStudie;
+	private String detailsDtiStudy;
 
 	@Column(name = "wada")
 	private boolean wada;
@@ -319,12 +319,12 @@ public class DiagnosticTestMRIEntity implements
 		this.dti = dti;
 	}
 
-	public String getDetailsDtiStudie() {
-		return detailsDtiStudie;
+	public String getDetailsDtiStudy() {
+		return detailsDtiStudy;
 	}
 
-	public void setDetailsDtiStudie(String detailsDtiStudie) {
-		this.detailsDtiStudie = detailsDtiStudie;
+	public void setDetailsDtiStudy(String detailsDtiStudy) {
+		this.detailsDtiStudy = detailsDtiStudy;
 	}
 
 	public boolean isWada() {
