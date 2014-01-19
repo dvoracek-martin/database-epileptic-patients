@@ -1,5 +1,17 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
+import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.*;
+import cz.cvut.fit.genepi.util.LoggingService;
+import cz.cvut.fit.genepi.util.TimeConverter;
+import org.apache.poi.xwpf.usermodel.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,38 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
-
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-import org.apache.poi.xwpf.usermodel.XWPFParagraph;
-import org.apache.poi.xwpf.usermodel.XWPFRun;
-import org.apache.poi.xwpf.usermodel.XWPFTable;
-import org.apache.poi.xwpf.usermodel.XWPFTableRow;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Service;
-
-import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
-import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
-import cz.cvut.fit.genepi.util.LoggingService;
-import cz.cvut.fit.genepi.util.TimeConverter;
 
 @Service
 public class ExportToDocxServiceImpl implements ExportToDocxService {
@@ -737,10 +717,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		if (exportParams.isOperationMst()) {
 
 		}
-		if (exportParams.isOperationColostomy()) {
+        if (exportParams.setOperationColostomy()) {
 
-		}
-		if (exportParams.isOperationVNS()) {
+        }
+        if (exportParams.isOperationVNS()) {
 
 		}
 		if (exportParams.isOperationVNsImplantationDate()) {

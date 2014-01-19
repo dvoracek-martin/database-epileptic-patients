@@ -839,7 +839,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         if (exportParams.isOperationMst()) {
 
         }
-        if (exportParams.isOperationColostomy()) {
+        if (exportParams.setOperationColostomy()) {
 
         }
         if (exportParams.isOperationVNS()) {

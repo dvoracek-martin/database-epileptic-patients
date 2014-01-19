@@ -1262,13 +1262,25 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += TimeConverter.getDate(invasiveTestCorticalMapping.getDate());
         content += "\n";
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
-
+            content += messageSource.getMessage("label.corticalMapping_done", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestCorticalMapping.isDone()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
-
+            content += messageSource.getMessage("label.corticalMapping", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestCorticalMapping.getCorticalMapping()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestCorticalMappingComment()) {
-
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestCorticalMapping.getComment()),
+                    locale);
+            content += "\n";
         }
 
         return content;
@@ -1279,38 +1291,88 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                      ExportParamsEntity exportParams) {
         String content = "";
 
+        content += messageSource.getMessage("label.operation", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(operation.getDate());
+        content += "\n";
         if (exportParams.isOperationDateOperation()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationRangeOperation()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationTypeOperation()) {
-
+            content += messageSource.getMessage("label.typeOperations", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getTypeOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationLocalizationOperation()) {
-
+            content += messageSource.getMessage("label.localizationOperations", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getLocalizationOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationMst()) {
-
+            content += messageSource.getMessage("label.mst", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.isMst()),
+                    locale);
+            content += "\n";
         }
-        if (exportParams.isOperationColostomy()) {
-
+        if (exportParams.setOperationColostomy()) {
+            content += messageSource.getMessage("label.calostomy", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.isColostomy()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationVNS()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationOperationDetails()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationCompleteResection()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOperationComment()) {
-
+            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(operation.getDateOperation()),
+                    locale);
+            content += "\n";
         }
 
         return content;
