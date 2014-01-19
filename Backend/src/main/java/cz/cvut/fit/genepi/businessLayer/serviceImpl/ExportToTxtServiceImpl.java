@@ -1166,40 +1166,86 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
     }
 
     private String printOutInvasiveTestEEG(PatientEntity patient,
-                                           InvasiveTestEEGEntity operation, Locale locale,
+                                           InvasiveTestEEGEntity invasiveTestEEG, Locale locale,
                                            ExportParamsEntity exportParams) {
         String content = "";
 
+        content += messageSource.getMessage("label.invasiveTestEEG", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(invasiveTestEEG.getDate());
+        content += "\n";
         if (exportParams.isInvasiveTestEEGDone()) {
-
+            content += messageSource.getMessage("label.eeg_done", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.isDone()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
-
+            content += messageSource.getMessage("label.intracranialElectrodes", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getIntracranialElectrodes()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGLocalizationIntracranialElectrodes()) {
-
+            content += messageSource.getMessage("label.localizationIntracranialElectrodes", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getLocalizationIntracranialElectrodes()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
-
+            content += messageSource.getMessage("label.EEGSlow", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegSlow()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
-
+            content += messageSource.getMessage("label.interictalEEGSpikes", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()),
+                    locale);
+            content += "\n";
         }
         if (exportParams
                 .isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes()) {
-
+            content += messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-
+            content += messageSource.getMessage("label.EEGStatusEpilepticus", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
-
+            content += messageSource.getMessage("label.ictalEEGPatterns", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
-
+            content += messageSource.getMessage("label.localizationIctalEEGPattern", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestEEGComment()) {
-
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestEEG.getComment()),
+                    locale);
+            content += "\n";
         }
         return content;
     }
