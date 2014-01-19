@@ -30,12 +30,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
     private LoggingService logger = new LoggingService();
 
     private String translateValue(String value, Locale locale) {
-        if (value.equals("true"))
+        if (value.equals("true")) {
             return messageSource.getMessage("label.yes", null, locale);
-        else if (value.equals("false"))
+        } else if (value.equals("false")) {
             return messageSource.getMessage("label.no", null, locale);
-        else if (value.equals("null") || value.equals(null)) {
-            return messageSource.getMessage("label.null", null, locale);
+        } else {
+            if (value.equals("null") || value.equals(null)) {
+                return messageSource.getMessage("label.null", null, locale);
+            }
         }
         return value;
     }
@@ -49,6 +51,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return reportDate;
     }
 
+    /**
+     * Creates new file and calls methods to fill this file with relevant content according to the exportParams.
+     * Location for Windows OS is here set only for testing
+     */
     public String export(java.util.List<PatientEntity> patientList,
                          UserEntity user, Locale locale, ExportParamsEntity exportParams) {
         logger.setLogger(ExportToTxtServiceImpl.class);
@@ -125,10 +131,12 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             logger.logError("Exception when trying to close txt file.", e);
             e.printStackTrace();
         }
-
         return name;
     }
 
+    /**
+     * Creates empty line
+     */
     private String addEmptyLine() {
         String emptyLine = "";
         for (int i = 0; i != 50; i++) {
@@ -137,6 +145,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return ("\n" + emptyLine + "\n");
     }
 
+    /**
+     * Creates dash line
+     */
     private String addDashLine() {
         String emptyLine = "";
         for (int i = 0; i != 50; i++) {
@@ -145,6 +156,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return ("\n" + emptyLine + "\n" + "\n");
     }
 
+    /**
+     * Creates star line
+     */
     private String addStarLine() {
         String emptyLine = "";
         for (int i = 0; i != 50; i++) {
@@ -153,6 +167,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return ("\n" + emptyLine + "\n" + "\n");
     }
 
+    /**
+     * Creates title page for certain patient
+     */
     private String addTitlePage(Locale locale, PatientEntity patient,
                                 String date) {
         String content = "Export of the patient "
@@ -167,6 +184,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * If card should printed out, then suitable method is called
+     */
     private String addContent(PatientEntity patient, Locale locale,
                               ExportParamsEntity exportParams) {
         String content = "";
@@ -296,6 +317,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of anamnesis should be printed out
+     */
     private String printOutAnamnesis(PatientEntity patient,
                                      AnamnesisEntity anamnesis, Locale locale,
                                      ExportParamsEntity exportParams) {
@@ -421,6 +446,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of seizure should be printed out
+     */
     private String printOutSeizure(PatientEntity patient,
                                    SeizureEntity seizure, Locale locale,
                                    ExportParamsEntity exportParams) {
@@ -459,6 +488,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
+
+        /*
+        This loop goes through seizure details
+         */
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
             if (exportParams.isSeizureDetailSSCClassification()) {
                 content += messageSource.getMessage("label.seizureDetailSSCClassification", null, locale);
@@ -485,6 +518,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of pharmacotherapy should be printed out
+     */
     private String printOutPharmacotherapy(PatientEntity patient,
                                            PharmacotherapyEntity pharmacotherapy, Locale locale,
                                            ExportParamsEntity exportParams) {
@@ -532,6 +569,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of neurological finding should be printed out
+     */
     private String printOutNeurologicalFinding(PatientEntity patient,
                                                NeurologicalFindingEntity neurologicalFinding, Locale locale,
                                                ExportParamsEntity exportParams) {
@@ -582,6 +623,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of neuropsychology should be printed out
+     */
     private String printOutNeuropsychology(PatientEntity patient,
                                            NeuropsychologyEntity neuropsychology, Locale locale,
                                            ExportParamsEntity exportParams) {
@@ -820,6 +865,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of older version of neuropsychology should be printed out
+     */
     private String printOutNeuropsychologyOld(PatientEntity patient,
                                               NeuropsychologyOldEntity neuropsychologyOld, Locale locale,
                                               ExportParamsEntity exportParams) {
@@ -877,6 +926,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of diagnostic test EEG should be printed out
+     */
     private String printOutDiagnosticTestEEG(PatientEntity patient,
                                              DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
                                              ExportParamsEntity exportParams) {
@@ -962,6 +1015,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of diagnostic test MRI should be printed out
+     */
     private String printOutDiagnosticTestMRI(PatientEntity patient,
                                              DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
                                              ExportParamsEntity exportParams) {
@@ -1116,6 +1173,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test ECOG should be printed out
+     */
     private String printOutInvasiveTestECOG(PatientEntity patient,
                                             InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
                                             ExportParamsEntity exportParams) {
@@ -1165,6 +1226,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test EEG should be printed out
+     */
     private String printOutInvasiveTestEEG(PatientEntity patient,
                                            InvasiveTestEEGEntity invasiveTestEEG, Locale locale,
                                            ExportParamsEntity exportParams) {
@@ -1250,6 +1315,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test cortical mapping should be printed out
+     */
     private String printOutInvasiveTestCorticalMapping(PatientEntity patient,
                                                        InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
                                                        Locale locale, ExportParamsEntity exportParams) {
@@ -1286,6 +1355,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of operation should be printed out
+     */
     private String printOutOperation(PatientEntity patient,
                                      OperationEntity operation, Locale locale,
                                      ExportParamsEntity exportParams) {
@@ -1378,6 +1451,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of histology should be printed out
+     */
     private String printOutHistology(PatientEntity patient,
                                      HistologyEntity histology, Locale locale,
                                      ExportParamsEntity exportParams) {
@@ -1413,6 +1490,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of complication should be printed out
+     */
     private String printOutComplication(PatientEntity patient,
                                         ComplicationEntity complication, Locale locale,
                                         ExportParamsEntity exportParams) {
@@ -1456,6 +1537,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of outcome should be printed out
+     */
     private String printOutOutcome(PatientEntity patient,
                                    OutcomeEntity outcome, Locale locale,
                                    ExportParamsEntity exportParams) {
@@ -1526,5 +1611,4 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         return content;
     }
-
 }
