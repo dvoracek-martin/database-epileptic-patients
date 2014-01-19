@@ -1031,7 +1031,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 		if (exportParams.isInvasiveTestECOGEcogPatterns()) {
 
 		}
-		if (exportParams.isInvasiveTestECOGAfterResectiomEcog()) {
+		if (exportParams.setInvasiveTestECOGAfterResectionEcog()) {
 
 		}
 		if (exportParams.isInvasiveTestECOGComment()) {

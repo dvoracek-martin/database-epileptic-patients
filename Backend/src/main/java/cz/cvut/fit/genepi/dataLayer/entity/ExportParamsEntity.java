@@ -329,8 +329,8 @@ public class ExportParamsEntity {
 	private boolean invasiveTestECOGEcogPatterns;
 	@Column(name = "invasiveTestECOGEcogCover")
 	private boolean invasiveTestECOGEcogCover;
-	@Column(name = "invasiveTestECOGAfterResectiomEcog")
-	private boolean invasiveTestECOGAfterResectiomEcog;
+	@Column(name = "invasiveTestECOGAfterResectionEcog")
+	private boolean invasiveTestECOGAfterResectionEcog;
 	@Column(name = "invasiveTestECOGAwakeCraniotomy")
 	private boolean invasiveTestECOGAwakeCraniotomy;
 	@Column(name = "invasiveTestECOGComment")
@@ -1720,13 +1720,13 @@ public class ExportParamsEntity {
 		this.invasiveTestECOGEcogCover = invasiveTestECOGEcogCover;
 	}
 
-	public boolean isInvasiveTestECOGAfterResectiomEcog() {
-		return invasiveTestECOGAfterResectiomEcog;
+	public boolean setInvasiveTestECOGAfterResectionEcog() {
+		return invasiveTestECOGAfterResectionEcog;
 	}
 
-	public void setInvasiveTestECOGAfterResectiomEcog(
-			boolean invasiveTestECOGAfterResectiomEcog) {
-		this.invasiveTestECOGAfterResectiomEcog = invasiveTestECOGAfterResectiomEcog;
+	public void setInvasiveTestECOGAfterResectionEcog(
+            boolean invasiveTestECOGAfterResectionEcog) {
+		this.invasiveTestECOGAfterResectionEcog = invasiveTestECOGAfterResectionEcog;
 	}
 
 	public boolean isInvasiveTestECOGAwakeCraniotomy() {
@@ -3365,4 +3365,7 @@ public class ExportParamsEntity {
 		this.seizureDetailComment = seizureDetailComment;
 	}
 
+    public boolean isInvasiveTestECOGAfterResectionEcog() {
+        return invasiveTestECOGAfterResectionEcog;
+    }
 }

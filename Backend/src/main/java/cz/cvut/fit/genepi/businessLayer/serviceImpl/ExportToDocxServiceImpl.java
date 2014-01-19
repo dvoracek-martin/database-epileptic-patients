@@ -652,7 +652,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 		if (exportParams.isInvasiveTestECOGEcogPatterns()) {
 
 		}
-		if (exportParams.isInvasiveTestECOGAfterResectiomEcog()) {
+		if (exportParams.setInvasiveTestECOGAfterResectionEcog()) {
 
 		}
 		if (exportParams.isInvasiveTestECOGComment()) {

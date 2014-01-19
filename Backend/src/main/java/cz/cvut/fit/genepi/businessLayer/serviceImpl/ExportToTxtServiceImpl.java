@@ -1135,16 +1135,32 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isInvasiveTestECOGEcogCover()) {
-
+            content += messageSource.getMessage("label.ECoG_cover", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestECOG.getEcogCover()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
-
+            content += messageSource.getMessage("label.ECoG_patterns", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()),
+                    locale);
+            content += "\n";
         }
-        if (exportParams.isInvasiveTestECOGAfterResectiomEcog()) {
-
+        if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
+            content += messageSource.getMessage("label.afterResectionECoG", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isInvasiveTestECOGComment()) {
-
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(invasiveTestECOG.getComment()),
+                    locale);
+            content += "\n";
         }
         return content;
     }

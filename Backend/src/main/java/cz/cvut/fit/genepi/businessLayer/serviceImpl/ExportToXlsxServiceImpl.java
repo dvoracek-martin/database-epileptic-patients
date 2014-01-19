@@ -10,7 +10,6 @@ import cz.cvut.fit.genepi.util.TimeConverter;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -759,7 +758,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
 
         }
-        if (exportParams.isInvasiveTestECOGAfterResectiomEcog()) {
+        if (exportParams.setInvasiveTestECOGAfterResectionEcog()) {
 
         }
         if (exportParams.isInvasiveTestECOGComment()) {
