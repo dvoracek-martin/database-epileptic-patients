@@ -1333,23 +1333,23 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.setOperationColostomy()) {
-            content += messageSource.getMessage("label.calostomy", null, locale);
+            content += messageSource.getMessage("label.colostomy", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.isColostomy()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationVNS()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += messageSource.getMessage("label.VNS", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf(operation.isVns()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += messageSource.getMessage("label.VNSImplantationDate", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf(operation.getVNSImplantationDate()),
                     locale);
             content += "\n";
         }
@@ -1361,16 +1361,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isOperationCompleteResection()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += messageSource.getMessage("label.completeResection", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf(operation.isCompleteResection()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationComment()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf(operation.getComment()),
                     locale);
             content += "\n";
         }
@@ -1383,14 +1383,32 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                      ExportParamsEntity exportParams) {
         String content = "";
 
+        content += messageSource.getMessage("label.histology", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(histology.getDate());
+        content += "\n";
         if (exportParams.isHistologyHistopathology()) {
-
+            content += messageSource.getMessage("label.histopathology", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(histology.getHistopathology()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isHistologyFcdClassification()) {
-
+            content += messageSource.getMessage("label.FCDClasification", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(histology.getfcdClasification()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isHistologyComment()) {
-
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(histology.getComment()),
+                    locale);
+            content += "\n";
         }
         return content;
     }
@@ -1400,16 +1418,39 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                         ExportParamsEntity exportParams) {
         String content = "";
 
+        content += messageSource.getMessage("label.complication", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(complication.getDate());
+        content += "\n";
         if (exportParams.isComplicationWithCompication()) {
-
+            content += messageSource.getMessage("label.withComplications", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(complication.isWithComplication()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isComplicationComplicationType()) {
-
+            content += messageSource.getMessage("label.typeComplication", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(complication.getComplicationType()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isComplicationComplication()) {
-
+            content += messageSource.getMessage("label.complication", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(complication.getComplication()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isComplicationComment()) {
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(complication.getComment()),
+                    locale);
+            content += "\n";
         }
 
         return content;
@@ -1420,29 +1461,67 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                    ExportParamsEntity exportParams) {
         String content = "";
 
+        content += messageSource.getMessage("label.outcome", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(outcome.getDate());
+        content += "\n";
         if (exportParams.isOutcomeSeizureOutcome()) {
-
+            content += messageSource.getMessage("label.seizures", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getSeizureOutcome()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeEEG()) {
-
+            content += messageSource.getMessage("label.eeg", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getEeg()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeAED()) {
-
+            content += messageSource.getMessage("label.aed", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getAed()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeMRI()) {
-
+            content += messageSource.getMessage("label.mri", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getMri()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeNeuropsychology()) {
-
+            content += messageSource.getMessage("label.neuropsychology", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getNeuropsychology()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeDistance()) {
-
+            content += messageSource.getMessage("label.distance", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getDistance()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeOperationId()) {
-
+            content += messageSource.getMessage("label.operationId", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getOperation()),
+                    locale);
+            content += "\n";
         }
         if (exportParams.isOutcomeComment()) {
-
+            content += messageSource.getMessage("label.comment", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(outcome.getComment()),
+                    locale);
+            content += "\n";
         }
 
         return content;
