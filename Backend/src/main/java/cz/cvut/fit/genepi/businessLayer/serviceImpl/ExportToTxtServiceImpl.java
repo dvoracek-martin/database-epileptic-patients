@@ -1254,6 +1254,13 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                                        InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
                                                        Locale locale, ExportParamsEntity exportParams) {
         String content = "";
+
+        content += messageSource.getMessage("label.invasiveTestCorticalMapping", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": ";
+        content += TimeConverter.getDate(invasiveTestCorticalMapping.getDate());
+        content += "\n";
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
 
         }
