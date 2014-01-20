@@ -1,27 +1,25 @@
-package cz.cvut.fit.genepi.businessLayer.BO;
+package cz.cvut.fit.genepi.businessLayer.VO.form;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
  * Created by Jan on 29.12.13.
  */
-public class NeurologicalFindingBO {
+public class NeurologicalFindingVO {
 
-    private int id;
+    private int patientId;
 
-    private int addUserId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
+    private Date date;
 
-    private Date added;
-
-    //private PatientEntity patient;
-
-    private int status;
-
-	/* Other fields */
-
-    private String date;
-
-    private String hemisphereDominance;
+    private int hemisphereDominance;
 
     private boolean abnormalNeurologicalFinding;
 
@@ -29,54 +27,30 @@ public class NeurologicalFindingBO {
 
     private boolean visualFieldDefects;
 
+    @Size(max = 800)
     private String comment;
 
-
-    public int getId() {
-        return id;
+    public int getPatientId() {
+        return patientId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
     }
 
-    public int getAddUserId() {
-        return addUserId;
-    }
-
-    public void setAddUserId(int addUserId) {
-        this.addUserId = addUserId;
-    }
-
-    public Date getAdded() {
-        return added;
-    }
-
-    public void setAdded(Date added) {
-        this.added = added;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getHemisphereDominance() {
+    public int getHemisphereDominance() {
         return hemisphereDominance;
     }
 
-    public void setHemisphereDominance(String hemisphereDominance) {
+    public void setHemisphereDominance(int hemisphereDominance) {
         this.hemisphereDominance = hemisphereDominance;
     }
 

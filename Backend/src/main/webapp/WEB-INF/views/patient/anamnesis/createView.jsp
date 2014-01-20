@@ -18,35 +18,35 @@
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
-   </jsp:attribute>
-<jsp:body>
+    </jsp:attribute>
+    <jsp:body>
 
-    <div class="row">
-        <div class="col-xs-12">
-            <h2>
-                <spring:message code="label.anamnesis"/>
-            </h2>
-        </div>
-    </div>
-
-
-    <%@include file="../patientDetails.jsp" %>
-
-
-    <!-- form for adding new record -->
-    <%-- mapping resource in action with c:url caused errors --%>
-    <form:form class="form-horizontal" role="form" method="POST"
-               action="/GENEPI/patient/${patient.id}/anamnesis/create" commandName="anamnesis">
-
-        <%@include file="formView.jsp" %>
-
-        <div class="form-group">
-            <div class="col-xs-offset-3 col-xs-8">
-                <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.anamnesis"/>
+                </h2>
             </div>
         </div>
-    </form:form>
-</jsp:body>
+
+
+        <%@include file="../patientDetails.jsp" %>
+
+
+        <!-- form for adding new record -->
+        <%-- mapping resource in action with c:url caused errors --%>
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/anamnesis/create" commandName="anamnesis">
+
+            <%@include file="formView.jsp" %>
+
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-8">
+                    <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+                </div>
+            </div>
+        </form:form>
+    </jsp:body>
 </t:menuLVL2.NEW303>
 
 

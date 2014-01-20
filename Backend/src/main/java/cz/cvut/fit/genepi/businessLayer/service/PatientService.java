@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.businessLayer.service;
 
 import java.util.List;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 /**
@@ -133,4 +134,8 @@ public interface PatientService extends GenericService<PatientEntity> {
 	public PatientEntity getPatientByIdWithDoctor(int patientId);
 	
 	public List<PatientEntity> findAllHidden();
+
+    public PatientDisplayVO getPatientDisplayByIdWithNeurologicalFindingList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId);
 }

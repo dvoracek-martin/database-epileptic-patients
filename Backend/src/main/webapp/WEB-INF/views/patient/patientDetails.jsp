@@ -24,10 +24,10 @@
                 </tr>
                 <tr>
                     <th><spring:message code="label.birthdate"/>:</th>
-                    <td>${patient.birthday}</td>
+                    <td>${patient.birthday} (${patient.age} let)</td>
 
                     <th><spring:message code="label.gender"/>:</th>
-                    <td>${patient.gender}</td>
+                    <td><spring:message code="label.gender.${patient.gender}"/></td>
 
                     <td></td>
                     <td>${patient.contact.addressCity}</td>

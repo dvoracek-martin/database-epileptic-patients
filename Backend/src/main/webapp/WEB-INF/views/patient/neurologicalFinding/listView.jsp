@@ -3,7 +3,6 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-
 <t:menuLVL2.NEW303>
 <jsp:attribute name="title">
       <spring:message code="label.neurologicalFinding"/>
@@ -30,12 +29,7 @@
             </div>
         </div>
 
-
-        <p>${nf.id}</p>
-        <p>${nf.date}</p>
-        <spring:message code="${nf.comment}"/></a>
-<%--
-        <%@include file="../patientDetails.jsp" %>
+          <%@ include file="../patientDetails.jsp" %>
 
         <!-- neurologicalFinding list START -->
 
@@ -50,40 +44,40 @@
                 <div class="list-striped">
                     <c:forEach items="${patient.neurologicalFindingList}" var="neurologicalFinding">
                         <div>
-                            <table class="record-head table">
-                                <tbody>
-                                <tr>
-                                    <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse${neurologicalFinding.id}">
-                                            Zadano dne: ${neurologicalFinding.date}
-                                        </a>
-                                    </th>
-                                    <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> edit
-                                        </a>
-                                    </th>
-                                    <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                        </a>
-                                    </th>
-                                </tr>
-                                </tbody>
-                            </table>
+                          <table class="record-head table">
+                             <tbody>
+                             <tr>
+                                 <th class="col-xs-8">
+                                     <a data-toggle="collapse" href="#collapse${neurologicalFinding.id}">
+                                         Zadano dne: ${neurologicalFinding.date}
+                                     </a>
+                                 </th>
+                                 <th class="col-xs-2">
+                                     <a class="pull-right"
+                                        href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/edit"/>">
+                                         <span class="glyphicon glyphicon-edit"></span> edit
+                                     </a>
+                                 </th>
+                                 <th class="col-xs-2">
+                                     <a class="pull-right"
+                                        href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/hide"/>">
+                                         <span class="glyphicon glyphicon-remove-circle"></span> delete
+                                     </a>
+                                 </th>
+                             </tr>
+                             </tbody>
+                         </table>
 
-                            <%@include file="neurologicalFindingTableView.jsp" %>
-                        </div>
-                        <c:set var="count" value="1" scope="page"/>
-                    </c:forEach>
-                </div>
-            </c:otherwise>
-        </c:choose>
---%>
-        <!-- neurologicalFinding list END -->
-    </jsp:body>
+                         <%@ include file="neurologicalFindingTableView.jsp" %>
+                     </div>
+                     <c:set var="count" value="1" scope="page"/>
+                 </c:forEach>
+             </div>
+         </c:otherwise>
+     </c:choose>
+
+     <!-- neurologicalFinding list END -->
+ </jsp:body>
 </t:menuLVL2.NEW303>
 
 
