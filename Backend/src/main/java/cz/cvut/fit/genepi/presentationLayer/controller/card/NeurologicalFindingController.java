@@ -10,15 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
 
 @Controller
+@SessionAttributes({ "neurologicalFinding" })
 public class NeurologicalFindingController {
 
     private PatientService patientService;
@@ -37,7 +35,7 @@ public class NeurologicalFindingController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding",
                 new NeurologicalFindingVO());
-        return "patient/neurologicalFinding/createView";
+        return "patient/neurologicalFinding/createEditView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.GET)
@@ -47,7 +45,7 @@ public class NeurologicalFindingController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding",
                 neurologicalFindingService.getById(neurologicalFindingId));
-        return "patient/neurologicalFinding/createView";
+        return "patient/neurologicalFinding/createEditView";
     }
 
     /**
@@ -58,13 +56,13 @@ public class NeurologicalFindingController {
      * @param patientId           the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
-    public String neurologicalFindingCreatePOST(
+    @RequestMapping(value = "/patient/{patientId}/neurological-finding/save", method = RequestMethod.POST)
+    public String neurologicalFindingSavePOST(
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding,
             BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/neurologicalFinding/createView";
+            return "patient/neurologicalFinding/createEditView";
         } else {
             neurologicalFinding.setPatientId(patientId);
             neurologicalFindingService.save(neurologicalFinding);
