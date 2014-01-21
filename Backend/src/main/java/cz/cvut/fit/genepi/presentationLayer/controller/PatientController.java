@@ -1,12 +1,13 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-
-import javax.validation.Valid;
-
+import com.itextpdf.text.DocumentException;
+import cz.cvut.fit.genepi.businessLayer.service.*;
+import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.util.JSONEncoder;
+import cz.cvut.fit.genepi.util.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
@@ -14,32 +15,16 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
-import com.itextpdf.text.DocumentException;
-
-import cz.cvut.fit.genepi.businessLayer.service.ExportParamsService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportToCsvService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportToPdfService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportToTxtService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportToXlsxService;
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.RoleService;
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
-import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.util.JSONEncoder;
-import cz.cvut.fit.genepi.util.LoggingService;
+import javax.validation.Valid;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class CreatedPatientController.
  */
@@ -52,15 +37,21 @@ public class PatientController {
     @Autowired
     private ExportParamsService exportParamsService;
 
-    /** The patient service. */
+    /**
+     * The patient service.
+     */
     @Autowired
     private PatientService patientService;
 
-    /** The anamnesis service. */
+    /**
+     * The anamnesis service.
+     */
     @Autowired
     private AnamnesisService anamnesisService;
 
-    /** The user service. */
+    /**
+     * The user service.
+     */
     @Autowired
     private UserService userService;
 
@@ -82,16 +73,16 @@ public class PatientController {
     @Autowired
     private ExportToCsvService exportToCsvService;
 
-    /** The Constant logger. */
+    /**
+     * The Constant logger.
+     */
     private LoggingService logger = new LoggingService();
 
     /**
      * Creates the patient get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/create", method = RequestMethod.GET)
@@ -104,10 +95,8 @@ public class PatientController {
     /**
      * Adds the patient.
      *
-     * @param patient
-     *            the patient
-     * @param result
-     *            the result
+     * @param patient the patient
+     * @param result  the result
      * @return the string
      */
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
@@ -130,12 +119,9 @@ public class PatientController {
     /**
      * Patient overview post.
      *
-     * @param id
-     *            the id
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
+     * @param id     the id
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
@@ -148,12 +134,9 @@ public class PatientController {
     /**
      * Patient overview get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
-     * @param patientID
-     *            the patient id
+     * @param locale    the locale
+     * @param model     the model
+     * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
@@ -188,10 +171,8 @@ public class PatientController {
     /**
      * Patients list get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
@@ -212,14 +193,13 @@ public class PatientController {
      * Patients list search get. This method is used to provide results for AJAX
      * calls
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
-    public @ResponseBody
+    public
+    @ResponseBody
     String patientsListSearchGET(Locale locale, Model model,
                                  @RequestParam("maxResults") int maxResults,
                                  @RequestParam("pageNumber") int pageNumber,
@@ -238,20 +218,17 @@ public class PatientController {
         model.addAttribute("countOfPatients",
                 patientService.getCountOfUnhidden(PatientEntity.class));
         JSONEncoder e = new JSONEncoder();
-        return (e.encode( patientService
+        return (e.encode(patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, name),maxResults,pageNumber));
+                        pageNumber, searchParams, name), maxResults, pageNumber));
     }
 
     /**
      * Patient delete get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
-     * @param patientID
-     *            the patient id
+     * @param locale    the locale
+     * @param model     the model
+     * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
@@ -265,10 +242,8 @@ public class PatientController {
     /**
      * Patient edit get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.GET)
@@ -283,12 +258,9 @@ public class PatientController {
     /**
      * Patient edit post.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
-     * @param patient
-     *            the patient
+     * @param locale  the locale
+     * @param model   the model
+     * @param patient the patient
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
@@ -309,12 +281,9 @@ public class PatientController {
     /**
      * Patient export get.
      *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
-     * @param patientID
-     *            the patient id
+     * @param locale    the locale
+     * @param model     the model
+     * @param patientID the patient id
      * @return the string
      */
 
@@ -397,7 +366,18 @@ public class PatientController {
         exportParams.setSeizureSeizuresWhileSleepLatent(true);
         exportParams.setSeizureSeizuresWhileSleepNonEpi(true);
 
-
+        exportParams.setNeurologicalFinding(true);
+        exportParams.setNeurologicalFindingAbnormalNeurologicalFinding(true);
+        exportParams.setNeurologicalFindingAdded(true);
+        exportParams.setNeurologicalFindingAddUserId(true);
+        exportParams.setNeurologicalFindingComment(true);
+        exportParams.setNeurologicalFindingDate(true);
+        exportParams.setNeurologicalFindingDoctorId(true);
+        exportParams.setNeurologicalFindingHemiparesis(true);
+        exportParams.setNeurologicalFindingHemisphereDominance(true);
+        exportParams.setNeurologicalFindingId(true);
+        exportParams.setNeurologicalFindingStatus(true);
+        exportParams.setNeurologicalFindingVisualFieldDefects(true);
 
 
         List<PatientEntity> patientList = new ArrayList<PatientEntity>();
