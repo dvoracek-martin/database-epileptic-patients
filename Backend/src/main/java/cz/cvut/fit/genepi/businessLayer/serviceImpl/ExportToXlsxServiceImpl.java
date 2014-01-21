@@ -569,8 +569,8 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         }
 
         // makes cells a bit wider
-        for (int j = 0; j != p.getCellcount(); j++)
-            sheet.setColumnWidth(0, 500);
+        for (int j = 0; j != p.getCellcount()+2; j++)
+            sheet.setColumnWidth(j, 5000);
     }
 
     private void addCells(String firstValue, String secondValue, Sheet sheet, Locale locale, Map<String, CellStyle> styles, String style, Position p) {
