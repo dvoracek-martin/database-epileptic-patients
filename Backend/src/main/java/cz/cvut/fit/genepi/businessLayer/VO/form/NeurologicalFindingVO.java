@@ -12,6 +12,8 @@ import java.util.Date;
  */
 public class NeurologicalFindingVO {
 
+    private int id;
+
     private int patientId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -29,6 +31,14 @@ public class NeurologicalFindingVO {
 
     @Size(max = 800)
     private String comment;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getPatientId() {
         return patientId;

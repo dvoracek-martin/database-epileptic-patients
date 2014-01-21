@@ -35,7 +35,7 @@
         <!-- form for adding new record -->
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/neurological-finding/create" commandName="neurologicalFinding">
+                   action="/GENEPI/patient/${patient.id}/neurological-finding/save" commandName="neurologicalFinding">
 
             <%@include file="formView.jsp" %>
 
