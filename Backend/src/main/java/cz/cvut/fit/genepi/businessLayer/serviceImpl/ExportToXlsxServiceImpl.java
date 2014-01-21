@@ -65,6 +65,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
         style = wb.createCellStyle();
         style.setAlignment(CellStyle.ALIGN_CENTER);
+        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
         style.setWrapText(true);
         style.setBorderRight(CellStyle.BORDER_THIN);
         style.setRightBorderColor(IndexedColors.BLACK.getIndex());
@@ -82,15 +83,32 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         style.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
         style.setFillPattern(CellStyle.SOLID_FOREGROUND);
         style.setDataFormat(wb.createDataFormat().getFormat("0.00"));
-        styles.put("formula", style);
+        styles.put("empty", style);
 
         style = wb.createCellStyle();
         style.setAlignment(CellStyle.ALIGN_CENTER);
         style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
-        style.setFillForegroundColor(IndexedColors.GREY_40_PERCENT.getIndex());
+        style.setWrapText(true);
+        style.setBorderRight(CellStyle.BORDER_THIN);
+        style.setRightBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderLeft(CellStyle.BORDER_THIN);
+        style.setLeftBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderTop(CellStyle.BORDER_THIN);
+        style.setTopBorderColor(IndexedColors.BLACK.getIndex());
+        style.setBorderBottom(CellStyle.BORDER_THIN);
+        style.setBottomBorderColor(IndexedColors.BLACK.getIndex());
+        style.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
         style.setFillPattern(CellStyle.SOLID_FOREGROUND);
         style.setDataFormat(wb.createDataFormat().getFormat("0.00"));
-        styles.put("formula_2", style);
+        styles.put("table", style);
+
+        style = wb.createCellStyle();
+        style.setAlignment(CellStyle.ALIGN_CENTER);
+        style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
+        style.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+        style.setFillPattern(CellStyle.SOLID_FOREGROUND);
+        style.setDataFormat(wb.createDataFormat().getFormat("0.00"));
+        styles.put("emptyTable", style);
 
         return styles;
     }
@@ -118,6 +136,8 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
     public String export(java.util.List<PatientEntity> patientList,
                          UserEntity user, Locale locale, ExportParamsEntity exportParams) {
+
+        Position p = new Position();
 
         logger.setLogger(ExportToTxtServiceImpl.class);
         String date = getDate();
@@ -169,7 +189,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
             Sheet sheet = wb.createSheet(patient.getContact().getLastName()
                     + " " + patient.getContact().getFirstName() + " "
                     + patient.getNin());
-            this.addContent(patient, locale, exportParams, sheet);
+            this.addContent(patient, locale, exportParams, sheet, p);
         }
         // Write the output to a file
         FileOutputStream fileOut = null;
@@ -210,19 +230,76 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
     private void addContent(PatientEntity patient, Locale locale,
-                            ExportParamsEntity exportParams, Sheet sheet) {
-        String content = "";
+                            ExportParamsEntity exportParams, Sheet sheet, Position p) {
+        Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
+        PrintSetup printSetup = sheet.getPrintSetup();
+        printSetup.setLandscape(true);
+        sheet.setFitToPage(true);
+        sheet.setHorizontallyCenter(true);
+
+        Row titleRow = sheet.createRow(0);
+        titleRow.setHeightInPoints(45);
+        Cell titleCell = titleRow.createCell(0);
+        titleCell.setCellValue(patient.getContact().getLastName() + " " + patient.getContact().getFirstName());
+        titleCell.setCellStyle(styles.get("title"));
+        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$L$1"));
+
+        Row headerRow = sheet.createRow(1);
+        headerRow.setHeightInPoints(40);
+        Cell headerCell;
+        int i = 0;
         if (exportParams.isAnamnesis()) {
+            headerCell = headerRow.createCell(i++);
+            headerCell.setCellValue(messageSource.getMessage("label.anamnesis",
+                    null, locale));
+            headerCell.setCellStyle(styles.get("header"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    1, //first row (0-based)
+                    1, //last row  (0-based)
+                    i - 1, //first column (0-based)
+                    i++  //last column  (0-based)
+            ));
+/*
+            Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
+
+            Row row = sheet.createRow((short) 0);
+            Cell cell = row.createCell((short) 0);
+            cell.setCellValue(messageSource.getMessage("label.anamnesis",
+                    null, locale));
+            cell.setCellStyle(styles.get("title"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    0, //first row (0-based)
+                    1, //last row  (0-based)
+                    0, //first column (0-based)
+                    3  //last column  (0-based)
+            ));
+            */
+
+
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
                 this.printOutAnamnesis(patient, anamnesis, locale,
-                        exportParams, sheet);
+                        exportParams, sheet, p);
             }
         }
 
         if (exportParams.isSeizure()) {
+            headerCell = headerRow.createCell(i++);
+            headerCell.setCellValue(messageSource.getMessage("label.seizures",
+                    null, locale));
+            headerCell.setCellStyle(styles.get("header"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    1, //first row (0-based)
+                    1, //last row  (0-based)
+                    i - 1, //first column (0-based)
+                    i++  //last column  (0-based)
+            ));
+
+            p.setRowcount(3);
+            p.setCellcount(p.getCellcount() + 2);
+
             for (SeizureEntity seizure : patient.getSeizureList()) {
                 this.printOutSeizure(patient, seizure, locale,
-                        exportParams, sheet);
+                        exportParams, sheet, p);
             }
         }
         if (exportParams.isPharmacotherapy()) {
@@ -323,142 +400,190 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         }
     }
 
+    private void addCells(String firstValue, String secondValue, Sheet sheet, Locale locale, Map<String, CellStyle> styles, String style, Position p) {
+        Row cellRow = sheet.getRow(p.getRowcount());
+        if (cellRow == null || sheet.getRow(p.getRowcount()).getCell(0) == null)
+            cellRow = sheet.createRow(p.getRowcount());
+        p.setRowcount(p.getRowcount() + 1);
+
+        Cell cellCell = cellRow.createCell(p.getCellcount());
+        cellCell.setCellValue(messageSource.getMessage(firstValue, null,
+                locale));
+        cellCell.setCellStyle(styles.get(style));
+
+        Cell cellCellTwo = cellRow.createCell(p.getCellcount() + 1);
+        cellCellTwo.setCellValue(translateValue(
+                String.valueOf(secondValue), locale));
+        cellCellTwo.setCellStyle(styles.get(style));
+    }
+
     private void printOutAnamnesis(PatientEntity patient,
                                    AnamnesisEntity anamnesis, Locale locale,
-                                   ExportParamsEntity exportParams, Sheet sheet) {
-        String content = "";
-        content += "Anamnesis from date:";
-        content += TimeConverter.getDate(anamnesis.getDate());
-
-        CreationHelper createHelper = sheet.getWorkbook().getCreationHelper();
+                                   ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
 
+        if (p.getRowcount() > 3) {
+            Row dateRow = sheet.getRow(p.getRowcount());
+            if (dateRow == null)
+                dateRow = sheet.createRow(p.getRowcount());
 
-        Row row = sheet.createRow((short) 0);
-        Cell cell = row.createCell((short) 0);
-        cell.setCellValue("This is a test of merging");
-        cell.setCellStyle(styles.get("title"));
-        sheet.addMergedRegion(new CellRangeAddress(
-                0, //first row (0-based)
-                2, //last row  (0-based)
-                0, //first column (0-based)
-                6  //last column  (0-based)
-        ));
+            Cell dateCell = dateRow.createCell(p.getCellcount());
+            dateCell.setCellStyle(styles.get("empty"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    p.getRowcount(), //first row (0-based)
+                    p.getRowcount(), //last row  (0-based)
+                    p.getCellcount(), //first column (0-based)
+                    p.getCellcount() + 1 //last column  (0-based)
+            ));
 
+
+            p.setRowcount(p.getRowcount() + 1);
+        }
+
+        Row dateRow = sheet.createRow(p.getRowcount());
+        p.setRowcount(p.getRowcount() + 1);
+        Cell dateCell = dateRow.createCell(p.getCellcount());
+        dateCell.setCellValue(messageSource.getMessage("label.anamnesis_from_date", null,
+                locale));
+        dateCell.setCellStyle(styles.get("cell"));
+        Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
+        dateCellTwo.setCellValue(TimeConverter.getDate(anamnesis.getDate()));
+        dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isAnamnesisEpilepsyInFamily()) {
-
-            content += messageSource.getMessage("label.epilepsyInFamily", null,
-                    locale);
-            content += translateValue(
-                    String.valueOf(anamnesis.isEpilepsyInFamily()), locale);
+            addCells("label.epilepsyInFamily", translateValue(String.valueOf(anamnesis.isEpilepsyInFamily()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisParentalRisk()) {
-            content += messageSource.getMessage("label.prenatalRisk", null,
-                    locale);
-            content += translateValue(
-                    String.valueOf(anamnesis.isPrenatalRisk()), locale);
+            addCells("label.prenatalRisk", translateValue(
+                    String.valueOf(anamnesis.isPrenatalRisk()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisFibrilConvulsions()) {
-            content += messageSource.getMessage("label.fibrilConvulsions",
-                    null, locale);
-            content += " - ";
-            content += translateValue(
-                    String.valueOf(anamnesis.isFibrilConvulsions()), locale);
+
+            addCells("label.fibrilConvulsions", translateValue(
+                    String.valueOf(anamnesis.isFibrilConvulsions()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisInflammationCns()) {
-            content += messageSource.getMessage("label.inflammationCNS", null,
-                    locale);
-            content += translateValue(
-                    String.valueOf(anamnesis.isInflammationCns()), locale);
+            addCells("label.inflammationCNS", translateValue(
+                    String.valueOf(anamnesis.isInflammationCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisInjuryCns()) {
-            content += messageSource
-                    .getMessage("label.injuryCNS", null, locale);
-            content += translateValue(String.valueOf(anamnesis.isInjuryCns()),
-                    locale);
+
+            addCells("label.injuryCNS", translateValue(
+                    String.valueOf(anamnesis.isInjuryCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisOperationCns()) {
-            content += messageSource.getMessage("label.operationCNS", null,
-                    locale);
-            content += translateValue(
-                    String.valueOf(anamnesis.isOperationCns()), locale);
+            addCells("label.operationCNS", translateValue(
+                    String.valueOf(anamnesis.isOperationCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisEarlyPmdRetardation()) {
-            content += messageSource.getMessage("label.earlyPMDRetardation",
-                    null, locale);
-            content += " - ";
-            content += translateValue(
-                    String.valueOf(anamnesis.isEarlyPmdRetardation()), locale);
+            addCells("label.earlyPMDRetardation", translateValue(
+                    String.valueOf(anamnesis.isEarlyPmdRetardation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisBeginningEpilepsy()) {
-            content += messageSource.getMessage("label.beginningEpilepsy",
-                    null, locale);
-            content += " - ";
-            content += translateValue(
+            addCells("label.beginningEpilepsy", translateValue(
                     TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
-                    locale);
+                    locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisFirstFever()) {
-            content += messageSource.getMessage("label.firstFever", null,
-                    locale);
-            content += translateValue(String.valueOf(anamnesis.isFirstFever()),
-                    locale);
+            addCells("label.firstFever", translateValue(
+                    String.valueOf(anamnesis.isFirstFever()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisInfantileSpasm()) {
-            content += messageSource.getMessage("label.infantileSpasm", null,
-                    locale);
-            content += translateValue(
-                    String.valueOf(anamnesis.isInfantileSpasm()), locale);
+            addCells("label.infantileSpasm", translateValue(
+                    String.valueOf(anamnesis.isInfantileSpasm()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisSpecificSyndrome()) {
-            content += messageSource.getMessage("label.epilepticSyndrome",
-                    null, locale);
-            content += " - ";
-            content += translateValue(
-                    String.valueOf(anamnesis.getSpecificSyndrome()), locale);
+            addCells("label.epilepticSyndrome", translateValue(
+                    String.valueOf(anamnesis.getSpecificSyndrome()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisNonCnsComorbidity()) {
-            content += messageSource.getMessage("label.nonCNSComorbidity",
-                    null, locale);
-            content += " - ";
-            content += translateValue(
-                    String.valueOf(anamnesis.getNonCnsComorbidity()), locale);
+            addCells("label.nonCNSComorbidity", translateValue(
+                    String.valueOf(anamnesis.getNonCnsComorbidity()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisComment()) {
-            content += messageSource.getMessage("label.comment", null, locale);
-            content += translateValue(String.valueOf(anamnesis.getComment()),
-                    locale);
+            addCells("label.comment", translateValue(
+                    String.valueOf(anamnesis.getComment()), locale), sheet, locale, styles, "cell", p);
         }
-
     }
+
 
     private void printOutSeizure(PatientEntity patient,
                                  SeizureEntity seizure, Locale locale,
-                                 ExportParamsEntity exportParams, Sheet sheet) {
-        String content = "";
+                                 ExportParamsEntity exportParams, Sheet sheet, Position p) {
+        Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
+
+        if (p.getRowcount() > 3) {
+            Row dateRow = sheet.getRow(p.getRowcount());
+            if (dateRow == null)
+                dateRow = sheet.createRow(p.getRowcount());
+
+            Cell dateCell = dateRow.createCell(p.getCellcount());
+            dateCell.setCellStyle(styles.get("empty"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    p.getRowcount(),
+                    p.getRowcount(),
+                    p.getCellcount(),
+                    p.getCellcount() + 1
+            ));
+
+            p.setRowcount(p.getRowcount() + 1);
+        }
+
+        Row dateRow = sheet.getRow(p.getRowcount());
+        if (dateRow == null)
+            sheet.createRow(p.getRowcount());
+
+
+        p.setRowcount(p.getRowcount() + 1);
+        Cell dateCell = dateRow.createCell(p.getCellcount());
+        dateCell.setCellValue(messageSource.getMessage("label.seizures", null,
+                locale) + " " + messageSource.getMessage("label.fromDate", null,
+                locale));
+        dateCell.setCellStyle(styles.get("cell"));
+
+        Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
+        dateCellTwo.setCellValue(TimeConverter.getDate(seizure.getDate()));
+        dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isSeizureFrequency()) {
-
+            addCells("label.seizureFrequency", translateValue(String.valueOf(seizure.getSeizureFrequency()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureSecondarilyGeneralizedSeizure()) {
-
+            addCells("label.secondarilyGeneralizedSeizure", translateValue(String.valueOf(seizure.isSecondarilyGeneralizedSeizure()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureStatusEpilepticus()) {
-
+            addCells("label.stausEpilepticus", translateValue(String.valueOf(seizure.isStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureComment()) {
-
+            addCells("label.comment", translateValue(String.valueOf(seizure.getComment()), locale), sheet, locale, styles, "cell", p);
         }
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
-            if (exportParams.isSeizureDetailSSCClassification()) {
-
+                        if (exportParams.isSeizureDetailSSCClassification()) {
+                addCells("label.seizureDetailSSCClassification", translateValue(String.valueOf(seizureDetail.getSscClassification()), locale), sheet, locale, styles, "table", p);
             }
             if (exportParams.isSeizureDetailILAEClassification()) {
-
+                addCells("label.seizureDetailILAEClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
             }
             if (exportParams.isSeizureDetailComment()) {
+                addCells("label.comment", translateValue(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
+            }
 
+            //add empty line
+            if (p.getRowcount() > 3) {
+                Row tableRow = sheet.getRow(p.getRowcount());
+                if (tableRow == null)
+                    tableRow = sheet.createRow(p.getRowcount());
+
+                Cell tableCell = tableRow.createCell(p.getCellcount());
+                tableCell.setCellStyle(styles.get("emptyTable"));
+                sheet.addMergedRegion(new CellRangeAddress(
+                        p.getRowcount(),
+                        p.getRowcount(),
+                        p.getCellcount(),
+                        p.getCellcount() + 1
+                ));
+
+                p.setRowcount(p.getRowcount() + 1);
             }
         }
     }
@@ -758,7 +883,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
 
         }
-        if (exportParams.setInvasiveTestECOGAfterResectionEcog()) {
+        if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
 
         }
         if (exportParams.isInvasiveTestECOGComment()) {
@@ -839,7 +964,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         if (exportParams.isOperationMst()) {
 
         }
-        if (exportParams.setOperationColostomy()) {
+        if (exportParams.isOperationColostomy()) {
 
         }
         if (exportParams.isOperationVNS()) {
@@ -893,7 +1018,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         }
     }
 
-    private void printOutOutcome(PatientEntity patient,
+    private void printOutOutcome(PatientEntity fpatient,
                                  OutcomeEntity outcome, Locale locale,
                                  ExportParamsEntity exportParams, Sheet sheet) {
         String content = "";
@@ -925,3 +1050,29 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
 }
+
+class Position {
+   private int rowcount;
+    private int cellcount;
+
+    Position() {
+        this.setRowcount(3);
+        this.setCellcount(0);
+    }
+
+    public int getRowcount() {
+        return rowcount;
+    }
+
+    public void setRowcount(int rowcount) {
+        this.rowcount = rowcount;
+    }
+
+    public int getCellcount() {
+        return cellcount;
+    }
+
+    public void setCellcount(int cellcount) {
+        this.cellcount = cellcount;
+    }
+} 
