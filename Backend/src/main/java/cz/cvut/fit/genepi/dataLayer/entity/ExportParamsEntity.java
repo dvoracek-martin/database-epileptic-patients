@@ -3364,4 +3364,8 @@ public class ExportParamsEntity {
     public boolean isInvasiveTestECOGAfterResectionEcog() {
         return invasiveTestECOGAfterResectionEcog;
     }
+
+    public boolean isOperationColostomy() {
+        return operationColostomy;
+    }
 }
