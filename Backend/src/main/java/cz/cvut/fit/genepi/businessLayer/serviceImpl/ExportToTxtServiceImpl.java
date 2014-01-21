@@ -1073,7 +1073,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                              ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.diagnosticTestScalpMRI", null, locale)
+        content += messageSource.getMessage("label.diagnosticTestMriMulti", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": ";

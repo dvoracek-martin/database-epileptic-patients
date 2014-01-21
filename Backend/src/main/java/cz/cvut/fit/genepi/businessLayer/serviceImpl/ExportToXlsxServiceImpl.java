@@ -567,6 +567,10 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
                         exportParams, sheet, p);
             }
         }
+
+        // makes cells a bit wider
+        for (int j = 0; j != p.getCellcount(); j++)
+            sheet.setColumnWidth(0, 500);
     }
 
     private void addCells(String firstValue, String secondValue, Sheet sheet, Locale locale, Map<String, CellStyle> styles, String style, Position p) {
@@ -604,7 +608,6 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
                     p.getCellcount(), //first column (0-based)
                     p.getCellcount() + 1 //last column  (0-based)
             ));
-
 
             p.setRowcount(p.getRowcount() + 1);
         }
@@ -1072,71 +1075,71 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         if (dateRow == null) sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.seizures", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
+        dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestMriMulti", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
         dateCellTwo.setCellValue(TimeConverter.getDate(diagnosticTestScalpMRI.getDate()));
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isDiagnosticTestMRIDone()) {
-
+            addCells("label.mri_done", translateValue(String.valueOf(diagnosticTestScalpMRI.isDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIFinding()) {
-
+            addCells("label.MRIFindingf", translateValue(String.valueOf(diagnosticTestScalpMRI.getMriFinding()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescription()) {
-
+            addCells("label.descriptionMRI", translateValue(String.valueOf(diagnosticTestScalpMRI.getMriDescription()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIFdgPet()) {
-
+            addCells("label.mRIFdgPet", translateValue(String.valueOf(diagnosticTestScalpMRI.getFdgPet()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionPetHypometabolism()) {
-
+            addCells("label.descriptionPetHypometabolism", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionPetHypometabolism()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIInterictalSpect()) {
-
+            addCells("label.ictalSpect", translateValue(String.valueOf(diagnosticTestScalpMRI.getIctalSpect()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
-
+            addCells("label.descriptionSPECTHypoperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIIctalSpect()) {
-
+            addCells("label.ictalSpect", translateValue(String.valueOf(diagnosticTestScalpMRI.getIctalSpect()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
-
+            addCells("label.descriptionSPECTHyperperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRISiscom()) {
-
+            addCells("label.mriSiscom", translateValue(String.valueOf(diagnosticTestScalpMRI.isSiscom()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
-
+            addCells("label.MrsProtocol", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIMrsFinding()) {
-
+            addCells("label.MrsFinding", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsFinding()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionMrsAbnormality()) {
-
+            addCells("label.descriptionMrsAbnormality", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionMrsAbnormality()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIFmri()) {
-
+            addCells("label.fmri", translateValue(String.valueOf(diagnosticTestScalpMRI.isFmri()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
-
+            addCells("label.FMRIDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDti()) {
-
+            addCells("label.dti", translateValue(String.valueOf(diagnosticTestScalpMRI.isDti()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
-
+            addCells("label.DTIStudyDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIWada()) {
-
+            addCells("label.WADA", translateValue(String.valueOf(diagnosticTestScalpMRI.isWada()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsWada()) {
-
+            addCells("label.WADADetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIComment()) {
-
+            addCells("label.comment", translateValue(String.valueOf(diagnosticTestScalpMRI.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1441,6 +1444,9 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
 }
 
+/**
+ * class for better work with position within a table
+ */
 class Position {
     private int rowcount;
     private int cellcount;
