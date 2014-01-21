@@ -930,7 +930,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += TimeConverter.getDate(neuropsychologyOld.getDate());
         content += "\n";
         if (exportParams.isNeuropsychologyOldNeuropsychologicalExamination()) {
-            content += messageSource.getMessage("label.neurodevelopmentalExamination", null, locale);
+            content += messageSource.getMessage("label.neuropsychologicalExamination", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(neuropsychologyOld.isNeuropsychologicalExamination()),
                     locale);
