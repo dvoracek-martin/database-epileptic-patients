@@ -28,6 +28,11 @@ import cz.cvut.fit.genepi.util.LoggingService;
 @Service
 public class ExportToCsvServiceImpl implements ExportToCsvService {
 
+    /**
+     * IMPORTANT!
+     * APACHE POI CAN TRANSFORM XLS TO CSV!
+     */
+
 	@Autowired
 	private MessageSource messageSource;
 
