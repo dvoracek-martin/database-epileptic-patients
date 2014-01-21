@@ -656,7 +656,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isNeurologicalFindingVisualFieldDefects()) {
-            content += messageSource.getMessage("label.visualFieldDefects", null, locale);
+            content += messageSource.getMessage("label.visualFieldDefect", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(neurologicalFinding.isVisualFieldDefects()),
                     locale);
