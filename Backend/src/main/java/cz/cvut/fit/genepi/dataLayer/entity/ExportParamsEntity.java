@@ -149,8 +149,6 @@ public class ExportParamsEntity {
     private boolean complicationDoctorId;
     @Column(name = "complicationAdded")
     private boolean complicationAdded;
-    @Column(name = "complicationIdCom")
-    private boolean complicationIdCom;
     @Column(name = "complicationComment")
     private boolean complicationComment;
     @Column(name = "complicationDeleted")
@@ -539,8 +537,8 @@ public class ExportParamsEntity {
     private boolean outcomeDoctorId;
     @Column(name = "outcomeAdded")
     private boolean outcomeAdded;
-    @Column(name = "outcomeFinallySeizuresIdCom")
-    private boolean outcomeFinallySeizuresIdCom;
+    @Column(name = "outcomeFinallySeizures")
+    private boolean outcomeFinallySeizures;
     @Column(name = "outcomeEEG")
     private boolean outcomeEEG;
     @Column(name = "outcomeAED")
@@ -1133,10 +1131,6 @@ public class ExportParamsEntity {
         return complicationId;
     }
 
-    public void setComplicationId(boolean complicationId) {
-        this.complicationId = complicationId;
-    }
-
     public boolean isComplicationDate() {
         return complicationDate;
     }
@@ -1161,12 +1155,12 @@ public class ExportParamsEntity {
         this.complicationAdded = complicationAdded;
     }
 
-    public boolean isComplicationIdCom() {
-        return complicationIdCom;
+    public boolean setComplicationId() {
+        return complicationId;
     }
 
-    public void setComplicationIdCom(boolean complicationIdCom) {
-        this.complicationIdCom = complicationIdCom;
+    public void setComplicationId(boolean complication) {
+        this.complicationId = complication;
     }
 
     public boolean isComplicationComment() {
@@ -2553,33 +2547,14 @@ public class ExportParamsEntity {
         return outcomeAdded;
     }
 
-    public void setOutcomeAdded(boolean outcomeAdded) {
-        this.outcomeAdded = outcomeAdded;
-    }
-
-    public boolean isOutcomeFinallySeizuresIdCom() {
-        return outcomeFinallySeizuresIdCom;
-    }
-
-    public void setOutcomeFinallySeizuresIdCom(
-            boolean outcomeFinallySeizuresIdCom) {
-        this.outcomeFinallySeizuresIdCom = outcomeFinallySeizuresIdCom;
-    }
 
     public boolean isOutcomeEEG() {
         return outcomeEEG;
     }
 
-    public void setOutcomeEEG(boolean outcomeEEG) {
-        this.outcomeEEG = outcomeEEG;
-    }
 
     public boolean isOutcomeAED() {
         return outcomeAED;
-    }
-
-    public void setOutcomeAED(boolean outcomeAED) {
-        this.outcomeAED = outcomeAED;
     }
 
     public boolean isOutcomeMRI() {

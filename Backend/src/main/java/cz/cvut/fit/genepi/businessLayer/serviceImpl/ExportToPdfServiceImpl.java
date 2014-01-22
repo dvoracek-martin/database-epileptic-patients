@@ -146,12 +146,6 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
 	}
 
-	/*
-	 * TODO:
-	 * 
-	 * Make it able to accept List<PatientEntity> and iterate through it
-	 */
-
 	public String export(java.util.List<PatientEntity> patientList,
 			UserEntity user, Locale locale, ExportParamsEntity exportParams) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
