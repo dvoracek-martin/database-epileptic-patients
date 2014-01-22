@@ -1,16 +1,15 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import java.util.List;
-
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import java.util.List;
 
 // TODO: Auto-generated Javadoc
 
@@ -158,6 +157,14 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithNeurologicalFindingList(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithNeurologicalFindingList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithSeizureList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithSeizureList(patientId);
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
         return patientVO;
     }

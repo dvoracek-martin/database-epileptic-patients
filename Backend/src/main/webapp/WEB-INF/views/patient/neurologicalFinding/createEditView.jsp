@@ -6,9 +6,7 @@
 
 <t:menuLVL2.NEW303>
     <jsp:attribute name="head">
-      <link
-              href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
-              rel="stylesheet">
+      <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -28,11 +26,8 @@
             </div>
         </div>
 
-
         <%@include file="../patientDetails.jsp" %>
 
-
-        <!-- form for adding new record -->
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" role="form" method="POST"
                    action="/GENEPI/patient/${patient.id}/neurological-finding/save" commandName="neurologicalFinding">
@@ -41,7 +36,9 @@
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
                 </div>
             </div>
         </form:form>

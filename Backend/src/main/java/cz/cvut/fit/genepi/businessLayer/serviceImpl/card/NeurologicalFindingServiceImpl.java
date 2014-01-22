@@ -1,16 +1,15 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
+import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.NeurologicalFindingDAO;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 
 @Service
 public class NeurologicalFindingServiceImpl /* extends
@@ -27,15 +26,17 @@ public class NeurologicalFindingServiceImpl /* extends
     @Autowired
     Mapper dozer;
 
-
+    @Override
     @Transactional
-    public void hide(NeurologicalFindingEntity entity) {
+    public void hide(int neurologicalFindingId) {
+        NeurologicalFindingEntity entity = genericDAO.findByID(NeurologicalFindingEntity.class, neurologicalFindingId);
         entity.setStatus(1);
         genericDAO.save(entity);
     }
 
     @Transactional
-    public void unhide(NeurologicalFindingEntity entity) {
+    public void unhide(int neurologicalFindingId) {
+        NeurologicalFindingEntity entity = genericDAO.findByID(NeurologicalFindingEntity.class, neurologicalFindingId);
         entity.setStatus(0);
         genericDAO.save(entity);
     }

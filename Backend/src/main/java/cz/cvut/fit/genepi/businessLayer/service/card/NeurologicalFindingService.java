@@ -11,4 +11,7 @@ public interface NeurologicalFindingService /*extends GenericCardService<Neurolo
 
     public void save(NeurologicalFindingVO neurologicalFindingVO);
 
+    public void hide(int neurologicalFindingId);
+
+    public void unhide(int neurologicalFindingId);
 }

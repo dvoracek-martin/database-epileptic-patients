@@ -5,7 +5,9 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
-    <label for="date" class="col-xs-3 control-label"><spring:message code="label.dateExamination"/></label>
+    <label for="date" class="col-xs-3 control-label">
+        <spring:message code="label.dateExamination"/>
+    </label>
 
     <div class="col-xs-8">
         <form:input path="date" id="date" type="text" class="form-control datepicker-today"/>
@@ -50,7 +52,9 @@
 </div>
 
 <div class="form-group">
-    <label for="hemiparesis" class="col-xs-3 control-label"><spring:message code="label.hemiparesis"/></label>
+    <label for="hemiparesis" class="col-xs-3 control-label">
+        <spring:message code="label.hemiparesis"/>
+    </label>
 
     <div class="col-xs-8">
         <form:checkbox path="hemiparesis" id="hemiparesis"/>
@@ -72,8 +76,9 @@
 </div>
 
 <div class="form-group">
-    <label for="comment" class="col-xs-3 control-label"><spring:message
-            code="label.comment"/></label>
+    <label for="comment" class="col-xs-3 control-label">
+        <spring:message code="label.comment"/>
+    </label>
 
     <div class="col-xs-8">
         <form:textarea path="comment" id="comment" class="form-control"/>

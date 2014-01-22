@@ -5,8 +5,9 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
-    <label for="date" class="col-xs-3 col-xs-3 control-label"><spring:message
-            code="label.dateOfContractAward"/></label>
+    <label for="date" class="col-xs-3 col-xs-3 control-label">
+        <spring:message code="label.dateOfContractAward"/>
+    </label>
 
     <div class="col-xs-8">
         <form:input path="date" id="date" type="text" class="form-control datepicker-today"/>
@@ -16,98 +17,99 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-3 control-label" for="sscClassification"><spring:message
-            code="label.SSCClassification"/></label>
+    <label class="col-xs-3 control-label" for="sscClassification">
+        <spring:message code="label.SSCClassification"/>
+    </label>
 
     <div class="col-xs-8">
         <form:select path="sscClassification" id="sscClassification" type="text" class="form-control">
 
             <form:option value="1">
-                <spring:message code="label.epilepticSeizure"/>
+                <spring:message code="label.sscClassification.1"/>
             </form:option>
             <form:option value="2">
-                <spring:message code="label.aura"/>
+                <spring:message code="label.sscClassification.2"/>
             </form:option>
             <form:option value="3">
-                <spring:message code="label.somatosenzoryAura"/>
+                <spring:message code="label.sscClassification.3"/>
             </form:option>
             <form:option value="4">
-                <spring:message code="label.visualAura"/>
+                <spring:message code="label.sscClassification.4"/>
             </form:option>
             <form:option value="5">
-                <spring:message code="label.auditoryAura"/>
+                <spring:message code="label.sscClassification.5"/>
             </form:option>
             <form:option value="6">
-                <spring:message code="label.olfactoryAura"/>
+                <spring:message code="label.sscClassification.6"/>
             </form:option>
             <form:option value="7">
-                <spring:message code="label.gustatoryAura"/>
+                <spring:message code="label.sscClassification.7"/>
             </form:option>
             <form:option value="8">
-                <spring:message code="label.autonomicAura"/>
+                <spring:message code="label.sscClassification.8"/>
             </form:option>
             <form:option value="9">
-                <spring:message code="label.epigastricAura"/>
+                <spring:message code="label.sscClassification.9"/>
             </form:option>
             <form:option value="10">
-                <spring:message code="label.psychicAura"/>
+                <spring:message code="label.sscClassification.10"/>
             </form:option>
             <form:option value="11">
-                <spring:message code="label.absence"/>
+                <spring:message code="label.sscClassification.11"/>
             </form:option>
             <form:option value="12">
-                <spring:message code="label.autonomicSeizure"/>
+                <spring:message code="label.sscClassification.12"/>
             </form:option>
             <form:option value="13">
-                <spring:message code="label.psychomotorSeizure"/>
+                <spring:message code="label.sscClassification.13"/>
             </form:option>
             <form:option value="14">
-                <spring:message code="label.motorSeizure"/>
+                <spring:message code="label.sscClassification.14"/>
             </form:option>
             <form:option value="15">
-                <spring:message code="label.clonicSeizure"/>
+                <spring:message code="label.sscClassification.15"/>
             </form:option>
             <form:option value="16">
-                <spring:message code="label.tonicSeizure"/>
+                <spring:message code="label.sscClassification.16"/>
             </form:option>
             <form:option value="17">
-                <spring:message code="label.tonicClonicSeizure"/>
+                <spring:message code="label.sscClassification.17"/>
             </form:option>
             <form:option value="18">
-                <spring:message code="label.atonicSeizure"/>
+                <spring:message code="label.sscClassification.18"/>
             </form:option>
             <form:option value="19">
-                <spring:message code="label.akineticSeizure"/>
+                <spring:message code="label.sscClassification.19"/>
             </form:option>
             <form:option value="20">
-                <spring:message code="label.versiveSeizure"/>
+                <spring:message code="label.sscClassification.20"/>
             </form:option>
             <form:option value="21">
-                <spring:message code="label.myoclonicSeizure"/>
+                <spring:message code="label.sscClassification.21"/>
             </form:option>
             <form:option value="22">
-                <spring:message code="label.hypermotorSeizure"/>
+                <spring:message code="label.sscClassification.22"/>
             </form:option>
             <form:option value="23">
-                <spring:message code="label.hypomotorSeizure"/>
+                <spring:message code="label.sscClassification.23"/>
             </form:option>
             <form:option value="24">
-                <spring:message code="label.negativeMyoclonicSeizure"/>
+                <spring:message code="label.sscClassification.24"/>
             </form:option>
             <form:option value="25">
-                <spring:message code="label.askatikSeizure"/>
+                <spring:message code="label.sscClassification.25"/>
             </form:option>
             <form:option value="26">
-                <spring:message code="label.akineticSeizure"/>
+                <spring:message code="label.sscClassification.26"/>
             </form:option>
             <form:option value="27">
-                <spring:message code="label.aphasicSeizure"/>
+                <spring:message code="label.sscClassification.27"/>
             </form:option>
             <form:option value="28">
-                <spring:message code="label.gelasticSeizure"/>
+                <spring:message code="label.sscClassification.28"/>
             </form:option>
             <form:option value="29">
-                <spring:message code="label.paroxymalEvent"/>
+                <spring:message code="label.sscClassification.29"/>
             </form:option>
 
         </form:select>
@@ -115,56 +117,57 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-3 control-label" for="ilaeClassification"><spring:message
-            code="label.ILAEClassification"/></label>
+    <label class="col-xs-3 control-label" for="ilaeClassification">
+        <spring:message code="label.ILAEClassification"/>
+    </label>
 
     <div class="col-xs-8">
         <form:select path="ilaeClassification" id="ilaeClassification" type="text" class="form-control">
 
             <form:option value="1">
-                <spring:message code="label.simplePartialMotor"/>
+                <spring:message code="label.ilaeClassification.1"/>
             </form:option>
             <form:option value="2">
-                <spring:message code="label.simplePartialPsychic"/>
+                <spring:message code="label.ilaeClassification.2"/>
             </form:option>
             <form:option value="3">
-                <spring:message code="label.simplePartialAutonomic"/>
+                <spring:message code="label.ilaeClassification.3"/>
             </form:option>
             <form:option value="4">
-                <spring:message code="label.simplePartialSomatosensory"/>
+                <spring:message code="label.ilaeClassification.4"/>
             </form:option>
             <form:option value="5">
-                <spring:message code="label.simplePartialSimple"/>
+                <spring:message code="label.ilaeClassification.5"/>
             </form:option>
             <form:option value="6">
-                <spring:message code="label.simplePartialImpairment"/>
+                <spring:message code="label.ilaeClassification.6"/>
             </form:option>
             <form:option value="7">
-                <spring:message code="label.simplePartialEvolving"/>
+                <spring:message code="label.ilaeClassification.7"/>
             </form:option>
             <form:option value="8">
-                <spring:message code="label.generalizedTypical"/>
+                <spring:message code="label.ilaeClassification.8"/>
             </form:option>
             <form:option value="9">
-                <spring:message code="label.generalizedAtypical"/>
+                <spring:message code="label.ilaeClassification.9"/>
             </form:option>
             <form:option value="10">
-                <spring:message code="label.generalizedMyoclonic"/>
+                <spring:message code="label.ilaeClassification.10"/>
             </form:option>
             <form:option value="11">
-                <spring:message code="label.generalizedClonic"/>
+                <spring:message code="label.ilaeClassification.11"/>
             </form:option>
             <form:option value="12">
-                <spring:message code="label.generalizedTonic"/>
+                <spring:message code="label.ilaeClassification.12"/>
             </form:option>
             <form:option value="13">
-                <spring:message code="label.generalizedTonicClonic"/>
+                <spring:message code="label.ilaeClassification.13"/>
             </form:option>
             <form:option value="14">
-                <spring:message code="label.generalizedAtonic"/>
+                <spring:message code="label.ilaeClassification.14"/>
             </form:option>
             <form:option value="15">
-                <spring:message code="label.unclassified"/>
+                <spring:message code="label.ilaeClassification.15"/>
             </form:option>
 
         </form:select>
@@ -173,7 +176,9 @@
 
 
 <div class="form-group">
-    <label class="col-xs-3 control-label" for="comment"><spring:message code="label.comment"/></label>
+    <label class="col-xs-3 control-label" for="comment">
+        <spring:message code="label.comment"/>
+    </label>
 
     <div class="col-xs-8">
         <form:textarea path="comment" id="comment" class="form-control"/>

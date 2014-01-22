@@ -1,22 +1,20 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import java.util.Locale;
-
-import javax.validation.Valid;
-
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
+import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
-@SessionAttributes({ "neurologicalFinding" })
+@SessionAttributes({"neurologicalFinding"})
 public class NeurologicalFindingController {
 
     private PatientService patientService;
@@ -97,8 +95,7 @@ public class NeurologicalFindingController {
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
             Locale locale, Model model) {
 
-       /* neurologicalFindingService.hide(neurologicalFindingService.findByID(
-                NeurologicalFindingVO.class, neurologicalFindingId));*/
+        neurologicalFindingService.hide(neurologicalFindingId);
         return "redirect:/patient/" + patientId + "/neurological-finding/list";
     }
 
@@ -118,8 +115,7 @@ public class NeurologicalFindingController {
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
             Locale locale, Model model) {
 
-       /* neurologicalFindingService.unhide(neurologicalFindingService.findByID(
-                NeurologicalFindingVO.class, neurologicalFindingId));*/
+        neurologicalFindingService.unhide(neurologicalFindingId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/neurological-finding/list";

@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
 
 import java.util.List;
 
@@ -30,6 +31,8 @@ public class PatientDisplayVO {
     private ContactDisplayVO contact;
 
     private List<NeurologicalFindingDisplayVO> neurologicalFindingList;
+
+    private List<SeizureDisplayVO> seizureList;
 
     public int getAge() {
         return age;
@@ -93,5 +96,13 @@ public class PatientDisplayVO {
 
     public void setNeurologicalFindingList(List<NeurologicalFindingDisplayVO> neurologicalFindingList) {
         this.neurologicalFindingList = neurologicalFindingList;
+    }
+
+    public List<SeizureDisplayVO> getSeizureList() {
+        return seizureList;
+    }
+
+    public void setSeizureList(List<SeizureDisplayVO> seizureList) {
+        this.seizureList = seizureList;
     }
 }

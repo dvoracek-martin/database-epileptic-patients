@@ -5,10 +5,9 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2.NEW303>
+
 	<jsp:attribute name="head">
-      <link
-              href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
-              rel="stylesheet">
+      <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -19,27 +18,29 @@
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
    </jsp:attribute>
+
     <jsp:body>
 
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.seizures"/> Záchvaty - Přidání záchvatu
+                    <spring:message code="label.seizures"/>
                 </h2>
             </div>
         </div>
 
-        <%@include file="../../patientDetails.jsp" %>
+        <%@include file="../patientDetails.jsp" %>
 
         <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/create"
-                   commandName="seizureDetail">
+                   action="/GENEPI/patient/${patient.id}/seizure/save" commandName="seizure">
 
             <%@include file="formView.jsp" %>
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
                 </div>
             </div>
         </form:form>

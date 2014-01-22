@@ -6,13 +6,13 @@
 
 <t:menuLVL2.NEW303>
 
-<jsp:attribute name="title">
+    <jsp:attribute name="title">
       <spring:message code="label.seizures"/>
     </jsp:attribute>
 
-    <jsp:attribute name="script">
-    	
-	</jsp:attribute>
+    <jsp:attribute name="head">
+     <link href="<c:url value="/resources/css/custom.NEW303.css" />" rel="stylesheet">
+    </jsp:attribute>
 
     <jsp:body>
         <div class="row">
@@ -25,7 +25,8 @@
             <div class="col-xs-6">
                 <h3 class="pull-right">
                     <a href="<c:url value="/patient/${patient.id}/seizure/create" />">
-                        <spring:message code="label.addRecord"/></a>
+                        <spring:message code="label.addRecord"/>
+                    </a>
                 </h3>
             </div>
         </div>
@@ -41,29 +42,39 @@
             </c:when>
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
-                <div class="panel-group" id="accordion">
+                <div class="list-striped">
                     <c:forEach items="${patient.seizureList}" var="seizure">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse${seizure.id}">
-                                        Zadano dne: ${seizure.date}
-                                    </a>
+                        <div>
+                            <table class="record-head table">
+                                <tbody>
+                                <tr>
+                                    <th class="col-xs-5">
+                                        <a data-toggle="collapse" href="#collapse${seizure.id}">
+                                            Zadano dne: ${seizure.date}
+                                        </a>
+                                    </th>
+                                    <th class="col-xs-3">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/seizure-detail/create"/>">
+                                            <span class="glyphicon glyphicon-edit"></span> add seizure detail&nbsp;
+                                        </a>
+                                    </th>
+                                    <th class="col-xs-2">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/edit"/>">
+                                            <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
+                                        </a>
+                                    </th>
+                                    <th class="col-xs-2">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/hide"/>">
+                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
+                                        </a>
+                                    </th>
+                                </tr>
+                                </tbody>
+                            </table>
 
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/hide"/>">
-                                        <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                    </a>
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/edit"/>">
-                                        <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
-                                    </a>
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/seizure/${seizure.id}/seizure-detail/create"/>">
-                                        <span class="glyphicon glyphicon-edit"></span> add seizure detail&nbsp;
-                                    </a>
-                                </h4>
-                            </div>
                             <%@include file="seizureTableView.jsp" %>
                         </div>
                         <c:set var="count" value="1" scope="page"/>

@@ -1,190 +1,148 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import java.util.Locale;
-
-import javax.validation.Valid;
-
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureVO;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
+import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
-import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
+import javax.validation.Valid;
+import java.util.Locale;
 
 @Controller
+@SessionAttributes({"seizure"})
 public class SeizureController {
 
-	private PatientService patientService;
+    private PatientService patientService;
 
-	private SeizureService seizureService;
-	
-	private SeizureDetailService seizureDetailService;
+    private SeizureService seizureService;
 
-	@Autowired
-	public SeizureController(PatientService patientService,
-			SeizureService seizureService, SeizureDetailService seizureDetailService) {
-		this.patientService = patientService;
-		this.seizureService = seizureService;
-		this.seizureDetailService = seizureDetailService;
-	}
+    private SeizureDetailService seizureDetailService;
 
-	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
-	public String seizureCreateGET(
-			@PathVariable("patientId") Integer patientId,Locale locale, Model model) {
-		PatientEntity patient = patientService.getPatientByIdWithDoctor(patientId);
+    @Autowired
+    public SeizureController(PatientService patientService,
+                             SeizureService seizureService, SeizureDetailService seizureDetailService) {
+        this.patientService = patientService;
+        this.seizureService = seizureService;
+        this.seizureDetailService = seizureDetailService;
+    }
 
-		model.addAttribute("patient", patient);
-		model.addAttribute("seizure", new SeizureEntity());
-		return "patient/seizure/createView";
-	}
+    @RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
+    public String seizureCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-	/**
-	 * Adds the seizure.
-	 * 
-	 * @param seizure
-	 *            the seizure
-	 * @param result
-	 *            the result
-	 * @param patientID
-	 *            the patient id
-	 * @return the string
-	 */
-	@RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.POST)
-	public String seizureCreatePOST(
-			@ModelAttribute("seizure") @Valid SeizureEntity seizure,
-			BindingResult result, @PathVariable("patientId") Integer patientId,Locale locale, Model model) {
-		if (result.hasErrors()) {
-			model.addAttribute("patient",
-					patientService.getPatientByIdWithDoctor(patientId));
-			return "patient/seizure/createView";
-		} else {
-			seizure.setPatient(patientService.findByID(PatientEntity.class,
-					patientId));
-			seizureService.save(seizure);
-			return "redirect:/patient/" + patientId + "/seizure/list";
-		}
-	}
-	
-	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.GET)
-	public String anamnesisEditGET(
-			@PathVariable("patientId") Integer patientId,
-			@PathVariable("seizureId") Integer seizureId, Locale locale,
-			Model model) {
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("seizure", new SeizureVO());
+        return "patient/seizure/createEditView";
+    }
 
-		model.addAttribute("patient",
-				patientService.getPatientByIdWithDoctor(patientId));
-		model.addAttribute("seizure",
-				seizureService.findByID(SeizureEntity.class, seizureId));
-		return "patient/seizure/editView";
-	}
+    @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.GET)
+    public String seizureEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("seizureId") Integer seizureId, Locale locale,
+            Model model) {
 
-	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.POST)
-	public String anamnesisEditPOST(
-			@ModelAttribute("seizure") @Valid SeizureEntity seizure,
-			BindingResult result, @PathVariable("patientId") Integer patientId,@PathVariable("seizureId") Integer seizureId,
-			Locale locale, Model model) {
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("seizure", seizureService.getById(seizureId));
 
-		if (result.hasErrors()) {
-			model.addAttribute("patient",
-					patientService.getPatientByIdWithDoctor(patientId));
-			return "patient/seizure/editView";
-		} else {
-			seizure.setPatient(patientService.findByID(PatientEntity.class,
-					patientId));
-			seizure.setSeizureDetailList(seizureService.findByID(SeizureEntity.class, seizureId).getSeizureDetailList());
-			seizureService.save(seizure);
-			return "redirect:/patient/" + patientId + "/seizure/list";
-		}
-	}
+        return "patient/seizure/createEditView";
+    }
 
-	@RequestMapping(value = "/patient/{patientID}/seizure/{seizureID}/delete", method = RequestMethod.GET)
-	public String seizureDeleteGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID,
-			@PathVariable("seizureID") Integer seizureID) {
+    /**
+     * Adds the seizure.
+     *
+     * @param seizure   the seizure
+     * @param result    the result
+     * @param patientID the patient id
+     * @return the string
+     */
+    @RequestMapping(value = "/patient/{patientId}/seizure/save", method = RequestMethod.POST)
+    public String seizureSavePOST(
+            @ModelAttribute("seizure") @Valid SeizureVO seizure,
+            BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("patient", patientService.getPatientByIdWithDoctor(patientId));
+            return "patient/seizure/createEditView";
+        } else {
+            seizure.setPatientId(patientId);
+            seizureService.save(seizure);
+            return "redirect:/patient/" + patientId + "/seizure/list";
+        }
+    }
 
-		seizureService.delete(seizureService.findByID(SeizureEntity.class,
-				seizureID));
-		return "redirect:/patient/" + patientID + "/seizure/list";
-	}
+    @RequestMapping(value = "/patient/{patientID}/seizure/{seizureID}/delete", method = RequestMethod.GET)
+    public String seizureDeleteGET(Locale locale, Model model,
+                                   @PathVariable("patientID") Integer patientID,
+                                   @PathVariable("seizureID") Integer seizureID) {
 
-	/**
-	 * Handles the GET request to hide seizure.
-	 * 
-	 * @param patientId
-	 *            the id of a patient whom we are creating an seizure.
-	 * @param anamnesisId
-	 * 
-	 * 
-	 * @param locale
-	 *            the user's locale.
-	 * 
-	 * @param model
-	 *            the model to be filled for view.
-	 * 
-	 * @return the address to which the user will be redirected.
-	 */
-	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/hide", method = RequestMethod.GET)
-	public String anamnesisDeleteGET(
-			@PathVariable("patientId") Integer patientId,
-			@PathVariable("seizureId") Integer seizureId, Locale locale,
-			Model model) {
+		/*seizureService.delete(seizureService.findByID(SeizureEntity.class,
+                seizureID));*/
+        return "redirect:/patient/" + patientID + "/seizure/list";
+    }
 
-		seizureService.hide(seizureService.findByID(SeizureEntity.class,
-				seizureId));
-		return "redirect:/patient/" + patientId + "/seizure/list";
-	}
+    /**
+     * Handles the GET request to hide seizure.
+     *
+     * @param patientId   the id of a patient whom we are creating an seizure.
+     * @param anamnesisId
+     * @param locale      the user's locale.
+     * @param model       the model to be filled for view.
+     * @return the address to which the user will be redirected.
+     */
+    @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/hide", method = RequestMethod.GET)
+    public String anamnesisDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("seizureId") Integer seizureId, Locale locale,
+            Model model) {
 
-	/**
-	 * Handles the GET request to unhide seizure.
-	 * 
-	 * @param patientId
-	 *            the id of a patient whom we are creating an seizure.
-	 * @param anamnesisId
-	 * 
-	 * 
-	 * @param locale
-	 *            the user's locale.
-	 * 
-	 * @param model
-	 *            the model to be filled for view.
-	 * 
-	 * @return the address to which the user will be redirected.
-	 */
-	@RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/unhide", method = RequestMethod.GET)
-	public String anamnesisUnhideGET(
-			@PathVariable("patientId") Integer patientId,
-			@PathVariable("seizureId") Integer seizureId, Locale locale,
-			Model model) {
+        seizureService.hide(seizureId);
+        return "redirect:/patient/" + patientId + "/seizure/list";
+    }
 
-		seizureService.unhide(seizureService.findByID(SeizureEntity.class,
-				seizureId));
-		// TODO: address to get back to admin module where is list od hidden
-		// records.
-		return "redirect:/patient/" + patientId + "/seizure/list";
-	}
+    /**
+     * Handles the GET request to unhide seizure.
+     *
+     * @param patientId   the id of a patient whom we are creating an seizure.
+     * @param anamnesisId
+     * @param locale      the user's locale.
+     * @param model       the model to be filled for view.
+     * @return the address to which the user will be redirected.
+     */
+    @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/unhide", method = RequestMethod.GET)
+    public String anamnesisUnhideGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("seizureId") Integer seizureId, Locale locale,
+            Model model) {
 
-	@RequestMapping(value = "/patient/{patientID}/seizure/{seizureID}/export", method = RequestMethod.GET)
-	public String seizureExportGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID,
-			@PathVariable("seizureID") Integer seizureID) {
-		return "redirect:/patient/" + patientID + "/seizure/list";
-	}
+        seizureService.unhide(seizureId);
+        // TODO: address to get back to admin module where is list od hidden
+        // records.
+        return "redirect:/patient/" + patientId + "/seizure/list";
+    }
 
-	@RequestMapping(value = "/patient/{patientID}/seizure/list", method = RequestMethod.GET)
-	public String seizureListGET(Locale locale, Model model,
-			@PathVariable("patientID") Integer patientID) {
-		PatientEntity patient = patientService
-				.getPatientByIdWithSeizureList(patientID);
-		model.addAttribute("patient", patient);
-		return "patient/seizure/listView";
-	}
+    @RequestMapping(value = "/patient/{patientID}/seizure/{seizureID}/export", method = RequestMethod.GET)
+    public String seizureExportGET(Locale locale, Model model,
+                                   @PathVariable("patientID") Integer patientID,
+                                   @PathVariable("seizureID") Integer seizureID) {
+        return "redirect:/patient/" + patientID + "/seizure/list";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/seizure/list", method = RequestMethod.GET)
+    public String seizureListGET(Locale locale, Model model,
+                                 @PathVariable("patientId") Integer patientId) {
+
+        PatientDisplayVO patient = patientService
+                .getPatientDisplayByIdWithSeizureList(patientId);
+        model.addAttribute("patient", patient);
+
+       /* PatientEntity patient = patientService
+                .getPatientByIdWithSeizureList(patientID);
+        model.addAttribute("patient", patient);*/
+        return "patient/seizure/listView";
+    }
 }

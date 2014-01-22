@@ -24,7 +24,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.seizures"/> Záchvaty - edit detailuzáchvatu
+                    <spring:message code="label.seizures"/> Záchvaty - Přidání záchvatu
                 </h2>
             </div>
         </div>
@@ -32,7 +32,7 @@
         <%@include file="../../patientDetails.jsp" %>
 
         <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/${seizureDetail.id}/edit"
+                   action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/save"
                    commandName="seizureDetail">
 
             <%@include file="formView.jsp" %>
