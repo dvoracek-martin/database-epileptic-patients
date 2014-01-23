@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
@@ -30,9 +29,9 @@ public class NeurologicalFindingController {
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.GET)
     public String neurologicalFindingCreateGET(@PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding",
-                new NeurologicalFindingVO());
+        model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
         return "patient/neurologicalFinding/createEditView";
     }
 
@@ -40,9 +39,9 @@ public class NeurologicalFindingController {
     public String neurologicalFindingEditGET(@PathVariable("patientId") Integer patientId,
                                              @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
                                              Locale locale, Model model) {
+
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding",
-                neurologicalFindingService.getById(neurologicalFindingId));
+        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(neurologicalFindingId));
         return "patient/neurologicalFinding/createEditView";
     }
 
@@ -55,24 +54,23 @@ public class NeurologicalFindingController {
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/save", method = RequestMethod.POST)
-    public String neurologicalFindingSavePOST(
-            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding,
-            BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+    public String neurologicalFindingSavePOST(@ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding,
+                                              BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/neurologicalFinding/createEditView";
         } else {
             neurologicalFinding.setPatientId(patientId);
             neurologicalFindingService.save(neurologicalFinding);
-            return "redirect:/patient/" + patientId
-                    + "/neurological-finding/list";
+            return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
 
     @RequestMapping(value = "/patient/{patientID}/neurological-finding/{neurologicalFindingID}/delete", method = RequestMethod.GET)
-    public String neurologicalFindingDeleteGET(Locale locale, Model model,
-                                               @PathVariable("patientID") Integer patientID,
-                                               @PathVariable("neurologicalFindingID") Integer neurologicalFindingID) {
+    public String neurologicalFindingDeleteGET(
+            @PathVariable("patientID") Integer patientID,
+            @PathVariable("neurologicalFindingID") Integer neurologicalFindingID, Locale locale, Model model) {
 
         /*neurologicalFindingService.delete(neurologicalFindingService.findByID(
                 NeurologicalFindingVO.class, neurologicalFindingID));*/
@@ -125,18 +123,14 @@ public class NeurologicalFindingController {
     public String neurologicalFindingExportGET(Locale locale, Model model,
                                                @PathVariable("patientID") Integer patientID,
                                                @PathVariable("neurologicalFindingID") Integer neurologicalFindingID) {
+
         return "redirect:/patient/" + patientID + "/neurological-finding/list";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/list", method = RequestMethod.GET)
     public String neurologicalFindingListGET(@PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-        PatientDisplayVO patient = patientService
-                .getPatientDisplayByIdWithNeurologicalFindingList(patientId);
-        model.addAttribute("patient", patient);
 
-        //model.addAttribute("nf",neurologicalFindingService.getById());
-       /* model.addAttribute("patient",
-                patientService.getPatientByIdWithNeurologicalFindingList(patientId));*/
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithNeurologicalFindingList(patientId));
         return "patient/neurologicalFinding/listView";
     }
 }

@@ -171,6 +171,14 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 
     @Override
     @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithPharmacotherapyList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithSeizureList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);

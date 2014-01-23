@@ -40,8 +40,11 @@ public class PharmacotherapyEntity implements Comparable<PharmacotherapyEntity> 
 	private Date added;
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
+	@JoinColumn(name = "patient_id", insertable = false, updatable = false)
 	private PatientEntity patient;
+
+    @Column(name = "patient_id", nullable = false)
+    private int patientId;
 
 	@Column(name = "status", nullable = false)
 	private int status;
@@ -115,7 +118,15 @@ public class PharmacotherapyEntity implements Comparable<PharmacotherapyEntity> 
 		this.patient = patient;
 	}
 
-	public int getStatus() {
+    public int getPatientId() {
+        return patientId;
+    }
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+    public int getStatus() {
 		return status;
 	}
 
