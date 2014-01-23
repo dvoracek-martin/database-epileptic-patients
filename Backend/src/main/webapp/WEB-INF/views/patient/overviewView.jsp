@@ -213,7 +213,7 @@
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
                         Zobrazit vsechny
                     </a>
                 </th>
