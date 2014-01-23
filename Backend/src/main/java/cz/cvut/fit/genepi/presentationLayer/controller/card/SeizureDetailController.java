@@ -39,7 +39,7 @@ public class SeizureDetailController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureDetail", new SeizureDetailVO());
-        return "patient/seizure/detail/createEditView";
+        return "patient/seizure/detail/formView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.GET)
@@ -52,7 +52,7 @@ public class SeizureDetailController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureId", seizureId);
         model.addAttribute("seizureDetail", seizureDetailService.getById(SeizureDetailVO.class, SeizureDetailEntity.class, seizureDetailId));
-        return "patient/seizure/detail/createEditView";
+        return "patient/seizure/detail/formView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/save", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class SeizureDetailController {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/seizure/detail/createEditView";
+            return "patient/seizure/detail/formView";
         } else {
             seizureDetail.setPatientId(patientId);
             seizureDetail.setSeizureId(seizureId);

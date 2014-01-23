@@ -33,7 +33,7 @@ public class NeurologicalFindingController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
-        return "patient/neurologicalFinding/createEditView";
+        return "patient/neurologicalFinding/formView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.GET)
@@ -43,7 +43,7 @@ public class NeurologicalFindingController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId));
-        return "patient/neurologicalFinding/createEditView";
+        return "patient/neurologicalFinding/formView";
     }
 
     /**
@@ -60,7 +60,7 @@ public class NeurologicalFindingController {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/neurologicalFinding/createEditView";
+            return "patient/neurologicalFinding/formView";
         } else {
             neurologicalFinding.setPatientId(patientId);
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);

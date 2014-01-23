@@ -40,7 +40,8 @@
                 </label>
 
                 <div class="col-xs-8">
-                    <form:input path="date" id="date" type="text" class="form-control datepicker-today"/>
+                    <form:input path="date" id="date" type="text" class="form-control datepicker-today"
+                                autocomplete="off"/>
                     <form:errors path="date" cssClass="error">
                     </form:errors>
                 </div>

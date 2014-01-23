@@ -34,7 +34,7 @@ public class PharmacotherapyController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", new PharmacotherapyVO());
-        return "patient/pharmacotherapy/createEditView";
+        return "patient/pharmacotherapy/formView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class PharmacotherapyController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, PharmacotherapyEntity.class, pharmacotherapyId));
-        return "patient/pharmacotherapy/createEditView";
+        return "patient/pharmacotherapy/formView";
     }
 
     /**
@@ -62,7 +62,7 @@ public class PharmacotherapyController {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/pharmacotherapy/createEditView";
+            return "patient/pharmacotherapy/formView";
         } else {
             pharmacotherapy.setPatientId(patientId);
             pharmacotherapyService.save(PharmacotherapyEntity.class, pharmacotherapy);

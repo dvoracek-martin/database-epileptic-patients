@@ -39,7 +39,7 @@ public class SeizureController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizure", new SeizureVO());
-        return "patient/seizure/createEditView";
+        return "patient/seizure/formView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class SeizureController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizure", seizureService.getById(SeizureVO.class, SeizureEntity.class, seizureId));
 
-        return "patient/seizure/createEditView";
+        return "patient/seizure/formView";
     }
 
     /**
@@ -68,7 +68,7 @@ public class SeizureController {
             BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientByIdWithDoctor(patientId));
-            return "patient/seizure/createEditView";
+            return "patient/seizure/formView";
         } else {
             seizure.setPatientId(patientId);
             seizureService.save(SeizureEntity.class, seizure);
