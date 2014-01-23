@@ -139,11 +139,11 @@ public class PatientController {
      * @param patientID the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/overview", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(Locale locale, Model model,
-                                     @PathVariable("patientID") Integer patientID) {
-        model.addAttribute("patient",
-                patientService.getPatientByIdWithAllLists(patientID));
+                                     @PathVariable("patientId") Integer patientId) {
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithAllLists(patientId));
+       // model.addAttribute("patient", patientService.getPatientByIdWithAllLists(patientID));
         return "patient/overviewView";
     }
 

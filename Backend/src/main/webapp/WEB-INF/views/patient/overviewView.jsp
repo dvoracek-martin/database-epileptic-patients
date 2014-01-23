@@ -1,9 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
-
 
 <t:menuLVL2.NEW303>
 
@@ -11,6 +9,9 @@
       <spring:message code="label.patient"/>
     </jsp:attribute>
 
+    <jsp:attribute name="head">
+     <link href="<c:url value="/resources/css/custom.NEW303.css" />" rel="stylesheet">
+    </jsp:attribute>
 
 <jsp:body>
 <div class="row">
@@ -22,22 +23,22 @@
     </div>
     <div class="col-xs-6">
         <h3 class="pull-right">
-            <a id="export"
-               href="<c:url value="/patient/${patient.id}/export" />"><spring:message code="label.exportPatient"/></a>
+            <a id="export" href="<c:url value="/patient/${patient.id}/export" />">
+                <spring:message code="label.exportPatient"/>
+            </a>
         </h3>
     </div>
 </div>
 
 <%@include file="patientDetails.jsp" %>
 
-
 <!-- print out latest anamnesis START -->
-<div class="row">
+<%--<div class="row">
     <div class="col-xs-6">
         <h2>
             <spring:message code="label.anamnesis"/>
         </h2>
-    
+
     </div>
     <div class="col-xs-6">
         <h3 class="pull-right">
@@ -54,169 +55,178 @@
         </div>
     </c:when>
     <c:otherwise>
-        <%-- this is not OK. this is hot fix. we have to return only last anamnesisi from DB a ns use anamnesiTable (use it on anamnesisi and here as well) --%>
         <c:set var="count" value="0" scope="page"/>
         <div class="panel-group" id="accordion">
-            <%-- <c:forEach items="${patient.anamnesisList}" var="anamnesis">--%>
-                <c:set var="anamnesis" value="${patient.anamnesisList[0]}" scope="page"/>
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
-                                Zadano dne: ${anamnesis.date}
-                            </a>
 
-                            <%--<a class="pull-right"
-                               href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
-                                <span class="glyphicon glyphicon-remove-circle"></span> delete
-                            </a>
-                            <a class="pull-right"
-                               href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
-                                <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
-                            </a> --%>
+        <c:set var="anamnesis" value="${patient.anamnesisList[0]}" scope="page"/>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a class="accordion-toggle" data-toggle="collapse" href="#collapse${anamnesis.id}">
+                        Zadano dne: ${anamnesis.date}
+                    </a>
 
-                           <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit vsechny</a>
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">Zobrazit
+                        vsechny</a>
 
-                        </h4>
-                    </div>
-                    <%@include file="anamnesis/anamnesisTableView.jsp" %>
-                </div>
-                <c:set var="count" value="1" scope="page"/>
-          <%--  </c:forEach> --%>
+                </h4>
+            </div>
+            <%@include file="anamnesis/anamnesisTableView.jsp" %>
         </div>
+        <c:set var="count" value="1" scope="page"/>
+    </div>
+</c:otherwise>
+</c:choose>
+--%>
 
-        <%--<table class="table">
-               <tbody>
-                   <tr class="alert-info">
-                          <td colspan="2"><strong><spring:message code="label.examinationDate"/>:</strong> ${patient.anamnesisList[0].date}</td>
-                </tr>
-                    <tr class="info">
-                            <td><spring:message code="label.epilepsyInFamily" /></td>
-                            <c:if test="${patient.anamnesisList[0].epilepsyInFamily==true}">
-                                <td style="column-span: 2"><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].epilepsyInFamily==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.prenatalRisk" /></td>
-                            <c:if test="${patient.anamnesisList[0].prenatalRisk==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].prenatalRisk==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.fibrilConvulsions" /></td>
-                            <c:if test="${patient.anamnesisList[0].fibrilConvulsions==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].fibrilConvulsions==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.inflammationCNS" /></td>
-                            <c:if test="${patient.anamnesisList[0].inflammationCns==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].inflammationCns==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.injuryCNS" /></td>
-                            <c:if test="${patient.anamnesisList[0].injuryCns==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].injuryCns==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.operationCNS" /></td>
-                            <c:if test="${patient.anamnesisList[0].operationCns==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].operationCns==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.earlyPMDRetardation" /></td>
-                            <c:if test="${patient.anamnesisList[0].earlyPmdRetardation==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].earlyPmdRetardation==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.beginningEpilepsy" /></td>
-                            <td>${patient.anamnesisList[0].beginningEpilepsy}</td>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.firstFever" /></td>
-                            <c:if test="${patient.anamnesisList[0].firstFever==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].firstFever==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.infantileSpasm" /></td>
-                            <c:if test="${patient.anamnesisList[0].infantileSpasm==true}">
-                                <td><spring:message code="label.yes"/></td>
-                            </c:if>
-                            <c:if test="${patient.anamnesisList[0].infantileSpasm==false}">
-                                <td><spring:message code="label.no"/></td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.epilepticSyndrome" /></td>
-                            <c:if test="${patient.anamnesisList[0].specificSyndromeIdcom==1}">
-                                <td>Extratemporální fokální epilepsie</td>
-                            </c:if>
+<%-- Seizure --%>
 
-                            <c:if test="${patient.anamnesisList[0].specificSyndromeIdcom==2}">
-                                <td>Hemisferální symtomaptická epilepsie</td>
-                            </c:if>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.seizures"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/seizure/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
 
-                            <c:if test="${patient.anamnesisList[0].specificSyndromeIdcom==3}">
-                                <td>Meziotemporální epilepsie (MTLE)</td>
-                            </c:if>
+<c:choose>
+    <c:when test="${empty patient.seizureList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="seizure" value="${patient.seizureList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${seizure.id}">
+                        Zadano dne: ${seizure.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/seizure/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
 
-                            <c:if test="${patient.anamnesisList[0].specificSyndromeIdcom==4}">
-                                <td>Multifokální epilepsie</td>
-                            </c:if>
+        <%@include file="seizure/seizureTableView.jsp" %>
 
-                            <c:if test="${patient.anamnesisList[0].specificSyndromeIdcom==5}">
-                                <td>Temporální epilepsie jiná než MTLE</td>
-                            </c:if>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.nonCNSComorbidity" /></td>
-                            <td>${patient.anamnesisList[0].nonCnsComorbidity}</td>
-                        </tr>
-                        <tr class="info">
-                            <td><spring:message code="label.comment" /></td>
-                            <c:choose>
-                                <c:when test="${empty patient.anamnesisList[0].comment}">
-                                    <td>Žádný</td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td>${patient.anamnesisList[0].comment}</td>
-                                </c:otherwise>
-                            </c:choose>
-                        </tr>
-              </tbody>
-        </table>--%>
-
+        <c:set var="count" value="1" scope="page"/>
     </c:otherwise>
 </c:choose>
+
+<%-- Pharmacotherapy --%>
+<%--
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.pharmacotherapy"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.pharmacotherapyList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="pharmacotherapy" value="${patient.pharmacotherapyList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${pharmacotherapy.id}">
+                        Zadano dne: ${pharmacotherapy.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+--%>
+
+<%-- Neurological Finding --%>
+
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.neurologicalFinding"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/neurological-finding/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.neurologicalFindingList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="neurologicalFinding" value="${patient.neurologicalFindingList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${neurologicalFinding.id}">
+                        Zadano dne: ${neurologicalFinding.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/neurologicalFinding/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="neurologicalFinding/neurologicalFindingTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
 <%--
 <!-- print out latest  START -->
 <div>

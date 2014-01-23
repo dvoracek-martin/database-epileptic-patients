@@ -156,5 +156,7 @@ public interface PatientService extends GenericService<PatientEntity> {
 
     public PatientDisplayVO getPatientDisplayByIdWithPharmacotherapyList(int patientId);
 
+    public PatientDisplayVO getPatientDisplayByIdWithAllLists(int patientId);
+
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId);
 }
