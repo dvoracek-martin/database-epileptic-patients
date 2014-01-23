@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
  * The Interface DiagnosticTestScalpEEGService extends GenericCardService
  */
 public interface DiagnosticTestScalpEEGService extends
-		GenericCardService<DiagnosticTestScalpEEGEntity> {
+        GenericCardService<DiagnosticTestScalpEEGEntity> {
 
 }

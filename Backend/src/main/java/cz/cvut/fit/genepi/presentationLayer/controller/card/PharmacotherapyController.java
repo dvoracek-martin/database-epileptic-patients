@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +30,7 @@ public class PharmacotherapyController {
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.GET)
     public String pharmacotherapyCreateGET(
-                                           @PathVariable("patientId") Integer patientId,Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", new PharmacotherapyVO());
@@ -44,7 +43,7 @@ public class PharmacotherapyController {
                                          Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(pharmacotherapyId));
+        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, PharmacotherapyEntity.class, pharmacotherapyId));
         return "patient/pharmacotherapy/createEditView";
     }
 
@@ -59,22 +58,22 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/save", method = RequestMethod.POST)
     public String pharmacotherapySavePOST(
             @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy,
-            BindingResult result, @PathVariable("patientId") Integer patientId,Locale locale, Model model) {
+            BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/pharmacotherapy/createEditView";
         } else {
             pharmacotherapy.setPatientId(patientId);
-            pharmacotherapyService.save(pharmacotherapy);
+            pharmacotherapyService.save(PharmacotherapyEntity.class, pharmacotherapy);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
         }
     }
 
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/{pharmacotherapyID}/delete", method = RequestMethod.GET)
     public String pharmacotherapyDeleteGET(
-                                           @PathVariable("patientID") Integer patientID,
-                                           @PathVariable("pharmacotherapyID") Integer pharmacotherapyID,Locale locale, Model model) {
+            @PathVariable("patientID") Integer patientID,
+            @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, Locale locale, Model model) {
 
         /*pharmacotherapyService.delete(pharmacotherapyService.findByID(
                 PharmacotherapyEntity.class, pharmacotherapyID));*/
@@ -130,7 +129,7 @@ public class PharmacotherapyController {
 
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
     public String pharmacotherapyListGET(
-                                         @PathVariable("patientID") Integer patientId,Locale locale, Model model) {
+            @PathVariable("patientID") Integer patientId, Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId));
         return "patient/pharmacotherapy/listView";

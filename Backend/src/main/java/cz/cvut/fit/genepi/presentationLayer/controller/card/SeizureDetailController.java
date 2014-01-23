@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureDetailVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,7 +51,7 @@ public class SeizureDetailController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureId", seizureId);
-        model.addAttribute("seizureDetail", seizureDetailService.getById(seizureDetailId));
+        model.addAttribute("seizureDetail", seizureDetailService.getById(SeizureDetailVO.class, SeizureDetailEntity.class, seizureDetailId));
         return "patient/seizure/detail/createEditView";
     }
 
@@ -66,7 +67,7 @@ public class SeizureDetailController {
         } else {
             seizureDetail.setPatientId(patientId);
             seizureDetail.setSeizureId(seizureId);
-            seizureDetailService.save(seizureDetail);
+            seizureDetailService.save(SeizureDetailEntity.class, seizureDetail);
             return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }

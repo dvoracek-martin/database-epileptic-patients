@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
  * The Interface DiagnosticTestMRIService extends GenericCardService
  */
 public interface DiagnosticTestMRIService extends
-		GenericCardService<DiagnosticTestMRIEntity> {
+        GenericCardService<DiagnosticTestMRIEntity> {
 
 }

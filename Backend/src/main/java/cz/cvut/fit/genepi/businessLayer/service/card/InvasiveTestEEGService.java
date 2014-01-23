@@ -5,6 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
 /**
  * The Interface InvasiveTestEEGService extends GenericCardService
  */
-public interface InvasiveTestEEGService extends GenericCardService<InvasiveTestEEGEntity>  {
+public interface InvasiveTestEEGService extends GenericCardService<InvasiveTestEEGEntity> {
 
 }

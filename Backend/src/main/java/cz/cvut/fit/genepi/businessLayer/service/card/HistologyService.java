@@ -5,6 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
 /**
  * The Interface HistologyService extends GenericCardService
  */
-public interface HistologyService extends GenericCardService<HistologyEntity>  {
+public interface HistologyService extends GenericCardService<HistologyEntity> {
 
 }

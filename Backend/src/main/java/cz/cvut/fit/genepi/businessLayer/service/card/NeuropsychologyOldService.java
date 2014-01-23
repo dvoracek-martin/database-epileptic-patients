@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
  * The Interface NeuropsychologyOldService extends GenericCardService
  */
 public interface NeuropsychologyOldService extends
-		GenericCardService<NeuropsychologyOldEntity> {
+        GenericCardService<NeuropsychologyOldEntity> {
 
 }

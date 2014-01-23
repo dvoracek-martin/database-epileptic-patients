@@ -6,5 +6,5 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntit
  * The Interface InvasiveTestCorticalMappingService extends GenericCardService
  */
 public interface InvasiveTestCorticalMappingService extends
-		GenericCardService<InvasiveTestCorticalMappingEntity> {
+        GenericCardService<InvasiveTestCorticalMappingEntity> {
 }

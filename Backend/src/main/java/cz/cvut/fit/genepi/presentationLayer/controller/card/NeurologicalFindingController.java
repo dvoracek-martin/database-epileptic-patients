@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,7 +42,7 @@ public class NeurologicalFindingController {
                                              Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(neurologicalFindingId));
+        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId));
         return "patient/neurologicalFinding/createEditView";
     }
 
@@ -62,7 +63,7 @@ public class NeurologicalFindingController {
             return "patient/neurologicalFinding/createEditView";
         } else {
             neurologicalFinding.setPatientId(patientId);
-            neurologicalFindingService.save(neurologicalFinding);
+            neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
