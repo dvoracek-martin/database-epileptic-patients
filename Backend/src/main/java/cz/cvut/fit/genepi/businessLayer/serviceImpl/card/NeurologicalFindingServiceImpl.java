@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class NeurologicalFindingServiceImpl
-        extends GenServiceImpl<NeurologicalFindingVO, NeurologicalFindingEntity>
+        extends GenericCardServiceImpl<NeurologicalFindingVO, NeurologicalFindingEntity>
         implements NeurologicalFindingService {
 
     @Override

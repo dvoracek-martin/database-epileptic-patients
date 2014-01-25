@@ -1,18 +1,14 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "diagnostic_test_scalp_eeg")
-public class DiagnosticTestScalpEEGEntity implements
-        Comparable<DiagnosticTestScalpEEGEntity> {
+public class DiagnosticTestScalpEegEntity implements
+        Comparable<DiagnosticTestScalpEegEntity> {
 
 	/* Autofilled fields */
 
@@ -27,7 +23,6 @@ public class DiagnosticTestScalpEEGEntity implements
     /**
      * The add user id.
      */
-    @NotNull
     @Column(name = "add_user_id", nullable = false)
     private int addUserId;
 
@@ -52,9 +47,6 @@ public class DiagnosticTestScalpEEGEntity implements
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 
@@ -70,7 +62,6 @@ public class DiagnosticTestScalpEEGEntity implements
     @Column(name = "interictal_eeg_spikes")
     private int interictalEegSpikes;
 
-    @Size(max = 800)
     @Column(name = "localization_interictal_eeg_spikes", length = 800)
     private String localizationInterictalEEGSpikes;
 
@@ -83,23 +74,20 @@ public class DiagnosticTestScalpEEGEntity implements
     @Column(name = "ictal_eeg_patterns")
     private int ictalEegPatterns;
 
-    @Size(max = 800)
     @Column(name = "localization_ictal_eeg_pattern", length = 800)
     private String localizationIctalEegPattern;
 
-    @Size(max = 800)
     @Column(name = "description_video_eeg", length = 800)
     private String descriptionVideoEeg;
 
     /**
      * The comment.
      */
-    @Size(max = 800)
     @Column(name = "comment", length = 800, nullable = true)
     private String comment;
 
     @Override
-    public int compareTo(DiagnosticTestScalpEEGEntity o) {
+    public int compareTo(DiagnosticTestScalpEegEntity o) {
         int comparison = this.date.compareTo(o.getDate());
         if (comparison > 0) {
             return -1;

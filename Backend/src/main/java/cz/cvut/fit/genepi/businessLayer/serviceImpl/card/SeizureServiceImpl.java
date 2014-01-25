@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class SeizureServiceImpl
-        extends GenServiceImpl<SeizureVO, SeizureEntity>
+        extends GenericCardServiceImpl<SeizureVO, SeizureEntity>
         implements SeizureService {
 
     @Override

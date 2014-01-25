@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PharmacotherapyServiceImpl
-        extends GenServiceImpl<PharmacotherapyVO, PharmacotherapyEntity>
+        extends GenericCardServiceImpl<PharmacotherapyVO, PharmacotherapyEntity>
         implements PharmacotherapyService {
 
     @Override

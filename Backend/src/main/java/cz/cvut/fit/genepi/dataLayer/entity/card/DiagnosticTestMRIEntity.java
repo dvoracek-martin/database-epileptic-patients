@@ -1,18 +1,16 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "diagnostic_test_mri")
-public class DiagnosticTestMRIEntity implements
-        Comparable<DiagnosticTestMRIEntity> {
+public class DiagnosticTestMriEntity implements
+        Comparable<DiagnosticTestMriEntity> {
 
 	/* Autofilled fields */
 
@@ -52,9 +50,6 @@ public class DiagnosticTestMRIEntity implements
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 
@@ -64,28 +59,24 @@ public class DiagnosticTestMRIEntity implements
     @Column(name = "mri_finding")
     private int mriFinding;
 
-    @Size(max = 800)
     @Column(name = "mri_description", length = 800)
     private String mriDescription;
 
     @Column(name = "fdg_pet")
     private int fdgPet;
 
-    @Size(max = 800)
     @Column(name = "description_pet_hypometabolism", length = 800)
     private String descriptionPetHypometabolism;
 
     @Column(name = "interictal_spect")
     private int interictalSpect;
 
-    @Size(max = 800)
     @Column(name = "description_spect_hypoperfuse", length = 800)
     private String descriptionSpectHypoperfuse;
 
     @Column(name = "ictal_spect")
     private int ictalSpect;
 
-    @Size(max = 800)
     @Column(name = "description_spect_hyperperfuse", length = 800)
     private String descriptionSpectHyperperfuse;
 
@@ -98,14 +89,12 @@ public class DiagnosticTestMRIEntity implements
     @Column(name = "mrs_finding")
     private int mrsFinding;
 
-    @Size(max = 800)
     @Column(name = "description_mrs_abnormality", length = 800)
     private String descriptionMrsAbnormality;
 
     @Column(name = "fmri")
     private boolean fmri;
 
-    @Size(max = 800)
     @Column(name = "details_fmri", length = 800)
     private String detailsFmri;
 
@@ -119,19 +108,17 @@ public class DiagnosticTestMRIEntity implements
     @Column(name = "wada")
     private boolean wada;
 
-    @Size(max = 800)
     @Column(name = "details_wada", length = 800)
     private String detailsWada;
 
     /**
      * The comment.
      */
-    @Size(max = 800)
     @Column(name = "comment", length = 800, nullable = true)
     private String comment;
 
     @Override
-    public int compareTo(DiagnosticTestMRIEntity o) {
+    public int compareTo(DiagnosticTestMriEntity o) {
         int comparison = this.date.compareTo(o.getDate());
         if (comparison > 0) {
             return -1;

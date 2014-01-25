@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.service.card.GenService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
  * Created by Jan on 23.1.14.
  */
 @Service
-public class GenServiceImpl<CardVO, CardEntity> implements GenService<CardVO, CardEntity> {
+public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardService<CardVO, CardEntity> {
 
     @Autowired
     @Qualifier("genericDAOImpl")

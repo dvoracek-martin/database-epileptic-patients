@@ -4,6 +4,7 @@
           xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
 
+    <!-- Patient -->
     <mapping type="one-way">
         <class-a>cz.cvut.fit.genepi.dataLayer.entity.PatientEntity</class-a>
         <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO</class-b>
@@ -17,6 +18,91 @@
         </field>
     </mapping>
 
+    <!-- Anamnesis -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+        <field>
+            <a>beginningEpilepsy</a>
+            <b date-format="yyyy-MM-dd">beginningEpilepsy</b>
+        </field>
+    </mapping>
+
+    <!-- Complication -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.ComplicationDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Diagnostic test MRI -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestMriDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Diagnostic test scalp EEG -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Diagnostic histology -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.HistologyDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Invasive test cortical mapping -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestCorticalMappingDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Invasive test ECOG -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Invasive test EEG -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Neurological finding -->
     <mapping type="one-way">
         <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity</class-a>
         <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO</class-b>
@@ -26,6 +112,45 @@
         </field>
     </mapping>
 
+    <!-- Neuropsychology -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Neuropsychology old -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Operation -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+        <field>
+            <a>dateOperation</a>
+            <b date-format="yyyy-MM-dd">dateOperation</b>
+        </field>
+        <field>
+            <a>vnsImplantationDate</a>
+            <b date-format="yyyy-MM-dd">vnsImplantationDate</b>
+        </field>
+    </mapping>
+
+    <!-- Pharmacotherapy -->
     <mapping type="one-way">
         <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity</class-a>
         <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO</class-b>
@@ -35,6 +160,17 @@
         </field>
     </mapping>
 
+    <!-- Seizure detail -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDetailDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
+        </field>
+    </mapping>
+
+    <!-- Seizure -->
     <mapping type="one-way">
         <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity</class-a>
         <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO</class-b>
@@ -44,12 +180,4 @@
         </field>
     </mapping>
 
-    <mapping type="one-way">
-        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity</class-a>
-        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDetailDisplayVO</class-b>
-        <field>
-            <a>date</a>
-            <b date-format="yyyy-MM-dd">date</b>
-        </field>
-    </mapping>
 </mappings>

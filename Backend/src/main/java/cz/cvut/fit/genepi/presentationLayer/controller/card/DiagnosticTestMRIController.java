@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMRIService;
+import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class DiagnosticTestMRIController {
 
     private PatientService patientService;
 
-    private DiagnosticTestMRIService diagnosticTestMRIService;
+    private DiagnosticTestMriService diagnosticTestMriService;
 
     @Autowired
     public DiagnosticTestMRIController(PatientService patientService,
-                                       DiagnosticTestMRIService diagnosticTestMRIService) {
+                                       DiagnosticTestMriService diagnosticTestMriService) {
         this.patientService = patientService;
-        this.diagnosticTestMRIService = diagnosticTestMRIService;
+        this.diagnosticTestMriService = diagnosticTestMriService;
     }
 
     @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/create", method = RequestMethod.GET)
@@ -58,7 +58,7 @@ public class DiagnosticTestMRIController {
         } else {
             diagnosticTestMRI.setPatient(patientService.findByID(
                     PatientEntity.class, patientID));
-            diagnosticTestMRIService.save(diagnosticTestMRI);
+            diagnosticTestMriService.save(diagnosticTestMRI);
             return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
         }
     }
@@ -68,7 +68,7 @@ public class DiagnosticTestMRIController {
                                              @PathVariable("patientID") Integer patientID,
                                              @PathVariable("diagnosticTestMRIID") Integer diagnosticTestMRIID) {
 
-        diagnosticTestMRIService.delete(diagnosticTestMRIService.findByID(
+        diagnosticTestMriService.delete(diagnosticTestMriService.findByID(
                 DiagnosticTestMriEntity.class, diagnosticTestMRIID));
         return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
     }
@@ -88,7 +88,7 @@ public class DiagnosticTestMRIController {
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMRIService.hide(diagnosticTestMRIService.findByID(
+        diagnosticTestMriService.hide(diagnosticTestMriService.findByID(
                 DiagnosticTestMriEntity.class, diagnosticTestMriId));
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
@@ -108,7 +108,7 @@ public class DiagnosticTestMRIController {
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMRIService.unhide(diagnosticTestMRIService.findByID(
+        diagnosticTestMriService.unhide(diagnosticTestMriService.findByID(
                 DiagnosticTestMriEntity.class, diagnosticTestMriId));
         // TODO: address to get back to admin module where is list od hidden
         // records.

@@ -1,10 +1,11 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestCorticalMappingVO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 
-/**
- * The Interface InvasiveTestCorticalMappingService extends GenericCardService
- */
-public interface InvasiveTestCorticalMappingService extends
-        GenericCardService<InvasiveTestCorticalMappingEntity> {
+public interface InvasiveTestCorticalMappingService extends GenericCardService<InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> {
+
+    public void hide(int invasiveTestCorticalMappingId);
+
+    public void unhide(int invasiveTestCorticalMappingId);
 }

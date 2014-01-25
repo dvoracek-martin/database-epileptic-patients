@@ -1,14 +1,14 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
-import java.util.List;
 
+public interface AnamnesisService extends GenericCardService<AnamnesisVO, AnamnesisEntity> {
 
-/**
- * The Interface AnamnesisService extends GenericCardService
- */
-public interface AnamnesisService extends GenericCardService<AnamnesisEntity> {
+   // public List<AnamnesisEntity> findAllHidden();
 
-    public List<AnamnesisEntity> findAllHidden();
+    public void hide(int anamnesisId);
+
+    public void unhide(int anamnesisId);
 }

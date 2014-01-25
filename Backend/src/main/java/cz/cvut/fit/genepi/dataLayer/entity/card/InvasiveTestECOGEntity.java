@@ -1,18 +1,14 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
 @Table(name = "invasive_test_ecog")
-public class InvasiveTestECOGEntity implements
-        Comparable<InvasiveTestECOGEntity> {
+public class InvasiveTestEcogEntity implements
+        Comparable<InvasiveTestEcogEntity> {
 
 	/* Autofilled fields */
 
@@ -27,7 +23,6 @@ public class InvasiveTestECOGEntity implements
     /**
      * The add user id.
      */
-    @NotNull
     @Column(name = "add_user_id", nullable = false)
     private int addUserId;
 
@@ -52,16 +47,12 @@ public class InvasiveTestECOGEntity implements
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 
     @Column(name = "done")
     private boolean done;
 
-    @Size(max = 800)
     @Column(name = "ecog_cover", length = 800)
     private String ecogCover;
 
@@ -74,12 +65,11 @@ public class InvasiveTestECOGEntity implements
     /**
      * The comment.
      */
-    @Size(max = 800)
     @Column(name = "comment", length = 800, nullable = true)
     private String comment;
 
     @Override
-    public int compareTo(InvasiveTestECOGEntity o) {
+    public int compareTo(InvasiveTestEcogEntity o) {
         int comparison = this.date.compareTo(o.getDate());
         if (comparison > 0) {
             return -1;

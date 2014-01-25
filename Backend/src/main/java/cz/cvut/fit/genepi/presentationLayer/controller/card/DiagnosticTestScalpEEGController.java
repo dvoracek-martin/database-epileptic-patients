@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEEGService;
+import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +21,13 @@ public class DiagnosticTestScalpEEGController {
 
     private PatientService patientService;
 
-    private DiagnosticTestScalpEEGService diagnosticTestScalpEEGService;
+    private DiagnosticTestScalpEegService diagnosticTestScalpEegService;
 
     @Autowired
     public DiagnosticTestScalpEEGController(PatientService patientService,
-                                            DiagnosticTestScalpEEGService diagnosticTestScalpEEGService) {
+                                            DiagnosticTestScalpEegService diagnosticTestScalpEegService) {
         this.patientService = patientService;
-        this.diagnosticTestScalpEEGService = diagnosticTestScalpEEGService;
+        this.diagnosticTestScalpEegService = diagnosticTestScalpEegService;
     }
 
     @RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/create", method = RequestMethod.GET)
@@ -59,7 +59,7 @@ public class DiagnosticTestScalpEEGController {
         } else {
             diagnosticTestScalpEEG.setPatient(patientService.findByID(
                     PatientEntity.class, patientID));
-            diagnosticTestScalpEEGService.save(diagnosticTestScalpEEG);
+            diagnosticTestScalpEegService.save(diagnosticTestScalpEEG);
             return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
         }
     }
@@ -69,7 +69,7 @@ public class DiagnosticTestScalpEEGController {
                                                   @PathVariable("patientID") Integer patientID,
                                                   @PathVariable("diagnosticTestScalpEEGID") Integer diagnosticTestScalpEEGID) {
 
-        diagnosticTestScalpEEGService.delete(diagnosticTestScalpEEGService
+        diagnosticTestScalpEegService.delete(diagnosticTestScalpEegService
                 .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEEGID));
         return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
@@ -91,7 +91,7 @@ public class DiagnosticTestScalpEEGController {
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
-        diagnosticTestScalpEEGService.hide(diagnosticTestScalpEEGService
+        diagnosticTestScalpEegService.hide(diagnosticTestScalpEegService
                 .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEegId));
         return "redirect:/patient/" + patientId + "/anamnesis/list";
@@ -113,7 +113,7 @@ public class DiagnosticTestScalpEEGController {
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
-        diagnosticTestScalpEEGService.unhide(diagnosticTestScalpEEGService
+        diagnosticTestScalpEegService.unhide(diagnosticTestScalpEegService
                 .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEegId));
         // TODO: address to get back to admin module where is list od hidden
