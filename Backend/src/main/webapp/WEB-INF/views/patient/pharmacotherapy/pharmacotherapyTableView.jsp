@@ -41,7 +41,7 @@
                 <spring:message code="label.comment"/>
             </td>
             <td colspan="3" class="col-xs-8">
-                ${pharmacotherapy.comment}"
+                ${pharmacotherapy.comment}
             </td>
         </tr>
     </table>

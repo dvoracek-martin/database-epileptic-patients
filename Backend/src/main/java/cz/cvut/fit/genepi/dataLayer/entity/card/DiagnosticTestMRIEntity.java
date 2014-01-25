@@ -1,353 +1,365 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
-import java.util.Date;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import java.util.Date;
 
 @Entity
 @Table(name = "diagnostic_test_mri")
 public class DiagnosticTestMRIEntity implements
-		Comparable<DiagnosticTestMRIEntity> {
+        Comparable<DiagnosticTestMRIEntity> {
 
 	/* Autofilled fields */
 
-	/** The id. */
-	@Id
-	@Column(name = "id", nullable = false)
-	@GeneratedValue
-	private int id;
+    /**
+     * The id.
+     */
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue
+    private int id;
 
-	/** The add user id. */
-	@NotNull
-	@Column(name = "add_user_id", nullable = false)
-	private int addUserId;
+    /**
+     * The add user id.
+     */
+    @NotNull
+    @Column(name = "add_user_id", nullable = false)
+    private int addUserId;
 
-	/** The added. */
-	@Column(name = "added", nullable = false, insertable = false)
-	private Date added;
+    /**
+     * The added.
+     */
+    @Column(name = "added", nullable = false, insertable = false)
+    private Date added;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    private PatientEntity patient;
 
-	@Column(name = "status", nullable = false)
-	private int status;
+    @Column(name = "patient_id", nullable = false)
+    private int patientId;
+
+    @Column(name = "status", nullable = false)
+    private int status;
 
 	/* Other fields */
 
-	/** The date. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Past
-	@NotNull
-	@Column(name = "date", nullable = false)
-	private Date date;
+    /**
+     * The date.
+     */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Past
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private Date date;
 
-	@Column(name = "done")
-	private boolean done;
+    @Column(name = "done")
+    private boolean done;
 
-	@Column(name = "mri_finding")
-	private int mriFinding;
+    @Column(name = "mri_finding")
+    private int mriFinding;
 
-	@Size(max = 800)
-	@Column(name = "mri_description", length = 800)
-	private String mriDescription;
+    @Size(max = 800)
+    @Column(name = "mri_description", length = 800)
+    private String mriDescription;
 
-	@Column(name = "fdg_pet")
-	private int fdgPet;
+    @Column(name = "fdg_pet")
+    private int fdgPet;
 
-	@Size(max = 800)
-	@Column(name = "description_pet_hypometabolism", length = 800)
-	private String descriptionPetHypometabolism;
+    @Size(max = 800)
+    @Column(name = "description_pet_hypometabolism", length = 800)
+    private String descriptionPetHypometabolism;
 
-	@Column(name = "interictal_spect")
-	private int interictalSpect;
+    @Column(name = "interictal_spect")
+    private int interictalSpect;
 
-	@Size(max = 800)
-	@Column(name = "description_spect_hypoperfuse", length = 800)
-	private String descriptionSpectHypoperfuse;
+    @Size(max = 800)
+    @Column(name = "description_spect_hypoperfuse", length = 800)
+    private String descriptionSpectHypoperfuse;
 
-	@Column(name = "ictal_spect")
-	private int ictalSpect;
+    @Column(name = "ictal_spect")
+    private int ictalSpect;
 
-	@Size(max = 800)
-	@Column(name = "description_spect_hyperperfuse", length = 800)
-	private String descriptionSpectHyperperfuse;
+    @Size(max = 800)
+    @Column(name = "description_spect_hyperperfuse", length = 800)
+    private String descriptionSpectHyperperfuse;
 
-	@Column(name = "siscom")
-	private boolean siscom;
+    @Column(name = "siscom")
+    private boolean siscom;
 
-	@Column(name = "mrs_protocol")
-	private int mrsProtocol;
+    @Column(name = "mrs_protocol")
+    private int mrsProtocol;
 
-	@Column(name = "mrs_finding")
-	private int mrsFinding;
+    @Column(name = "mrs_finding")
+    private int mrsFinding;
 
-	@Size(max = 800)
-	@Column(name = "description_mrs_abnormality", length = 800)
-	private String descriptionMrsAbnormality;
+    @Size(max = 800)
+    @Column(name = "description_mrs_abnormality", length = 800)
+    private String descriptionMrsAbnormality;
 
-	@Column(name = "fmri")
-	private boolean fmri;
+    @Column(name = "fmri")
+    private boolean fmri;
 
-	@Size(max = 800)
-	@Column(name = "details_fmri", length = 800)
-	private String detailsFmri;
+    @Size(max = 800)
+    @Column(name = "details_fmri", length = 800)
+    private String detailsFmri;
 
-	@Column(name = "dti")
-	private boolean dti;
+    @Column(name = "dti")
+    private boolean dti;
 
-	@Size(max = 800)
-	@Column(name = "details_dti_study", length = 800)
-	private String detailsDtiStudy;
+    @Size(max = 800)
+    @Column(name = "details_dti_study", length = 800)
+    private String detailsDtiStudy;
 
-	@Column(name = "wada")
-	private boolean wada;
+    @Column(name = "wada")
+    private boolean wada;
 
-	@Size(max = 800)
-	@Column(name = "details_wada", length = 800)
-	private String detailsWada;
+    @Size(max = 800)
+    @Column(name = "details_wada", length = 800)
+    private String detailsWada;
 
-	/** The comment. */
-	@Size(max = 800)
-	@Column(name = "comment", length = 800, nullable = true)
-	private String comment;
+    /**
+     * The comment.
+     */
+    @Size(max = 800)
+    @Column(name = "comment", length = 800, nullable = true)
+    private String comment;
 
-	@Override
-	public int compareTo(DiagnosticTestMRIEntity o) {
-		int comparison = this.date.compareTo(o.getDate());
-		if (comparison > 0) {
-			return -1;
-		} else if (comparison == 0) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
+    @Override
+    public int compareTo(DiagnosticTestMRIEntity o) {
+        int comparison = this.date.compareTo(o.getDate());
+        if (comparison > 0) {
+            return -1;
+        } else if (comparison == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 
 	/* Getters and Setters */
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getAddUserId() {
-		return addUserId;
-	}
+    public int getAddUserId() {
+        return addUserId;
+    }
 
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
+    public void setAddUserId(int addUserId) {
+        this.addUserId = addUserId;
+    }
 
-	public Date getAdded() {
-		return added;
-	}
+    public Date getAdded() {
+        return added;
+    }
 
-	public void setAdded(Date added) {
-		this.added = added;
-	}
+    public void setAdded(Date added) {
+        this.added = added;
+    }
 
-	public PatientEntity getPatient() {
-		return patient;
-	}
+    public PatientEntity getPatient() {
+        return patient;
+    }
 
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
+    public void setPatient(PatientEntity patient) {
+        this.patient = patient;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public int getPatientId() {
+        return patientId;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-	public boolean isDone() {
-		return done;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDone(boolean done) {
-		this.done = done;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public int getMriFinding() {
-		return mriFinding;
-	}
+    public boolean isDone() {
+        return done;
+    }
 
-	public void setMriFinding(int mriFinding) {
-		this.mriFinding = mriFinding;
-	}
+    public void setDone(boolean done) {
+        this.done = done;
+    }
 
-	public String getMriDescription() {
-		return mriDescription;
-	}
+    public int getMriFinding() {
+        return mriFinding;
+    }
 
-	public void setMriDescription(String mriDescription) {
-		this.mriDescription = mriDescription;
-	}
+    public void setMriFinding(int mriFinding) {
+        this.mriFinding = mriFinding;
+    }
 
-	public int getFdgPet() {
-		return fdgPet;
-	}
+    public String getMriDescription() {
+        return mriDescription;
+    }
 
-	public void setFdgPet(int fdgPet) {
-		this.fdgPet = fdgPet;
-	}
+    public void setMriDescription(String mriDescription) {
+        this.mriDescription = mriDescription;
+    }
 
-	public String getDescriptionPetHypometabolism() {
-		return descriptionPetHypometabolism;
-	}
+    public int getFdgPet() {
+        return fdgPet;
+    }
 
-	public void setDescriptionPetHypometabolism(
-			String descriptionPetHypometabolism) {
-		this.descriptionPetHypometabolism = descriptionPetHypometabolism;
-	}
+    public void setFdgPet(int fdgPet) {
+        this.fdgPet = fdgPet;
+    }
 
-	public int getInterictalSpect() {
-		return interictalSpect;
-	}
+    public String getDescriptionPetHypometabolism() {
+        return descriptionPetHypometabolism;
+    }
 
-	public void setInterictalSpect(int interictalSpect) {
-		this.interictalSpect = interictalSpect;
-	}
+    public void setDescriptionPetHypometabolism(
+            String descriptionPetHypometabolism) {
+        this.descriptionPetHypometabolism = descriptionPetHypometabolism;
+    }
 
-	public String getDescriptionSpectHypoperfuse() {
-		return descriptionSpectHypoperfuse;
-	}
+    public int getInterictalSpect() {
+        return interictalSpect;
+    }
 
-	public void setDescriptionSpectHypoperfuse(
-			String descriptionSpectHypoperfuse) {
-		this.descriptionSpectHypoperfuse = descriptionSpectHypoperfuse;
-	}
+    public void setInterictalSpect(int interictalSpect) {
+        this.interictalSpect = interictalSpect;
+    }
 
-	public int getIctalSpect() {
-		return ictalSpect;
-	}
+    public String getDescriptionSpectHypoperfuse() {
+        return descriptionSpectHypoperfuse;
+    }
 
-	public void setIctalSpect(int ictalSpect) {
-		this.ictalSpect = ictalSpect;
-	}
+    public void setDescriptionSpectHypoperfuse(
+            String descriptionSpectHypoperfuse) {
+        this.descriptionSpectHypoperfuse = descriptionSpectHypoperfuse;
+    }
 
-	public String getDescriptionSpectHyperperfuse() {
-		return descriptionSpectHyperperfuse;
-	}
+    public int getIctalSpect() {
+        return ictalSpect;
+    }
 
-	public void setDescriptionSpectHyperperfuse(
-			String descriptionSpectHyperperfuse) {
-		this.descriptionSpectHyperperfuse = descriptionSpectHyperperfuse;
-	}
+    public void setIctalSpect(int ictalSpect) {
+        this.ictalSpect = ictalSpect;
+    }
 
-	public boolean isSiscom() {
-		return siscom;
-	}
+    public String getDescriptionSpectHyperperfuse() {
+        return descriptionSpectHyperperfuse;
+    }
 
-	public void setSiscom(boolean siscom) {
-		this.siscom = siscom;
-	}
+    public void setDescriptionSpectHyperperfuse(
+            String descriptionSpectHyperperfuse) {
+        this.descriptionSpectHyperperfuse = descriptionSpectHyperperfuse;
+    }
 
-	public int getMrsProtocol() {
-		return mrsProtocol;
-	}
+    public boolean isSiscom() {
+        return siscom;
+    }
 
-	public void setMrsProtocol(int mrsProtocol) {
-		this.mrsProtocol = mrsProtocol;
-	}
+    public void setSiscom(boolean siscom) {
+        this.siscom = siscom;
+    }
 
-	public int getMrsFinding() {
-		return mrsFinding;
-	}
+    public int getMrsProtocol() {
+        return mrsProtocol;
+    }
 
-	public void setMrsFinding(int mrsFinding) {
-		this.mrsFinding = mrsFinding;
-	}
+    public void setMrsProtocol(int mrsProtocol) {
+        this.mrsProtocol = mrsProtocol;
+    }
 
-	public String getDescriptionMrsAbnormality() {
-		return descriptionMrsAbnormality;
-	}
+    public int getMrsFinding() {
+        return mrsFinding;
+    }
 
-	public void setDescriptionMrsAbnormality(String descriptionMrsAbnormality) {
-		this.descriptionMrsAbnormality = descriptionMrsAbnormality;
-	}
+    public void setMrsFinding(int mrsFinding) {
+        this.mrsFinding = mrsFinding;
+    }
 
-	public boolean isFmri() {
-		return fmri;
-	}
+    public String getDescriptionMrsAbnormality() {
+        return descriptionMrsAbnormality;
+    }
 
-	public void setFmri(boolean fmri) {
-		this.fmri = fmri;
-	}
+    public void setDescriptionMrsAbnormality(String descriptionMrsAbnormality) {
+        this.descriptionMrsAbnormality = descriptionMrsAbnormality;
+    }
 
-	public String getDetailsFmri() {
-		return detailsFmri;
-	}
+    public boolean isFmri() {
+        return fmri;
+    }
 
-	public void setDetailsFmri(String detailsFmri) {
-		this.detailsFmri = detailsFmri;
-	}
+    public void setFmri(boolean fmri) {
+        this.fmri = fmri;
+    }
 
-	public boolean isDti() {
-		return dti;
-	}
+    public String getDetailsFmri() {
+        return detailsFmri;
+    }
 
-	public void setDti(boolean dti) {
-		this.dti = dti;
-	}
+    public void setDetailsFmri(String detailsFmri) {
+        this.detailsFmri = detailsFmri;
+    }
 
-	public String getDetailsDtiStudy() {
-		return detailsDtiStudy;
-	}
+    public boolean isDti() {
+        return dti;
+    }
 
-	public void setDetailsDtiStudy(String detailsDtiStudy) {
-		this.detailsDtiStudy = detailsDtiStudy;
-	}
+    public void setDti(boolean dti) {
+        this.dti = dti;
+    }
 
-	public boolean isWada() {
-		return wada;
-	}
+    public String getDetailsDtiStudy() {
+        return detailsDtiStudy;
+    }
 
-	public void setWada(boolean wada) {
-		this.wada = wada;
-	}
+    public void setDetailsDtiStudy(String detailsDtiStudy) {
+        this.detailsDtiStudy = detailsDtiStudy;
+    }
 
-	public String getDetailsWada() {
-		return detailsWada;
-	}
+    public boolean isWada() {
+        return wada;
+    }
 
-	public void setDetailsWada(String detailsWada) {
-		this.detailsWada = detailsWada;
-	}
+    public void setWada(boolean wada) {
+        this.wada = wada;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getDetailsWada() {
+        return detailsWada;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public void setDetailsWada(String detailsWada) {
+        this.detailsWada = detailsWada;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

@@ -1,22 +1,13 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
-import java.util.Date;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import java.util.Date;
 
 //TODO: Merge with pszchology NEW??
 @Entity
@@ -25,166 +16,187 @@ public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEn
 
 	/* Autofilled fields */
 
-	/** The id. */
-	@Id
-	@Column(name = "id", nullable = false)
-	@GeneratedValue
-	private int id;
+    /**
+     * The id.
+     */
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue
+    private int id;
 
-	/** The add user id. */
-	@NotNull
-	@Column(name = "add_user_id", nullable = false)
-	private int addUserId;
+    /**
+     * The add user id.
+     */
+    @NotNull
+    @Column(name = "add_user_id", nullable = false)
+    private int addUserId;
 
-	/** The added. */
-	@Column(name = "added", nullable = false, insertable = false)
-	private Date added;
+    /**
+     * The added.
+     */
+    @Column(name = "added", nullable = false, insertable = false)
+    private Date added;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    private PatientEntity patient;
 
-	@Column(name = "status", nullable = false)
-	private int status;
+    @Column(name = "patient_id", nullable = false)
+    private int patientId;
+
+    @Column(name = "status", nullable = false)
+    private int status;
 
 	/* Other fields */
 
-	/** The date. */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
-	@Past
-	@NotNull
-	@Column(name = "date", nullable = false)
-	private Date date;
+    /**
+     * The date.
+     */
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Past
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private Date date;
 
-	@Column(name = "intelligence_level")
-	private int intelligenceLevel;
-	
-	@Column(name = "neuropsychological_examination")
-	private boolean neuropsychologicalExamination;
+    @Column(name = "intelligence_level")
+    private int intelligenceLevel;
 
-	@Column(name = "specific_learning")
-	private boolean specificLearning;
+    @Column(name = "neuropsychological_examination")
+    private boolean neuropsychologicalExamination;
 
-	@Column(name = "developmental_language_disorders")
-	private boolean developmentalLanguageDisorders;
+    @Column(name = "specific_learning")
+    private boolean specificLearning;
 
-	@Column(name = "adhd_syndrome")
-	private boolean adhdSyndrome;
+    @Column(name = "developmental_language_disorders")
+    private boolean developmentalLanguageDisorders;
 
-	/** The comment. */
-	@Size(max = 800)
-	@Column(name = "comment", length = 800, nullable = true)
-	private String comment;
+    @Column(name = "adhd_syndrome")
+    private boolean adhdSyndrome;
 
-	@Override
-	public int compareTo(NeuropsychologyOldEntity o) {
-		int comparison = this.date.compareTo(o.getDate());
-		if (comparison > 0) {
-			return -1;
-		} else if (comparison == 0) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
+    /**
+     * The comment.
+     */
+    @Size(max = 800)
+    @Column(name = "comment", length = 800, nullable = true)
+    private String comment;
+
+    @Override
+    public int compareTo(NeuropsychologyOldEntity o) {
+        int comparison = this.date.compareTo(o.getDate());
+        if (comparison > 0) {
+            return -1;
+        } else if (comparison == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 
 	/* Getters and Setters */
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getAddUserId() {
-		return addUserId;
-	}
+    public int getAddUserId() {
+        return addUserId;
+    }
 
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
+    public void setAddUserId(int addUserId) {
+        this.addUserId = addUserId;
+    }
 
-	public Date getAdded() {
-		return added;
-	}
+    public Date getAdded() {
+        return added;
+    }
 
-	public void setAdded(Date added) {
-		this.added = added;
-	}
+    public void setAdded(Date added) {
+        this.added = added;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public String getComment() {
+        return comment;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public PatientEntity getPatient() {
-		return patient;
-	}
+    public PatientEntity getPatient() {
+        return patient;
+    }
 
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
+    public void setPatient(PatientEntity patient) {
+        this.patient = patient;
+    }
 
-	public int getStatus() {
-		return status;
-	}
+    public int getPatientId() {
+        return patientId;
+    }
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
 
-	public boolean isNeuropsychologicalExamination() {
-		return neuropsychologicalExamination;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public void setNeuropsychologicalExamination(
-			boolean neuropsychologicalExamination) {
-		this.neuropsychologicalExamination = neuropsychologicalExamination;
-	}
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-	public int getIntelligenceLevel() {
-		return intelligenceLevel;
-	}
+    public boolean isNeuropsychologicalExamination() {
+        return neuropsychologicalExamination;
+    }
 
-	public void setIntelligenceLevel(int intelligenceLevel) {
-		this.intelligenceLevel = intelligenceLevel;
-	}
+    public void setNeuropsychologicalExamination(
+            boolean neuropsychologicalExamination) {
+        this.neuropsychologicalExamination = neuropsychologicalExamination;
+    }
 
-	public boolean isSpecificLearning() {
-		return specificLearning;
-	}
+    public int getIntelligenceLevel() {
+        return intelligenceLevel;
+    }
 
-	public void setSpecificLearning(boolean specificLearning) {
-		this.specificLearning = specificLearning;
-	}
+    public void setIntelligenceLevel(int intelligenceLevel) {
+        this.intelligenceLevel = intelligenceLevel;
+    }
 
-	public boolean isDevelopmentalLanguageDisorders() {
-		return developmentalLanguageDisorders;
-	}
+    public boolean isSpecificLearning() {
+        return specificLearning;
+    }
 
-	public void setDevelopmentalLanguageDisorders(
-			boolean developmentalLanguageDisorders) {
-		this.developmentalLanguageDisorders = developmentalLanguageDisorders;
-	}
+    public void setSpecificLearning(boolean specificLearning) {
+        this.specificLearning = specificLearning;
+    }
 
-	public boolean isAdhdSyndrome() {
-		return adhdSyndrome;
-	}
+    public boolean isDevelopmentalLanguageDisorders() {
+        return developmentalLanguageDisorders;
+    }
 
-	public void setAdhdSyndrome(boolean adhdSyndrome) {
-		this.adhdSyndrome = adhdSyndrome;
-	}
+    public void setDevelopmentalLanguageDisorders(
+            boolean developmentalLanguageDisorders) {
+        this.developmentalLanguageDisorders = developmentalLanguageDisorders;
+    }
+
+    public boolean isAdhdSyndrome() {
+        return adhdSyndrome;
+    }
+
+    public void setAdhdSyndrome(boolean adhdSyndrome) {
+        this.adhdSyndrome = adhdSyndrome;
+    }
 }

@@ -1,24 +1,16 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
-import java.util.Date;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import java.util.Date;
 
 // TODO: Auto-generated Javadoc
+
 /**
  * The Class AnamnesisEntity.
  */
@@ -28,257 +20,303 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
 	/* Autofilled fields */
 
-	/** The id. */
-	@Id
-	@Column(name = "id", nullable = false)
-	@GeneratedValue
-	private int id;
+    /**
+     * The id.
+     */
+    @Id
+    @Column(name = "id", nullable = false)
+    @GeneratedValue
+    private int id;
 
-	/** The add user id. */
-	//@NotNull
-	@Column(name = "add_user_id", nullable = false)
-	private int addUserId;
+    /**
+     * The add user id.
+     */
+    //@NotNull
+    @Column(name = "add_user_id", nullable = false)
+    private int addUserId;
 
-	/** The added. */
-	@Column(name = "added", nullable = false, insertable = false)
-	private Date added;
+    /**
+     * The added.
+     */
+    @Column(name = "added", nullable = false, insertable = false)
+    private Date added;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "patient_id")
-	private PatientEntity patient;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
+    private PatientEntity patient;
 
-	@Column(name = "status", nullable = false)
-	private int status;
+    @Column(name = "patient_id", nullable = false)
+    private int patientId;
+
+    @Column(name = "status", nullable = false)
+    private int status;
 
 	/* Other fields */
 
-	/** The date. */
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Past
-	@NotNull
-	@Column(name = "date", nullable = false)
-	private Date date;
+    /**
+     * The date.
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
+    @Column(name = "date", nullable = false)
+    private Date date;
 
-	/** The epilepsy in family. */
-	@Column(name = "epilepsy_in_family")
-	private boolean epilepsyInFamily;
+    /**
+     * The epilepsy in family.
+     */
+    @Column(name = "epilepsy_in_family")
+    private boolean epilepsyInFamily;
 
-	/** The prenatal risk. */
-	@Column(name = "prenatal_risk")
-	private boolean prenatalRisk;
+    /**
+     * The prenatal risk.
+     */
+    @Column(name = "prenatal_risk")
+    private boolean prenatalRisk;
 
-	/** The fibril convulsions. */
-	@Column(name = "fibril_convulsions")
-	private boolean fibrilConvulsions;
+    /**
+     * The fibril convulsions.
+     */
+    @Column(name = "fibril_convulsions")
+    private boolean fibrilConvulsions;
 
-	/** The inflammation cns. */
-	@Column(name = "inflammation_cns")
-	private boolean inflammationCns;
+    /**
+     * The inflammation cns.
+     */
+    @Column(name = "inflammation_cns")
+    private boolean inflammationCns;
 
-	/** The injury cns. */
-	@Column(name = "injury_cns")
-	private boolean injuryCns;
+    /**
+     * The injury cns.
+     */
+    @Column(name = "injury_cns")
+    private boolean injuryCns;
 
-	/** The operation cns. */
-	@Column(name = "operation_cns")
-	private boolean operationCns;
+    /**
+     * The operation cns.
+     */
+    @Column(name = "operation_cns")
+    private boolean operationCns;
 
-	/** The early pmd retardation. */
-	@Column(name = "early_pmd_retardation")
-	private boolean earlyPmdRetardation;
+    /**
+     * The early pmd retardation.
+     */
+    @Column(name = "early_pmd_retardation")
+    private boolean earlyPmdRetardation;
 
-	/** The beginning epilepsy. */
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Past
-	@NotNull
-	@Column(name = "beginning_epilepsy", length = 7)
-	private Date beginningEpilepsy;
+    /**
+     * The beginning epilepsy.
+     */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
+    @Column(name = "beginning_epilepsy", length = 7)
+    private Date beginningEpilepsy;
 
-	/** The first fever. */
-	@Column(name = "first_fever")
-	private boolean firstFever;
+    /**
+     * The first fever.
+     */
+    @Column(name = "first_fever")
+    private boolean firstFever;
 
-	/** The infantile spasm. */
-	@Column(name = "infantile_spasm")
-	private boolean infantileSpasm;
+    /**
+     * The infantile spasm.
+     */
+    @Column(name = "infantile_spasm")
+    private boolean infantileSpasm;
 
-	/** The specific syndrome idcom. */
-	@Column(name = "specific_syndrome")
-	private int specificSyndrome;
+    /**
+     * The specific syndrome idcom.
+     */
+    @Column(name = "specific_syndrome")
+    private int specificSyndrome;
 
-	/** The non cns comorbidity. */
-	@Size(max = 800)
-	@Column(name = "non_cns_comorbidity", length = 800)
-	private String nonCnsComorbidity;
+    /**
+     * The non cns comorbidity.
+     */
+    @Size(max = 800)
+    @Column(name = "non_cns_comorbidity", length = 800)
+    private String nonCnsComorbidity;
 
-	/** The comment. */
-	@Size(max = 800)
-	@Column(name = "comment", length = 800)
-	private String comment;
+    /**
+     * The comment.
+     */
+    @Size(max = 800)
+    @Column(name = "comment", length = 800)
+    private String comment;
 
-	@Override
-	public int compareTo(AnamnesisEntity o) {
-		int comparison = this.date.compareTo(o.getDate());
-		if (comparison > 0) {
-			return -1;
-		} else if (comparison == 0) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
+    @Override
+    public int compareTo(AnamnesisEntity o) {
+        int comparison = this.date.compareTo(o.getDate());
+        if (comparison > 0) {
+            return -1;
+        } else if (comparison == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
 
 	/* Getters and Setters */
 
-	public int getId() {
-		return id;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public int getAddUserId() {
-		return addUserId;
-	}
+    public int getAddUserId() {
+        return addUserId;
+    }
 
-	public void setAddUserId(int addUserId) {
-		this.addUserId = addUserId;
-	}
+    public void setAddUserId(int addUserId) {
+        this.addUserId = addUserId;
+    }
 
-	public Date getAdded() {
-		return added;
-	}
+    public Date getAdded() {
+        return added;
+    }
 
-	public void setAdded(Date added) {
-		this.added = added;
-	}
+    public void setAdded(Date added) {
+        this.added = added;
+    }
 
-	public PatientEntity getPatient() {
-		return patient;
-	}
+    public PatientEntity getPatient() {
+        return patient;
+    }
 
-	public void setPatient(PatientEntity patient) {
-		this.patient = patient;
-	}
+    public void setPatient(PatientEntity patient) {
+        this.patient = patient;
+    }
 
-	public int getStatus() {
-		return status;
-	}
 
-	public void setStatus(int status) {
-		this.status = status;
-	}
+    public int getPatientId() {
+        return patientId;
+    }
 
-	public Date getDate() {
-		return date;
-	}
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    public int getStatus() {
+        return status;
+    }
 
-	public boolean isEpilepsyInFamily() {
-		return epilepsyInFamily;
-	}
+    public void setStatus(int status) {
+        this.status = status;
+    }
 
-	public void setEpilepsyInFamily(boolean epilepsyInFamily) {
-		this.epilepsyInFamily = epilepsyInFamily;
-	}
+    public Date getDate() {
+        return date;
+    }
 
-	public boolean isPrenatalRisk() {
-		return prenatalRisk;
-	}
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	public void setPrenatalRisk(boolean prenatalRisk) {
-		this.prenatalRisk = prenatalRisk;
-	}
+    public boolean isEpilepsyInFamily() {
+        return epilepsyInFamily;
+    }
 
-	public boolean isFibrilConvulsions() {
-		return fibrilConvulsions;
-	}
+    public void setEpilepsyInFamily(boolean epilepsyInFamily) {
+        this.epilepsyInFamily = epilepsyInFamily;
+    }
 
-	public void setFibrilConvulsions(boolean fibrilConvulsions) {
-		this.fibrilConvulsions = fibrilConvulsions;
-	}
+    public boolean isPrenatalRisk() {
+        return prenatalRisk;
+    }
 
-	public boolean isInflammationCns() {
-		return inflammationCns;
-	}
+    public void setPrenatalRisk(boolean prenatalRisk) {
+        this.prenatalRisk = prenatalRisk;
+    }
 
-	public void setInflammationCns(boolean inflammationCns) {
-		this.inflammationCns = inflammationCns;
-	}
+    public boolean isFibrilConvulsions() {
+        return fibrilConvulsions;
+    }
 
-	public boolean isInjuryCns() {
-		return injuryCns;
-	}
+    public void setFibrilConvulsions(boolean fibrilConvulsions) {
+        this.fibrilConvulsions = fibrilConvulsions;
+    }
 
-	public void setInjuryCns(boolean injuryCns) {
-		this.injuryCns = injuryCns;
-	}
+    public boolean isInflammationCns() {
+        return inflammationCns;
+    }
 
-	public boolean isOperationCns() {
-		return operationCns;
-	}
+    public void setInflammationCns(boolean inflammationCns) {
+        this.inflammationCns = inflammationCns;
+    }
 
-	public void setOperationCns(boolean operationCns) {
-		this.operationCns = operationCns;
-	}
+    public boolean isInjuryCns() {
+        return injuryCns;
+    }
 
-	public boolean isEarlyPmdRetardation() {
-		return earlyPmdRetardation;
-	}
+    public void setInjuryCns(boolean injuryCns) {
+        this.injuryCns = injuryCns;
+    }
 
-	public void setEarlyPmdRetardation(boolean earlyPmdRetardation) {
-		this.earlyPmdRetardation = earlyPmdRetardation;
-	}
+    public boolean isOperationCns() {
+        return operationCns;
+    }
 
-	public Date getBeginningEpilepsy() {
-		return beginningEpilepsy;
-	}
+    public void setOperationCns(boolean operationCns) {
+        this.operationCns = operationCns;
+    }
 
-	public void setBeginningEpilepsy(Date beginningEpilepsy) {
-		this.beginningEpilepsy = beginningEpilepsy;
-	}
+    public boolean isEarlyPmdRetardation() {
+        return earlyPmdRetardation;
+    }
 
-	public boolean isFirstFever() {
-		return firstFever;
-	}
+    public void setEarlyPmdRetardation(boolean earlyPmdRetardation) {
+        this.earlyPmdRetardation = earlyPmdRetardation;
+    }
 
-	public void setFirstFever(boolean firstFever) {
-		this.firstFever = firstFever;
-	}
+    public Date getBeginningEpilepsy() {
+        return beginningEpilepsy;
+    }
 
-	public boolean isInfantileSpasm() {
-		return infantileSpasm;
-	}
+    public void setBeginningEpilepsy(Date beginningEpilepsy) {
+        this.beginningEpilepsy = beginningEpilepsy;
+    }
 
-	public void setInfantileSpasm(boolean infantileSpasm) {
-		this.infantileSpasm = infantileSpasm;
-	}
+    public boolean isFirstFever() {
+        return firstFever;
+    }
 
-	public int getSpecificSyndrome() {
-		return specificSyndrome;
-	}
+    public void setFirstFever(boolean firstFever) {
+        this.firstFever = firstFever;
+    }
 
-	public void setSpecificSyndrome(int specificSyndrome) {
-		this.specificSyndrome = specificSyndrome;
-	}
+    public boolean isInfantileSpasm() {
+        return infantileSpasm;
+    }
 
-	public String getNonCnsComorbidity() {
-		return nonCnsComorbidity;
-	}
+    public void setInfantileSpasm(boolean infantileSpasm) {
+        this.infantileSpasm = infantileSpasm;
+    }
 
-	public void setNonCnsComorbidity(String nonCnsComorbidity) {
-		this.nonCnsComorbidity = nonCnsComorbidity;
-	}
+    public int getSpecificSyndrome() {
+        return specificSyndrome;
+    }
 
-	public String getComment() {
-		return comment;
-	}
+    public void setSpecificSyndrome(int specificSyndrome) {
+        this.specificSyndrome = specificSyndrome;
+    }
 
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
+    public String getNonCnsComorbidity() {
+        return nonCnsComorbidity;
+    }
+
+    public void setNonCnsComorbidity(String nonCnsComorbidity) {
+        this.nonCnsComorbidity = nonCnsComorbidity;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }
