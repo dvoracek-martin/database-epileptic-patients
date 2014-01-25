@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Created by Jan on 22.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class PharmacotherapyVO {
+public class InvasiveTestCorticalMappingVO {
 
     private int id;
 
@@ -21,11 +21,9 @@ public class PharmacotherapyVO {
     @NotNull
     private Date date;
 
-    private int aed;
+    private boolean done;
 
-    private int efficiency;
-
-    private boolean duringSurgery;
+    private int corticalMapping;
 
     @Size(max = 800)
     private String comment;
@@ -54,28 +52,20 @@ public class PharmacotherapyVO {
         this.date = date;
     }
 
-    public int getAed() {
-        return aed;
+    public boolean isDone() {
+        return done;
     }
 
-    public void setAed(int aed) {
-        this.aed = aed;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
-    public int getEfficiency() {
-        return efficiency;
+    public int getCorticalMapping() {
+        return corticalMapping;
     }
 
-    public void setEfficiency(int efficiency) {
-        this.efficiency = efficiency;
-    }
-
-    public boolean isDuringSurgery() {
-        return duringSurgery;
-    }
-
-    public void setDuringSurgery(boolean duringSurgery) {
-        this.duringSurgery = duringSurgery;
+    public void setCorticalMapping(int corticalMapping) {
+        this.corticalMapping = corticalMapping;
     }
 
     public String getComment() {

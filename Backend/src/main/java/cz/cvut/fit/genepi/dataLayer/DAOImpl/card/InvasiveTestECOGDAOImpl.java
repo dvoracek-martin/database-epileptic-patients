@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.dataLayer.DAOImpl.card;
 
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.card.InvasiveTestECOGDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
 
 /**
  * Implementation of InvasiveTestECOGDAO
@@ -12,6 +12,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
  */
 @Repository
 public class InvasiveTestECOGDAOImpl  extends
-GenericDAOImpl<InvasiveTestECOGEntity> implements InvasiveTestECOGDAO{
+GenericDAOImpl<InvasiveTestEcogEntity> implements InvasiveTestECOGDAO{
 
 }

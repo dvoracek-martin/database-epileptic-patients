@@ -877,7 +877,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	private String printOutDiagnosticTestEEG(PatientEntity patient,
-			DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
+			DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -915,7 +915,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	private String printOutDiagnosticTestMRI(PatientEntity patient,
-			DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
+			DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -983,7 +983,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	private String printOutInvasiveTestECOG(PatientEntity patient,
-			InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
+			InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -1006,7 +1006,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	private String printOutInvasiveTestEEG(PatientEntity patient,
-			InvasiveTestEEGEntity operation, Locale locale,
+			InvasiveTestEegEntity operation, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 

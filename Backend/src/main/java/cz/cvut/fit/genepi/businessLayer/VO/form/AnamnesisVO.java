@@ -1,151 +1,56 @@
-package cz.cvut.fit.genepi.dataLayer.entity.card;
+package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
-
 /**
- * The Class AnamnesisEntity.
+ * Created by Jan on 25.1.14.
  */
-@Entity
-@Table(name = "anamnesis")
-public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
+public class AnamnesisVO {
 
-	/* Autofilled fields */
-
-    /**
-     * The id.
-     */
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue
     private int id;
 
-    /**
-     * The add user id.
-     */
-    //@NotNull
-    @Column(name = "add_user_id", nullable = false)
-    private int addUserId;
-
-    /**
-     * The added.
-     */
-    @Column(name = "added", nullable = false, insertable = false)
-    private Date added;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
-    private PatientEntity patient;
-
-    @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
-
-	/* Other fields */
-
-    /**
-     * The date.
-     */
-    @Column(name = "date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
     private Date date;
 
-    /**
-     * The epilepsy in family.
-     */
-    @Column(name = "epilepsy_in_family")
     private boolean epilepsyInFamily;
 
-    /**
-     * The prenatal risk.
-     */
-    @Column(name = "prenatal_risk")
     private boolean prenatalRisk;
 
-    /**
-     * The fibril convulsions.
-     */
-    @Column(name = "fibril_convulsions")
     private boolean fibrilConvulsions;
 
-    /**
-     * The inflammation cns.
-     */
-    @Column(name = "inflammation_cns")
     private boolean inflammationCns;
 
-    /**
-     * The injury cns.
-     */
-    @Column(name = "injury_cns")
     private boolean injuryCns;
 
-    /**
-     * The operation cns.
-     */
-    @Column(name = "operation_cns")
     private boolean operationCns;
 
-    /**
-     * The early pmd retardation.
-     */
-    @Column(name = "early_pmd_retardation")
     private boolean earlyPmdRetardation;
 
-    /**
-     * The beginning epilepsy.
-     */
-    @Column(name = "beginning_epilepsy", length = 7)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
     private Date beginningEpilepsy;
 
-    /**
-     * The first fever.
-     */
-    @Column(name = "first_fever")
     private boolean firstFever;
 
-    /**
-     * The infantile spasm.
-     */
-    @Column(name = "infantile_spasm")
     private boolean infantileSpasm;
 
-    /**
-     * The specific syndrome idcom.
-     */
-    @Column(name = "specific_syndrome")
     private int specificSyndrome;
 
-    /**
-     * The non cns comorbidity.
-     */
-    @Column(name = "non_cns_comorbidity", length = 800)
+    @Size(max = 800)
     private String nonCnsComorbidity;
 
-    /**
-     * The comment.
-     */
-    @Column(name = "comment", length = 800)
+    @Size(max = 800)
     private String comment;
-
-    @Override
-    public int compareTo(AnamnesisEntity o) {
-        int comparison = this.date.compareTo(o.getDate());
-        if (comparison > 0) {
-            return -1;
-        } else if (comparison == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
-	/* Getters and Setters */
 
     public int getId() {
         return id;
@@ -155,45 +60,12 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
         this.id = id;
     }
 
-    public int getAddUserId() {
-        return addUserId;
-    }
-
-    public void setAddUserId(int addUserId) {
-        this.addUserId = addUserId;
-    }
-
-    public Date getAdded() {
-        return added;
-    }
-
-    public void setAdded(Date added) {
-        this.added = added;
-    }
-
-    public PatientEntity getPatient() {
-        return patient;
-    }
-
-    public void setPatient(PatientEntity patient) {
-        this.patient = patient;
-    }
-
-
     public int getPatientId() {
         return patientId;
     }
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public Date getDate() {

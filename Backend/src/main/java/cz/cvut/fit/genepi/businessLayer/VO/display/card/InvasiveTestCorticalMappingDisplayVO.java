@@ -1,17 +1,17 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
 /**
- * Created by Jan on 21.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class SeizureDetailDisplayVO {
+public class InvasiveTestCorticalMappingDisplayVO {
 
     private int id;
 
     private String date;
 
-    private int sscClassification;
+    private boolean done;
 
-    private int ilaeClassification;
+    private int corticalMapping;
 
     private String comment;
 
@@ -31,20 +31,20 @@ public class SeizureDetailDisplayVO {
         this.date = date;
     }
 
-    public int getSscClassification() {
-        return sscClassification;
+    public boolean isDone() {
+        return done;
     }
 
-    public void setSscClassification(int sscClassification) {
-        this.sscClassification = sscClassification;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
-    public int getIlaeClassification() {
-        return ilaeClassification;
+    public int getCorticalMapping() {
+        return corticalMapping;
     }
 
-    public void setIlaeClassification(int ilaeClassification) {
-        this.ilaeClassification = ilaeClassification;
+    public void setCorticalMapping(int corticalMapping) {
+        this.corticalMapping = corticalMapping;
     }
 
     public String getComment() {

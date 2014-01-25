@@ -20,32 +20,17 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
+import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.FilterDefs;
-import org.hibernate.annotations.FilterJoinTable;
 import org.hibernate.annotations.Filters;
 import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.ParamDef;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import cz.cvut.fit.genepi.util.CollectionConverter;
 import cz.cvut.fit.genepi.util.Sorter;
 
@@ -121,11 +106,11 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestScalpEEGEntity> diagnosticTestScalpEEGList;
+	private Set<DiagnosticTestScalpEegEntity> diagnosticTestScalpEEGList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<DiagnosticTestMRIEntity> diagnosticTestMRIList;
+	private Set<DiagnosticTestMriEntity> diagnosticTestMRIList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -137,11 +122,11 @@ public class PatientEntity {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<InvasiveTestECOGEntity> invasiveTestECOGList;
+	private Set<InvasiveTestEcogEntity> invasiveTestECOGList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
-	private Set<InvasiveTestEEGEntity> invasiveTestEEGList;
+	private Set<InvasiveTestEegEntity> invasiveTestEEGList;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
 	@Cascade({ CascadeType.ALL })
@@ -275,15 +260,15 @@ public class PatientEntity {
 		this.outcomeList = converter.toSet(outcomeList);
 	}
 
-	public List<InvasiveTestEEGEntity> getInvasiveTestEEGList() {
-		CollectionConverter<InvasiveTestEEGEntity> converter = new CollectionConverter<>();
-		Sorter<InvasiveTestEEGEntity> sorter = new Sorter<>();
+	public List<InvasiveTestEegEntity> getInvasiveTestEEGList() {
+		CollectionConverter<InvasiveTestEegEntity> converter = new CollectionConverter<>();
+		Sorter<InvasiveTestEegEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter.toList(this.invasiveTestEEGList));
 	}
 
 	public void setInvasiveTestEEGList(
-			List<InvasiveTestEEGEntity> invasiveTestEEGList) {
-		CollectionConverter<InvasiveTestEEGEntity> converter = new CollectionConverter<>();
+			List<InvasiveTestEegEntity> invasiveTestEEGList) {
+		CollectionConverter<InvasiveTestEegEntity> converter = new CollectionConverter<>();
 		this.invasiveTestEEGList = converter.toSet(invasiveTestEEGList);
 	}
 
@@ -298,42 +283,42 @@ public class PatientEntity {
 		this.operationList = converter.toSet(operationList);
 	}
 
-	public List<DiagnosticTestMRIEntity> getDiagnosticTestMRIList() {
-		CollectionConverter<DiagnosticTestMRIEntity> converter = new CollectionConverter<>();
-		Sorter<DiagnosticTestMRIEntity> sorter = new Sorter<>();
+	public List<DiagnosticTestMriEntity> getDiagnosticTestMRIList() {
+		CollectionConverter<DiagnosticTestMriEntity> converter = new CollectionConverter<>();
+		Sorter<DiagnosticTestMriEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter.toList(this.diagnosticTestMRIList));
 	}
 
 	public void setDiagnosticTestMRIList(
-			List<DiagnosticTestMRIEntity> diagnosticTestMRIList) {
-		CollectionConverter<DiagnosticTestMRIEntity> converter = new CollectionConverter<>();
+			List<DiagnosticTestMriEntity> diagnosticTestMRIList) {
+		CollectionConverter<DiagnosticTestMriEntity> converter = new CollectionConverter<>();
 		this.diagnosticTestMRIList = converter.toSet(diagnosticTestMRIList);
 	}
 
-	public List<DiagnosticTestScalpEEGEntity> getDiagnosticTestEEGList() {
-		CollectionConverter<DiagnosticTestScalpEEGEntity> converter = new CollectionConverter<>();
-		Sorter<DiagnosticTestScalpEEGEntity> sorter = new Sorter<>();
+	public List<DiagnosticTestScalpEegEntity> getDiagnosticTestEEGList() {
+		CollectionConverter<DiagnosticTestScalpEegEntity> converter = new CollectionConverter<>();
+		Sorter<DiagnosticTestScalpEegEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter
 				.toList(this.diagnosticTestScalpEEGList));
 	}
 
 	public void setDiagnosticTestEEGList(
-			List<DiagnosticTestScalpEEGEntity> diagnosticTestEEGList) {
-		CollectionConverter<DiagnosticTestScalpEEGEntity> converter = new CollectionConverter<>();
+			List<DiagnosticTestScalpEegEntity> diagnosticTestEEGList) {
+		CollectionConverter<DiagnosticTestScalpEegEntity> converter = new CollectionConverter<>();
 		this.diagnosticTestScalpEEGList = converter
 				.toSet(diagnosticTestEEGList);
 	}
 
-	public List<InvasiveTestECOGEntity> getInvasiveTestECOGList() {
-		CollectionConverter<InvasiveTestECOGEntity> converter = new CollectionConverter<>();
-		Sorter<InvasiveTestECOGEntity> sorter = new Sorter<>();
+	public List<InvasiveTestEcogEntity> getInvasiveTestECOGList() {
+		CollectionConverter<InvasiveTestEcogEntity> converter = new CollectionConverter<>();
+		Sorter<InvasiveTestEcogEntity> sorter = new Sorter<>();
 		return sorter.sortByDate(converter.toList(this.invasiveTestECOGList));
 
 	}
 
 	public void setInvasiveTestECOGList(
-			List<InvasiveTestECOGEntity> invasiveTestECOGList) {
-		CollectionConverter<InvasiveTestECOGEntity> converter = new CollectionConverter<>();
+			List<InvasiveTestEcogEntity> invasiveTestECOGList) {
+		CollectionConverter<InvasiveTestEcogEntity> converter = new CollectionConverter<>();
 		this.invasiveTestECOGList = converter.toSet(invasiveTestECOGList);
 
 	}

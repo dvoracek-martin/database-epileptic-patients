@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.dataLayer.DAOImpl.card;
 
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.card.DiagnosticTestMRIDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
 
 /**
  * Implementation of DiagnosticTestMRIDAO
@@ -12,6 +12,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
  */
 @Repository
 public class DiagnosticTestMRIDAOImpl extends
-		GenericDAOImpl<DiagnosticTestMRIEntity> implements DiagnosticTestMRIDAO {
+		GenericDAOImpl<DiagnosticTestMriEntity> implements DiagnosticTestMRIDAO {
 
 }

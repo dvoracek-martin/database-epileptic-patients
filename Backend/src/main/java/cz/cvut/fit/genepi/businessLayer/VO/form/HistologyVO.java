@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Created by Jan on 22.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class PharmacotherapyVO {
+public class HistologyVO {
 
     private int id;
 
@@ -21,11 +21,9 @@ public class PharmacotherapyVO {
     @NotNull
     private Date date;
 
-    private int aed;
+    private int histopathology;
 
-    private int efficiency;
-
-    private boolean duringSurgery;
+    private int fcdClasification;
 
     @Size(max = 800)
     private String comment;
@@ -54,28 +52,20 @@ public class PharmacotherapyVO {
         this.date = date;
     }
 
-    public int getAed() {
-        return aed;
+    public int getHistopathology() {
+        return histopathology;
     }
 
-    public void setAed(int aed) {
-        this.aed = aed;
+    public void setHistopathology(int histopathology) {
+        this.histopathology = histopathology;
     }
 
-    public int getEfficiency() {
-        return efficiency;
+    public int getFcdClasification() {
+        return fcdClasification;
     }
 
-    public void setEfficiency(int efficiency) {
-        this.efficiency = efficiency;
-    }
-
-    public boolean isDuringSurgery() {
-        return duringSurgery;
-    }
-
-    public void setDuringSurgery(boolean duringSurgery) {
-        this.duringSurgery = duringSurgery;
+    public void setFcdClasification(int fcdClasification) {
+        this.fcdClasification = fcdClasification;
     }
 
     public String getComment() {

@@ -524,7 +524,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	private String printOutDiagnosticTestEEG(PatientEntity patient,
-			DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
+			DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -562,7 +562,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	private String printOutDiagnosticTestMRI(PatientEntity patient,
-			DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
+			DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -630,7 +630,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	private String printOutInvasiveTestECOG(PatientEntity patient,
-			InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
+			InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 
@@ -653,7 +653,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	private String printOutInvasiveTestEEG(PatientEntity patient,
-			InvasiveTestEEGEntity operation, Locale locale,
+			InvasiveTestEegEntity operation, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 

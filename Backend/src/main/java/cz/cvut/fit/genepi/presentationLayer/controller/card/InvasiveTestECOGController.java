@@ -3,7 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestECOGService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public class InvasiveTestECOGController {
                 patientID);
 
         model.addAttribute("patient", patient);
-        model.addAttribute("invasiveTestECOG", new InvasiveTestECOGEntity());
+        model.addAttribute("invasiveTestECOG", new InvasiveTestEcogEntity());
         return "patient/invasiveTestECOG/createView";
     }
 
@@ -51,7 +51,7 @@ public class InvasiveTestECOGController {
      */
     @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/create", method = RequestMethod.POST)
     public String invasiveTestECOGCreatePOST(
-            @ModelAttribute("invasiveTestECOG") @Valid InvasiveTestECOGEntity invasiveTestECOG,
+            @ModelAttribute("invasiveTestECOG") @Valid InvasiveTestEcogEntity invasiveTestECOG,
             BindingResult result, @PathVariable("patientID") Integer patientID) {
         if (result.hasErrors()) {
             return "patient/invasiveTestECOG/createView";
@@ -69,7 +69,7 @@ public class InvasiveTestECOGController {
                                             @PathVariable("invasiveTestECOGID") Integer invasiveTestECOGID) {
 
         invasiveTestECOGService.delete(invasiveTestECOGService.findByID(
-                InvasiveTestECOGEntity.class, invasiveTestECOGID));
+                InvasiveTestEcogEntity.class, invasiveTestECOGID));
         return "redirect:/patient/" + patientID + "/invasiveTestECOG/list";
     }
 
@@ -89,7 +89,7 @@ public class InvasiveTestECOGController {
             Locale locale, Model model) {
 
         invasiveTestECOGService.hide(invasiveTestECOGService.findByID(
-                InvasiveTestECOGEntity.class, invasiveTestEcogId));
+                InvasiveTestEcogEntity.class, invasiveTestEcogId));
         return "redirect:/patient/" + patientId + "/invasiveTestEcog/list";
     }
 
@@ -109,7 +109,7 @@ public class InvasiveTestECOGController {
             Locale locale, Model model) {
 
         invasiveTestECOGService.unhide(invasiveTestECOGService.findByID(
-                InvasiveTestECOGEntity.class, invasiveTestEcogId));
+                InvasiveTestEcogEntity.class, invasiveTestEcogId));
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/invasiveTestEcog/list";

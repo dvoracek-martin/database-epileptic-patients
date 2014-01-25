@@ -8,9 +8,9 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Created by Jan on 22.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class PharmacotherapyVO {
+public class InvasiveTestEcogVO {
 
     private int id;
 
@@ -21,11 +21,14 @@ public class PharmacotherapyVO {
     @NotNull
     private Date date;
 
-    private int aed;
+    private boolean done;
 
-    private int efficiency;
+    @Size(max = 800)
+    private String ecogCover;
 
-    private boolean duringSurgery;
+    private int ecogPatterns;
+
+    private int afterResectionEcog;
 
     @Size(max = 800)
     private String comment;
@@ -54,28 +57,36 @@ public class PharmacotherapyVO {
         this.date = date;
     }
 
-    public int getAed() {
-        return aed;
+    public boolean isDone() {
+        return done;
     }
 
-    public void setAed(int aed) {
-        this.aed = aed;
+    public void setDone(boolean done) {
+        this.done = done;
     }
 
-    public int getEfficiency() {
-        return efficiency;
+    public String getEcogCover() {
+        return ecogCover;
     }
 
-    public void setEfficiency(int efficiency) {
-        this.efficiency = efficiency;
+    public void setEcogCover(String ecogCover) {
+        this.ecogCover = ecogCover;
     }
 
-    public boolean isDuringSurgery() {
-        return duringSurgery;
+    public int getEcogPatterns() {
+        return ecogPatterns;
     }
 
-    public void setDuringSurgery(boolean duringSurgery) {
-        this.duringSurgery = duringSurgery;
+    public void setEcogPatterns(int ecogPatterns) {
+        this.ecogPatterns = ecogPatterns;
+    }
+
+    public int getAfterResectionEcog() {
+        return afterResectionEcog;
+    }
+
+    public void setAfterResectionEcog(int afterResectionEcog) {
+        this.afterResectionEcog = afterResectionEcog;
     }
 
     public String getComment() {

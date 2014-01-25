@@ -1,12 +1,8 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
@@ -27,7 +23,6 @@ public class OperationEntity implements Comparable<OperationEntity> {
     /**
      * The add user id.
      */
-    @NotNull
     @Column(name = "add_user_id", nullable = false)
     private int addUserId;
 
@@ -52,15 +47,9 @@ public class OperationEntity implements Comparable<OperationEntity> {
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date_operation", nullable = false)
     private Date dateOperation;
 
@@ -70,7 +59,6 @@ public class OperationEntity implements Comparable<OperationEntity> {
     @Column(name = "range_operation")
     private int rangeOperation;
 
-    @Size(max = 800)
     @Column(name = "localization_operation", length = 800)
     private String localizationOperation;
 
@@ -84,9 +72,8 @@ public class OperationEntity implements Comparable<OperationEntity> {
     private boolean vns;
 
     @Column(name = "vns_implantation_date")
-    private Date VNSImplantationDate;
+    private Date vnsImplantationDate;
 
-    @Size(max = 800)
     @Column(name = "operation_details", length = 800)
     private String operationDetails;
 
@@ -96,7 +83,6 @@ public class OperationEntity implements Comparable<OperationEntity> {
     /**
      * The comment.
      */
-    @Size(max = 800)
     @Column(name = "comment", length = 800, nullable = true)
     private String comment;
 
@@ -231,12 +217,12 @@ public class OperationEntity implements Comparable<OperationEntity> {
         this.vns = vns;
     }
 
-    public Date getVNSImplantationDate() {
-        return VNSImplantationDate;
+    public Date getVnsImplantationDate() {
+        return vnsImplantationDate;
     }
 
-    public void setVNSImplantationDate(Date vNSImplantationDate) {
-        VNSImplantationDate = vNSImplantationDate;
+    public void setVnsImplantationDate(Date vNSImplantationDate) {
+        vnsImplantationDate = vNSImplantationDate;
     }
 
     public String getOperationDetails() {

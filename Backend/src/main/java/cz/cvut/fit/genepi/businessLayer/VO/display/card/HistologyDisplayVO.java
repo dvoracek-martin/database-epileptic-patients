@@ -1,17 +1,17 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
 /**
- * Created by Jan on 21.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class SeizureDetailDisplayVO {
+public class HistologyDisplayVO {
 
     private int id;
 
     private String date;
 
-    private int sscClassification;
+    private int histopathology;
 
-    private int ilaeClassification;
+    private int fcdClasification;
 
     private String comment;
 
@@ -31,20 +31,20 @@ public class SeizureDetailDisplayVO {
         this.date = date;
     }
 
-    public int getSscClassification() {
-        return sscClassification;
+    public int getHistopathology() {
+        return histopathology;
     }
 
-    public void setSscClassification(int sscClassification) {
-        this.sscClassification = sscClassification;
+    public void setHistopathology(int histopathology) {
+        this.histopathology = histopathology;
     }
 
-    public int getIlaeClassification() {
-        return ilaeClassification;
+    public int getFcdClasification() {
+        return fcdClasification;
     }
 
-    public void setIlaeClassification(int ilaeClassification) {
-        this.ilaeClassification = ilaeClassification;
+    public void setFcdClasification(int fcdClasification) {
+        this.fcdClasification = fcdClasification;
     }
 
     public String getComment() {

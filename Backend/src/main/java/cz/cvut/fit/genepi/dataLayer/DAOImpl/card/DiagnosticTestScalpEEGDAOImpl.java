@@ -4,7 +4,7 @@ import org.springframework.stereotype.Repository;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.card.DiagnosticTestScalpEEGDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 
 /**
  * Implementation of DiagnosticTestScalpEEGDAO
@@ -12,7 +12,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
  */
 @Repository
 public class DiagnosticTestScalpEEGDAOImpl extends
-		GenericDAOImpl<DiagnosticTestScalpEEGEntity> implements
+		GenericDAOImpl<DiagnosticTestScalpEegEntity> implements
 		DiagnosticTestScalpEEGDAO {
 
 }

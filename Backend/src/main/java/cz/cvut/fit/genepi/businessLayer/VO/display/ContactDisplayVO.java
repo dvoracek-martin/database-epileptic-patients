@@ -1,14 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-
 /**
  * Created by Jan on 20.1.14.
  */

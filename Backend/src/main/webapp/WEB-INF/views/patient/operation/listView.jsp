@@ -189,7 +189,7 @@
 												</tr>
 												<tr class="info">
 													<td><spring:message code="label.VNSImplantationDate"/></td>
-													<td>${operation.VNSImplantationDate}</td>
+													<td>${operation.vnsImplantationDate}</td>
 												</tr>
 												<tr class="info">
 													<td><spring:message code="label.operationDetails"/></td>

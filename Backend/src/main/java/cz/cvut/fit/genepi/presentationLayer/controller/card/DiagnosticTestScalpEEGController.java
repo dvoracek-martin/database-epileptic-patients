@@ -3,7 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEEGService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +38,7 @@ public class DiagnosticTestScalpEEGController {
 
         model.addAttribute("patient", patient);
         model.addAttribute("diagnosticTestScalpEEG",
-                new DiagnosticTestScalpEEGEntity());
+                new DiagnosticTestScalpEegEntity());
         return "patient/diagnosticTestScalpEEG/createView";
     }
 
@@ -52,7 +52,7 @@ public class DiagnosticTestScalpEEGController {
      */
     @RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/create", method = RequestMethod.POST)
     public String diagnosticTestScalpEEGCreatePOST(
-            @ModelAttribute("diagnosticTestScalpEEG") @Valid DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG,
+            @ModelAttribute("diagnosticTestScalpEEG") @Valid DiagnosticTestScalpEegEntity diagnosticTestScalpEEG,
             BindingResult result, @PathVariable("patientID") Integer patientID) {
         if (result.hasErrors()) {
             return "patient/diagnosticTestScalpEEG/createView";
@@ -70,7 +70,7 @@ public class DiagnosticTestScalpEEGController {
                                                   @PathVariable("diagnosticTestScalpEEGID") Integer diagnosticTestScalpEEGID) {
 
         diagnosticTestScalpEEGService.delete(diagnosticTestScalpEEGService
-                .findByID(DiagnosticTestScalpEEGEntity.class,
+                .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEEGID));
         return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
     }
@@ -92,7 +92,7 @@ public class DiagnosticTestScalpEEGController {
             Locale locale, Model model) {
 
         diagnosticTestScalpEEGService.hide(diagnosticTestScalpEEGService
-                .findByID(DiagnosticTestScalpEEGEntity.class,
+                .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEegId));
         return "redirect:/patient/" + patientId + "/anamnesis/list";
     }
@@ -114,7 +114,7 @@ public class DiagnosticTestScalpEEGController {
             Locale locale, Model model) {
 
         diagnosticTestScalpEEGService.unhide(diagnosticTestScalpEEGService
-                .findByID(DiagnosticTestScalpEEGEntity.class,
+                .findByID(DiagnosticTestScalpEegEntity.class,
                         diagnosticTestScalpEegId));
         // TODO: address to get back to admin module where is list od hidden
         // records.

@@ -19,16 +19,16 @@
 		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity" />
 		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity" />
 		<mapping
-			class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity" />
+			class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity" />
 		<mapping
-			class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity" />
+			class="cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity" />
 		<mapping class="cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity" />
 		<mapping
 			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity" />
 		<mapping
-			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity" />
+			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity" />
 		<mapping
-			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity" />
+			class="cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity" />
 		<mapping
 			class="cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity" />
 		<mapping

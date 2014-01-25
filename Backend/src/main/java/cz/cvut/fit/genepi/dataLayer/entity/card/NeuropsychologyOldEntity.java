@@ -1,12 +1,8 @@
 package cz.cvut.fit.genepi.dataLayer.entity.card;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 //TODO: Merge with pszchology NEW??
@@ -27,7 +23,6 @@ public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEn
     /**
      * The add user id.
      */
-    @NotNull
     @Column(name = "add_user_id", nullable = false)
     private int addUserId;
 
@@ -52,9 +47,6 @@ public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEn
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 
@@ -76,7 +68,6 @@ public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEn
     /**
      * The comment.
      */
-    @Size(max = 800)
     @Column(name = "comment", length = 800, nullable = true)
     private String comment;
 

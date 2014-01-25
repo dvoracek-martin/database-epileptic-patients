@@ -1,160 +1,89 @@
-package cz.cvut.fit.genepi.dataLayer.entity.card;
+package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
-@Entity
-@Table(name = "neuropsychology")
-public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> {
+/**
+ * Created by Jan on 25.1.14.
+ */
+public class NeuropsychologyVO {
 
-	/* Autofilled fields */
-
-    /**
-     * The id.
-     */
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue
     private int id;
 
-    /**
-     * The add user id.
-     */
-    @Column(name = "add_user_id", nullable = false)
-    private int addUserId;
-
-    /**
-     * The added.
-     */
-    @Column(name = "added", nullable = false, insertable = false)
-    private Date added;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "patient_id", insertable = false, updatable = false)
-    private PatientEntity patient;
-
-    @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-
-    @Column(name = "status", nullable = false)
-    private int status;
-
-	/* Other fields */
-    /**
-     * The date.
-     */
-    @Column(name = "date", nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
     private Date date;
 
-    @Column(name = "intellect", nullable = false)
     private int intellect;
 
-    @Column(name = "neurodevelopmental_examination", nullable = false)
     private int neurodevelopmentalExamination;
 
-    @Column(name = "neurodevelopmental_examination_adaptability", nullable = false)
     private int neurodevelopmentalExaminationAdaptability;
 
-    @Column(name = "neurodevelopmental_examination_speech_expressively", nullable = false)
     private int neurodevelopmentalExaminationSpeechExpressively;
 
-    @Column(name = "neurodevelopmental_examination_speech_receptively", nullable = false)
     private int neurodevelopmentalExaminationSpeechReceptively;
 
-    @Column(name = "neurodevelopmental_examination_fine_motor_skills", nullable = false)
     private int neurodevelopmentalExaminationFineMotorSkills;
 
-    @Column(name = "neurodevelopmental_examination_gross_motor_skills", nullable = false)
     private int neurodevelopmentalExaminationGrossMotorSkills;
 
-    @Column(name = "neurodevelopmental_examination_social_behavior", nullable = false)
     private int neurodevelopmentalExaminationSocialBehavior;
 
-    @Column(name = "intellectual_performance", nullable = false)
     private int intellectualPerformance;
 
-    @Column(name = "intellectual_performance_verbally", nullable = false)
     private int intellectualPerformanceVerbally;
 
-    @Column(name = "intellectual_performance_nonverbal_abstraction", nullable = false)
     private int intellectualPerformanceNonverbalAbstraction;
 
-    @Column(name = "intellectual_performance_nonverbal_design_capabilities", nullable = false)
     private int intellectualPerformanceNonverbalDesignCapabilities;
 
-    @Column(name = "neuropsychological_profile", nullable = false)
     private int neuropsychologicalProfile;
 
-    @Column(name = "neuropsychological_profile_attention", nullable = false)
     private int neuropsychologicalProfileAttention;
 
-    @Column(name = "neuropsychological_profile_executive_function", nullable = false)
     private int neuropsychologicalProfileExecutiveFunction;
 
-    @Column(name = "neuropsychological_profile_cognitive_speed", nullable = false)
     private int neuropsychologicalProfileCognitiveSpeed;
 
-    @Column(name = "neuropsychological_profile_speech_expressively", nullable = false)
     private int neuropsychologicalProfileSpeechExpressively;
 
-    @Column(name = "neuropsychological_profile_speech_understanding", nullable = false)
     private int neuropsychologicalProfileSpeechUnderstanding;
 
-    @Column(name = "neuropsychological_profile_memory_operating", nullable = false)
     private int neuropsychologicalProfileMemoryOperating;
 
-    @Column(name = "neuropsychological_profile_memory_verbal", nullable = false)
     private int neuropsychologicalProfileMemoryVerbal;
 
-    @Column(name = "neuropsychological_profile_memory_nonverbal", nullable = false)
     private int neuropsychologicalProfileMemoryNonverbal;
 
-    @Column(name = "neuropsychological_profile_memory_learning", nullable = false)
     private int neuropsychologicalProfileMemoryLearning;
 
-    @Column(name = "neuropsychological_profile_perception_speech", nullable = false)
     private int neuropsychologicalProfilePerceptionSpeech;
 
-    @Column(name = "neuropsychological_profile_perception_visual", nullable = false)
     private int neuropsychologicalProfilePerceptionVisual;
 
-    @Column(name = "neuropsychological_profile_perception_spatial", nullable = false)
     private int neuropsychologicalProfilePerceptionSpatial;
 
-    @Column(name = "neuropsychological_profile_motor_skills_dexterity", nullable = false)
     private int neuropsychologicalProfileMotorSkillsDexterity;
 
-    @Column(name = "neuropsychological_profile_motor_coordination", nullable = false)
     private int neuropsychologicalProfileMotorCoordination;
 
-    @Column(name = "presence_of_changes", nullable = false)
     private int presenceOfChanges;
 
-    @Column(name = "presence_of_changes_detail", nullable = false)
     private int presenceOfChangesDetail;
 
-    @Column(name = "emotional_status", nullable = false)
     private int emotionalStatus;
 
-    @Column(name = "comment", nullable = false)
+    @Size(max = 800)
     private int comment;
 
-    @Override
-    public int compareTo(NeuropsychologyEntity o) {
-        int comparison = this.date.compareTo(o.getDate());
-        if (comparison > 0) {
-            return -1;
-        } else if (comparison == 0) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
-    /* Getters and Setters */
     public int getId() {
         return id;
     }
@@ -163,44 +92,12 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         this.id = id;
     }
 
-    public int getAddUserId() {
-        return addUserId;
-    }
-
-    public void setAddUserId(int addUserId) {
-        this.addUserId = addUserId;
-    }
-
-    public Date getAdded() {
-        return added;
-    }
-
-    public void setAdded(Date added) {
-        this.added = added;
-    }
-
-    public PatientEntity getPatient() {
-        return patient;
-    }
-
-    public void setPatient(PatientEntity patient) {
-        this.patient = patient;
-    }
-
     public int getPatientId() {
         return patientId;
     }
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 
     public Date getDate() {
@@ -231,8 +128,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationAdaptability;
     }
 
-    public void setNeurodevelopmentalExaminationAdaptability(
-            int neurodevelopmentalExaminationAdaptability) {
+    public void setNeurodevelopmentalExaminationAdaptability(int neurodevelopmentalExaminationAdaptability) {
         this.neurodevelopmentalExaminationAdaptability = neurodevelopmentalExaminationAdaptability;
     }
 
@@ -240,8 +136,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationSpeechExpressively;
     }
 
-    public void setNeurodevelopmentalExaminationSpeechExpressively(
-            int neurodevelopmentalExaminationSpeechExpressively) {
+    public void setNeurodevelopmentalExaminationSpeechExpressively(int neurodevelopmentalExaminationSpeechExpressively) {
         this.neurodevelopmentalExaminationSpeechExpressively = neurodevelopmentalExaminationSpeechExpressively;
     }
 
@@ -249,8 +144,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationSpeechReceptively;
     }
 
-    public void setNeurodevelopmentalExaminationSpeechReceptively(
-            int neurodevelopmentalExaminationSpeechReceptively) {
+    public void setNeurodevelopmentalExaminationSpeechReceptively(int neurodevelopmentalExaminationSpeechReceptively) {
         this.neurodevelopmentalExaminationSpeechReceptively = neurodevelopmentalExaminationSpeechReceptively;
     }
 
@@ -258,8 +152,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationFineMotorSkills;
     }
 
-    public void setNeurodevelopmentalExaminationFineMotorSkills(
-            int neurodevelopmentalExaminationFineMotorSkills) {
+    public void setNeurodevelopmentalExaminationFineMotorSkills(int neurodevelopmentalExaminationFineMotorSkills) {
         this.neurodevelopmentalExaminationFineMotorSkills = neurodevelopmentalExaminationFineMotorSkills;
     }
 
@@ -267,8 +160,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationGrossMotorSkills;
     }
 
-    public void setNeurodevelopmentalExaminationGrossMotorSkills(
-            int neurodevelopmentalExaminationGrossMotorSkills) {
+    public void setNeurodevelopmentalExaminationGrossMotorSkills(int neurodevelopmentalExaminationGrossMotorSkills) {
         this.neurodevelopmentalExaminationGrossMotorSkills = neurodevelopmentalExaminationGrossMotorSkills;
     }
 
@@ -276,8 +168,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neurodevelopmentalExaminationSocialBehavior;
     }
 
-    public void setNeurodevelopmentalExaminationSocialBehavior(
-            int neurodevelopmentalExaminationSocialBehavior) {
+    public void setNeurodevelopmentalExaminationSocialBehavior(int neurodevelopmentalExaminationSocialBehavior) {
         this.neurodevelopmentalExaminationSocialBehavior = neurodevelopmentalExaminationSocialBehavior;
     }
 
@@ -293,8 +184,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return intellectualPerformanceVerbally;
     }
 
-    public void setIntellectualPerformanceVerbally(
-            int intellectualPerformanceVerbally) {
+    public void setIntellectualPerformanceVerbally(int intellectualPerformanceVerbally) {
         this.intellectualPerformanceVerbally = intellectualPerformanceVerbally;
     }
 
@@ -302,8 +192,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return intellectualPerformanceNonverbalAbstraction;
     }
 
-    public void setIntellectualPerformanceNonverbalAbstraction(
-            int intellectualPerformanceNonverbalAbstraction) {
+    public void setIntellectualPerformanceNonverbalAbstraction(int intellectualPerformanceNonverbalAbstraction) {
         this.intellectualPerformanceNonverbalAbstraction = intellectualPerformanceNonverbalAbstraction;
     }
 
@@ -311,8 +200,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return intellectualPerformanceNonverbalDesignCapabilities;
     }
 
-    public void setIntellectualPerformanceNonverbalDesignCapabilities(
-            int intellectualPerformanceNonverbalDesignCapabilities) {
+    public void setIntellectualPerformanceNonverbalDesignCapabilities(int intellectualPerformanceNonverbalDesignCapabilities) {
         this.intellectualPerformanceNonverbalDesignCapabilities = intellectualPerformanceNonverbalDesignCapabilities;
     }
 
@@ -328,8 +216,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileAttention;
     }
 
-    public void setNeuropsychologicalProfileAttention(
-            int neuropsychologicalProfileAttention) {
+    public void setNeuropsychologicalProfileAttention(int neuropsychologicalProfileAttention) {
         this.neuropsychologicalProfileAttention = neuropsychologicalProfileAttention;
     }
 
@@ -337,8 +224,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileExecutiveFunction;
     }
 
-    public void setNeuropsychologicalProfileExecutiveFunction(
-            int neuropsychologicalProfileExecutiveFunction) {
+    public void setNeuropsychologicalProfileExecutiveFunction(int neuropsychologicalProfileExecutiveFunction) {
         this.neuropsychologicalProfileExecutiveFunction = neuropsychologicalProfileExecutiveFunction;
     }
 
@@ -346,8 +232,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileCognitiveSpeed;
     }
 
-    public void setNeuropsychologicalProfileCognitiveSpeed(
-            int neuropsychologicalProfileCognitiveSpeed) {
+    public void setNeuropsychologicalProfileCognitiveSpeed(int neuropsychologicalProfileCognitiveSpeed) {
         this.neuropsychologicalProfileCognitiveSpeed = neuropsychologicalProfileCognitiveSpeed;
     }
 
@@ -355,8 +240,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileSpeechExpressively;
     }
 
-    public void setNeuropsychologicalProfileSpeechExpressively(
-            int neuropsychologicalProfileSpeechExpressively) {
+    public void setNeuropsychologicalProfileSpeechExpressively(int neuropsychologicalProfileSpeechExpressively) {
         this.neuropsychologicalProfileSpeechExpressively = neuropsychologicalProfileSpeechExpressively;
     }
 
@@ -364,8 +248,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileSpeechUnderstanding;
     }
 
-    public void setNeuropsychologicalProfileSpeechUnderstanding(
-            int neuropsychologicalProfileSpeechUnderstanding) {
+    public void setNeuropsychologicalProfileSpeechUnderstanding(int neuropsychologicalProfileSpeechUnderstanding) {
         this.neuropsychologicalProfileSpeechUnderstanding = neuropsychologicalProfileSpeechUnderstanding;
     }
 
@@ -373,8 +256,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMemoryOperating;
     }
 
-    public void setNeuropsychologicalProfileMemoryOperating(
-            int neuropsychologicalProfileMemoryOperating) {
+    public void setNeuropsychologicalProfileMemoryOperating(int neuropsychologicalProfileMemoryOperating) {
         this.neuropsychologicalProfileMemoryOperating = neuropsychologicalProfileMemoryOperating;
     }
 
@@ -382,8 +264,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMemoryVerbal;
     }
 
-    public void setNeuropsychologicalProfileMemoryVerbal(
-            int neuropsychologicalProfileMemoryVerbal) {
+    public void setNeuropsychologicalProfileMemoryVerbal(int neuropsychologicalProfileMemoryVerbal) {
         this.neuropsychologicalProfileMemoryVerbal = neuropsychologicalProfileMemoryVerbal;
     }
 
@@ -391,8 +272,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMemoryNonverbal;
     }
 
-    public void setNeuropsychologicalProfileMemoryNonverbal(
-            int neuropsychologicalProfileMemoryNonverbal) {
+    public void setNeuropsychologicalProfileMemoryNonverbal(int neuropsychologicalProfileMemoryNonverbal) {
         this.neuropsychologicalProfileMemoryNonverbal = neuropsychologicalProfileMemoryNonverbal;
     }
 
@@ -400,8 +280,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMemoryLearning;
     }
 
-    public void setNeuropsychologicalProfileMemoryLearning(
-            int neuropsychologicalProfileMemoryLearning) {
+    public void setNeuropsychologicalProfileMemoryLearning(int neuropsychologicalProfileMemoryLearning) {
         this.neuropsychologicalProfileMemoryLearning = neuropsychologicalProfileMemoryLearning;
     }
 
@@ -409,8 +288,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfilePerceptionSpeech;
     }
 
-    public void setNeuropsychologicalProfilePerceptionSpeech(
-            int neuropsychologicalProfilePerceptionSpeech) {
+    public void setNeuropsychologicalProfilePerceptionSpeech(int neuropsychologicalProfilePerceptionSpeech) {
         this.neuropsychologicalProfilePerceptionSpeech = neuropsychologicalProfilePerceptionSpeech;
     }
 
@@ -418,8 +296,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfilePerceptionVisual;
     }
 
-    public void setNeuropsychologicalProfilePerceptionVisual(
-            int neuropsychologicalProfilePerceptionVisual) {
+    public void setNeuropsychologicalProfilePerceptionVisual(int neuropsychologicalProfilePerceptionVisual) {
         this.neuropsychologicalProfilePerceptionVisual = neuropsychologicalProfilePerceptionVisual;
     }
 
@@ -427,8 +304,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfilePerceptionSpatial;
     }
 
-    public void setNeuropsychologicalProfilePerceptionSpatial(
-            int neuropsychologicalProfilePerceptionSpatial) {
+    public void setNeuropsychologicalProfilePerceptionSpatial(int neuropsychologicalProfilePerceptionSpatial) {
         this.neuropsychologicalProfilePerceptionSpatial = neuropsychologicalProfilePerceptionSpatial;
     }
 
@@ -436,8 +312,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMotorSkillsDexterity;
     }
 
-    public void setNeuropsychologicalProfileMotorSkillsDexterity(
-            int neuropsychologicalProfileMotorSkillsDexterity) {
+    public void setNeuropsychologicalProfileMotorSkillsDexterity(int neuropsychologicalProfileMotorSkillsDexterity) {
         this.neuropsychologicalProfileMotorSkillsDexterity = neuropsychologicalProfileMotorSkillsDexterity;
     }
 
@@ -445,8 +320,7 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         return neuropsychologicalProfileMotorCoordination;
     }
 
-    public void setNeuropsychologicalProfileMotorCoordination(
-            int neuropsychologicalProfileMotorCoordination) {
+    public void setNeuropsychologicalProfileMotorCoordination(int neuropsychologicalProfileMotorCoordination) {
         this.neuropsychologicalProfileMotorCoordination = neuropsychologicalProfileMotorCoordination;
     }
 
@@ -481,6 +355,4 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
     public void setComment(int comment) {
         this.comment = comment;
     }
-
-
 }

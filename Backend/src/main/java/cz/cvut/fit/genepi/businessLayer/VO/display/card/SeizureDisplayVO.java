@@ -1,8 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
-
-import javax.validation.constraints.Size;
 import java.util.List;
 
 /**

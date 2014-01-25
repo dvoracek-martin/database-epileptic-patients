@@ -1,11 +1,11 @@
 package cz.cvut.fit.genepi.dataLayer.DAO.card;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestECOGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 
 /**
  * InvasiveTestDAO interface
  */
-public interface InvasiveTestECOGDAO extends GenericDAO<InvasiveTestECOGEntity> {
+public interface InvasiveTestECOGDAO extends GenericDAO<InvasiveTestEcogEntity> {
 
 }

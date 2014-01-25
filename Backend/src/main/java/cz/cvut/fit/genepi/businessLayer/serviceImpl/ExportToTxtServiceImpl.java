@@ -276,7 +276,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isDiagnosticTestEEG()) {
             content += addStarLine();
-            for (DiagnosticTestScalpEEGEntity diagnosticTestEEG : patient
+            for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestEEGList()) {
                 content += this.printOutDiagnosticTestEEG(patient,
                         diagnosticTestEEG, locale, exportParams);
@@ -286,7 +286,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isDiagnosticTestMRI()) {
             content += addStarLine();
-            for (DiagnosticTestMRIEntity diagnosticTestMRI : patient
+            for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
                 content += this.printOutDiagnosticTestMRI(patient,
                         diagnosticTestMRI, locale, exportParams);
@@ -296,7 +296,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isInvasiveTestECOG()) {
             content += addStarLine();
-            for (InvasiveTestECOGEntity invasiveTestECOG : patient
+            for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
                 content += this.printOutInvasiveTestECOG(patient,
                         invasiveTestECOG, locale, exportParams);
@@ -306,7 +306,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isInvasiveTestEEG()) {
             content += addStarLine();
-            for (InvasiveTestEEGEntity invasiveTestEEG : patient
+            for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
                 content += this.printOutInvasiveTestEEG(patient,
                         invasiveTestEEG, locale, exportParams);
@@ -980,7 +980,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
      * Checks what properties of diagnostic test EEG should be printed out
      */
     private String printOutDiagnosticTestEEG(PatientEntity patient,
-                                             DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
+                                             DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
                                              ExportParamsEntity exportParams) {
         String content = "";
 
@@ -1069,7 +1069,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
      * Checks what properties of diagnostic test MRI should be printed out
      */
     private String printOutDiagnosticTestMRI(PatientEntity patient,
-                                             DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
+                                             DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
                                              ExportParamsEntity exportParams) {
         String content = "";
 
@@ -1227,7 +1227,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
      * Checks what properties of invasive test ECOG should be printed out
      */
     private String printOutInvasiveTestECOG(PatientEntity patient,
-                                            InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
+                                            InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
                                             ExportParamsEntity exportParams) {
         String content = "";
 
@@ -1280,7 +1280,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
      * Checks what properties of invasive test EEG should be printed out
      */
     private String printOutInvasiveTestEEG(PatientEntity patient,
-                                           InvasiveTestEEGEntity invasiveTestEEG, Locale locale,
+                                           InvasiveTestEegEntity invasiveTestEEG, Locale locale,
                                            ExportParamsEntity exportParams) {
         String content = "";
 
@@ -1471,7 +1471,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isOperationVNsImplantationDate()) {
             content += messageSource.getMessage("label.VNSImplantationDate", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getVNSImplantationDate()),
+            content += translateValue(String.valueOf(operation.getVnsImplantationDate()),
                     locale);
             content += "\n";
         }
@@ -1525,7 +1525,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isHistologyFcdClassification()) {
             content += messageSource.getMessage("label.FCDClasification", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(histology.getfcdClasification()),
+            content += translateValue(String.valueOf(histology.getFcdClasification()),
                     locale);
             content += "\n";
         }

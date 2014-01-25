@@ -3,7 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMRIService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMRIEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public class DiagnosticTestMRIController {
                 patientID);
 
         model.addAttribute("patient", patient);
-        model.addAttribute("diagnosticTestMRI", new DiagnosticTestMRIEntity());
+        model.addAttribute("diagnosticTestMRI", new DiagnosticTestMriEntity());
         return "patient/diagnosticTestMRI/createView";
     }
 
@@ -51,7 +51,7 @@ public class DiagnosticTestMRIController {
      */
     @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/create", method = RequestMethod.POST)
     public String diagnosticTestMRICreatePOST(
-            @ModelAttribute("diagnosticTestMRI") @Valid DiagnosticTestMRIEntity diagnosticTestMRI,
+            @ModelAttribute("diagnosticTestMRI") @Valid DiagnosticTestMriEntity diagnosticTestMRI,
             BindingResult result, @PathVariable("patientID") Integer patientID) {
         if (result.hasErrors()) {
             return "patient/diagnosticTestMRI/createView";
@@ -69,7 +69,7 @@ public class DiagnosticTestMRIController {
                                              @PathVariable("diagnosticTestMRIID") Integer diagnosticTestMRIID) {
 
         diagnosticTestMRIService.delete(diagnosticTestMRIService.findByID(
-                DiagnosticTestMRIEntity.class, diagnosticTestMRIID));
+                DiagnosticTestMriEntity.class, diagnosticTestMRIID));
         return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
     }
 
@@ -89,7 +89,7 @@ public class DiagnosticTestMRIController {
             Locale locale, Model model) {
 
         diagnosticTestMRIService.hide(diagnosticTestMRIService.findByID(
-                DiagnosticTestMRIEntity.class, diagnosticTestMriId));
+                DiagnosticTestMriEntity.class, diagnosticTestMriId));
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 
@@ -109,7 +109,7 @@ public class DiagnosticTestMRIController {
             Locale locale, Model model) {
 
         diagnosticTestMRIService.unhide(diagnosticTestMRIService.findByID(
-                DiagnosticTestMRIEntity.class, diagnosticTestMriId));
+                DiagnosticTestMriEntity.class, diagnosticTestMriId));
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";

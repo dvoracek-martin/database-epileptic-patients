@@ -1,11 +1,11 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEEGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 
 /**
  * The Interface DiagnosticTestScalpEEGService extends GenericCardService
  */
 public interface DiagnosticTestScalpEEGService extends
-        GenericCardService<DiagnosticTestScalpEEGEntity> {
+        GenericCardService<DiagnosticTestScalpEegEntity> {
 
 }

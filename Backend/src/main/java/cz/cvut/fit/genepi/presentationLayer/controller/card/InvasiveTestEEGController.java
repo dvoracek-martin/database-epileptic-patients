@@ -3,7 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEEGService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEEGEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +37,7 @@ public class InvasiveTestEEGController {
                 patientID);
 
         model.addAttribute("patient", patient);
-        model.addAttribute("invasiveTestEEG", new InvasiveTestEEGEntity());
+        model.addAttribute("invasiveTestEEG", new InvasiveTestEegEntity());
         return "patient/invasiveTestEEG/createView";
     }
 
@@ -51,7 +51,7 @@ public class InvasiveTestEEGController {
      */
     @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/create", method = RequestMethod.POST)
     public String invasiveTestEEGCreatePOST(
-            @ModelAttribute("invasiveTestEEG") @Valid InvasiveTestEEGEntity invasiveTestEEG,
+            @ModelAttribute("invasiveTestEEG") @Valid InvasiveTestEegEntity invasiveTestEEG,
             BindingResult result, @PathVariable("patientID") Integer patientID) {
         if (result.hasErrors()) {
             return "patient/invasiveTestEEG/createView";
@@ -69,7 +69,7 @@ public class InvasiveTestEEGController {
                                            @PathVariable("invasiveTestEEGID") Integer invasiveTestEEGID) {
 
         invasiveTestEEGService.delete(invasiveTestEEGService.findByID(
-                InvasiveTestEEGEntity.class, invasiveTestEEGID));
+                InvasiveTestEegEntity.class, invasiveTestEEGID));
         return "redirect:/patient/" + patientID + "/invasiveTestEEG/list";
     }
 
@@ -89,7 +89,7 @@ public class InvasiveTestEEGController {
             Locale locale, Model model) {
 
         invasiveTestEEGService.hide(invasiveTestEEGService.findByID(
-                InvasiveTestEEGEntity.class, invasiveTestEegId));
+                InvasiveTestEegEntity.class, invasiveTestEegId));
         return "redirect:/patient/" + patientId + "/invasiveTestEeg/list";
     }
 
@@ -109,7 +109,7 @@ public class InvasiveTestEEGController {
             Locale locale, Model model) {
 
         invasiveTestEEGService.unhide(invasiveTestEEGService.findByID(
-                InvasiveTestEEGEntity.class, invasiveTestEegId));
+                InvasiveTestEegEntity.class, invasiveTestEegId));
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/invasiveTestEeg/list";

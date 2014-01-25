@@ -398,7 +398,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
             p.setRowcount(3);
             p.setCellcount(p.getCellcount() + 2);
-            for (DiagnosticTestScalpEEGEntity diagnosticTestEEG : patient
+            for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestEEGList()) {
                 this.printOutDiagnosticTestEEG(patient,
                         diagnosticTestEEG, locale, exportParams, sheet, p);
@@ -419,7 +419,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
             p.setRowcount(3);
             p.setCellcount(p.getCellcount() + 2);
-            for (DiagnosticTestMRIEntity diagnosticTestMRI : patient
+            for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
                 this.printOutDiagnosticTestMRI(patient,
                         diagnosticTestMRI, locale, exportParams, sheet, p);
@@ -440,7 +440,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
             p.setRowcount(3);
             p.setCellcount(p.getCellcount() + 2);
-            for (InvasiveTestECOGEntity invasiveTestECOG : patient
+            for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
                 this.printOutInvasiveTestECOG(patient,
                         invasiveTestECOG, locale, exportParams, sheet, p);
@@ -461,7 +461,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
             p.setRowcount(3);
             p.setCellcount(p.getCellcount() + 2);
-            for (InvasiveTestEEGEntity invasiveTestEEG : patient
+            for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
                 this.printOutInvasiveTestEEG(patient,
                         invasiveTestEEG, locale, exportParams, sheet, p);
@@ -1006,7 +1006,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
     private void printOutDiagnosticTestEEG(PatientEntity patient,
-                                           DiagnosticTestScalpEEGEntity diagnosticTestScalpEEG, Locale locale,
+                                           DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
                                            ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
         if (p.getRowcount() > 3) {
@@ -1060,7 +1060,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
     private void printOutDiagnosticTestMRI(PatientEntity patient,
-                                           DiagnosticTestMRIEntity diagnosticTestScalpMRI, Locale locale,
+                                           DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
                                            ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
         if (p.getRowcount() > 3) {
@@ -1144,7 +1144,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
     private void printOutInvasiveTestECOG(PatientEntity patient,
-                                          InvasiveTestECOGEntity invasiveTestECOG, Locale locale,
+                                          InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
                                           ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
         if (p.getRowcount() > 3) {
@@ -1183,7 +1183,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
     }
 
     private void printOutInvasiveTestEEG(PatientEntity patient,
-                                         InvasiveTestEEGEntity invasiveTestEEG, Locale locale,
+                                         InvasiveTestEegEntity invasiveTestEEG, Locale locale,
                                          ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
         if (p.getRowcount() > 3) {
@@ -1313,7 +1313,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
             addCells("label.VNS", translateValue(String.valueOf(operation.isVns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-            addCells("label.VNSImplantationDate", translateValue(String.valueOf(operation.getVNSImplantationDate()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.VNSImplantationDate", translateValue(String.valueOf(operation.getVnsImplantationDate()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationOperationDetails()) {
             addCells("label.operationDetails", translateValue(String.valueOf(operation.getOperationDetails()), locale), sheet, locale, styles, "cell", p);
@@ -1352,7 +1352,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
             addCells("label.histopathology", translateValue(String.valueOf(histology.getHistopathology()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyFcdClassification()) {
-            addCells("label.FCDClasification", translateValue(String.valueOf(histology.getfcdClasification()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.FCDClasification", translateValue(String.valueOf(histology.getFcdClasification()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyComment()) {
             addCells("label.comment", translateValue(String.valueOf(histology.getComment()), locale), sheet, locale, styles, "cell", p);
