@@ -6,7 +6,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 
 public interface AnamnesisService extends GenericCardService<AnamnesisVO, AnamnesisEntity> {
 
-   // public List<AnamnesisEntity> findAllHidden();
+    // public List<AnamnesisEntity> findAllHidden();
 
     public void hide(int anamnesisId);
 

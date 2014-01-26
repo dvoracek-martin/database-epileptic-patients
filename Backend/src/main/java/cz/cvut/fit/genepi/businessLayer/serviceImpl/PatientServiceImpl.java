@@ -17,7 +17,8 @@ import java.util.List;
  * The Class PatientServiceImpl.
  */
 @Service
-public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
+public class PatientServiceImpl
+        extends GenericServiceImpl<PatientEntity>
         implements PatientService {
 
     /**
@@ -51,14 +52,14 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
     @Override
     @Transactional
     public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId) {
-        return patientDAO.getPatientByIdWithDiagnosticTestScalpEEGList(patientId);
+        return patientDAO.getPatientByIdWithDiagnosticTestScalpEegList(patientId);
 
     }
 
     @Override
     @Transactional
     public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId) {
-        return patientDAO.getPatientByIdWithDiagnosticTestMRIList(patientId);
+        return patientDAO.getPatientByIdWithDiagnosticTestMriList(patientId);
 
     }
 
@@ -81,14 +82,14 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
     @Override
     @Transactional
     public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId) {
-        return patientDAO.getPatientByIdWithInvasiveTestECOGList(patientId);
+        return patientDAO.getPatientByIdWithInvasiveTestEcogList(patientId);
 
     }
 
     @Override
     @Transactional
     public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId) {
-        return patientDAO.getPatientByIdWithInvasiveTestEEGList(patientId);
+        return patientDAO.getPatientByIdWithInvasiveTestEegList(patientId);
 
     }
 
@@ -144,7 +145,6 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
     @Transactional
     public PatientEntity getPatientByIdWithDoctor(int patientId) {
         return patientDAO.getPatientByIdWithDoctor(patientId);
-
     }
 
     @Override
@@ -155,8 +155,96 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 
     @Override
     @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithAnamnesisList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithAnamnesisList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithComplicationList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithComplicationList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithDiagnosticTestMriList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithDiagnosticTestMriList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithDiagnosticTestScalpEegList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithDiagnosticTestScalpEegList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithHistologyList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithHistologyList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestCorticalMappingList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithInvasiveTestCorticalMappingList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestEcogList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithInvasiveTestEcogList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestEegList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithInvasiveTestEegList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithNeuropsychologyList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithNeuropsychologyList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithNeuropsychologyOldList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithNeuropsychologyOldList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithNeurologicalFindingList(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithNeurologicalFindingList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithOperationList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithOperationList(patientId);
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
         return patientVO;
     }
@@ -179,10 +267,10 @@ public class PatientServiceImpl extends GenericServiceImpl<PatientEntity>
 
     @Override
     @Transactional
-    public PatientDisplayVO getPatientDisplayByIdWithAllLists(int patientId){
-            PatientEntity patient = patientDAO.getPatientByIdWithAllLists(patientId);
-            PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-            return patientVO;
+    public PatientDisplayVO getPatientDisplayByIdWithAllLists(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithAllLists(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
     }
 
     @Override

@@ -49,7 +49,7 @@ public class SeizureController {
             Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("seizure", seizureService.getById(SeizureVO.class, SeizureEntity.class, seizureId));
+        model.addAttribute("seizure", seizureService.getById(SeizureVO.class, seizureId));
 
         return "patient/seizure/formView";
     }
@@ -71,7 +71,7 @@ public class SeizureController {
             return "patient/seizure/formView";
         } else {
             seizure.setPatientId(patientId);
-            seizureService.save(SeizureEntity.class, seizure);
+            seizureService.save(seizure);
             return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }

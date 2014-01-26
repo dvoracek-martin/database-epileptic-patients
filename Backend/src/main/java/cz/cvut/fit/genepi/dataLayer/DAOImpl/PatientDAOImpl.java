@@ -139,11 +139,11 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	 * (non-Javadoc)
 	 * 
 	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
-	 * getPatientByIdWithDiagnosticTestScalpEEGList(int)
+	 * getPatientByIdWithDiagnosticTestScalpEegList(int)
 	 */
 	@Override
-	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(
-			int patientId) {
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEegList(
+            int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
@@ -157,10 +157,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	 * (non-Javadoc)
 	 * 
 	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
-	 * getPatientByIdWithDiagnosticTestMRIList(int)
+	 * getPatientByIdWithDiagnosticTestMriList(int)
 	 */
 	@Override
-	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId) {
+	public PatientEntity getPatientByIdWithDiagnosticTestMriList(int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
@@ -200,7 +200,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	}
 
 	@Override
-	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId) {
+	public PatientEntity getPatientByIdWithInvasiveTestEcogList(int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(
@@ -214,10 +214,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 	 * (non-Javadoc)
 	 * 
 	 * @see cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#
-	 * getPatientByIdWithInvasiveTestEEGList(int)
+	 * getPatientByIdWithInvasiveTestEegList(int)
 	 */
 	@Override
-	public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId) {
+	public PatientEntity getPatientByIdWithInvasiveTestEegList(int patientId) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(

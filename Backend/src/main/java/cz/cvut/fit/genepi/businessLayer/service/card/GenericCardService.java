@@ -5,9 +5,11 @@ package cz.cvut.fit.genepi.businessLayer.service.card;
  */
 public interface GenericCardService<CardVO, CardEntity> {
 
-    public CardVO getById(Class<CardVO> cardVoClass, Class<CardEntity> cardEntityClass, int recordId);
+    public CardVO getById(Class<CardVO> cardVoClass, int recordId);
 
-    public void save(Class<CardEntity> cardEntityClass, CardVO cardVo);
+    public void save( CardVO cardVo);
+
+    public void delete (int recordId);
 
   /*  public void hide(int id);
 

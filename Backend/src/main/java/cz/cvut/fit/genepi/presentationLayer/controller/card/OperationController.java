@@ -1,9 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,19 +25,29 @@ public class OperationController {
     @Autowired
     public OperationController(PatientService patientService,
                                OperationService operationService) {
+
         this.patientService = patientService;
         this.operationService = operationService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/operation/create", method = RequestMethod.GET)
-    public String operationCreateGET(Locale locale, Model model,
-                                     @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.GET)
+    public String operationCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("operation", new OperationEntity());
-        return "patient/operation/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("operation", new OperationVO());
+        return "patient/operation/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/edit", method = RequestMethod.GET)
+    public String complicationEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("operationId") Integer operationId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("operation", operationService.getById(OperationVO.class, operationId));
+        return "patient/operation/formView";
     }
 
     /**
@@ -49,28 +58,30 @@ public class OperationController {
      * @param patientID the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/operation/create", method = RequestMethod.POST)
-    public String operationCreatePOST(
-            @ModelAttribute("operation") @Valid OperationEntity operation,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+    @RequestMapping(value = "/patient/{patientId}/operation/save", method = RequestMethod.POST)
+    public String operationSavePOST(
+            @ModelAttribute("operation") @Valid OperationVO operation,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/operation/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/operation/formView";
         } else {
-            operation.setPatient(patientService.findByID(PatientEntity.class,
-                    patientID));
+            operation.setPatientId(patientId);
             operationService.save(operation);
-            return "redirect:/patient/" + patientID + "/operation/list";
+            return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/operation/{operationID}/delete", method = RequestMethod.GET)
-    public String operationDeleteGET(Locale locale, Model model,
-                                     @PathVariable("patientID") Integer patientID,
-                                     @PathVariable("operationID") Integer operationID) {
+    @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/delete", method = RequestMethod.GET)
+    public String operationDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("operationId") Integer operationId,
+            Locale locale, Model model) {
 
-        operationService.delete(operationService.findByID(
-                OperationEntity.class, operationID));
-        return "redirect:/patient/" + patientID + "/operation/list";
+        operationService.delete(operationId);
+        return "redirect:/patient/" + patientId + "/operation/list";
     }
 
     /**
@@ -85,11 +96,10 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/hide", method = RequestMethod.GET)
     public String operationHideGET(
             @PathVariable("patientId") Integer patientId,
-            @PathVariable("operationId") Integer operationId, Locale locale,
-            Model model) {
+            @PathVariable("operationId") Integer operationId,
+            Locale locale, Model model) {
 
-        operationService.hide(operationService.findByID(OperationEntity.class,
-                operationId));
+        operationService.hide(operationId);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
@@ -105,29 +115,27 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/{anamnesisId}/unhide", method = RequestMethod.GET)
     public String operationUnhideGET(
             @PathVariable("patientId") Integer patientId,
-            @PathVariable("operationId") Integer operationId, Locale locale,
-            Model model) {
+            @PathVariable("operationId") Integer operationId,
+            Locale locale, Model model) {
 
-        operationService.unhide(operationService.findByID(
-                OperationEntity.class, operationId));
+        operationService.unhide(operationId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/operation/{operationID}/export", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientID}/operation/{operationID}/export", method = RequestMethod.GET)
     public String operationExportGET(Locale locale, Model model,
                                      @PathVariable("patientID") Integer patientID,
                                      @PathVariable("operationID") Integer operationID) {
         return "redirect:/patient/" + patientID + "/operation/list";
-    }
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/operation/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/operation/list", method = RequestMethod.GET)
     public String operationListGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithOperationList(patientID);
-        model.addAttribute("patient", patient);
+                                   @PathVariable("patientId") Integer patientId) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithOperationList(patientId));
         return "patient/operation/listView";
     }
 }

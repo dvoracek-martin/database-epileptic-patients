@@ -150,7 +150,29 @@ public interface PatientService extends GenericService<PatientEntity> {
 
     public List<PatientEntity> findAllHidden();
 
+    public PatientDisplayVO getPatientDisplayByIdWithAnamnesisList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithComplicationList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithDiagnosticTestMriList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithDiagnosticTestScalpEegList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithHistologyList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestCorticalMappingList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestEcogList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithInvasiveTestEegList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithNeuropsychologyList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithNeuropsychologyOldList(int patientId);
+
     public PatientDisplayVO getPatientDisplayByIdWithNeurologicalFindingList(int patientId);
+
+    public PatientDisplayVO getPatientDisplayByIdWithOperationList(int patientId);
 
     public PatientDisplayVO getPatientDisplayByIdWithSeizureList(int patientId);
 

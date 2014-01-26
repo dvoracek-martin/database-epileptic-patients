@@ -1,9 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
-import cz.cvut.fit.genepi.businessLayer.serviceImpl.GenericServiceImpl;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -16,6 +14,13 @@ public class NeuropsychologyOldServiceImpl implements NeuropsychologyOldService 
     @Autowired
     @Qualifier("genericDAOImpl")
     protected GenericDAO<NeuropsychologyOldEntity> genericDAO;
+
+    @Override
+    @Transactional
+    public void delete(int neuropsychologyOldId) {
+        NeuropsychologyOldEntity entity = genericDAO.findByID(NeuropsychologyOldEntity.class, neuropsychologyOldId);
+        genericDAO.delete(entity);
+    }
 
     @Override
     @Transactional

@@ -75,12 +75,12 @@
                     Diagnostické testy
                     <ul>
                         <li>
-                            <a href="<c:url value="/patient/${patient.id}/diagnosticTestScalpEEG/list" />">
+                            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/list" />">
                                 Skalpové EEG
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value="/patient/${patient.id}/diagnosticTestMRI/list" />">
+                            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
                                 Neurozobraz. testy
                             </a>
                         </li>
@@ -90,17 +90,17 @@
                     Invazivní testy
                     <ul>
                         <li>
-                            <a href="<c:url value="/patient/${patient.id}/invasiveTestECOG/list" />">
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
                                 ECoG
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value="/patient/${patient.id}/invasiveTestEEG/list" />">
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
                                 iEEG
                             </a>
                         </li>
                         <li>
-                            <a href="<c:url value="/patient/${patient.id}/invasiveTestCorticalMapping/list" />">
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
                                 Kortikální mapování
                             </a>
                         </li>

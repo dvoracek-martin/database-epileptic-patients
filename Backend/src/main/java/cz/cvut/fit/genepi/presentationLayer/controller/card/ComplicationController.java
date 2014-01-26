@@ -1,22 +1,19 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.ComplicationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.ComplicationService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
+@SessionAttributes({"complication"})
 public class ComplicationController {
 
     private PatientService patientService;
@@ -26,19 +23,29 @@ public class ComplicationController {
     @Autowired
     public ComplicationController(PatientService patientService,
                                   ComplicationService complicationService) {
+
         this.patientService = patientService;
         this.complicationService = complicationService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/complication/create", method = RequestMethod.GET)
-    public String complicationCreateGET(Locale locale, Model model,
-                                        @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/complication/create", method = RequestMethod.GET)
+    public String complicationCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("complication", new ComplicationEntity());
-        return "patient/complication/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("complication", new ComplicationVO());
+        return "patient/complication/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/edit", method = RequestMethod.GET)
+    public String complicationEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("complicationId") Integer complicationId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("complication", complicationService.getById(ComplicationVO.class, complicationId));
+        return "patient/neurologicalFinding/formView";
     }
 
     /**
@@ -49,28 +56,30 @@ public class ComplicationController {
      * @param patientID    the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/complication/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/complication/save", method = RequestMethod.POST)
     public String complicationCreatePOST(
-            @ModelAttribute("complication") @Valid ComplicationEntity complication,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+            @ModelAttribute("complication") @Valid ComplicationVO complication,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/complication/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/complication/formView";
         } else {
-            complication.setPatient(patientService.findByID(
-                    PatientEntity.class, patientID));
+            complication.setPatientId(patientId);
             complicationService.save(complication);
-            return "redirect:/patient/" + patientID + "/complication/list";
+            return "redirect:/patient/" + patientId + "/complication/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/delete", method = RequestMethod.GET)
-    public String complicationDeleteGET(Locale locale, Model model,
-                                        @PathVariable("patientID") Integer patientID,
-                                        @PathVariable("complicationID") Integer complicationID) {
+    @RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/delete", method = RequestMethod.GET)
+    public String complicationDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("complicationId") Integer complicationId,
+            Locale locale, Model model) {
 
-        complicationService.delete(complicationService.findByID(
-                ComplicationEntity.class, complicationID));
-        return "redirect:/patient/" + patientID + "/complication/list";
+        complicationService.delete(complicationId);
+        return "redirect:/patient/" + patientId + "/complication/list";
     }
 
     /**
@@ -88,8 +97,7 @@ public class ComplicationController {
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model) {
 
-        complicationService.hide(complicationService.findByID(
-                ComplicationEntity.class, complicationId));
+        complicationService.hide(complicationId);
         return "redirect:/patient/" + patientId + "/complication/list";
     }
 
@@ -108,26 +116,25 @@ public class ComplicationController {
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model) {
 
-        complicationService.unhide(complicationService.findByID(
-                ComplicationEntity.class, complicationId));
+        complicationService.unhide(complicationId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
-        return "redirect:/patient/" + patientId + "/xomplication/list";
+        return "redirect:/patient/" + patientId + "/complication/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/export", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/export", method = RequestMethod.GET)
     public String complicationExportGET(Locale locale, Model model,
                                         @PathVariable("patientID") Integer patientID,
                                         @PathVariable("complicationID") Integer complicationID) {
-        return "redirect:/patient/" + patientID + "/complication/list";
-    }
 
-    @RequestMapping(value = "/patient/{patientID}/complication/list", method = RequestMethod.GET)
-    public String complicationListGET(Locale locale, Model model,
-                                      @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithComplicationList(patientID);
-        model.addAttribute("patient", patient);
+        return "redirect:/patient/" + patientID + "/complication/list";
+    }*/
+
+    @RequestMapping(value = "/patient/{patientId}/complication/list", method = RequestMethod.GET)
+    public String complicationListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithComplicationList(patientId));
         return "patient/complication/listView";
     }
 }

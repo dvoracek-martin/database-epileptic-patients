@@ -43,7 +43,7 @@ public class PharmacotherapyController {
                                          Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, PharmacotherapyEntity.class, pharmacotherapyId));
+        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, pharmacotherapyId));
         return "patient/pharmacotherapy/formView";
     }
 
@@ -65,7 +65,7 @@ public class PharmacotherapyController {
             return "patient/pharmacotherapy/formView";
         } else {
             pharmacotherapy.setPatientId(patientId);
-            pharmacotherapyService.save(PharmacotherapyEntity.class, pharmacotherapy);
+            pharmacotherapyService.save(pharmacotherapy);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
         }
     }

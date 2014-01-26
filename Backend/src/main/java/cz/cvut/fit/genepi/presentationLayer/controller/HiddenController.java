@@ -80,7 +80,7 @@ public class HiddenController {
 	@RequestMapping(value = "/hidden", method = RequestMethod.GET)
 	public String userListGET(Locale locale, Model model) {
 		model.addAttribute("patientList", patientService.findAllHidden());
-		model.addAttribute("anamnesisList", anamnesisService.findAllHidden());
+		//model.addAttribute("anamnesisList", anamnesisService.findAllHidden());
 		return "hiddenView";
 	}
 	

@@ -11,7 +11,7 @@ public class OutcomeServiceImpl extends
         GenericServiceImpl<OutcomeEntity> implements
         OutcomeService {
 
-    @Override
+   /* @Override
     @Transactional
     public void hide(OutcomeEntity entity) {
         entity.setStatus(1);
@@ -23,5 +23,5 @@ public class OutcomeServiceImpl extends
     public void unhide(OutcomeEntity entity) {
         entity.setStatus(0);
         genericDAO.save(entity);
-    }
+    }*/
 }

@@ -36,14 +36,14 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 	 * @param patientID the ID of the pateint
 	 * @return Pateint as the PateintEntity
 	 */
-	public PatientEntity getPatientByIdWithDiagnosticTestScalpEEGList(int patientId);
+	public PatientEntity getPatientByIdWithDiagnosticTestScalpEegList(int patientId);
 
 	/**
 	 * Finds Pateint and his diagnosticTestMRI list for chosen patient
 	 * @param patientID the ID of the pateint
 	 * @return Pateint as the PateintEntity
 	 */
-	public PatientEntity getPatientByIdWithDiagnosticTestMRIList(int patientId);
+	public PatientEntity getPatientByIdWithDiagnosticTestMriList(int patientId);
 
 	/**
 	 * Finds Pateint and his histology list for chosen patient
@@ -65,14 +65,14 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 	 * @param patientID the ID of the pateint
 	 * @return Pateint as the PateintEntity
 	 */
-	public PatientEntity getPatientByIdWithInvasiveTestECOGList(int patientId);
+	public PatientEntity getPatientByIdWithInvasiveTestEcogList(int patientId);
 
 	/**
 	 * Finds Pateint and his invasiveTestEEG list for chosen patient
 	 * @param patientID the ID of the pateint
 	 * @return Pateint as the PateintEntity
 	 */
-	public PatientEntity getPatientByIdWithInvasiveTestEEGList(int patientId);
+	public PatientEntity getPatientByIdWithInvasiveTestEegList(int patientId);
 
 	/**
 	 * Finds Pateint and his neurologicalFinding list for chosen patient

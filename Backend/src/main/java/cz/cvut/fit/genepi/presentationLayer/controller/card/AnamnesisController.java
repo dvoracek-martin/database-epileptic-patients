@@ -1,9 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +39,7 @@ public class AnamnesisController {
     @Autowired
     public AnamnesisController(PatientService patientService,
                                AnamnesisService anamnesisService) {
+
         this.patientService = patientService;
         this.anamnesisService = anamnesisService;
     }
@@ -54,13 +54,30 @@ public class AnamnesisController {
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.GET)
     public String anamnesisCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale,
-            Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient",
-                patientService.getPatientByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", new AnamnesisEntity());
-        return "patient/anamnesis/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("anamnesis", new AnamnesisVO());
+        return "patient/anamnesis/formView";
+    }
+
+    /**
+     * Handles the GET request to access page for editing anamnesis.
+     *
+     * @param patientId the id of a patient whom we are editing an anamnesis.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
+     * @return the name of a view to be rendered.
+     */
+    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.GET)
+    public String anamnesisEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("anamnesisId") Integer anamnesisId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("anamnesis", anamnesisService.getById(AnamnesisVO.class, anamnesisId));
+        return "patient/anamnesis/formView";
     }
 
     /**
@@ -77,19 +94,17 @@ public class AnamnesisController {
      * @return the name of a view to be rendered if the binding has errors
      * otherwise, the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/anamnesis/save", method = RequestMethod.POST)
     public String anamnesisCreatePOST(
-            @ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
-            BindingResult result, @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
+            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
 
         if (result.hasErrors()) {
-            model.addAttribute("patient",
-                    patientService.getPatientByIdWithDoctor(patientId));
-            return "patient/anamnesis/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/anamnesis/formView";
         } else {
-            anamnesis.setPatient(patientService.findByID(PatientEntity.class,
-                    patientId));
+            anamnesis.setPatientId(patientId);
             anamnesisService.save(anamnesis);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
@@ -98,65 +113,11 @@ public class AnamnesisController {
     @RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisId}/delete", method = RequestMethod.GET)
     public String anamnesisDeleteGET(
             @PathVariable("patientID") Integer patientID,
-            @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
-            Model model) {
-
-        anamnesisService.delete(anamnesisService.findByID(
-                AnamnesisEntity.class, anamnesisId));
-        return "redirect:/hidden";
-    }
-
-    /**
-     * Handles the GET request to access page for editing anamnesis.
-     *
-     * @param patientId the id of a patient whom we are editing an anamnesis.
-     * @param locale    the user's locale.
-     * @param model     the model to be filled for view.
-     * @return the name of a view to be rendered.
-     */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.GET)
-    public String anamnesisEditGET(
-            @PathVariable("patientId") Integer patientId,
-            @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
-            Model model) {
-
-        model.addAttribute("patient",
-                patientService.getPatientByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis",
-                anamnesisService.findByID(AnamnesisEntity.class, anamnesisId));
-        return "patient/anamnesis/editView";
-    }
-
-    /**
-     * Handles the POST request to edit anamnesis.
-     *
-     * @param anamnesis the anamnesis which was filled in form at front-end. It is
-     *                  grabbed from POST string and validated.
-     * @param result    the result of binding form from front-end to an
-     *                  AnamnesisEntity. It is used to determine if there were some
-     *                  errors during binding.
-     * @param patientId the id of a patient whom we are creating an anamnesis.
-     * @param locale    the user's locale.
-     * @param model     the model to be filled for view.
-     * @return the name of a view to be rendered if the binding has errors
-     * otherwise, the address to which the user will be redirected.
-     */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.POST)
-    public String anamnesisEditPOST(
-            @ModelAttribute("anamnesis") @Valid AnamnesisEntity anamnesis,
-            BindingResult result, @PathVariable("patientId") Integer patientId,
+            @PathVariable("anamnesisId") Integer anamnesisId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
-            model.addAttribute("patient",
-                    patientService.getPatientByIdWithDoctor(patientId));
-            return "patient/anamnesis/editView";
-        } else {
-            anamnesis.setPatient(patientService.findByID(PatientEntity.class,
-                    patientId));
-            anamnesisService.save(anamnesis);
-            return "redirect:/patient/" + patientId + "/anamnesis/list";
-        }
+        anamnesisService.delete(anamnesisId);
+        return "redirect:/hidden";
     }
 
     /**
@@ -174,8 +135,7 @@ public class AnamnesisController {
             @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
             Model model) {
 
-        anamnesisService.hide(anamnesisService.findByID(AnamnesisEntity.class,
-                anamnesisId));
+        anamnesisService.hide(anamnesisId);
         return "redirect:/patient/" + patientId + "/anamnesis/list";
     }
 
@@ -194,8 +154,7 @@ public class AnamnesisController {
             @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
             Model model) {
 
-        anamnesisService.unhide(anamnesisService.findByID(
-                AnamnesisEntity.class, anamnesisId));
+        anamnesisService.unhide(anamnesisId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/hidden";
@@ -203,7 +162,7 @@ public class AnamnesisController {
 
     // TODO: not used now, is not present in original App
     /*
-	 * @RequestMapping(value =
+     * @RequestMapping(value =
 	 * "/patient/{patientID}/anamnesis/{anamnesisID}/export", method =
 	 * RequestMethod.GET) public String anamnesisExportGET(Locale locale, Model
 	 * model,
@@ -224,10 +183,9 @@ public class AnamnesisController {
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/list", method = RequestMethod.GET)
     public String anamnesisListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale,
-            Model model) {
-        model.addAttribute("patient",
-                patientService.getPatientByIdWithAnamnesisList(patientId));
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithAnamnesisList(patientId));
         return "patient/anamnesis/listView";
     }
 }

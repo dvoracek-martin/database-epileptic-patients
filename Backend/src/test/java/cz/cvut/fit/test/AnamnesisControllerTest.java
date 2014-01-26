@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.Date;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
@@ -92,7 +93,7 @@ public class AnamnesisControllerTest {
 	@Test
 	public void anamnesisCreatePOST_AnamnesisEntityValid() throws Exception {
 
-		AnamnesisEntity anamnesis = new AnamnesisEntity();
+		AnamnesisVO anamnesis = new AnamnesisVO();
 		anamnesis.setDate(new Date());
 		anamnesis.setBeginningEpilepsy(new Date());
 
@@ -161,11 +162,11 @@ public class AnamnesisControllerTest {
 		PatientEntity patient = new PatientEntity();
 		patient.setId(1);
 		
-		AnamnesisEntity anamnesis = new AnamnesisEntity();
+		AnamnesisVO anamnesis = new AnamnesisVO();
 		anamnesis.setId(1);
 
 		when(patientServiceMock.getPatientByIdWithDoctor(1)).thenReturn(patient);
-		when(anamnesisServiceMock.findByID(AnamnesisEntity.class, 1)).thenReturn(anamnesis);
+		when(anamnesisServiceMock.getById(AnamnesisVO.class,1)).thenReturn(anamnesis);
 
 		mockMvc.perform(get("/patient/{patientId}/anamnesis/{anamnesisId}/edit", 1, 1))
 				.andExpect(status().isOk())
@@ -179,14 +180,14 @@ public class AnamnesisControllerTest {
 		verify(patientServiceMock, times(1)).getPatientByIdWithDoctor(1);
 		verifyNoMoreInteractions(patientServiceMock);
 		
-		verify(anamnesisServiceMock, times(1)).findByID(AnamnesisEntity.class, 1);
+		verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class, 1);
 		verifyNoMoreInteractions(anamnesisServiceMock);
 	}
 	
 	@Test
 	public void anamnesisEditPOST_AnamnesisEntityValid() throws Exception {
 
-		AnamnesisEntity anamnesis = new AnamnesisEntity();
+        AnamnesisVO anamnesis = new AnamnesisVO();
 		anamnesis.setDate(new Date());
 		anamnesis.setBeginningEpilepsy(new Date());
 

@@ -75,9 +75,9 @@ public class OutcomeController {
             outcome.setDistance(distance);
             outcome.setPatient(patientService.findByID(PatientEntity.class,
                     patientID));
-            outcome.setOperation(operationService.findByID(
+            /*outcome.setOperation(operationService.findByID(
                     OperationEntity.class, operationId));
-            outcomeService.save(outcome);
+            outcomeService.save(outcome);*/
             return "redirect:/patient/" + patientID + "/outcome/list";
         }
     }
@@ -87,8 +87,7 @@ public class OutcomeController {
                                    @PathVariable("patientID") Integer patientID,
                                    @PathVariable("outcomeID") Integer outcomeID) {
 
-        outcomeService.delete(outcomeService.findByID(OutcomeEntity.class,
-                outcomeID));
+        //outcomeService.delete(outcomeService.findByID(OutcomeEntity.class,outcomeID));
         return "redirect:/patient/" + patientID + "/outcome/list";
     }
 
@@ -106,8 +105,7 @@ public class OutcomeController {
                                  @PathVariable("outcomeId") Integer outcomeId, Locale locale,
                                  Model model) {
 
-        outcomeService.hide(outcomeService.findByID(OutcomeEntity.class,
-                outcomeId));
+        //outcomeService.hide(outcomeService.findByID(OutcomeEntity.class, outcomeId));
         return "redirect:/patient/" + patientId + "/outcome/list";
     }
 
@@ -126,8 +124,7 @@ public class OutcomeController {
             @PathVariable("outcomeId") Integer outcomeId, Locale locale,
             Model model) {
 
-        outcomeService.unhide(outcomeService.findByID(OutcomeEntity.class,
-                outcomeId));
+       // outcomeService.unhide(outcomeService.findByID(OutcomeEntity.class,outcomeId));
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/outcome/list";

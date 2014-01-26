@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by Jan on 23.1.14.
- */
 @Service
 public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardService<CardVO, CardEntity> {
 
@@ -21,18 +18,29 @@ public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardSe
     @Autowired
     protected Mapper dozer;
 
+    //hotfix, is there a better way?
+    CardEntity cardEntity;
+
     @Override
     @Transactional
-    public CardVO getById(Class<CardVO> cardVoClass, Class<CardEntity> cardEntityClass, int recordId) {
-        CardEntity entity = genericDAO.findByID(cardEntityClass, recordId);
+    public CardVO getById(Class<CardVO> cardVoClass, int recordId) {
+        CardEntity entity = genericDAO.findByID((Class<CardEntity>) cardEntity.getClass(), recordId);
         CardVO destObject = dozer.map(entity, cardVoClass);
         return destObject;
     }
 
     @Override
     @Transactional
-    public void save(Class<CardEntity> cardEntityClass, CardVO cardVO) {
-        genericDAO.save(dozer.map(cardVO, cardEntityClass));
+    public void save(CardVO cardVO) {
+        genericDAO.save(dozer.map(cardVO, (Class<CardEntity>) cardEntity.getClass()));
+    }
+
+    @Override
+    @Transactional
+    public void delete(int recordId) {
+        //better delete by ID
+        CardEntity entity = genericDAO.findByID((Class<CardEntity>) cardEntity.getClass(), recordId);
+        genericDAO.delete(entity);
     }
 
     /*

@@ -2,8 +2,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,18 +21,18 @@ public class NeuropsychologyOldController {
     @Autowired
     public NeuropsychologyOldController(PatientService patientService,
                                         NeuropsychologyOldService neuropsychologyOldService) {
+
         this.patientService = patientService;
         this.neuropsychologyOldService = neuropsychologyOldService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/neuropsychology-old/{neuropsychologyOldID}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/delete", method = RequestMethod.GET)
     public String neuropsychologyOldDeleteGET(Locale locale, Model model,
-                                              @PathVariable("patientID") Integer patientID,
-                                              @PathVariable("neuropsychologyOldID") Integer neuropsychologyOldID) {
+                                              @PathVariable("patientId") Integer patientId,
+                                              @PathVariable("neuropsychologyOldId") Integer neuropsychologyOldId) {
 
-        neuropsychologyOldService.delete(neuropsychologyOldService.findByID(
-                NeuropsychologyOldEntity.class, neuropsychologyOldID));
-        return "redirect:/patient/" + patientID + "/neuropsychology-old/list";
+        neuropsychologyOldService.delete(neuropsychologyOldId);
+        return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
 
     /**
@@ -46,14 +44,13 @@ public class NeuropsychologyOldController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{anamnesisId}/hide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/hide", method = RequestMethod.GET)
     public String neuropsychologyHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model) {
 
-        neuropsychologyOldService.hide(neuropsychologyOldService.findByID(
-                NeuropsychologyOldEntity.class, neuropsychologyId));
+        neuropsychologyOldService.hide(neuropsychologyId);
         return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
 
@@ -66,32 +63,30 @@ public class NeuropsychologyOldController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyId}/unhide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/unhide", method = RequestMethod.GET)
     public String neuropsychologyUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model) {
 
-        neuropsychologyOldService.unhide(neuropsychologyOldService.findByID(
-                NeuropsychologyOldEntity.class, neuropsychologyId));
+        neuropsychologyOldService.unhide(neuropsychologyId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/neuropsychology-old/{neuropsychologyID}/export", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/patient/{patientID}/neuropsychology-old/{neuropsychologyID}/export", method = RequestMethod.GET)
     public String neuropsychologyExportGET(Locale locale, Model model,
                                            @PathVariable("patientID") Integer patientID,
                                            @PathVariable("neuropsychologyID") Integer neuropsychologyID) {
         return "redirect:/patient/" + patientID + "/neuropsychology-old/list";
-    }
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/neuropsychology-old/list", method = RequestMethod.GET)
-    public String neuropsychologyListGET(Locale locale, Model model,
-                                         @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithNeuropsychologyOldList(patientID);
-        model.addAttribute("patient", patient);
+    @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/list", method = RequestMethod.GET)
+    public String neuropsychologyListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithNeuropsychologyOldList(patientId));
         return "patient/neuropsychologyOld/listView";
     }
 }

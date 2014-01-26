@@ -1,22 +1,19 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.HistologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
+@SessionAttributes({"histology"})
 public class HistologyController {
 
     private PatientService patientService;
@@ -26,19 +23,29 @@ public class HistologyController {
     @Autowired
     public HistologyController(PatientService patientService,
                                HistologyService histologyService) {
+
         this.patientService = patientService;
         this.histologyService = histologyService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/histology/create", method = RequestMethod.GET)
-    public String histologyCreateGET(Locale locale, Model model,
-                                     @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/histology/create", method = RequestMethod.GET)
+    public String histologyCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("histology", new HistologyEntity());
-        return "patient/histology/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("histology", new HistologyVO());
+        return "patient/histology/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/edit", method = RequestMethod.GET)
+    public String complicationEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("histologyId") Integer histologyId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("complication", histologyService.getById(HistologyVO.class, histologyId));
+        return "patient/histology/formView";
     }
 
     /**
@@ -49,28 +56,30 @@ public class HistologyController {
      * @param patientID the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/histology/create", method = RequestMethod.POST)
-    public String histologyCreatePOST(
-            @ModelAttribute("histology") @Valid HistologyEntity histology,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+    @RequestMapping(value = "/patient/{patientId}/histology/save", method = RequestMethod.POST)
+    public String histologySavePOST(
+            @ModelAttribute("histology") @Valid HistologyVO histology,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/histology/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/histology/formView";
         } else {
-            histology.setPatient(patientService.findByID(PatientEntity.class,
-                    patientID));
+            histology.setPatientId(patientId);
             histologyService.save(histology);
-            return "redirect:/patient/" + patientID + "/histology/list";
+            return "redirect:/patient/" + patientId + "/histology/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/histology/{histologyID}/delete", method = RequestMethod.GET)
-    public String histologyDeleteGET(Locale locale, Model model,
-                                     @PathVariable("patientID") Integer patientID,
-                                     @PathVariable("histologyID") Integer histologyID) {
+    @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/delete", method = RequestMethod.GET)
+    public String histologyDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("histologyId") Integer histologyId,
+            Locale locale, Model model) {
 
-        histologyService.delete(histologyService.findByID(
-                HistologyEntity.class, histologyID));
-        return "redirect:/patient/" + patientID + "/histology/list";
+        histologyService.delete(histologyId);
+        return "redirect:/patient/" + patientId + "/histology/list";
     }
 
     /**
@@ -85,11 +94,10 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/hide", method = RequestMethod.GET)
     public String histologyHideGET(
             @PathVariable("patientId") Integer patientId,
-            @PathVariable("histologyId") Integer histologyId, Locale locale,
-            Model model) {
+            @PathVariable("histologyId") Integer histologyId,
+            Locale locale, Model model) {
 
-        histologyService.hide(histologyService.findByID(HistologyEntity.class,
-                histologyId));
+        histologyService.hide(histologyId);
         return "redirect:/patient/" + patientId + "/histology/list";
     }
 
@@ -105,29 +113,27 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/unhide", method = RequestMethod.GET)
     public String histologyUnhideGET(
             @PathVariable("patientId") Integer patientId,
-            @PathVariable("histologyId") Integer histologyId, Locale locale,
-            Model model) {
+            @PathVariable("histologyId") Integer histologyId,
+            Locale locale, Model model) {
 
-        histologyService.unhide(histologyService.findByID(
-                HistologyEntity.class, histologyId));
+        histologyService.unhide(histologyId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/histology/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/histology/{histologyID}/export", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/patient/{patientID}/histology/{histologyID}/export", method = RequestMethod.GET)
     public String histologyExportGET(Locale locale, Model model,
                                      @PathVariable("patientID") Integer patientID,
                                      @PathVariable("histologyID") Integer histologyID) {
         return "redirect:/patient/" + patientID + "/histology/list";
-    }
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/histology/list", method = RequestMethod.GET)
-    public String histologyListGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithHistologyList(patientID);
-        model.addAttribute("patient", patient);
+    @RequestMapping(value = "/patient/{patientId}/histology/list", method = RequestMethod.GET)
+    public String histologyListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithHistologyList(patientId));
         return "patient/histology/listView";
     }
 }
