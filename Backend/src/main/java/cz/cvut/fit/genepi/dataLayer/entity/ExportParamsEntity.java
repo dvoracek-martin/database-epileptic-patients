@@ -64,6 +64,9 @@ public class ExportParamsEntity {
     @Column(name = "seizure")
     private boolean seizure;
 
+    @Column(name = "anonymize")
+    private boolean anonymize;
+
     // Patient properties
     @Column(name = "patientId")
     private boolean patientId;
@@ -3342,5 +3345,33 @@ public class ExportParamsEntity {
 
     public boolean isOperationColostomy() {
         return operationColostomy;
+    }
+
+    public void setOutcomeAdded(boolean outcomeAdded) {
+        this.outcomeAdded = outcomeAdded;
+    }
+
+    public boolean isAnonymize() {
+        return anonymize;
+    }
+
+    public void setAnonymize(boolean anonymize) {
+        this.anonymize = anonymize;
+    }
+
+    public boolean isOutcomeFinallySeizures() {
+        return outcomeFinallySeizures;
+    }
+
+    public void setOutcomeFinallySeizures(boolean outcomeFinallySeizures) {
+        this.outcomeFinallySeizures = outcomeFinallySeizures;
+    }
+
+    public void setOutcomeEEG(boolean outcomeEEG) {
+        this.outcomeEEG = outcomeEEG;
+    }
+
+    public void setOutcomeAED(boolean outcomeAED) {
+        this.outcomeAED = outcomeAED;
     }
 }
