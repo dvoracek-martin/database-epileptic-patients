@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.util;
 
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
@@ -10,19 +11,23 @@ import java.util.Date;
 
 public class TimeConverter {
 
-    public static String getAge(Date beginningEpilepsy) {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-        Date today = Calendar.getInstance().getTime();
-        String currentYear = df.format(today);
-        String beginningYear = df.format(beginningEpilepsy);
+    public static String getCurrentAge(PatientEntity patient) {
+        DateTime birth = new DateTime(patient.getBirthday());
+        DateTime epilepsy = new DateTime(Calendar.getInstance().getTime());
+        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
 
+        return Integer.toString(age.getYears());
+    }
 
-        currentYear = currentYear.substring(6, 10);
-        beginningYear = beginningYear.substring(6, 10);
-        int year = Integer.parseInt(currentYear);
-        int beginning = Integer.parseInt(beginningYear);
+    public static String getAgeAtTheBeginningOfEpilepsy(PatientEntity patient) {
+        DateTime birth = new DateTime(patient.getBirthday());
+        if (patient.getAnamnesisList().size() < 1)
+            return "NA";
+        DateTime epilepsy = new DateTime(patient.getAnamnesisList().get(0).getBeginningEpilepsy());
 
-        return Integer.toString(year - beginning);
+        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
+
+        return Integer.toString(age.getYears());
     }
 
     public static String getDate(Date date) {
