@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 /**
  * InvasiveTestDAO interface
  */
-public interface InvasiveTestECOGDAO extends GenericDAO<InvasiveTestEcogEntity> {
+public interface InvasiveTestEcogDAO extends GenericDAO<InvasiveTestEcogEntity> {
 
 }

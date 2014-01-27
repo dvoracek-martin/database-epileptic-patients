@@ -4,8 +4,8 @@ import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 
 /**
- * DiagnosticTestScalpEEGDAO interface
+ * DiagnosticTestScalpEegDAO interface
  */
-public interface DiagnosticTestScalpEEGDAO  extends GenericDAO<DiagnosticTestScalpEegEntity>{
+public interface DiagnosticTestScalpEegDAO extends GenericDAO<DiagnosticTestScalpEegEntity>{
 
 }
