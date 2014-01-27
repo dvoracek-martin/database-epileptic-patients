@@ -352,5 +352,4 @@ public class UserController {
 		}
 		return "redirect:/user/" + realUser.getId() + "/edit-roles";
 	}
-
 }
