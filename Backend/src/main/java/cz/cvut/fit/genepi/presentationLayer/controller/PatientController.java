@@ -345,6 +345,22 @@ public class PatientController {
          * FOR TESTING PURPOSES ONLY ! DELETE AFTER TESTING
          */
 
+        exportParams.setPatient(true);
+        exportParams.setPatientBirthday(true);
+        exportParams.setContactFirstName(true);
+        exportParams.setContactLastName(true);
+        exportParams.setPatientNin(true);
+        exportParams.setPatientGender(true);
+        exportParams.setContactCountry(true);
+        exportParams.setContactAddressStreet(true);
+        exportParams.setContactAddressHn(true);
+        exportParams.setContactAddressCity(true);
+        exportParams.setContactPhoneNumber(true);
+        exportParams.setContactEmail(true);
+        exportParams.setPatientAgeAtTheBeginningOfEpilepsy(true);
+        exportParams.setPatientDoctorId(true);
+
+
         exportParams.setSeizure(true);
         exportParams.setSeizureAdded(true);
         exportParams.setSeizureAddUserId(true);
@@ -378,11 +394,6 @@ public class PatientController {
         exportParams.setNeurologicalFindingVisualFieldDefects(true);
 
 
-
-
-
-
-
         // Find out, if data should be anonymized or not
         boolean shallAnonymize = true;
 
@@ -391,7 +402,7 @@ public class PatientController {
 
         boolean approved = false;
         for (RoleEntity assignedRole : listOfAssignedRoles) {
-            if (assignedRole.getAuthority().equals("USER_DOCTOR") || assignedRole.getAuthority().equals("USER_SUPERDOCTOR")) {
+            if (assignedRole.getAuthority().equals("ROLE_SUPER_DOCTOR") || assignedRole.getAuthority().equals("ROLE_DOCTOR")) {
                 approved = true;
                 break;
             }
