@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
@@ -30,6 +31,8 @@ public class PatientDisplayVO {
     private UserDisplayVO doctor;
 
     private ContactDisplayVO contact;
+
+    private List<AnamnesisDisplayVO> anamnesisList;
 
     private List<NeurologicalFindingDisplayVO> neurologicalFindingList;
 
@@ -91,6 +94,14 @@ public class PatientDisplayVO {
 
     public void setContact(ContactDisplayVO contact) {
         this.contact = contact;
+    }
+
+    public List<AnamnesisDisplayVO> getAnamnesisList() {
+        return anamnesisList;
+    }
+
+    public void setAnamnesisList(List<AnamnesisDisplayVO> anamnesisList) {
+        this.anamnesisList = anamnesisList;
     }
 
     public List<NeurologicalFindingDisplayVO> getNeurologicalFindingList() {

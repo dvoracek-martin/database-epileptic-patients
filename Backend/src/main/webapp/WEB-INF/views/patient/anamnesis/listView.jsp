@@ -1,20 +1,17 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
-
 
 <t:menuLVL2.NEW303>
 
-<jsp:attribute name="title">
+    <jsp:attribute name="title">
       <spring:message code="label.anamnesis"/>
     </jsp:attribute>
 
-<jsp:attribute name="head">
-     <link href="<c:url value="/resources/css/custom.NEW303.css" />"
-           rel="stylesheet">
+    <jsp:attribute name="head">
+     <link href="<c:url value="/resources/css/custom.NEW303.css" />" rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -28,7 +25,8 @@
             <div class="col-xs-6">
                 <h3 class="pull-right">
                     <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
-                        <spring:message code="label.addRecord"/></a>
+                        <spring:message code="label.addRecord"/>
+                    </a>
                 </h3>
             </div>
         </div>
@@ -73,6 +71,7 @@
                             </table>
 
                             <%@include file="anamnesisTableView.jsp" %>
+
                         </div>
                         <c:set var="count" value="1" scope="page"/>
                     </c:forEach>
