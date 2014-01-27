@@ -217,7 +217,8 @@
 
                         <li><form:label path="anamnesisComment">anamnesisComment</form:label>
                             <form:checkbox path="anamnesisComment" class="input-block-level"/></li>
-                        <li><form:label path="anonymize">anamnesisComment</form:label>
+
+                        <li><form:label path="anonymize">anonymize</form:label>
                             <form:checkbox path="anonymize" class="input-block-level"/></li>
                     </ul>
                 </li>
