@@ -25,11 +25,11 @@ import java.util.*;
 // TODO: Auto-generated Javadoc
 
 /**
- * The Class ExportToXlsxServiceImpl.
+ * The Class ExportToXlsServiceImpl.
  */
 
 @Service
-public class ExportToXlsxServiceImpl implements ExportToXlsxService {
+public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
     @Autowired
     private MessageSource messageSource;
