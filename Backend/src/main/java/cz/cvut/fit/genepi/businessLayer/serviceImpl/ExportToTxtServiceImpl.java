@@ -56,7 +56,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
      * Location for Windows OS is here set only for testing
      */
     public String export(java.util.List<PatientEntity> patientList,
-                         UserEntity user, Locale locale, ExportParamsEntity exportParams) {
+                         UserEntity user, Locale locale, ExportParamsEntity exportParams,boolean anonymize) {
         logger.setLogger(ExportToTxtServiceImpl.class);
         String date = getDate();
         String name = date + ".txt";
@@ -1633,13 +1633,6 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += messageSource.getMessage("label.neuropsychology", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(outcome.getNeuropsychology()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams.isOutcomeDistance()) {
-            content += messageSource.getMessage("label.distance", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(outcome.getDistance()),
                     locale);
             content += "\n";
         }

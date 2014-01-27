@@ -21,5 +21,5 @@ public interface ExportToCsvService {
 	 * @param exportParams as ExportParamsEntity
 	 */
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			Locale locale, ExportParamsEntity exportParams);
+			Locale locale, ExportParamsEntity exportParams, boolean anonymize);
 }

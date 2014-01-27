@@ -51,7 +51,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 	}
 
 	public String export(java.util.List<PatientEntity> patientList,
-			UserEntity user, Locale locale, ExportParamsEntity exportParams) {
+			UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize) {
 		String date = getDate();
 		String name = date + ".docx";
 

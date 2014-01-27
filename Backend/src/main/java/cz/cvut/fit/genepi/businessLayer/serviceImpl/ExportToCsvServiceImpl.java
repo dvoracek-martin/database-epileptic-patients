@@ -50,7 +50,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
 	}
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			Locale locale, ExportParamsEntity exports) {
+			Locale locale, ExportParamsEntity exports,boolean anonymize) {
 
 		// TODO: fill in the list with localized names of the cards
 		List<String> listOfPossibleCards = new ArrayList<String>();

@@ -147,7 +147,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	public String export(java.util.List<PatientEntity> patientList,
-			UserEntity user, Locale locale, ExportParamsEntity exportParams) {
+			UserEntity user, Locale locale, ExportParamsEntity exportParams,boolean anonymize) {
 		logger.setLogger(ExportToPdfServiceImpl.class);
 		initFonts();
 		Document document = new Document();
@@ -915,7 +915,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 	}
 
 	private String printOutDiagnosticTestMRI(PatientEntity patient,
-			DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
+                                             DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
 			ExportParamsEntity exportParams) {
 		String content = "";
 

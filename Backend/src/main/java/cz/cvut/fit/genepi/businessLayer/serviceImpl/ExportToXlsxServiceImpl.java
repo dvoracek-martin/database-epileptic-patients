@@ -135,7 +135,7 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
 
 
     public String export(java.util.List<PatientEntity> patientList,
-                         UserEntity user, Locale locale, ExportParamsEntity exportParams) {
+                         UserEntity user, Locale locale, ExportParamsEntity exportParams,boolean anonymize ) {
 
         Position p = new Position();
 
@@ -1431,9 +1431,6 @@ public class ExportToXlsxServiceImpl implements ExportToXlsxService {
         }
         if (exportParams.isOutcomeNeuropsychology()) {
             addCells("label.neuropsychology", translateValue(String.valueOf(outcome.getNeuropsychology()), locale), sheet, locale, styles, "cell", p);
-        }
-        if (exportParams.isOutcomeDistance()) {
-            addCells("label.distance", translateValue(String.valueOf(outcome.getDistance()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOutcomeOperationId()) {
             addCells("label.operationId", translateValue(String.valueOf(outcome.getOperation()), locale), sheet, locale, styles, "cell", p);

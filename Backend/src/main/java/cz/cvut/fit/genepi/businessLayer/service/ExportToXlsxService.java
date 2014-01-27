@@ -13,5 +13,5 @@ import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 public interface ExportToXlsxService {
 
 	public String export(List<PatientEntity> patientList, UserEntity user,
-			Locale locale, ExportParamsEntity exportParams);
+			Locale locale, ExportParamsEntity exportParams, boolean anonymize);
 }
