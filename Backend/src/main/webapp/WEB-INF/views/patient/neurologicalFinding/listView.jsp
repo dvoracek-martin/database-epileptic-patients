@@ -31,7 +31,7 @@
 
         <%@ include file="../patientDetails.jsp" %>
 
-        <!-- neurologicalFinding list START -->
+        <!-- neurological finding list START -->
 
         <c:choose>
             <c:when test="${empty patient.neurologicalFindingList}">
