@@ -19,6 +19,9 @@ public class ExportParamsEntity {
     @Column(name = "is_generic")
     private boolean isGeneric;
 
+    @Column(name = "patient")
+    private boolean patient;
+
     @Column(name = "anamnesis")
     private boolean anamnesis;
 
@@ -84,6 +87,8 @@ public class ExportParamsEntity {
     private boolean patientChecked;
     @Column(name = "patientContactId")
     private boolean patientContactId;
+    @Column(name = "patientAgeAtTheBeginningOfEpilepsy")
+    private boolean patientAgeAtTheBeginningOfEpilepsy;
 
     // Contact properties
     @Column(name = "contactId")
@@ -3373,5 +3378,21 @@ public class ExportParamsEntity {
 
     public void setOutcomeAED(boolean outcomeAED) {
         this.outcomeAED = outcomeAED;
+    }
+
+    public boolean isPatient() {
+        return patient;
+    }
+
+    public void setPatient(boolean patient) {
+        this.patient = patient;
+    }
+
+    public boolean isPatientAgeAtTheBeginningOfEpilepsy() {
+        return patientAgeAtTheBeginningOfEpilepsy;
+    }
+
+    public void setPatientAgeAtTheBeginningOfEpilepsy(boolean patientAgeAtTheBeginningOfEpilepsy) {
+        this.patientAgeAtTheBeginningOfEpilepsy = patientAgeAtTheBeginningOfEpilepsy;
     }
 }
