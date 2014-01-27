@@ -1702,7 +1702,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isPatientGender()) {
             content += messageSource.getMessage("label.gender", null, locale);
             content += " - ";
-            content += messageSource.getMessage("label.gender"+translateValue(String.valueOf(patient.getGender()), locale),null,locale);
+            content += messageSource.getMessage("label.gender."+translateValue(String.valueOf(patient.getGender()), locale),null,locale);
             content += "\n";
         }
         if (!anonymize)
