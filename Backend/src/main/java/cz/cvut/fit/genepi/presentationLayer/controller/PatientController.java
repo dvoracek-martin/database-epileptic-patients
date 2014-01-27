@@ -5,6 +5,7 @@ import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
@@ -134,16 +135,15 @@ public class PatientController {
     /**
      * Patient overview get.
      *
-     * @param locale    the locale
-     * @param model     the model
-     * @param patientID the patient id
+     * @param locale the locale
+     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(Locale locale, Model model,
                                      @PathVariable("patientId") Integer patientId) {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithAllLists(patientId));
-       // model.addAttribute("patient", patientService.getPatientByIdWithAllLists(patientID));
+        // model.addAttribute("patient", patientService.getPatientByIdWithAllLists(patientID));
         return "patient/overviewView";
     }
 
@@ -333,14 +333,12 @@ public class PatientController {
     public String patientExportPOST(
             @ModelAttribute("exportParams") ExportParamsEntity exportParams,
             @RequestParam("patient") Integer[] patientID,
-            @RequestParam("exportType") String exportType, Locale locale,
+            @RequestParam("exportType") String exportType, Locale locale, boolean anonymize,
             Model model) {
         logger.setLogger(PatientController.class);
 
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
-
-
 
  /*
          * TODO
@@ -380,6 +378,29 @@ public class PatientController {
         exportParams.setNeurologicalFindingVisualFieldDefects(true);
 
 
+
+
+
+
+
+        // Find out, if data should be anonymized or not
+        boolean shallAnonymize = true;
+
+        UserEntity user = userService.findUserByUsername(auth.getName());
+        List<RoleEntity> listOfAssignedRoles = user.getRoles();
+
+        boolean approved = false;
+        for (RoleEntity assignedRole : listOfAssignedRoles) {
+            if (assignedRole.getAuthority().equals("USER_DOCTOR") || assignedRole.getAuthority().equals("USER_SUPERDOCTOR")) {
+                approved = true;
+                break;
+            }
+        }
+
+        if (!anonymize & approved) {
+            shallAnonymize = false;
+        }
+
         List<PatientEntity> patientList = new ArrayList<PatientEntity>();
         for (Integer patient : patientID) {
             patientList.add(patientService.getPatientByIdWithAllLists(patient));
@@ -388,7 +409,7 @@ public class PatientController {
             try {
                 String url = exportToPdfService.export(patientList,
                         userService.findUserByUsername(auth.getName()), locale,
-                        exportParams);
+                        exportParams, shallAnonymize);
                 return "redirect:/resources/downloads/" + url;
             } catch (FileNotFoundException e) {
                 logger.logError(
@@ -400,22 +421,22 @@ public class PatientController {
         } else if (exportType.equals("xlsx")) {
             String url = exportToXlsxService.export(patientList,
                     userService.findUserByUsername(auth.getName()), locale,
-                    exportParams);
+                    exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("docx")) {
             String url = exportToDocxService.export(patientList,
                     userService.findUserByUsername(auth.getName()), locale,
-                    exportParams);
+                    exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("txt")) {
             String url = exportToTxtService.export(patientList,
                     userService.findUserByUsername(auth.getName()), locale,
-                    exportParams);
+                    exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("csv")) {
             String url = exportToCsvService.export(patientList,
                     userService.findUserByUsername(auth.getName()), locale,
-                    exportParams);
+                    exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         }
 
