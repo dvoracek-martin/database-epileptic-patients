@@ -1,44 +1,51 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
-public class InvasiveTestECOGController {
+@SessionAttributes({"invasiveTestEcog"})
+public class InvasiveTestEcogController {
 
     private PatientService patientService;
 
     private InvasiveTestEcogService invasiveTestEcogService;
 
     @Autowired
-    public InvasiveTestECOGController(PatientService patientService,
+    public InvasiveTestEcogController(PatientService patientService,
                                       InvasiveTestEcogService invasiveTestEcogService) {
+
         this.patientService = patientService;
         this.invasiveTestEcogService = invasiveTestEcogService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/create", method = RequestMethod.GET)
-    public String invasiveTestECOGCreateGET(Locale locale, Model model,
-                                            @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/create", method = RequestMethod.GET)
+    public String invasiveTestEcogCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("invasiveTestECOG", new InvasiveTestEcogEntity());
-        return "patient/invasiveTestECOG/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("invasiveTestEcog", new InvasiveTestEcogVO());
+        return "patient/invasiveTestEcog/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/edit", method = RequestMethod.GET)
+    public String complicationEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(InvasiveTestEcogVO.class, invasiveTestEcogId));
+        return "patient/invasiveTestEcog/formView";
     }
 
     /**
@@ -49,28 +56,30 @@ public class InvasiveTestECOGController {
      * @param patientID        the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/create", method = RequestMethod.POST)
-    public String invasiveTestECOGCreatePOST(
-            @ModelAttribute("invasiveTestECOG") @Valid InvasiveTestEcogEntity invasiveTestECOG,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/save", method = RequestMethod.POST)
+    public String invasiveTestEcogSavePOST(
+            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/invasiveTestECOG/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/invasiveTestEcog/formView";
         } else {
-            invasiveTestECOG.setPatient(patientService.findByID(
-                    PatientEntity.class, patientID));
-            invasiveTestEcogService.save(invasiveTestECOG);
-            return "redirect:/patient/" + patientID + "/invasiveTestECOG/list";
+            invasiveTestEcog.setPatientId(patientId);
+            invasiveTestEcogService.save(invasiveTestEcog);
+            return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/{invasiveTestECOGID}/delete", method = RequestMethod.GET)
-    public String invasiveTestECOGDeleteGET(Locale locale, Model model,
-                                            @PathVariable("patientID") Integer patientID,
-                                            @PathVariable("invasiveTestECOGID") Integer invasiveTestECOGID) {
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/delete", method = RequestMethod.GET)
+    public String invasiveTestEcogDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
+            Locale locale, Model model) {
 
-        invasiveTestEcogService.delete(invasiveTestEcogService.findByID(
-                InvasiveTestEcogEntity.class, invasiveTestECOGID));
-        return "redirect:/patient/" + patientID + "/invasiveTestECOG/list";
+        invasiveTestEcogService.delete(invasiveTestEcogId);
+        return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 
     /**
@@ -82,15 +91,14 @@ public class InvasiveTestECOGController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/invasiveTestEcog/{anamnesisId}/hide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/hide", method = RequestMethod.GET)
     public String invasiveTestEcogHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model) {
 
-        invasiveTestEcogService.hide(invasiveTestEcogService.findByID(
-                InvasiveTestEcogEntity.class, invasiveTestEcogId));
-        return "redirect:/patient/" + patientId + "/invasiveTestEcog/list";
+        invasiveTestEcogService.hide(invasiveTestEcogId);
+        return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 
     /**
@@ -102,32 +110,30 @@ public class InvasiveTestECOGController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/invasiveTestEcog/{invasiveTestEcogId}/unhide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/unhide", method = RequestMethod.GET)
     public String invasiveTestEcogUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model) {
 
-        invasiveTestEcogService.unhide(invasiveTestEcogService.findByID(
-                InvasiveTestEcogEntity.class, invasiveTestEcogId));
+        invasiveTestEcogService.unhide(invasiveTestEcogId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
-        return "redirect:/patient/" + patientId + "/invasiveTestEcog/list";
+        return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/{invasiveTestECOGID}/export", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientID}/invasive-test-ecog/{invasiveTestECOGID}/export", method = RequestMethod.GET)
     public String invasiveTestECOGExportGET(Locale locale, Model model,
                                             @PathVariable("patientID") Integer patientID,
                                             @PathVariable("invasiveTestECOGID") Integer invasiveTestECOGID) {
-        return "redirect:/patient/" + patientID + "/invasiveTestECOG/list";
-    }
+        return "redirect:/patient/" + patientID + "/invasive-test-ecog/list";
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestECOG/list", method = RequestMethod.GET)
-    public String invasiveTestECOGListGET(Locale locale, Model model,
-                                          @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithInvasiveTestECOGList(patientID);
-        model.addAttribute("patient", patient);
-        return "patient/invasiveTestECOG/listView";
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/list", method = RequestMethod.GET)
+    public String invasiveTestEcogListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithInvasiveTestEcogList(patientId));
+        return "patient/invasiveTestEcog/listView";
     }
 }

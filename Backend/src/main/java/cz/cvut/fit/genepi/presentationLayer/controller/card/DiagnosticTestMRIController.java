@@ -1,44 +1,51 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.DiagnosticTestMriVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
-public class DiagnosticTestMRIController {
+@SessionAttributes({"diagnosticTestMri"})
+public class DiagnosticTestMriController {
 
     private PatientService patientService;
 
     private DiagnosticTestMriService diagnosticTestMriService;
 
     @Autowired
-    public DiagnosticTestMRIController(PatientService patientService,
+    public DiagnosticTestMriController(PatientService patientService,
                                        DiagnosticTestMriService diagnosticTestMriService) {
         this.patientService = patientService;
         this.diagnosticTestMriService = diagnosticTestMriService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/create", method = RequestMethod.GET)
-    public String diagnosticTestMRICreateGET(Locale locale, Model model,
-                                             @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.GET)
+    public String diagnosticTestMriCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("diagnosticTestMRI", new DiagnosticTestMriEntity());
-        return "patient/diagnosticTestMRI/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("diagnosticTestMri", new DiagnosticTestMriVO());
+        return "patient/diagnosticTestMri/formView";
+    }
+
+
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/edit", method = RequestMethod.GET)
+    public String diagnosticTestMriEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class, diagnosticTestMriId));
+        return "patient/diagnosticTestMri/formView";
     }
 
     /**
@@ -49,28 +56,30 @@ public class DiagnosticTestMRIController {
      * @param patientID         the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/create", method = RequestMethod.POST)
-    public String diagnosticTestMRICreatePOST(
-            @ModelAttribute("diagnosticTestMRI") @Valid DiagnosticTestMriEntity diagnosticTestMRI,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/save", method = RequestMethod.POST)
+    public String diagnosticTestMriSavePOST(
+            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/diagnosticTestMRI/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/diagnosticTestMri/formView";
         } else {
-            diagnosticTestMRI.setPatient(patientService.findByID(
-                    PatientEntity.class, patientID));
-            diagnosticTestMriService.save(diagnosticTestMRI);
-            return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
+            diagnosticTestMri.setPatientId(patientId);
+            diagnosticTestMriService.save(diagnosticTestMri);
+            return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/{diagnosticTestMRIID}/delete", method = RequestMethod.GET)
-    public String diagnosticTestMRIDeleteGET(Locale locale, Model model,
-                                             @PathVariable("patientID") Integer patientID,
-                                             @PathVariable("diagnosticTestMRIID") Integer diagnosticTestMRIID) {
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/delete", method = RequestMethod.GET)
+    public String diagnosticTestMriDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
+            Locale locale, Model model) {
 
-        diagnosticTestMriService.delete(diagnosticTestMriService.findByID(
-                DiagnosticTestMriEntity.class, diagnosticTestMRIID));
-        return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
+        diagnosticTestMriService.delete(diagnosticTestMriId);
+        return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 
     /**
@@ -82,15 +91,14 @@ public class DiagnosticTestMRIController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/diagnosticTestMri/{diagnosticTestMriId}/hide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/hide", method = RequestMethod.GET)
     public String diagnosticTestMriHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMriService.hide(diagnosticTestMriService.findByID(
-                DiagnosticTestMriEntity.class, diagnosticTestMriId));
-        return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
+        diagnosticTestMriService.hide(diagnosticTestMriId);
+        return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
     }
 
     /**
@@ -102,32 +110,30 @@ public class DiagnosticTestMRIController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/diagnosticTestMri/{diagnosticTestMriId}/unhide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/unhide", method = RequestMethod.GET)
     public String diagnosticTestMriUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMriService.unhide(diagnosticTestMriService.findByID(
-                DiagnosticTestMriEntity.class, diagnosticTestMriId));
+        diagnosticTestMriService.unhide(diagnosticTestMriId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/{diagnosticTestMRIID}/export", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/patient/{patientID}/diagnostic-test-mri/{diagnosticTestMRIID}/export", method = RequestMethod.GET)
     public String diagnosticTestMRIExportGET(Locale locale, Model model,
                                              @PathVariable("patientID") Integer patientID,
                                              @PathVariable("diagnosticTestMRIID") Integer diagnosticTestMRIID) {
         return "redirect:/patient/" + patientID + "/diagnosticTestMRI/list";
-    }
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/diagnosticTestMRI/list", method = RequestMethod.GET)
-    public String diagnosticTestMRIListGET(Locale locale, Model model,
-                                           @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithDiagnosticTestMRIList(patientID);
-        model.addAttribute("patient", patient);
-        return "patient/diagnosticTestMRI/listView";
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/list", method = RequestMethod.GET)
+    public String diagnosticTestMriListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDiagnosticTestMriList(patientId));
+        return "patient/diagnosticTestMri/listView";
     }
 }

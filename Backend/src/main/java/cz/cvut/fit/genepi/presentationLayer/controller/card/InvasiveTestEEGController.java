@@ -1,9 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEegService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,28 +16,38 @@ import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
-public class InvasiveTestEEGController {
+public class InvasiveTestEegController {
 
     private PatientService patientService;
 
     private InvasiveTestEegService invasiveTestEegService;
 
     @Autowired
-    public InvasiveTestEEGController(PatientService patientService,
+    public InvasiveTestEegController(PatientService patientService,
                                      InvasiveTestEegService invasiveTestEegService) {
+
         this.patientService = patientService;
         this.invasiveTestEegService = invasiveTestEegService;
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/create", method = RequestMethod.GET)
-    public String invasiveTestEEGCreateGET(Locale locale, Model model,
-                                           @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService.findByID(PatientEntity.class,
-                patientID);
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/create", method = RequestMethod.GET)
+    public String invasiveTestEegCreateGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patient);
-        model.addAttribute("invasiveTestEEG", new InvasiveTestEegEntity());
-        return "patient/invasiveTestEEG/createView";
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("invasiveTestEeg", new InvasiveTestEegVO());
+        return "patient/invasiveTestEeg/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/edit", method = RequestMethod.GET)
+    public String complicationEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
+            Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("invasiveTestEeg", invasiveTestEegService.getById(InvasiveTestEegVO.class, invasiveTestEegId));
+        return "patient/invasiveTestEeg/formView";
     }
 
     /**
@@ -49,28 +58,30 @@ public class InvasiveTestEEGController {
      * @param patientID       the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/create", method = RequestMethod.POST)
-    public String invasiveTestEEGCreatePOST(
-            @ModelAttribute("invasiveTestEEG") @Valid InvasiveTestEegEntity invasiveTestEEG,
-            BindingResult result, @PathVariable("patientID") Integer patientID) {
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/save", method = RequestMethod.POST)
+    public String invasiveTestEegSavePOST(
+            @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg,
+            @PathVariable("patientId") Integer patientId,
+            BindingResult result, Locale locale, Model model) {
+
         if (result.hasErrors()) {
-            return "patient/invasiveTestEEG/createView";
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/invasiveTestEeg/createView";
         } else {
-            invasiveTestEEG.setPatient(patientService.findByID(
-                    PatientEntity.class, patientID));
-            invasiveTestEegService.save(invasiveTestEEG);
-            return "redirect:/patient/" + patientID + "/invasiveTestEEG/list";
+            invasiveTestEeg.setPatientId(patientId);
+            invasiveTestEegService.save(invasiveTestEeg);
+            return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/{invasiveTestEEGID}/delete", method = RequestMethod.GET)
-    public String invasiveTestEEGDeleteGET(Locale locale, Model model,
-                                           @PathVariable("patientID") Integer patientID,
-                                           @PathVariable("invasiveTestEEGID") Integer invasiveTestEEGID) {
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/delete", method = RequestMethod.GET)
+    public String invasiveTestEegDeleteGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
+            Locale locale, Model model) {
 
-        invasiveTestEegService.delete(invasiveTestEegService.findByID(
-                InvasiveTestEegEntity.class, invasiveTestEEGID));
-        return "redirect:/patient/" + patientID + "/invasiveTestEEG/list";
+        invasiveTestEegService.delete(invasiveTestEegId);
+        return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
     /**
@@ -82,15 +93,14 @@ public class InvasiveTestEEGController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/invasiveTestEeg/{invasiveTestEegId}/hide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/hide", method = RequestMethod.GET)
     public String invasiveTestEegHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model) {
 
-        invasiveTestEegService.hide(invasiveTestEegService.findByID(
-                InvasiveTestEegEntity.class, invasiveTestEegId));
-        return "redirect:/patient/" + patientId + "/invasiveTestEeg/list";
+        invasiveTestEegService.hide(invasiveTestEegId);
+        return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
     /**
@@ -102,32 +112,30 @@ public class InvasiveTestEEGController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/invasiveTestEeg/{invasiveTestEegId}/unhide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/unhide", method = RequestMethod.GET)
     public String invasiveTestEegUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model) {
 
-        invasiveTestEegService.unhide(invasiveTestEegService.findByID(
-                InvasiveTestEegEntity.class, invasiveTestEegId));
+        invasiveTestEegService.unhide(invasiveTestEegId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
-        return "redirect:/patient/" + patientId + "/invasiveTestEeg/list";
+        return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/{invasiveTestEEGID}/export", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/{invasiveTestEEGID}/export", method = RequestMethod.GET)
     public String invasiveTestEEGExportGET(Locale locale, Model model,
                                            @PathVariable("patientID") Integer patientID,
                                            @PathVariable("invasiveTestEEGID") Integer invasiveTestEEGID) {
         return "redirect:/patient/" + patientID + "/invasiveTestEEG/list";
-    }
+    }*/
 
-    @RequestMapping(value = "/patient/{patientID}/invasiveTestEEG/list", method = RequestMethod.GET)
-    public String invasiveTestEEGListGET(Locale locale, Model model,
-                                         @PathVariable("patientID") Integer patientID) {
-        PatientEntity patient = patientService
-                .getPatientByIdWithInvasiveTestEEGList(patientID);
-        model.addAttribute("patient", patient);
-        return "patient/invasiveTestEEG/listView";
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/list", method = RequestMethod.GET)
+    public String invasiveTestEegListGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithInvasiveTestEegList(patientId));
+        return "patient/invasiveTestEeg/listView";
     }
 }
