@@ -19,6 +19,9 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static cz.cvut.fit.genepi.util.TimeConverter.getAgeAtTheBeginningOfEpilepsy;
+import static cz.cvut.fit.genepi.util.TimeConverter.getCurrentAge;
+
 @Service
 public class ExportToTxtServiceImpl implements ExportToTxtService {
 
@@ -41,9 +44,13 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         } else {
             if (value.equals("null") || value.equals(null)) {
                 return messageSource.getMessage("label.null", null, locale);
+            } else {
+                if (value.equals("NA")) {
+                    return messageSource.getMessage("label.NA", null, locale);
+                }
             }
+            return value;
         }
-        return value;
     }
 
     private static String getDate() {
@@ -1663,7 +1670,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isContactFirstName()) {
             content += messageSource.getMessage("label.patient", null, locale);
-            content+=" ID ";
+            content += " ID ";
             content += " - ";
             content += translateValue(String.valueOf(patient.getId()), locale);
             content += "\n";
@@ -1678,31 +1685,36 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
             }
         if (!anonymize)
-            if (exportParams.isContactLastName()) {
+            if (exportParams.isContactLastName())
                 content += messageSource.getMessage("label.lastname", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(patient.getContact().getLastName()), locale);
                 content += "\n";
-            }
-        if (!anonymize)
+        if (!anonymize){
             if (exportParams.isPatientNin()) {
                 content += messageSource.getMessage("label.birthIdentificationNumber", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(patient.getNin()), locale);
                 content += "\n";
             }
+
+        }
         if (!anonymize)
             if (exportParams.isPatientBirthday()) {
                 content += messageSource.getMessage("label.birthdate", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(patient.getBirthday()), locale);
                 content += "\n";
+                content += messageSource.getMessage("label.age", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(getCurrentAge(patient)), locale);
+                content += "\n";
             }
 
         if (exportParams.isPatientGender()) {
             content += messageSource.getMessage("label.gender", null, locale);
             content += " - ";
-            content += messageSource.getMessage("label.gender."+translateValue(String.valueOf(patient.getGender()), locale),null,locale);
+            content += messageSource.getMessage("label.gender." + translateValue(String.valueOf(patient.getGender()), locale), null, locale);
             content += "\n";
         }
         if (!anonymize)
@@ -1740,21 +1752,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += translateValue(String.valueOf(patient.getContact().getPhoneNumber()), locale);
                 content += "\n";
             }
-        if (!anonymize)
-            if (exportParams.isContactEmail()) {
-                content += messageSource.getMessage("label.email", null, locale);
+        if (exportParams.isPatientDoctorId()) {
+            if (!anonymize)
+                if (exportParams.isContactEmail()) {
+                    content += messageSource.getMessage("label.email", null, locale);
+                    content += " - ";
+                    content += translateValue(String.valueOf(patient.getContact().getEmail()), locale);
+                    content += "\n";
+                }
+
+            if (exportParams.isPatientAgeAtTheBeginningOfEpilepsy()) {
+                content += messageSource.getMessage("label.ageAtTheBeginningOfEpilepsy", null, locale);
                 content += " - ";
-                content += translateValue(String.valueOf(patient.getContact().getEmail()), locale);
+                content += translateValue(String.valueOf(getAgeAtTheBeginningOfEpilepsy(patient)), locale);
                 content += "\n";
             }
-
-        if (exportParams.isPatientAgeAtTheBeginningOfEpilepsy()) {
-            content += messageSource.getMessage("label.ageAtTheBeginningOfEpilepsy", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf("DODELAT!"), locale);
-            content += "\n";
-        }
-        if (exportParams.isPatientDoctorId()) {
             content += messageSource.getMessage("label.assignedDoctor", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale);
