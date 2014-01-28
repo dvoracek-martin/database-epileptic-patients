@@ -214,7 +214,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                 String date, ExportParamsEntity exportParams, boolean anonymize) {
         String content = "";
         if (exportParams.isPatient()) {
-            content = printOutPatientDetails(patient, locale, exportParams, anonymize);
+            content = printOutPatient(patient, locale, exportParams, anonymize);
             content += addEmptyLine();
         }
         return content;
@@ -1662,13 +1662,12 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         return content;
     }
 
-
-    private String printOutPatientDetails(PatientEntity patient, Locale locale,
-                                          ExportParamsEntity exportParams, boolean anonymize) {
+    private String printOutPatient(PatientEntity patient, Locale locale,
+                                   ExportParamsEntity exportParams, boolean anonymize) {
 
         String content = "";
 
-        if (exportParams.isContactFirstName()) {
+        if (exportParams.isPatientId()) {
             content += messageSource.getMessage("label.patient", null, locale);
             content += " ID ";
             content += " - ";
