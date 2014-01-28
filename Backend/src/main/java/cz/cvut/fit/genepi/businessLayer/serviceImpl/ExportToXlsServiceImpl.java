@@ -23,6 +23,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+import static cz.cvut.fit.genepi.util.TimeConverter.getAgeAtTheBeginningOfEpilepsy;
+import static cz.cvut.fit.genepi.util.TimeConverter.getCurrentAge;
+
 // TODO: Auto-generated Javadoc
 
 /**
@@ -124,7 +127,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             return messageSource.getMessage("label.no", null, locale);
         else if (value.equals("null")) {
             return messageSource.getMessage("label.null", null, locale);
-        }else {
+        } else {
             if (value.equals("NA")) {
                 return messageSource.getMessage("label.NA", null, locale);
             }
@@ -239,22 +242,29 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         sheet.setFitToPage(true);
         sheet.setHorizontallyCenter(true);
 
-        Row titleRow = sheet.createRow(0);
-        titleRow.setHeightInPoints(45);
-        Cell titleCell = titleRow.createCell(0);
-        if (!anonymize) {
-            titleCell.setCellValue(patient.getContact().getLastName() + " " + patient.getContact().getFirstName());
-        } else {
-            titleCell.setCellValue(messageSource.getMessage("label.patient",
-                    null, locale) + " ID: " + Integer.toString(patient.getId()));
-        }
-        titleCell.setCellStyle(styles.get("title"));
-        sheet.addMergedRegion(CellRangeAddress.valueOf("$A$1:$L$1"));
-
-        Row headerRow = sheet.createRow(1);
+        Row headerRow = sheet.createRow(0);
         headerRow.setHeightInPoints(40);
         Cell headerCell;
         int i = 0;
+        if (exportParams.isPatient()) {
+            headerCell = headerRow.createCell(i++);
+            headerCell.setCellValue(messageSource.getMessage("label.patient",
+                    null, locale));
+            headerCell.setCellStyle(styles.get("header"));
+            sheet.addMergedRegion(new CellRangeAddress(
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
+                    i - 1, //first column (0-based)
+                    i++  //last column  (0-based)
+            ));
+
+            p.setRowcount(1);
+            p.setCellcount(p.getCellcount() + 2);
+
+            this.printOutPatientDetails(patient, locale,
+                    exportParams, sheet, p, anonymize);
+        }
+
 
         if (exportParams.isAnamnesis()) {
             headerCell = headerRow.createCell(i++);
@@ -262,11 +272,14 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
-                    i++  //last column  (0-based)
+                    i++ //last column  (0-based)
             ));
+
+            p.setRowcount(1);
+            p.setCellcount(p.getCellcount() + 2);
 
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
                 this.printOutAnamnesis(patient, anamnesis, locale,
@@ -280,13 +293,14 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
-                    i++  //last column  (0-based)
+                    i++ //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
 
             for (SeizureEntity seizure : patient.getSeizureList()) {
@@ -300,13 +314,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
@@ -320,13 +334,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
@@ -340,13 +354,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
@@ -361,13 +375,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
@@ -382,13 +396,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestEEGList()) {
@@ -403,13 +417,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
@@ -424,13 +438,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
@@ -445,13 +459,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
@@ -466,13 +480,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
@@ -488,13 +502,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OperationEntity operation : patient.getOperationList()) {
                 this.printOutOperation(patient, operation, locale,
@@ -507,13 +521,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (HistologyEntity histology : patient.getHistologyList()) {
                 this.printOutHistology(patient, histology, locale,
@@ -526,13 +540,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
@@ -546,13 +560,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
-                    1, //first row (0-based)
-                    1, //last row  (0-based)
+                    0, //first row (0-based)
+                    0, //last row  (0-based)
                     i - 1, //first column (0-based)
                     i++  //last column  (0-based)
             ));
 
-            p.setRowcount(3);
+            p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
                 this.printOutOutcome(patient, outcome, locale,
@@ -561,13 +575,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
 
         // makes cells a bit wider
-        for (int j = 0; j != p.getCellcount() + 2; j++)
-            sheet.setColumnWidth(j, 5000);
+        for (int k = 0; k != p.getCellcount() + 2; k++)
+            sheet.setColumnWidth(k, 5000);
     }
 
     private void addCells(String firstValue, String secondValue, Sheet sheet, Locale locale, Map<String, CellStyle> styles, String style, Position p) {
         Row cellRow = sheet.getRow(p.getRowcount());
-        if (cellRow == null || sheet.getRow(p.getRowcount()).getCell(0) == null)
+        if (cellRow == null)
             cellRow = sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
 
@@ -582,12 +596,79 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         cellCellTwo.setCellStyle(styles.get(style));
     }
 
+
+    private void printOutPatientDetails(PatientEntity patient, Locale locale,
+                                        ExportParamsEntity exportParams, Sheet sheet, Position p, boolean anonymize) {
+        Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
+
+        addCells("label.id", translateValue(String.valueOf(patient.getId()), locale), sheet, locale, styles, "cell", p);
+
+        if (!anonymize) {
+            if (exportParams.isContactFirstName()) {
+                addCells("label.firstname", translateValue(String.valueOf(patient.getContact().getFirstName()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactLastName()) {
+                addCells("label.lastname", translateValue(String.valueOf(patient.getContact().getLastName()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isPatientNin()) {
+                addCells("label.nin", translateValue(String.valueOf(patient.getNin()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (exportParams.isPatientBirthday()) {
+            addCells("label.birthdate", translateValue(String.valueOf(patient.getBirthday()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.age", translateValue(String.valueOf(getCurrentAge(patient)), locale), sheet, locale, styles, "cell", p);
+        }
+        if (exportParams.isPatientGender()) {
+            addCells("label.gender", messageSource.getMessage("label.gender." + translateValue(String.valueOf(patient.getGender()), locale), null, locale), sheet, locale, styles, "cell", p);
+        }
+        if (!anonymize) {
+            if (exportParams.isContactCountry()) {
+                addCells("label.addressCountry", translateValue(String.valueOf(patient.getContact().getAddressCountry()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactAddressCity()) {
+                addCells("label.addressCity", translateValue(String.valueOf(patient.getContact().getAddressCity()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactAddressStreet()) {
+                addCells("label.street", translateValue(String.valueOf(patient.getContact().getAddressStreet()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactAddressHn()) {
+                addCells("label.addressHn", translateValue(String.valueOf(patient.getContact().getAddressHn()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactPhoneNumber()) {
+                addCells("label.telephone", translateValue(String.valueOf(patient.getContact().getPhoneNumber()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (!anonymize) {
+            if (exportParams.isContactEmail()) {
+                addCells("label.email", translateValue(String.valueOf(patient.getContact().getEmail()), locale), sheet, locale, styles, "cell", p);
+            }
+        }
+        if (exportParams.isPatientAgeAtTheBeginningOfEpilepsy()) {
+            addCells("label.ageAtTheBeginningOfEpilepsy", translateValue(String.valueOf(getAgeAtTheBeginningOfEpilepsy(patient)), locale), sheet, locale, styles, "cell", p);
+        }
+        if (exportParams.isPatientDoctorId()) {
+            addCells("label.assignedDoctor", (translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale)), sheet, locale, styles, "cell", p);
+        }
+    }
+
     private void printOutAnamnesis(PatientEntity patient,
                                    AnamnesisEntity anamnesis, Locale locale,
                                    ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
 
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null)
                 dateRow = sheet.createRow(p.getRowcount());
@@ -600,11 +681,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     p.getCellcount(), //first column (0-based)
                     p.getCellcount() + 1 //last column  (0-based)
             ));
-
             p.setRowcount(p.getRowcount() + 1);
         }
 
-        Row dateRow = sheet.createRow(p.getRowcount());
+        Row dateRow = sheet.getRow(p.getRowcount());
+        if (dateRow == null) {
+            dateRow = sheet.createRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.anamnesis_from_date", null,
@@ -676,7 +759,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                  ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
 
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null)
                 dateRow = sheet.createRow(p.getRowcount());
@@ -696,7 +779,6 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         Row dateRow = sheet.getRow(p.getRowcount());
         if (dateRow == null)
             sheet.createRow(p.getRowcount());
-
 
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -722,18 +804,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.comment", translateValue(String.valueOf(seizure.getComment()), locale), sheet, locale, styles, "cell", p);
         }
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
-            if (exportParams.isSeizureDetailSSCClassification()) {
-                addCells("label.seizureDetailSSCClassification", translateValue(String.valueOf(seizureDetail.getSscClassification()), locale), sheet, locale, styles, "table", p);
-            }
-            if (exportParams.isSeizureDetailILAEClassification()) {
-                addCells("label.seizureDetailILAEClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
-            }
-            if (exportParams.isSeizureDetailComment()) {
-                addCells("label.comment", translateValue(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
-            }
-
             //add empty line
-            if (p.getRowcount() > 3) {
+            if ((seizureDetail != seizure.getSeizureDetailList().get(0)) && p.getRowcount() > 2 && seizure.getSeizureDetailList().size() > 0 && (exportParams.isSeizureDetailSSCClassification() || exportParams.isSeizureDetailILAEClassification() || exportParams.isSeizureDetailComment())) {
                 Row tableRow = sheet.getRow(p.getRowcount());
                 if (tableRow == null)
                     tableRow = sheet.createRow(p.getRowcount());
@@ -749,6 +821,15 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
                 p.setRowcount(p.getRowcount() + 1);
             }
+            if (exportParams.isSeizureDetailSSCClassification()) {
+                addCells("label.seizureDetailSSCClassification", translateValue(String.valueOf(seizureDetail.getSscClassification()), locale), sheet, locale, styles, "table", p);
+            }
+            if (exportParams.isSeizureDetailILAEClassification()) {
+                addCells("label.seizureDetailILAEClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
+            }
+            if (exportParams.isSeizureDetailComment()) {
+                addCells("label.comment", translateValue(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
+            }
         }
     }
 
@@ -756,7 +837,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                          PharmacotherapyEntity pharmacotherapy, Locale locale,
                                          ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -791,7 +872,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                              NeurologicalFindingEntity neurologicalFinding, Locale locale,
                                              ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -829,7 +910,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                          NeuropsychologyEntity neuropsychology, Locale locale,
                                          ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -960,7 +1041,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                             NeuropsychologyOldEntity neuropsychologyOld, Locale locale,
                                             ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1001,7 +1082,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                            DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
                                            ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1055,7 +1136,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                            DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
                                            ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1139,7 +1220,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                           InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
                                           ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1178,7 +1259,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                          InvasiveTestEegEntity invasiveTestEEG, Locale locale,
                                          ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1233,7 +1314,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                                      InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
                                                      Locale locale, ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1265,7 +1346,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                    OperationEntity operation, Locale locale,
                                    ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1322,7 +1403,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                    HistologyEntity histology, Locale locale,
                                    ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1355,7 +1436,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                       ComplicationEntity complication, Locale locale,
                                       ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1391,7 +1472,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                                  OutcomeEntity outcome, Locale locale,
                                  ExportParamsEntity exportParams, Sheet sheet, Position p) {
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
-        if (p.getRowcount() > 3) {
+        if (p.getRowcount() > 1) {
             Row dateRow = sheet.getRow(p.getRowcount());
             if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
             Cell dateCell = dateRow.createCell(p.getCellcount());
@@ -1441,8 +1522,8 @@ class Position {
     private int cellcount;
 
     Position() {
-        this.setRowcount(3);
-        this.setCellcount(0);
+        this.setRowcount(1);
+        this.setCellcount(-2);
     }
 
     public int getRowcount() {
