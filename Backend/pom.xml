@@ -402,14 +402,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>docx4j.properties</include>
-                </includes>
-            </resource>
-        </resources>
 	</build>
 </project>
