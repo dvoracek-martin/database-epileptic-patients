@@ -41,4 +41,15 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity>
         doctors = findMany(query);
         return doctors;
     }
+
+
+    @Override
+    public UserEntity findUserByEmail(String email) {
+        UserEntity userEntity;
+        Query query = sessionFactory.getCurrentSession().createQuery(
+                "from UserEntity where contact.email = :e_mail");
+        query.setParameter("e_mail", email);
+        userEntity = findOne(query);
+        return userEntity;
+    }
 }

@@ -32,4 +32,7 @@ public interface UserService extends GenericService<UserEntity> {
      * @param locale as Locale
      */
     public void create(UserEntity user, Locale locale);
+
+
+    public UserEntity findUserByEmail(String email);
 }

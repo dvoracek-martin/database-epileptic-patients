@@ -23,4 +23,6 @@ public interface UserDAO extends GenericDAO<UserEntity> {
      * @return the doctors
      */
     List<UserEntity> getDoctors();
+
+    UserEntity findUserByEmail(String email);
 }
