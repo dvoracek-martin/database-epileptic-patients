@@ -24,6 +24,7 @@ public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardSe
     @Override
     @Transactional
     public CardVO getById(Class<CardVO> cardVoClass, int recordId) {
+
         CardEntity entity = genericDAO.findByID((Class<CardEntity>) cardEntity.getClass(), recordId);
         CardVO destObject = dozer.map(entity, cardVoClass);
         return destObject;
@@ -32,6 +33,17 @@ public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardSe
     @Override
     @Transactional
     public void save(CardVO cardVO) {
+
+        //System.out.println(this.getClass().getGenericInterfaces());
+        // System.out.println(this.getClass().getGenericSuperclass());
+        /*java.lang.reflect.TypeVariable<? extends Class<? extends GenericCardServiceImpl>>[] var = this.getClass().getTypeParameters();
+        System.out.println("start");
+        for (java.lang.reflect.TypeVariable item : var) {
+            System.out.println(item);
+        }
+        System.out.println("end");*/
+        //System.out.println(this.getClass().getTypeParameters());
+
         genericDAO.save(dozer.map(cardVO, (Class<CardEntity>) cardEntity.getClass()));
     }
 

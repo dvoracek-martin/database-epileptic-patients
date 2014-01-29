@@ -939,7 +939,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         if (exportParams
                 .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
-            addCells("label.speech_expressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.speechExpressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
@@ -979,7 +979,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
-            addCells("label.cognitive_speed", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.cognitiveSpeed", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
@@ -987,19 +987,19 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
-            addCells("label.speech_expressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.speechExpressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
-            addCells("label.speech_understanding", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.speechUnderstanding", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
-            addCells("label.memory_operating", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.memoryOperating", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
-            addCells("label.memory_verbal", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.memoryVerbal", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {

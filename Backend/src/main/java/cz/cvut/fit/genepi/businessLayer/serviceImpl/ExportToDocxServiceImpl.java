@@ -712,7 +712,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
-            content.add(messageSource.getMessage("label.speech_expressively", null, locale));
+            content.add(messageSource.getMessage("label.speechExpressively", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
                     locale));
@@ -796,7 +796,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
-            content.add(messageSource.getMessage("label.cognitive_speed", null, locale));
+            content.add(messageSource.getMessage("label.cognitiveSpeed", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()),
                     locale));
@@ -804,7 +804,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
-            content.add(messageSource.getMessage("label.executiveFunctionc", null, locale));
+            content.add(messageSource.getMessage("label.executiveFunction", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileExecutiveFunction()),
                     locale));
@@ -812,7 +812,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
-            content.add(messageSource.getMessage("label.speech_expressively", null, locale));
+            content.add(messageSource.getMessage("label.speechExpressively", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
                     locale));
@@ -820,7 +820,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
-            content.add(messageSource.getMessage("label.speech_understanding", null, locale));
+            content.add(messageSource.getMessage("label.speechUnderstanding", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()),
                     locale));
@@ -828,7 +828,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
-            content.add(messageSource.getMessage("label.memory_operating", null, locale));
+            content.add(messageSource.getMessage("label.memoryOperating", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()),
                     locale));
@@ -836,7 +836,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams
                 .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
-            content.add(messageSource.getMessage("label.memory_verbal", null, locale));
+            content.add(messageSource.getMessage("label.memoryVerbal", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()),
                     locale));
