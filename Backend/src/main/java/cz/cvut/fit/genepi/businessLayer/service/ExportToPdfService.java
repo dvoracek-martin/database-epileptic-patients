@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Locale;
 
-import com.itextpdf.text.DocumentException;
-
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
@@ -22,10 +20,9 @@ public interface ExportToPdfService {
 	 * @param user as UserEntity
 	 * @param locale as Locale
 	 * @param exportParams as ExportParamsEntity
-	 * @throws FileNotFoundException the file not found exception
-	 * @throws DocumentException the document exception
-	 */
+	 * @throws FileNotFoundException the file not found
+     **/
 	public String export(List<PatientEntity> patientList, UserEntity user,
 			Locale locale, ExportParamsEntity exportParams, boolean anonymize)
-			throws FileNotFoundException, DocumentException;
+			throws FileNotFoundException;
 }
