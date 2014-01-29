@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import com.itextpdf.text.DocumentException;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -425,9 +424,6 @@ public class PatientController {
             } catch (FileNotFoundException e) {
                 logger.logError(
                         "File wasn't found when trying to export to pdf.", e);
-            } catch (DocumentException e) {
-                logger.logError(
-                        "Document exception when trying to export to pdf.", e);
             }
         } else if (exportType.equals("xlsx")) {
             String url = exportToXlsxService.export(patientList,
