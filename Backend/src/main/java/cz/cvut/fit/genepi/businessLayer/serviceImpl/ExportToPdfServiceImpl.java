@@ -53,8 +53,6 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
                          UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize) {
         logger.setLogger(ExportToPdfServiceImpl.class);
 
-        logger.setLogger(ExportToTxtServiceImpl.class);
-
         String name = exportToDocxService.export(patientList, user, locale, exportParams, anonymize).replace("docx", "pdf");
 
         String downloadFolder = System.getProperty("user.home")
