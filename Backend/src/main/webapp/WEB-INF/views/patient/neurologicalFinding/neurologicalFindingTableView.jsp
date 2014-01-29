@@ -41,13 +41,19 @@
             </td>
         </tr>
         <tr>
-            <th class="col-xs-3"><spring:message code="label.comment"/></th>
+            <th class="col-xs-3">
+                <spring:message code="label.comment"/>
+            </th>
             <c:choose>
                 <c:when test="${empty neurologicalFinding.comment}">
-                    <td class="col-xs-9"><spring:message code="label.noComments"/></td>
+                    <td class="col-xs-9">
+                        <spring:message code="label.noComments"/>
+                    </td>
                 </c:when>
                 <c:otherwise>
-                    <td class="col-xs-9">${neurologicalFinding.comment}</td>
+                    <td class="col-xs-9">
+                            ${neurologicalFinding.comment}
+                    </td>
                 </c:otherwise>
             </c:choose>
         </tr>

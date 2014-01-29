@@ -1,9 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 
 import java.util.List;
 
@@ -35,6 +33,8 @@ public class PatientDisplayVO {
     private List<AnamnesisDisplayVO> anamnesisList;
 
     private List<NeurologicalFindingDisplayVO> neurologicalFindingList;
+
+    private List<NeuropsychologyDisplayVO> neuropsychologyList;
 
     private List<SeizureDisplayVO> seizureList;
 
@@ -110,6 +110,14 @@ public class PatientDisplayVO {
 
     public void setNeurologicalFindingList(List<NeurologicalFindingDisplayVO> neurologicalFindingList) {
         this.neurologicalFindingList = neurologicalFindingList;
+    }
+
+    public List<NeuropsychologyDisplayVO> getNeuropsychologyList() {
+        return neuropsychologyList;
+    }
+
+    public void setNeuropsychologyList(List<NeuropsychologyDisplayVO> neuropsychologyList) {
+        this.neuropsychologyList = neuropsychologyList;
     }
 
     public List<SeizureDisplayVO> getSeizureList() {

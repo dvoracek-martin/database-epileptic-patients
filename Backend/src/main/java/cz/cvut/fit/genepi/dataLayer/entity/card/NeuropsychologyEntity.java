@@ -134,13 +134,13 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
     private int presenceOfChanges;
 
     @Column(name = "presence_of_changes_detail", nullable = false)
-    private int presenceOfChangesDetail;
+    private String presenceOfChangesDetail;
 
     @Column(name = "emotional_status", nullable = false)
     private int emotionalStatus;
 
     @Column(name = "comment", nullable = false)
-    private int comment;
+    private String comment;
 
     @Override
     public int compareTo(NeuropsychologyEntity o) {
@@ -458,11 +458,11 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         this.presenceOfChanges = presenceOfChanges;
     }
 
-    public int getPresenceOfChangesDetail() {
+    public String getPresenceOfChangesDetail() {
         return presenceOfChangesDetail;
     }
 
-    public void setPresenceOfChangesDetail(int presenceOfChangesDetail) {
+    public void setPresenceOfChangesDetail(String presenceOfChangesDetail) {
         this.presenceOfChangesDetail = presenceOfChangesDetail;
     }
 
@@ -474,13 +474,11 @@ public class NeuropsychologyEntity implements Comparable<NeuropsychologyEntity> 
         this.emotionalStatus = emotionalStatus;
     }
 
-    public int getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(int comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
-
-
 }
