@@ -98,4 +98,10 @@ public class UserServiceImpl extends
                     e);
         }
     }
+
+    @Override
+    @Transactional
+    public UserEntity findUserByEmail(String email) {
+        return userDAO.findUserByEmail(email);
+    }
 }

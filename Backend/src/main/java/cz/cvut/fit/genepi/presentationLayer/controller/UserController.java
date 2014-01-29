@@ -71,6 +71,7 @@ public class UserController {
     public String userCreateGET(Locale locale, Model model) {
         model.addAttribute("user", new UserEntity());
         model.addAttribute("isUnique", "unique");
+        model.addAttribute("isMailUnique", "unique");
         return "user/createView";
     }
 
@@ -92,11 +93,17 @@ public class UserController {
             @ModelAttribute("user") @Valid UserEntity user,
             BindingResult result, Locale locale, Model model) {
         boolean unique = true;
+        boolean mailUnique = true;
+
         if (userService.findUserByUsername(user.getUsername()) != null)
             unique = false;
-        if (result.hasErrors() || !unique) {
+        if (userService.findUserByEmail(user.getContact().getEmail()) != null)
+            mailUnique = false;
+        if (result.hasErrors() || !unique || !mailUnique) {
             if (!unique)
                 model.addAttribute("isUnique", "notUnique");
+            if (!mailUnique)
+                model.addAttribute("isMailUnique", "notUnique");
             return "user/createView";
         } else {
             // TODO: maybe userSrvice.create should do this IF and return
@@ -151,6 +158,7 @@ public class UserController {
                               Locale locale, Model model) {
         model.addAttribute("user",
                 userService.findByID(UserEntity.class, userID));
+        model.addAttribute("isMailUnique", "unique");
         return "user/editView";
     }
 
@@ -170,7 +178,15 @@ public class UserController {
     @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
     public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
                                BindingResult result, Locale locale, Model model) {
-        if (result.hasErrors()) {
+
+        boolean mailUnique = true;
+
+        if (userService.findUserByEmail(user.getContact().getEmail()) != null)
+            mailUnique = false;
+        if (result.hasErrors() || !mailUnique) {
+
+            if (!mailUnique)
+                model.addAttribute("isMailUnique", "notUnique");
             return "user/editView";
         }
         // TODO:veird sequence. is there a better solution??
