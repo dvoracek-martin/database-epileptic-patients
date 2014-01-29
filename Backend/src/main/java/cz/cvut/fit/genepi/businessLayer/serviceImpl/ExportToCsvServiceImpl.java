@@ -1,235 +1,142 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Service;
 
 import cz.cvut.fit.genepi.businessLayer.service.ExportToCsvService;
+import cz.cvut.fit.genepi.businessLayer.service.ExportToXlsxService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.util.LoggingService;
+import jxl.Cell;
+import jxl.Sheet;
+import jxl.Workbook;
+import jxl.WorkbookSettings;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Service;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Locale;
 
 @Service
 public class ExportToCsvServiceImpl implements ExportToCsvService {
 
+    @Autowired
+    private ExportToXlsxService exportToXlsService;
+
     /**
-     * IMPORTANT!
-     * APACHE POI CAN TRANSFORM XLS TO CSV!
+     * The Constant logger.
      */
+    private LoggingService logger = new LoggingService();
 
-	@Autowired
-	private MessageSource messageSource;
+    public String export(java.util.List<PatientEntity> patientList,
+                         UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize) {
 
-	// private static UserEntity user;
-	/** The Constant logger. */
-	private LoggingService logger = new LoggingService();
+        String name = exportToXlsService.export(patientList, user, locale, exportParams, anonymize).replace("xls", "csv");
 
-	private static String getDate() {
-		DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
-		Date today = Calendar.getInstance().getTime();
-		String reportDate = df.format(today);
-		reportDate = reportDate.replace(' ', '_');
-		reportDate = reportDate.replace('/', '_');
-		return reportDate;
-	}
+        String downloadFolder = System.getProperty("user.home")
+                + System.getProperty("file.separator") + "Download_Links"
+                + System.getProperty("file.separator");
+        File f = null;
+        String os = System.getProperty("os.name").toLowerCase();
+        if (os.indexOf("win") >= 0) {
+            downloadFolder.replace("\\", "/");
+            name = name.replace(":", "_");
+            f = new File(downloadFolder + name);
+            if (!f.getParentFile().exists())
+                f.getParentFile().mkdirs();
+            if (f.exists())
+                f.delete();
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                logger.logError(
+                        "Couldn't create new file when trying to save csv file.",
+                        e);
+            }
 
-	public String export(List<PatientEntity> patientList, UserEntity user,
-			Locale locale, ExportParamsEntity exports,boolean anonymize) {
+        } else {
+            downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
 
-		// TODO: fill in the list with localized names of the cards
-		List<String> listOfPossibleCards = new ArrayList<String>();
-		// !!!
+            f = new File(downloadFolder + name);
+            if (!f.getParentFile().exists())
+                f.getParentFile().mkdirs();
+            if (f.exists())
+                f.delete();
+            try {
+                f.createNewFile();
+            } catch (IOException e) {
+                logger.logError(
+                        "Couldn't create new file when trying to save csv file.",
+                        e);
+            }
+        }
 
-		logger.setLogger(ExportToCsvServiceImpl.class);
+        exportCsv(downloadFolder + name.replace("csv", "xls"), downloadFolder + name);
+        cleanup(downloadFolder + name.replace("csv", "xls"));
+        return name;
+    }
 
-		String date = getDate();
-		String name = date + ".csv";
+    /**
+     * Converts xls to csv
+     *
+     * @param input
+     * @param output
+     */
+    private void exportCsv(String input, String output) {
+        try {
+            BufferedWriter bw = new BufferedWriter
+                    (new OutputStreamWriter(new FileOutputStream(output), "UTF-8"));
 
-		String downloadFolder = System.getProperty("user.home")
-				+ System.getProperty("file.separator") + "Download_Links"
-				+ System.getProperty("file.separator");
-		File f = null;
-		String os = System.getProperty("os.name").toLowerCase();
-		if (os.indexOf("win") >= 0) {
-			downloadFolder.replace("\\", "/");
-		} else {
-			downloadFolder = "/usr/local/tomcat/webapps/GENEPI/resources/downloads/";
+            WorkbookSettings ws = new WorkbookSettings();
+            ws.setEncoding("Cp1252");
 
-			f = new File(downloadFolder + name);
-			if (!f.getParentFile().exists())
-				f.getParentFile().mkdirs();
-			if (f.exists())
-				f.delete();
-			try {
-				f.createNewFile();
-			} catch (IOException e) {
-				logger.logError(
-						"Couldn't create new file when trying to save csv file.",
-						e);
-			}
-		}
+            Workbook w = Workbook.getWorkbook(new File(input), ws);
 
-		BufferedWriter bw = null;
-		try {
-			bw = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(f.getAbsoluteFile()), "UTF-8"));
-		} catch (UnsupportedEncodingException e) {
-			logger.logError(
-					"UnsupportedEncodingException when trying to init writer for csv file.",
-					e);
-			e.printStackTrace();
-		} catch (FileNotFoundException e) {
-			logger.logError(
-					"FileNotFoundException when trying to init writer for csv file.",
-					e);
-			e.printStackTrace();
-		}
-		String content = "";
-		for (PatientEntity patient : patientList) {
-			content += addTitlePage(f, bw, locale, patient, date);
-			content += addContent(f, exports, listOfPossibleCards, locale,
-					patient);
-		}
-		try {
-			bw.write(content);
-		} catch (IOException e) {
-			logger.logError("Exception when trying to write to csv file.", e);
-			e.printStackTrace();
-		}
-		try {
-			bw.close();
-		} catch (IOException e) {
-			logger.logError("Exception when trying to close csv file.", e);
-			e.printStackTrace();
-		}
+            // Gets the sheets from workbook
+            for (int sheet = 0; sheet < w.getNumberOfSheets(); sheet++) {
+                Sheet s = w.getSheet(sheet);
 
-		return name;
-	}
+                bw.write(s.getName());
+                bw.newLine();
 
-	private String addEmptyLine() {
-		String emptyLine = "";
-		for (int i = 0; i != 50; i++) {
-			emptyLine += " ";
-		}
-		return ("\n" + emptyLine + "\n");
-	}
+                Cell[] row = null;
 
-	private String addDashLine() {
-		String emptyLine = "";
-		for (int i = 0; i != 50; i++) {
-			emptyLine += "-";
-		}
-		return ("\n" + emptyLine + "\n");
-	}
+                for (int i = 0; i < s.getRows(); i++) {
+                    row = s.getRow(i);
 
-	/*
-	private String addStarLine() {
-		String emptyLine = "";
-		for (int i = 0; i != 50; i++) {
-			emptyLine += "*";
-		}
-		return ("\n" + emptyLine + "\n");
-	}
-	*/
+                    if (row.length > 0) {
+                        bw.write(row[0].getContents());
+                        for (int j = 1; j < row.length; j++) {
+                            bw.write(',');
+                            bw.write(row[j].getContents());
+                        }
+                    }
+                    bw.newLine();
+                }
+            }
+            bw.flush();
+            bw.close();
+        } catch (UnsupportedEncodingException e) {
+            System.err.println(e.toString());
+        } catch (IOException e) {
+            System.err.println(e.toString());
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+    }
 
-	private String addTitlePage(File f, BufferedWriter bw, Locale locale,
-			PatientEntity patient, String date) {
-		String content = "Export of the patient "
-				+ patient.getContact().getFirstName() + " "
-				+ patient.getContact().getLastName() + " :"
-				+ patient.getId() + " " + date;
 
-		content += addEmptyLine();
-		content += ("Report generated by: " + System.getProperty("user.name")
-				+ ", " + new Date() + "\n");
-		content += addEmptyLine();
-		return content;
-	}
-
-	private String addContent(File f, ExportParamsEntity exportParams,
-			java.util.List<String> listOfPossibleCards, Locale locale,
-			PatientEntity patient) {
-		String content = "";
-		content += addDashLine();
-		content += addEmptyLine();
-		/*
-		 * for (String s : exports) { if (s.equals(listOfPossibleCards.get(0)))
-		 * { content += (messageSource.getMessage("label.anamnesis", null,
-		 * locale) + "-" + (messageSource.getMessage( "label.dateExamination",
-		 * null, locale))); for (AnamnesisEntity a : patient.getAnamnesisList())
-		 * { content += messageSource.getMessage( "label.dateExamination", null,
-		 * locale); content += (": " + a.getAdded() + "\n"); content +=
-		 * messageSource.getMessage( "label.epilepsyInFamily", null, locale);
-		 * content += (": " + a.getEpilepsyInFamily() + "\n"); content +=
-		 * messageSource.getMessage("label.prenatalRisk", null, locale); content
-		 * += (": " + a.getPrenatalRisk() + "\n"); content +=
-		 * messageSource.getMessage( "label.inflammationCNS", null, locale);
-		 * content += (": " + a.getInflammationCns() + "\n"); content +=
-		 * messageSource.getMessage( "label.fibrilConvulsions", null, locale);
-		 * content += (": " + a.getFibrilConvulsions() + "\n"); content +=
-		 * messageSource.getMessage("label.injuryCNS", null, locale); content +=
-		 * (": " + a.getInjuryCns() + "\n"); content +=
-		 * messageSource.getMessage("label.operationCNS", null, locale); content
-		 * += (": " + a.getOperationCns() + "\n"); content +=
-		 * messageSource.getMessage( "label.earlyPMDRetardation", null, locale);
-		 * content += (": " + a.getEarlyPmdRetardation() + "\n"); content +=
-		 * messageSource.getMessage( "label.beginningEpilepsy", null, locale);
-		 * content += (": " + a.getBeginningEpilepsy() + "\n"); content +=
-		 * messageSource.getMessage("label.firstFever", null, locale); content
-		 * += (": " + a.getFirstFever() + "\n"); content +=
-		 * messageSource.getMessage("label.infantileSpasm", null, locale);
-		 * content += (": " + a.getInfantileSpasm() + "\n"); content +=
-		 * messageSource.getMessage( "label.epilepticSyndrome", null, locale);
-		 * content += (": " + a.getSpecificSyndromeIdcom() + "\n"); content +=
-		 * messageSource.getMessage( "label.nonCNSComorbidity", null, locale);
-		 * content += (": " + a.getNonCnsComorbidity() + "\n"); content +=
-		 * messageSource.getMessage("label.comment", null, locale); content +=
-		 * (": " + a.getComment() + "\n");
-		 * 
-		 * content += addStarLine(); } } content += addDashLine(); content +=
-		 * addEmptyLine();
-		 * 
-		 * if (s.equals(listOfPossibleCards.get(1))) { content +=
-		 * ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(2))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(3))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(4))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(5))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(6))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); } } if (s.equals(listOfPossibleCards.get(7))) {
-		 * content += ("Anamnesis\n\n"); for (AnamnesisEntity a :
-		 * patient.getAnamnesisList()) { content += (a.getAdded()); content +=
-		 * addStarLine(); }
-		 * 
-		 * } }
-		 */
-		return content;
-	}
+    /**
+     * Deletes the original xls file
+     *
+     * @param input
+     */
+    private void cleanup(String input) {
+        File f = new File(input);
+        f.delete();
+    }
 }
