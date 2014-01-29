@@ -4,7 +4,6 @@ import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
 import cz.cvut.fit.genepi.businessLayer.serviceImpl.GenericServiceImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OutcomeServiceImpl extends

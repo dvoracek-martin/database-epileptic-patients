@@ -10,14 +10,9 @@ import org.apache.poi.xwpf.converter.pdf.PdfConverter;
 import org.apache.poi.xwpf.converter.pdf.PdfOptions;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 // TODO: Auto-generated Javadoc
@@ -42,9 +37,9 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
     /**
      * Creates pdf file and also a docx file that is source for the conversion to the pdf
      *
-     * @param patientList as List of PatientEntity
-     * @param user as UserEntity
-     * @param locale as Locale
+     * @param patientList  as List of PatientEntity
+     * @param user         as UserEntity
+     * @param locale       as Locale
      * @param exportParams as ExportParamsEntity
      * @param anonymize
      * @return
@@ -96,13 +91,15 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
         cleanup(downloadFolder + name.replace("pdf", "docx"));
         return name;
     }
+
     /**
      * Transforms docx to pdf
+     *
      * @param input
      * @param output
      */
     private void exportPdf(String input, String output) {
-               InputStream in = null;
+        InputStream in = null;
         try {
             in = new FileInputStream(new File(input));
         } catch (FileNotFoundException e) {
@@ -130,6 +127,7 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
 
     /**
      * Deletes the original docx file
+     *
      * @param input
      */
     private void cleanup(String input) {

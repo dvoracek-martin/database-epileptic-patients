@@ -1,393 +1,382 @@
 package cz.cvut.fit.genepi.dataLayer.entity;
 
+import javax.persistence.*;
 import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "advanced_search")
 public class AdvancedSearchEntity {
 
-	@Id
-	@Column(name = "id", precision = 6, scale = 0, nullable = false)
-	@GeneratedValue
-	private int id;
+    @Id
+    @Column(name = "id", precision = 6, scale = 0, nullable = false)
+    @GeneratedValue
+    private int id;
 
-	@Column(name = "added")
-	private Date added;
+    @Column(name = "added")
+    private Date added;
 
-	@Column(name = "name")
-	private String name;
+    @Column(name = "name")
+    private String name;
 
-	@Column(name = "hidden")
-	private boolean hidden;
+    @Column(name = "hidden")
+    private boolean hidden;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
-	private UserEntity user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-	
-	/* General parameters - specific person */
-	@Column(name = "patient_firstname")
-	private String patientFirstname;
 
-	@Column(name = "patient_lastname")
-	private String patientLastname;
+    /* General parameters - specific person */
+    @Column(name = "patient_firstname")
+    private String patientFirstname;
 
-	@Column(name = "patient_nin")
-	private String patientNin;
+    @Column(name = "patient_lastname")
+    private String patientLastname;
 
-	@Column(name = "patient_town")
-	private String patientTown;
+    @Column(name = "patient_nin")
+    private String patientNin;
 
-	@Column(name = "patient_country")
-	private String patientCountry;
+    @Column(name = "patient_town")
+    private String patientTown;
 
-	/* General parameters */
-	@Column(name = "patient_gender")
-	private String patientGender;
+    @Column(name = "patient_country")
+    private String patientCountry;
 
-	@Column(name = "patient_age")
-	private String patientAge;
+    /* General parameters */
+    @Column(name = "patient_gender")
+    private String patientGender;
 
-	@Column(name = "patient_age_filter")
-	private String patientAgeFilter;
+    @Column(name = "patient_age")
+    private String patientAge;
 
-	@Column(name = "patient_age_epilepsy")
-	private String patientAgeEpilepsy;
+    @Column(name = "patient_age_filter")
+    private String patientAgeFilter;
 
-	@Column(name = "patient_age_epilepsy_filter")
-	private String patientAgeEpilepsyFilter;
-	
-	@Column(name = "patient_doctor")
-	private int patientDoctor;
+    @Column(name = "patient_age_epilepsy")
+    private String patientAgeEpilepsy;
 
-	/* Include params from */
-	@Column(name = "anamnesis")
-	private boolean anamnesis;
-	
-	@Column(name = "seizure")
-	private boolean seizure;
-	
-	@Column(name = "pharmacotherapy")
-	private boolean pharmacotherapy;
-	
-	@Column(name = "neurological_finding")
-	private boolean neurologicalFinding;
-	
-	@Column(name = "neuropsychology")
-	private boolean neuropsychology;
-	
-	@Column(name = "diagnostic_test_scalp_eeg")
-	private boolean diagnosticTestScalpEeg;
-	
-	@Column(name = "diagnostic_test_mri")
-	private boolean diagnosticTestMri;
-	
-	@Column(name = "invasive_test_eeg")
-	private boolean invasiveTestEeg;
-	
-	@Column(name = "invasive_test_ecog")
-	private boolean invasiveTestEcog;
-	
-	@Column(name = "operation")
-	private boolean operation;
-	
-	@Column(name = "histology")
-	private boolean histology;
-		
-	@Column(name = "complication")
-	private boolean complication;
-	
-	@Column(name = "outcome")
-	private boolean outcome;
-	
+    @Column(name = "patient_age_epilepsy_filter")
+    private String patientAgeEpilepsyFilter;
+
+    @Column(name = "patient_doctor")
+    private int patientDoctor;
+
+    /* Include params from */
+    @Column(name = "anamnesis")
+    private boolean anamnesis;
+
+    @Column(name = "seizure")
+    private boolean seizure;
+
+    @Column(name = "pharmacotherapy")
+    private boolean pharmacotherapy;
+
+    @Column(name = "neurological_finding")
+    private boolean neurologicalFinding;
+
+    @Column(name = "neuropsychology")
+    private boolean neuropsychology;
+
+    @Column(name = "diagnostic_test_scalp_eeg")
+    private boolean diagnosticTestScalpEeg;
+
+    @Column(name = "diagnostic_test_mri")
+    private boolean diagnosticTestMri;
+
+    @Column(name = "invasive_test_eeg")
+    private boolean invasiveTestEeg;
+
+    @Column(name = "invasive_test_ecog")
+    private boolean invasiveTestEcog;
+
+    @Column(name = "operation")
+    private boolean operation;
+
+    @Column(name = "histology")
+    private boolean histology;
+
+    @Column(name = "complication")
+    private boolean complication;
+
+    @Column(name = "outcome")
+    private boolean outcome;
+
 	/* anamnesis specific */
-	
-	@Column(name = "anamnesis_epilepsy_in_family")
-	private int anamnesisEpilepsyInFamily;
-	
-	@Column(name = "anamnesis_prenatal_risk")
-	private boolean anamnesisPrenatalRisk;
-	
-	@Column(name = "anamnesis_fibril_convulsions")
-	private boolean anamnesisFibrilConvulsions;
-	
-	@Column(name = "anamnesis_inflammation_cns")
-	private boolean anamnesisInflammationCns;
-	
-	@Column(name = "anamnesis_operation_cns")
-	private boolean anamnesisOperationCns;
-	
-	@Column(name = "anamnesis_injury_cns")
-	private boolean anamnesisInjuryCns;
-	
-	@Column(name = "anamnesis_early_pmd_retardation")
-	private boolean anamnesisEarlyPmdRetardation;
-	
-	@Column(name = "anamnesis_first_fever")
-	private boolean anamnesisFirstFever;
-	
-	@Column(name = "anamnesis_infantile_spasm")
-	private boolean anamnesisInfantileSpasm;
-	
-	@Column(name = "anamnesis_specific_syndrome")
-	private boolean anamnesisSpecificSyndrome;
-	
-	
-		
 
-	public int getId() {
-		return id;
-	}
+    @Column(name = "anamnesis_epilepsy_in_family")
+    private int anamnesisEpilepsyInFamily;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    @Column(name = "anamnesis_prenatal_risk")
+    private boolean anamnesisPrenatalRisk;
 
-	public Date getAdded() {
-		return added;
-	}
+    @Column(name = "anamnesis_fibril_convulsions")
+    private boolean anamnesisFibrilConvulsions;
 
-	public void setAdded(Date added) {
-		this.added = added;
-	}
+    @Column(name = "anamnesis_inflammation_cns")
+    private boolean anamnesisInflammationCns;
 
-	public String getName() {
-		return name;
-	}
+    @Column(name = "anamnesis_operation_cns")
+    private boolean anamnesisOperationCns;
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    @Column(name = "anamnesis_injury_cns")
+    private boolean anamnesisInjuryCns;
 
-	public boolean isHidden() {
-		return hidden;
-	}
+    @Column(name = "anamnesis_early_pmd_retardation")
+    private boolean anamnesisEarlyPmdRetardation;
 
-	public void setHidden(boolean hidden) {
-		this.hidden = hidden;
-	}
+    @Column(name = "anamnesis_first_fever")
+    private boolean anamnesisFirstFever;
 
-	public UserEntity getUser() {
-		return user;
-	}
+    @Column(name = "anamnesis_infantile_spasm")
+    private boolean anamnesisInfantileSpasm;
 
-	public void setUser(UserEntity user) {
-		this.user = user;
-	}
+    @Column(name = "anamnesis_specific_syndrome")
+    private boolean anamnesisSpecificSyndrome;
 
-	/* General parameters - specific person get n set*/
-	public String getPatientFirstname() {
-		return patientFirstname;
-	}
 
-	public void setPatientFirstname(String patientFirstname) {
-		this.patientFirstname =patientFirstname;
-	}
+    public int getId() {
+        return id;
+    }
 
-	public String getPatientLastname() {
-		return patientLastname;
-	}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setPatientLastname(String patientLastname) {
-		this.patientLastname = patientLastname;
-	}
+    public Date getAdded() {
+        return added;
+    }
 
-	public String getPatientNin() {
-		return patientNin;
-	}
+    public void setAdded(Date added) {
+        this.added = added;
+    }
 
-	public void setPatientNin(String patientNin) {
-		this.patientNin = patientNin;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public String getPatientTown() {
-		return patientTown;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public void setPatientTown(String patientTown) {
-		this.patientTown = patientTown;
-	}
+    public boolean isHidden() {
+        return hidden;
+    }
 
-	public String getPatientCountry() {
-		return patientCountry;
-	}
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
 
-	public void setPatientCountry(String patientCountry) {
-		this.patientCountry = patientCountry;
-	}
+    public UserEntity getUser() {
+        return user;
+    }
 
-	/* General parameters get n set*/
-	public String getPatientGender() {
-		return patientGender;
-	}
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
 
-	public void setPatientGender(String patientGender) {
-		this.patientGender = patientGender;
-	}
+    /* General parameters - specific person get n set*/
+    public String getPatientFirstname() {
+        return patientFirstname;
+    }
 
-	public String getPatientAge() {
-		return patientAge;
-	}
+    public void setPatientFirstname(String patientFirstname) {
+        this.patientFirstname = patientFirstname;
+    }
 
-	public void setPatientAge(String patientAge) {
-		this.patientAge = patientAge;
-	}
+    public String getPatientLastname() {
+        return patientLastname;
+    }
 
-	public String getPatientAgeFilter() {
-		return patientAgeFilter;
-	}
+    public void setPatientLastname(String patientLastname) {
+        this.patientLastname = patientLastname;
+    }
 
-	public void setPatientAgeFilter(String patientAgeFilter) {
-		this.patientAgeFilter = patientAgeFilter;
-	}
+    public String getPatientNin() {
+        return patientNin;
+    }
 
-	public String getPatientAgeEpilepsy() {
-		return patientAgeEpilepsy;
-	}
+    public void setPatientNin(String patientNin) {
+        this.patientNin = patientNin;
+    }
 
-	public void setPatientAgeEpilepsy(String patientAgeEpilepsy) {
-		this.patientAgeEpilepsy = patientAgeEpilepsy;
-	}
+    public String getPatientTown() {
+        return patientTown;
+    }
 
-	public String getPatientAgeEpilepsyFilter() {
-		return patientAgeEpilepsyFilter;
-	}
+    public void setPatientTown(String patientTown) {
+        this.patientTown = patientTown;
+    }
 
-	public void setPatientAgeEpilepsyFilter(String patientAgeEpilepsyFilter) {
-		this.patientAgeEpilepsyFilter = patientAgeEpilepsyFilter;
-	}
+    public String getPatientCountry() {
+        return patientCountry;
+    }
 
-	public int getPatientDoctor() {
-		return patientDoctor;
-	}
+    public void setPatientCountry(String patientCountry) {
+        this.patientCountry = patientCountry;
+    }
 
-	public void setPatientDoctor(int patientDoctor) {
-		this.patientDoctor = patientDoctor;
-	}
+    /* General parameters get n set*/
+    public String getPatientGender() {
+        return patientGender;
+    }
+
+    public void setPatientGender(String patientGender) {
+        this.patientGender = patientGender;
+    }
+
+    public String getPatientAge() {
+        return patientAge;
+    }
+
+    public void setPatientAge(String patientAge) {
+        this.patientAge = patientAge;
+    }
+
+    public String getPatientAgeFilter() {
+        return patientAgeFilter;
+    }
+
+    public void setPatientAgeFilter(String patientAgeFilter) {
+        this.patientAgeFilter = patientAgeFilter;
+    }
+
+    public String getPatientAgeEpilepsy() {
+        return patientAgeEpilepsy;
+    }
+
+    public void setPatientAgeEpilepsy(String patientAgeEpilepsy) {
+        this.patientAgeEpilepsy = patientAgeEpilepsy;
+    }
+
+    public String getPatientAgeEpilepsyFilter() {
+        return patientAgeEpilepsyFilter;
+    }
+
+    public void setPatientAgeEpilepsyFilter(String patientAgeEpilepsyFilter) {
+        this.patientAgeEpilepsyFilter = patientAgeEpilepsyFilter;
+    }
+
+    public int getPatientDoctor() {
+        return patientDoctor;
+    }
+
+    public void setPatientDoctor(int patientDoctor) {
+        this.patientDoctor = patientDoctor;
+    }
 	/* Include params from get n set */
 
-	public boolean isAnamnesis() {
-		return anamnesis;
-	}
+    public boolean isAnamnesis() {
+        return anamnesis;
+    }
 
-	public void setAnamnesis(boolean anamnesis) {
-		this.anamnesis = anamnesis;
-	}
+    public void setAnamnesis(boolean anamnesis) {
+        this.anamnesis = anamnesis;
+    }
 
-	public boolean isSeizure() {
-		return seizure;
-	}
+    public boolean isSeizure() {
+        return seizure;
+    }
 
-	public void setSeizure(boolean seizure) {
-		this.seizure = seizure;
-	}
+    public void setSeizure(boolean seizure) {
+        this.seizure = seizure;
+    }
 
-	public boolean isPharmacotherapy() {
-		return pharmacotherapy;
-	}
+    public boolean isPharmacotherapy() {
+        return pharmacotherapy;
+    }
 
-	public void setPharmacotherapy(boolean pharmacotherapy) {
-		this.pharmacotherapy = pharmacotherapy;
-	}
+    public void setPharmacotherapy(boolean pharmacotherapy) {
+        this.pharmacotherapy = pharmacotherapy;
+    }
 
-	public boolean isNeurologicalFinding() {
-		return neurologicalFinding;
-	}
+    public boolean isNeurologicalFinding() {
+        return neurologicalFinding;
+    }
 
-	public void setNeurologicalFinding(boolean neurologicalFinding) {
-		this.neurologicalFinding = neurologicalFinding;
-	}
+    public void setNeurologicalFinding(boolean neurologicalFinding) {
+        this.neurologicalFinding = neurologicalFinding;
+    }
 
-	public boolean isNeuropsychology() {
-		return neuropsychology;
-	}
+    public boolean isNeuropsychology() {
+        return neuropsychology;
+    }
 
-	public void setNeuropsychology(boolean neuropsychology) {
-		this.neuropsychology = neuropsychology;
-	}
+    public void setNeuropsychology(boolean neuropsychology) {
+        this.neuropsychology = neuropsychology;
+    }
 
-	public boolean isDiagnosticTestScalpEeg() {
-		return diagnosticTestScalpEeg;
-	}
+    public boolean isDiagnosticTestScalpEeg() {
+        return diagnosticTestScalpEeg;
+    }
 
-	public void setDiagnosticTestScalpEeg(boolean diagnosticTestScalpEeg) {
-		this.diagnosticTestScalpEeg = diagnosticTestScalpEeg;
-	}
+    public void setDiagnosticTestScalpEeg(boolean diagnosticTestScalpEeg) {
+        this.diagnosticTestScalpEeg = diagnosticTestScalpEeg;
+    }
 
-	public boolean isDiagnosticTestMri() {
-		return diagnosticTestMri;
-	}
+    public boolean isDiagnosticTestMri() {
+        return diagnosticTestMri;
+    }
 
-	public void setDiagnosticTestMri(boolean diagnosticTestMri) {
-		this.diagnosticTestMri = diagnosticTestMri;
-	}
+    public void setDiagnosticTestMri(boolean diagnosticTestMri) {
+        this.diagnosticTestMri = diagnosticTestMri;
+    }
 
-	public boolean isInvasiveTestEeg() {
-		return invasiveTestEeg;
-	}
+    public boolean isInvasiveTestEeg() {
+        return invasiveTestEeg;
+    }
 
-	public void setInvasiveTestEeg(boolean invasiveTestEeg) {
-		this.invasiveTestEeg = invasiveTestEeg;
-	}
+    public void setInvasiveTestEeg(boolean invasiveTestEeg) {
+        this.invasiveTestEeg = invasiveTestEeg;
+    }
 
-	public boolean isInvasiveTestEcog() {
-		return invasiveTestEcog;
-	}
+    public boolean isInvasiveTestEcog() {
+        return invasiveTestEcog;
+    }
 
-	public void setInvasiveTestEcog(boolean invasiveTestEcog) {
-		this.invasiveTestEcog = invasiveTestEcog;
-	}
+    public void setInvasiveTestEcog(boolean invasiveTestEcog) {
+        this.invasiveTestEcog = invasiveTestEcog;
+    }
 
-	public boolean isOperation() {
-		return operation;
-	}
+    public boolean isOperation() {
+        return operation;
+    }
 
-	public void setOperation(boolean operation) {
-		this.operation = operation;
-	}
+    public void setOperation(boolean operation) {
+        this.operation = operation;
+    }
 
-	public boolean isHistology() {
-		return histology;
-	}
+    public boolean isHistology() {
+        return histology;
+    }
 
-	public void setHistology(boolean histology) {
-		this.histology = histology;
-	}
+    public void setHistology(boolean histology) {
+        this.histology = histology;
+    }
 
-	public boolean getComplication() {
-		return complication;
-	}
+    public boolean getComplication() {
+        return complication;
+    }
 
-	public void setComplication(boolean complication) {
-		this.complication = complication;
-	}
+    public void setComplication(boolean complication) {
+        this.complication = complication;
+    }
 
-	public boolean getOutcome() {
-		return outcome;
-	}
+    public boolean getOutcome() {
+        return outcome;
+    }
 
-	public void setOutcome(boolean outcome) {
-		this.outcome = outcome;
-	}
+    public void setOutcome(boolean outcome) {
+        this.outcome = outcome;
+    }
 	/* anamnesis specific  get n set*/
 
-	public int getAnamnesisEpilepsyInFamily() {
-		return anamnesisEpilepsyInFamily;
-	}
+    public int getAnamnesisEpilepsyInFamily() {
+        return anamnesisEpilepsyInFamily;
+    }
 
-	public void setAnamnesisEpilepsyInFamily(int anamnesisEpilepsyInFamily) {
-		this.anamnesisEpilepsyInFamily = anamnesisEpilepsyInFamily;
-	}
+    public void setAnamnesisEpilepsyInFamily(int anamnesisEpilepsyInFamily) {
+        this.anamnesisEpilepsyInFamily = anamnesisEpilepsyInFamily;
+    }
 
-	
 
 }

@@ -7,9 +7,9 @@ public interface GenericCardService<CardVO, CardEntity> {
 
     public CardVO getById(Class<CardVO> cardVoClass, int recordId);
 
-    public void save( CardVO cardVo);
+    public void save(CardVO cardVo);
 
-    public void delete (int recordId);
+    public void delete(int recordId);
 
   /*  public void hide(int id);
 

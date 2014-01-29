@@ -7,6 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyOldEntity;
  * NeuropsychologyOldDAO interface
  */
 public interface NeuropsychologyOldDAO extends
-		GenericDAO<NeuropsychologyOldEntity> {
+        GenericDAO<NeuropsychologyOldEntity> {
 
 }

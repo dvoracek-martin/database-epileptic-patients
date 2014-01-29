@@ -7,6 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
  * NeurologicalFindingDAO interface
  */
 public interface NeurologicalFindingDAO extends
-		GenericDAO<NeurologicalFindingEntity> {
+        GenericDAO<NeurologicalFindingEntity> {
 
 }

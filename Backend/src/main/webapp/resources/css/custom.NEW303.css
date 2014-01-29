@@ -1,9 +1,8 @@
 
-
 .list-striped > div:nth-child(odd) table {
-	background-color: rgb(245, 245, 245);
+    background-color: rgb(245, 245, 245);
 }
 
 .record-head {
-	margin-bottom: 0px;
+    margin-bottom: 0px;
 }

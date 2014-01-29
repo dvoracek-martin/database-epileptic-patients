@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 /**
  * DiagnosticTestMriDAO interface
  */
-public interface DiagnosticTestMriDAO extends GenericDAO<DiagnosticTestMriEntity>{
+public interface DiagnosticTestMriDAO extends GenericDAO<DiagnosticTestMriEntity> {
 
 }

@@ -7,6 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
  * SeizureDetailDAO interface
  */
 public interface SeizureDetailDAO extends
-		GenericDAO<SeizureDetailEntity> {
+        GenericDAO<SeizureDetailEntity> {
 
 }

@@ -35,7 +35,7 @@
                         <c:forEach items="${userList}" var="user">
                             <tr>
                                 <td>
-                                    <a  href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
+                                    <a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
                                 </td>
                                 <td>
                                     <a href="<c:url value="/user/${user.id}/edit" />"><spring:message

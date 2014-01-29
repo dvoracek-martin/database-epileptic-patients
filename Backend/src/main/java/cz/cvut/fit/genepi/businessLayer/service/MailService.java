@@ -7,6 +7,6 @@ import java.util.Locale;
  * The Interface MailService extends GenericService
  */
 public interface MailService {
-	public void sendMail(String recipient, HashMap<String, Object> map,
-			Locale locale) throws Exception;
+    public void sendMail(String recipient, HashMap<String, Object> map,
+                         Locale locale) throws Exception;
 }

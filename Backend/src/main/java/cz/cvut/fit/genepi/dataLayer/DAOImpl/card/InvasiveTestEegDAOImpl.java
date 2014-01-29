@@ -1,10 +1,9 @@
 package cz.cvut.fit.genepi.dataLayer.DAOImpl.card;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.card.InvasiveTestEegDAO;
+import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import org.springframework.stereotype.Repository;
-
-import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 
 /**
  * Implementation of InvasiveTEestEEGDAO

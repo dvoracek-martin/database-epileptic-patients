@@ -7,6 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntit
  * InvasiveTestCortialMappingDAO interface
  */
 public interface InvasiveTestCorticalMappingDAO extends
-		GenericDAO<InvasiveTestCorticalMappingEntity> {
+        GenericDAO<InvasiveTestCorticalMappingEntity> {
 
 }

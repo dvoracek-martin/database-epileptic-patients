@@ -5,8 +5,6 @@ import org.hibernate.MappingException;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 

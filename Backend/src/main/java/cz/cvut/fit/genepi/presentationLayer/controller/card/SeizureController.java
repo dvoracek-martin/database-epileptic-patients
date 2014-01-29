@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
-import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

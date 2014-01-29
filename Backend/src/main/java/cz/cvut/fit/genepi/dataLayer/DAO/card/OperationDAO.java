@@ -6,6 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 /**
  * OperationDAO interface
  */
-public interface OperationDAO  extends GenericDAO<OperationEntity>{
+public interface OperationDAO extends GenericDAO<OperationEntity> {
 
 }

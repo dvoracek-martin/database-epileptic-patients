@@ -1686,10 +1686,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (!anonymize)
             if (exportParams.isContactLastName())
                 content += messageSource.getMessage("label.lastname", null, locale);
-                content += " - ";
-                content += translateValue(String.valueOf(patient.getContact().getLastName()), locale);
-                content += "\n";
-        if (!anonymize){
+        content += " - ";
+        content += translateValue(String.valueOf(patient.getContact().getLastName()), locale);
+        content += "\n";
+        if (!anonymize) {
             if (exportParams.isPatientNin()) {
                 content += messageSource.getMessage("label.birthIdentificationNumber", null, locale);
                 content += " - ";

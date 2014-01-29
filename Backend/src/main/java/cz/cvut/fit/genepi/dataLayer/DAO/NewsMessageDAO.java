@@ -5,6 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
 /**
  * NewsMessagelDAO interface
  */
-public interface  NewsMessageDAO  extends GenericDAO<NewsMessageEntity> {
+public interface NewsMessageDAO extends GenericDAO<NewsMessageEntity> {
 
 }

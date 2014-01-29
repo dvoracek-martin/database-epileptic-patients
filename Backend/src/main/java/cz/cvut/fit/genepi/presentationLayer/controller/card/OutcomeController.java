@@ -124,7 +124,7 @@ public class OutcomeController {
             @PathVariable("outcomeId") Integer outcomeId, Locale locale,
             Model model) {
 
-       // outcomeService.unhide(outcomeService.findByID(OutcomeEntity.class,outcomeId));
+        // outcomeService.unhide(outcomeService.findByID(OutcomeEntity.class,outcomeId));
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/outcome/list";
