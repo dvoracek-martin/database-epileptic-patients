@@ -1684,12 +1684,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += "\n";
 
             }
-        if (!anonymize)
-            if (exportParams.isContactLastName())
+        if (!anonymize) {
+            if (exportParams.isContactLastName()) {
                 content += messageSource.getMessage("label.lastname", null, locale);
-        content += " - ";
-        content += translateValue(String.valueOf(patient.getContact().getLastName()), locale);
-        content += "\n";
+                content += " - ";
+                content += translateValue(String.valueOf(patient.getContact().getLastName()), locale);
+                content += "\n";
+            }
+        }
         if (!anonymize) {
             if (exportParams.isPatientNin()) {
                 content += messageSource.getMessage("label.birthIdentificationNumber", null, locale);
@@ -1699,17 +1701,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
 
         }
-        if (!anonymize)
-            if (exportParams.isPatientBirthday()) {
-                content += messageSource.getMessage("label.birthdate", null, locale);
-                content += " - ";
-                content += translateValue(String.valueOf(patient.getBirthday()), locale);
-                content += "\n";
-                content += messageSource.getMessage("label.age", null, locale);
-                content += " - ";
-                content += translateValue(String.valueOf(getCurrentAge(patient)), locale);
-                content += "\n";
-            }
+        if (exportParams.isPatientBirthday()) {
+            content += messageSource.getMessage("label.birthdate", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(patient.getBirthday()), locale);
+            content += "\n";
+            content += messageSource.getMessage("label.age", null, locale);
+            content += " - ";
+            content += translateValue(String.valueOf(getCurrentAge(patient)), locale);
+            content += "\n";
+        }
 
         if (exportParams.isPatientGender()) {
             content += messageSource.getMessage("label.gender", null, locale);
