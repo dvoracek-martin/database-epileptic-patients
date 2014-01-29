@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.DiagnosticTestScalpEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class DiagnosticTestScalpEegController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", diagnosticTestScalpEegService.getById(DiagnosticTestScalpEegVO.class, diagnosticTestScalpEegId));
+        model.addAttribute("complication", diagnosticTestScalpEegService.getById(DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId));
         return "patient/diagnosticTestScalpEeg/formView";
     }
 
@@ -67,7 +68,7 @@ public class DiagnosticTestScalpEegController {
             return "patient/diagnosticTestScalpEeg/formView";
         } else {
             diagnosticTestScalpEeg.setPatientId(patientId);
-            diagnosticTestScalpEegService.save(diagnosticTestScalpEeg);
+            diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class,diagnosticTestScalpEeg);
             return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
         }
     }
@@ -78,7 +79,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
-        diagnosticTestScalpEegService.delete(diagnosticTestScalpEegId);
+        diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class,diagnosticTestScalpEegId);
         return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
     }
 

@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.HistologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class HistologyController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", histologyService.getById(HistologyVO.class, histologyId));
+        model.addAttribute("complication", histologyService.getById(HistologyVO.class, HistologyEntity.class, histologyId));
         return "patient/histology/formView";
     }
 
@@ -67,7 +68,7 @@ public class HistologyController {
             return "patient/histology/formView";
         } else {
             histology.setPatientId(patientId);
-            histologyService.save(histology);
+            histologyService.save(HistologyEntity.class,histology);
             return "redirect:/patient/" + patientId + "/histology/list";
         }
     }
@@ -78,7 +79,7 @@ public class HistologyController {
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model) {
 
-        histologyService.delete(histologyId);
+        histologyService.delete(HistologyEntity.class,histologyId);
         return "redirect:/patient/" + patientId + "/histology/list";
     }
 

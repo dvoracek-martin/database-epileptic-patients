@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeuropsychologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class NeuropsychologyController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neuropsychology", neuropsychologyService.getById(NeuropsychologyVO.class, neuropsychologyId));
+        model.addAttribute("neuropsychology", neuropsychologyService.getById(NeuropsychologyVO.class, NeuropsychologyEntity.class, neuropsychologyId));
         return "patient/neuropsychology/formView";
     }
 
@@ -61,7 +62,7 @@ public class NeuropsychologyController {
             return "patient/neuropsychology/formView";
         } else {
             neuropsychology.setPatientId(patientId);
-            neuropsychologyService.save(neuropsychology);
+            neuropsychologyService.save(NeuropsychologyEntity.class,neuropsychology);
             return "redirect:/patient/" + patientId + "/neuropsychology/list";
         }
     }
@@ -72,7 +73,7 @@ public class NeuropsychologyController {
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model) {
 
-        neuropsychologyService.delete(neuropsychologyId);
+        neuropsychologyService.delete(NeuropsychologyEntity.class,neuropsychologyId);
         return "redirect:/patient/" + patientId + "/neuropsychology/list";
     }
 

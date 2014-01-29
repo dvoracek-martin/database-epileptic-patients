@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestCorticalMappingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -75,7 +76,7 @@ public class InvasiveTestCorticalMappingController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", invasiveTestCorticalMappingService.getById(InvasiveTestCorticalMappingVO.class, invasiveTestCorticalMappingId));
+        model.addAttribute("complication", invasiveTestCorticalMappingService.getById(InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId));
         return "patient/invasiveTestCorticalMapping/formView";
     }
 
@@ -105,7 +106,7 @@ public class InvasiveTestCorticalMappingController {
             return "patient/invasiveTestCorticalMapping/formView";
         } else {
             invasiveTestCorticalMapping.setPatientId(patientId);
-            invasiveTestCorticalMappingService.save(invasiveTestCorticalMapping);
+            invasiveTestCorticalMappingService.save(InvasiveTestCorticalMappingEntity.class,invasiveTestCorticalMapping);
             return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
         }
     }

@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,7 +77,7 @@ public class AnamnesisController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", anamnesisService.getById(AnamnesisVO.class, anamnesisId));
+        model.addAttribute("anamnesis", anamnesisService.getById(AnamnesisVO.class, AnamnesisEntity.class, anamnesisId));
         return "patient/anamnesis/formView";
     }
 
@@ -105,7 +106,7 @@ public class AnamnesisController {
             return "patient/anamnesis/formView";
         } else {
             anamnesis.setPatientId(patientId);
-            anamnesisService.save(anamnesis);
+            anamnesisService.save(AnamnesisEntity.class,anamnesis);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
@@ -116,7 +117,7 @@ public class AnamnesisController {
             @PathVariable("anamnesisId") Integer anamnesisId,
             Locale locale, Model model) {
 
-        anamnesisService.delete(anamnesisId);
+        anamnesisService.delete(AnamnesisEntity.class,anamnesisId);
         return "redirect:/hidden";
     }
 

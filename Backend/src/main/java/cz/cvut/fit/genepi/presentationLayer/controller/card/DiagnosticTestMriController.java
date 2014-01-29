@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.DiagnosticTestMriVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class DiagnosticTestMriController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class, diagnosticTestMriId));
+        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class,DiagnosticTestMriEntity.class, diagnosticTestMriId));
         return "patient/diagnosticTestMri/formView";
     }
 
@@ -67,7 +68,7 @@ public class DiagnosticTestMriController {
             return "patient/diagnosticTestMri/formView";
         } else {
             diagnosticTestMri.setPatientId(patientId);
-            diagnosticTestMriService.save(diagnosticTestMri);
+            diagnosticTestMriService.save(DiagnosticTestMriEntity.class,diagnosticTestMri);
             return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
@@ -78,7 +79,7 @@ public class DiagnosticTestMriController {
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMriService.delete(diagnosticTestMriId);
+        diagnosticTestMriService.delete(DiagnosticTestMriEntity.class,diagnosticTestMriId);
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 

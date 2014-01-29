@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,7 +43,7 @@ public class PharmacotherapyController {
                                          Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, pharmacotherapyId));
+        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class,PharmacotherapyEntity.class, pharmacotherapyId));
         return "patient/pharmacotherapy/formView";
     }
 
@@ -64,7 +65,7 @@ public class PharmacotherapyController {
             return "patient/pharmacotherapy/formView";
         } else {
             pharmacotherapy.setPatientId(patientId);
-            pharmacotherapyService.save(pharmacotherapy);
+            pharmacotherapyService.save(PharmacotherapyEntity.class,pharmacotherapy);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
         }
     }

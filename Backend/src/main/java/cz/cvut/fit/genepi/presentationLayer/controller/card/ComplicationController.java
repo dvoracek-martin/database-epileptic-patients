@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ComplicationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.ComplicationService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class ComplicationController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", complicationService.getById(ComplicationVO.class, complicationId));
+        model.addAttribute("complication", complicationService.getById(ComplicationVO.class, ComplicationEntity.class, complicationId));
         return "patient/neurologicalFinding/formView";
     }
 
@@ -67,7 +68,7 @@ public class ComplicationController {
             return "patient/complication/formView";
         } else {
             complication.setPatientId(patientId);
-            complicationService.save(complication);
+            complicationService.save(ComplicationEntity.class,complication);
             return "redirect:/patient/" + patientId + "/complication/list";
         }
     }
@@ -78,7 +79,7 @@ public class ComplicationController {
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model) {
 
-        complicationService.delete(complicationId);
+        complicationService.delete(ComplicationEntity.class,complicationId);
         return "redirect:/patient/" + patientId + "/complication/list";
     }
 

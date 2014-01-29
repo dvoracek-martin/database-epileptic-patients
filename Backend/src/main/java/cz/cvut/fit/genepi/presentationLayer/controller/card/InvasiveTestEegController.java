@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEegService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class InvasiveTestEegController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEeg", invasiveTestEegService.getById(InvasiveTestEegVO.class, invasiveTestEegId));
+        model.addAttribute("invasiveTestEeg", invasiveTestEegService.getById(InvasiveTestEegVO.class, InvasiveTestEegEntity.class, invasiveTestEegId));
         return "patient/invasiveTestEeg/formView";
     }
 
@@ -69,7 +70,7 @@ public class InvasiveTestEegController {
             return "patient/invasiveTestEeg/createView";
         } else {
             invasiveTestEeg.setPatientId(patientId);
-            invasiveTestEegService.save(invasiveTestEeg);
+            invasiveTestEegService.save(InvasiveTestEegEntity.class,invasiveTestEeg);
             return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
         }
     }
@@ -80,7 +81,7 @@ public class InvasiveTestEegController {
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model) {
 
-        invasiveTestEegService.delete(invasiveTestEegId);
+        invasiveTestEegService.delete(InvasiveTestEegEntity.class,invasiveTestEegId);
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 

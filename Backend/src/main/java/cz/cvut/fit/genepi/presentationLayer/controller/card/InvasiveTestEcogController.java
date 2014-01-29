@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,7 +45,7 @@ public class InvasiveTestEcogController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(InvasiveTestEcogVO.class, invasiveTestEcogId));
+        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(InvasiveTestEcogVO.class,InvasiveTestEcogEntity.class, invasiveTestEcogId));
         return "patient/invasiveTestEcog/formView";
     }
 
@@ -67,7 +68,7 @@ public class InvasiveTestEcogController {
             return "patient/invasiveTestEcog/formView";
         } else {
             invasiveTestEcog.setPatientId(patientId);
-            invasiveTestEcogService.save(invasiveTestEcog);
+            invasiveTestEcogService.save(InvasiveTestEcogEntity.class,invasiveTestEcog);
             return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
         }
     }
@@ -78,7 +79,7 @@ public class InvasiveTestEcogController {
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model) {
 
-        invasiveTestEcogService.delete(invasiveTestEcogId);
+        invasiveTestEcogService.delete(InvasiveTestEcogEntity.class,invasiveTestEcogId);
         return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 

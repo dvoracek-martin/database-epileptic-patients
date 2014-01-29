@@ -99,7 +99,7 @@ public class AnamnesisControllerTest {
                 .andExpect(status().isMovedTemporarily())
                 .andExpect(view().name("redirect:/patient/1/anamnesis/list"));
 
-        verify(anamnesisServiceMock, times(1)).save(anamnesis);
+        verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class,anamnesis);
         verifyNoMoreInteractions(anamnesisServiceMock);
     }
 
@@ -158,7 +158,7 @@ public class AnamnesisControllerTest {
         anamnesis.setId(1);
 
         when(patientServiceMock.getPatientByIdWithDoctor(1)).thenReturn(patient);
-        when(anamnesisServiceMock.getById(AnamnesisVO.class, 1)).thenReturn(anamnesis);
+        when(anamnesisServiceMock.getById(AnamnesisVO.class,AnamnesisEntity.class, 1)).thenReturn(anamnesis);
 
         mockMvc.perform(get("/patient/{patientId}/anamnesis/{anamnesisId}/edit", 1, 1))
                 .andExpect(status().isOk())
@@ -172,7 +172,7 @@ public class AnamnesisControllerTest {
         verify(patientServiceMock, times(1)).getPatientByIdWithDoctor(1);
         verifyNoMoreInteractions(patientServiceMock);
 
-        verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class, 1);
+        verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class,AnamnesisEntity.class, 1);
         verifyNoMoreInteractions(anamnesisServiceMock);
     }
 
@@ -193,7 +193,7 @@ public class AnamnesisControllerTest {
                 .andExpect(status().isMovedTemporarily())
                 .andExpect(view().name("redirect:/patient/1/anamnesis/list"));
 
-        verify(anamnesisServiceMock, times(1)).save(anamnesis);
+        verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class,anamnesis);
         verifyNoMoreInteractions(anamnesisServiceMock);
     }
 

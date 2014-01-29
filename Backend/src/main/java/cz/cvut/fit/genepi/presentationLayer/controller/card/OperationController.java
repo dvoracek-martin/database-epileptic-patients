@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +47,7 @@ public class OperationController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("operation", operationService.getById(OperationVO.class, operationId));
+        model.addAttribute("operation", operationService.getById(OperationVO.class, OperationEntity.class, operationId));
         return "patient/operation/formView";
     }
 
@@ -69,7 +70,7 @@ public class OperationController {
             return "patient/operation/formView";
         } else {
             operation.setPatientId(patientId);
-            operationService.save(operation);
+            operationService.save(OperationEntity.class,operation);
             return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
@@ -80,7 +81,7 @@ public class OperationController {
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model) {
 
-        operationService.delete(operationId);
+        operationService.delete(OperationEntity.class,operationId);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
