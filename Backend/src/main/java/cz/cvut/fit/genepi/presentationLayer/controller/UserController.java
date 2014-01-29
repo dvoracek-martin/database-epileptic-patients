@@ -91,7 +91,12 @@ public class UserController {
     public String userCreatePOST(
             @ModelAttribute("user") @Valid UserEntity user,
             BindingResult result, Locale locale, Model model) {
-        if (result.hasErrors()) {
+        boolean unique = true;
+        if (userService.findUserByUsername(user.getUsername()) != null)
+            unique = false;
+        if (result.hasErrors() || !unique) {
+            if (!unique)
+                model.addAttribute("isUnique", "notUnique");
             return "user/createView";
         } else {
             // TODO: maybe userSrvice.create should do this IF and return
