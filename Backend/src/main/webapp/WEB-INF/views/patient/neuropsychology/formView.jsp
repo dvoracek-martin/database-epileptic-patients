@@ -68,202 +68,84 @@
 </div>
 
 <%-- if intellect == neurodevelopmentalExamination START--%>
-<div class="form-group">
-    <label for="neurodevelopmentalExamination" class="col-xs-3 control-label">
-        <spring:message code="label.neurodevelopmentalExamination"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="neurodevelopmentalExamination"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExamination"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExamination" id="neurodevelopmentalExamination" type="text"
-                     class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="adaptability"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationAdaptability"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationAdaptability" class="col-xs-3 control-label">
-        <spring:message code="label.adaptability"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="speechExpressively"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechExpressively"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationAdaptability" id="neurodevelopmentalExaminationAdaptability"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="speechReceptively"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechReceptively"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationSpeechExpressively" class="col-xs-3 control-label">
-        <spring:message code="label.speechExpressively"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="fineMotorSkills"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationFineMotorSkills"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationSpeechExpressively"
-                     id="neurodevelopmentalExaminationSpeechExpressively" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="grossMotorSkills"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationGrossMotorSkills"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationSpeechReceptively" class="col-xs-3 control-label">
-        <spring:message code="label.speechReceptively"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationSpeechReceptively"
-                     id="neurodevelopmentalExaminationSpeechReceptively" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationFineMotorSkills" class="col-xs-3 control-label">
-        <spring:message code="label.fineMotorSkills"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationFineMotorSkills"
-                     id="neurodevelopmentalExaminationFineMotorSkills" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationGrossMotorSkills" class="col-xs-3 control-label">
-        <spring:message code="label.grossMotorSkills"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationGrossMotorSkills"
-                     id="neurodevelopmentalExaminationGrossMotorSkills" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neurodevelopmentalExaminationSocialBehavior" class="col-xs-3 control-label">
-        <spring:message code="label.socialBehavior"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neurodevelopmentalExaminationSocialBehavior" id="neurodevelopmentalExaminationSocialBehavior"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="socialBehavior"/>
+    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSocialBehavior"/>
+</jsp:include>
 <%-- if intellect == neurodevelopmentalExamination END--%>
 
 <%-- if intellect == intellectualPerformance START--%>
-<div class="form-group">
-    <label for="intellectualPerformance" class="col-xs-3 control-label">
-        <spring:message code="label.intellectualPerformance"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="intellectualPerformance"/>
+    <jsp:param name="propertyName" value="intellectualPerformance"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="intellectualPerformance" id="intellectualPerformance" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="intellectualPerformanceVerbally"/>
+    <jsp:param name="propertyName" value="intellectualPerformanceVerbally"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="intellectualPerformanceVerbally" class="col-xs-3 control-label">
-        <spring:message code="label.intellectualPerformanceVerbally"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="intellectualPerformanceNonverbalAbstraction"/>
+    <jsp:param name="propertyName" value="intellectualPerformanceNonverbalAbstraction"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="intellectualPerformanceVerbally" id="intellectualPerformanceVerbally" type="text"
-                     class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="intellectualPerformanceNonverbalAbstraction" class="col-xs-3 control-label">
-        <spring:message code="label.intellectualPerformanceNonverbalAbstraction"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="intellectualPerformanceNonverbalAbstraction" id="intellectualPerformanceNonverbalAbstraction"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="intellectualPerformanceNonverbalDesignCapabilities" class="col-xs-3 control-label">
-        <spring:message code="label.intellectualPerformanceNonverbalDesignCapabilities"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="intellectualPerformanceNonverbalDesignCapabilities"
-                     id="intellectualPerformanceNonverbalDesignCapabilities" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
+    <jsp:param name="propertyName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
+</jsp:include>
 <%-- if intellect == intellectualPerformance END--%>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfile" class="col-xs-3 control-label">
-        <spring:message code="label.neuropsychologicalProfile"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfile" id="neuropsychologicalProfile" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="neuropsychologicalProfile"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfile"/>
+</jsp:include>
 
 <%-- if neuropsychologicalProfile == concernes START--%>
-<div class="form-group">
-    <label for="neuropsychologicalProfileAttention" class="col-xs-3 control-label">
-        <spring:message code="label.attention"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="attention"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileAttention"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileAttention" id="neuropsychologicalProfileAttention" type="text"
-                     class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="executiveFunction"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileExecutiveFunction"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfileExecutiveFunction" class="col-xs-3 control-label">
-        <spring:message code="label.executiveFunction"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileExecutiveFunction" id="neuropsychologicalProfileExecutiveFunction"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neuropsychologicalProfileCognitiveSpeed" class="col-xs-3 control-label">
-        <spring:message code="label.cognitiveSpeed"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileCognitiveSpeed" id="neuropsychologicalProfileCognitiveSpeed"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="cognitiveSpeed"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileCognitiveSpeed"/>
+</jsp:include>
 
 <div class="form-group">
     <label for="neuropsychologicalProfileSpeechExpressively" class="col-xs-3 control-label">
@@ -289,70 +171,30 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfileSpeechUnderstanding" class="col-xs-3 control-label">
-        <spring:message code="label.speechUnderstanding"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="speechUnderstanding"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileSpeechUnderstanding"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileSpeechUnderstanding"
-                     id="neuropsychologicalProfileSpeechUnderstanding" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="memoryOperating"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryOperating"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfileMemoryOperating" class="col-xs-3 control-label">
-        <spring:message code="label.memoryOperating"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="memoryVerbal"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryVerbal"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMemoryOperating" id="neuropsychologicalProfileMemoryOperating"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="memoryNonverbal"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryNonverbal"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfileMemoryVerbal" class="col-xs-3 control-label">
-        <spring:message code="label.memoryVerbal"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMemoryVerbal" id="neuropsychologicalProfileMemoryVerbal" type="text"
-                     class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neuropsychologicalProfileMemoryNonverbal" class="col-xs-3 control-label">
-        <spring:message code="label.memoryNonverbal"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMemoryNonverbal" id="neuropsychologicalProfileMemoryNonverbal"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neuropsychologicalProfileMemoryLearning" class="col-xs-3 control-label">
-        <spring:message code="label.memoryLearning"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMemoryLearning" id="neuropsychologicalProfileMemoryLearning"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="memoryLearning"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryLearning"/>
+</jsp:include>
 
 <div class="form-group">
     <label for="neuropsychologicalProfilePerceptionSpeech" class="col-xs-3 control-label">
@@ -372,57 +214,25 @@
     </div>
 </div>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfilePerceptionVisual" class="col-xs-3 control-label">
-        <spring:message code="label.perceptionVisual"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="perceptionVisual"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionVisual"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfilePerceptionVisual" id="neuropsychologicalProfilePerceptionVisual"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="perceptionSpatial"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionSpatial"/>
+</jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfilePerceptionSpatial" class="col-xs-3 control-label">
-        <spring:message code="label.perceptionSpatial"/>
-    </label>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="motorSkillsDexterity"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMotorSkillsDexterity"/>
+</jsp:include>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfilePerceptionSpatial" id="neuropsychologicalProfilePerceptionSpatial"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neuropsychologicalProfileMotorSkillsDexterity" class="col-xs-3 control-label">
-        <spring:message code="label.motorSkillsDexterity"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMotorSkillsDexterity"
-                     id="neuropsychologicalProfileMotorSkillsDexterity" type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
-
-<div class="form-group">
-    <label for="neuropsychologicalProfileMotorCoordination" class="col-xs-3 control-label">
-        <spring:message code="label.motorCoordination"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileMotorCoordination" id="neuropsychologicalProfileMotorCoordination"
-                     type="text" class="form-control">
-            <%@ include file="deficitOptionsView.jsp" %>
-        </form:select>
-    </div>
-</div>
+<jsp:include page="deficitOptionsView.jsp">
+    <jsp:param name="labelName" value="motorCoordination"/>
+    <jsp:param name="propertyName" value="neuropsychologicalProfileMotorCoordination"/>
+</jsp:include>
 <%-- if neuropsychologicalProfile == concernes END--%>
 
 <div class="form-group">
@@ -452,7 +262,9 @@
     </label>
 
     <div class="col-xs-8">
-        omg multiselect
+        <form:select path="presenceOfChangesDetail" id="presenceOfChangesDetail" type="text" class="form-control">
+
+        </form:select>
     </div>
 </div>
 <%-- if presenceOfChanges == deteriorace END--%>
