@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                    <spring:message code="label.neurologicalFinding"/>
+                    <spring:message code="label.diagnosticTestScalpEEG"/>
                 </h2>
 
             </div>

@@ -54,11 +54,11 @@
 
         <div class="col-xs-8">
             <form:select path="done" id="done" type="text" class="form-control">
-                <form:option value="true">
-                    <spring:message code="label.done.true"/>
+                <form:option value="1">
+                    <spring:message code="label.done.1"/>
                 </form:option>
-                <form:option value="false">
-                    <spring:message code="label.done.false"/>
+                <form:option value="2">
+                    <spring:message code="label.done.2"/>
                 </form:option>
             </form:select>
         </div>
@@ -71,10 +71,10 @@
 
         <div class="col-xs-8">
             <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="form-control">
-                <form:option value="true">
+                <form:option value="1">
                     <spring:message code="label.basicEegActivity.1"/>
                 </form:option>
-                <form:option value="false">
+                <form:option value="2">
                     <spring:message code="label.basicEegActivity.2"/>
                 </form:option>
             </form:select>
@@ -161,7 +161,7 @@
 
     <div class="form-group">
         <label for="secondarySidedSynchrony" class="col-xs-3 control-label">
-            <spring:message code="label.EEGStatusEpilepticus"/>
+            <spring:message code="label.secondarySidedSynchrony"/>
         </label>
 
         <div class="col-xs-8">

@@ -21,7 +21,7 @@ public class DiagnosticTestScalpEegVO {
     @NotNull
     private Date date;
 
-    private boolean done;
+    private int done;
 
     private int basicEegActivity;
 
@@ -71,11 +71,11 @@ public class DiagnosticTestScalpEegVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

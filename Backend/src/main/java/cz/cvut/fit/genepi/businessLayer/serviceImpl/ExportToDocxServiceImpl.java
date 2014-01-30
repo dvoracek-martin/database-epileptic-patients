@@ -1021,7 +1021,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestEEGDone()) {
             content.add(messageSource.getMessage("label.EEGDone", null, locale));
 
-            content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.isDone()),
+            content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()),
                     locale));
 
         }
@@ -1049,7 +1049,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
             content.add(messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale));
 
-            content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEEGSpikes()),
+            content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale));
 
         }

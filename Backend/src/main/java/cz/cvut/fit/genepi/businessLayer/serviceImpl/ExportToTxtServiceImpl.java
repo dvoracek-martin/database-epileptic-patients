@@ -1003,7 +1003,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestEEGDone()) {
             content += messageSource.getMessage("label.EEGDone", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(diagnosticTestScalpEEG.isDone()),
+            content += translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()),
                     locale);
             content += "\n";
         }
@@ -1031,7 +1031,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
             content += messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEEGSpikes()),
+            content += translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale);
             content += "\n";
         }

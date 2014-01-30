@@ -9,7 +9,7 @@ public class DiagnosticTestScalpEegDisplayVO {
 
     private String date;
 
-    private boolean done;
+    private int done;
 
     private int basicEegActivity;
 
@@ -47,11 +47,11 @@ public class DiagnosticTestScalpEegDisplayVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

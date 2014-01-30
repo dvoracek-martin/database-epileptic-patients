@@ -51,7 +51,7 @@ public class DiagnosticTestScalpEegEntity implements
     private Date date;
 
     @Column(name = "done")
-    private boolean done;
+    private int done;
 
     @Column(name = "basic_eeg_activity")
     private int basicEegActivity;
@@ -63,7 +63,7 @@ public class DiagnosticTestScalpEegEntity implements
     private int interictalEegSpikes;
 
     @Column(name = "localization_interictal_eeg_spikes", length = 800)
-    private String localizationInterictalEEGSpikes;
+    private String localizationInterictalEegSpikes;
 
     @Column(name = "eeg_status_epilepticus")
     private boolean eegStatusEpilepticus;
@@ -156,11 +156,11 @@ public class DiagnosticTestScalpEegEntity implements
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 
@@ -188,13 +188,13 @@ public class DiagnosticTestScalpEegEntity implements
         this.interictalEegSpikes = interictalEegSpikes;
     }
 
-    public String getLocalizationInterictalEEGSpikes() {
-        return localizationInterictalEEGSpikes;
+    public String getLocalizationInterictalEegSpikes() {
+        return localizationInterictalEegSpikes;
     }
 
-    public void setLocalizationInterictalEEGSpikes(
+    public void setLocalizationInterictalEegSpikes(
             String localizationInterictalEEGSpikes) {
-        this.localizationInterictalEEGSpikes = localizationInterictalEEGSpikes;
+        this.localizationInterictalEegSpikes = localizationInterictalEEGSpikes;
     }
 
     public boolean isEegStatusEpilepticus() {

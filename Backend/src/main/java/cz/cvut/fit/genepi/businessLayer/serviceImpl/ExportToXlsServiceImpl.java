@@ -1101,7 +1101,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isDiagnosticTestEEGDone()) {
-            addCells("label.eeg_done", translateValue(String.valueOf(diagnosticTestScalpEEG.isDone()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.eeg_done", translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGBasicActivity()) {
             addCells("label.basicEEGActivity", translateValue(String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()), locale), sheet, locale, styles, "cell", p);
@@ -1113,7 +1113,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.interictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            addCells("label.localizationInterictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEEGSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationInterictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
             addCells("label.EEGStatusEpilepticus", translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
