@@ -107,7 +107,7 @@ public class PatientEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
-    private Set<DiagnosticTestScalpEegEntity> diagnosticTestScalpEEGList;
+    private Set<DiagnosticTestScalpEegEntity> diagnosticTestScalpEegList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
@@ -296,18 +296,18 @@ public class PatientEntity {
         this.diagnosticTestMRIList = converter.toSet(diagnosticTestMRIList);
     }
 
-    public List<DiagnosticTestScalpEegEntity> getDiagnosticTestEEGList() {
+    public List<DiagnosticTestScalpEegEntity> getDiagnosticTestScalpEegList() {
         CollectionConverter<DiagnosticTestScalpEegEntity> converter = new CollectionConverter<>();
         Sorter<DiagnosticTestScalpEegEntity> sorter = new Sorter<>();
         return sorter.sortByDate(converter
-                .toList(this.diagnosticTestScalpEEGList));
+                .toList(this.diagnosticTestScalpEegList));
     }
 
-    public void setDiagnosticTestEEGList(
-            List<DiagnosticTestScalpEegEntity> diagnosticTestEEGList) {
+    public void setDiagnosticTestScalpEegList(
+            List<DiagnosticTestScalpEegEntity> diagnosticTestEegList) {
         CollectionConverter<DiagnosticTestScalpEegEntity> converter = new CollectionConverter<>();
-        this.diagnosticTestScalpEEGList = converter
-                .toSet(diagnosticTestEEGList);
+        this.diagnosticTestScalpEegList = converter
+                .toSet(diagnosticTestEegList);
     }
 
     public List<InvasiveTestEcogEntity> getInvasiveTestECOGList() {

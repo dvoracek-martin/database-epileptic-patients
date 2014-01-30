@@ -17,7 +17,7 @@ public class DiagnosticTestScalpEegDisplayVO {
 
     private int interictalEegSpikes;
 
-    private String localizationInterictalEEGSpikes;
+    private String localizationInterictalEegSpikes;
 
     private boolean eegStatusEpilepticus;
 
@@ -79,12 +79,12 @@ public class DiagnosticTestScalpEegDisplayVO {
         this.interictalEegSpikes = interictalEegSpikes;
     }
 
-    public String getLocalizationInterictalEEGSpikes() {
-        return localizationInterictalEEGSpikes;
+    public String getLocalizationInterictalEegSpikes() {
+        return localizationInterictalEegSpikes;
     }
 
-    public void setLocalizationInterictalEEGSpikes(String localizationInterictalEEGSpikes) {
-        this.localizationInterictalEEGSpikes = localizationInterictalEEGSpikes;
+    public void setLocalizationInterictalEegSpikes(String localizationInterictalEegSpikes) {
+        this.localizationInterictalEegSpikes = localizationInterictalEegSpikes;
     }
 
     public boolean isEegStatusEpilepticus() {

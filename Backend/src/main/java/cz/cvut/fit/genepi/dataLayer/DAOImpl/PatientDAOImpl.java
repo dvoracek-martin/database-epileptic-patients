@@ -73,7 +73,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         + " left join fetch p.doctor"
                         + " left join fetch p.anamnesisList"
                         + " left join fetch p.complicationList"
-                        + " left join fetch p.diagnosticTestScalpEEGList"
+                        + " left join fetch p.diagnosticTestScalpEegList"
                         + " left join fetch p.diagnosticTestMRIList"
                         + " left join fetch p.histologyList"
                         + " left join fetch p.invasiveTestCorticalMappingList"
@@ -140,7 +140,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEEGList"
+                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEegList"
                                 + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
         return this.findOne(query);

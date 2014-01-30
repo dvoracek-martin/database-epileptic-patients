@@ -285,7 +285,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestEEG()) {
             content += addStarLine();
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
-                    .getDiagnosticTestEEGList()) {
+                    .getDiagnosticTestScalpEegList()) {
                 content += this.printOutDiagnosticTestEEG(patient,
                         diagnosticTestEEG, locale, exportParams);
                 content += addDashLine();

@@ -45,7 +45,7 @@ public class DiagnosticTestScalpEegController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", diagnosticTestScalpEegService.getById(DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId));
+        model.addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegService.getById(DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId));
         return "patient/diagnosticTestScalpEeg/formView";
     }
 

@@ -405,7 +405,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
-                    .getDiagnosticTestEEGList()) {
+                    .getDiagnosticTestScalpEegList()) {
                 this.printOutDiagnosticTestEEG(patient,
                         diagnosticTestEEG, locale, exportParams, sheet, p);
             }

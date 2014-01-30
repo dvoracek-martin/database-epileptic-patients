@@ -210,7 +210,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.diagnosticTestScalpEEG", null,
                     locale));
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
-                    .getDiagnosticTestEEGList()) {
+                    .getDiagnosticTestScalpEegList()) {
                 this.printOutDiagnosticTestEEG(document, patient,
                         diagnosticTestEEG, locale, exportParams);
             }
