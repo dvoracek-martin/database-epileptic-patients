@@ -8,7 +8,7 @@
 
 <jsp:attribute name="head">
       <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
-     <link href="<c:url value="/resources/css/custom.NEW303.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.NEW303.css" />" rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -75,6 +75,9 @@
 
             <div class="col-xs-8">
                 <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="form-control">
+                    <form:option value="0">
+                        Zvolte
+                    </form:option>
                     <form:option value="1">
                         <spring:message code="label.basicEegActivity.1"/>
                     </form:option>

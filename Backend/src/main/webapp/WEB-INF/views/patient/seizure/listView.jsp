@@ -11,7 +11,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/css/custom.NEW303.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.NEW303.css" />" rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>

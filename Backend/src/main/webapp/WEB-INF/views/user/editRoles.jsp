@@ -7,7 +7,7 @@
 <t:menuLVL1.NEW303>
 
 	<jsp:attribute name="head">
-     <link href="<c:url value="/resources/css/validation.css"/>" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/validation.css"/>" rel="stylesheet">
 	 <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
     </jsp:attribute>
 

@@ -16,7 +16,7 @@
           href="<c:url value="/resources/img/logoIcon.ico" />">
     <link href="<c:url value="/resources/css/bootstrap.NEW303.css" />"
           rel="stylesheet">
-    <link href="<c:url value="/resources/css/menu.NEW303.css" />"
+    <link href="<c:url value="/resources/custom/css/menu.NEW303.css" />"
           rel="stylesheet">
 </head>
 <style type="text/css">

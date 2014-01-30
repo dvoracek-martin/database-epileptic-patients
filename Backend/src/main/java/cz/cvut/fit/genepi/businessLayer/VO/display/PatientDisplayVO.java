@@ -42,6 +42,8 @@ public class PatientDisplayVO {
 
     private List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList;
 
+    private List<DiagnosticTestMriDisplayVO> diagnosticTestMriList;
+
     public int getId() {
         return id;
     }
@@ -144,5 +146,13 @@ public class PatientDisplayVO {
 
     public void setDiagnosticTestScalpEegList(List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList) {
         this.diagnosticTestScalpEegList = diagnosticTestScalpEegList;
+    }
+
+    public List<DiagnosticTestMriDisplayVO> getDiagnosticTestMriList() {
+        return diagnosticTestMriList;
+    }
+
+    public void setDiagnosticTestMriList(List<DiagnosticTestMriDisplayVO> diagnosticTestMriList) {
+        this.diagnosticTestMriList = diagnosticTestMriList;
     }
 }

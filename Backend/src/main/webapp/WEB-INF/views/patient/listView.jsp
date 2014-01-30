@@ -13,7 +13,7 @@
 
 	<jsp:attribute name="head">
     <link
-            href="<c:url value="/resources/css/clickable-row.NEW303.css" />"
+            href="<c:url value="/resources/custom/css/clickable-row.NEW303.css" />"
             rel="stylesheet">
     </jsp:attribute>
 
