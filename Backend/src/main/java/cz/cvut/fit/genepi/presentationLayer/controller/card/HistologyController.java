@@ -59,16 +59,16 @@ public class HistologyController {
      */
     @RequestMapping(value = "/patient/{patientId}/histology/save", method = RequestMethod.POST)
     public String histologySavePOST(
-            @ModelAttribute("histology") @Valid HistologyVO histology,
+            @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/histology/formView";
         } else {
             histology.setPatientId(patientId);
-            histologyService.save(HistologyEntity.class,histology);
+            histologyService.save(HistologyEntity.class, histology);
             return "redirect:/patient/" + patientId + "/histology/list";
         }
     }
@@ -79,7 +79,7 @@ public class HistologyController {
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model) {
 
-        histologyService.delete(HistologyEntity.class,histologyId);
+        histologyService.delete(HistologyEntity.class, histologyId);
         return "redirect:/patient/" + patientId + "/histology/list";
     }
 

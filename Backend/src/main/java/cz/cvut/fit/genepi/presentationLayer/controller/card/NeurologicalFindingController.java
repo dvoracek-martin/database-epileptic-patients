@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
-import cz.cvut.fit.genepi.dataLayer.DAOImpl.card.NeurologicalFindingDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -45,7 +44,7 @@ public class NeurologicalFindingController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(NeurologicalFindingVO.class,NeurologicalFindingEntity.class, neurologicalFindingId));
+        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId));
         return "patient/neurologicalFinding/formView";
     }
 
@@ -59,9 +58,9 @@ public class NeurologicalFindingController {
      */
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/save", method = RequestMethod.POST)
     public String neurologicalFindingSavePOST(
-            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding,
+            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));

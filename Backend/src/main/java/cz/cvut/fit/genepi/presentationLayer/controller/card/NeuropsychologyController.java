@@ -51,10 +51,10 @@ public class NeuropsychologyController {
         return "patient/neuropsychology/formView";
     }
 
-    @RequestMapping(value = "/patient/{patientId}/neuropsychology/sae", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/neuropsychology/save", method = RequestMethod.POST)
     public String neuropsychologySavePOST(
-            @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology,
-            BindingResult result, @PathVariable("patientId") Integer patientId,
+            @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
+            @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
         if (result.hasErrors()) {
@@ -62,7 +62,7 @@ public class NeuropsychologyController {
             return "patient/neuropsychology/formView";
         } else {
             neuropsychology.setPatientId(patientId);
-            neuropsychologyService.save(NeuropsychologyEntity.class,neuropsychology);
+            neuropsychologyService.save(NeuropsychologyEntity.class, neuropsychology);
             return "redirect:/patient/" + patientId + "/neuropsychology/list";
         }
     }
@@ -73,7 +73,7 @@ public class NeuropsychologyController {
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model) {
 
-        neuropsychologyService.delete(NeuropsychologyEntity.class,neuropsychologyId);
+        neuropsychologyService.delete(NeuropsychologyEntity.class, neuropsychologyId);
         return "redirect:/patient/" + patientId + "/neuropsychology/list";
     }
 

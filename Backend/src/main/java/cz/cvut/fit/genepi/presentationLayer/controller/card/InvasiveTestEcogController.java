@@ -45,7 +45,7 @@ public class InvasiveTestEcogController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(InvasiveTestEcogVO.class,InvasiveTestEcogEntity.class, invasiveTestEcogId));
+        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(InvasiveTestEcogVO.class, InvasiveTestEcogEntity.class, invasiveTestEcogId));
         return "patient/invasiveTestEcog/formView";
     }
 
@@ -59,16 +59,16 @@ public class InvasiveTestEcogController {
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/save", method = RequestMethod.POST)
     public String invasiveTestEcogSavePOST(
-            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog,
+            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestEcog/formView";
         } else {
             invasiveTestEcog.setPatientId(patientId);
-            invasiveTestEcogService.save(InvasiveTestEcogEntity.class,invasiveTestEcog);
+            invasiveTestEcogService.save(InvasiveTestEcogEntity.class, invasiveTestEcog);
             return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
         }
     }
@@ -79,7 +79,7 @@ public class InvasiveTestEcogController {
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model) {
 
-        invasiveTestEcogService.delete(InvasiveTestEcogEntity.class,invasiveTestEcogId);
+        invasiveTestEcogService.delete(InvasiveTestEcogEntity.class, invasiveTestEcogId);
         return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 

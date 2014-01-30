@@ -61,16 +61,16 @@ public class OperationController {
      */
     @RequestMapping(value = "/patient/{patientId}/operation/save", method = RequestMethod.POST)
     public String operationSavePOST(
-            @ModelAttribute("operation") @Valid OperationVO operation,
+            @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/operation/formView";
         } else {
             operation.setPatientId(patientId);
-            operationService.save(OperationEntity.class,operation);
+            operationService.save(OperationEntity.class, operation);
             return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
@@ -81,7 +81,7 @@ public class OperationController {
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model) {
 
-        operationService.delete(OperationEntity.class,operationId);
+        operationService.delete(OperationEntity.class, operationId);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 

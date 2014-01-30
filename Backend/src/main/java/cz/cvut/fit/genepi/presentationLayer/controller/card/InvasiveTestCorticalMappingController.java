@@ -97,16 +97,16 @@ public class InvasiveTestCorticalMappingController {
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/save", method = RequestMethod.POST)
     public String invasiveTestCorticalMappingSavePOST(
-            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping,
+            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestCorticalMapping/formView";
         } else {
             invasiveTestCorticalMapping.setPatientId(patientId);
-            invasiveTestCorticalMappingService.save(InvasiveTestCorticalMappingEntity.class,invasiveTestCorticalMapping);
+            invasiveTestCorticalMappingService.save(InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMapping);
             return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
         }
     }

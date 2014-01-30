@@ -43,7 +43,7 @@ public class PharmacotherapyController {
                                          Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class,PharmacotherapyEntity.class, pharmacotherapyId));
+        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, PharmacotherapyEntity.class, pharmacotherapyId));
         return "patient/pharmacotherapy/formView";
     }
 
@@ -57,15 +57,15 @@ public class PharmacotherapyController {
      */
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/save", method = RequestMethod.POST)
     public String pharmacotherapySavePOST(
-            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy,
-            BindingResult result, @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/pharmacotherapy/formView";
         } else {
             pharmacotherapy.setPatientId(patientId);
-            pharmacotherapyService.save(PharmacotherapyEntity.class,pharmacotherapy);
+            pharmacotherapyService.save(PharmacotherapyEntity.class, pharmacotherapy);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
         }
     }

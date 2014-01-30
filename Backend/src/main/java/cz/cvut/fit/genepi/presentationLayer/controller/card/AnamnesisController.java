@@ -97,16 +97,16 @@ public class AnamnesisController {
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/save", method = RequestMethod.POST)
     public String anamnesisCreatePOST(
-            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis,
+            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/anamnesis/formView";
         } else {
             anamnesis.setPatientId(patientId);
-            anamnesisService.save(AnamnesisEntity.class,anamnesis);
+            anamnesisService.save(AnamnesisEntity.class, anamnesis);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
@@ -117,7 +117,7 @@ public class AnamnesisController {
             @PathVariable("anamnesisId") Integer anamnesisId,
             Locale locale, Model model) {
 
-        anamnesisService.delete(AnamnesisEntity.class,anamnesisId);
+        anamnesisService.delete(AnamnesisEntity.class, anamnesisId);
         return "redirect:/hidden";
     }
 

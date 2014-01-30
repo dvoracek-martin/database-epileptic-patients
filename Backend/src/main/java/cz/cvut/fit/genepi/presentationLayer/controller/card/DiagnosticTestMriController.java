@@ -45,7 +45,7 @@ public class DiagnosticTestMriController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class,DiagnosticTestMriEntity.class, diagnosticTestMriId));
+        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class, diagnosticTestMriId));
         return "patient/diagnosticTestMri/formView";
     }
 
@@ -59,16 +59,16 @@ public class DiagnosticTestMriController {
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/save", method = RequestMethod.POST)
     public String diagnosticTestMriSavePOST(
-            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri,
+            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestMri/formView";
         } else {
             diagnosticTestMri.setPatientId(patientId);
-            diagnosticTestMriService.save(DiagnosticTestMriEntity.class,diagnosticTestMri);
+            diagnosticTestMriService.save(DiagnosticTestMriEntity.class, diagnosticTestMri);
             return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
@@ -79,7 +79,7 @@ public class DiagnosticTestMriController {
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model) {
 
-        diagnosticTestMriService.delete(DiagnosticTestMriEntity.class,diagnosticTestMriId);
+        diagnosticTestMriService.delete(DiagnosticTestMriEntity.class, diagnosticTestMriId);
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 

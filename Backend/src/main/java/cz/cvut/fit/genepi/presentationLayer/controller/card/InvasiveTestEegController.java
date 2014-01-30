@@ -61,16 +61,16 @@ public class InvasiveTestEegController {
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/save", method = RequestMethod.POST)
     public String invasiveTestEegSavePOST(
-            @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg,
+            @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestEeg/createView";
         } else {
             invasiveTestEeg.setPatientId(patientId);
-            invasiveTestEegService.save(InvasiveTestEegEntity.class,invasiveTestEeg);
+            invasiveTestEegService.save(InvasiveTestEegEntity.class, invasiveTestEeg);
             return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
         }
     }
@@ -81,7 +81,7 @@ public class InvasiveTestEegController {
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model) {
 
-        invasiveTestEegService.delete(InvasiveTestEegEntity.class,invasiveTestEegId);
+        invasiveTestEegService.delete(InvasiveTestEegEntity.class, invasiveTestEegId);
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 

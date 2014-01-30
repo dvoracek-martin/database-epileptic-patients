@@ -59,16 +59,16 @@ public class ComplicationController {
      */
     @RequestMapping(value = "/patient/{patientId}/complication/save", method = RequestMethod.POST)
     public String complicationCreatePOST(
-            @ModelAttribute("complication") @Valid ComplicationVO complication,
+            @ModelAttribute("complication") @Valid ComplicationVO complication, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/complication/formView";
         } else {
             complication.setPatientId(patientId);
-            complicationService.save(ComplicationEntity.class,complication);
+            complicationService.save(ComplicationEntity.class, complication);
             return "redirect:/patient/" + patientId + "/complication/list";
         }
     }
@@ -79,7 +79,7 @@ public class ComplicationController {
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model) {
 
-        complicationService.delete(ComplicationEntity.class,complicationId);
+        complicationService.delete(ComplicationEntity.class, complicationId);
         return "redirect:/patient/" + patientId + "/complication/list";
     }
 

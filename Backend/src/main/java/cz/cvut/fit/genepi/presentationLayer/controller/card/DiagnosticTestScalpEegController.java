@@ -59,16 +59,16 @@ public class DiagnosticTestScalpEegController {
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/save", method = RequestMethod.POST)
     public String diagnosticTestScalpEegCreatePOST(
-            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg,
+            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            BindingResult result, Locale locale, Model model) {
+            Locale locale, Model model) {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestScalpEeg/formView";
         } else {
             diagnosticTestScalpEeg.setPatientId(patientId);
-            diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class,diagnosticTestScalpEeg);
+            diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEeg);
             return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
         }
     }
@@ -79,7 +79,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
-        diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class,diagnosticTestScalpEegId);
+        diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
         return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
     }
 

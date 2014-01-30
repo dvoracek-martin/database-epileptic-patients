@@ -57,8 +57,8 @@ public class SeizureDetailController {
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/save", method = RequestMethod.POST)
     public String seizureDetailSavePOST(
-            @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail,
-            BindingResult result, @PathVariable("patientId") Integer patientId, @PathVariable("seizureId") Integer seizureId,
+            @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
+            @PathVariable("patientId") Integer patientId, @PathVariable("seizureId") Integer seizureId,
             Locale locale, Model model) {
 
         if (result.hasErrors()) {
@@ -67,7 +67,7 @@ public class SeizureDetailController {
         } else {
             seizureDetail.setPatientId(patientId);
             seizureDetail.setSeizureId(seizureId);
-            seizureDetailService.save(SeizureDetailEntity.class,seizureDetail);
+            seizureDetailService.save(SeizureDetailEntity.class, seizureDetail);
             return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }
