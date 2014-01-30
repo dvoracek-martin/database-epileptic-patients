@@ -4,170 +4,167 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL3>
-	<jsp:attribute name="head">
-      <link
-              href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
-              rel="stylesheet">
+<t:menuLVL2.NEW303>
+
+<jsp:attribute name="head">
+      <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.NEW303.css" />" rel="stylesheet">
     </jsp:attribute>
+
 	<jsp:attribute name="title">
       <spring:message code="label.addRecord"/>
     </jsp:attribute>
-	<jsp:attribute name="header">
-      <spring:message code="label.addRecord"/>
-    </jsp:attribute>
+
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/js/datepicker.js" />"></script>
-   </jsp:attribute>
-    <jsp:body>
+		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/customjs.js" />"></script>
+    </jsp:attribute>
 
-        <div class="span5">
-            <h2><spring:message code="label.invasiveTestECoG"/></h2>
+    <jsp:body>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.invasiveTestECoG"/>
+                </h2>
+            </div>
         </div>
 
-        <table class="table">
-            <tbody>
-            <tr>
-                <th><spring:message code="label.patient"/>:</th>
-                <td>${patient.contact.firstName}</td>
+        <%@include file="../patientDetails.jsp" %>
 
-                <th><spring:message code="label.birthIdentificationNumber"/>:</th>
-                <td>${patient.nin}</td>
+        <%-- mapping resource in action with c:url caused errors --%>
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/invasive-test-ecog/save" commandName="invasiveTestEcog">
 
-                <th><spring:message code="label.birthdate"/>:</th>
-                <td>${patient.birthday}</td>
+            <div class="form-group">
+                <label for="date" class="col-xs-3 control-label">
+                    <spring:message code="label.dateExamination"/>
+                </label>
 
-            </tr>
-            <tr>
-                <th><spring:message code="label.address"/>:</th>
-                <td>${patient.contact.addressStreet}</td>
-
-                <th><spring:message code="label.telephone"/>:</th>
-                <td>${patient.contact.phoneNumber}</td>
-
-                <th><spring:message code="label.email"/>:</th>
-                <td>${patient.contact.email}</td>
-
-
-            </tr>
-            <tr>
-                <th><spring:message code="label.gender"/>:</th>
-                <td>${patient.gender}</td>
-
-                <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
-                <td></td>
-
-                <th><spring:message code="label.assignedDoctor"/>:</th>
-                <td></td>
-
-            </tr>
-            </tbody>
-        </table>
-
-        <!-- form for adding new record -->
-        <!-- mapping resource in action with c:url caused errors -->
-        <form:form class="form-horizontal" method="POST"
-                   action="/GENEPI/patient/${patientID}/invasiveTestECOG/create" commandName="invasiveTestECOG">
-
-            <div class="control-group">
-                <label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
-
-                <div class="controls">
-                    <form:input path="date" id="date" type="text" class="input-medium datepicker"/>
+                <div class="col-xs-8">
+                    <form:input path="date" id="date" type="text" class="form-control datepicker-today"
+                                autocomplete="off"/>
                     <form:errors path="date" cssClass="error">
                     </form:errors>
                 </div>
             </div>
 
-            <div class="control-group">
-                <label class="control-label" for="done"><strong>Invazivní test ECoG</strong></label>
+            <div class="form-group">
+                <label for="done" class="col-xs-3 control-label">
+                    <spring:message code="label.invasiveTestECoG"/>
+                </label>
 
-                <div class="controls">
-                    <form:select path="done" id="done" type="text" class="input-large">
-                        <form:option value="false">
-                            <spring:message code="label.notDone"/>
-                        </form:option>
-                        <form:option value="true">
-                            <spring:message code="label.done"/>
-                        </form:option>
-                    </form:select>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="ecogCover"><strong><spring:message code="label.ecogCover"/></strong></label>
-
-                <div class="controls">
-                    <form:textarea path="ecogCover" id="ecogCover" input="ecogCover"/>
-                    <form:errors path="ecogCover" cssClass="error">
-                    </form:errors>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <label class="control-label" for="ecogPatterns"><strong><spring:message
-                        code="label.ecogPatterns"/></strong></label>
-
-                <div class="controls">
-                    <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="input-large">
+                <div class="col-xs-8">
+                    <form:select path="done" id="done" type="text" class="form-control">
                         <form:option value="1">
-                            <spring:message code="label.noSpikes"/>
+                            <spring:message code="label.done.1"/>
                         </form:option>
                         <form:option value="2">
-                            <spring:message code="label.burstSuppresion"/>
-                        </form:option>
-                        <form:option value="3">
-                            <spring:message code="label.continuousSpikes"/>
-                        </form:option>
-                        <form:option value="4">
-                            <spring:message code="label.ECoGAbnormality"/>
-                        </form:option>
-                        <form:option value="5">
-                            <spring:message code="label.spikes"/>
+                            <spring:message code="label.done.2"/>
                         </form:option>
                     </form:select>
                 </div>
             </div>
 
-            <div class="control-group">
-                <label class="control-label" for="afterResectionEcog"><strong><spring:message
-                        code="label.afterResectionECoG"/></strong></label>
+            <div id="section-done" class="section-hide">
 
-                <div class="controls">
-                    <form:select path="afterResectionEcog" id="afterResectionEcog" type="text" class="input-large">
-                        <form:option value="1">
-                            <spring:message code="label.noSpikes"/>
-                        </form:option>
-                        <form:option value="2">
-                            <spring:message code="label.notDone"/>
-                        </form:option>
-                        <form:option value="3">
-                            <spring:message code="label.done"/>
-                        </form:option>
-                        <form:option value="4">
-                            <spring:message code="label.spikes"/>
-                        </form:option>
-                    </form:select>
+                <div class="form-group">
+                    <label for="ecogCover" class="col-xs-3 control-label">
+                        <spring:message code="label.ecogCover"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:textarea path="ecogCover" id="ecogCover" class="form-control"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="ecogPatterns" class="col-xs-3 control-label">
+                        <spring:message code="label.basicEEGActivity"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="form-control">
+                            <form:option value="0">
+                                Zvolte
+                            </form:option>
+                            <form:option value="1">
+                                <spring:message code="label.ecogPatterns.1"/>
+                            </form:option>
+                            <form:option value="2">
+                                <spring:message code="label.ecogPatterns.2"/>
+                            </form:option>
+                            <form:option value="3">
+                                <spring:message code="label.ecogPatterns.3"/>
+                            </form:option>
+                            <form:option value="4">
+                                <spring:message code="label.ecogPatterns.4"/>
+                            </form:option>
+                            <form:option value="5">
+                                <spring:message code="label.ecogPatterns.5"/>
+                            </form:option>
+                        </form:select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="afterResectionEcog" class="col-xs-3 control-label">
+                        <spring:message code="label.afterResectionECoG"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:select path="afterResectionEcog" id="afterResectionEcog" type="text" class="form-control">
+                            <form:option value="0">
+                                Zvolte
+                            </form:option>
+                            <form:option value="1">
+                                <spring:message code="label.afterResectionEcog.1"/>
+                            </form:option>
+                            <form:option value="2">
+                                <spring:message code="label.afterResectionEcog.2"/>
+                            </form:option>
+                            <form:option value="3">
+                                <spring:message code="label.afterResectionEcog.3"/>
+                            </form:option>
+                            <form:option value="4">
+                                <spring:message code="label.afterResectionEcog.4"/>
+                            </form:option>
+
+                        </form:select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="eegStatusEpilepticus" class="col-xs-3 control-label">
+                        <spring:message code="label.EEGStatusEpilepticus"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:checkbox path="eegStatusEpilepticus" id="eegStatusEpilepticus"/>
+                        <form:errors path="eegStatusEpilepticus" cssClass="error">
+                        </form:errors>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="comment" class="col-xs-3 control-label">
+                        <spring:message code="label.comment"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:textarea path="comment" id="comment" class="form-control"/>
+                    </div>
                 </div>
             </div>
-
-            <div class="control-group">
-                <label class="control-label" for="comment"><strong><spring:message
-                        code="label.comment"/></strong></label>
-
-                <div class="controls">
-                    <form:textarea path="comment" id="comment"/>
-                </div>
-            </div>
-
-            <div class="control-group">
-                <div class="controls">
-                    <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
                 </div>
             </div>
         </form:form>
+
     </jsp:body>
-</t:menuLVL3>
-
-
+</t:menuLVL2.NEW303>

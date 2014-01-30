@@ -67,7 +67,7 @@ public class InvasiveTestEegController {
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/invasiveTestEeg/createView";
+            return "patient/invasiveTestEeg/formView";
         } else {
             invasiveTestEeg.setPatientId(patientId);
             invasiveTestEegService.save(InvasiveTestEegEntity.class, invasiveTestEeg);
