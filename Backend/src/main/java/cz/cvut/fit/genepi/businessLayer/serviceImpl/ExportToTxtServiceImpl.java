@@ -1532,9 +1532,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isHistologyFcdClassification()) {
-            content += messageSource.getMessage("label.FCDClasification", null, locale);
+            content += messageSource.getMessage("label.FCDClassification", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(histology.getFcdClasification()),
+            content += translateValue(String.valueOf(histology.getFcdClassification()),
                     locale);
             content += "\n";
         }

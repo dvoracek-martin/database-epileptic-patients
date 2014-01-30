@@ -23,7 +23,7 @@ public class HistologyVO {
 
     private int histopathology;
 
-    private int fcdClasification;
+    private int fcdClassification;
 
     @Size(max = 800)
     private String comment;
@@ -60,12 +60,12 @@ public class HistologyVO {
         this.histopathology = histopathology;
     }
 
-    public int getFcdClasification() {
-        return fcdClasification;
+    public int getFcdClassification() {
+        return fcdClassification;
     }
 
-    public void setFcdClasification(int fcdClasification) {
-        this.fcdClasification = fcdClasification;
+    public void setFcdClassification(int fcdClassification) {
+        this.fcdClassification = fcdClassification;
     }
 
     public String getComment() {

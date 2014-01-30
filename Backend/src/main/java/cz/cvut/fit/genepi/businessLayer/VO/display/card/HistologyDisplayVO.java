@@ -11,7 +11,7 @@ public class HistologyDisplayVO {
 
     private int histopathology;
 
-    private int fcdClasification;
+    private int fcdClassification;
 
     private String comment;
 
@@ -39,12 +39,12 @@ public class HistologyDisplayVO {
         this.histopathology = histopathology;
     }
 
-    public int getFcdClasification() {
-        return fcdClasification;
+    public int getFcdClassification() {
+        return fcdClassification;
     }
 
-    public void setFcdClasification(int fcdClasification) {
-        this.fcdClasification = fcdClasification;
+    public void setFcdClassification(int fcdClassification) {
+        this.fcdClassification = fcdClassification;
     }
 
     public String getComment() {

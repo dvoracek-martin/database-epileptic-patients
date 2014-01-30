@@ -1425,7 +1425,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.histopathology", translateValue(String.valueOf(histology.getHistopathology()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyFcdClassification()) {
-            addCells("label.FCDClasification", translateValue(String.valueOf(histology.getFcdClasification()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.FCDClassification", translateValue(String.valueOf(histology.getFcdClassification()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyComment()) {
             addCells("label.comment", translateValue(String.valueOf(histology.getComment()), locale), sheet, locale, styles, "cell", p);

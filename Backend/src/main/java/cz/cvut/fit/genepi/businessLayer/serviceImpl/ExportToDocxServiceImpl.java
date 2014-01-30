@@ -1637,9 +1637,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isHistologyFcdClassification()) {
-            content.add(messageSource.getMessage("label.FCDClasification", null, locale));
+            content.add(messageSource.getMessage("label.FCDClassification", null, locale));
 
-            content.add(translateValue(String.valueOf(histology.getFcdClasification()),
+            content.add(translateValue(String.valueOf(histology.getFcdClassification()),
                     locale));
 
         }
