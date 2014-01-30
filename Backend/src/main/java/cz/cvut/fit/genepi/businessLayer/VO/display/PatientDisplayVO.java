@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 
 import java.util.List;
 
@@ -40,9 +39,25 @@ public class PatientDisplayVO {
 
     private List<NeuropsychologyDisplayVO> neuropsychologyList;
 
+    private List<NeuropsychologyOldDisplayVO> neuropsychologyOldList;
+
     private List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList;
 
     private List<DiagnosticTestMriDisplayVO> diagnosticTestMriList;
+
+    private List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayList;
+
+    private List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayList;
+
+    private List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingDisplayList;
+
+    private List<OperationDisplayVO> operationList;
+
+    private List<HistologyDisplayVO> histologyList;
+
+    private List<ComplicationDisplayVO> complicationList;
+
+    private List<OutcomeDisplayVO> outcomeList;
 
     public int getId() {
         return id;
@@ -140,6 +155,14 @@ public class PatientDisplayVO {
         this.neuropsychologyList = neuropsychologyList;
     }
 
+    public List<NeuropsychologyOldDisplayVO> getNeuropsychologyOldList() {
+        return neuropsychologyOldList;
+    }
+
+    public void setNeuropsychologyOldList(List<NeuropsychologyOldDisplayVO> neuropsychologyOldList) {
+        this.neuropsychologyOldList = neuropsychologyOldList;
+    }
+
     public List<DiagnosticTestScalpEegDisplayVO> getDiagnosticTestScalpEegList() {
         return diagnosticTestScalpEegList;
     }
@@ -154,5 +177,61 @@ public class PatientDisplayVO {
 
     public void setDiagnosticTestMriList(List<DiagnosticTestMriDisplayVO> diagnosticTestMriList) {
         this.diagnosticTestMriList = diagnosticTestMriList;
+    }
+
+    public List<InvasiveTestEcogDisplayVO> getInvasiveTestEcogDisplayList() {
+        return invasiveTestEcogDisplayList;
+    }
+
+    public void setInvasiveTestEcogDisplayList(List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayList) {
+        this.invasiveTestEcogDisplayList = invasiveTestEcogDisplayList;
+    }
+
+    public List<InvasiveTestEegDisplayVO> getInvasiveTestEegDisplayList() {
+        return invasiveTestEegDisplayList;
+    }
+
+    public void setInvasiveTestEegDisplayList(List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayList) {
+        this.invasiveTestEegDisplayList = invasiveTestEegDisplayList;
+    }
+
+    public List<InvasiveTestCorticalMappingDisplayVO> getInvasiveTestCorticalMappingDisplayList() {
+        return invasiveTestCorticalMappingDisplayList;
+    }
+
+    public void setInvasiveTestCorticalMappingDisplayList(List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingDisplayList) {
+        this.invasiveTestCorticalMappingDisplayList = invasiveTestCorticalMappingDisplayList;
+    }
+
+    public List<OperationDisplayVO> getOperationList() {
+        return operationList;
+    }
+
+    public void setOperationList(List<OperationDisplayVO> operationList) {
+        this.operationList = operationList;
+    }
+
+    public List<HistologyDisplayVO> getHistologyList() {
+        return histologyList;
+    }
+
+    public void setHistologyList(List<HistologyDisplayVO> histologyList) {
+        this.histologyList = histologyList;
+    }
+
+    public List<ComplicationDisplayVO> getComplicationList() {
+        return complicationList;
+    }
+
+    public void setComplicationList(List<ComplicationDisplayVO> complicationList) {
+        this.complicationList = complicationList;
+    }
+
+    public List<OutcomeDisplayVO> getOutcomeList() {
+        return outcomeList;
+    }
+
+    public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
+        this.outcomeList = outcomeList;
     }
 }
