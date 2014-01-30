@@ -47,7 +47,7 @@
                     <spring:message code="label.descriptionMRI"/>
                 </th>
                 <td class="col-xs-9">
-                   ${diagnosticTestMri.mriDescription}
+                        ${diagnosticTestMri.mriDescription}
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                     <spring:message code="label.descriptionPetHypometabolism"/>
                 </th>
                 <td class="col-xs-9">
-                    ${diagnosticTestMri.descriptionPetHypometabolism}
+                        ${diagnosticTestMri.descriptionPetHypometabolism}
                 </td>
             </tr>
             <tr>

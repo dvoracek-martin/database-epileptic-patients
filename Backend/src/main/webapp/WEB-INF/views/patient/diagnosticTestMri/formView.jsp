@@ -21,259 +21,254 @@
         <script src="<c:url value="/resources/custom/js/customjs.js" />"></script>
     </jsp:attribute>
 
-    <jsp:body>
-        <div class="row">
-            <div class="col-xs-12">
-                <h2>
-                    <spring:message code="label.diagnosticTestMriMulti"/>
-                </h2>
-            </div>
+<jsp:body>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>
+            <spring:message code="label.diagnosticTestMriMulti"/>
+        </h2>
+    </div>
+</div>
+
+<%@include file="../patientDetails.jsp" %>
+
+<%-- mapping resource in action with c:url caused errors --%>
+<form:form class="form-horizontal" role="form" method="POST"
+           action="/GENEPI/patient/${patient.id}/diagnostic-test-mri/save" commandName="diagnosticTestMri">
+
+<div class="form-group">
+    <label for="date" class="col-xs-3 control-label">
+        <spring:message code="label.dateExamination"/>
+    </label>
+
+    <div class="col-xs-8">
+        <form:input path="date" id="date" type="text" class="form-control datepicker-today"
+                    autocomplete="off"/>
+        <form:errors path="date" cssClass="error">
+        </form:errors>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="done" class="col-xs-3 control-label">
+        <spring:message code="label.diagnosticTestMri"/>
+    </label>
+
+    <div class="col-xs-8">
+        <form:select path="done" id="done" type="text" class="form-control">
+            <form:option value="1">
+                <spring:message code="label.done.1"/>
+            </form:option>
+            <form:option value="2">
+                <spring:message code="label.done.2"/>
+            </form:option>
+        </form:select>
+    </div>
+</div>
+
+<div id="section-done" class="section-hide">
+
+    <jsp:include page="resultTypeOptionsView.jsp">
+        <jsp:param name="labelName" value="MRIFinding"/>
+        <jsp:param name="propertyName" value="mriFinding"/>
+    </jsp:include>
+
+    <div class="form-group">
+        <label for="mriDescription" class="col-xs-3 control-label">
+            <spring:message code="label.descriptionMRI"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="mriDescription" id="mriDescription" class="form-control"/>
         </div>
-
-        <%@include file="../patientDetails.jsp" %>
-
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/diagnostic-test-mri/save" commandName="diagnosticTestMri">
-
-            <div class="form-group">
-                <label for="date" class="col-xs-3 control-label">
-                    <spring:message code="label.dateExamination"/>
-                </label>
-
-                <div class="col-xs-8">
-                    <form:input path="date" id="date" type="text" class="form-control datepicker-today"
-                                autocomplete="off"/>
-                    <form:errors path="date" cssClass="error">
-                    </form:errors>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="done" class="col-xs-3 control-label">
-                    <spring:message code="label.diagnosticTestMri"/>
-                </label>
-
-                <div class="col-xs-8">
-                    <form:select path="done" id="done" type="text" class="form-control">
-                        <form:option value="1">
-                            <spring:message code="label.done.1"/>
-                        </form:option>
-                        <form:option value="2">
-                            <spring:message code="label.done.2"/>
-                        </form:option>
-                    </form:select>
-                </div>
-            </div>
-
-            <div id="section-done" class="section-hide">
-
-                <jsp:include page="resultTypeOptionsView.jsp">
-                    <jsp:param name="labelName" value="MRIFinding"/>
-                    <jsp:param name="propertyName" value="mriFinding"/>
-                </jsp:include>
-
-                <div class="form-group">
-                    <label for="mriDescription" class="col-xs-3 control-label">
-                        <spring:message code="label.descriptionMRI"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="mriDescription" id="mriDescription" class="form-control"/>
-                    </div>
-                </div>
+    </div>
 
 
+    <jsp:include page="resultTypeOptionsView.jsp">
+        <jsp:param name="labelName" value="mRIFdgPet"/>
+        <jsp:param name="propertyName" value="fdgPet"/>
+    </jsp:include>
 
-                <jsp:include page="resultTypeOptionsView.jsp">
-                    <jsp:param name="labelName" value="mRIFdgPet"/>
-                    <jsp:param name="propertyName" value="fdgPet"/>
-                </jsp:include>
+    <div class="form-group">
+        <label for="descriptionPetHypometabolism" class="col-xs-3 control-label">
+            <spring:message code="label.mRIFdgPet"/>
+        </label>
 
-                <div class="form-group">
-                    <label for="descriptionPetHypometabolism" class="col-xs-3 control-label">
-                        <spring:message code="label.mRIFdgPet"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism" class="form-control"/>
-                    </div>
-                </div>
-
+        <div class="col-xs-8">
+            <form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism" class="form-control"/>
+        </div>
+    </div>
 
 
-                <jsp:include page="resultTypeOptionsView.jsp">
-                    <jsp:param name="labelName" value="interictalSPECT"/>
-                    <jsp:param name="propertyName" value="interictalSpect"/>
-                </jsp:include>
+    <jsp:include page="resultTypeOptionsView.jsp">
+        <jsp:param name="labelName" value="interictalSPECT"/>
+        <jsp:param name="propertyName" value="interictalSpect"/>
+    </jsp:include>
 
-                <div class="form-group">
-                    <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
-                        <spring:message code="label.descriptionSPECTHypoperfuse"/>
-                    </label>
+    <div class="form-group">
+        <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
+            <spring:message code="label.descriptionSPECTHypoperfuse"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse" class="form-control"/>
-                    </div>
-                </div>
-
-
-                <jsp:include page="resultTypeOptionsView.jsp">
-                    <jsp:param name="labelName" value="ictalSpect"/>
-                    <jsp:param name="propertyName" value="ictalSpect"/>
-                </jsp:include>
-
-                <div class="form-group">
-                    <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
-                        <spring:message code="label.descriptionSPECTHyperperfuse"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse" class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="siscom" class="col-xs-3 control-label">
-                        <spring:message code="label.mriSiscom"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:checkbox path="siscom" id="siscom"/>
-                        <form:errors path="siscom" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse" class="form-control"/>
+        </div>
+    </div>
 
 
+    <jsp:include page="resultTypeOptionsView.jsp">
+        <jsp:param name="labelName" value="ictalSpect"/>
+        <jsp:param name="propertyName" value="ictalSpect"/>
+    </jsp:include>
+
+    <div class="form-group">
+        <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
+            <spring:message code="label.descriptionSPECTHyperperfuse"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="siscom" class="col-xs-3 control-label">
+            <spring:message code="label.mriSiscom"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:checkbox path="siscom" id="siscom"/>
+            <form:errors path="siscom" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
 
 
-                <div class="form-group">
-                    <label for="mrsProtocol" class="col-xs-3 control-label">
-                        <spring:message code="label.MrsProtocol"/>
-                    </label>
+    <div class="form-group">
+        <label for="mrsProtocol" class="col-xs-3 control-label">
+            <spring:message code="label.MrsProtocol"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:select path="mrsProtocol" id="mrsProtocol" type="text" class="form-control">
-                            <form:option value="0">
-                                Zvolte
-                            </form:option>
-                            <form:option value="1">
-                                <spring:message code="label.mrsProtocol.1"/>
-                            </form:option>
-                            <form:option value="2">
-                                <spring:message code="label.mrsProtocol.2"/>
-                            </form:option>
-                            <form:option value="3">
-                                <spring:message code="label.mrsProtocol.3"/>
-                            </form:option>
-                        </form:select>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:select path="mrsProtocol" id="mrsProtocol" type="text" class="form-control">
+                <form:option value="0">
+                    Zvolte
+                </form:option>
+                <form:option value="1">
+                    <spring:message code="label.mrsProtocol.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.mrsProtocol.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.mrsProtocol.3"/>
+                </form:option>
+            </form:select>
+        </div>
+    </div>
 
-                <jsp:include page="resultTypeOptionsView.jsp">
-                    <jsp:param name="labelName" value="MrsFinding"/>
-                    <jsp:param name="propertyName" value="mrsFinding"/>
-                </jsp:include>
+    <jsp:include page="resultTypeOptionsView.jsp">
+        <jsp:param name="labelName" value="MrsFinding"/>
+        <jsp:param name="propertyName" value="mrsFinding"/>
+    </jsp:include>
 
-                <div class="form-group">
-                    <label for="descriptionMrsAbnormality" class="col-xs-3 control-label">
-                        <spring:message code="label.descriptionMrsAbnormality"/>
-                    </label>
+    <div class="form-group">
+        <label for="descriptionMrsAbnormality" class="col-xs-3 control-label">
+            <spring:message code="label.descriptionMrsAbnormality"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality" class="form-control"/>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality" class="form-control"/>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <label for="fmri" class="col-xs-3 control-label">
-                        <spring:message code="label.fmri"/>
-                    </label>
+    <div class="form-group">
+        <label for="fmri" class="col-xs-3 control-label">
+            <spring:message code="label.fmri"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:checkbox path="fmri" id="fmri"/>
-                        <form:errors path="fmri" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:checkbox path="fmri" id="fmri"/>
+            <form:errors path="fmri" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
 
-                <div class="form-group">
-                    <label for="detailsFmri" class="col-xs-3 control-label">
-                        <spring:message code="label.FMRIDetails"/>
-                    </label>
+    <div class="form-group">
+        <label for="detailsFmri" class="col-xs-3 control-label">
+            <spring:message code="label.FMRIDetails"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:textarea path="detailsFmri" id="detailsFmri" class="form-control"/>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="fmri" class="col-xs-3 control-label">
-                        <spring:message code="label.dti"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:checkbox path="dti" id="dti"/>
-                        <form:errors path="dti" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="detailsDtiStudy" class="col-xs-3 control-label">
-                        <spring:message code="label.DTIStudyDetails"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="detailsDtiStudy" id="detailsDtiStudy" class="form-control"/>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:textarea path="detailsFmri" id="detailsFmri" class="form-control"/>
+        </div>
+    </div>
 
 
+    <div class="form-group">
+        <label for="fmri" class="col-xs-3 control-label">
+            <spring:message code="label.dti"/>
+        </label>
 
-                <div class="form-group">
-                    <label for="wada" class="col-xs-3 control-label">
-                        <spring:message code="label.dti"/>
-                    </label>
+        <div class="col-xs-8">
+            <form:checkbox path="dti" id="dti"/>
+            <form:errors path="dti" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
 
-                    <div class="col-xs-8">
-                        <form:checkbox path="wada" id="wada"/>
-                        <form:errors path="wada" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
+    <div class="form-group">
+        <label for="detailsDtiStudy" class="col-xs-3 control-label">
+            <spring:message code="label.DTIStudyDetails"/>
+        </label>
 
-                <div class="form-group">
-                    <label for="detailsWada" class="col-xs-3 control-label">
-                        <spring:message code="label.WADADetails"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="detailsWada" id="detailsWada" class="form-control"/>
-                    </div>
-                </div>
+        <div class="col-xs-8">
+            <form:textarea path="detailsDtiStudy" id="detailsDtiStudy" class="form-control"/>
+        </div>
+    </div>
 
 
-                <div class="form-group">
-                    <label for="comment" class="col-xs-3 control-label">
-                        <spring:message code="label.comment"/>
-                    </label>
+    <div class="form-group">
+        <label for="wada" class="col-xs-3 control-label">
+            <spring:message code="label.dti"/>
+        </label>
 
-                    <div class="col-xs-8">
-                        <form:textarea path="comment" id="comment" class="form-control"/>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
-                        <spring:message code="label.add"/>
-                    </button>
-                </div>
-            </div>
-        </form:form>
+        <div class="col-xs-8">
+            <form:checkbox path="wada" id="wada"/>
+            <form:errors path="wada" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
 
-    </jsp:body>
+    <div class="form-group">
+        <label for="detailsWada" class="col-xs-3 control-label">
+            <spring:message code="label.WADADetails"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="detailsWada" id="detailsWada" class="form-control"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="comment" class="col-xs-3 control-label">
+            <spring:message code="label.comment"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="comment" id="comment" class="form-control"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-xs-offset-3 col-xs-8">
+        <button class="btn btn-primary" type="submit">
+            <spring:message code="label.add"/>
+        </button>
+    </div>
+</div>
+</form:form>
+
+</jsp:body>
 </t:menuLVL2.NEW303>

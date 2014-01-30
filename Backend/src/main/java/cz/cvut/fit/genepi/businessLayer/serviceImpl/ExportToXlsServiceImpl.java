@@ -476,7 +476,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         if (exportParams.isInvasiveTestCorticalMapping()) {
             headerCell = headerRow.createCell(i++);
-            headerCell.setCellValue(messageSource.getMessage("label.invasiveCorticalMappingTest",
+            headerCell.setCellValue(messageSource.getMessage("label.invasiveTestCorticalMapping",
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(

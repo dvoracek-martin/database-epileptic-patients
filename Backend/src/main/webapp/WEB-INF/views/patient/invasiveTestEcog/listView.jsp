@@ -18,7 +18,6 @@
                 <h2>
                     <spring:message code="label.invasiveTestECoG"/>
                 </h2>
-
             </div>
             <div class="col-xs-6">
                 <h3 class="pull-right">

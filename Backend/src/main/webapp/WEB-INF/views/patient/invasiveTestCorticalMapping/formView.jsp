@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.invasiveTestEEG"/>
+                    <spring:message code="label.corticalMapping"/>
                 </h2>
             </div>
         </div>
@@ -34,7 +34,8 @@
 
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/invasive-test-eeg/save" commandName="invasiveTestEeg">
+                   action="/GENEPI/patient/${patient.id}/invasive-test-cortical-mapping/save"
+                   commandName="invasiveTestCorticalMapping">
 
             <div class="form-group">
                 <label for="date" class="col-xs-3 control-label">
@@ -51,7 +52,7 @@
 
             <div class="form-group">
                 <label for="done" class="col-xs-3 control-label">
-                    <spring:message code="label.invasiveTestEEG"/>
+                    <spring:message code="label.corticalMapping"/>
                 </label>
 
                 <div class="col-xs-8">
@@ -67,114 +68,67 @@
             </div>
 
             <div id="section-done" class="section-hide">
+
                 <div class="form-group">
-                    <label for="intracranialElectrodes" class="col-xs-3 control-label">
-                        <spring:message code="label.intracranialElectrodes"/>
+                    <label for="ecogPatterns" class="col-xs-3 control-label">
+                        <spring:message code="label.basicEEGActivity"/>
                     </label>
 
                     <div class="col-xs-8">
-                        <form:select path="ecogPatterns" id="intracranialElectrodes" type="text" class="form-control">
+                        <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="form-control">
                             <form:option value="0">
                                 Zvolte
                             </form:option>
                             <form:option value="1">
-                                <spring:message code="label.intracranialElectrodes.1"/>
+                                <spring:message code="label.ecogPatterns.1"/>
                             </form:option>
                             <form:option value="2">
-                                <spring:message code="label.intracranialElectrodes.2"/>
+                                <spring:message code="label.ecogPatterns.2"/>
                             </form:option>
                             <form:option value="3">
-                                <spring:message code="label.intracranialElectrodes.3"/>
+                                <spring:message code="label.ecogPatterns.3"/>
                             </form:option>
                             <form:option value="4">
-                                <spring:message code="label.intracranialElectrodes.4"/>
+                                <spring:message code="label.ecogPatterns.4"/>
                             </form:option>
                             <form:option value="5">
-                                <spring:message code="label.intracranialElectrodes.5"/>
-                            </form:option>
-                            <form:option value="6">
-                                <spring:message code="label.intracranialElectrodes.6"/>
-                            </form:option>
-                            <form:option value="7">
-                                <spring:message code="label.intracranialElectrodes.7"/>
+                                <spring:message code="label.ecogPatterns.5"/>
                             </form:option>
                         </form:select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="localizationIntracranialElectrodes" class="col-xs-3 control-label">
-                        <spring:message code="label.localizationIntracranialElectrodes"/>
+                    <label for="corticalMapping" class="col-xs-3 control-label">
+                        <spring:message code="label.corticalMapping"/>
                     </label>
 
                     <div class="col-xs-8">
-                        <form:textarea path="localizationIntracranialElectrodes" id="localizationIntracranialElectrodes"
-                                       class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="intracranialElectrodes" class="col-xs-3 control-label">
-                        <spring:message code="label.intracranialElectrodes"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:select path="invasiveEegSlow" id="invasiveEegSlow" type="text" class="form-control">
+                        <form:select path="corticalMapping" id="corticalMapping" type="text" class="form-control">
                             <form:option value="0">
-                                <spring:message code="label.invasiveEegSlowing.0"/>
+                                <spring:message code="label.corticalMapping.0"/>
                             </form:option>
                             <form:option value="1">
-                                <spring:message code="label.invasiveEegSlowing.1"/>
+                                <spring:message code="label.corticalMapping.1"/>
                             </form:option>
                             <form:option value="2">
-                                <spring:message code="label.invasiveEegSlowing.2"/>
+                                <spring:message code="label.corticalMapping.2"/>
                             </form:option>
                             <form:option value="3">
-                                <spring:message code="label.invasiveEegSlowing.3"/>
+                                <spring:message code="label.corticalMapping.3"/>
                             </form:option>
                             <form:option value="4">
-                                <spring:message code="label.invasiveEegSlowing.4"/>
+                                <spring:message code="label.corticalMapping.4"/>
                             </form:option>
                             <form:option value="5">
-                                <spring:message code="label.invasiveEegSlowing.5"/>
+                                <spring:message code="label.corticalMapping.5"/>
+                            </form:option>
+                            <form:option value="6">
+                                <spring:message code="label.corticalMapping.6"/>
                             </form:option>
                         </form:select>
                     </div>
                 </div>
-
-                <jsp:include page="invasiveEegOptionsView.jsp">
-                    <jsp:param name="labelName" value="invasiveEEGInterictalSpikes"/>
-                    <jsp:param name="propertyName" value="invasiveEegInterictalSpikes"/>
-                </jsp:include>
-
-                <div class="form-group">
-                    <label for="localizationInvasiveEegInterictalSpikes" class="col-xs-3 control-label">
-                        <spring:message code="label.localizationInvasiveEEGInterictalSpikes"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:textarea path="localizationInvasiveEegInterictalSpikes"
-                                       id="localizationInvasiveEegInterictalSpikes" class="form-control"/>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="invasiveEegStatusEpilepticus" class="col-xs-3 control-label">
-                        <spring:message code="label.invasiveEEGStatusEpilepticus"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:checkbox path="invasiveEegStatusEpilepticus" id="invasiveEegStatusEpilepticus"/>
-                        <form:errors path="eegStatusEpilepticus" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
-
-                <jsp:include page="invasiveEegOptionsView.jsp">
-                    <jsp:param name="labelName" value="invasiveIctalEEGPatterns"/>
-                    <jsp:param name="propertyName" value="invasiveIctalEegPatterns"/>
-                </jsp:include>
 
                 <div class="form-group">
                     <label for="comment" class="col-xs-3 control-label">
