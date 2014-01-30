@@ -1302,14 +1302,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isInvasiveTestECOGEcogCover()) {
-            content.add(messageSource.getMessage("label.ECoG_cover", null, locale));
+            content.add(messageSource.getMessage("label.ecogCover", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestECOG.getEcogCover()),
                     locale));
 
         }
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
-            content.add(messageSource.getMessage("label.ECoG_patterns", null, locale));
+            content.add(messageSource.getMessage("label.ecogPatterns", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()),
                     locale));

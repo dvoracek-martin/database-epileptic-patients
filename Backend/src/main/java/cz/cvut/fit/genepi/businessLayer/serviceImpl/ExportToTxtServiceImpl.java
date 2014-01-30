@@ -1254,14 +1254,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isInvasiveTestECOGEcogCover()) {
-            content += messageSource.getMessage("label.ECoG_cover", null, locale);
+            content += messageSource.getMessage("label.ecogCover", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestECOG.getEcogCover()),
                     locale);
             content += "\n";
         }
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
-            content += messageSource.getMessage("label.ECoG_patterns", null, locale);
+            content += messageSource.getMessage("label.ecogPatterns", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()),
                     locale);

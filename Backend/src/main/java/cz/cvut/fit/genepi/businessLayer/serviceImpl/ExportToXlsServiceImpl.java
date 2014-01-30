@@ -1239,13 +1239,13 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isInvasiveTestECOGDone()) {
-            addCells("label.ECoG_done", translateValue(String.valueOf(invasiveTestECOG.isDone()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ecogDone", translateValue(String.valueOf(invasiveTestECOG.isDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGEcogCover()) {
-            addCells("label.ECoG_cover", translateValue(String.valueOf(invasiveTestECOG.getEcogCover()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ecogCover", translateValue(String.valueOf(invasiveTestECOG.getEcogCover()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGEcogPatterns()) {
-            addCells("label.ECoG_patterns", translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ecogPatterns", translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
             addCells("label.afterResectionECoG", translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()), locale), sheet, locale, styles, "cell", p);

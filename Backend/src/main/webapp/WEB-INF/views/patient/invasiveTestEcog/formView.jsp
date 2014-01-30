@@ -96,7 +96,7 @@
             </div>
 
             <div class="control-group">
-                <label class="control-label" for="ecogCover"><strong><spring:message code="label.ECoG_cover"/></strong></label>
+                <label class="control-label" for="ecogCover"><strong><spring:message code="label.ecogCover"/></strong></label>
 
                 <div class="controls">
                     <form:textarea path="ecogCover" id="ecogCover" input="ecogCover"/>
@@ -107,7 +107,7 @@
 
             <div class="control-group">
                 <label class="control-label" for="ecogPatterns"><strong><spring:message
-                        code="label.ECoG_patterns"/></strong></label>
+                        code="label.ecogPatterns"/></strong></label>
 
                 <div class="controls">
                     <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="input-large">
