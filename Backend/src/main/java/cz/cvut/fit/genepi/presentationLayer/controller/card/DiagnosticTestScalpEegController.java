@@ -29,7 +29,7 @@ public class DiagnosticTestScalpEegController {
         this.diagnosticTestScalpEegService = diagnosticTestScalpEegService;
     }
 
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/create", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.GET)
     public String diagnosticTestScalpEegCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
@@ -38,7 +38,7 @@ public class DiagnosticTestScalpEegController {
         return "patient/diagnosticTestScalpEeg/formView";
     }
 
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.GET)
     public String diagnosticTestScalpEegEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
@@ -57,7 +57,7 @@ public class DiagnosticTestScalpEegController {
      * @param patientID              the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/save", method = RequestMethod.POST)
     public String diagnosticTestScalpEegCreatePOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
             @PathVariable("patientId") Integer patientId,
@@ -69,18 +69,18 @@ public class DiagnosticTestScalpEegController {
         } else {
             diagnosticTestScalpEeg.setPatientId(patientId);
             diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEeg);
-            return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
+            return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/{diagnosticTestScalpEegId}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/delete", method = RequestMethod.GET)
     public String diagnosticTestScalpEegDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
         diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
-        return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
+        return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
     /**
@@ -93,14 +93,14 @@ public class DiagnosticTestScalpEegController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/{diagnosticTestScalpEegId}/hide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/hide", method = RequestMethod.GET)
     public String diagnosticTestScalpEegHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model) {
 
         diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId);
-        return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
+        return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
     /**
@@ -113,7 +113,7 @@ public class DiagnosticTestScalpEegController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/{diagnosticTestScalpEegId}/unhide", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/unhide", method = RequestMethod.GET)
     public String diagnosticTestScalpEegUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
@@ -132,7 +132,7 @@ public class DiagnosticTestScalpEegController {
         return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
     }*/
 
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-testScalp-eeg/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/list", method = RequestMethod.GET)
     public String diagnosticTestScalpEegListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 

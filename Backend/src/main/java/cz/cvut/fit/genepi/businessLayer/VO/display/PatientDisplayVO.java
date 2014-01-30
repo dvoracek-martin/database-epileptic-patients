@@ -32,21 +32,15 @@ public class PatientDisplayVO {
 
     private List<AnamnesisDisplayVO> anamnesisList;
 
-    private List<NeurologicalFindingDisplayVO> neurologicalFindingList;
-
-    private List<NeuropsychologyDisplayVO> neuropsychologyList;
-
     private List<SeizureDisplayVO> seizureList;
 
     private List<PharmacotherapyDisplayVO> pharmacotherapyList;
 
-    public int getAge() {
-        return age;
-    }
+    private List<NeurologicalFindingDisplayVO> neurologicalFindingList;
 
-    public void setAge(int age) {
-        this.age = age;
-    }
+    private List<NeuropsychologyDisplayVO> neuropsychologyList;
+
+    private List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList;
 
     public int getId() {
         return id;
@@ -70,6 +64,14 @@ public class PatientDisplayVO {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getGender() {
@@ -104,6 +106,22 @@ public class PatientDisplayVO {
         this.anamnesisList = anamnesisList;
     }
 
+    public List<SeizureDisplayVO> getSeizureList() {
+        return seizureList;
+    }
+
+    public void setSeizureList(List<SeizureDisplayVO> seizureList) {
+        this.seizureList = seizureList;
+    }
+
+    public List<PharmacotherapyDisplayVO> getPharmacotherapyList() {
+        return pharmacotherapyList;
+    }
+
+    public void setPharmacotherapyList(List<PharmacotherapyDisplayVO> pharmacotherapyList) {
+        this.pharmacotherapyList = pharmacotherapyList;
+    }
+
     public List<NeurologicalFindingDisplayVO> getNeurologicalFindingList() {
         return neurologicalFindingList;
     }
@@ -120,19 +138,11 @@ public class PatientDisplayVO {
         this.neuropsychologyList = neuropsychologyList;
     }
 
-    public List<SeizureDisplayVO> getSeizureList() {
-        return seizureList;
+    public List<DiagnosticTestScalpEegDisplayVO> getDiagnosticTestScalpEegList() {
+        return diagnosticTestScalpEegList;
     }
 
-    public void setSeizureList(List<SeizureDisplayVO> seizureList) {
-        this.seizureList = seizureList;
-    }
-
-    public List<PharmacotherapyDisplayVO> getPharmacotherapyList() {
-        return pharmacotherapyList;
-    }
-
-    public void setPharmacotherapyList(List<PharmacotherapyDisplayVO> pharmacotherapyList) {
-        this.pharmacotherapyList = pharmacotherapyList;
+    public void setDiagnosticTestScalpEegList(List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList) {
+        this.diagnosticTestScalpEegList = diagnosticTestScalpEegList;
     }
 }

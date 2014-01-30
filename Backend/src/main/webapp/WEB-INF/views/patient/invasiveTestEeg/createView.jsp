@@ -23,7 +23,7 @@
 <jsp:body>
 
 <div class="span5">
-    <h2><spring:message code="label.diagnosticTestScalpEEG"/></h2>
+    <h2><spring:message code="label.invasiveTestEEG"/></h2>
 </div>
 
 <table class="table">
@@ -68,7 +68,7 @@
 <!-- form for adding new record -->
 <!-- mapping resource in action with c:url caused errors -->
 <form:form class="form-horizontal" method="POST"
-           action="/GENEPI/patient/${patientID}/diagnosticTestScalpEEG/create" commandName="diagnosticTestScalpEEG">
+           action="/GENEPI/patient/${patientID}/invasiveTestEEG/create" commandName="invasiveTestEEG">
 
     <div class="control-group">
         <label class="control-label" for="date"><strong><spring:message
@@ -82,129 +82,95 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="done"><strong><spring:message
-                code="label.diagnosticTestScalpEEG"/></strong></label>
+        <label class="control-label" for="done"><strong><spring:message code="label.invasiveTestEEG"/></strong></label>
 
         <div class="controls">
             <form:select path="done" id="done" type="text" class="input-large">
-                <form:option value="true">
-                    <spring:message code="label.done"/>
-                </form:option>
                 <form:option value="false">
                     <spring:message code="label.notDone"/>
                 </form:option>
-            </form:select>
-        </div>
-    </div>
-
-
-    <div class="control-group">
-        <label class="control-label" for="basicEegActivity"><strong><spring:message
-                code="label.basicEEGActivity"/></strong></label>
-
-        <div class="controls">
-            <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="input-large">
-                <form:option value="1">
-                    <spring:message code="label.normal"/>
-                </form:option>
-                <form:option value="2">
-                    <spring:message code="label.slow"/>
+                <form:option value="true">
+                    <spring:message code="label.done"/>
                 </form:option>
             </form:select>
         </div>
     </div>
+
     <div class="control-group">
-        <label class="control-label" for="eegSlow"><strong><spring:message code="label.EEGSlow"/></strong></label>
+        <label class="control-label" for="intracranialElectrodes"><strong><spring:message
+                code="label.intracranialElectrodes"/></strong></label>
 
         <div class="controls">
-            <form:select path="eegSlow" id="eegSlow" type="text" class="input-large">
+            <form:select path="intracranialElectrodes" id="intracranialElectrodes" type="text" class="input-large">
                 <form:option value="1">
-                    <spring:message code="label.generalizedContinuous"/>
+                    <spring:message code="label.IC"/>
                 </form:option>
                 <form:option value="2">
-                    <spring:message code="label.generalizedDiscontinuous"/>
+                    <spring:message code="label.IcSd"/>
                 </form:option>
                 <form:option value="3">
-                    <spring:message code="label.localizatedContinuous"/>
+                    <spring:message code="label.IcSdStripsGrids"/>
                 </form:option>
                 <form:option value="4">
-                    <spring:message code="label.localizatedDiscontinuous"/>
+                    <spring:message code="label.Sd"/>
                 </form:option>
                 <form:option value="5">
-                    <spring:message code="label.none"/>
-                </form:option>
-            </form:select>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="interictalEegSpikes"><strong><spring:message
-                code="label.interictalEEGSpikes"/></strong></label>
-
-        <div class="controls">
-            <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="input-large">
-                <form:option value="1">
-                    <spring:message code="label.generalized"/>
-                </form:option>
-                <form:option value="2">
-                    <spring:message code="label.hemispheric"/>
-                </form:option>
-                <form:option value="3">
-                    <spring:message code="label.multiregional"/>
-                </form:option>
-                <form:option value="4">
-                    Nelatralizovatelné
-                </form:option>
-                <form:option value="5">
-                    <spring:message code="label.regional"/>
+                    <spring:message code="label.SdGrids"/>
                 </form:option>
                 <form:option value="6">
-                    <spring:message code="label.none"/>
+                    <spring:message code="label.Grids"/>
+                </form:option>
+                <form:option value="7">
+                    <spring:message code="label.IcSdGrids"/>
                 </form:option>
             </form:select>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="localizationInterictalEEGSpikes"><strong><spring:message
-                code="label.localizationInterictalEEGSpikes"/></strong></label>
+        <label class="control-label" for="localizationIntracranialElectrodes"><strong><spring:message
+                code="label.localizationIntracranialElectrodes"/></strong></label>
 
         <div class="controls">
-            <form:textarea path="localizationInterictalEEGSpikes" id="localizationInterictalEEGSpikes"
-                           input="localizationInterictalEEGSpikes"/>
-            <form:errors path="localizationInterictalEEGSpikes" cssClass="error">
+            <form:textarea path="localizationIntracranialElectrodes" id="localizationIntracranialElectrodes"
+                           input="localizationIntracranialElectrodes"/>
+            <form:errors path="localizationIntracranialElectrodes" cssClass="error">
             </form:errors>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="eegStatusEpilepticus"><strong><spring:message
-                code="label.EEGStatusEpilepticus"/></strong></label>
+        <label class="control-label" for="invasiveEegSlow"><strong><spring:message
+                code="label.invasiveEEGSlowing"/></strong></label>
 
         <div class="controls">
-            <form:checkbox path="eegStatusEpilepticus" input="eegStatusEpilepticus" class="input-block-level"/>
-            <form:errors path="eegStatusEpilepticus" cssClass="error">
-            </form:errors>
+            <form:select path="invasiveEegSlow" id="invasiveEegSlow" type="text" class="input-large">
+                <form:option value="1">
+                    <spring:message code="label.generalizedIntermittent"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.generalizedContinuous"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.localizedIntermittent"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.localizedContinuous"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.absent"/>
+                </form:option>
+            </form:select>
         </div>
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="secondarySidedSynchrony"><strong><spring:message
-                code="label.secondarySidedSynchrony"/></strong></label>
+        <label class="control-label" for="invasiveEegInterictalSpikes"><strong><spring:message
+                code="label.invasiveEEGInterictalSpikes"/></strong></label>
 
         <div class="controls">
-            <form:checkbox path="secondarySidedSynchrony" input="secondarySidedSynchrony" class="input-large"/>
-            <form:errors path="secondarySidedSynchrony" cssClass="error">
-            </form:errors>
-        </div>
-    </div>
-
-    <div class="control-group">
-        <label class="control-label" for="ictalEegPatterns"><strong><spring:message
-                code="label.ictalEEGPatterns"/></strong></label>
-
-        <div class="controls">
-            <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="input-large">
+            <form:select path="invasiveEegInterictalSpikes" id="invasiveEegInterictalSpikes" type="text"
+                         class="input-large">
                 <form:option value="1">
                     <spring:message code="label.missing"/>
                 </form:option>
@@ -225,14 +191,51 @@
     </div>
 
     <div class="control-group">
-        <label class="control-label" for="localizationIctalEegPattern"><strong><spring:message
-                code="label.localizationIctalEEGPattern"/></strong></label>
+        <label class="control-label" for="localizationInvasiveEegInterictalSpikes"><strong><spring:message
+                code="label.localizationInvasiveEEGInterictalSpikes"/></strong></label>
 
         <div class="controls">
-            <form:textarea path="localizationIctalEegPattern" id="localizationIctalEegPattern"
-                           input="localizationIctalEegPattern"/>
-            <form:errors path="localizationIctalEegPattern" cssClass="error">
+            <form:textarea path="localizationInvasiveEegInterictalSpikes" id="localizationInvasiveEegInterictalSpikes"
+                           input="localizationInvasiveEegInterictalSpikes"/>
+            <form:errors path="localizationInvasiveEegInterictalSpikes" cssClass="error">
             </form:errors>
+        </div>
+    </div>
+
+    <div class="control-group">
+        <label class="control-label" for="invasiveEegStatusEpilepticus"><strong><spring:message
+                code="label.invasiveEEGStatusEpilepticus"/></strong></label>
+
+        <div class="controls">
+            <form:checkbox path="invasiveEegStatusEpilepticus" input="invasiveEegStatusEpilepticus"
+                           class="input-block-level"/>
+            <form:errors path="invasiveEegStatusEpilepticus" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
+
+    <div class="control-group">
+        <label class="control-label" for="invasiveIctalEegPatterns"><strong><spring:message
+                code="label.invasiveIctalEEGPatterns"/></strong></label>
+
+        <div class="controls">
+            <form:select path="invasiveIctalEegPatterns" id="invasiveIctalEegPatterns" type="text" class="input-large">
+                <form:option value="1">
+                    <spring:message code="label.missing"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.focal"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.multiregional"/>
+                </form:option>
+                <form:option value="4">
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.regional"/>
+                </form:option>
+            </form:select>
         </div>
     </div>
 

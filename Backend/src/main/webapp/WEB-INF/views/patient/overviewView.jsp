@@ -854,7 +854,7 @@
                 </tr>
                 <tr class="info">
                     <td>Lokalizace interiktálních EEG hrotů</td>
-                    <td>${patient.diagnosticTestEEGList[0].localizationInterictalEEGSpikes}</td>
+                    <td>${patient.diagnosticTestEEGList[0].localizationInterictalEegSpikes}</td>
                 </tr>
                 <tr class="info">
                     <td>EEG status epilepticus</td>
