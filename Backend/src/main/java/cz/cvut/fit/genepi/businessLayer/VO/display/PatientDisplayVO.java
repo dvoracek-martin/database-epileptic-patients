@@ -45,11 +45,11 @@ public class PatientDisplayVO {
 
     private List<DiagnosticTestMriDisplayVO> diagnosticTestMriList;
 
-    private List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayList;
+    private List<InvasiveTestEcogDisplayVO> invasiveTestEcogList;
 
-    private List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayList;
+    private List<InvasiveTestEegDisplayVO> invasiveTestEegList;
 
-    private List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingDisplayList;
+    private List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingList;
 
     private List<OperationDisplayVO> operationList;
 
@@ -179,28 +179,28 @@ public class PatientDisplayVO {
         this.diagnosticTestMriList = diagnosticTestMriList;
     }
 
-    public List<InvasiveTestEcogDisplayVO> getInvasiveTestEcogDisplayList() {
-        return invasiveTestEcogDisplayList;
+    public List<InvasiveTestEcogDisplayVO> getInvasiveTestEcogList() {
+        return invasiveTestEcogList;
     }
 
-    public void setInvasiveTestEcogDisplayList(List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayList) {
-        this.invasiveTestEcogDisplayList = invasiveTestEcogDisplayList;
+    public void setInvasiveTestEcogList(List<InvasiveTestEcogDisplayVO> invasiveTestEcogList) {
+        this.invasiveTestEcogList = invasiveTestEcogList;
     }
 
-    public List<InvasiveTestEegDisplayVO> getInvasiveTestEegDisplayList() {
-        return invasiveTestEegDisplayList;
+    public List<InvasiveTestEegDisplayVO> getInvasiveTestEegList() {
+        return invasiveTestEegList;
     }
 
-    public void setInvasiveTestEegDisplayList(List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayList) {
-        this.invasiveTestEegDisplayList = invasiveTestEegDisplayList;
+    public void setInvasiveTestEegList(List<InvasiveTestEegDisplayVO> invasiveTestEegList) {
+        this.invasiveTestEegList = invasiveTestEegList;
     }
 
-    public List<InvasiveTestCorticalMappingDisplayVO> getInvasiveTestCorticalMappingDisplayList() {
-        return invasiveTestCorticalMappingDisplayList;
+    public List<InvasiveTestCorticalMappingDisplayVO> getInvasiveTestCorticalMappingList() {
+        return invasiveTestCorticalMappingList;
     }
 
-    public void setInvasiveTestCorticalMappingDisplayList(List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingDisplayList) {
-        this.invasiveTestCorticalMappingDisplayList = invasiveTestCorticalMappingDisplayList;
+    public void setInvasiveTestCorticalMappingList(List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingList) {
+        this.invasiveTestCorticalMappingList = invasiveTestCorticalMappingList;
     }
 
     public List<OperationDisplayVO> getOperationList() {
