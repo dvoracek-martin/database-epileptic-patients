@@ -50,7 +50,7 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
     private Date date;
 
     @Column(name = "with_complication", nullable = false)
-    private boolean withComplication;
+    private int withComplication;
 
     @Column(name = "complication_type")
     private int complicationType;
@@ -134,11 +134,11 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
         this.date = date;
     }
 
-    public boolean isWithComplication() {
+    public int getWithComplication() {
         return withComplication;
     }
 
-    public void setWithComplication(boolean withComplication) {
+    public void setWithComplication(int withComplication) {
         this.withComplication = withComplication;
     }
 

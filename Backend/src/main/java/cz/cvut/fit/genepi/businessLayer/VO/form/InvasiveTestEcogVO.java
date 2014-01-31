@@ -21,7 +21,7 @@ public class InvasiveTestEcogVO {
     @NotNull
     private Date date;
 
-    private boolean done;
+    private int done;
 
     @Size(max = 800)
     private String ecogCover;
@@ -57,11 +57,11 @@ public class InvasiveTestEcogVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

@@ -21,7 +21,7 @@ public class InvasiveTestEegVO {
     @NotNull
     private Date date;
 
-    private boolean done;
+    private int done;
 
     private int intracranialElectrodes;
 
@@ -66,11 +66,11 @@ public class InvasiveTestEegVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

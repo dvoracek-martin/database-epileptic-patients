@@ -48,7 +48,6 @@
 </div>
 
 
-
 <%--
     <tr class="info">
         <td><spring:message code="label.corticalMapping"/></td>

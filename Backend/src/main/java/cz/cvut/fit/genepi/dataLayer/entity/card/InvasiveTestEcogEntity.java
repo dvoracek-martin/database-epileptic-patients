@@ -51,7 +51,7 @@ public class InvasiveTestEcogEntity implements
     private Date date;
 
     @Column(name = "done")
-    private boolean done;
+    private int done;
 
     @Column(name = "ecog_cover", length = 800)
     private String ecogCover;
@@ -138,11 +138,11 @@ public class InvasiveTestEcogEntity implements
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

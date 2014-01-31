@@ -73,7 +73,8 @@
                     </label>
 
                     <div class="col-xs-8">
-                        <form:select path="ecogPatterns" id="intracranialElectrodes" type="text" class="form-control">
+                        <form:select path="intracranialElectrodes" id="intracranialElectrodes" type="text"
+                                     class="form-control">
                             <form:option value="0">
                                 Zvolte
                             </form:option>
@@ -155,19 +156,6 @@
                     <div class="col-xs-8">
                         <form:textarea path="localizationInvasiveEegInterictalSpikes"
                                        id="localizationInvasiveEegInterictalSpikes" class="form-control"/>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="invasiveEegStatusEpilepticus" class="col-xs-3 control-label">
-                        <spring:message code="label.invasiveEEGStatusEpilepticus"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:checkbox path="invasiveEegStatusEpilepticus" id="invasiveEegStatusEpilepticus"/>
-                        <form:errors path="eegStatusEpilepticus" cssClass="error">
-                        </form:errors>
                     </div>
                 </div>
 

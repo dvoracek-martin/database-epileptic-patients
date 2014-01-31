@@ -70,35 +70,6 @@
             <div id="section-done" class="section-hide">
 
                 <div class="form-group">
-                    <label for="ecogPatterns" class="col-xs-3 control-label">
-                        <spring:message code="label.basicEEGActivity"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="form-control">
-                            <form:option value="0">
-                                Zvolte
-                            </form:option>
-                            <form:option value="1">
-                                <spring:message code="label.ecogPatterns.1"/>
-                            </form:option>
-                            <form:option value="2">
-                                <spring:message code="label.ecogPatterns.2"/>
-                            </form:option>
-                            <form:option value="3">
-                                <spring:message code="label.ecogPatterns.3"/>
-                            </form:option>
-                            <form:option value="4">
-                                <spring:message code="label.ecogPatterns.4"/>
-                            </form:option>
-                            <form:option value="5">
-                                <spring:message code="label.ecogPatterns.5"/>
-                            </form:option>
-                        </form:select>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label for="corticalMapping" class="col-xs-3 control-label">
                         <spring:message code="label.corticalMapping"/>
                     </label>

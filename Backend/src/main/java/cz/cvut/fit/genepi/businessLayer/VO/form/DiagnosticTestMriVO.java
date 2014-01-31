@@ -21,7 +21,7 @@ public class DiagnosticTestMriVO {
     @NotNull
     private Date date;
 
-    private boolean done;
+    private int done;
 
     private int mriFinding;
 
@@ -94,11 +94,11 @@ public class DiagnosticTestMriVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

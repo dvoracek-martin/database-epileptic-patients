@@ -55,9 +55,9 @@
     </label>
 
     <div class="col-xs-8">
-        <form:input path="dateOfOperation" id="dateOfOperation" type="text"
+        <form:input path="dateOperation" id="dateOfOperation" type="text"
                     class="form-control datepicker"/>
-        <form:errors path="dateOfOperation" cssClass="error">
+        <form:errors path="dateOperation" cssClass="error">
         </form:errors>
     </div>
 </div>
@@ -70,7 +70,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="typeOperations" id="operationType" type="text" class="form-control">
+        <form:select path="typeOperation" id="operationType" type="text" class="form-control">
             <form:option value="0">
                 <spring:message code="label.operationType.0"/>
             </form:option>
@@ -111,7 +111,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="rangeOperations" id="operationRange" type="text" class="form-control">
+        <form:select path="rangeOperation" id="operationRange" type="text" class="form-control">
             <form:option value="0">
                 <spring:message code="label.operationRange.0"/>
             </form:option>

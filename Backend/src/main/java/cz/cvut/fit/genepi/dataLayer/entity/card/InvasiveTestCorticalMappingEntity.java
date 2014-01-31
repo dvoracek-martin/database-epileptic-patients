@@ -51,7 +51,7 @@ public class InvasiveTestCorticalMappingEntity implements
     private Date date;
 
     @Column(name = "done")
-    private boolean done;
+    private int done;
 
     @Column(name = "cortical_mapping")
     private int corticalMapping;
@@ -132,11 +132,11 @@ public class InvasiveTestCorticalMappingEntity implements
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

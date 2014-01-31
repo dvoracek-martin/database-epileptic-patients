@@ -1091,7 +1091,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestMRIDone()) {
             content += messageSource.getMessage("label.mri_done", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(diagnosticTestScalpMRI.isDone()),
+            content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDone()),
                     locale);
             content += "\n";
         }
@@ -1249,7 +1249,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestECOGDone()) {
             content += messageSource.getMessage("label.ecog_done", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestECOG.isDone()),
+            content += translateValue(String.valueOf(invasiveTestECOG.getDone()),
                     locale);
             content += "\n";
         }
@@ -1302,7 +1302,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestEEGDone()) {
             content += messageSource.getMessage("label.eeg_done", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestEEG.isDone()),
+            content += translateValue(String.valueOf(invasiveTestEEG.getDone()),
                     locale);
             content += "\n";
         }
@@ -1391,7 +1391,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
             content += messageSource.getMessage("label.corticalMapping_done", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestCorticalMapping.isDone()),
+            content += translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
                     locale);
             content += "\n";
         }
@@ -1566,7 +1566,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isComplicationWithCompication()) {
             content += messageSource.getMessage("label.withComplications", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(complication.isWithComplication()),
+            content += translateValue(String.valueOf(complication.getWithComplication()),
                     locale);
             content += "\n";
         }

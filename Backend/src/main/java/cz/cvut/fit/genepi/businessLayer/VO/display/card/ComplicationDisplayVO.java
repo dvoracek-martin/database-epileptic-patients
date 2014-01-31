@@ -9,7 +9,7 @@ public class ComplicationDisplayVO {
 
     private String date;
 
-    private boolean withComplication;
+    private int withComplication;
 
     private int complicationType;
 
@@ -33,11 +33,11 @@ public class ComplicationDisplayVO {
         this.date = date;
     }
 
-    public boolean isWithComplication() {
+    public int getWithComplication() {
         return withComplication;
     }
 
-    public void setWithComplication(boolean withComplication) {
+    public void setWithComplication(int withComplication) {
         this.withComplication = withComplication;
     }
 

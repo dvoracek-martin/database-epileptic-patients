@@ -135,19 +135,6 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="eegStatusEpilepticus" class="col-xs-3 control-label">
-                        <spring:message code="label.EEGStatusEpilepticus"/>
-                    </label>
-
-                    <div class="col-xs-8">
-                        <form:checkbox path="eegStatusEpilepticus" id="eegStatusEpilepticus"/>
-                        <form:errors path="eegStatusEpilepticus" cssClass="error">
-                        </form:errors>
-                    </div>
-                </div>
-
-
-                <div class="form-group">
                     <label for="comment" class="col-xs-3 control-label">
                         <spring:message code="label.comment"/>
                     </label>

@@ -37,11 +37,11 @@ public class OperationVO {
 
     private boolean colostomy;
 
+    private boolean vns;
+
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     @NotNull
-    private boolean vns;
-
     private Date vnsImplantationDate;
 
     @Size(max = 800)

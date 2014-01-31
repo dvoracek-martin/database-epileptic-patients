@@ -9,7 +9,7 @@ public class InvasiveTestEegDisplayVO {
 
     private String date;
 
-    private boolean done;
+    private int done;
 
     private int intracranialElectrodes;
 
@@ -45,11 +45,11 @@ public class InvasiveTestEegDisplayVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

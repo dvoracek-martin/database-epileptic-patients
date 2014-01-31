@@ -4,184 +4,155 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL3>
-	<jsp:attribute name="head">
-      <link
-              href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
-              rel="stylesheet">
-	  <style>
-          #title {
-              color: black;
-              font-weight: bold;
-          }
-      </style>
+<t:menuLVL2.NEW303>
+
+    <jsp:attribute name="head">
+      <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
     </jsp:attribute>
+
 	<jsp:attribute name="title">
       <spring:message code="label.addRecord"/>
     </jsp:attribute>
-	<jsp:attribute name="header">
-      <spring:message code="label.addRecord"/>
-    </jsp:attribute>
+
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/js/datepicker.js" />"></script>
-   </jsp:attribute>
-    <jsp:body>
+		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/complication.js" />"></script>
+    </jsp:attribute>
 
-        <div class="span5">
-            <h2><spring:message code="label.complication"/></h2>
+    <jsp:body>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.complication"/>
+                </h2>
+            </div>
         </div>
 
-        <table class="table">
-            <tbody>
-            <tr>
-                <th><spring:message code="label.patient"/>:</th>
-                <td>${patient.contact.firstName}</td>
+        <%@include file="../patientDetails.jsp" %>
 
-                <th><spring:message code="label.birthIdentificationNumber"/>:</th>
-                <td>${patient.nin}</td>
-
-                <th><spring:message code="label.birthdate"/>:</th>
-                <td>${patient.birthday}</td>
-
-            </tr>
-            <tr>
-                <th><spring:message code="label.address"/>:</th>
-                <td>${patient.contact.addressStreet}</td>
-
-                <th><spring:message code="label.telephone"/>:</th>
-                <td>${patient.contact.phoneNumber}</td>
-
-                <th><spring:message code="label.email"/>:</th>
-                <td>${patient.contact.email}</td>
-
-
-            </tr>
-            <tr>
-                <th><spring:message code="label.gender"/>:</th>
-                <td>${patient.gender}</td>
-
-                <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
-                <td></td>
-
-                <th><spring:message code="label.assignedDoctor"/>:</th>
-                <td></td>
-
-            </tr>
-            </tbody>
-        </table>
-
-        <!-- form for adding new record -->
-        <!-- mapping resource in action with c:url caused errors -->
+        <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" method="POST"
-                   action="/GENEPI/patient/${patientID}/complication/create" commandName="complication">
+                   action="/GENEPI/patient/${patient.id}/complication/save" commandName="complication">
 
-            <div class="control-group">
-                <label class="control-label" for="date"><strong><spring:message code="label.dateExamination"/></strong></label>
+            <div class="form-group">
+                <label for="date" class="col-xs-3 control-label">
+                    <spring:message code="label.dateExamination"/>
+                </label>
 
-                <div class="controls">
-                    <form:input path="date" id="date" type="text" class="input-medium datepicker"/>
+                <div class="col-xs-8">
+                    <form:input path="date" id="date" type="text" class="form-control datepicker-today"
+                                autocomplete="off"/>
                     <form:errors path="date" cssClass="error">
                     </form:errors>
                 </div>
             </div>
 
-            <div class="control-group">
-                <label class="control-label" for="withComplication"><strong><spring:message
-                        code="label.process"/></strong></label>
+            <div class="form-group">
+                <label class="col-xs-3 control-label" for="process">
+                    <spring:message code="label.process"/>
+                </label>
 
-                <div class="controls">
-                    <form:select path="withComplication" id="withComplication" type="text" class="input-large">
-                        <form:option value="false">
-                            <spring:message code="label.withoutComplications"/>
+                <div class="col-xs-8">
+                    <form:select path="withComplication" id="process" type="text" class="form-control">
+                        <form:option value="1">
+                            <spring:message code="label.process.1"/>
                         </form:option>
-                        <form:option value="true">
-                            <spring:message code="label.withComplications"/>
+                        <form:option value="2">
+                            <spring:message code="label.process.2"/>
                         </form:option>
                     </form:select>
                 </div>
             </div>
 
-            <div id="complications">
-                <div class="control-group">
-                    <label class="control-label" for="complicationType"><strong><spring:message
-                            code="label.typeComplication"/></strong></label>
+            <div id="section-with-complication">
 
-                    <div class="controls">
-                        <form:select path="complicationType" id="complicationType" type="text" class="input-large">
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="complicationType">
+                        <spring:message code="label.typeComplication"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:select path="complicationType" id="complicationType" type="text" class="form-control">
+                            <form:option value="0">
+                                <spring:message code="label.complicationType.0"/>
+                            </form:option>
                             <form:option value="1">
-                                <spring:message code="label.unexpectedPermanent"/>
+                                <spring:message code="label.complicationType.1"/>
                             </form:option>
                             <form:option value="2">
-                                <spring:message code="label.expectedPermanent"/>
+                                <spring:message code="label.complicationType.2"/>
                             </form:option>
                             <form:option value="3">
-                                <spring:message code="label.transitional"/>
+                                <spring:message code="label.complicationType.3"/>
                             </form:option>
                         </form:select>
                     </div>
                 </div>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="complication">
+                        <spring:message code="label.complication"/>
+                    </label>
 
-                <div class="control-group">
-                    <label class="control-label" for="complication"><strong><spring:message
-                            code="label.complication"/></strong></label>
-
-                    <div class="controls">
-                        <form:select path="complication" id="complication" type="text" class="input-large">
+                    <div class="col-xs-8">
+                        <form:select path="complication" id="complication" type="text" class="form-control">
+                            <form:option value="0">
+                                <spring:message code="label.complication.0"/>
+                            </form:option>
                             <form:option value="1">
-                                <spring:message code="label.aphasia"/>
+                                <spring:message code="label.complication.1"/>
                             </form:option>
                             <form:option value="2">
-                                <spring:message code="label.edema"/>
+                                <spring:message code="label.complication.2"/>
                             </form:option>
                             <form:option value="3">
-                                <spring:message code="label.hemiparesis"/>
+                                <spring:message code="label.complication.3"/>
                             </form:option>
                             <form:option value="4">
-                                <spring:message code="label.hydrocefalus"/>
+                                <spring:message code="label.complication.4"/>
                             </form:option>
                             <form:option value="5">
-                                <spring:message code="label.ischemia"/>
+                                <spring:message code="label.complication.5"/>
                             </form:option>
                             <form:option value="6">
-                                <spring:message code="label.other"/>
+                                <spring:message code="label.complication.6"/>
                             </form:option>
                             <form:option value="7">
-                                <spring:message code="label.hemorrhage"/>
+                                <spring:message code="label.complication.7"/>
                             </form:option>
                             <form:option value="8">
-                                <spring:message code="label.paresisOfCranialNerves"/>
+                                <spring:message code="label.complication.8"/>
                             </form:option>
                             <form:option value="9">
-                                <spring:message code="label.visualFieldDefects"/>
+                                <spring:message code="label.complication.9"/>
                             </form:option>
                             <form:option value="10">
-                                <spring:message code="label.death"/>
+                                <spring:message code="label.complication.10"/>
                             </form:option>
                             <form:option value="11">
-                                <spring:message code="label.inflammation"/>
+                                <spring:message code="label.complication.11"/>
                             </form:option>
                         </form:select>
                     </div>
                 </div>
-            </div>
 
-            <div class="control-group">
-                <label class="control-label" for="comment"><strong><spring:message
-                        code="label.comment"/></strong></label>
+                <div class="form-group">
+                    <label class="col-xs-3 control-label" for="comment">
+                        <spring:message code="label.comment"/>
+                    </label>
 
-                <div class="controls">
-                    <form:textarea path="comment" id="comment"/>
+                    <div class="col-xs-8">
+                        <form:textarea path="comment" id="comment" class="form-control"/>
+                    </div>
                 </div>
             </div>
-
-            <div class="control-group">
-                <div class="controls">
-                    <button class="btn btn-primary" type="submit"><spring:message code="label.add"/></button>
+            <div class="form-group">
+                <div class="col-xs-offset-3 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
                 </div>
             </div>
         </form:form>
     </jsp:body>
-</t:menuLVL3>
-
-
+</t:menuLVL2.NEW303>

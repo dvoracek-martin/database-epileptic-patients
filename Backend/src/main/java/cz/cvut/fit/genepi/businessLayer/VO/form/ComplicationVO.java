@@ -21,7 +21,7 @@ public class ComplicationVO {
     @NotNull
     private Date date;
 
-    private boolean withComplication;
+    private int withComplication;
 
     private int complicationType;
 
@@ -54,11 +54,11 @@ public class ComplicationVO {
         this.date = date;
     }
 
-    public boolean isWithComplication() {
+    public int getWithComplication() {
         return withComplication;
     }
 
-    public void setWithComplication(boolean withComplication) {
+    public void setWithComplication(int withComplication) {
         this.withComplication = withComplication;
     }
 

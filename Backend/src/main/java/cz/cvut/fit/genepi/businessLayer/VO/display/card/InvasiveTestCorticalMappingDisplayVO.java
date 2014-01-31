@@ -9,7 +9,7 @@ public class InvasiveTestCorticalMappingDisplayVO {
 
     private String date;
 
-    private boolean done;
+    private int done;
 
     private int corticalMapping;
 
@@ -31,11 +31,11 @@ public class InvasiveTestCorticalMappingDisplayVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

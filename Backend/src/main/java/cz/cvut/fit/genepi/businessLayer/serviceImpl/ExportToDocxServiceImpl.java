@@ -1124,7 +1124,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestMRIDone()) {
             content.add(messageSource.getMessage("label.mri_done", null, locale));
 
-            content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.isDone()),
+            content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDone()),
                     locale));
 
         }
@@ -1297,7 +1297,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestECOGDone()) {
             content.add(messageSource.getMessage("label.ecog_done", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestECOG.isDone()),
+            content.add(translateValue(String.valueOf(invasiveTestECOG.getDone()),
                     locale));
 
         }
@@ -1365,7 +1365,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestEEGDone()) {
             content.add(messageSource.getMessage("label.eeg_done", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestEEG.isDone()),
+            content.add(translateValue(String.valueOf(invasiveTestEEG.getDone()),
                     locale));
 
         }
@@ -1469,7 +1469,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
             content.add(messageSource.getMessage("label.corticalMapping_done", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestCorticalMapping.isDone()),
+            content.add(translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
                     locale));
 
         }
@@ -1686,7 +1686,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isComplicationWithCompication()) {
             content.add(messageSource.getMessage("label.withComplications", null, locale));
 
-            content.add(translateValue(String.valueOf(complication.isWithComplication()),
+            content.add(translateValue(String.valueOf(complication.getWithComplication()),
                     locale));
 
         }

@@ -54,7 +54,7 @@ public class DiagnosticTestMriEntity implements
     private Date date;
 
     @Column(name = "done")
-    private boolean done;
+    private int done;
 
     @Column(name = "mri_finding")
     private int mriFinding;
@@ -187,11 +187,11 @@ public class DiagnosticTestMriEntity implements
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

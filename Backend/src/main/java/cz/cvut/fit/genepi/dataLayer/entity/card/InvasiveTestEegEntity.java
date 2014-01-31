@@ -50,7 +50,7 @@ public class InvasiveTestEegEntity implements Comparable<InvasiveTestEegEntity> 
     private Date date;
 
     @Column(name = "done")
-    private boolean done;
+    private int done;
 
     @Column(name = "intracranial_electrodes")
     private int intracranialElectrodes;
@@ -152,11 +152,11 @@ public class InvasiveTestEegEntity implements Comparable<InvasiveTestEegEntity> 
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 

@@ -21,7 +21,7 @@ public class InvasiveTestCorticalMappingVO {
     @NotNull
     private Date date;
 
-    private boolean done;
+    private int done;
 
     private int corticalMapping;
 
@@ -52,11 +52,11 @@ public class InvasiveTestCorticalMappingVO {
         this.date = date;
     }
 
-    public boolean isDone() {
+    public int getDone() {
         return done;
     }
 
-    public void setDone(boolean done) {
+    public void setDone(int done) {
         this.done = done;
     }
 
