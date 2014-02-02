@@ -12,9 +12,10 @@
                 <spring:message code="label.dateOfOperation"/>
             </th>
             <td class="col-xs-9">
-                ${operation.dateOfOperation}
+                ${operation.dateOperation}
             </td>
         </tr>
+        <%--compute hie mapping
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.ageAtSurgery"/>
@@ -30,7 +31,7 @@
             <td class="col-xs-9">
                 ${operation.durationOfEpilepsyAtTheTimeOfSurgery}
             </td>
-        </tr>
+        </tr>--%>
 
         <tr>
             <th class="col-xs-3">
