@@ -74,7 +74,7 @@ public class InvasiveTestEegEntity implements Comparable<InvasiveTestEegEntity> 
     private int invasiveIctalEegPatterns;
 
     @Column(name = "localization_invasive_ictal_eeg_patterns")
-    private int localizationInvasiveIctalEegPatterns;
+    private String localizationInvasiveIctalEegPatterns;
 
     /**
      * The comment.
@@ -219,12 +219,12 @@ public class InvasiveTestEegEntity implements Comparable<InvasiveTestEegEntity> 
         this.invasiveIctalEegPatterns = invasiveIctalEegPatterns;
     }
 
-    public int getLocalizationInvasiveIctalEegPatterns() {
+    public String getLocalizationInvasiveIctalEegPatterns() {
         return localizationInvasiveIctalEegPatterns;
     }
 
     public void setLocalizationInvasiveIctalEegPatterns(
-            int localizationInvasiveIctalEegPatterns) {
+            String localizationInvasiveIctalEegPatterns) {
         this.localizationInvasiveIctalEegPatterns = localizationInvasiveIctalEegPatterns;
     }
 

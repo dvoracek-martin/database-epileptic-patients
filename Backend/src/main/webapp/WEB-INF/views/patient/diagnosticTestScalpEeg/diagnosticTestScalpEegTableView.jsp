@@ -16,7 +16,7 @@
             </td>
         </tr>
 
-        <c:if test="${diagnosticTestScalpEeg.done==1}">
+        <c:if test="${diagnosticTestScalpEeg.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.basicEEGActivity"/>

@@ -116,7 +116,7 @@
 
                 <div class="form-group">
                     <label for="intracranialElectrodes" class="col-xs-3 control-label">
-                        <spring:message code="label.intracranialElectrodes"/>
+                        <spring:message code="label.invasiveEEGSlowing"/>
                     </label>
 
                     <div class="col-xs-8">
@@ -159,10 +159,33 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="invasiveEegStatusEpilepticus" class="col-xs-3 control-label">
+                        <spring:message code="label.invasiveEEGStatusEpilepticus"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:checkbox path="invasiveEegStatusEpilepticus" id="invasiveEegStatusEpilepticus"/>
+                        <form:errors path="invasiveEegStatusEpilepticus" cssClass="error">
+                        </form:errors>
+                    </div>
+                </div>
+
                 <jsp:include page="invasiveEegOptionsView.jsp">
                     <jsp:param name="labelName" value="invasiveIctalEEGPatterns"/>
                     <jsp:param name="propertyName" value="invasiveIctalEegPatterns"/>
                 </jsp:include>
+
+                <div class="form-group">
+                    <label for="localizationInvasiveIctalEegPatterns" class="col-xs-3 control-label">
+                        <spring:message code="label.localizationInvasiveIctalEEGPatterns"/>
+                    </label>
+
+                    <div class="col-xs-8">
+                        <form:textarea path="localizationInvasiveIctalEegPatterns"
+                                       id="localizationInvasiveIctalEegPatterns" class="form-control"/>
+                    </div>
+                </div>
 
                 <div class="form-group">
                     <label for="comment" class="col-xs-3 control-label">

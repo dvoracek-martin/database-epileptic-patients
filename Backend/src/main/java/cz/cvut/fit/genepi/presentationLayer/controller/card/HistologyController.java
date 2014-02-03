@@ -45,7 +45,7 @@ public class HistologyController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", histologyService.getById(HistologyVO.class, HistologyEntity.class, histologyId));
+        model.addAttribute("histology", histologyService.getById(HistologyVO.class, HistologyEntity.class, histologyId));
         return "patient/histology/formView";
     }
 

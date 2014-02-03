@@ -25,7 +25,7 @@ public class InvasiveTestEegDisplayVO {
 
     private int invasiveIctalEegPatterns;
 
-    private int localizationInvasiveIctalEegPatterns;
+    private String localizationInvasiveIctalEegPatterns;
 
     private String comment;
 
@@ -109,11 +109,11 @@ public class InvasiveTestEegDisplayVO {
         this.invasiveIctalEegPatterns = invasiveIctalEegPatterns;
     }
 
-    public int getLocalizationInvasiveIctalEegPatterns() {
+    public String getLocalizationInvasiveIctalEegPatterns() {
         return localizationInvasiveIctalEegPatterns;
     }
 
-    public void setLocalizationInvasiveIctalEegPatterns(int localizationInvasiveIctalEegPatterns) {
+    public void setLocalizationInvasiveIctalEegPatterns(String localizationInvasiveIctalEegPatterns) {
         this.localizationInvasiveIctalEegPatterns = localizationInvasiveIctalEegPatterns;
     }
 

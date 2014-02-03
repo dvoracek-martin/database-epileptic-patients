@@ -46,7 +46,7 @@ public class ComplicationController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("complication", complicationService.getById(ComplicationVO.class, ComplicationEntity.class, complicationId));
-        return "patient/neurologicalFinding/formView";
+        return "patient/complication/formView";
     }
 
     /**

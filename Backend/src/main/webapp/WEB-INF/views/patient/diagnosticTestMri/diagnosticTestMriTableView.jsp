@@ -33,7 +33,7 @@
             </td>
         </tr>
 
-        <c:if test="${diagnosticTestMri.done==1}">
+        <c:if test="${diagnosticTestMri.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.MRIFinding"/>

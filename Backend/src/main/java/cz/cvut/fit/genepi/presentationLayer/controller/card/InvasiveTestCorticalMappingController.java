@@ -76,7 +76,7 @@ public class InvasiveTestCorticalMappingController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", invasiveTestCorticalMappingService.getById(InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId));
+        model.addAttribute("invasiveTestCorticalMapping", invasiveTestCorticalMappingService.getById(InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId));
         return "patient/invasiveTestCorticalMapping/formView";
     }
 

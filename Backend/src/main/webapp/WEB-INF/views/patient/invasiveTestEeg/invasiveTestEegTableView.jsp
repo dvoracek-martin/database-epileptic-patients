@@ -16,7 +16,7 @@
             </td>
         </tr>
 
-        <c:if test="${invasiveTestEeg.done==1}">
+        <c:if test="${invasiveTestEeg.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.intracranialElectrodes"/>
@@ -74,6 +74,14 @@
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.invasiveEeg.${invasiveTestEeg.invasiveIctalEegPatterns}"/>
+                </td>
+            </tr>
+            <tr>
+                <th class="col-xs-3">
+                    <spring:message code="label.localizationInvasiveIctalEEGPatterns"/>
+                </th>
+                <td class="col-xs-9">
+                        ${invasiveTestEeg.localizationInvasiveIctalEegPatterns}
                 </td>
             </tr>
             <tr>
