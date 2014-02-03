@@ -46,7 +46,7 @@ public class OutcomeController {
         model.addAttribute("operation", operation);
         model.addAttribute("patient", patient);
         model.addAttribute("outcome", new OutcomeEntity());
-        return "patient/outcome/createView";
+        return "patient/outcome/formView";
     }
 
     /**
@@ -70,7 +70,7 @@ public class OutcomeController {
             model.addAttribute("distance", distance);
             model.addAttribute("operation", operationId);
             model.addAttribute("patient", patient);
-            return "patient/outcome/createView";
+            return "patient/outcome/formView";
         } else {
             outcome.setDistance(distance);
             outcome.setPatient(patientService.findByID(PatientEntity.class,
