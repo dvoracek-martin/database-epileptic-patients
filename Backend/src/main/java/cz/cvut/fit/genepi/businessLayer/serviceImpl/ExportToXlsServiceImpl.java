@@ -265,7 +265,6 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     exportParams, sheet, p, anonymize);
         }
 
-
         if (exportParams.isAnamnesis()) {
             headerCell = headerRow.createCell(i++);
             headerCell.setCellValue(messageSource.getMessage("label.anamnesis",
@@ -282,8 +281,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
 
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                this.printOutAnamnesis(patient, anamnesis, locale,
-                        exportParams, sheet, p);
+                if (anamnesis.getStatus() == 0)
+                    this.printOutAnamnesis(patient, anamnesis, locale,
+                            exportParams, sheet, p);
             }
         }
 
@@ -304,8 +304,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
 
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                this.printOutSeizure(patient, seizure, locale,
-                        exportParams, sheet, p);
+                if (seizure.getStatus() == 0)
+                    this.printOutSeizure(patient, seizure, locale,
+                            exportParams, sheet, p);
             }
         }
         if (exportParams.isPharmacotherapy()) {
@@ -324,8 +325,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                this.printOutPharmacotherapy(patient,
-                        pharmacotherapy, locale, exportParams, sheet, p);
+                if (pharmacotherapy.getStatus() == 0)
+                    this.printOutPharmacotherapy(patient,
+                            pharmacotherapy, locale, exportParams, sheet, p);
             }
         }
         if (exportParams.isNeurologicalFinding()) {
@@ -344,8 +346,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                this.printOutNeurologicalFinding(patient,
-                        neurologicalFinding, locale, exportParams, sheet, p);
+                if (neurologicalFinding.getStatus() == 0)
+                    this.printOutNeurologicalFinding(patient,
+                            neurologicalFinding, locale, exportParams, sheet, p);
             }
         }
         if (exportParams.isNeuropsychology()) {
@@ -364,8 +367,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                this.printOutNeuropsychology(patient,
-                        neuropsychology, locale, exportParams, sheet, p);
+                if (neuropsychology.getStatus() == 0)
+                    this.printOutNeuropsychology(patient,
+                            neuropsychology, locale, exportParams, sheet, p);
             }
         }
 
@@ -385,8 +389,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                this.printOutNeuropsychologyOld(patient,
-                        neuropsychologyOld, locale, exportParams, sheet, p);
+                if (neuropsychologyOld.getStatus() == 0)
+                    this.printOutNeuropsychologyOld(patient,
+                            neuropsychologyOld, locale, exportParams, sheet, p);
             }
         }
 
@@ -406,8 +411,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                this.printOutDiagnosticTestEEG(patient,
-                        diagnosticTestEEG, locale, exportParams, sheet, p);
+                if (diagnosticTestEEG.getStatus() == 0)
+                    this.printOutDiagnosticTestEEG(patient,
+                            diagnosticTestEEG, locale, exportParams, sheet, p);
             }
         }
 
@@ -427,8 +433,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                this.printOutDiagnosticTestMRI(patient,
-                        diagnosticTestMRI, locale, exportParams, sheet, p);
+                if (diagnosticTestMRI.getStatus() == 0)
+                    this.printOutDiagnosticTestMRI(patient,
+                            diagnosticTestMRI, locale, exportParams, sheet, p);
             }
         }
 
@@ -448,8 +455,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                this.printOutInvasiveTestECOG(patient,
-                        invasiveTestECOG, locale, exportParams, sheet, p);
+                if (invasiveTestECOG.getStatus() == 0)
+                    this.printOutInvasiveTestECOG(patient,
+                            invasiveTestECOG, locale, exportParams, sheet, p);
             }
         }
 
@@ -469,8 +477,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                this.printOutInvasiveTestEEG(patient,
-                        invasiveTestEEG, locale, exportParams, sheet, p);
+                if (invasiveTestEEG.getStatus() == 0)
+                    this.printOutInvasiveTestEEG(patient,
+                            invasiveTestEEG, locale, exportParams, sheet, p);
             }
         }
 
@@ -490,9 +499,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                this.printOutInvasiveTestCorticalMapping(patient,
-                        invasiveTestCorticalMappingEntity, locale,
-                        exportParams, sheet, p);
+                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                    this.printOutInvasiveTestCorticalMapping(patient,
+                            invasiveTestCorticalMappingEntity, locale,
+                            exportParams, sheet, p);
             }
         }
 
@@ -511,8 +521,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OperationEntity operation : patient.getOperationList()) {
-                this.printOutOperation(patient, operation, locale,
-                        exportParams, sheet, p);
+                if (operation.getStatus() == 0)
+                    this.printOutOperation(patient, operation, locale,
+                            exportParams, sheet, p);
             }
         }
         if (exportParams.isHistology()) {
@@ -530,8 +541,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (HistologyEntity histology : patient.getHistologyList()) {
-                this.printOutHistology(patient, histology, locale,
-                        exportParams, sheet, p);
+                if (histology.getStatus() == 0)
+                    this.printOutHistology(patient, histology, locale,
+                            exportParams, sheet, p);
             }
         }
         if (exportParams.isComplication()) {
@@ -550,8 +562,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                this.printOutComplication(patient, complication,
-                        locale, exportParams, sheet, p);
+                if (complication.getStatus() == 0)
+                    this.printOutComplication(patient, complication,
+                            locale, exportParams, sheet, p);
             }
         }
         if (exportParams.isOutcome()) {
@@ -569,8 +582,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                this.printOutOutcome(patient, outcome, locale,
-                        exportParams, sheet, p);
+                if (outcome.getStatus() == 0)
+                    this.printOutOutcome(patient, outcome, locale,
+                            exportParams, sheet, p);
             }
         }
 
