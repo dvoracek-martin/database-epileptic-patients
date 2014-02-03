@@ -309,7 +309,6 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 if (outcome.getStatus() == 0)
                     this.printOutOutcome(document, patient, outcome, locale,
                             exportParams);
-
             }
         }
     }

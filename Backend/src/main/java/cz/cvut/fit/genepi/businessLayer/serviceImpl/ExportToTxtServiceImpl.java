@@ -231,16 +231,18 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isAnamnesis()) {
             content += addStarLine();
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                content += this.printOutAnamnesis(patient, anamnesis, locale,
-                        exportParams);
+                if (anamnesis.getStatus() == 0)
+                    content += this.printOutAnamnesis(patient, anamnesis, locale,
+                            exportParams);
                 content += addDashLine();
             }
         }
         if (exportParams.isSeizure()) {
             content += addStarLine();
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                content += this.printOutSeizure(patient, seizure, locale,
-                        exportParams);
+                if (seizure.getStatus() == 0)
+                    content += this.printOutSeizure(patient, seizure, locale,
+                            exportParams);
                 content += addDashLine();
             }
         }
@@ -248,8 +250,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                content += this.printOutPharmacotherapy(patient,
-                        pharmacotherapy, locale, exportParams);
+                if (pharmacotherapy.getStatus() == 0)
+                    content += this.printOutPharmacotherapy(patient,
+                            pharmacotherapy, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -257,8 +260,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                content += this.printOutNeurologicalFinding(patient,
-                        neurologicalFinding, locale, exportParams);
+                if (neurologicalFinding.getStatus() == 0)
+                    content += this.printOutNeurologicalFinding(patient,
+                            neurologicalFinding, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -266,8 +270,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                content += this.printOutNeuropsychology(patient,
-                        neuropsychology, locale, exportParams);
+                if (neuropsychology.getStatus() == 0)
+                    content += this.printOutNeuropsychology(patient,
+                            neuropsychology, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -276,8 +281,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                content += this.printOutNeuropsychologyOld(patient,
-                        neuropsychologyOld, locale, exportParams);
+                if (neuropsychologyOld.getStatus() == 0)
+                    content += this.printOutNeuropsychologyOld(patient,
+                            neuropsychologyOld, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -286,8 +292,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                content += this.printOutDiagnosticTestEEG(patient,
-                        diagnosticTestEEG, locale, exportParams);
+                if (diagnosticTestEEG.getStatus() == 0)
+                    content += this.printOutDiagnosticTestEEG(patient,
+                            diagnosticTestEEG, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -296,8 +303,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                content += this.printOutDiagnosticTestMRI(patient,
-                        diagnosticTestMRI, locale, exportParams);
+                if (diagnosticTestMRI.getStatus() == 0)
+                    content += this.printOutDiagnosticTestMRI(patient,
+                            diagnosticTestMRI, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -306,8 +314,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                content += this.printOutInvasiveTestECOG(patient,
-                        invasiveTestECOG, locale, exportParams);
+                if (invasiveTestECOG.getStatus() == 0)
+                    content += this.printOutInvasiveTestECOG(patient,
+                            invasiveTestECOG, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -316,8 +325,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                content += this.printOutInvasiveTestEEG(patient,
-                        invasiveTestEEG, locale, exportParams);
+                if (invasiveTestEEG.getStatus() == 0)
+                    content += this.printOutInvasiveTestEEG(patient,
+                            invasiveTestEEG, locale, exportParams);
                 content += addDashLine();
             }
         }
@@ -326,40 +336,45 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                content += this
-                        .printOutInvasiveTestCorticalMapping(patient,
-                                invasiveTestCorticalMappingEntity, locale,
-                                exportParams);
+                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                    content += this
+                            .printOutInvasiveTestCorticalMapping(patient,
+                                    invasiveTestCorticalMappingEntity, locale,
+                                    exportParams);
                 content += addDashLine();
             }
         }
 
         if (exportParams.isOperation()) {
             for (OperationEntity operation : patient.getOperationList()) {
-                content += this.printOutOperation(patient, operation, locale,
-                        exportParams);
+                if (operation.getStatus() == 0)
+                    content += this.printOutOperation(patient, operation, locale,
+                            exportParams);
                 content += addDashLine();
             }
         }
         if (exportParams.isHistology()) {
             for (HistologyEntity histology : patient.getHistologyList()) {
-                content += this.printOutHistology(patient, histology, locale,
-                        exportParams);
+                if (histology.getStatus() == 0)
+                    content += this.printOutHistology(patient, histology, locale,
+                            exportParams);
                 content += addDashLine();
             }
         }
         if (exportParams.isComplication()) {
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                content += this.printOutComplication(patient, complication,
-                        locale, exportParams);
+                if (complication.getStatus() == 0)
+                    content += this.printOutComplication(patient, complication,
+                            locale, exportParams);
                 content += addDashLine();
             }
         }
         if (exportParams.isOutcome()) {
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                content += this.printOutOutcome(patient, outcome, locale,
-                        exportParams);
+                if (outcome.getStatus() == 0)
+                    content += this.printOutOutcome(patient, outcome, locale,
+                            exportParams);
                 content += addDashLine();
             }
         }
