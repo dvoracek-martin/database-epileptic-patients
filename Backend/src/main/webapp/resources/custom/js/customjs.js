@@ -6,7 +6,7 @@ $(document).ready(function () {
     var $sectionDoneSelector = $("#section-done");
 
 
-    if ($doneSelector.val() == 2) {
+    if ($doneSelector.val() == 1) {
         $sectionDoneSelector.hide();
     }
 

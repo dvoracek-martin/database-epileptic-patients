@@ -54,7 +54,9 @@
 
         <div class="col-xs-8">
             <form:select path="sscClassification" id="sscClassification" type="text" class="form-control">
-
+                <form:option value="0">
+                    <spring:message code="label.sscClassification.0"/>
+                </form:option>
                 <form:option value="1">
                     <spring:message code="label.sscClassification.1"/>
                 </form:option>
@@ -154,7 +156,9 @@
 
         <div class="col-xs-8">
             <form:select path="ilaeClassification" id="ilaeClassification" type="text" class="form-control">
-
+                <form:option value="0">
+                    <spring:message code="label.ilaeClassification.0"/>
+                </form:option>
                 <form:option value="1">
                     <spring:message code="label.ilaeClassification.1"/>
                 </form:option>

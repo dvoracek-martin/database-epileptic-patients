@@ -16,14 +16,14 @@
             <spring:message code="label.process.${complication.withComplication}"/>
         </td>
         <td class="col-xs-2">
-            <%--  <c:if test="${complication.process}==2">--%>
-            <spring:message code="label.complicationType.${complication.complicationType}"/>
-            <%-- </c:if>--%>
+            <c:if test="${complication.withComplication == 2}">
+                <spring:message code="label.complicationType.${complication.complicationType}"/>
+            </c:if>
         </td>
         <td class="col-xs-2">
-            <%-- <c:if test="${complication.process}==2">--%>
-            <spring:message code="label.complication.${complication.complication}"/>
-            <%-- </c:if>--%>
+            <c:if test="${complication.withComplication == 2}">
+                <spring:message code="label.complication.${complication.complication}"/>
+            </c:if>
         </td>
         <td class="col-xs-2">
             <a href="<c:url value="/patient/${patient.id}/complication/${complication.id}/edit"/>">

@@ -260,7 +260,7 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithPharmacotherapyList(int patientId) {
-        PatientEntity patient = patientDAO.getPatientByIdWithSeizureList(patientId);
+        PatientEntity patient = patientDAO.getPatientByIdWithPharmacotherapyList(patientId);
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
         return patientVO;
     }

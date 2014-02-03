@@ -126,6 +126,9 @@
                         <form:option value="24">
                             <spring:message code="label.aed.24"/>
                         </form:option>
+                        <form:option value="25">
+                            <spring:message code="label.aed.25"/>
+                        </form:option>
                     </form:select>
                 </div>
             </div>

@@ -173,6 +173,9 @@
 
         <div class="col-xs-8">
             <form:select path="specificSyndrome" id="specificSyndrome" type="text" class="form-control">
+                <form:option value="0">
+                    <spring:message code="label.specificSyndrome.0"/>
+                </form:option>
                 <form:option value="1">
                     <spring:message code="label.specificSyndrome.1"/>
                 </form:option>
@@ -190,9 +193,6 @@
                 </form:option>
                 <form:option value="6">
                     <spring:message code="label.specificSyndrome.6"/>
-                </form:option>
-                <form:option value="7">
-                    <spring:message code="label.specificSyndrome.7"/>
                 </form:option>
             </form:select>
         </div>

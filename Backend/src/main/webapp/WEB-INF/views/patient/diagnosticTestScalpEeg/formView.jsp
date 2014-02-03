@@ -95,6 +95,9 @@
 
             <div class="col-xs-8">
                 <form:select path="eegSlow" id="eegSlow" type="text" class="form-control">
+                    <form:option value="0">
+                        <spring:message code="label.eegSlow.0"/>
+                    </form:option>
                     <form:option value="1">
                         <spring:message code="label.eegSlow.1"/>
                     </form:option>
@@ -121,6 +124,9 @@
 
             <div class="col-xs-8">
                 <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="form-control">
+                    <form:option value="0">
+                        <spring:message code="label.interictalEegSpikes.0"/>
+                    </form:option>
                     <form:option value="1">
                         <spring:message code="label.interictalEegSpikes.1"/>
                     </form:option>
@@ -185,6 +191,9 @@
 
             <div class="col-xs-8">
                 <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="form-control">
+                    <form:option value="0">
+                        <spring:message code="label.ictalEegPatterns.0"/>
+                    </form:option>
                     <form:option value="1">
                         <spring:message code="label.ictalEegPatterns.1"/>
                     </form:option>
@@ -199,6 +208,9 @@
                     </form:option>
                     <form:option value="5">
                         <spring:message code="label.ictalEegPatterns.5"/>
+                    </form:option>
+                    <form:option value="6">
+                        <spring:message code="label.ictalEegPatterns.6"/>
                     </form:option>
                 </form:select>
             </div>
