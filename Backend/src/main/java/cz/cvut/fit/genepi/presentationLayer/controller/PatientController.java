@@ -389,7 +389,6 @@ public class PatientController {
         exportParams.setNeurologicalFindingHemiparesis(true);
         exportParams.setNeurologicalFindingHemisphereDominance(true);
         exportParams.setNeurologicalFindingId(true);
-        exportParams.setNeurologicalFindingStatus(true);
         exportParams.setNeurologicalFindingVisualFieldDefects(true);
 
 

@@ -81,8 +81,6 @@ public class ExportParamsEntity {
     private boolean patientGender;
     @Column(name = "patientDoctorId")
     private boolean patientDoctorId;
-    @Column(name = "patientDeleted")
-    private boolean patientDeleted;
     @Column(name = "patientChecked")
     private boolean patientChecked;
     @Column(name = "patientContactId")
@@ -159,14 +157,10 @@ public class ExportParamsEntity {
     private boolean complicationAdded;
     @Column(name = "complicationComment")
     private boolean complicationComment;
-    @Column(name = "complicationDeleted")
-    private boolean complicationDeleted;
     @Column(name = "complicationPatientId")
     private boolean complicationPatientId;
     @Column(name = "complicationAddUserId")
     private boolean complicationAddUserId;
-    @Column(name = "complicationStatus")
-    private boolean complicationStatus;
     @Column(name = "ComplicationWithCompication")
     private boolean ComplicationWithCompication;
     @Column(name = "ComplicationComplicationType")
@@ -203,14 +197,10 @@ public class ExportParamsEntity {
     private boolean diagnosticTestEEGLocalizationIctalEEGPattern;
     @Column(name = "diagnosticTestEEGComment")
     private boolean diagnosticTestEEGComment;
-    @Column(name = "diagnosticTestEEGDeleted")
-    private boolean diagnosticTestEEGDeleted;
     @Column(name = "diagnosticTestEEGAddUserId")
     private boolean diagnosticTestEEGAddUserId;
     @Column(name = "diagnosticTestEEGPatientId")
     private boolean diagnosticTestEEGPatientId;
-    @Column(name = "diagnosticTestEEGStatus")
-    private boolean diagnosticTestEEGStatus;
     @Column(name = "diagnosticTestEEGDescriptionVideoEEG")
     private boolean diagnosticTestEEGDescriptionVideoEEG;
 
@@ -279,14 +269,10 @@ public class ExportParamsEntity {
     private boolean diagnosticTestMRIFmriProtocols;
     @Column(name = "diagnosticTestMRIComment")
     private boolean diagnosticTestMRIComment;
-    @Column(name = "diagnosticTestMRIDeleted")
-    private boolean diagnosticTestMRIDeleted;
     @Column(name = "diagnosticTestMRIPatientId")
     private boolean diagnosticTestMRIPatientId;
     @Column(name = "diagnosticTestMRIAddUserId")
     private boolean diagnosticTestMRIAddUserId;
-    @Column(name = "diagnosticTestMRIStatus")
-    private boolean diagnosticTestMRIStatus;
 
     // Histology properties
     @Column(name = "histologyId")
@@ -303,14 +289,10 @@ public class ExportParamsEntity {
     private boolean histologyFcdClassification;
     @Column(name = "histologyComment")
     private boolean histologyComment;
-    @Column(name = "histologyDeleted")
-    private boolean histologyDeleted;
     @Column(name = "histologyPatientId")
     private boolean histologyPatientId;
     @Column(name = "histologyAddUserId")
     private boolean histologyAddUserId;
-    @Column(name = "histologyStatus")
-    private boolean histologyStatus;
 
     // InvasiveTestECOG properties
     @Column(name = "invasiveTestECOGId")
@@ -337,14 +319,10 @@ public class ExportParamsEntity {
     private boolean invasiveTestECOGAwakeCraniotomy;
     @Column(name = "invasiveTestECOGComment")
     private boolean invasiveTestECOGComment;
-    @Column(name = "invasiveTestECOGDeleted")
-    private boolean invasiveTestECOGDeleted;
     @Column(name = "invasiveTestECOGAddUserId")
     private boolean invasiveTestECOGAddUserId;
     @Column(name = "invasiveTestECOGPatientId")
     private boolean invasiveTestECOGPatientId;
-    @Column(name = "invasiveTestECOGStatus")
-    private boolean invasiveTestECOGStatus;
 
     // InvasiveTestEEG properties
     @Column(name = "invasiveTestEEGId")
@@ -377,14 +355,10 @@ public class ExportParamsEntity {
     private boolean invasiveTestEEGLocalizationIctalEEGPatterns;
     @Column(name = "invasiveTestEEGComment")
     private boolean invasiveTestEEGComment;
-    @Column(name = "invasiveTestEEGDeleted")
-    private boolean invasiveTestEEGDeleted;
     @Column(name = "invasiveTestEEGAddUserId")
     private boolean invasiveTestEEGAddUserId;
     @Column(name = "invasiveTestEEGPatientId")
     private boolean invasiveTestEEGPatientId;
-    @Column(name = "invasiveTestEEGStatus")
-    private boolean invasiveTestEEGStatus;
 
     // Neurological finding property
     @Column(name = "neurologicalFindingId")
@@ -405,14 +379,10 @@ public class ExportParamsEntity {
     private boolean neurologicalFindingVisualFieldDefects;
     @Column(name = "neurologicalFindingComment")
     private boolean neurologicalFindingComment;
-    @Column(name = "neurologicalFindingDeleted")
-    private boolean neurologicalFindingDeleted;
     @Column(name = "neurologicalFindingAddUserId")
     private boolean neurologicalFindingAddUserId;
     @Column(name = "neurologicalFindingPatientId")
     private boolean neurologicalFindingPatientId;
-    @Column(name = "neurologicalFindingStatus")
-    private boolean neurologicalFindingStatus;
 
     // Neuropsychology properties
     @Column(name = "neuropsychologyId")
@@ -485,14 +455,10 @@ public class ExportParamsEntity {
     private boolean neuropsychologyEmotionalStatus;
     @Column(name = "neuropsychologyComment")
     private boolean neuropsychologyComment;
-    @Column(name = "neuropsychologyDeleted")
-    private boolean neuropsychologyDeleted;
     @Column(name = "neuropsychologyAddUserId")
     private boolean neuropsychologyAddUserId;
     @Column(name = "neuropsychologyPatientId")
     private boolean neuropsychologyPatientId;
-    @Column(name = "neuropsychologyStatus")
-    private boolean neuropsychologyStatus;
     @Column(name = "neuropsychologyFindingDetail")
     private boolean neuropsychologyFindingDetail;
 
@@ -527,14 +493,10 @@ public class ExportParamsEntity {
     private boolean operationCompleteResection;
     @Column(name = "operationComment")
     private boolean operationComment;
-    @Column(name = "operationDeleted")
-    private boolean operationDeleted;
     @Column(name = "operationAddUserId")
     private boolean operationAddUserId;
     @Column(name = "operationPatientId")
     private boolean operationPatientId;
-    @Column(name = "operationStatus")
-    private boolean operationStatus;
 
     // Outcome properties
     @Column(name = "outcomeId")
@@ -557,14 +519,10 @@ public class ExportParamsEntity {
     private boolean outcomeNeuropsychology;
     @Column(name = "outcomeComment")
     private boolean outcomeComment;
-    @Column(name = "outcomeDeleted")
-    private boolean outcomeDeleted;
     @Column(name = "outcomeAddUserId")
     private boolean outcomeAddUserId;
     @Column(name = "outcomePatientId")
     private boolean outcomePatientId;
-    @Column(name = "outcomeStatus")
-    private boolean outcomeStatus;
     @Column(name = "outcomeSeizureOutcome")
     private boolean outcomeSeizureOutcome;
     @Column(name = "outcomeDistance")
@@ -589,14 +547,10 @@ public class ExportParamsEntity {
     private boolean pharmacotherapyDuringSurgery;
     @Column(name = "pharmacotherapyComment")
     private boolean pharmacotherapyComment;
-    @Column(name = "pharmacotherapyDeleted")
-    private boolean pharmacotherapyDeleted;
     @Column(name = "pharmacotherapyAddUserId")
     private boolean pharmacotherapyAddUserId;
     @Column(name = "pharmacotherapyPatientId")
     private boolean pharmacotherapyPatientId;
-    @Column(name = "pharmacotherapyStatus")
-    private boolean pharmacotherapyStatus;
 
     // Seizure properties
     @Column(name = "seizureId")
@@ -631,14 +585,10 @@ public class ExportParamsEntity {
     private boolean seizureSeizuresWhileSleepNonEpi;
     @Column(name = "seizureComment")
     private boolean seizureComment;
-    @Column(name = "seizureDeleted")
-    private boolean seizureDeleted;
     @Column(name = "seizureAddUserId")
     private boolean seizureAddUserId;
     @Column(name = "seizurePatientId")
     private boolean seizurePatientId;
-    @Column(name = "seizureStatus")
-    private boolean seizureStatus;
 
     // SeizureDetail properties
     @Column(name = "seizureDetailSSCClassification")
@@ -659,8 +609,6 @@ public class ExportParamsEntity {
     private boolean neuropsychologyOldAdded;
     @Column(name = "neuropsychologyOldComment")
     private boolean neuropsychologyOldComment;
-    @Column(name = "neuropsychologyOldDeleted")
-    private boolean neuropsychologyOldDeleted;
     @Column(name = "neuropsychologyOldAddUserId")
     private boolean neuropsychologyOldAddUserId;
     @Column(name = "neuropsychologyOldPatientId")
@@ -687,14 +635,10 @@ public class ExportParamsEntity {
     private boolean invasiveTestCorticalMappingAdded;
     @Column(name = "invasiveTestCorticalMappingComment")
     private boolean invasiveTestCorticalMappingComment;
-    @Column(name = "invasiveTestCorticalMappingDeleted")
-    private boolean invasiveTestCorticalMappingDeleted;
     @Column(name = "invasiveTestCorticalMappingAddUserId")
     private boolean invasiveTestCorticalMappingAddUserId;
     @Column(name = "invasiveTestCorticalMappingPatientId")
     private boolean invasiveTestCorticalMappingPatientId;
-    @Column(name = "invasiveTestCorticalMappingStatus")
-    private boolean invasiveTestCorticalMappingStatus;
     @Column(name = "invasiveTestCorticalMappingDone")
     private boolean invasiveTestCorticalMappingDone;
     @Column(name = "invasiveTestCorticalMappingCorticalMapping")
@@ -892,14 +836,6 @@ public class ExportParamsEntity {
 
     public void setPatientDoctorId(boolean patientDoctorId) {
         this.patientDoctorId = patientDoctorId;
-    }
-
-    public boolean isPatientDeleted() {
-        return patientDeleted;
-    }
-
-    public void setPatientDeleted(boolean patientDeleted) {
-        this.patientDeleted = patientDeleted;
     }
 
     public boolean isPatientChecked() {
@@ -1179,14 +1115,6 @@ public class ExportParamsEntity {
         this.complicationComment = complicationComment;
     }
 
-    public boolean isComplicationDeleted() {
-        return complicationDeleted;
-    }
-
-    public void setComplicationDeleted(boolean complicationDeleted) {
-        this.complicationDeleted = complicationDeleted;
-    }
-
     public boolean isComplicationPatientId() {
         return complicationPatientId;
     }
@@ -1201,14 +1129,6 @@ public class ExportParamsEntity {
 
     public void setComplicationAddUserId(boolean complicationAddUserId) {
         this.complicationAddUserId = complicationAddUserId;
-    }
-
-    public boolean isComplicationStatus() {
-        return complicationStatus;
-    }
-
-    public void setComplicationStatus(boolean complicationStatus) {
-        this.complicationStatus = complicationStatus;
     }
 
     public boolean isDiagnosticTestEEGId() {
@@ -1322,14 +1242,6 @@ public class ExportParamsEntity {
         this.diagnosticTestEEGComment = diagnosticTestEEGComment;
     }
 
-    public boolean isDiagnosticTestEEGDeleted() {
-        return diagnosticTestEEGDeleted;
-    }
-
-    public void setDiagnosticTestEEGDeleted(boolean diagnosticTestEEGDeleted) {
-        this.diagnosticTestEEGDeleted = diagnosticTestEEGDeleted;
-    }
-
     public boolean isDiagnosticTestEEGAddUserId() {
         return diagnosticTestEEGAddUserId;
     }
@@ -1344,14 +1256,6 @@ public class ExportParamsEntity {
 
     public void setDiagnosticTestEEGPatientId(boolean diagnosticTestEEGPatientId) {
         this.diagnosticTestEEGPatientId = diagnosticTestEEGPatientId;
-    }
-
-    public boolean isDiagnosticTestEEGStatus() {
-        return diagnosticTestEEGStatus;
-    }
-
-    public void setDiagnosticTestEEGStatus(boolean diagnosticTestEEGStatus) {
-        this.diagnosticTestEEGStatus = diagnosticTestEEGStatus;
     }
 
     public boolean isDiagnosticTestMRIId() {
@@ -1540,14 +1444,6 @@ public class ExportParamsEntity {
         this.diagnosticTestMRIComment = diagnosticTestMRIComment;
     }
 
-    public boolean isDiagnosticTestMRIDeleted() {
-        return diagnosticTestMRIDeleted;
-    }
-
-    public void setDiagnosticTestMRIDeleted(boolean diagnosticTestMRIDeleted) {
-        this.diagnosticTestMRIDeleted = diagnosticTestMRIDeleted;
-    }
-
     public boolean isDiagnosticTestMRIPatientId() {
         return diagnosticTestMRIPatientId;
     }
@@ -1562,14 +1458,6 @@ public class ExportParamsEntity {
 
     public void setDiagnosticTestMRIAddUserId(boolean diagnosticTestMRIAddUserId) {
         this.diagnosticTestMRIAddUserId = diagnosticTestMRIAddUserId;
-    }
-
-    public boolean isDiagnosticTestMRIStatus() {
-        return diagnosticTestMRIStatus;
-    }
-
-    public void setDiagnosticTestMRIStatus(boolean diagnosticTestMRIStatus) {
-        this.diagnosticTestMRIStatus = diagnosticTestMRIStatus;
     }
 
     public boolean isHistologyId() {
@@ -1628,14 +1516,6 @@ public class ExportParamsEntity {
         this.histologyComment = histologyComment;
     }
 
-    public boolean isHistologyDeleted() {
-        return histologyDeleted;
-    }
-
-    public void setHistologyDeleted(boolean histologyDeleted) {
-        this.histologyDeleted = histologyDeleted;
-    }
-
     public boolean isHistologyPatientId() {
         return histologyPatientId;
     }
@@ -1650,14 +1530,6 @@ public class ExportParamsEntity {
 
     public void setHistologyAddUserId(boolean histologyAddUserId) {
         this.histologyAddUserId = histologyAddUserId;
-    }
-
-    public boolean isHistologyStatus() {
-        return histologyStatus;
-    }
-
-    public void setHistologyStatus(boolean histologyStatus) {
-        this.histologyStatus = histologyStatus;
     }
 
     public boolean isInvasiveTestECOGId() {
@@ -1744,14 +1616,6 @@ public class ExportParamsEntity {
         this.invasiveTestECOGComment = invasiveTestECOGComment;
     }
 
-    public boolean isInvasiveTestECOGDeleted() {
-        return invasiveTestECOGDeleted;
-    }
-
-    public void setInvasiveTestECOGDeleted(boolean invasiveTestECOGDeleted) {
-        this.invasiveTestECOGDeleted = invasiveTestECOGDeleted;
-    }
-
     public boolean isInvasiveTestECOGAddUserId() {
         return invasiveTestECOGAddUserId;
     }
@@ -1766,14 +1630,6 @@ public class ExportParamsEntity {
 
     public void setInvasiveTestECOGPatientId(boolean invasiveTestECOGPatientId) {
         this.invasiveTestECOGPatientId = invasiveTestECOGPatientId;
-    }
-
-    public boolean isInvasiveTestECOGStatus() {
-        return invasiveTestECOGStatus;
-    }
-
-    public void setInvasiveTestECOGStatus(boolean invasiveTestECOGStatus) {
-        this.invasiveTestECOGStatus = invasiveTestECOGStatus;
     }
 
     public boolean isInvasiveTestEEGId() {
@@ -1897,14 +1753,6 @@ public class ExportParamsEntity {
         this.invasiveTestEEGComment = invasiveTestEEGComment;
     }
 
-    public boolean isInvasiveTestEEGDeleted() {
-        return invasiveTestEEGDeleted;
-    }
-
-    public void setInvasiveTestEEGDeleted(boolean invasiveTestEEGDeleted) {
-        this.invasiveTestEEGDeleted = invasiveTestEEGDeleted;
-    }
-
     public boolean isInvasiveTestEEGAddUserId() {
         return invasiveTestEEGAddUserId;
     }
@@ -1919,14 +1767,6 @@ public class ExportParamsEntity {
 
     public void setInvasiveTestEEGPatientId(boolean invasiveTestEEGPatientId) {
         this.invasiveTestEEGPatientId = invasiveTestEEGPatientId;
-    }
-
-    public boolean isInvasiveTestEEGStatus() {
-        return invasiveTestEEGStatus;
-    }
-
-    public void setInvasiveTestEEGStatus(boolean invasiveTestEEGStatus) {
-        this.invasiveTestEEGStatus = invasiveTestEEGStatus;
     }
 
     public boolean isNeurologicalFindingId() {
@@ -2006,14 +1846,6 @@ public class ExportParamsEntity {
         this.neurologicalFindingComment = neurologicalFindingComment;
     }
 
-    public boolean isNeurologicalFindingDeleted() {
-        return neurologicalFindingDeleted;
-    }
-
-    public void setNeurologicalFindingDeleted(boolean neurologicalFindingDeleted) {
-        this.neurologicalFindingDeleted = neurologicalFindingDeleted;
-    }
-
     public boolean isNeurologicalFindingAddUserId() {
         return neurologicalFindingAddUserId;
     }
@@ -2030,14 +1862,6 @@ public class ExportParamsEntity {
     public void setNeurologicalFindingPatientId(
             boolean neurologicalFindingPatientId) {
         this.neurologicalFindingPatientId = neurologicalFindingPatientId;
-    }
-
-    public boolean isNeurologicalFindingStatus() {
-        return neurologicalFindingStatus;
-    }
-
-    public void setNeurologicalFindingStatus(boolean neurologicalFindingStatus) {
-        this.neurologicalFindingStatus = neurologicalFindingStatus;
     }
 
     public boolean isNeuropsychologyId() {
@@ -2349,14 +2173,6 @@ public class ExportParamsEntity {
         this.neuropsychologyComment = neuropsychologyComment;
     }
 
-    public boolean isNeuropsychologyDeleted() {
-        return neuropsychologyDeleted;
-    }
-
-    public void setNeuropsychologyDeleted(boolean neuropsychologyDeleted) {
-        this.neuropsychologyDeleted = neuropsychologyDeleted;
-    }
-
     public boolean isNeuropsychologyAddUserId() {
         return neuropsychologyAddUserId;
     }
@@ -2371,14 +2187,6 @@ public class ExportParamsEntity {
 
     public void setNeuropsychologyPatientId(boolean neuropsychologyPatientId) {
         this.neuropsychologyPatientId = neuropsychologyPatientId;
-    }
-
-    public boolean isNeuropsychologyStatus() {
-        return neuropsychologyStatus;
-    }
-
-    public void setNeuropsychologyStatus(boolean neuropsychologyStatus) {
-        this.neuropsychologyStatus = neuropsychologyStatus;
     }
 
     public boolean isOperationId() {
@@ -2495,14 +2303,6 @@ public class ExportParamsEntity {
         this.operationComment = operationComment;
     }
 
-    public boolean isOperationDeleted() {
-        return operationDeleted;
-    }
-
-    public void setOperationDeleted(boolean operationDeleted) {
-        this.operationDeleted = operationDeleted;
-    }
-
     public boolean isOperationAddUserId() {
         return operationAddUserId;
     }
@@ -2517,14 +2317,6 @@ public class ExportParamsEntity {
 
     public void setOperationPatientId(boolean operationPatientId) {
         this.operationPatientId = operationPatientId;
-    }
-
-    public boolean isOperationStatus() {
-        return operationStatus;
-    }
-
-    public void setOperationStatus(boolean operationStatus) {
-        this.operationStatus = operationStatus;
     }
 
     public boolean isOutcomeId() {
@@ -2589,14 +2381,6 @@ public class ExportParamsEntity {
         this.outcomeComment = outcomeComment;
     }
 
-    public boolean isOutcomeDeleted() {
-        return outcomeDeleted;
-    }
-
-    public void setOutcomeDeleted(boolean outcomeDeleted) {
-        this.outcomeDeleted = outcomeDeleted;
-    }
-
     public boolean isOutcomeAddUserId() {
         return outcomeAddUserId;
     }
@@ -2611,14 +2395,6 @@ public class ExportParamsEntity {
 
     public void setOutcomePatientId(boolean outcomePatientId) {
         this.outcomePatientId = outcomePatientId;
-    }
-
-    public boolean isOutcomeStatus() {
-        return outcomeStatus;
-    }
-
-    public void setOutcomeStatus(boolean outcomeStatus) {
-        this.outcomeStatus = outcomeStatus;
     }
 
     public boolean isPharmacotherapyId() {
@@ -2686,14 +2462,6 @@ public class ExportParamsEntity {
         this.pharmacotherapyComment = pharmacotherapyComment;
     }
 
-    public boolean isPharmacotherapyDeleted() {
-        return pharmacotherapyDeleted;
-    }
-
-    public void setPharmacotherapyDeleted(boolean pharmacotherapyDeleted) {
-        this.pharmacotherapyDeleted = pharmacotherapyDeleted;
-    }
-
     public boolean isPharmacotherapyAddUserId() {
         return pharmacotherapyAddUserId;
     }
@@ -2708,14 +2476,6 @@ public class ExportParamsEntity {
 
     public void setPharmacotherapyPatientId(boolean pharmacotherapyPatientId) {
         this.pharmacotherapyPatientId = pharmacotherapyPatientId;
-    }
-
-    public boolean isPharmacotherapyStatus() {
-        return pharmacotherapyStatus;
-    }
-
-    public void setPharmacotherapyStatus(boolean pharmacotherapyStatus) {
-        this.pharmacotherapyStatus = pharmacotherapyStatus;
     }
 
     public boolean isSeizureId() {
@@ -2853,14 +2613,6 @@ public class ExportParamsEntity {
         this.seizureComment = seizureComment;
     }
 
-    public boolean isSeizureDeleted() {
-        return seizureDeleted;
-    }
-
-    public void setSeizureDeleted(boolean seizureDeleted) {
-        this.seizureDeleted = seizureDeleted;
-    }
-
     public boolean isSeizureAddUserId() {
         return seizureAddUserId;
     }
@@ -2875,14 +2627,6 @@ public class ExportParamsEntity {
 
     public void setSeizurePatientId(boolean seizurePatientId) {
         this.seizurePatientId = seizurePatientId;
-    }
-
-    public boolean isSeizureStatus() {
-        return seizureStatus;
-    }
-
-    public void setSeizureStatus(boolean seizureStatus) {
-        this.seizureStatus = seizureStatus;
     }
 
     public boolean isNeuropsychologyOld() {
@@ -2940,14 +2684,6 @@ public class ExportParamsEntity {
 
     public void setNeuropsychologyOldComment(boolean neuropsychologyOldComment) {
         this.neuropsychologyOldComment = neuropsychologyOldComment;
-    }
-
-    public boolean isNeuropsychologyOldDeleted() {
-        return neuropsychologyOldDeleted;
-    }
-
-    public void setNeuropsychologyOldDeleted(boolean neuropsychologyOldDeleted) {
-        this.neuropsychologyOldDeleted = neuropsychologyOldDeleted;
     }
 
     public boolean isNeuropsychologyOldAddUserId() {
@@ -3058,15 +2794,6 @@ public class ExportParamsEntity {
         this.invasiveTestCorticalMappingComment = invasiveTestCorticalMappingComment;
     }
 
-    public boolean isInvasiveTestCorticalMappingDeleted() {
-        return invasiveTestCorticalMappingDeleted;
-    }
-
-    public void setInvasiveTestCorticalMappingDeleted(
-            boolean invasiveTestCorticalMappingDeleted) {
-        this.invasiveTestCorticalMappingDeleted = invasiveTestCorticalMappingDeleted;
-    }
-
     public boolean isInvasiveTestCorticalMappingAddUserId() {
         return invasiveTestCorticalMappingAddUserId;
     }
@@ -3083,15 +2810,6 @@ public class ExportParamsEntity {
     public void setInvasiveTestCorticalMappingPatientId(
             boolean invasiveTestCorticalMappingPatientId) {
         this.invasiveTestCorticalMappingPatientId = invasiveTestCorticalMappingPatientId;
-    }
-
-    public boolean isInvasiveTestCorticalMappingStatus() {
-        return invasiveTestCorticalMappingStatus;
-    }
-
-    public void setInvasiveTestCorticalMappingStatus(
-            boolean invasiveTestCorticalMappingStatus) {
-        this.invasiveTestCorticalMappingStatus = invasiveTestCorticalMappingStatus;
     }
 
     public boolean isInvasiveTestCorticalMappingDone() {
