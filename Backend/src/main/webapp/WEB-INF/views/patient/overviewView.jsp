@@ -78,6 +78,54 @@
 </c:otherwise>
 </c:choose>
 --%>
+<%-- Anamnesis --%>
+
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.anamnesis"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.anamnesisList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="anamnesis" value="${patient.anamnesisList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${anamnesis.id}">
+                        Zadano dne: ${anamnesis.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="anamnesis/anamnesisTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
 
 <%-- Seizure --%>
 
@@ -129,7 +177,7 @@
 </c:choose>
 
 <%-- Pharmacotherapy --%>
-<%--
+
 <div class="row">
     <div class="col-xs-6">
         <h2>
@@ -145,6 +193,22 @@
     </div>
 </div>
 
+
+<table class="record-head table">
+    <tbody>
+    <tr>
+        <th class="col-xs-8">
+
+        </th>
+        <th class="col-xs-4">
+            <a class="pull-right" href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
+                Zobrazit vsechny
+            </a>
+        </th>
+    </tr>
+    </tbody>
+</table>
+
 <c:choose>
     <c:when test="${empty patient.pharmacotherapyList}">
         <div class="alert alert-info">
@@ -152,31 +216,34 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
-        <c:set var="pharmacotherapy" value="${patient.pharmacotherapyList[0]}" scope="page"/>
-        <table class="record-head table">
-            <tbody>
-            <tr>
-                <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse${pharmacotherapy.id}">
-                        Zadano dne: ${pharmacotherapy.date}
-                    </a>
-                </th>
-                <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
-                        Zobrazit vsechny
-                    </a>
-                </th>
-            </tr>
-            </tbody>
-        </table>
+        <div class="list-striped">
 
-        <%@include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
+            <table class="record-head table">
+                <tr>
+                    <th class="col-xs-2">Datum
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.aed"/>
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.efficiency"/>
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.duringSurgery"/>
+                    </th>
+                    <th class="col-xs-4"></th>
+                </tr>
+            </table>
+            <c:forEach items="${patient.pharmacotherapyList}" var="pharmacotherapy">
+                <div>
 
-        <c:set var="count" value="1" scope="page"/>
+                    <%@ include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
+
+                </div>
+            </c:forEach>
+        </div>
     </c:otherwise>
 </c:choose>
---%>
 
 <%-- Neurological Finding --%>
 
@@ -226,6 +293,369 @@
         <c:set var="count" value="1" scope="page"/>
     </c:otherwise>
 </c:choose>
+
+<%-- Neuropsychology --%>
+
+
+<%-- Diagnostic test scalp EEG --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.diagnosticTestScalpEEG"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.diagnosticTestScalpEegList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="diagnosticTestScalpEeg" value="${patient.diagnosticTestScalpEegList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${diagnosticTestScalpEeg.id}">
+                        Zadano dne: ${diagnosticTestScalpEeg.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="diagnosticTestScalpEeg/diagnosticTestScalpEegTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
+<%-- Diagnostic test MRI --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.diagnosticTestMri"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.diagnosticTestMriList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="diagnosticTestMri" value="${patient.diagnosticTestMriList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${diagnosticTestMri.id}">
+                        Zadano dne: ${diagnosticTestMri.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="diagnosticTestMri/diagnosticTestMriTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
+    <%-- Invasive test ECoG --%>
+    <div class="row">
+        <div class="col-xs-6">
+            <h2>
+                <spring:message code="label.invasiveTestECoG"/>
+            </h2>
+        </div>
+        <div class="col-xs-6">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </div>
+    </div>
+
+    <c:choose>
+        <c:when test="${empty patient.invasiveTestEcogList}">
+            <div class="alert alert-info">
+                <spring:message code="label.noRecords"/>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <c:set var="count" value="0" scope="page"/>
+            <c:set var="invasiveTestEcog" value="${patient.invasiveTestEcogList[0]}" scope="page"/>
+            <table class="record-head table">
+                <tbody>
+                <tr>
+                    <th class="col-xs-8">
+                        <a data-toggle="collapse" href="#collapse${invasiveTestEcog.id}">
+                            Zadano dne: ${invasiveTestEcog.date}
+                        </a>
+                    </th>
+                    <th class="col-xs-4">
+                        <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
+                            Zobrazit vsechny
+                        </a>
+                    </th>
+                </tr>
+                </tbody>
+            </table>
+
+            <%@include file="invasiveTestEcog/invasiveTestEcogTableView.jsp" %>
+
+            <c:set var="count" value="1" scope="page"/>
+        </c:otherwise>
+    </c:choose>
+
+<%-- Invasive test EEG --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.invasiveTestEEG"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/invasive-test-eeg/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.invasiveTestEegList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="invasiveTestEeg" value="${patient.invasiveTestEegList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${invasiveTestEeg.id}">
+                        Zadano dne: ${invasiveTestEeg.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="invasiveTestEeg/invasiveTestEegTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
+<%-- Invasive test cortical mapping --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.invasiveTestCorticalMapping"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.invasiveTestCorticalMappingList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="invasiveTestCorticalMapping" value="${patient.invasiveTestCorticalMappingList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${invasiveTestCorticalMapping.id}">
+                        Zadano dne: ${invasiveTestCorticalMapping.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="invasiveTestCorticalMapping/invasiveTestCorticalMappingTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
+<%-- Operation --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.operation"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/operation/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+<c:choose>
+    <c:when test="${empty patient.operationList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="operation" value="${patient.operationList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${operation.id}">
+                        Zadano dne: ${operation.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
+
+        <%@include file="operation/operationTableView.jsp" %>
+
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
+
+
+<%-- Histology --%>
+
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.histology"/>
+        </h2>
+    </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/histology/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
+
+
+<table class="record-head table">
+    <tbody>
+    <tr>
+        <th class="col-xs-8">
+
+        </th>
+        <th class="col-xs-4">
+            <a class="pull-right" href="<c:url value="/patient/${patient.id}/histology/list" />">
+                Zobrazit vsechny
+            </a>
+        </th>
+    </tr>
+    </tbody>
+</table>
+
+<c:choose>
+    <c:when test="${empty patient.histologyList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <div class="list-striped">
+
+            <table class="record-head table">
+                <tr>
+                    <th class="col-xs-2">Datum
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.aed"/>
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.efficiency"/>
+                    </th>
+                    <th class="col-xs-2">
+                        <spring:message code="label.duringSurgery"/>
+                    </th>
+                    <th class="col-xs-4"></th>
+                </tr>
+            </table>
+            <c:forEach items="${patient.histologyList}" var="histology">
+                <div>
+
+                    <%@ include file="histology/histologyTableView.jsp" %>
+
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>
+
 
 <%--
 <!-- print out latest  START -->
