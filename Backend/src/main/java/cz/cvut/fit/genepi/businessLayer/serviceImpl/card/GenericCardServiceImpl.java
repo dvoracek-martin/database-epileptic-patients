@@ -8,10 +8,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.ParameterizedType;
-
 @Service
-public class GenericCardServiceImpl<CardVO, CardEntity>  implements GenericCardService<CardVO, CardEntity> {
+public class GenericCardServiceImpl<CardVO, CardEntity> implements GenericCardService<CardVO, CardEntity> {
 
     @Autowired
     @Qualifier("genericDAOImpl")

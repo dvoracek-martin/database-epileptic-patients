@@ -5,16 +5,15 @@ $(document).ready(function () {
     var withComplicationSelector = $('#process');
     var sectionWithComplicationSelector = $("#section-with-complication");
 
-
-    if (withComplicationSelector.val() == 1) {
-        sectionWithComplicationSelector.hide();
-    }
-
     withComplicationSelector.change(function () {
-        if (sectionWithComplicationSelector.is(":visible")) {
+        if (sectionWithComplicationSelector.val() == 1) {
             sectionWithComplicationSelector.hide();
-        } else {
+        } else if (sectionWithComplicationSelector.val() == 2) {
             sectionWithComplicationSelector.show();
+        } else {
+            //unexpected behavior
         }
     });
+
+    withComplicationSelector.trigger("change");
 });

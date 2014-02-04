@@ -5,16 +5,15 @@ $(document).ready(function () {
     var doneSelector = $('#done');
     var sectionDoneSelector = $("#section-done");
 
-
-    if (doneSelector.val() == 1) {
-        sectionDoneSelector.hide();
-    }
-
     doneSelector.change(function () {
-        if (sectionDoneSelector.is(":visible")) {
+        if (sectionDoneSelector.val() == 1) {
             sectionDoneSelector.hide();
-        } else {
+        } else if (sectionDoneSelector.val() == 2) {
             sectionDoneSelector.show();
+        } else {
+            //unexpected behavior
         }
     });
+
+    doneSelector.trigger("change");
 });

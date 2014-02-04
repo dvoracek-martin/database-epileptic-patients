@@ -16,8 +16,8 @@
 
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
-        <script src="<c:url value="/resources/custom/js/complication.js" />"></script>
+		<script src="<c:url value="/resources/custom/js/datepicker.NEW303.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/cardForm/complication.js" />"></script>
     </jsp:attribute>
 
     <jsp:body>

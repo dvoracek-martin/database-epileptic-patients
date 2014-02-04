@@ -28,7 +28,7 @@
 
     <link rel="icon" type="image/png"
           href="<c:url value="/resources/img/logoIcon.ico" />">
-    <link href="<c:url value="/resources/css/bootstrap.NEW303.css" />"
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.NEW303.css" />"
           rel="stylesheet">
     <link href="<c:url value="/resources/custom/css/menu.NEW303.css" />"
           rel="stylesheet">
@@ -111,9 +111,9 @@
 </div>
 
 <%-- Script section --%>
-<script src="<c:url value="/resources/js/jquery.min.NEW303.js"/>"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.NEW303.js"/>"></script>
-<script src="<c:url value="/resources/js/menu.NEW303.js"/>"></script>
+<script src="<c:url value="/resources/jquery/jquery.min.NEW303.js"/>"></script>
+<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.NEW303.js"/>"></script>
+<script src="<c:url value="/resources/custom/js/menu.NEW303.js"/>"></script>
 
 <%-- Hook for adding something to Script section --%>
 <jsp:invoke fragment="script"/>

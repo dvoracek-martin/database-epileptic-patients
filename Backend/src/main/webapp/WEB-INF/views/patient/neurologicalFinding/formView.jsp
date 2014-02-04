@@ -16,7 +16,7 @@
 
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
+		<script src="<c:url value="/resources/custom/js/datepicker.NEW303.js" />"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -33,7 +33,6 @@
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" role="form" method="POST"
                    action="/GENEPI/patient/${patient.id}/neurological-finding/save" commandName="neurologicalFinding">
-
 
 
             <div class="form-group">
@@ -55,7 +54,8 @@
                 </label>
 
                 <div class="col-xs-8">
-                    <form:select path="hemisphereDominance" id="hemisphereDominance" type="text" class="input-sm form-control">
+                    <form:select path="hemisphereDominance" id="hemisphereDominance" type="text"
+                                 class="input-sm form-control">
                         <form:option value="0">
                             <spring:message code="label.hemisphereDominance.0"/>
                         </form:option>

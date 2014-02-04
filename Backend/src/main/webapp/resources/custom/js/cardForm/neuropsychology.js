@@ -14,20 +14,7 @@ $(document).ready(function () {
     var presenceOfChangesDeterioration = $("#presence-of-changes-deterioration");
 
     //intellect section
-    /* if (intellect.val() == 0) {
-     intellectNeurodevelopmentalExamination.hide();
-     intellectIntellectualPerformance.hide();
-     } else if (intellect.val() == 1) {
-     intellectNeurodevelopmentalExamination.show();
-     intellectIntellectualPerformance.hide();
-     } else if (intellect.val() == 2) {
-     intellectNeurodevelopmentalExamination.hide();
-     intellectIntellectualPerformance.show();
-     } else {
-     //unexpected behavior
-     }*/
-
-    intellect.change(function () {
+      intellect.change(function () {
         if (intellect.val() == 0) {
             intellectNeurodevelopmentalExamination.hide();
             intellectIntellectualPerformance.hide();

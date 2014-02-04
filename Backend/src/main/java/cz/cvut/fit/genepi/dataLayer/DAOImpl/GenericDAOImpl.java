@@ -30,7 +30,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     public void save(T entity) {
         /* sessionFactory.getCurrentSession().beginTransaction(); */
         sessionFactory.getCurrentSession().saveOrUpdate(entity);
-		/*
+        /*
 		 * sessionFactory.getCurrentSession().getTransaction().commit();
 		 * sessionFactory.getCurrentSession().disconnect();
 		 */

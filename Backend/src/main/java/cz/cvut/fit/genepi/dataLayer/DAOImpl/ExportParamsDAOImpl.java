@@ -18,7 +18,7 @@ public class ExportParamsDAOImpl extends GenericDAOImpl<ExportParamsEntity>
     @Override
 
 	/*
-	 * (non-Javadoc)
+     * (non-Javadoc)
 	 * @see cz.cvut.fit.genepi.dataLayer.DAO.ExportParamsDAO#findExportParamsByUserID(int)
 	 */
 

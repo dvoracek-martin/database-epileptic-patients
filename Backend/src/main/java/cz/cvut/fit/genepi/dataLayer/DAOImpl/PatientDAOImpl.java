@@ -420,7 +420,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
 		/* Age of patient */
         if (!advancedSearch.getPatientAge().equals("")) {
-			/* calculating years */
+            /* calculating years */
             LocalDate now = new LocalDate();
             LocalDate dateBeforeInput = now.minusYears(Integer
                     .parseInt(advancedSearch.getPatientAge()));

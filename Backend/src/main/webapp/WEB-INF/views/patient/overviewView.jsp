@@ -394,53 +394,53 @@
     </c:otherwise>
 </c:choose>
 
-    <%-- Invasive test ECoG --%>
-    <div class="row">
-        <div class="col-xs-6">
-            <h2>
-                <spring:message code="label.invasiveTestECoG"/>
-            </h2>
-        </div>
-        <div class="col-xs-6">
-            <h3 class="pull-right">
-                <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/create" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
-            </h3>
-        </div>
+<%-- Invasive test ECoG --%>
+<div class="row">
+    <div class="col-xs-6">
+        <h2>
+            <spring:message code="label.invasiveTestECoG"/>
+        </h2>
     </div>
+    <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/create" />">
+                <spring:message code="label.addRecord"/>
+            </a>
+        </h3>
+    </div>
+</div>
 
-    <c:choose>
-        <c:when test="${empty patient.invasiveTestEcogList}">
-            <div class="alert alert-info">
-                <spring:message code="label.noRecords"/>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <c:set var="count" value="0" scope="page"/>
-            <c:set var="invasiveTestEcog" value="${patient.invasiveTestEcogList[0]}" scope="page"/>
-            <table class="record-head table">
-                <tbody>
-                <tr>
-                    <th class="col-xs-8">
-                        <a data-toggle="collapse" href="#collapse${invasiveTestEcog.id}">
-                            Zadano dne: ${invasiveTestEcog.date}
-                        </a>
-                    </th>
-                    <th class="col-xs-4">
-                        <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
-                            Zobrazit vsechny
-                        </a>
-                    </th>
-                </tr>
-                </tbody>
-            </table>
+<c:choose>
+    <c:when test="${empty patient.invasiveTestEcogList}">
+        <div class="alert alert-info">
+            <spring:message code="label.noRecords"/>
+        </div>
+    </c:when>
+    <c:otherwise>
+        <c:set var="count" value="0" scope="page"/>
+        <c:set var="invasiveTestEcog" value="${patient.invasiveTestEcogList[0]}" scope="page"/>
+        <table class="record-head table">
+            <tbody>
+            <tr>
+                <th class="col-xs-8">
+                    <a data-toggle="collapse" href="#collapse${invasiveTestEcog.id}">
+                        Zadano dne: ${invasiveTestEcog.date}
+                    </a>
+                </th>
+                <th class="col-xs-4">
+                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
+                        Zobrazit vsechny
+                    </a>
+                </th>
+            </tr>
+            </tbody>
+        </table>
 
-            <%@include file="invasiveTestEcog/invasiveTestEcogTableView.jsp" %>
+        <%@include file="invasiveTestEcog/invasiveTestEcogTableView.jsp" %>
 
-            <c:set var="count" value="1" scope="page"/>
-        </c:otherwise>
-    </c:choose>
+        <c:set var="count" value="1" scope="page"/>
+    </c:otherwise>
+</c:choose>
 
 <%-- Invasive test EEG --%>
 <div class="row">
@@ -524,7 +524,8 @@
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
                         Zobrazit vsechny
                     </a>
                 </th>
@@ -572,7 +573,8 @@
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
                         Zobrazit vsechny
                     </a>
                 </th>

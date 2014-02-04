@@ -17,8 +17,8 @@
 
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
-        <script src="<c:url value="/resources/custom/js/customjs.js" />"></script>
+		<script src="<c:url value="/resources/custom/js/datepicker.NEW303.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/cardForm/customjs.js" />"></script>
     </jsp:attribute>
 
 <jsp:body>
@@ -36,214 +36,214 @@
 <form:form class="form-horizontal" role="form" method="POST"
            action="/GENEPI/patient/${patient.id}/diagnostic-test-scalp-eeg/save" commandName="diagnosticTestScalpEeg">
 
-    <div class="form-group">
-        <label for="date" class="col-xs-3 control-label">
-            <spring:message code="label.dateExamination"/>
-        </label>
+<div class="form-group">
+    <label for="date" class="col-xs-3 control-label">
+        <spring:message code="label.dateExamination"/>
+    </label>
 
-        <div class="col-xs-8">
-            <form:input path="date" id="date" type="text" class="form-control datepicker-today"
-                        autocomplete="off"/>
-            <form:errors path="date" cssClass="error">
-            </form:errors>
-        </div>
+    <div class="col-xs-8">
+        <form:input path="date" id="date" type="text" class="form-control datepicker-today"
+                    autocomplete="off"/>
+        <form:errors path="date" cssClass="error">
+        </form:errors>
     </div>
+</div>
+
+<div class="form-group">
+    <label for="done" class="col-xs-3 control-label">
+        <spring:message code="label.diagnosticTestScalpEEG"/>
+    </label>
+
+    <div class="col-xs-8">
+        <form:select path="done" id="done" type="text" class="form-control">
+            <form:option value="1">
+                <spring:message code="label.done.1"/>
+            </form:option>
+            <form:option value="2">
+                <spring:message code="label.done.2"/>
+            </form:option>
+        </form:select>
+    </div>
+</div>
+
+<div id="section-done" class="section-hide">
 
     <div class="form-group">
-        <label for="done" class="col-xs-3 control-label">
-            <spring:message code="label.diagnosticTestScalpEEG"/>
+        <label for="basicEegActivity" class="col-xs-3 control-label">
+            <spring:message code="label.basicEEGActivity"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="done" id="done" type="text" class="form-control">
+            <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="form-control">
+                <form:option value="0">
+                    Zvolte
+                </form:option>
                 <form:option value="1">
-                    <spring:message code="label.done.1"/>
+                    <spring:message code="label.basicEegActivity.1"/>
                 </form:option>
                 <form:option value="2">
-                    <spring:message code="label.done.2"/>
+                    <spring:message code="label.basicEegActivity.2"/>
                 </form:option>
             </form:select>
         </div>
     </div>
 
-    <div id="section-done" class="section-hide">
-
-        <div class="form-group">
-            <label for="basicEegActivity" class="col-xs-3 control-label">
-                <spring:message code="label.basicEEGActivity"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="form-control">
-                    <form:option value="0">
-                        Zvolte
-                    </form:option>
-                    <form:option value="1">
-                        <spring:message code="label.basicEegActivity.1"/>
-                    </form:option>
-                    <form:option value="2">
-                        <spring:message code="label.basicEegActivity.2"/>
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="eegSlow" class="col-xs-3 control-label">
-                <spring:message code="label.EEGSlow"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:select path="eegSlow" id="eegSlow" type="text" class="form-control">
-                    <form:option value="0">
-                        <spring:message code="label.eegSlow.0"/>
-                    </form:option>
-                    <form:option value="1">
-                        <spring:message code="label.eegSlow.1"/>
-                    </form:option>
-                    <form:option value="2">
-                        <spring:message code="label.eegSlow.2"/>
-                    </form:option>
-                    <form:option value="3">
-                        <spring:message code="label.eegSlow.3"/>
-                    </form:option>
-                    <form:option value="4">
-                        <spring:message code="label.eegSlow.4"/>
-                    </form:option>
-                    <form:option value="5">
-                        <spring:message code="label.eegSlow.5"/>
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="interictalEegSpikes" class="col-xs-3 control-label">
-                <spring:message code="label.interictalEEGSpikes"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="form-control">
-                    <form:option value="0">
-                        <spring:message code="label.interictalEegSpikes.0"/>
-                    </form:option>
-                    <form:option value="1">
-                        <spring:message code="label.interictalEegSpikes.1"/>
-                    </form:option>
-                    <form:option value="2">
-                        <spring:message code="label.interictalEegSpikes.2"/>
-                    </form:option>
-                    <form:option value="3">
-                        <spring:message code="label.interictalEegSpikes.3"/>
-                    </form:option>
-                    <form:option value="4">
-                        <spring:message code="label.interictalEegSpikes.4"/>
-                    </form:option>
-                    <form:option value="5">
-                        <spring:message code="label.interictalEegSpikes.5"/>
-                    </form:option>
-                    <form:option value="6">
-                        <spring:message code="label.interictalEegSpikes.6"/>
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="localizationInterictalEegSpikes" class="col-xs-3 control-label">
-                <spring:message code="label.localizationInterictalEegSpikes"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:textarea path="localizationInterictalEegSpikes" id="localizationInterictalEegSpikes"
-                               class="form-control"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="eegStatusEpilepticus" class="col-xs-3 control-label">
-                <spring:message code="label.EEGStatusEpilepticus"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:checkbox path="eegStatusEpilepticus" id="eegStatusEpilepticus"/>
-                <form:errors path="eegStatusEpilepticus" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="secondarySidedSynchrony" class="col-xs-3 control-label">
-                <spring:message code="label.secondarySidedSynchrony"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:checkbox path="secondarySidedSynchrony" id="secondarySidedSynchrony"/>
-                <form:errors path="secondarySidedSynchrony" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="ictalEegPatterns" class="col-xs-3 control-label">
-                <spring:message code="label.ictalEEGPatterns"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="form-control">
-                    <form:option value="0">
-                        <spring:message code="label.ictalEegPatterns.0"/>
-                    </form:option>
-                    <form:option value="1">
-                        <spring:message code="label.ictalEegPatterns.1"/>
-                    </form:option>
-                    <form:option value="2">
-                        <spring:message code="label.ictalEegPatterns.2"/>
-                    </form:option>
-                    <form:option value="3">
-                        <spring:message code="label.ictalEegPatterns.3"/>
-                    </form:option>
-                    <form:option value="4">
-                        <spring:message code="label.ictalEegPatterns.4"/>
-                    </form:option>
-                    <form:option value="5">
-                        <spring:message code="label.ictalEegPatterns.5"/>
-                    </form:option>
-                    <form:option value="6">
-                        <spring:message code="label.ictalEegPatterns.6"/>
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="localizationIctalEegPattern" class="col-xs-3 control-label">
-                <spring:message code="label.localizationIctalEEGPattern"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:textarea path="localizationIctalEegPattern" id="localizationIctalEegPattern"
-                               class="form-control"/>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="comment" class="col-xs-3 control-label">
-                <spring:message code="label.comment"/>
-            </label>
-
-            <div class="col-xs-8">
-                <form:textarea path="comment" id="comment" class="form-control"/>
-            </div>
-        </div>
-    </div>
     <div class="form-group">
-        <div class="col-xs-offset-3 col-xs-8">
-            <button class="btn btn-primary" type="submit">
-                <spring:message code="label.add"/>
-            </button>
+        <label for="eegSlow" class="col-xs-3 control-label">
+            <spring:message code="label.EEGSlow"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:select path="eegSlow" id="eegSlow" type="text" class="form-control">
+                <form:option value="0">
+                    <spring:message code="label.eegSlow.0"/>
+                </form:option>
+                <form:option value="1">
+                    <spring:message code="label.eegSlow.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.eegSlow.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.eegSlow.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.eegSlow.4"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.eegSlow.5"/>
+                </form:option>
+            </form:select>
         </div>
     </div>
+
+    <div class="form-group">
+        <label for="interictalEegSpikes" class="col-xs-3 control-label">
+            <spring:message code="label.interictalEEGSpikes"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="form-control">
+                <form:option value="0">
+                    <spring:message code="label.interictalEegSpikes.0"/>
+                </form:option>
+                <form:option value="1">
+                    <spring:message code="label.interictalEegSpikes.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.interictalEegSpikes.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.interictalEegSpikes.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.interictalEegSpikes.4"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.interictalEegSpikes.5"/>
+                </form:option>
+                <form:option value="6">
+                    <spring:message code="label.interictalEegSpikes.6"/>
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="localizationInterictalEegSpikes" class="col-xs-3 control-label">
+            <spring:message code="label.localizationInterictalEegSpikes"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="localizationInterictalEegSpikes" id="localizationInterictalEegSpikes"
+                           class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="eegStatusEpilepticus" class="col-xs-3 control-label">
+            <spring:message code="label.EEGStatusEpilepticus"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:checkbox path="eegStatusEpilepticus" id="eegStatusEpilepticus"/>
+            <form:errors path="eegStatusEpilepticus" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="secondarySidedSynchrony" class="col-xs-3 control-label">
+            <spring:message code="label.secondarySidedSynchrony"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:checkbox path="secondarySidedSynchrony" id="secondarySidedSynchrony"/>
+            <form:errors path="secondarySidedSynchrony" cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="ictalEegPatterns" class="col-xs-3 control-label">
+            <spring:message code="label.ictalEEGPatterns"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="form-control">
+                <form:option value="0">
+                    <spring:message code="label.ictalEegPatterns.0"/>
+                </form:option>
+                <form:option value="1">
+                    <spring:message code="label.ictalEegPatterns.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.ictalEegPatterns.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.ictalEegPatterns.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.ictalEegPatterns.4"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.ictalEegPatterns.5"/>
+                </form:option>
+                <form:option value="6">
+                    <spring:message code="label.ictalEegPatterns.6"/>
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="localizationIctalEegPattern" class="col-xs-3 control-label">
+            <spring:message code="label.localizationIctalEEGPattern"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="localizationIctalEegPattern" id="localizationIctalEegPattern"
+                           class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="comment" class="col-xs-3 control-label">
+            <spring:message code="label.comment"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="comment" id="comment" class="form-control"/>
+        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-xs-offset-3 col-xs-8">
+        <button class="btn btn-primary" type="submit">
+            <spring:message code="label.add"/>
+        </button>
+    </div>
+</div>
 </form:form>
 
 </jsp:body>

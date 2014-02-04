@@ -263,7 +263,7 @@ public class AdvancedSearchEntity {
     public void setPatientDoctor(int patientDoctor) {
         this.patientDoctor = patientDoctor;
     }
-	/* Include params from get n set */
+    /* Include params from get n set */
 
     public boolean isAnamnesis() {
         return anamnesis;

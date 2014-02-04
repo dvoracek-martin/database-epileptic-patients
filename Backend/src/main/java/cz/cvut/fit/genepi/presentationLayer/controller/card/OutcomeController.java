@@ -52,7 +52,7 @@ public class OutcomeController {
             @PathVariable("outcomeId") Integer outcomeId,
             Locale locale, Model model) {
 
-        OutcomeVO outcomeVO=outcomeService.getById(OutcomeVO.class, OutcomeEntity.class, outcomeId);
+        OutcomeVO outcomeVO = outcomeService.getById(OutcomeVO.class, OutcomeEntity.class, outcomeId);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("outcome", outcomeVO);
         model.addAttribute("distance", outcomeVO.getDistance());

@@ -1,12 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Column;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
