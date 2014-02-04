@@ -76,9 +76,11 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
     private int distance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "operation_id")
+    @JoinColumn(name = "operation_id", insertable = false, updatable = false)
     private OperationEntity operation;
 
+    @Column(name="operation_id")
+    private int operationId;
     /**
      * The comment.
      */
@@ -210,6 +212,14 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
 
     public void setOperation(OperationEntity operation) {
         this.operation = operation;
+    }
+
+    public int getOperationId() {
+        return operationId;
+    }
+
+    public void setOperationId(int operationId) {
+        this.operationId = operationId;
     }
 
     public String getComment() {

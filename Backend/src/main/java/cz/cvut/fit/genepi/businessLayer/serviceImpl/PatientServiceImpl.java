@@ -251,6 +251,14 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
+    public PatientDisplayVO getPatientDisplayByIdWithOperationWithOutcomeList(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithOperationWithOutcomeList(patientId);
+        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithSeizureList(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithSeizureList(patientId);
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);

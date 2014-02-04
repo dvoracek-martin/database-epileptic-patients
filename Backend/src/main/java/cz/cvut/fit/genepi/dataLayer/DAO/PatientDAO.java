@@ -115,6 +115,8 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
      */
     public PatientEntity getPatientByIdWithOperationList(int patientId);
 
+    public PatientEntity getPatientByIdWithOperationWithOutcomeList(int patientId);
+
     /**
      * Finds Pateint and his outcome list for chosen patient
      *

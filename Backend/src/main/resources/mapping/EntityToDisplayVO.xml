@@ -180,4 +180,11 @@
         </field>
     </mapping>
 
+    <!-- Outcome -mby not needed
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.OutcomeDisplayVO</class-b>
+
+    </mapping>-->
+
 </mappings>

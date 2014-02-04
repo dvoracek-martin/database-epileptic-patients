@@ -32,7 +32,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
     @Override
     public PatientEntity getPatientByIdWithAllLists(int patientId) {
         /*Criteria criteria = sessionFactory.getCurrentSession()
-				.createCriteria(PatientEntity.class, "patient")
+                .createCriteria(PatientEntity.class, "patient")
 				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		
 		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
@@ -289,6 +289,18 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         return this.findOne(query);
     }
 
+    @Override
+    public PatientEntity getPatientByIdWithOperationWithOutcomeList(int patientId) {
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery(
+                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList left join fetch p.operationList"//TODO:join outcomes
+                                + " where p.id = :patientId");
+        query.setParameter("patientId", patientId);
+        return this.findOne(query);
+    }
+
+
     /*
      * (non-Javadoc)
      *
@@ -355,7 +367,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         Criteria criteria = sessionFactory.getCurrentSession()
                 .createCriteria(PatientEntity.class, "patient")
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		
+
 
 		/* fetching and creating aliases for sub collections */
 

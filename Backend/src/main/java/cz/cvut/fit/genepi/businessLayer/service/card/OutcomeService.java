@@ -1,8 +1,10 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-public interface OutcomeService {
+import cz.cvut.fit.genepi.businessLayer.VO.form.HistologyVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.OutcomeVO;
+import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 
-   /* public void hide(int neurologicalFindingId);
+public interface OutcomeService extends GenericCardService<OutcomeVO, OutcomeEntity> {
 
-    public void unhide(int neurologicalFindingId);*/
 }
