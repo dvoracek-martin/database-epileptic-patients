@@ -34,6 +34,80 @@
         <form:form class="form-horizontal" role="form" method="POST"
                    action="/GENEPI/patient/${patient.id}/neurological-finding/save" commandName="neurologicalFinding">
 
+
+
+            <div class="form-group">
+                <label for="date" class="col-xs-4 control-label">
+                    <spring:message code="label.dateExamination"/>
+                </label>
+
+                <div class="col-xs-8">
+                    <form:input path="date" id="date" type="text" class="input-sm form-control datepicker-today"
+                                autocomplete="off"/>
+                    <form:errors path="date" cssClass="error">
+                    </form:errors>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="hemisphereDominance" class="col-xs-4 control-label">
+                    <spring:message code="label.hemisphereDominance"/>
+                </label>
+
+                <div class="col-xs-8">
+                    <form:select path="hemisphereDominance" id="hemisphereDominance" type="text" class="input-sm form-control">
+                        <form:option value="0">
+                            <spring:message code="label.hemisphereDominance.0"/>
+                        </form:option>
+                        <form:option value="1">
+                            <spring:message code="label.hemisphereDominance.1"/>
+                        </form:option>
+                        <form:option value="2">
+                            <spring:message code="label.hemisphereDominance.2"/>
+                        </form:option>
+                        <form:option value="3">
+                            <spring:message code="label.hemisphereDominance.3"/>
+                        </form:option>
+                        <form:option value="4">
+                            <spring:message code="label.hemisphereDominance.4"/>
+                        </form:option>
+                    </form:select>
+                </div>
+            </div>
+
+            <jsp:include page="../../components/checkboxComponentView.jsp">
+                <jsp:param name="propertyName" value="abnormalNeurologicalFinding"/>
+                <jsp:param name="messageCode" value="abnormalNeurologicalFinding"/>
+            </jsp:include>
+
+            <jsp:include page="../../components/checkboxComponentView.jsp">
+                <jsp:param name="propertyName" value="hemiparesis"/>
+                <jsp:param name="messageCode" value="hemiparesis"/>
+            </jsp:include>
+
+            <jsp:include page="../../components/checkboxComponentView.jsp">
+                <jsp:param name="propertyName" value="visualFieldDefects"/>
+                <jsp:param name="messageCode" value="visualFieldDefect"/>
+            </jsp:include>
+
+            <div class="form-group">
+                <label for="comment" class="col-xs-4 control-label">
+                    <spring:message code="label.comment"/>
+                </label>
+
+                <div class="col-xs-8">
+                    <form:textarea style="resize:vertical" path="comment" id="comment" class=" form-control"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
+                </div>
+            </div>
+            <%--
             <div class="form-group">
                 <label for="date" class="col-xs-3 control-label">
                     <spring:message code="label.dateExamination"/>
@@ -125,7 +199,7 @@
                         <spring:message code="label.add"/>
                     </button>
                 </div>
-            </div>
+            </div>--%>
         </form:form>
 
     </jsp:body>

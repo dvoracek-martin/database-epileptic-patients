@@ -4,8 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 
@@ -18,12 +17,10 @@
 <%-- Template section --%>
 <t:layout.NEW303>
 
-
 	<jsp:attribute name="title">
 	<%-- Hook for filling title of page --%>
         <jsp:invoke fragment="title"/>
 	</jsp:attribute>
-
 
 	<jsp:attribute name="head">
 	<%-- Hook for adding something to HEAD --%>
