@@ -82,7 +82,7 @@ public class NeuropsychologyVO {
     private int emotionalStatus;
 
     @Size(max = 800)
-    private int comment;
+    private String comment;
 
     public int getId() {
         return id;
@@ -348,11 +348,11 @@ public class NeuropsychologyVO {
         this.emotionalStatus = emotionalStatus;
     }
 
-    public int getComment() {
+    public String getComment() {
         return comment;
     }
 
-    public void setComment(int comment) {
+    public void setComment(String comment) {
         this.comment = comment;
     }
 }

@@ -16,23 +16,6 @@
                 <spring:message code="label.done.${diagnosticTestMri.done}"/>
             </td>
         </tr>
-        <tr>
-            <th class="col-xs-3">
-                <spring:message code="label.done"/>
-            </th>
-            <td class="col-xs-9">
-                <spring:message code="label.done.${diagnosticTestMri.done}"/>
-            </td>
-        </tr>
-        <tr>
-            <th class="col-xs-3">
-                <spring:message code="label.diagnosticTestMri"/>
-            </th>
-            <td class="col-xs-9">
-                <spring:message code="label.done.${diagnosticTestMri.done}"/>
-            </td>
-        </tr>
-
         <c:if test="${diagnosticTestMri.done==2}">
             <tr>
                 <th class="col-xs-3">

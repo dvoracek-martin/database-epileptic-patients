@@ -17,6 +17,7 @@
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 		<script src="<c:url value="/resources/js/datepicker.NEW303.js" />"></script>
+        	<script src="<c:url value="/resources/custom/js/neuropsychology.js" />"></script>
     </jsp:attribute>
 
 <jsp:body>
@@ -54,185 +55,212 @@
 
     <div class="col-xs-8">
         <form:select path="intellect" id="intellect" type="text" class="form-control">
+            <form:option value="0">
+                <spring:message code="label.intellect.0"/>
+            </form:option>
             <form:option value="1">
                 <spring:message code="label.intellect.1"/>
             </form:option>
             <form:option value="2">
                 <spring:message code="label.intellect.2"/>
             </form:option>
-            <form:option value="3">
-                <spring:message code="label.intellect.3"/>
-            </form:option>
         </form:select>
     </div>
 </div>
 
-<%-- if intellect == neurodevelopmentalExamination START--%>
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="neurodevelopmentalExamination"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExamination"/>
-</jsp:include>
+<%-- if intellect == neurodevelopmentalExamination START --%>
+<div id="intellect-neurodevelopmental-examination">
+        <%--<fieldset>
+            <legend>Dilci nerovnomernosti:</legend>--%>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="adaptability"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationAdaptability"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="neurodevelopmentalExamination"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExamination"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="speechExpressively"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechExpressively"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="adaptability"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationAdaptability"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="speechReceptively"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechReceptively"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="speechExpressively"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechExpressively"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="fineMotorSkills"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationFineMotorSkills"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="speechReceptively"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationSpeechReceptively"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="grossMotorSkills"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationGrossMotorSkills"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="fineMotorSkills"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationFineMotorSkills"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="socialBehavior"/>
-    <jsp:param name="propertyName" value="neurodevelopmentalExaminationSocialBehavior"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="grossMotorSkills"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationGrossMotorSkills"/>
+    </jsp:include>
+
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="socialBehavior"/>
+        <jsp:param name="propertyName" value="neurodevelopmentalExaminationSocialBehavior"/>
+    </jsp:include>
+        <%-- </fieldset>--%>
+</div>
 <%-- if intellect == neurodevelopmentalExamination END--%>
 
 <%-- if intellect == intellectualPerformance START--%>
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="intellectualPerformance"/>
-    <jsp:param name="propertyName" value="intellectualPerformance"/>
-</jsp:include>
+<div id="intellect-intellectual-performance">
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="intellectualPerformance"/>
+        <jsp:param name="propertyName" value="intellectualPerformance"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="intellectualPerformanceVerbally"/>
-    <jsp:param name="propertyName" value="intellectualPerformanceVerbally"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="intellectualPerformanceVerbally"/>
+        <jsp:param name="propertyName" value="intellectualPerformanceVerbally"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="intellectualPerformanceNonverbalAbstraction"/>
-    <jsp:param name="propertyName" value="intellectualPerformanceNonverbalAbstraction"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="intellectualPerformanceNonverbalAbstraction"/>
+        <jsp:param name="propertyName" value="intellectualPerformanceNonverbalAbstraction"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
-    <jsp:param name="propertyName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
+        <jsp:param name="propertyName" value="intellectualPerformanceNonverbalDesignCapabilities"/>
+    </jsp:include>
+</div>
 <%-- if intellect == intellectualPerformance END--%>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="neuropsychologicalProfile"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfile"/>
-</jsp:include>
+<div class="form-group">
+    <label for="neuropsychologicalProfile" class="col-xs-3 control-label">
+        <spring:message code="label.neuropsychologicalProfile"/>
+    </label>
+
+    <div class="col-xs-8">
+        <form:select path="neuropsychologicalProfile" id="neuropsychologicalProfile" type="text"
+                     class="form-control">
+            <form:option value="0">
+                <spring:message code="label.neuropsychologicalProfile.0"/>
+            </form:option>
+            <form:option value="1">
+                <spring:message code="label.neuropsychologicalProfile.1"/>
+            </form:option>
+            <form:option value="2">
+                <spring:message code="label.neuropsychologicalProfile.2"/>
+            </form:option>
+        </form:select>
+    </div>
+</div>
 
 <%-- if neuropsychologicalProfile == concernes START--%>
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="attention"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileAttention"/>
-</jsp:include>
+<div id="neuropsychological-profile-concernes">
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="attention"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileAttention"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="executiveFunction"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileExecutiveFunction"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="executiveFunction"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileExecutiveFunction"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="cognitiveSpeed"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileCognitiveSpeed"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="cognitiveSpeed"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileCognitiveSpeed"/>
+    </jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfileSpeechExpressively" class="col-xs-3 control-label">
-        <spring:message code="label.speechExpressively"/>
-    </label>
+    <div class="form-group">
+        <label for="neuropsychologicalProfileSpeechExpressively" class="col-xs-3 control-label">
+            <spring:message code="label.speechExpressively"/>
+        </label>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfileSpeechExpressively" id="neuropsychologicalProfileSpeechExpressively"
-                     type="text" class="form-control">
-            <form:option value="1">
-                <spring:message code="label.speechExpressively.1"/>
-            </form:option>
-            <form:option value="2">
-                <spring:message code="label.speechExpressively.2"/>
-            </form:option>
-            <form:option value="3">
-                <spring:message code="label.speechExpressively.3"/>
-            </form:option>
-            <form:option value="4">
-                <spring:message code="label.speechExpressively.4"/>
-            </form:option>
-        </form:select>
+        <div class="col-xs-8">
+            <form:select path="neuropsychologicalProfileSpeechExpressively"
+                         id="neuropsychologicalProfileSpeechExpressively"
+                         type="text" class="form-control">
+                <form:option value="1">
+                    <spring:message code="label.speechExpressively.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.speechExpressively.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.speechExpressively.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.speechExpressively.4"/>
+                </form:option>
+            </form:select>
+        </div>
     </div>
-</div>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="speechUnderstanding"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileSpeechUnderstanding"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="speechUnderstanding"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileSpeechUnderstanding"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="memoryOperating"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryOperating"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="memoryOperating"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryOperating"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="memoryVerbal"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryVerbal"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="memoryVerbal"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryVerbal"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="memoryNonverbal"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryNonverbal"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="memoryNonverbal"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryNonverbal"/>
+    </jsp:include>
 
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="memoryLearning"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryLearning"/>
-</jsp:include>
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="memoryLearning"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMemoryLearning"/>
+    </jsp:include>
 
-<div class="form-group">
-    <label for="neuropsychologicalProfilePerceptionSpeech" class="col-xs-3 control-label">
-        <spring:message code="label.perceptionSpeech"/>
-    </label>
+    <div class="form-group">
+        <label for="neuropsychologicalProfilePerceptionSpeech" class="col-xs-3 control-label">
+            <spring:message code="label.perceptionSpeech"/>
+        </label>
 
-    <div class="col-xs-8">
-        <form:select path="neuropsychologicalProfilePerceptionSpeech" id="neuropsychologicalProfilePerceptionSpeech"
-                     type="text" class="form-control">
-            <form:option value="1">
-                <spring:message code="label.perceptionOfSpeech.1"/>
-            </form:option>
-            <form:option value="2">
-                <spring:message code="label.perceptionOfSpeech.2"/>
-            </form:option>
-        </form:select>
+        <div class="col-xs-8">
+            <form:select path="neuropsychologicalProfilePerceptionSpeech" id="neuropsychologicalProfilePerceptionSpeech"
+                         type="text" class="form-control">
+                <form:option value="1">
+                    <spring:message code="label.perceptionOfSpeech.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.perceptionOfSpeech.2"/>
+                </form:option>
+            </form:select>
+        </div>
     </div>
+
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="perceptionVisual"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionVisual"/>
+    </jsp:include>
+
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="perceptionSpatial"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionSpatial"/>
+    </jsp:include>
+
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="motorSkillsDexterity"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMotorSkillsDexterity"/>
+    </jsp:include>
+
+    <jsp:include page="deficitOptionsView.jsp">
+        <jsp:param name="labelName" value="motorCoordination"/>
+        <jsp:param name="propertyName" value="neuropsychologicalProfileMotorCoordination"/>
+    </jsp:include>
 </div>
-
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="perceptionVisual"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionVisual"/>
-</jsp:include>
-
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="perceptionSpatial"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfilePerceptionSpatial"/>
-</jsp:include>
-
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="motorSkillsDexterity"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMotorSkillsDexterity"/>
-</jsp:include>
-
-<jsp:include page="deficitOptionsView.jsp">
-    <jsp:param name="labelName" value="motorCoordination"/>
-    <jsp:param name="propertyName" value="neuropsychologicalProfileMotorCoordination"/>
-</jsp:include>
 <%-- if neuropsychologicalProfile == concernes END--%>
 
 <div class="form-group">
@@ -256,15 +284,17 @@
 </div>
 
 <%-- if presenceOfChanges == deteriorace START--%>
-<div class="form-group">
-    <label for="presenceOfChangesDetail" class="col-xs-3 control-label">
-        <spring:message code="label.presenceOfChangesDetail"/>
-    </label>
+<div id="presence-of-changes-deterioration">
+    <div class="form-group">
+        <label for="presenceOfChangesDetail" class="col-xs-3 control-label">
+            <spring:message code="label.presenceOfChangesDetail"/>
+        </label>
 
-    <div class="col-xs-8">
-        <form:select path="presenceOfChangesDetail" id="presenceOfChangesDetail" type="text" class="form-control">
+        <div class="col-xs-8">
+            <form:select path="presenceOfChangesDetail" id="presenceOfChangesDetail" type="text" class="form-control">
 
-        </form:select>
+            </form:select>
+        </div>
     </div>
 </div>
 <%-- if presenceOfChanges == deteriorace END--%>
@@ -275,7 +305,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="emotionalState" id="emotionalState" type="text" class="form-control">
+        <form:select path="emotionalStatus" id="emotionalState" type="text" class="form-control">
             <form:option value="1">
                 <spring:message code="label.emotionalState.1"/>
             </form:option>

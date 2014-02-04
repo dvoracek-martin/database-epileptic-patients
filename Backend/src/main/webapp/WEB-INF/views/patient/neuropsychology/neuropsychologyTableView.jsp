@@ -17,14 +17,14 @@
     </td>
 </tr>
 <c:choose>
-    <c:when test="${neuropsychology.intellect == 2}">
+    <c:when test="${neuropsychology.intellect == 1}">
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.neurodevelopmentalExamination"/>
             </th>
             <td class="col-xs-9">
                 <spring:message
-                        code="label.neurodevelopmentalExamination.${neuropsychology.neurodevelopmentalExamination}"/>
+                        code="label.deficit.${neuropsychology.neurodevelopmentalExamination}"/>
             </td>
         </tr>
         <tr>
@@ -77,7 +77,7 @@
             </td>
         </tr>
     </c:when>
-    <c:when test="${neuropsychology.neuropsychologicalProfile == 3}">
+    <c:when test="${neuropsychology.neuropsychologicalProfile == 2}">
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.intellectualPerformance"/>
@@ -122,7 +122,7 @@
         <spring:message code="label.neuropsychologicalProfile.${neuropsychology.neuropsychologicalProfile}"/>
     </td>
 </tr>
-<c:if test="${neuropsychology.neuropsychologicalProfile == 2}">
+<c:if test="${neuropsychology.neuropsychologicalProfile == 1}">
     <tr>
         <th class="col-xs-3">
             <spring:message code="label.attention"/>
