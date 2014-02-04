@@ -51,9 +51,6 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
     /**
      * The date.
      */
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
-    @Past
-    @NotNull
     @Column(name = "date", nullable = false)
     private Date date;
 

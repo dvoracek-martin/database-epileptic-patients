@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -19,6 +20,11 @@ public class OutcomeVO {
     private int id;
 
     private int patientId;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    @NotNull
+    private Date date;
 
     private int seizureOutcome;
 
@@ -34,6 +40,9 @@ public class OutcomeVO {
 
     private int operationId;
 
+    @Size(max = 800)
+    private String comment;
+
     public int getId() {
         return id;
     }
@@ -48,6 +57,14 @@ public class OutcomeVO {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public int getSeizureOutcome() {
@@ -104,5 +121,13 @@ public class OutcomeVO {
 
     public void setOperationId(int operationId) {
         this.operationId = operationId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

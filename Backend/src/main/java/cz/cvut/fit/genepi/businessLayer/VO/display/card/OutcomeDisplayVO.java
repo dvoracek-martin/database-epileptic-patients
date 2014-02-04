@@ -17,6 +17,8 @@ public class OutcomeDisplayVO {
 
     private int neuropsychology;
 
+    private int distance;
+
     private String comment;
 
     public int getId() {
@@ -65,6 +67,14 @@ public class OutcomeDisplayVO {
 
     public void setNeuropsychology(int neuropsychology) {
         this.neuropsychology = neuropsychology;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public String getComment() {

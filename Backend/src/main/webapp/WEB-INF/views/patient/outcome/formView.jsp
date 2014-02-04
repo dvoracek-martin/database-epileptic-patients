@@ -51,7 +51,7 @@
 
             <div class="form-group">
                 <label for="seizureOutcome" class="col-xs-3 control-label">
-                    <spring:message code="label.rangeOperations"/>
+                    <spring:message code="label.outcome"/>
                 </label>
 
                 <div class="col-xs-8">
@@ -183,19 +183,6 @@
                     </form:select>
                 </div>
             </div>
-
-
-
-            <div class="form-group">
-                <label for="operationDetails" class="col-xs-3 control-label">
-                    <spring:message code="label.operationDetails"/>
-                </label>
-
-                <div class="col-xs-8">
-                    <form:textarea path="operationDetails" id="operationDetails" class="form-control"/>
-                </div>
-            </div>
-
 
             <div class="form-group">
                 <label for="comment" class="col-xs-3 control-label">

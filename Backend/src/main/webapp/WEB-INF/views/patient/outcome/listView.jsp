@@ -42,14 +42,14 @@
                                 <tr>
                                     <th class="col-xs-12">
                                         <a data-toggle="collapse" href="#collapse${operation.id}">
-                                           perace ze dne: ${operation.dateOperation}
+                                           Operace ze dne: ${operation.dateOperation}
                                         </a>
                                     </th>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <%--@ include file="outcomeTableView.jsp" --%>
+                            <%@ include file="outcomeTableView.jsp" %>
 
                         </div>
                         <c:set var="count" value="1" scope="page"/>

@@ -15,6 +15,7 @@ import javax.validation.Valid;
 import java.util.Locale;
 
 @Controller
+@SessionAttributes({"outcome", "operation"})
 public class OutcomeController {
 
     private PatientService patientService;
@@ -42,6 +43,20 @@ public class OutcomeController {
         model.addAttribute("distance", distance);
         model.addAttribute("operation", operation);
         model.addAttribute("outcome", new OutcomeVO());
+        return "patient/outcome/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/outcome/{outcomeId}/edit", method = RequestMethod.GET)
+    public String outcomeEditGET(
+            @PathVariable("patientId") Integer patientId,
+            @PathVariable("outcomeId") Integer outcomeId,
+            Locale locale, Model model) {
+
+        OutcomeVO outcomeVO=outcomeService.getById(OutcomeVO.class, OutcomeEntity.class, outcomeId);
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        model.addAttribute("outcome", outcomeVO);
+        model.addAttribute("distance", outcomeVO.getDistance());
+        model.addAttribute("operation", outcomeVO.getOperationId());
         return "patient/outcome/formView";
     }
 
@@ -129,7 +144,7 @@ public class OutcomeController {
     }*/
     @RequestMapping(value = "/patient/{patientId}/outcome/list", method = RequestMethod.GET)
     public String outcomeListGET(
-            @PathVariable("patientId") Integer patientId,Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithOperationWithOutcomeList(patientId));
         /*
