@@ -19,7 +19,7 @@
         <div style="width: 330px; margin: auto; padding-top: 10em">
             <div class="span6">
                 <img class="photo1" width=2560 height=1600
-                     src="<c:url value="/resources/img/watch_out.png"/>"/>
+                     src="<c:url value="/resources/custom/img/watch_out.png"/>"/>
             </div>
 
         </div>

@@ -40,15 +40,12 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse${neuropsychologyOld.id}">
+                                        <a data-toggle="collapse" href="#collapse-neuropsychology-old-${neuropsychologyOld.id}">
                                             Zadano dne: ${neuropsychologyOld.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOld.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> edit
-                                        </a>
+
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"

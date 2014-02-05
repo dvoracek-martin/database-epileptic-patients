@@ -144,7 +144,7 @@
             </div>
 
             <jsp:include page="invasiveEegOptionsView.jsp">
-                <jsp:param name="labelName" value="invasiveEEGInterictalSpikes"/>
+                <jsp:param name="labelName" value="invasiveEegInterictalSpikes"/>
                 <jsp:param name="propertyName" value="invasiveEegInterictalSpikes"/>
             </jsp:include>
 
@@ -172,7 +172,7 @@
             </div>
 
             <jsp:include page="invasiveEegOptionsView.jsp">
-                <jsp:param name="labelName" value="invasiveIctalEEGPatterns"/>
+                <jsp:param name="labelName" value="invasiveIctalEegPatterns"/>
                 <jsp:param name="propertyName" value="invasiveIctalEegPatterns"/>
             </jsp:include>
 

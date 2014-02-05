@@ -48,7 +48,7 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse${neuropsychology.id}">
+                                        <a data-toggle="collapse" href="#collapse-neuropsychology-${neuropsychology.id}">
                                             Zadano dne: ${neuropsychology.date}
                                         </a>
                                     </th>
