@@ -44,16 +44,19 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             return messageSource.getMessage("label.yes", null, locale);
         else if (value.equals("false"))
             return messageSource.getMessage("label.no", null, locale);
-        else  if (value.equals("null") || value.equals(null) || value.equals("")) {
+        else if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
+            return messageSource.getMessage("label.NA", null, locale);
+        }
+        
+        return value;
+    }
+    
+    private String translateComment(String value, Locale locale){
+        if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
             return messageSource.getMessage("label.noComments", null, locale);
-        } else {
-            if (value.equals("NA")) {
-                return messageSource.getMessage("label.NA", null, locale);
-            }
         }
         return value;
     }
-
 
     private static String getDate() {
         DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
@@ -434,7 +437,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isAnamnesisComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(anamnesis.getComment()),
+            content.add(translateComment(String.valueOf(anamnesis.getComment()),
                     locale));
 
         }
@@ -1061,7 +1064,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            content.add(messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale));
+            content.add(messageSource.getMessage("label.localizationInvasiveEEGInterictalSpikes", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale));

@@ -37,20 +37,22 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
     private LoggingService logger = new LoggingService();
 
     private String translateValue(String value, Locale locale) {
-        if (value.equals("true")) {
+        if (value.equals("true"))
             return messageSource.getMessage("label.yes", null, locale);
-        } else if (value.equals("false")) {
+        else if (value.equals("false"))
             return messageSource.getMessage("label.no", null, locale);
-        } else {
-            if (value.equals("null") || value.equals(null) || value.equals("")) {
-                return messageSource.getMessage("label.noComments", null, locale);
-            } else {
-                if (value.equals("NA")) {
-                    return messageSource.getMessage("label.NA", null, locale);
-                }
-            }
-            return value;
+        else if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
+            return messageSource.getMessage("label.NA", null, locale);
         }
+
+        return value;
+    }
+
+    private String translateComment(String value, Locale locale) {
+        if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
+            return messageSource.getMessage("label.noComments", null, locale);
+        }
+        return value;
     }
 
     private static String getDate() {
@@ -503,7 +505,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isAnamnesisComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(anamnesis.getComment()),
+            content += translateComment(String.valueOf(anamnesis.getComment()),
                     locale);
             content += "\n";
         }
@@ -1044,7 +1046,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            content += messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale);
+            content += messageSource.getMessage("label.localizationInvasiveEEGInterictalSpikes", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale);

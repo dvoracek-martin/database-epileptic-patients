@@ -125,12 +125,16 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             return messageSource.getMessage("label.yes", null, locale);
         else if (value.equals("false"))
             return messageSource.getMessage("label.no", null, locale);
-        else   if (value.equals("null") || value.equals(null) || value.equals("")) {
+        else if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
+            return messageSource.getMessage("label.NA", null, locale);
+        }
+
+        return value;
+    }
+    
+    private String translateComment(String value, Locale locale){
+        if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
             return messageSource.getMessage("label.noComments", null, locale);
-        } else {
-            if (value.equals("NA")) {
-                return messageSource.getMessage("label.NA", null, locale);
-            }
         }
         return value;
     }
@@ -762,7 +766,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(anamnesis.getNonCnsComorbidity()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisComment()) {
-            addCells("label.comment", translateValue(
+            addCells("label.comment", translateComment(
                     String.valueOf(anamnesis.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
@@ -815,7 +819,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.stausEpilepticus", translateValue(String.valueOf(seizure.isStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureComment()) {
-            addCells("label.comment", translateValue(String.valueOf(seizure.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(seizure.getComment()), locale), sheet, locale, styles, "cell", p);
         }
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
             //add empty line
@@ -842,7 +846,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                 addCells("label.seizureDetailILAEClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
             }
             if (exportParams.isSeizureDetailComment()) {
-                addCells("label.comment", translateValue(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
+                addCells("label.comment", translateComment(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
             }
         }
     }
@@ -878,7 +882,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.duringSurgery", translateValue(String.valueOf(pharmacotherapy.isDuringSurgery()), locale), sheet, locale, styles, "table", p);
         }
         if (exportParams.isPharmacotherapyComment()) {
-            addCells("label.comment", translateValue(String.valueOf(pharmacotherapy.getComment()), locale), sheet, locale, styles, "table", p);
+            addCells("label.comment", translateComment(String.valueOf(pharmacotherapy.getComment()), locale), sheet, locale, styles, "table", p);
         }
     }
 
@@ -916,7 +920,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.visualFieldDefect", translateValue(String.valueOf(neurologicalFinding.isVisualFieldDefects()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeurologicalFindingComment()) {
-            addCells("label.comment", translateValue(String.valueOf(neurologicalFinding.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(neurologicalFinding.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -979,7 +983,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         if (exportParams
                 .isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
-            addCells("label.comment", translateValue(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
@@ -1047,7 +1051,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.presenceOfChanges", translateValue(String.valueOf(neuropsychology.getPresenceOfChanges()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
-            addCells("label.comment", translateValue(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1088,7 +1092,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.ADHDSyndrome", translateValue(String.valueOf(neuropsychologyOld.isAdhdSyndrome()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyOldComment()) {
-            addCells("label.comment", translateValue(String.valueOf(neuropsychologyOld.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(neuropsychologyOld.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1127,7 +1131,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.interictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            addCells("label.localizationInterictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationInvasiveEEGInterictalSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
             addCells("label.EEGStatusEpilepticus", translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
@@ -1142,7 +1146,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.eEGDescriptionVideoEEG", translateValue(String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGComment()) {
-            addCells("label.comment", translateValue(String.valueOf(diagnosticTestScalpEEG.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1226,7 +1230,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.WADADetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIComment()) {
-            addCells("label.comment", translateValue(String.valueOf(diagnosticTestScalpMRI.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1265,7 +1269,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.afterResectionECoG", translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGComment()) {
-            addCells("label.comment", translateValue(String.valueOf(invasiveTestECOG.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(invasiveTestECOG.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1320,7 +1324,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.localizationIctalEEGPattern", translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGComment()) {
-            addCells("label.comment", translateValue(String.valueOf(invasiveTestEEG.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(invasiveTestEEG.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1352,7 +1356,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.corticalMapping", translateValue(String.valueOf(invasiveTestCorticalMapping.getCorticalMapping()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestCorticalMappingComment()) {
-            addCells("label.comment", translateValue(String.valueOf(invasiveTestCorticalMapping.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(invasiveTestCorticalMapping.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1409,7 +1413,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.completeResection", translateValue(String.valueOf(operation.isCompleteResection()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationComment()) {
-            addCells("label.comment", translateValue(String.valueOf(operation.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(operation.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1442,7 +1446,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.FCDClassification", translateValue(String.valueOf(histology.getFcdClassification()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyComment()) {
-            addCells("label.comment", translateValue(String.valueOf(histology.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(histology.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1478,7 +1482,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.complication", translateValue(String.valueOf(complication.getComplication()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isComplicationComment()) {
-            addCells("label.comment", translateValue(String.valueOf(complication.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(complication.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 
@@ -1523,7 +1527,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.operationId", translateValue(String.valueOf(outcome.getOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOutcomeComment()) {
-            addCells("label.comment", translateValue(String.valueOf(outcome.getComment()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.comment", translateComment(String.valueOf(outcome.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }
 }
