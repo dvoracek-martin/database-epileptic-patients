@@ -71,7 +71,7 @@ public class PharmacotherapyEntity implements Comparable<PharmacotherapyEntity> 
         if (dateComparison > 0) {
             return -1;
         } else if (dateComparison == 0) {
-            if (idComparison > 0) {
+            if (idComparison < 0) {
                 return 1;
             } else {
                 return -1;
