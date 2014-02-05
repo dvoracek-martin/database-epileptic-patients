@@ -209,8 +209,8 @@ public class ExportParamsEntity {
     private boolean diagnosticTestMRIId;
     @Column(name = "diagnosticTestMRIDone")
     private boolean diagnosticTestMRIDone;
-    @Column(name = "diagnosticTestMRIate")
-    private boolean diagnosticTestMRIate;
+    @Column(name = "diagnosticTestMRIDate")
+    private boolean diagnosticTestMRIDate;
     @Column(name = "diagnosticTestMRIDoctorId")
     private boolean diagnosticTestMRIDoctorId;
     @Column(name = "diagnosticTestMRIAdded")
@@ -1266,12 +1266,12 @@ public class ExportParamsEntity {
         this.diagnosticTestMRIId = diagnosticTestMRIId;
     }
 
-    public boolean isDiagnosticTestMRIate() {
-        return diagnosticTestMRIate;
+    public boolean isDiagnosticTestMRIDate() {
+        return diagnosticTestMRIDate;
     }
 
-    public void setDiagnosticTestMRIate(boolean diagnosticTestMRIate) {
-        this.diagnosticTestMRIate = diagnosticTestMRIate;
+    public void setDiagnosticTestMRIDate(boolean diagnosticTestMRIDate) {
+        this.diagnosticTestMRIDate = diagnosticTestMRIDate;
     }
 
     public boolean isDiagnosticTestMRIDoctorId() {
