@@ -379,6 +379,7 @@ public class PatientController {
         exportParams.setSeizureSeizuresWhileSleepLatent(true);
         exportParams.setSeizureSeizuresWhileSleepNonEpi(true);
 
+
         exportParams.setNeurologicalFinding(true);
         exportParams.setNeurologicalFindingAbnormalNeurologicalFinding(true);
         exportParams.setNeurologicalFindingAdded(true);
@@ -391,6 +392,98 @@ public class PatientController {
         exportParams.setNeurologicalFindingId(true);
         exportParams.setNeurologicalFindingVisualFieldDefects(true);
 
+        exportParams.setNeuropsychology(true);
+        exportParams.setNeuropsychologyAdded(true);
+        exportParams.setNeuropsychologyAddUserId(true);
+        exportParams.setNeuropsychologyComment(true);
+        exportParams.setNeuropsychologyDate(true);
+        exportParams.setNeuropsychologyDoctorId(true);
+        exportParams.setNeuropsychologyEmotionalStatus(true);
+        exportParams.setNeuropsychologyFindingDetail(true);
+        exportParams.setNeuropsychologyId(true);
+        exportParams.setNeuropsychologyIntellect(true);
+        exportParams.setNeuropsychologyIntellectualPerformance(true);
+        exportParams.setNeuropsychologyIntellectualPerformanceNonverbalDesignCap(true);
+        exportParams.setNeuropsychologyIntellectualPerformanceNonverbalAbstraction(true);
+        exportParams.setNeuropsychologyIntellectualPerformanceVerbally(true);
+        exportParams.setNeuropsychologyEmotionalStatus(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExamination(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationAdaptability(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileAttention(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationSocialBehavior(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileCognitiveSpeed(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively(true);
+        exportParams.setNeuropsychologyNeurodevelopmentalExaminationAdaptability(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(true);
+        exportParams.setNeuropsychologyPresenceOfChangesDetail(true);
+        exportParams.setNeuropsychologyPatientId(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMotorCoordination(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMemoryOperating(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMemoryVerbal(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMemoryNonverbal(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfileMemoryLearning(true);
+
+        exportParams.setNeuropsychologyOld(true);
+        exportParams.setNeuropsychologyOldAdded(true);
+        exportParams.setNeuropsychologyOldAddUserId(true);
+        exportParams.setNeuropsychologyOldAdhdSyndrome(true);
+        exportParams.setNeuropsychologyOldComment(true);
+        exportParams.setNeuropsychologyOldDate(true);
+        exportParams.setNeuropsychologyOldDevelopmentalLanguageDisorders(true);
+        exportParams.setNeuropsychologyOldDoctorId(true);
+        exportParams.setNeuropsychologyOldIntelligenceLevel(true);
+        exportParams.setNeuropsychologyOldNeuropsychologicalExamination(true);
+        exportParams.setNeuropsychologyOldSpecificLearning(true);
+        exportParams.setNeuropsychologyOldIntelligenceLevel(true);
+
+        exportParams.setDiagnosticTestEEG(true);
+        exportParams.setDiagnosticTestEEGBasicActivity(true);
+        exportParams.setDiagnosticTestEEGComment(true);
+        exportParams.setDiagnosticTestEEGDate(true);
+        exportParams.setDiagnosticTestEEGDoctorId(true);
+        exportParams.setDiagnosticTestEEGDone(true);
+        exportParams.setDiagnosticTestEEGIctalEEGPatterns(true);
+        exportParams.setDiagnosticTestEEGInterictalEEGSpikes(true);
+        exportParams.setDiagnosticTestEEGDescriptionVideoEEG(true);
+        exportParams.setDiagnosticTestEEGLocalizationIctalEEGPattern(true);
+        exportParams.setDiagnosticTestEEGLocalizationInerictalEEGSpikes(true);
+        exportParams.setDiagnosticTestEEGBasicActivity(true);
+        exportParams.setDiagnosticTestEEGSecondarySidedSynchrony(true);
+        exportParams.setDiagnosticTestEEGSlow(true);
+        exportParams.setDiagnosticTestEEGStatusEpilepticus(true);
+
+        exportParams.setDiagnosticTestMRI(true);
+        exportParams.setDiagnosticTestMRIDate(true);
+        exportParams.setDiagnosticTestMRIDescribe(true);
+        exportParams.setDiagnosticTestMRIComment(true);
+        exportParams.setDiagnosticTestMRIDescription(true);
+        exportParams.setDiagnosticTestMRIDescriptionMrsAbnormality(true);
+        exportParams.setDiagnosticTestMRIDescriptionPetHypometabolism(true);
+        exportParams.setDiagnosticTestMRIDescriptionSpectHyperperfuse(true);
+        exportParams.setDiagnosticTestMRIDescriptionSpectHypoperfuse(true);
+        exportParams.setdiagnosticTestMRILocalizationPetHypometabolism(true);
+        exportParams.setdiagnosticTestMRIInterictalSpect(true);
+        exportParams.setDiagnosticTestMRIWada(true);
+        exportParams.setDiagnosticTestMRISiscom(true);
+        exportParams.setDiagnosticTestMRIProtocol(true);
+        exportParams.setDiagnosticTestMRIPatientId(true);
+        exportParams.setDiagnosticTestMRIMrsProtocol(true);
+        exportParams.setDiagnosticTestMRIMrsFinding(true);
+        exportParams.setdiagnosticTestMRILocalizationPetHypometabolism(true);
+        exportParams.setdiagnosticTestMRIInterictalSpect(true);
+        exportParams.setDiagnosticTestMRIWada(true);
+        exportParams.setDiagnosticTestMRISiscom(true);
+        exportParams.setDiagnosticTestMRIProtocol(true);
+        exportParams.setDiagnosticTestMRILocalizationSpecHypoperfuse(true);
+        exportParams.setdiagnosticTestMRILocalizationPetHypometabolism(true);
+        exportParams.setDiagnosticTestMRIMrsProtocol(true);
+        exportParams.setDiagnosticTestMRIPatientId(true);
+        exportParams.setdiagnosticTestMRIInterictalSpect(true);
 
         // Find out, if data should be anonymized or not
         boolean shallAnonymize = true;
