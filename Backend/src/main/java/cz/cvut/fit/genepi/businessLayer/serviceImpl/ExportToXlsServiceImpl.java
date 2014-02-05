@@ -125,8 +125,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             return messageSource.getMessage("label.yes", null, locale);
         else if (value.equals("false"))
             return messageSource.getMessage("label.no", null, locale);
-        else if (value.equals("null")) {
-            return messageSource.getMessage("label.null", null, locale);
+        else   if (value.equals("null") || value.equals(null) || value.equals("")) {
+            return messageSource.getMessage("label.noComments", null, locale);
         } else {
             if (value.equals("NA")) {
                 return messageSource.getMessage("label.NA", null, locale);

@@ -42,8 +42,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         } else if (value.equals("false")) {
             return messageSource.getMessage("label.no", null, locale);
         } else {
-            if (value.equals("null") || value.equals(null)) {
-                return messageSource.getMessage("label.null", null, locale);
+            if (value.equals("null") || value.equals(null) || value.equals("")) {
+                return messageSource.getMessage("label.noComments", null, locale);
             } else {
                 if (value.equals("NA")) {
                     return messageSource.getMessage("label.NA", null, locale);
