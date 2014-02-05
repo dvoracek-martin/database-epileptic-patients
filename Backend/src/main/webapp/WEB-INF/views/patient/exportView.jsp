@@ -140,7 +140,7 @@
 
     <div class="span3">
         <form:form id="exportForm" method="POST"
-                   action="/patient/export" commandName="exportParams">
+                   action="/GENEPI/patient/export" commandName="exportParams">
 
             <!-- Hidden fields -->
             <!-- Export name -->
