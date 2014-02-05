@@ -1050,7 +1050,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (exportParams.isNeuropsychologyPresenceOfChanges()) {
             addCells("label.presenceOfChanges", translateValue(String.valueOf(neuropsychology.getPresenceOfChanges()), locale), sheet, locale, styles, "cell", p);
         }
-        if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
+        if (exportParams.isNeuropsychologyComment()) {
             addCells("label.comment", translateComment(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
         }
     }

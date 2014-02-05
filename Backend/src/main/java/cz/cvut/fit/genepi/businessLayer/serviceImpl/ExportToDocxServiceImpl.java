@@ -537,7 +537,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             if (exportParams.isSeizureDetailComment()) {
                 detailContent.add(messageSource.getMessage("label.comment", null, locale));
-                detailContent.add(translateValue(String.valueOf(seizureDetail.getComment()),
+                detailContent.add(translateComment(String.valueOf(seizureDetail.getComment()),
                         locale));
             }
             Tbl tblDetail = TblFactory.createTable(detailContent.size() / 2, 2, writableWidthTwips / 2);
@@ -602,7 +602,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(messageSource.getMessage("label.comment", null,
                     locale));
 
-            content.add(translateValue(
+            content.add(translateComment(
                     String.valueOf(pharmacotherapy.getComment()), locale));
 
         }
@@ -669,7 +669,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isNeurologicalFindingComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(neurologicalFinding.getComment()),
+            content.add(translateComment(String.valueOf(neurologicalFinding.getComment()),
                     locale));
 
         }
@@ -929,6 +929,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
         }
+        if (exportParams.isNeuropsychologyComment()) {
+            content.add(messageSource.getMessage("label.comment", null, locale));
+
+            content.add(translateComment(String.valueOf(neuropsychology.getComment()),
+                    locale));
+
+        }
         int writableWidthTwips = document.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
         Tbl tbl = TblFactory.createTable(content.size() / 2, 2, writableWidthTwips / 2);
         document.getMainDocumentPart().addObject(tbl);
@@ -999,7 +1006,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isNeuropsychologyOldComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(neuropsychologyOld.getComment()),
+            content.add(translateComment(String.valueOf(neuropsychologyOld.getComment()),
                     locale));
 
         }
@@ -1101,7 +1108,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestEEGComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getComment()),
+            content.add(translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()),
                     locale));
 
         }
@@ -1133,7 +1140,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                                            ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
-        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestScalpMRI", null, locale)
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestMriMulti", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(diagnosticTestScalpMRI.getDate()));
@@ -1274,7 +1281,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestMRIComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getComment()),
+            content.add(translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
                     locale));
 
         }
@@ -1342,7 +1349,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestECOGComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestECOG.getComment()),
+            content.add(translateComment(String.valueOf(invasiveTestECOG.getComment()),
                     locale));
 
         }
@@ -1446,7 +1453,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestEEGComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestEEG.getComment()),
+            content.add(translateComment(String.valueOf(invasiveTestEEG.getComment()),
                     locale));
 
         }
@@ -1500,7 +1507,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestCorticalMappingComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(invasiveTestCorticalMapping.getComment()),
+            content.add(translateComment(String.valueOf(invasiveTestCorticalMapping.getComment()),
                     locale));
 
         }
@@ -1610,7 +1617,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isOperationComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(operation.getComment()),
+            content.add(translateComment(String.valueOf(operation.getComment()),
                     locale));
 
         }
@@ -1663,7 +1670,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isHistologyComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(histology.getComment()),
+            content.add(translateComment(String.valueOf(histology.getComment()),
                     locale));
 
         }
@@ -1724,7 +1731,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isComplicationComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(complication.getComment()),
+            content.add(translateComment(String.valueOf(complication.getComment()),
                     locale));
         }
         int writableWidthTwips = document.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
@@ -1804,7 +1811,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isOutcomeComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
-            content.add(translateValue(String.valueOf(outcome.getComment()),
+            content.add(translateComment(String.valueOf(outcome.getComment()),
                     locale));
 
         }

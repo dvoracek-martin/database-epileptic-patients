@@ -584,7 +584,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += addOffset();
                 content += messageSource.getMessage("label.comment", null, locale);
                 content += " - ";
-                content += translateValue(String.valueOf(seizureDetail.getComment()),
+                content += translateComment(String.valueOf(seizureDetail.getComment()),
                         locale);
                 content += "\n";
             }
@@ -636,7 +636,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += messageSource.getMessage("label.comment", null,
                     locale);
             content += " - ";
-            content += translateValue(
+            content += translateComment(
                     String.valueOf(pharmacotherapy.getComment()), locale);
             content += "\n";
         }
@@ -690,7 +690,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isNeurologicalFindingComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(neurologicalFinding.getComment()),
+            content += translateComment(String.valueOf(neurologicalFinding.getComment()),
                     locale);
             content += "\n";
         }
@@ -933,10 +933,18 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
             content += messageSource.getMessage("label.presenceOfChangesDetail", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getPresenceOfChangesDetail()),
+            content += translateComment(String.valueOf(neuropsychology.getPresenceOfChangesDetail()),
                     locale);
             content += "\n";
         }
+        if (exportParams.isNeuropsychologyComment()) {
+            content += (messageSource.getMessage("label.comment", null, locale));
+            content += " - ";
+            content += (translateComment(String.valueOf(neuropsychology.getComment()),
+                    locale));
+            content += "\n";
+        }
+
         return content;
     }
 
@@ -993,7 +1001,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isNeuropsychologyOldComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(neuropsychologyOld.getComment()),
+            content += translateComment(String.valueOf(neuropsychologyOld.getComment()),
                     locale);
             content += "\n";
         }
@@ -1083,7 +1091,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestEEGComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(diagnosticTestScalpEEG.getComment()),
+            content += translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()),
                     locale);
             content += "\n";
         }
@@ -1241,7 +1249,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isDiagnosticTestMRIComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(diagnosticTestScalpMRI.getComment()),
+            content += translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
                     locale);
             content += "\n";
         }
@@ -1294,7 +1302,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestECOGComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestECOG.getComment()),
+            content += translateComment(String.valueOf(invasiveTestECOG.getComment()),
                     locale);
             content += "\n";
         }
@@ -1383,7 +1391,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestEEGComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestEEG.getComment()),
+            content += translateComment(String.valueOf(invasiveTestEEG.getComment()),
                     locale);
             content += "\n";
         }
@@ -1422,7 +1430,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isInvasiveTestCorticalMappingComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(invasiveTestCorticalMapping.getComment()),
+            content += translateComment(String.valueOf(invasiveTestCorticalMapping.getComment()),
                     locale);
             content += "\n";
         }
@@ -1518,7 +1526,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isOperationComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getComment()),
+            content += translateComment(String.valueOf(operation.getComment()),
                     locale);
             content += "\n";
         }
@@ -1558,7 +1566,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isHistologyComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(histology.getComment()),
+            content += translateComment(String.valueOf(histology.getComment()),
                     locale);
             content += "\n";
         }
@@ -1604,7 +1612,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isComplicationComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(complication.getComment()),
+            content += translateComment(String.valueOf(complication.getComment()),
                     locale);
             content += "\n";
         }
@@ -1672,7 +1680,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isOutcomeComment()) {
             content += messageSource.getMessage("label.comment", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(outcome.getComment()),
+            content += translateComment(String.valueOf(outcome.getComment()),
                     locale);
             content += "\n";
         }
@@ -1787,7 +1795,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
             content += messageSource.getMessage("label.assignedDoctor", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale);
+            content += translateComment(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale);
             content += "\n";
         }
 
