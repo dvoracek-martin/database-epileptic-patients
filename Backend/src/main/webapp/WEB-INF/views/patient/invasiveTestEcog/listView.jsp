@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                    <spring:message code="label.invasiveTestECoG"/>
+                    <spring:message code="label.invasiveTestsECoG"/>
                 </h2>
             </div>
             <div class="col-xs-6">

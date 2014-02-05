@@ -19,7 +19,7 @@
         <c:if test="${diagnosticTestMri.done==2}">
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.MRIFinding"/>
+                    <spring:message code="label.mriFinding"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.resultType.${diagnosticTestMri.mriFinding}"/>
@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.descriptionMRI"/>
+                    <spring:message code="label.descriptionMri"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.mriDescription}
@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.mRIFdgPet"/>
+                    <spring:message code="label.fdgPet"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.resultType.${diagnosticTestMri.fdgPet}"/>
@@ -51,7 +51,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.interictalSPECT"/>
+                    <spring:message code="label.interictalSpect"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.resultType.${diagnosticTestMri.interictalSpect}"/>
@@ -59,7 +59,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.descriptionSPECTHypoperfuse"/>
+                    <spring:message code="label.descriptionSpectHypoperfuse"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.descriptionSpectHypoperfuse}
@@ -67,7 +67,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.interictalSPECT"/>
+                    <spring:message code="label.interictalSpect"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.resultType.${diagnosticTestMri.ictalSpect}"/>
@@ -75,7 +75,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.descriptionSPECTHyperperfuse"/>
+                    <spring:message code="label.descriptionSpectHyperperfuse"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.descriptionSpectHyperperfuse}
@@ -83,7 +83,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.mriSiscom"/>
+                    <spring:message code="label.siscom"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.boolean.${diagnosticTestMri.siscom}"/>
@@ -91,7 +91,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.MrsProtocol"/>
+                    <spring:message code="label.mrsProtocol"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.mrsProtocol.${diagnosticTestMri.mrsProtocol}"/>
@@ -99,7 +99,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.MrsFinding"/>
+                    <spring:message code="label.mrsFinding"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.resultType.${diagnosticTestMri.mrsFinding}"/>
@@ -123,7 +123,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.FMRIDetails"/>
+                    <spring:message code="label.fmriDetails"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.detailsFmri}
@@ -139,7 +139,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.DTIStudyDetails"/>
+                    <spring:message code="label.dtiStudyDetails"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.detailsDtiStudy}
@@ -147,7 +147,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.WADA"/>
+                    <spring:message code="label.wada"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.boolean.${diagnosticTestMri.wada}"/>
@@ -155,7 +155,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.WADADetails"/>
+                    <spring:message code="label.wadaDetails"/>
                 </th>
                 <td class="col-xs-9">
                         ${diagnosticTestMri.detailsWada}

@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-xs-12">
         <h2>
-            <spring:message code="label.diagnosticTestScalpEEG"/>
+            <spring:message code="label.diagnosticTestScalpEeg"/>
         </h2>
     </div>
 </div>
@@ -51,7 +51,7 @@
 
 <div class="form-group">
     <label for="done" class="col-xs-3 control-label">
-        <spring:message code="label.diagnosticTestScalpEEG"/>
+        <spring:message code="label.diagnosticTestScalpEeg"/>
     </label>
 
     <div class="col-xs-8">
@@ -70,7 +70,7 @@
 
     <div class="form-group">
         <label for="basicEegActivity" class="col-xs-3 control-label">
-            <spring:message code="label.basicEEGActivity"/>
+            <spring:message code="label.basicEegActivity"/>
         </label>
 
         <div class="col-xs-8">
@@ -90,7 +90,7 @@
 
     <div class="form-group">
         <label for="eegSlow" class="col-xs-3 control-label">
-            <spring:message code="label.EEGSlow"/>
+            <spring:message code="label.eegSlow"/>
         </label>
 
         <div class="col-xs-8">
@@ -119,7 +119,7 @@
 
     <div class="form-group">
         <label for="interictalEegSpikes" class="col-xs-3 control-label">
-            <spring:message code="label.interictalEEGSpikes"/>
+            <spring:message code="label.interictalEegSpikes"/>
         </label>
 
         <div class="col-xs-8">
@@ -162,7 +162,7 @@
 
     <div class="form-group">
         <label for="eegStatusEpilepticus" class="col-xs-3 control-label">
-            <spring:message code="label.EEGStatusEpilepticus"/>
+            <spring:message code="label.EegStatusEpilepticus"/>
         </label>
 
         <div class="col-xs-8">
@@ -186,7 +186,7 @@
 
     <div class="form-group">
         <label for="ictalEegPatterns" class="col-xs-3 control-label">
-            <spring:message code="label.ictalEEGPatterns"/>
+            <spring:message code="label.ictalEegPatterns"/>
         </label>
 
         <div class="col-xs-8">
@@ -218,7 +218,7 @@
 
     <div class="form-group">
         <label for="localizationIctalEegPattern" class="col-xs-3 control-label">
-            <spring:message code="label.localizationIctalEEGPattern"/>
+            <spring:message code="label.localizationIctalEegPattern"/>
         </label>
 
         <div class="col-xs-8">
@@ -234,6 +234,16 @@
 
         <div class="col-xs-8">
             <form:textarea path="comment" id="comment" class="form-control"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="descriptionVideoEeg" class="col-xs-3 control-label">
+            <spring:message code="label.descriptionVideoEeg"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="descriptionVideoEeg" id="descriptionVideoEeg" class="form-control"/>
         </div>
     </div>
 </div>

@@ -84,7 +84,7 @@
 
     <div class="form-group">
         <label for="inflammationCns" class="col-xs-3 control-label">
-            <spring:message code="label.inflammationCNS"/>
+            <spring:message code="label.inflammationCns"/>
         </label>
 
         <div class="col-xs-8">
@@ -96,7 +96,7 @@
 
     <div class="form-group">
         <label for="injuryCns" class="col-xs-3 control-label">
-            <spring:message code="label.injuryCNS"/>
+            <spring:message code="label.injuryCns"/>
         </label>
 
         <div class="col-xs-8">
@@ -108,7 +108,7 @@
 
     <div class="form-group">
         <label for="operationCns" class="col-xs-3 control-label">
-            <spring:message code="label.operationCNS"/>
+            <spring:message code="label.operationCns"/>
         </label>
 
         <div class="col-xs-8">
@@ -120,7 +120,7 @@
 
     <div class="form-group">
         <label for="earlyPmdRetardation" class="col-xs-3 control-label">
-            <spring:message code="label.earlyPMDRetardation"/>
+            <spring:message code="label.earlyPmdRetardation"/>
         </label>
 
         <div class="col-xs-8">
@@ -200,7 +200,7 @@
 
     <div class="form-group">
         <label for="nonCnsComorbidity" class="col-xs-3 control-label">
-            <spring:message code="label.nonCNSComorbidity"/>
+            <spring:message code="label.nonCnsComorbidity"/>
         </label>
 
         <div class="col-xs-8">

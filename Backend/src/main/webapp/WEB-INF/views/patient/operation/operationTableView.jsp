@@ -35,7 +35,7 @@
 
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.typeOperations"/>
+                <spring:message code="label.typeOfOperation"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.operationType.${operation.typeOperation}"/>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.rangeOperations"/>
+                <spring:message code="label.rangeOfOperation"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.operationRange.${operation.rangeOperation}"/>
@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.localizationOperations"/>
+                <spring:message code="label.localizationOfOperation"/>
             </th>
             <td class="col-xs-9">
                 ${operation.localizationOperation}
@@ -75,7 +75,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.VNS"/>
+                <spring:message code="label.vns"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${operation.vns}"/>
@@ -83,7 +83,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.VNSImplantationDate"/>
+                <spring:message code="label.vnsImplantationDate"/>
             </th>
             <td class="col-xs-9">
                 ${operation.vnsImplantationDate}

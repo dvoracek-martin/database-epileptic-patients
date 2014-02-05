@@ -51,7 +51,7 @@
 
         <div class="form-group">
             <label for="seizureOutcome" class="col-xs-3 control-label">
-                <spring:message code="label.outcome"/>
+                <spring:message code="label.seizureOutcome"/>
             </label>
 
             <div class="col-xs-8">

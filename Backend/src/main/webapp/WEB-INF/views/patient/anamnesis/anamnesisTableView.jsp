@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.inflammationCNS"/>
+                <spring:message code="label.inflammationCns"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${anamnesis.inflammationCns}"/>
@@ -42,7 +42,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.injuryCNS"/>
+                <spring:message code="label.injuryCns"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${anamnesis.injuryCns}"/>
@@ -50,7 +50,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.operationCNS"/>
+                <spring:message code="label.operationCns"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${anamnesis.operationCns}"/>
@@ -58,7 +58,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.earlyPMDRetardation"/>
+                <spring:message code="label.earlyPmdRetardation"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${anamnesis.earlyPmdRetardation}"/>
@@ -98,7 +98,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.nonCNSComorbidity"/>
+                <spring:message code="label.nonCnsComorbidity"/>
             </th>
             <c:choose>
                 <c:when test="${empty anamnesis.nonCnsComorbidity}">

@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.SSCClassification"/>
+                <spring:message code="label.sscClassification"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.sscClassification.${seizureDetail.sscClassification}"/>
@@ -39,7 +39,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.ILAEClassification"/>
+                <spring:message code="label.ilaeClassification"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.ilaeClassification.${seizureDetail.ilaeClassification}"/>

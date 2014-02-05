@@ -49,7 +49,7 @@
 
     <div class="form-group">
         <label class="col-xs-3 control-label" for="sscClassification">
-            <spring:message code="label.SSCClassification"/>
+            <spring:message code="label.sscClassification"/>
         </label>
 
         <div class="col-xs-8">
@@ -151,7 +151,7 @@
 
     <div class="form-group">
         <label class="col-xs-3 control-label" for="ilaeClassification">
-            <spring:message code="label.ILAEClassification"/>
+            <spring:message code="label.ilaeClassification"/>
         </label>
 
         <div class="col-xs-8">

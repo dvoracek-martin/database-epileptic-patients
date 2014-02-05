@@ -301,7 +301,7 @@
 <div class="row">
     <div class="col-xs-6">
         <h2>
-            <spring:message code="label.diagnosticTestScalpEEG"/>
+            <spring:message code="label.diagnosticTestScalpEeg"/>
         </h2>
     </div>
     <div class="col-xs-6">
@@ -446,7 +446,7 @@
 <div class="row">
     <div class="col-xs-6">
         <h2>
-            <spring:message code="label.invasiveTestEEG"/>
+            <spring:message code="label.invasiveTestIeeg"/>
         </h2>
     </div>
     <div class="col-xs-6">

@@ -105,7 +105,7 @@
             <div id="section-fcd">
                 <div class="form-group">
                     <label for="fcdClassification" class="col-xs-3 control-label">
-                        <spring:message code="label.FCDClassification"/>
+                        <spring:message code="label.fcdClassification"/>
                     </label>
 
                     <div class="col-xs-8">

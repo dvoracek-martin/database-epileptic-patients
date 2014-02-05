@@ -9,7 +9,7 @@
         <tbody>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.invasiveTestEEG"/>
+                <spring:message code="label.invasiveTestIeeg"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.done.${invasiveTestEeg.done}"/>
@@ -36,7 +36,7 @@
 
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.invasiveEEGSlowing"/>
+                    <spring:message code="label.invasiveEegSlowing"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.invasiveEegSlowing.${invasiveTestEeg.invasiveEegSlow}"/>
@@ -45,7 +45,7 @@
 
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.invasiveEEGInterictalSpikes"/>
+                    <spring:message code="label.invasiveEegInterictalSpikes"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message
@@ -54,7 +54,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.localizationInvasiveEEGInterictalSpikes"/>
+                    <spring:message code="label.localizationInvasiveEegInterictalSpikes"/>
                 </th>
                 <td class="col-xs-9">
                         ${invasiveTestEeg.localizationInvasiveEegInterictalSpikes}
@@ -62,7 +62,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.invasiveEEGStatusEpilepticus"/>
+                    <spring:message code="label.invasiveEegStatusEpilepticus"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.boolean.${invasiveTestEeg.invasiveEegStatusEpilepticus}"/>
@@ -70,7 +70,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.invasiveIctalEEGPatterns"/>
+                    <spring:message code="label.invasiveIctalEegPatterns"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.invasiveEeg.${invasiveTestEeg.invasiveIctalEegPatterns}"/>
@@ -78,7 +78,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.localizationInvasiveIctalEEGPatterns"/>
+                    <spring:message code="label.localizationInvasiveIctalEegPatterns"/>
                 </th>
                 <td class="col-xs-9">
                         ${invasiveTestEeg.localizationInvasiveIctalEegPatterns}

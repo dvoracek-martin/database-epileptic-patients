@@ -42,7 +42,7 @@
                                 <tr>
                                     <th class="col-xs-12">
                                         <a data-toggle="collapse" href="#collapse${operation.id}">
-                                            Operace ze dne: ${operation.dateOperation}
+                                            <spring:message code="label.operationFromDay"/>: ${operation.dateOperation}
                                         </a>
                                     </th>
                                 </tr>

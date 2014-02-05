@@ -426,7 +426,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isAnamnesisInflammationCns()) {
-            content += messageSource.getMessage("label.inflammationCNS", null,
+            content += messageSource.getMessage("label.inflammationCns", null,
                     locale);
             content += " - ";
             content += translateValue(
@@ -435,14 +435,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         }
         if (exportParams.isAnamnesisInjuryCns()) {
             content += messageSource
-                    .getMessage("label.injuryCNS", null, locale);
+                    .getMessage("label.injuryCns", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(anamnesis.isInjuryCns()),
                     locale);
             content += "\n";
         }
         if (exportParams.isAnamnesisOperationCns()) {
-            content += messageSource.getMessage("label.operationCNS", null,
+            content += messageSource.getMessage("label.operationCns", null,
                     locale);
             content += " - ";
             content += translateValue(
@@ -450,7 +450,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isAnamnesisEarlyPmdRetardation()) {
-            content += messageSource.getMessage("label.earlyPMDRetardation",
+            content += messageSource.getMessage("label.earlyPmdRetardation",
                     null, locale);
 
             content += " - ";
@@ -494,7 +494,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isAnamnesisNonCnsComorbidity()) {
-            content += messageSource.getMessage("label.nonCNSComorbidity",
+            content += messageSource.getMessage("label.nonCnsComorbidity",
                     null, locale);
 
             content += " - ";
@@ -566,7 +566,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
             if (exportParams.isSeizureDetailSSCClassification()) {
                 content += addOffset();
-                content += messageSource.getMessage("label.seizureDetailSSCClassification", null, locale);
+                content += messageSource.getMessage("label.sscClassification", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(seizureDetail.getSscClassification()),
                         locale);
@@ -574,7 +574,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
             if (exportParams.isSeizureDetailILAEClassification()) {
                 content += addOffset();
-                content += messageSource.getMessage("label.seizureDetailILAEClassification", null, locale);
+                content += messageSource.getMessage("label.ilaeClassification", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(seizureDetail.getIlaeClassification()),
                         locale);
@@ -992,7 +992,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isNeuropsychologyOldAdhdSyndrome()) {
-            content += messageSource.getMessage("label.ADHDSyndrome", null, locale);
+            content += messageSource.getMessage("label.adhdSyndrome", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(neuropsychologyOld.isAdhdSyndrome()),
                     locale);
@@ -1018,7 +1018,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                              ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.diagnosticTestScalpEEG", null, locale)
+        content += messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": ";
@@ -1026,42 +1026,42 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += "\n";
 
         if (exportParams.isDiagnosticTestEEGDone()) {
-            content += messageSource.getMessage("label.EEGDone", null, locale);
+            content += messageSource.getMessage("label.eegDone", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGBasicActivity()) {
-            content += messageSource.getMessage("label.basicEEGActivity", null, locale);
+            content += messageSource.getMessage("label.basicEegActivity", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGSlow()) {
-            content += messageSource.getMessage("label.EEGSlow", null, locale);
+            content += messageSource.getMessage("label.eegSlow", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getEegSlow()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
-            content += messageSource.getMessage("label.invasiveEEGInterictalSpikes", null, locale);
+            content += messageSource.getMessage("label.invasiveEegInterictalSpikes", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            content += messageSource.getMessage("label.localizationInvasiveEEGInterictalSpikes", null, locale);
+            content += messageSource.getMessage("label.localizationInvasiveEegInterictalSpikes", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
-            content += messageSource.getMessage("label.EEGStatusEpilepticus", null, locale);
+            content += messageSource.getMessage("label.EegStatusEpilepticus", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()),
                     locale);
@@ -1075,14 +1075,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
-            content += messageSource.getMessage("label.ictalEEGPatterns", null, locale);
+            content += messageSource.getMessage("label.ictalEegPatterns", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestEEGDescriptionVideoEEG()) {
-            content += messageSource.getMessage("label.eEGDescriptionVideoEEG", null, locale);
+            content += messageSource.getMessage("label.descriptionVideoEeg", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()),
                     locale);
@@ -1107,7 +1107,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                              ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.diagnosticTestMriMulti", null, locale)
+        content += messageSource.getMessage("label.diagnosticTestsMri", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": ";
@@ -1121,21 +1121,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIFinding()) {
-            content += messageSource.getMessage("label.MRIFinding", null, locale);
+            content += messageSource.getMessage("label.mriFinding", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getMriFinding()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDescription()) {
-            content += messageSource.getMessage("label.descriptionMRI", null, locale);
+            content += messageSource.getMessage("label.descriptionMri", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getMriDescription()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIFdgPet()) {
-            content += messageSource.getMessage("label.mRIFdgPet", null, locale);
+            content += messageSource.getMessage("label.fdgPet", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getFdgPet()),
                     locale);
@@ -1149,14 +1149,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIInterictalSpect()) {
-            content += messageSource.getMessage("label.interictalSPECT", null, locale);
+            content += messageSource.getMessage("label.interictalSpect", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getInterictalSpect()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
-            content += messageSource.getMessage("label.descriptionSPECTHypoperfuse", null, locale);
+            content += messageSource.getMessage("label.descriptionSpectHypoperfuse", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()),
                     locale);
@@ -1170,28 +1170,28 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
-            content += messageSource.getMessage("label.descriptionSPECTHyperperfuse", null, locale);
+            content += messageSource.getMessage("label.descriptionSpectHyperperfuse", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRISiscom()) {
-            content += messageSource.getMessage("label.mriSiscom", null, locale);
+            content += messageSource.getMessage("label.siscom", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.isSiscom()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
-            content += messageSource.getMessage("label.MrsProtocol", null, locale);
+            content += messageSource.getMessage("label.mrsProtocol", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIMrsFinding()) {
-            content += messageSource.getMessage("label.MrsFinding", null, locale);
+            content += messageSource.getMessage("label.mrsFinding", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsFinding()),
                     locale);
@@ -1212,7 +1212,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
-            content += messageSource.getMessage("label.FMRIDetails", null, locale);
+            content += messageSource.getMessage("label.fmriDetails", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()),
                     locale);
@@ -1226,21 +1226,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
-            content += messageSource.getMessage("label.DTIStudyDetails", null, locale);
+            content += messageSource.getMessage("label.dtiStudyDetails", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIWada()) {
-            content += messageSource.getMessage("label.WADA", null, locale);
+            content += messageSource.getMessage("label.wada", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.isWada()),
                     locale);
             content += "\n";
         }
         if (exportParams.isDiagnosticTestMRIDetailsWada()) {
-            content += messageSource.getMessage("label.WADADetails", null, locale);
+            content += messageSource.getMessage("label.wadaDetails", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()),
                     locale);
@@ -1293,7 +1293,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
-            content += messageSource.getMessage("label.afterResectionECoG", null, locale);
+            content += messageSource.getMessage("label.ecogAfterResection", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()),
                     locale);
@@ -1318,14 +1318,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                            ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.invasiveTestEEG", null, locale)
+        content += messageSource.getMessage("label.invasiveTestIeeg", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": ";
         content += TimeConverter.getDate(invasiveTestEEG.getDate());
         content += "\n";
         if (exportParams.isInvasiveTestEEGDone()) {
-            content += messageSource.getMessage("label.eeg_done", null, locale);
+            content += messageSource.getMessage("label.ieegDone", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.getDone()),
                     locale);
@@ -1346,14 +1346,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
-            content += messageSource.getMessage("label.EEGSlow", null, locale);
+            content += messageSource.getMessage("label.eegSlow", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegSlow()),
                     locale);
             content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
-            content += messageSource.getMessage("label.interictalEEGSpikes", null, locale);
+            content += messageSource.getMessage("label.interictalEegSpikes", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()),
                     locale);
@@ -1368,21 +1368,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-            content += messageSource.getMessage("label.EEGStatusEpilepticus", null, locale);
+            content += messageSource.getMessage("label.EegStatusEpilepticus", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()),
                     locale);
             content += "\n";
         }
         if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
-            content += messageSource.getMessage("label.ictalEEGPatterns", null, locale);
+            content += messageSource.getMessage("label.ictalEegPatterns", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()),
                     locale);
             content += "\n";
         }
         if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
-            content += messageSource.getMessage("label.localizationIctalEEGPattern", null, locale);
+            content += messageSource.getMessage("label.localizationIctalEegPattern", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()),
                     locale);
@@ -1414,7 +1414,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += TimeConverter.getDate(invasiveTestCorticalMapping.getDate());
         content += "\n";
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
-            content += messageSource.getMessage("label.corticalMapping_done", null, locale);
+            content += messageSource.getMessage("label.corticalMappingDone", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
                     locale);
@@ -1468,14 +1468,14 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isOperationTypeOperation()) {
-            content += messageSource.getMessage("label.typeOperations", null, locale);
+            content += messageSource.getMessage("label.typeOfOperation", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.getTypeOperation()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationLocalizationOperation()) {
-            content += messageSource.getMessage("label.localizationOperations", null, locale);
+            content += messageSource.getMessage("label.localizationOfOperation", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.getLocalizationOperation()),
                     locale);
@@ -1489,21 +1489,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isOperationColostomy()) {
-            content += messageSource.getMessage("label.colostomy", null, locale);
+            content += messageSource.getMessage("label.calosotomy", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.isColostomy()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationVNS()) {
-            content += messageSource.getMessage("label.VNS", null, locale);
+            content += messageSource.getMessage("label.vns", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.isVns()),
                     locale);
             content += "\n";
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-            content += messageSource.getMessage("label.VNSImplantationDate", null, locale);
+            content += messageSource.getMessage("label.vnsImplantationDate", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(operation.getVnsImplantationDate()),
                     locale);
@@ -1557,7 +1557,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isHistologyFcdClassification()) {
-            content += messageSource.getMessage("label.FCDClassification", null, locale);
+            content += messageSource.getMessage("label.fcdClassification", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(histology.getFcdClassification()),
                     locale);

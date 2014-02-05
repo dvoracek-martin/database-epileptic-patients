@@ -5,7 +5,7 @@
 
 <t:menuLVL2.NEW303>
     <jsp:attribute name="title">
-      <spring:message code="label.diagnosticTestMriMulti"/>
+      <spring:message code="label.diagnosticTestsMri"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                    <spring:message code="label.diagnosticTestMriMulti"/>
+                    <spring:message code="label.diagnosticTestsMri"/>
                 </h2>
 
             </div>

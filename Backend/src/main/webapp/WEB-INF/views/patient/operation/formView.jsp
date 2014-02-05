@@ -66,7 +66,7 @@
 <div id="section-done" class="section-hide">
 <div class="form-group">
     <label for="operationType" class="col-xs-3 control-label">
-        <spring:message code="label.typeOperations"/>
+        <spring:message code="label.typeOfOperation"/>
     </label>
 
     <div class="col-xs-8">
@@ -107,7 +107,7 @@
 
 <div class="form-group">
     <label for="operationRange" class="col-xs-3 control-label">
-        <spring:message code="label.rangeOperations"/>
+        <spring:message code="label.rangeOfOperation"/>
     </label>
 
     <div class="col-xs-8">
@@ -137,7 +137,7 @@
 
 <div class="form-group">
     <label for="localizationOperation" class="col-xs-3 control-label">
-        <spring:message code="label.localizationOperations"/>
+        <spring:message code="label.localizationOfOperation"/>
     </label>
 
     <div class="col-xs-8">
@@ -161,7 +161,7 @@
 
 <div class="form-group">
     <label for="colostomy" class="col-xs-3 control-label">
-        <spring:message code="label.colostomy"/>
+        <spring:message code="label.calosotomy"/>
     </label>
 
     <div class="col-xs-8">
@@ -173,7 +173,7 @@
 
 <div class="form-group">
     <label for="vns" class="col-xs-3 control-label">
-        <spring:message code="label.VNS"/>
+        <spring:message code="label.vns"/>
     </label>
 
     <div class="col-xs-8">
@@ -185,7 +185,7 @@
 
 <div class="form-group">
     <label for="vnsImplantationDate" class="col-xs-3 control-label">
-        <spring:message code="label.VNSImplantationDate"/>
+        <spring:message code="label.vnsImplantationDate"/>
     </label>
 
     <div class="col-xs-8">

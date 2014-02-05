@@ -5,7 +5,7 @@
 
 <t:menuLVL2.NEW303>
     <jsp:attribute name="title">
-      <spring:message code="label.diagnosticTestScalpEEG"/>
+      <spring:message code="label.diagnosticTestScalpEeg"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                    <spring:message code="label.diagnosticTestScalpEEG"/>
+                    <spring:message code="label.diagnosticTestsScalpEeg"/>
                 </h2>
 
             </div>

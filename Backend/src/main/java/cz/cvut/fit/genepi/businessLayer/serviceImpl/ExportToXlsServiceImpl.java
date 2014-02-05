@@ -401,7 +401,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         if (exportParams.isDiagnosticTestEEG()) {
             headerCell = headerRow.createCell(i++);
-            headerCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEEG",
+            headerCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEeg",
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
@@ -423,7 +423,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         if (exportParams.isDiagnosticTestMRI()) {
             headerCell = headerRow.createCell(i++);
-            headerCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEEG",
+            headerCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEeg",
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
@@ -467,7 +467,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         if (exportParams.isInvasiveTestEEG()) {
             headerCell = headerRow.createCell(i++);
-            headerCell.setCellValue(messageSource.getMessage("label.invasiveTestEEG",
+            headerCell.setCellValue(messageSource.getMessage("label.invasiveTestIeeg",
                     null, locale));
             headerCell.setCellStyle(styles.get("header"));
             sheet.addMergedRegion(new CellRangeAddress(
@@ -708,7 +708,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.anamnesis_from_date", null,
+        dateCell.setCellValue(messageSource.getMessage("label.anamnesisFromDate", null,
                 locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
@@ -728,20 +728,20 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(anamnesis.isFibrilConvulsions()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisInflammationCns()) {
-            addCells("label.inflammationCNS", translateValue(
+            addCells("label.inflammationCns", translateValue(
                     String.valueOf(anamnesis.isInflammationCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisInjuryCns()) {
 
-            addCells("label.injuryCNS", translateValue(
+            addCells("label.injuryCns", translateValue(
                     String.valueOf(anamnesis.isInjuryCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisOperationCns()) {
-            addCells("label.operationCNS", translateValue(
+            addCells("label.operationCns", translateValue(
                     String.valueOf(anamnesis.isOperationCns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisEarlyPmdRetardation()) {
-            addCells("label.earlyPMDRetardation", translateValue(
+            addCells("label.earlyPmdRetardation", translateValue(
                     String.valueOf(anamnesis.isEarlyPmdRetardation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisBeginningEpilepsy()) {
@@ -762,7 +762,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(anamnesis.getSpecificSyndrome()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisNonCnsComorbidity()) {
-            addCells("label.nonCNSComorbidity", translateValue(
+            addCells("label.nonCnsComorbidity", translateValue(
                     String.valueOf(anamnesis.getNonCnsComorbidity()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isAnamnesisComment()) {
@@ -840,10 +840,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                 p.setRowcount(p.getRowcount() + 1);
             }
             if (exportParams.isSeizureDetailSSCClassification()) {
-                addCells("label.seizureDetailSSCClassification", translateValue(String.valueOf(seizureDetail.getSscClassification()), locale), sheet, locale, styles, "table", p);
+                addCells("label.sscClassification", translateValue(String.valueOf(seizureDetail.getSscClassification()), locale), sheet, locale, styles, "table", p);
             }
             if (exportParams.isSeizureDetailILAEClassification()) {
-                addCells("label.seizureDetailILAEClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
+                addCells("label.ilaeClassification", translateValue(String.valueOf(seizureDetail.getIlaeClassification()), locale), sheet, locale, styles, "table", p);
             }
             if (exportParams.isSeizureDetailComment()) {
                 addCells("label.comment", translateComment(String.valueOf(seizureDetail.getComment()), locale), sheet, locale, styles, "table", p);
@@ -1089,7 +1089,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.developmentalLanguageDisorders", translateValue(String.valueOf(neuropsychologyOld.isDevelopmentalLanguageDisorders()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyOldAdhdSyndrome()) {
-            addCells("label.ADHDSyndrome", translateValue(String.valueOf(neuropsychologyOld.isAdhdSyndrome()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.adhdSyndrome", translateValue(String.valueOf(neuropsychologyOld.isAdhdSyndrome()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyOldComment()) {
             addCells("label.comment", translateComment(String.valueOf(neuropsychologyOld.getComment()), locale), sheet, locale, styles, "cell", p);
@@ -1112,38 +1112,38 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (dateRow == null) sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEEG", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
+        dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
         dateCellTwo.setCellValue(TimeConverter.getDate(diagnosticTestScalpEEG.getDate()));
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isDiagnosticTestEEGDone()) {
-            addCells("label.eeg_done", translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ieegDone", translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGBasicActivity()) {
-            addCells("label.basicEEGActivity", translateValue(String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.basicEegActivity", translateValue(String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGSlow()) {
-            addCells("label.EEGSlow", translateValue(String.valueOf(diagnosticTestScalpEEG.getEegSlow()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.eegSlow", translateValue(String.valueOf(diagnosticTestScalpEEG.getEegSlow()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
-            addCells("label.interictalEEGSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.interictalEegSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            addCells("label.localizationInvasiveEEGInterictalSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationInvasiveEegInterictalSpikes", translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
-            addCells("label.EEGStatusEpilepticus", translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.EegStatusEpilepticus", translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGSecondarySidedSynchrony()) {
             addCells("label.secondarySidedSynchrony", translateValue(String.valueOf(diagnosticTestScalpEEG.isSecondarySidedSynchrony()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
-            addCells("label.invasiveIctalEEGPatterns", translateValue(String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.invasiveIctalEegPatterns", translateValue(String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGDescriptionVideoEEG()) {
-            addCells("label.eEGDescriptionVideoEEG", translateValue(String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.descriptionVideoEeg", translateValue(String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestEEGComment()) {
             addCells("label.comment", translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()), locale), sheet, locale, styles, "cell", p);
@@ -1166,7 +1166,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (dateRow == null) sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestMriMulti", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
+        dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestsMri", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
         dateCellTwo.setCellValue(TimeConverter.getDate(diagnosticTestScalpMRI.getDate()));
@@ -1179,10 +1179,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.MRIFindingf", translateValue(String.valueOf(diagnosticTestScalpMRI.getMriFinding()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescription()) {
-            addCells("label.descriptionMRI", translateValue(String.valueOf(diagnosticTestScalpMRI.getMriDescription()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.descriptionMri", translateValue(String.valueOf(diagnosticTestScalpMRI.getMriDescription()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIFdgPet()) {
-            addCells("label.mRIFdgPet", translateValue(String.valueOf(diagnosticTestScalpMRI.getFdgPet()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.fdgPet", translateValue(String.valueOf(diagnosticTestScalpMRI.getFdgPet()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionPetHypometabolism()) {
             addCells("label.descriptionPetHypometabolism", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionPetHypometabolism()), locale), sheet, locale, styles, "cell", p);
@@ -1191,22 +1191,22 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.ictalSpect", translateValue(String.valueOf(diagnosticTestScalpMRI.getIctalSpect()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
-            addCells("label.descriptionSPECTHypoperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.descriptionSpectHypoperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIIctalSpect()) {
             addCells("label.ictalSpect", translateValue(String.valueOf(diagnosticTestScalpMRI.getIctalSpect()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
-            addCells("label.descriptionSPECTHyperperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.descriptionSpectHyperperfuse", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRISiscom()) {
-            addCells("label.mriSiscom", translateValue(String.valueOf(diagnosticTestScalpMRI.isSiscom()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.siscom", translateValue(String.valueOf(diagnosticTestScalpMRI.isSiscom()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
-            addCells("label.MrsProtocol", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.mrsProtocol", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIMrsFinding()) {
-            addCells("label.MrsFinding", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsFinding()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.mrsFinding", translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsFinding()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDescriptionMrsAbnormality()) {
             addCells("label.descriptionMrsAbnormality", translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionMrsAbnormality()), locale), sheet, locale, styles, "cell", p);
@@ -1215,19 +1215,19 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.fmri", translateValue(String.valueOf(diagnosticTestScalpMRI.isFmri()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
-            addCells("label.FMRIDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.fmriDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDti()) {
             addCells("label.dti", translateValue(String.valueOf(diagnosticTestScalpMRI.isDti()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
-            addCells("label.DTIStudyDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.dtiStudyDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIWada()) {
-            addCells("label.WADA", translateValue(String.valueOf(diagnosticTestScalpMRI.isWada()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.wada", translateValue(String.valueOf(diagnosticTestScalpMRI.isWada()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIDetailsWada()) {
-            addCells("label.WADADetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.wadaDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isDiagnosticTestMRIComment()) {
             addCells("label.comment", translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()), locale), sheet, locale, styles, "cell", p);
@@ -1266,7 +1266,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.ecogPatterns", translateValue(String.valueOf(invasiveTestECOG.getEcogPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
-            addCells("label.afterResectionECoG", translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ecogAfterResection", translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestECOGComment()) {
             addCells("label.comment", translateComment(String.valueOf(invasiveTestECOG.getComment()), locale), sheet, locale, styles, "cell", p);
@@ -1289,14 +1289,14 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (dateRow == null) sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.invasiveTestEEG", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
+        dateCell.setCellValue(messageSource.getMessage("label.invasiveTestIeeg", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
         dateCellTwo.setCellValue(TimeConverter.getDate(invasiveTestEEG.getDate()));
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isInvasiveTestEEGDone()) {
-            addCells("label.eeg_done", translateValue(String.valueOf(invasiveTestEEG.getDone()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ieegDone", translateValue(String.valueOf(invasiveTestEEG.getDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
             addCells("label.intracranialElectrodes", translateValue(String.valueOf(invasiveTestEEG.getIntracranialElectrodes()), locale), sheet, locale, styles, "cell", p);
@@ -1305,23 +1305,23 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.localizationIntracranialElectrodes", translateValue(String.valueOf(invasiveTestEEG.getLocalizationIntracranialElectrodes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
-            addCells("label.invasiveEEGSlowing", translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegSlow()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.invasiveEegSlowing", translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegSlow()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
-            addCells("label.invasiveEEGInterictalSpikes", translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.invasiveEegInterictalSpikes", translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams
                 .isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes()) {
-            addCells("label.localizationInvasiveEEGInterictalSpikes", translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationInvasiveEegInterictalSpikes", translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-            addCells("label.EEGStatusEpilepticus", translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.EegStatusEpilepticus", translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
-            addCells("label.ictalEEGPatterns", translateValue(String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.ictalEegPatterns", translateValue(String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
-            addCells("label.localizationIctalEEGPattern", translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationIctalEegPattern", translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestEEGComment()) {
             addCells("label.comment", translateComment(String.valueOf(invasiveTestEEG.getComment()), locale), sheet, locale, styles, "cell", p);
@@ -1350,7 +1350,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         dateCellTwo.setCellValue(TimeConverter.getDate(invasiveTestCorticalMapping.getDate()));
         dateCellTwo.setCellStyle(styles.get("cell"));
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
-            addCells("label.corticalMapping_done", translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.corticalMappingDone", translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
             addCells("label.corticalMapping", translateValue(String.valueOf(invasiveTestCorticalMapping.getCorticalMapping()), locale), sheet, locale, styles, "cell", p);
@@ -1386,25 +1386,25 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.dateOfOperation", translateValue(String.valueOf(operation.getDateOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationRangeOperation()) {
-            addCells("label.rangeOperations", translateValue(String.valueOf(operation.getRangeOperation()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.rangeOfOperation", translateValue(String.valueOf(operation.getRangeOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationTypeOperation()) {
-            addCells("label.typeOperations", translateValue(String.valueOf(operation.getTypeOperation()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.typeOfOperation", translateValue(String.valueOf(operation.getTypeOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationLocalizationOperation()) {
-            addCells("label.localizationOperations", translateValue(String.valueOf(operation.getLocalizationOperation()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.localizationOfOperation", translateValue(String.valueOf(operation.getLocalizationOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationMst()) {
             addCells("label.mst", translateValue(String.valueOf(operation.isMst()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationColostomy()) {
-            addCells("label.colostomy", translateValue(String.valueOf(operation.isColostomy()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.calosotomy", translateValue(String.valueOf(operation.isColostomy()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationVNS()) {
-            addCells("label.VNS", translateValue(String.valueOf(operation.isVns()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.vns", translateValue(String.valueOf(operation.isVns()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-            addCells("label.VNSImplantationDate", translateValue(String.valueOf(operation.getVnsImplantationDate()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.vnsImplantationDate", translateValue(String.valueOf(operation.getVnsImplantationDate()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationOperationDetails()) {
             addCells("label.operationDetails", translateValue(String.valueOf(operation.getOperationDetails()), locale), sheet, locale, styles, "cell", p);
@@ -1443,7 +1443,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.histopathology", translateValue(String.valueOf(histology.getHistopathology()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyFcdClassification()) {
-            addCells("label.FCDClassification", translateValue(String.valueOf(histology.getFcdClassification()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.fcdClassification", translateValue(String.valueOf(histology.getFcdClassification()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isHistologyComment()) {
             addCells("label.comment", translateComment(String.valueOf(histology.getComment()), locale), sheet, locale, styles, "cell", p);

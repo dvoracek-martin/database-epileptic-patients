@@ -25,7 +25,7 @@
     <div class="row">
         <div class="col-xs-12">
             <h2>
-                <spring:message code="label.invasiveTestEEG"/>
+                <spring:message code="label.invasiveTestsIeeg"/>
             </h2>
         </div>
     </div>
@@ -51,7 +51,7 @@
 
         <div class="form-group">
             <label for="done" class="col-xs-3 control-label">
-                <spring:message code="label.invasiveTestEEG"/>
+                <spring:message code="label.invasiveTestIeeg"/>
             </label>
 
             <div class="col-xs-8">
@@ -116,7 +116,7 @@
 
             <div class="form-group">
                 <label for="intracranialElectrodes" class="col-xs-3 control-label">
-                    <spring:message code="label.invasiveEEGSlowing"/>
+                    <spring:message code="label.invasiveEegSlowing"/>
                 </label>
 
                 <div class="col-xs-8">
@@ -150,7 +150,7 @@
 
             <div class="form-group">
                 <label for="localizationInvasiveEegInterictalSpikes" class="col-xs-3 control-label">
-                    <spring:message code="label.localizationInvasiveEEGInterictalSpikes"/>
+                    <spring:message code="label.localizationInvasiveEegInterictalSpikes"/>
                 </label>
 
                 <div class="col-xs-8">
@@ -161,7 +161,7 @@
 
             <div class="form-group">
                 <label for="invasiveEegStatusEpilepticus" class="col-xs-3 control-label">
-                    <spring:message code="label.invasiveEEGStatusEpilepticus"/>
+                    <spring:message code="label.invasiveEegStatusEpilepticus"/>
                 </label>
 
                 <div class="col-xs-8">
@@ -178,7 +178,7 @@
 
             <div class="form-group">
                 <label for="localizationInvasiveIctalEegPatterns" class="col-xs-3 control-label">
-                    <spring:message code="label.localizationInvasiveIctalEEGPatterns"/>
+                    <spring:message code="label.localizationInvasiveIctalEegPatterns"/>
                 </label>
 
                 <div class="col-xs-8">

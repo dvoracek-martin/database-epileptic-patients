@@ -39,10 +39,10 @@
 <thead>
 <tr>
     <td></td>
-    <td><b>Seizure outcome</b></td>
-    <td><b>AED</b></td>
-    <td><b>EEG</b></td>
-    <td><b>MRI</b></td>
+    <td><b><spring:message code="label.seizureOutcome"/></b></td>
+    <td><b><spring:message code="label.outcomeAed"/></b></td>
+    <td><b><spring:message code="label.eeg"/></b></td>
+    <td><b><spring:message code="label.mri"/></b></td>
     <td><b><spring:message code="label.neuropsychology"/></b></td>
     <td></td>
 </tr>

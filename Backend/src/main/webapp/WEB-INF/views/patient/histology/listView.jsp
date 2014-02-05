@@ -50,7 +50,7 @@
                                 <spring:message code="label.histopathology"/>
                             </th>
                             <th class="col-xs-4">
-                                <spring:message code="label.FCDClassification"/>
+                                <spring:message code="label.fcdClassification"/>
                             </th>
                             <th class="col-xs-4">
 

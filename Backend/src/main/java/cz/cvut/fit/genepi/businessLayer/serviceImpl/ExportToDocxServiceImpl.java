@@ -216,7 +216,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
 
         if (exportParams.isDiagnosticTestEEG()) {
-            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.diagnosticTestScalpEEG", null,
+            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.diagnosticTestScalpEeg", null,
                     locale));
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
@@ -227,7 +227,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
 
         if (exportParams.isDiagnosticTestMRI()) {
-            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.diagnosticTestMriMulti", null,
+            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.diagnosticTestsMri", null,
                     locale));
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
@@ -250,7 +250,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
 
         if (exportParams.isInvasiveTestEEG()) {
-            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.invasiveTestEEG", null,
+            document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.invasiveTestIeeg", null,
                     locale));
 
             for (InvasiveTestEegEntity invasiveTestEEG : patient
@@ -358,7 +358,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isAnamnesisInflammationCns()) {
-            content.add(messageSource.getMessage("label.inflammationCNS", null,
+            content.add(messageSource.getMessage("label.inflammationCns", null,
                     locale));
 
             content.add(translateValue(
@@ -367,14 +367,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isAnamnesisInjuryCns()) {
             content.add(messageSource
-                    .getMessage("label.injuryCNS", null, locale));
+                    .getMessage("label.injuryCns", null, locale));
 
             content.add(translateValue(String.valueOf(anamnesis.isInjuryCns()),
                     locale));
 
         }
         if (exportParams.isAnamnesisOperationCns()) {
-            content.add(messageSource.getMessage("label.operationCNS", null,
+            content.add(messageSource.getMessage("label.operationCns", null,
                     locale));
 
             content.add(translateValue(
@@ -382,7 +382,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isAnamnesisEarlyPmdRetardation()) {
-            content.add(messageSource.getMessage("label.earlyPMDRetardation",
+            content.add(messageSource.getMessage("label.earlyPmdRetardation",
                     null, locale));
 
 
@@ -426,7 +426,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isAnamnesisNonCnsComorbidity()) {
-            content.add(messageSource.getMessage("label.nonCNSComorbidity",
+            content.add(messageSource.getMessage("label.nonCnsComorbidity",
                     null, locale));
 
 
@@ -518,7 +518,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         This loop goes through seizure details
          */
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
-            document.getMainDocumentPart().addStyledParagraphOfText("Heading3", messageSource.getMessage("label.seizure_detail", null,
+            document.getMainDocumentPart().addStyledParagraphOfText("Heading3", messageSource.getMessage("label.seizureDetail", null,
                     locale));
 
 
@@ -526,12 +526,12 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
 
             if (exportParams.isSeizureDetailSSCClassification()) {
-                detailContent.add(messageSource.getMessage("label.seizureDetailSSCClassification", null, locale));
+                detailContent.add(messageSource.getMessage("label.sscClassification", null, locale));
                 detailContent.add(translateValue(String.valueOf(seizureDetail.getSscClassification()),
                         locale));
             }
             if (exportParams.isSeizureDetailILAEClassification()) {
-                detailContent.add(messageSource.getMessage("label.seizureDetailILAEClassification", null, locale));
+                detailContent.add(messageSource.getMessage("label.ilaeClassification", null, locale));
                 detailContent.add(translateValue(String.valueOf(seizureDetail.getIlaeClassification()),
                         locale));
             }
@@ -997,7 +997,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isNeuropsychologyOldAdhdSyndrome()) {
-            content.add(messageSource.getMessage("label.ADHDSyndrome", null, locale));
+            content.add(messageSource.getMessage("label.adhdSyndrome", null, locale));
 
             content.add(translateValue(String.valueOf(neuropsychologyOld.isAdhdSyndrome()),
                     locale));
@@ -1037,48 +1037,48 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                                            DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
                                            ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
-        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestScalpEEG", null, locale)
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(diagnosticTestScalpEEG.getDate()));
 
         if (exportParams.isDiagnosticTestEEGDone()) {
-            content.add(messageSource.getMessage("label.EEGDone", null, locale));
+            content.add(messageSource.getMessage("label.eegDone", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getDone()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGBasicActivity()) {
-            content.add(messageSource.getMessage("label.basicEEGActivity", null, locale));
+            content.add(messageSource.getMessage("label.basicEegActivity", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGSlow()) {
-            content.add(messageSource.getMessage("label.EEGSlow", null, locale));
+            content.add(messageSource.getMessage("label.eegSlow", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getEegSlow()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
-            content.add(messageSource.getMessage("label.invasiveEEGInterictalSpikes", null, locale));
+            content.add(messageSource.getMessage("label.invasiveEegInterictalSpikes", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
-            content.add(messageSource.getMessage("label.localizationInvasiveEEGInterictalSpikes", null, locale));
+            content.add(messageSource.getMessage("label.localizationInvasiveEegInterictalSpikes", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
-            content.add(messageSource.getMessage("label.EEGStatusEpilepticus", null, locale));
+            content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()),
                     locale));
@@ -1092,14 +1092,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
-            content.add(messageSource.getMessage("label.ictalEEGPatterns", null, locale));
+            content.add(messageSource.getMessage("label.ictalEegPatterns", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestEEGDescriptionVideoEEG()) {
-            content.add(messageSource.getMessage("label.eEGDescriptionVideoEEG", null, locale));
+            content.add(messageSource.getMessage("label.descriptionVideoEeg", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()),
                     locale));
@@ -1140,7 +1140,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                                            ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
-        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestMriMulti", null, locale)
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestsMri", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(diagnosticTestScalpMRI.getDate()));
@@ -1153,21 +1153,21 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestMRIFinding()) {
-            content.add(messageSource.getMessage("label.MRIFinding", null, locale));
+            content.add(messageSource.getMessage("label.mriFinding", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getMriFinding()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIDescription()) {
-            content.add(messageSource.getMessage("label.descriptionMRI", null, locale));
+            content.add(messageSource.getMessage("label.descriptionMri", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getMriDescription()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIFdgPet()) {
-            content.add(messageSource.getMessage("label.mRIFdgPet", null, locale));
+            content.add(messageSource.getMessage("label.fdgPet", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getFdgPet()),
                     locale));
@@ -1181,14 +1181,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestMRIInterictalSpect()) {
-            content.add(messageSource.getMessage("label.interictalSPECT", null, locale));
+            content.add(messageSource.getMessage("label.interictalSpect", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getInterictalSpect()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
-            content.add(messageSource.getMessage("label.descriptionSPECTHypoperfuse", null, locale));
+            content.add(messageSource.getMessage("label.descriptionSpectHypoperfuse", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()),
                     locale));
@@ -1202,28 +1202,28 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
-            content.add(messageSource.getMessage("label.descriptionSPECTHyperperfuse", null, locale));
+            content.add(messageSource.getMessage("label.descriptionSpectHyperperfuse", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRISiscom()) {
-            content.add(messageSource.getMessage("label.mriSiscom", null, locale));
+            content.add(messageSource.getMessage("label.siscom", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.isSiscom()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
-            content.add(messageSource.getMessage("label.MrsProtocol", null, locale));
+            content.add(messageSource.getMessage("label.mrsProtocol", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIMrsFinding()) {
-            content.add(messageSource.getMessage("label.MrsFinding", null, locale));
+            content.add(messageSource.getMessage("label.mrsFinding", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getMrsFinding()),
                     locale));
@@ -1244,7 +1244,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
-            content.add(messageSource.getMessage("label.FMRIDetails", null, locale));
+            content.add(messageSource.getMessage("label.fmriDetails", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()),
                     locale));
@@ -1258,21 +1258,21 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
-            content.add(messageSource.getMessage("label.DTIStudyDetails", null, locale));
+            content.add(messageSource.getMessage("label.dtiStudyDetails", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIWada()) {
-            content.add(messageSource.getMessage("label.WADA", null, locale));
+            content.add(messageSource.getMessage("label.wada", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.isWada()),
                     locale));
 
         }
         if (exportParams.isDiagnosticTestMRIDetailsWada()) {
-            content.add(messageSource.getMessage("label.WADADetails", null, locale));
+            content.add(messageSource.getMessage("label.wadaDetails", null, locale));
 
             content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()),
                     locale));
@@ -1340,7 +1340,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
-            content.add(messageSource.getMessage("label.afterResectionECoG", null, locale));
+            content.add(messageSource.getMessage("label.ecogAfterResection", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestECOG.getAfterResectionEcog()),
                     locale));
@@ -1381,13 +1381,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                                          ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
-        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestEEG", null, locale)
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestIeeg", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(invasiveTestEEG.getDate()));
 
         if (exportParams.isInvasiveTestEEGDone()) {
-            content.add(messageSource.getMessage("label.eeg_done", null, locale));
+            content.add(messageSource.getMessage("label.ieegDone", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.getDone()),
                     locale));
@@ -1408,14 +1408,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
-            content.add(messageSource.getMessage("label.EEGSlow", null, locale));
+            content.add(messageSource.getMessage("label.eegSlow", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegSlow()),
                     locale));
 
         }
         if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
-            content.add(messageSource.getMessage("label.interictalEEGSpikes", null, locale));
+            content.add(messageSource.getMessage("label.interictalEegSpikes", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()),
                     locale));
@@ -1430,21 +1430,21 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-            content.add(messageSource.getMessage("label.EEGStatusEpilepticus", null, locale));
+            content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()),
                     locale));
 
         }
         if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
-            content.add(messageSource.getMessage("label.ictalEEGPatterns", null, locale));
+            content.add(messageSource.getMessage("label.ictalEegPatterns", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()),
                     locale));
 
         }
         if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
-            content.add(messageSource.getMessage("label.localizationIctalEEGPattern", null, locale));
+            content.add(messageSource.getMessage("label.localizationIctalEegPattern", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()),
                     locale));
@@ -1491,7 +1491,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + ": " + TimeConverter.getDate(invasiveTestCorticalMapping.getDate()));
 
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
-            content.add(messageSource.getMessage("label.corticalMapping_done", null, locale));
+            content.add(messageSource.getMessage("label.corticalMappingDone", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
                     locale));
@@ -1559,14 +1559,14 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isOperationTypeOperation()) {
-            content.add(messageSource.getMessage("label.typeOperations", null, locale));
+            content.add(messageSource.getMessage("label.typeOfOperation", null, locale));
 
             content.add(translateValue(String.valueOf(operation.getTypeOperation()),
                     locale));
 
         }
         if (exportParams.isOperationLocalizationOperation()) {
-            content.add(messageSource.getMessage("label.localizationOperations", null, locale));
+            content.add(messageSource.getMessage("label.localizationOfOperation", null, locale));
 
             content.add(translateValue(String.valueOf(operation.getLocalizationOperation()),
                     locale));
@@ -1580,21 +1580,21 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isOperationColostomy()) {
-            content.add(messageSource.getMessage("label.colostomy", null, locale));
+            content.add(messageSource.getMessage("label.calosotomy", null, locale));
 
             content.add(translateValue(String.valueOf(operation.isColostomy()),
                     locale));
 
         }
         if (exportParams.isOperationVNS()) {
-            content.add(messageSource.getMessage("label.VNS", null, locale));
+            content.add(messageSource.getMessage("label.vns", null, locale));
 
             content.add(translateValue(String.valueOf(operation.isVns()),
                     locale));
 
         }
         if (exportParams.isOperationVNsImplantationDate()) {
-            content.add(messageSource.getMessage("label.VNSImplantationDate", null, locale));
+            content.add(messageSource.getMessage("label.vnsImplantationDate", null, locale));
 
             content.add(translateValue(String.valueOf(operation.getVnsImplantationDate()),
                     locale));
@@ -1661,7 +1661,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isHistologyFcdClassification()) {
-            content.add(messageSource.getMessage("label.FCDClassification", null, locale));
+            content.add(messageSource.getMessage("label.fcdClassification", null, locale));
 
             content.add(translateValue(String.valueOf(histology.getFcdClassification()),
                     locale));

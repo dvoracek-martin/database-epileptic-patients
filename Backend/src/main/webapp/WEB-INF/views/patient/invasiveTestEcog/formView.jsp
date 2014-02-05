@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.invasiveTestECoG"/>
+                    <spring:message code="label.invasiveTestsECoG"/>
                 </h2>
             </div>
         </div>
@@ -80,7 +80,7 @@
 
                 <div class="form-group">
                     <label for="ecogPatterns" class="col-xs-3 control-label">
-                        <spring:message code="label.basicEEGActivity"/>
+                        <spring:message code="label.basicEegActivity"/>
                     </label>
 
                     <div class="col-xs-8">
@@ -109,7 +109,7 @@
 
                 <div class="form-group">
                     <label for="afterResectionEcog" class="col-xs-3 control-label">
-                        <spring:message code="label.afterResectionECoG"/>
+                        <spring:message code="label.ecogAfterResection"/>
                     </label>
 
                     <div class="col-xs-8">

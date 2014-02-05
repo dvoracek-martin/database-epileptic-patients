@@ -25,7 +25,7 @@
 <div class="row">
     <div class="col-xs-12">
         <h2>
-            <spring:message code="label.diagnosticTestMriMulti"/>
+            <spring:message code="label.diagnosticTestsMri"/>
         </h2>
     </div>
 </div>
@@ -75,7 +75,7 @@
 
     <div class="form-group">
         <label for="mriDescription" class="col-xs-3 control-label">
-            <spring:message code="label.descriptionMRI"/>
+            <spring:message code="label.descriptionMri"/>
         </label>
 
         <div class="col-xs-8">
@@ -91,7 +91,7 @@
 
     <div class="form-group">
         <label for="descriptionPetHypometabolism" class="col-xs-3 control-label">
-            <spring:message code="label.mRIFdgPet"/>
+            <spring:message code="label.fdgPet"/>
         </label>
 
         <div class="col-xs-8">
@@ -107,7 +107,7 @@
 
     <div class="form-group">
         <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
-            <spring:message code="label.descriptionSPECTHypoperfuse"/>
+            <spring:message code="label.descriptionSpectHypoperfuse"/>
         </label>
 
         <div class="col-xs-8">
@@ -123,7 +123,7 @@
 
     <div class="form-group">
         <label for="descriptionSpectHypoperfuse" class="col-xs-3 control-label">
-            <spring:message code="label.descriptionSPECTHyperperfuse"/>
+            <spring:message code="label.descriptionSpectHyperperfuse"/>
         </label>
 
         <div class="col-xs-8">
@@ -133,7 +133,7 @@
 
     <div class="form-group">
         <label for="siscom" class="col-xs-3 control-label">
-            <spring:message code="label.mriSiscom"/>
+            <spring:message code="label.siscom"/>
         </label>
 
         <div class="col-xs-8">
@@ -146,7 +146,7 @@
 
     <div class="form-group">
         <label for="mrsProtocol" class="col-xs-3 control-label">
-            <spring:message code="label.MrsProtocol"/>
+            <spring:message code="label.mrsProtocol"/>
         </label>
 
         <div class="col-xs-8">
@@ -196,7 +196,7 @@
 
     <div class="form-group">
         <label for="detailsFmri" class="col-xs-3 control-label">
-            <spring:message code="label.FMRIDetails"/>
+            <spring:message code="label.fmriDetails"/>
         </label>
 
         <div class="col-xs-8">
@@ -219,7 +219,7 @@
 
     <div class="form-group">
         <label for="detailsDtiStudy" class="col-xs-3 control-label">
-            <spring:message code="label.DTIStudyDetails"/>
+            <spring:message code="label.dtiStudyDetails"/>
         </label>
 
         <div class="col-xs-8">
@@ -242,7 +242,7 @@
 
     <div class="form-group">
         <label for="detailsWada" class="col-xs-3 control-label">
-            <spring:message code="label.WADADetails"/>
+            <spring:message code="label.wadaDetails"/>
         </label>
 
         <div class="col-xs-8">

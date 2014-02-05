@@ -35,7 +35,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.afterResectionECoG"/>
+                    <spring:message code="label.ecogAfterResection"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.afterResectionEcog.${invasiveTestEcog.afterResectionEcog}"/>

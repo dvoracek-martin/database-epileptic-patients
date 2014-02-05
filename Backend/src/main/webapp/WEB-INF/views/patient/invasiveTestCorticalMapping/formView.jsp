@@ -25,7 +25,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.corticalMapping"/>
+                    <spring:message code="label.invasiveTestsCorticalMapping"/>
                 </h2>
             </div>
         </div>

@@ -49,7 +49,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.ADHDSyndrome"/>
+                <spring:message code="label.adhdSyndrome"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${neuropsychologyOld.adhdSyndrome}"/>
