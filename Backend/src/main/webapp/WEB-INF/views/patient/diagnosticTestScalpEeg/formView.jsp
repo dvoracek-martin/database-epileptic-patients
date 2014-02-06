@@ -66,7 +66,7 @@
     </div>
 </div>
 
-<div id="section-done" class="section-hide">
+<div id="section-done">
 
     <div class="form-group">
         <label for="basicEegActivity" class="col-xs-3 control-label">

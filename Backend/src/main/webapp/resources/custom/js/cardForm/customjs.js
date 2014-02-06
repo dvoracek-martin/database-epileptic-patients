@@ -6,9 +6,9 @@ $(document).ready(function () {
     var sectionDoneSelector = $("#section-done");
 
     doneSelector.change(function () {
-        if (sectionDoneSelector.val() == 1) {
+        if (doneSelector.val() == 1) {
             sectionDoneSelector.hide();
-        } else if (sectionDoneSelector.val() == 2) {
+        } else if (doneSelector.val() == 2) {
             sectionDoneSelector.show();
         } else {
             //unexpected behavior

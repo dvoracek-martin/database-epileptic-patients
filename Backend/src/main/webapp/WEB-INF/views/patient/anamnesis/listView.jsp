@@ -50,7 +50,7 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse${anamnesis.id}">
+                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesis.id}">
                                             Zadano dne: ${anamnesis.date}
                                         </a>
                                     </th>

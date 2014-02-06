@@ -47,7 +47,7 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse${invasiveTestEcog.id}">
+                                        <a data-toggle="collapse" href="#collapse-invasive-test-ecog-${invasiveTestEcog.id}">
                                             Zadano dne: ${invasiveTestEcog.date}
                                         </a>
                                     </th>

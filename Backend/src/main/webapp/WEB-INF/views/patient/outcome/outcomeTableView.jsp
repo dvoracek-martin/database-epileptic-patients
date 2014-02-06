@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse${operation.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-outcome-${operation.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
 
 
 <%-- getting outcomes --%>
@@ -13,7 +13,6 @@
 <c:set var="outcome24" value=""/>
 <c:set var="outcome60" value=""/>
 <c:set var="outcome120" value=""/>
-
 
 <c:forEach items="${operation.outcomeList}" var="outcome">
     <c:choose>

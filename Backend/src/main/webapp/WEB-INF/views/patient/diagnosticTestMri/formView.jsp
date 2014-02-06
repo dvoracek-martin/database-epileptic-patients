@@ -66,10 +66,10 @@
     </div>
 </div>
 
-<div id="section-done" class="section-hide">
+<div id="section-done">
 
     <jsp:include page="resultTypeOptionsView.jsp">
-        <jsp:param name="labelName" value="MRIFinding"/>
+        <jsp:param name="labelName" value="mriFinding"/>
         <jsp:param name="propertyName" value="mriFinding"/>
     </jsp:include>
 
@@ -85,7 +85,7 @@
 
 
     <jsp:include page="resultTypeOptionsView.jsp">
-        <jsp:param name="labelName" value="mRIFdgPet"/>
+        <jsp:param name="labelName" value="fdgPet"/>
         <jsp:param name="propertyName" value="fdgPet"/>
     </jsp:include>
 
@@ -101,7 +101,7 @@
 
 
     <jsp:include page="resultTypeOptionsView.jsp">
-        <jsp:param name="labelName" value="interictalSPECT"/>
+        <jsp:param name="labelName" value="interictalSpect"/>
         <jsp:param name="propertyName" value="interictalSpect"/>
     </jsp:include>
 
@@ -168,7 +168,7 @@
     </div>
 
     <jsp:include page="resultTypeOptionsView.jsp">
-        <jsp:param name="labelName" value="MrsFinding"/>
+        <jsp:param name="labelName" value="mrsFinding"/>
         <jsp:param name="propertyName" value="mrsFinding"/>
     </jsp:include>
 

@@ -27,7 +27,7 @@
     </title>
 
     <link rel="icon" type="image/png"
-          href="<c:url value="/resources/img/logoIcon.ico" />">
+          href="<c:url value="/resources/custom/img/logoIcon.ico" />">
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.NEW303.css" />"
           rel="stylesheet">
     <link href="<c:url value="/resources/custom/css/menu.NEW303.css" />"
@@ -50,7 +50,7 @@
                     class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="<c:url value="/" />"><img
-                    src="<c:url value="/resources/img/logo.ico" />">GENEPI</a>
+                    src="<c:url value="/resources/custom/img/logo.ico" />">GENEPI</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

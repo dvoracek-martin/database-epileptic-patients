@@ -5,7 +5,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse${seizure.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-seizure-${seizure.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -45,7 +45,7 @@
                 <spring:message code="label.occurrence"/>
             </th>
             <td>
-                <spring:message code="label.seizureFrequency.${seizure.seizureOccurrence}"/>
+                <spring:message code="label.seizureOccurence.${seizure.seizureOccurrence}"/>
             </td>
         </tr>
         <tr>
