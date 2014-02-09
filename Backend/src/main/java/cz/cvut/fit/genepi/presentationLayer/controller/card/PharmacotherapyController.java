@@ -52,7 +52,6 @@ public class PharmacotherapyController {
      *
      * @param pharmacotherapy the pharmacotherapy
      * @param result          the result
-     * @param patientID       the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/save", method = RequestMethod.POST)
@@ -84,7 +83,6 @@ public class PharmacotherapyController {
      * Handles the GET request to hide pharmacotherapy.
      *
      * @param patientId   the id of a patient whom we are creating an pharmacotherapy.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -103,7 +101,6 @@ public class PharmacotherapyController {
      * Handles the GET request to unhide pharmacotherapy.
      *
      * @param patientId   the id of a patient whom we are creating an pharmacotherapy.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
