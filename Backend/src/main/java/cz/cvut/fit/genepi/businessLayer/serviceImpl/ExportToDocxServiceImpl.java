@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import com.lowagie.text.Paragraph;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -37,6 +38,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     @Autowired
     private UserService userService;
 
+    private final String delimiter = ": ";
+
     private LoggingService logger = new LoggingService();
 
     private String translateValue(String value, Locale locale) {
@@ -47,11 +50,11 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         else if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
             return messageSource.getMessage("label.NA", null, locale);
         }
-        
+
         return value;
     }
-    
-    private String translateComment(String value, Locale locale){
+
+    private String translateComment(String value, Locale locale) {
         if (value.equals("null") || value.equals(null) || value.equals("") || value.equals("NA")) {
             return messageSource.getMessage("label.noComments", null, locale);
         }
@@ -316,10 +319,104 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
     }
 
+    private void printOutValues(WordprocessingMLPackage document, List<String> content) {
+        boolean firstValue=true;
+        Paragraph paragraph = new Paragraph();
+
+        for (String value : content) {
+            if (firstValue) {
+                paragraph.add(value);
+            } else {
+                paragraph.add(", " + value);
+            }
+            firstValue=false;
+        }
+        document.getMainDocumentPart().addStyledParagraphOfText("Content", paragraph.getContent());
+        //document.getMainDocumentPart().addStyledParagraphOfText("Content", patient.getContact().getLastName() + " " + patient.getContact().getFirstName());
+    }
+
+    private void printOutAnamnesis(WordprocessingMLPackage document, PatientEntity patient,
+                                   AnamnesisEntity anamnesis, Locale locale,
+                                   ExportParamsEntity exportParams) {
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.anamnesis", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(anamnesis.getDate()));
+
+        List<String> content = new ArrayList<String>();
+
+        if (exportParams.isAnamnesisEpilepsyInFamily() && anamnesis.isEpilepsyInFamily()) {
+            content.add(messageSource.getMessage("label.epilepsyInFamily", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisParentalRisk() && anamnesis.isPrenatalRisk()) {
+            content.add(messageSource.getMessage("label.prenatalRisk", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisFibrilConvulsions() && anamnesis.isFibrilConvulsions()) {
+            content.add(messageSource.getMessage("label.fibrilConvulsions",
+                    null, locale));
+        }
+        if (exportParams.isAnamnesisInflammationCns() && anamnesis.isInflammationCns()) {
+            content.add(messageSource.getMessage("label.inflammationCns", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisInjuryCns() && anamnesis.isInjuryCns()) {
+            content.add(messageSource
+                    .getMessage("label.injuryCns", null, locale));
+        }
+        if (exportParams.isAnamnesisOperationCns() && anamnesis.isOperationCns()) {
+            content.add(messageSource.getMessage("label.operationCns", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisEarlyPmdRetardation() && anamnesis.isEarlyPmdRetardation()) {
+            content.add(messageSource.getMessage("label.earlyPmdRetardation",
+                    null, locale));
+        }
+        if (exportParams.isAnamnesisBeginningEpilepsy()) {
+            content.add(messageSource.getMessage("label.beginningEpilepsy",
+                    null, locale) + delimiter + translateValue(
+                    TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
+                    locale));
+        }
+        if (exportParams.isAnamnesisFirstFever() && anamnesis.isFirstFever()) {
+            content.add(messageSource.getMessage("label.firstFever", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisInfantileSpasm() && anamnesis.isInfantileSpasm()) {
+            content.add(messageSource.getMessage("label.infantileSpasm", null,
+                    locale));
+        }
+        if (exportParams.isAnamnesisSpecificSyndrome()) {
+            content.add(messageSource.getMessage("label.epilepticSyndrome",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(anamnesis.getSpecificSyndrome()), locale));
+        }
+        if (exportParams.isAnamnesisNonCnsComorbidity()) {
+            content.add(messageSource.getMessage("label.nonCnsComorbidity",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(anamnesis.getNonCnsComorbidity()), locale));
+        }
+
+
+        printOutValues(document, content);
+
+        if (exportParams.isAnamnesisComment()) {
+
+            document.getMainDocumentPart().addStyledParagraphOfText("Content", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(anamnesis.getComment()),
+                    locale));
+           content.add(messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(anamnesis.getComment()),
+                   locale));
+        }
+    }
+
+
     /**
      * Adds content according to exportParams
      * Checks what properties of anamnesis should be printed out
      */
+    /*
     private void printOutAnamnesis(WordprocessingMLPackage document, PatientEntity patient,
                                    AnamnesisEntity anamnesis, Locale locale,
                                    ExportParamsEntity exportParams) {
@@ -332,7 +429,6 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         List<String> content = new ArrayList<String>();
 
         if (exportParams.isAnamnesisEpilepsyInFamily()) {
-
             content.add(messageSource.getMessage("label.epilepsyInFamily", null,
                     locale));
 
@@ -441,6 +537,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
         }
+
         int writableWidthTwips = document.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
         Tbl tbl = TblFactory.createTable(content.size() / 2, 2, writableWidthTwips / 2);
         document.getMainDocumentPart().addObject(tbl);
@@ -458,7 +555,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             tc.getEGBlockLevelElts().add(document.getMainDocumentPart().createParagraphOfText(item));
         }
+
     }
+    */
 
     /**
      * Adds content according to exportParams
