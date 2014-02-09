@@ -44,7 +44,9 @@ public class NeurologicalFindingController {
             Locale locale, Model model) {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding", neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId));
+        NeurologicalFindingVO vo = neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId);
+        model.addAttribute("neurologicalFindingOrig", vo);
+        model.addAttribute("neurologicalFinding", vo);
         return "patient/neurologicalFinding/formView";
     }
 
@@ -66,7 +68,15 @@ public class NeurologicalFindingController {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/neurologicalFinding/formView";
         } else {
-            neurologicalFinding.setPatientId(patientId);
+
+
+            if(neurologicalFinding.getId()!=0){
+                int origId =neurologicalFinding.getId();
+                neurologicalFinding.setPatientId(patientId);
+                neurologicalFindingService.hide(origId);
+                neurologicalFinding.setId(0);
+            }
+
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
