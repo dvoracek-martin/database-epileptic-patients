@@ -23,6 +23,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
     @Autowired
     private ExportToXlsxService exportToXlsService;
 
+    private final char delimiter = ';';
     /**
      * The Constant logger.
      */
@@ -107,7 +108,7 @@ public class ExportToCsvServiceImpl implements ExportToCsvService {
                     if (row.length > 0) {
                         bw.write(row[0].getContents());
                         for (int j = 1; j < row.length; j++) {
-                            bw.write(',');
+                            bw.write(delimiter);
                             bw.write(row[j].getContents());
                         }
                     }
