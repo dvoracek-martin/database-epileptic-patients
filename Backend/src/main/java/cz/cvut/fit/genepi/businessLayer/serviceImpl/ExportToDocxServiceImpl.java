@@ -319,8 +319,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
     }
 
+    /**
+     * @param document
+     * @param content  This method is used for printing out the values to the paragraph
+     */
+
     private void printOutValues(WordprocessingMLPackage document, List<String> content) {
-        boolean firstValue=true;
+        boolean firstValue = true;
         Paragraph paragraph = new Paragraph();
 
         for (String value : content) {
@@ -329,10 +334,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             } else {
                 paragraph.add(", " + value);
             }
-            firstValue=false;
+            firstValue = false;
         }
-        document.getMainDocumentPart().addStyledParagraphOfText("Content", paragraph.getContent());
-        //document.getMainDocumentPart().addStyledParagraphOfText("Content", patient.getContact().getLastName() + " " + patient.getContact().getFirstName());
+        document.getMainDocumentPart().addStyledParagraphOfText("Normal", paragraph.getContent());
+        //document.getMainDocumentPart().addStyledParagraphOfText("Normal", patient.getContact().getLastName() + " " + patient.getContact().getFirstName());
     }
 
     private void printOutAnamnesis(WordprocessingMLPackage document, PatientEntity patient,
@@ -403,11 +408,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         printOutValues(document, content);
 
         if (exportParams.isAnamnesisComment()) {
-
-            document.getMainDocumentPart().addStyledParagraphOfText("Content", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(anamnesis.getComment()),
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(anamnesis.getComment()),
                     locale));
-           content.add(messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(anamnesis.getComment()),
-                   locale));
         }
     }
 
@@ -416,10 +418,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
      * Adds content according to exportParams
      * Checks what properties of anamnesis should be printed out
      */
-    /*
-    private void printOutAnamnesis(WordprocessingMLPackage document, PatientEntity patient,
-                                   AnamnesisEntity anamnesis, Locale locale,
-                                   ExportParamsEntity exportParams) {
+
+    private void printOutAnamnesisToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                          AnamnesisEntity anamnesis, Locale locale,
+                                          ExportParamsEntity exportParams) {
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.anamnesis", null, locale)
                 + " "
@@ -555,9 +557,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             tc.getEGBlockLevelElts().add(document.getMainDocumentPart().createParagraphOfText(item));
         }
-
     }
-    */
+
 
     /**
      * Adds content according to exportParams
@@ -566,6 +567,68 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutSeizure(WordprocessingMLPackage document, PatientEntity patient,
                                  SeizureEntity seizure, Locale locale,
                                  ExportParamsEntity exportParams) {
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.seizures", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(seizure.getDate()));
+
+        List<String> content = new ArrayList<String>();
+
+        if (exportParams.isSeizureFrequency()) {
+            content.add(messageSource.getMessage("label.seizureFrequency",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(seizure.getSeizureFrequency()), locale));
+        }
+        if (exportParams.isSeizureSecondarilyGeneralizedSeizure() && seizure.isSecondarilyGeneralizedSeizure()) {
+            content.add(messageSource.getMessage("label.secondarilyGeneralizedSeizure", null,
+                    locale));
+        }
+        if (exportParams.isSeizureStatusEpilepticus() && seizure.isStatusEpilepticus()) {
+            content.add(messageSource.getMessage("label.stausEpilepticus", null, locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isSeizureComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(seizure.getComment()),
+                    locale));
+        }
+
+       /*
+        This loop goes through seizure details
+         */
+        for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Heading3", messageSource.getMessage("label.seizureDetail", null,
+                    locale));
+
+
+            List<String> detailContent = new ArrayList<String>();
+
+
+            if (exportParams.isSeizureDetailSSCClassification()) {
+                detailContent.add(messageSource.getMessage("label.sscClassification",
+                        null, locale) + delimiter + translateValue(String.valueOf(seizureDetail.getSscClassification()),
+                        locale));
+            }
+            if (exportParams.isSeizureDetailILAEClassification()) {
+                detailContent.add(messageSource.getMessage("label.ilaeClassification",
+                        null, locale) + delimiter + translateValue(String.valueOf(seizureDetail.getIlaeClassification()),
+                        locale));
+            }
+
+            printOutValues(document, detailContent);
+
+
+            if (exportParams.isSeizureDetailComment()) {
+                document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(seizureDetail.getComment()),
+                        locale));
+            }
+        }
+    }
+
+    private void printOutSeizureToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                        SeizureEntity seizure, Locale locale,
+                                        ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
 
@@ -674,6 +737,43 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + ": " + TimeConverter.getDate(pharmacotherapy.getDate()));
 
         if (exportParams.isPharmacotherapyAED()) {
+            content.add(messageSource.getMessage("label.aed",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(pharmacotherapy.getAed()), locale));
+        }
+        if (exportParams.isPharmacotherapyEffective()) {
+            content.add(messageSource.getMessage("label.efficiency",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(pharmacotherapy.getEfficiency()), locale));
+        }
+        if (exportParams.isPharmacotherapyDuringSurgery() && pharmacotherapy.isDuringSurgery()) {
+            content.add(messageSource.getMessage("label.duringSurgery", null,
+                    locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isPharmacotherapyComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(pharmacotherapy.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of pharmacotherapy should be printed out
+     */
+
+    private void printOutPharmacotherapyToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                PharmacotherapyEntity pharmacotherapy, Locale locale,
+                                                ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.pharmacotherapy", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(pharmacotherapy.getDate()));
+
+        if (exportParams.isPharmacotherapyAED()) {
             content.add(messageSource.getMessage("label.", null,
                     locale));
 
@@ -731,6 +831,42 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutNeurologicalFinding(WordprocessingMLPackage document, PatientEntity patient,
                                              NeurologicalFindingEntity neurologicalFinding, Locale locale,
                                              ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.neurologicalFinding", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(neurologicalFinding.getDate()));
+
+        if (exportParams.isNeurologicalFindingHemisphereDominance()) {
+            content.add(messageSource.getMessage("label.hemisphereDominance",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neurologicalFinding.getHemisphereDominance()), locale));
+        }
+        if (exportParams.isNeurologicalFindingAbnormalNeurologicalFinding() && neurologicalFinding.isAbnormalNeurologicalFinding()) {
+            content.add(messageSource.getMessage("label.abnormalNeurologicalFinding", null, locale));
+        }
+        if (exportParams.isNeurologicalFindingHemiparesis() && neurologicalFinding.isHemiparesis()) {
+            content.add(messageSource.getMessage("label.hemiparesis", null, locale));
+        }
+        if (exportParams.isNeurologicalFindingVisualFieldDefects() && neurologicalFinding.isVisualFieldDefects()) {
+            content.add(messageSource.getMessage("label.visualFieldDefect", null, locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isNeurologicalFindingComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(neurologicalFinding.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of neurological finding should be printed out
+     */
+    private void printOutNeurologicalFindingToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                    NeurologicalFindingEntity neurologicalFinding, Locale locale,
+                                                    ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.neurologicalFinding", null, locale)
                 + " "
@@ -798,6 +934,189 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutNeuropsychology(WordprocessingMLPackage document, PatientEntity patient,
                                          NeuropsychologyEntity neuropsychology, Locale locale,
                                          ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.neuropsychology", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(neuropsychology.getDate()));
+
+        if (exportParams.isNeuropsychologyIntellect()) {
+            content.add(messageSource.getMessage("label.intellect",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getIntellect()), locale));
+        }
+        if (exportParams.isNeuropsychologyNeurodevelopmentalExamination()) {
+            content.add(messageSource.getMessage("label.neurodevelopmentalExamination",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeurodevelopmentalExaminationAdaptability()) {
+            content.add(messageSource.getMessage("label.adaptability",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
+            content.add(messageSource.getMessage("label.speechExpressively",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale));
+        }
+        if (exportParams.isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
+            content.add(messageSource.getMessage("label.speechReceptively",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechReceptively()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills()) {
+            content.add(messageSource.getMessage("label.fineMotorSkills",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationFineMotorSkills()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills()) {
+            content.add(messageSource.getMessage("label.grossMotorSkills",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationGrossMotorSkills()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior()) {
+            content.add(messageSource.getMessage("label.socialBehavior",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSocialBehavior()), locale));
+        }
+        if (exportParams.isNeuropsychologyIntellectualPerformance()) {
+            content.add(messageSource.getMessage("label.intellectualPerformance",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getIntellectualPerformance()), locale));
+        }
+        if (exportParams.isNeuropsychologyIntellectualPerformanceVerbally()) {
+            content.add(messageSource.getMessage("label.intellectualPerformanceVerbally",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getIntellectualPerformanceVerbally()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
+            content.add(messageSource.getMessage("label.intellectualPerformanceNonverbalAbstraction",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()), locale));
+        }
+        if (exportParams
+                .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+            content.add(messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()), locale));
+        }
+        if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
+            content.add(messageSource.getMessage("label.neuropsychologicalProfile",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfile()), locale));
+        }
+        if (exportParams.isNeuropsychologyNeuropsychologicalProfileAttention()) {
+            content.add(messageSource.getMessage("label.attention",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileAttention()), locale));
+        }
+        if (exportParams.isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
+            content.add(messageSource.getMessage("label.cognitiveSpeed",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
+            content.add(messageSource.getMessage("label.executiveFunction",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileExecutiveFunction()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
+            content.add(messageSource.getMessage("label.speechExpressively",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
+            content.add(messageSource.getMessage("label.speechUnderstanding",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
+            content.add(messageSource.getMessage("label.memoryOperating",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
+            content.add(messageSource.getMessage("label.memoryVerbal",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {
+            content.add(messageSource.getMessage("label.memoryNonverbal",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryNonverbal()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMemoryLearning()) {
+            content.add(messageSource.getMessage("label.memoryLearning",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryLearning()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech()) {
+            content.add(messageSource.getMessage("label.perceptionSpeech",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpeech()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfilePerceptionVisual()) {
+            content.add(messageSource.getMessage("label.perceptionVisual",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionVisual()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial()) {
+            content.add(messageSource.getMessage("label.perceptionSpatial",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpatial()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity()) {
+            content.add(messageSource.getMessage("label.motorSkillsDexterity",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorSkillsDexterity()), locale));
+        }
+        if (exportParams
+                .isNeuropsychologyNeuropsychologicalProfileMotorCoordination()) {
+            content.add(messageSource.getMessage("label.motorCoordination",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorCoordination()), locale));
+        }
+        if (exportParams.isNeuropsychologyPresenceOfChanges()) {
+            content.add(messageSource.getMessage("label.presenceOfChanges",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getPresenceOfChanges()), locale));
+        }
+        if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
+            content.add(messageSource.getMessage("label.presenceOfChangesDetail",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychology.getPresenceOfChangesDetail()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isNeuropsychologyComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(neuropsychology.getComment()),
+                    locale));
+        }
+    }
+
+
+    private void printOutNeuropsychologyToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                NeuropsychologyEntity neuropsychology, Locale locale,
+                                                ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.neuropsychology", null, locale)
                 + " "
@@ -1067,6 +1386,45 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(neuropsychologyOld.getDate()));
 
+        if (exportParams.isNeuropsychologyOldNeuropsychologicalExamination() && neuropsychologyOld.isNeuropsychologicalExamination()) {
+            content.add(messageSource.getMessage("label.neuropsychologicalExamination", null, locale));
+        }
+        if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
+            content.add(messageSource.getMessage("label.intellect",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(neuropsychologyOld.getIntelligenceLevel()), locale));
+        }
+        if (exportParams.isNeuropsychologyOldSpecificLearning() && neuropsychologyOld.isSpecificLearning()) {
+            content.add(messageSource.getMessage("label.specificLearning", null, locale));
+        }
+        if (exportParams.isNeuropsychologyOldDevelopmentalLanguageDisorders() && neuropsychologyOld.isDevelopmentalLanguageDisorders()) {
+            content.add(messageSource.getMessage("label.developmentalLanguageDisorders", null, locale));
+        }
+        if (exportParams.isNeuropsychologyOldAdhdSyndrome() && neuropsychologyOld.isAdhdSyndrome()) {
+            content.add(messageSource.getMessage("label.adhdSyndrome", null, locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isNeuropsychologyOldComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(neuropsychologyOld.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of older version of neuropsychology should be printed out
+     */
+    private void printOutNeuropsychologyOldToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                   NeuropsychologyOldEntity neuropsychologyOld, Locale locale,
+                                                   ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.neuropsychologyOld", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(neuropsychologyOld.getDate()));
+
         if (exportParams.isNeuropsychologyOldNeuropsychologicalExamination()) {
             content.add(messageSource.getMessage("label.neuropsychologicalExamination", null, locale));
 
@@ -1135,6 +1493,69 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutDiagnosticTestEEG(WordprocessingMLPackage document, PatientEntity patient,
                                            DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
                                            ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(diagnosticTestScalpEEG.getDate()));
+
+        if (exportParams.isDiagnosticTestEEGDone()) {
+            content.add(messageSource.getMessage("label.eegDone",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getDone()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGBasicActivity()) {
+            content.add(messageSource.getMessage("label.basicEegActivity",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getBasicEegActivity()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGSlow()) {
+            content.add(messageSource.getMessage("label.eegSlow",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getEegSlow()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
+            content.add(messageSource.getMessage("label.invasiveEegInterictalSpikes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
+            content.add(messageSource.getMessage("label.localizationInvasiveEegInterictalSpikes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getLocalizationInterictalEegSpikes()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGStatusEpilepticus() && diagnosticTestScalpEEG.isEegStatusEpilepticus()) {
+            content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+        }
+        if (exportParams.isDiagnosticTestEEGSecondarySidedSynchrony() && diagnosticTestScalpEEG.isSecondarySidedSynchrony()) {
+            content.add(messageSource.getMessage("label.secondarySidedSynchrony", null, locale));
+        }
+        if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
+            content.add(messageSource.getMessage("label.ictalEegPatterns",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()), locale));
+        }
+        if (exportParams.isDiagnosticTestEEGDescriptionVideoEEG()) {
+            content.add(messageSource.getMessage("label.descriptionVideoEeg",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpEEG.getDescriptionVideoEeg()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isDiagnosticTestEEGComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of diagnostic test EEG should be printed out
+     */
+    private void printOutDiagnosticTestEEGToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                  DiagnosticTestScalpEegEntity diagnosticTestScalpEEG, Locale locale,
+                                                  ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale)
                 + " "
@@ -1237,6 +1658,121 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutDiagnosticTestMRI(WordprocessingMLPackage document, PatientEntity patient,
                                            DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
                                            ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestsMri", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(diagnosticTestScalpMRI.getDate()));
+
+        if (exportParams.isDiagnosticTestMRIDone()) {
+            content.add(messageSource.getMessage("label.mri_done",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDone()), locale));
+        }
+
+
+        if (exportParams.isDiagnosticTestMRIFinding()) {
+            content.add(messageSource.getMessage("label.mriFinding",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getMriFinding()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDescription()) {
+            content.add(messageSource.getMessage("label.descriptionMri",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getMriDescription()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIFdgPet()) {
+            content.add(messageSource.getMessage("label.fdgPet",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getFdgPet()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDescriptionPetHypometabolism()) {
+            content.add(messageSource.getMessage("label.descriptionPetHypometabolism",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDescriptionPetHypometabolism()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIInterictalSpect()) {
+            content.add(messageSource.getMessage("label.interictalSpect",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getInterictalSpect()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDescriptionSpectHypoperfuse()) {
+            content.add(messageSource.getMessage("label.descriptionSpectHypoperfuse",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHypoperfuse()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIIctalSpect()) {
+            content.add(messageSource.getMessage("label.ictalSPECT",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getIctalSpect()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDescriptionSpectHyperperfuse()) {
+            content.add(messageSource.getMessage("label.descriptionSpectHyperperfuse",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDescriptionSpectHyperperfuse()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRISiscom() && diagnosticTestScalpMRI.isSiscom()) {
+            content.add(messageSource.getMessage("label.siscom",
+                    null, locale));
+        }
+        if (exportParams.isDiagnosticTestMRIMrsProtocol()) {
+            content.add(messageSource.getMessage("label.mrsProtocol",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getMrsProtocol()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIMrsFinding()) {
+            content.add(messageSource.getMessage("label.mrsFinding",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getMrsFinding()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDescriptionMrsAbnormality()) {
+            content.add(messageSource.getMessage("label.descriptionMrsAbnormality",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDescriptionMrsAbnormality()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIFmri() && diagnosticTestScalpMRI.isFmri()) {
+            content.add(messageSource.getMessage("label.FMRI",
+                    null, locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
+            content.add(messageSource.getMessage("label.fmriDetails",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDetailsFmri()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDti() && diagnosticTestScalpMRI.isDti()) {
+            content.add(messageSource.getMessage("label.dti",
+                    null, locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDetailsDtiStudy()) {
+            content.add(messageSource.getMessage("label.dtiStudyDetails",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDetailsDtiStudy()), locale));
+        }
+        if (exportParams.isDiagnosticTestMRIWada() && diagnosticTestScalpMRI.isWada()) {
+            content.add(messageSource.getMessage("label.wada", null, locale));
+        }
+        if (exportParams.isDiagnosticTestMRIDetailsWada()) {
+            content.add(messageSource.getMessage("label.wadaDetails",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isDiagnosticTestMRIComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of diagnostic test MRI should be printed out
+     */
+    private void printOutDiagnosticTestMRIToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                  DiagnosticTestMriEntity diagnosticTestScalpMRI, Locale locale,
+                                                  ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.diagnosticTestsMri", null, locale)
@@ -1418,6 +1954,49 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + ": " + TimeConverter.getDate(invasiveTestECOG.getDate()));
 
         if (exportParams.isInvasiveTestECOGDone()) {
+            content.add(messageSource.getMessage("label.ecog_done",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestECOG.getDone()), locale));
+        }
+        if (exportParams.isInvasiveTestECOGEcogCover()) {
+            content.add(messageSource.getMessage("label.ecogCover",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestECOG.getEcogCover()), locale));
+        }
+        if (exportParams.isInvasiveTestECOGEcogPatterns()) {
+            content.add(messageSource.getMessage("label.ecogPatterns",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestECOG.getEcogPatterns()), locale));
+        }
+        if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
+            content.add(messageSource.getMessage("label.ecogAfterResection",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestECOG.getAfterResectionEcog()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isDiagnosticTestMRIComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(invasiveTestECOG.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test ECOG should be printed out
+     */
+    private void printOutInvasiveTestECOGToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                 InvasiveTestEcogEntity invasiveTestECOG, Locale locale,
+                                                 ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestECOG", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(invasiveTestECOG.getDate()));
+
+        if (exportParams.isInvasiveTestECOGDone()) {
             content.add(messageSource.getMessage("label.ecog_done", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestECOG.getDone()),
@@ -1478,6 +2057,73 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutInvasiveTestEEG(WordprocessingMLPackage document, PatientEntity patient,
                                          InvasiveTestEegEntity invasiveTestEEG, Locale locale,
                                          ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestIeeg", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(invasiveTestEEG.getDate()));
+
+        if (exportParams.isInvasiveTestEEGDone()) {
+            content.add(messageSource.getMessage("label.ieegDone",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getDone()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
+            content.add(messageSource.getMessage("label.intracranialElectrodes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getIntracranialElectrodes()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGLocalizationIntracranialElectrodes()) {
+            content.add(messageSource.getMessage("label.localizationIntracranialElectrodes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getLocalizationIntracranialElectrodes()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGInvasiveEEGSlow()) {
+            content.add(messageSource.getMessage("label.eegSlow",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getInvasiveEegSlow()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
+            content.add(messageSource.getMessage("label.interictalEegSpikes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()), locale));
+        }
+        if (exportParams
+                .isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes()) {
+            content.add(messageSource.getMessage("label.localizationInterictalEEGSpikes",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGStatusEpilepticus() && invasiveTestEEG.isInvasiveEegStatusEpilepticus()) {
+            content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+        }
+        if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
+            content.add(messageSource.getMessage("label.ictalEegPatterns",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()), locale));
+        }
+        if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
+            content.add(messageSource.getMessage("label.localizationIctalEegPattern",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestEEG.getLocalizationInvasiveIctalEegPatterns()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isInvasiveTestEEGComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(invasiveTestEEG.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test EEG should be printed out
+     */
+    private void printOutInvasiveTestEEGToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                InvasiveTestEegEntity invasiveTestEEG, Locale locale,
+                                                ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestIeeg", null, locale)
@@ -1590,6 +2236,37 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + ": " + TimeConverter.getDate(invasiveTestCorticalMapping.getDate()));
 
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
+            content.add(messageSource.getMessage("label.corticalMappingDone",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(invasiveTestCorticalMapping.getDone()), locale));
+        }
+        if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
+
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isInvasiveTestCorticalMappingComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(invasiveTestCorticalMapping.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of invasive test cortical mapping should be printed out
+     */
+    private void printOutInvasiveTestCorticalMappingToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                                            InvasiveTestCorticalMappingEntity invasiveTestCorticalMapping,
+                                                            Locale locale, ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.invasiveTestCorticalMapping", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(invasiveTestCorticalMapping.getDate()));
+
+        if (exportParams.isInvasiveTestCorticalMappingDone()) {
             content.add(messageSource.getMessage("label.corticalMappingDone", null, locale));
 
             content.add(translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
@@ -1636,6 +2313,74 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     private void printOutOperation(WordprocessingMLPackage document, PatientEntity patient,
                                    OperationEntity operation, Locale locale,
                                    ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.operation", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(operation.getDate()));
+
+        if (exportParams.isOperationDateOperation()) {
+            content.add(messageSource.getMessage("label.dateOfOperation", null, locale));
+
+            content.add(translateValue(String.valueOf(operation.getDateOperation()),
+                    locale));
+
+        }
+        if (exportParams.isOperationRangeOperation()) {
+            content.add(messageSource.getMessage("label.rangeOfOperation",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(operation.getRangeOperation()), locale));
+        }
+        if (exportParams.isOperationTypeOperation()) {
+            content.add(messageSource.getMessage("label.typeOfOperation",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(operation.getTypeOperation()), locale));
+        }
+        if (exportParams.isOperationLocalizationOperation()) {
+            content.add(messageSource.getMessage("label.localizationOfOperation",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(operation.getLocalizationOperation()), locale));
+        }
+        if (exportParams.isOperationMst() && operation.isMst()) {
+            content.add(messageSource.getMessage("label.mst", null, locale));
+
+        }
+        if (exportParams.isOperationColostomy() && operation.isColostomy()) {
+            content.add(messageSource.getMessage("label.calosotomy", null, locale));
+        }
+        if (exportParams.isOperationVNS() && operation.isVns()) {
+            content.add(messageSource.getMessage("label.vns", null, locale));
+        }
+        if (exportParams.isOperationVNsImplantationDate()) {
+            content.add(messageSource.getMessage("label.vnsImplantationDate",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(operation.getVnsImplantationDate()), locale));
+        }
+        if (exportParams.isOperationOperationDetails()) {
+            content.add(messageSource.getMessage("label.operationDetails",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(operation.getOperationDetails()), locale));
+        }
+        if (exportParams.isOperationCompleteResection()) {
+            content.add(messageSource.getMessage("label.completeResection", null, locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isOperationComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(operation.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of operation should be printed out
+     */
+    private void printOutOperationToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                          OperationEntity operation, Locale locale,
+                                          ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.operation", null, locale)
@@ -1753,6 +2498,38 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + ": " + TimeConverter.getDate(histology.getDate()));
 
         if (exportParams.isHistologyHistopathology()) {
+            content.add(messageSource.getMessage("label.histopathology",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(histology.getHistopathology()), locale));
+        }
+        if (exportParams.isHistologyFcdClassification()) {
+            content.add(messageSource.getMessage("label.fcdClassification",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(histology.getFcdClassification()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isHistologyComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(histology.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of histology should be printed out
+     */
+    private void printOutHistologyToTable(WordprocessingMLPackage document, PatientEntity patient,
+                                          HistologyEntity histology, Locale locale,
+                                          ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.histology", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(histology.getDate()));
+
+        if (exportParams.isHistologyHistopathology()) {
             content.add(messageSource.getMessage("label.histopathology", null, locale));
 
             content.add(translateValue(String.valueOf(histology.getHistopathology()),
@@ -1797,6 +2574,44 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
      * Checks what properties of complication should be printed out
      */
     private void printOutComplication(WordprocessingMLPackage document, PatientEntity patient,
+                                      ComplicationEntity complication, Locale locale,
+                                      ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.complication", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(complication.getDate()));
+
+
+        if (exportParams.isComplicationWithCompication()) {
+             content.add(messageSource.getMessage("label.withComplications",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(complication.getWithComplication()), locale));
+        }
+        if (exportParams.isComplicationComplicationType()) {
+            content.add(messageSource.getMessage("label.typeComplication",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(complication.getComplicationType()), locale));
+        }
+        if (exportParams.isComplicationComplication()) {
+                content.add(messageSource.getMessage("label.complication",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(complication.getComplication()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isComplicationComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(complication.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of complication should be printed out
+     */
+    private void printOutComplicationToTable(WordprocessingMLPackage document, PatientEntity patient,
                                       ComplicationEntity complication, Locale locale,
                                       ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
@@ -1857,6 +2672,59 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
      * Checks what properties of outcome should be printed out
      */
     private void printOutOutcome(WordprocessingMLPackage document, PatientEntity patient,
+                                 OutcomeEntity outcome, Locale locale,
+                                 ExportParamsEntity exportParams) {
+        List<String> content = new ArrayList<String>();
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", messageSource.getMessage("label.outcome", null, locale)
+                + " "
+                + messageSource.getMessage("label.fromDate", null, locale)
+                + ": " + TimeConverter.getDate(outcome.getDate()));
+
+        if (exportParams.isOutcomeSeizureOutcome()) {
+             content.add(messageSource.getMessage("label.seizures",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getSeizureOutcome()), locale));
+
+        }
+        if (exportParams.isOutcomeEEG()) {
+              content.add(messageSource.getMessage("label.eeg",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getEeg()), locale));
+        }
+        if (exportParams.isOutcomeAED()) {
+            content.add(messageSource.getMessage("label.aed",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getAed()), locale));
+        }
+        if (exportParams.isOutcomeMRI()) {
+            content.add(messageSource.getMessage("label.mri",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getMri()), locale));
+        }
+        if (exportParams.isOutcomeNeuropsychology()) {
+              content.add(messageSource.getMessage("label.neuropsychology",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getNeuropsychology()), locale));
+        }
+        if (exportParams.isOutcomeOperationId()) {
+             content.add(messageSource.getMessage("label.operationId",
+                    null, locale) + delimiter + translateValue(
+                    String.valueOf(outcome.getOperation()), locale));
+        }
+
+        printOutValues(document, content);
+
+        if (exportParams.isOutcomeComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(outcome.getComment()),
+                    locale));
+        }
+    }
+
+    /**
+     * Adds content according to exportParams
+     * Checks what properties of outcome should be printed out
+     */
+    private void printOutOutcomeToTable(WordprocessingMLPackage document, PatientEntity patient,
                                  OutcomeEntity outcome, Locale locale,
                                  ExportParamsEntity exportParams) {
         List<String> content = new ArrayList<String>();
