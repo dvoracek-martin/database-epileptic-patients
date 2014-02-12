@@ -63,10 +63,10 @@
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
-                                        <a class="pull-right"
+                                        <!-- <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                        </a>
+                                        </a> -->
                                     </th>
                                 </tr>
                                 </tbody>

@@ -70,11 +70,15 @@ public class NeurologicalFindingController {
         } else {
 
 
-            if(neurologicalFinding.getId()!=0){
-                int origId =neurologicalFinding.getId();
+            if (neurologicalFinding.getId() != 0) { //request came from edit
+                int origId = neurologicalFinding.getId();
                 neurologicalFinding.setPatientId(patientId);
+
+                //remake to be "hideAsEdited"
                 neurologicalFindingService.hide(origId);
-                neurologicalFinding.setId(0);
+
+
+                neurologicalFinding.setId(0); //reset ID to be saved as a new entity by hiberante
             }
 
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);

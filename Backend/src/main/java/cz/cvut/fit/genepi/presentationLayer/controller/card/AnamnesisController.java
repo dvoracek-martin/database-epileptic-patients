@@ -140,7 +140,7 @@ public class AnamnesisController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/hide", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/hide", method = RequestMethod.GET)
     public String anamnesisHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
@@ -148,7 +148,7 @@ public class AnamnesisController {
 
         anamnesisService.hide(anamnesisId);
         return "redirect:/patient/" + patientId + "/anamnesis/list";
-    }
+    }*/
 
     /**
      * Handles the GET request to unhide anamnesis.
@@ -159,7 +159,7 @@ public class AnamnesisController {
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/unhide", method = RequestMethod.GET)
+   /* @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/unhide", method = RequestMethod.GET)
     public String anamnesisUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("anamnesisId") Integer anamnesisId, Locale locale,
@@ -169,7 +169,7 @@ public class AnamnesisController {
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/hidden";
-    }
+    }*/
 
     // TODO: not used now, is not present in original App
     /*
