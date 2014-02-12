@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -139,10 +140,18 @@ public class PatientController {
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
-    public String patientOverviewGET(Locale locale, Model model,
-                                     @PathVariable("patientId") Integer patientId) {
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithAllLists(patientId));
-        // model.addAttribute("patient", patientService.getPatientByIdWithAllLists(patientID));
+    public String patientOverviewGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
+
+        if (patient.getAnamnesisList().size() == 0) {
+            model.addAttribute("displayAnamnesisCreate", true);
+        } else {
+            model.addAttribute("displayCreate", false);
+        }
+
+        model.addAttribute("patient", patient);
         return "patient/overviewView";
     }
 

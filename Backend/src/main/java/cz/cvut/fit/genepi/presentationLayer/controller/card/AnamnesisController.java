@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
@@ -57,9 +58,18 @@ public class AnamnesisController {
     public String anamnesisCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", new AnamnesisVO());
-        return "patient/anamnesis/formView";
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
+
+        model.addAttribute("patient", patient);
+        if (patient.getAnamnesisList().size() == 0) {
+            model.addAttribute("anamnesis", new AnamnesisVO());
+            return "patient/anamnesis/formView";
+        } else if (patient.getAnamnesisList().size() > 0) {
+            return "redirect:/patient/" + patientId + "/anamnesis/list";
+        } else {
+            return null; // exception
+        }
+
     }
 
     /**
@@ -186,7 +196,14 @@ public class AnamnesisController {
     public String anamnesisListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithAnamnesisList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
+        if (patient.getAnamnesisList().size() == 0) {
+            model.addAttribute("displayAnamnesisCreate", true);
+        } else {
+            model.addAttribute("displayCreate", false);
+        }
+
+        model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";
     }
 }

@@ -41,11 +41,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${displayAnamnesisCreate==true}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -517,7 +519,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
+                    <a data-toggle="collapse"
+                       href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
                         Zadano dne: ${invasiveTestCorticalMapping.date}
                     </a>
                 </th>
