@@ -21,10 +21,17 @@
         </h2>
 
     </div>
-    <div class="col-xs-6">
+    <div class="col-xs-3">
         <h3 class="pull-right">
             <a id="export" href="<c:url value="/patient/${patient.id}/export" />">
                 <spring:message code="label.exportPatient"/>
+            </a>
+        </h3>
+    </div>
+    <div class="col-xs-3">
+        <h3 class="pull-right">
+            <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
+                <spring:message code="label.verify"/>
             </a>
         </h3>
     </div>

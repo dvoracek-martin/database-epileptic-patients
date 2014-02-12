@@ -155,6 +155,32 @@ public class PatientController {
         return "patient/overviewView";
     }
 
+
+    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.GET)
+    public String patientVerifyGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        model.addAttribute("patient", patient);
+
+        return "patient/verifyView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
+    public String patientVerifyPOST(
+            @PathVariable("patientId") Integer patientId,
+            @RequestParam("verification") int verification, Locale locale, Model model) {
+
+        if (verification == 1) {
+            patientService.verifyPatient(patientId);
+        } else if (verification == 2) {
+           patientService.voidVerifyPatient(patientId);
+        } else {
+            //unexpected
+        }
+        return "redirect:/patient/list";
+    }
+
     /**
      * Patients list get.
      *

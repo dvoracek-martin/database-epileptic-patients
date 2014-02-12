@@ -288,4 +288,20 @@ public class PatientServiceImpl
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
         return patientVO;
     }
+
+    @Override
+    @Transactional
+    public void verifyPatient(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
+        //patient.setVerified(1);
+        patientDAO.save(patient);
+    }
+
+    @Override
+    @Transactional
+    public void voidVerifyPatient(int patientId) {
+        PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
+        //patient.setVerified(2);
+        patientDAO.save(patient);
+    }
 }
