@@ -719,209 +719,215 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
-        if (exportParams.isNeuropsychologyNeurodevelopmentalExamination()) {
-            content += messageSource.getMessage("label.neurodevelopmentalExamination", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExamination()),
-                    locale);
-            content += "\n";
+        if (neuropsychology.getIntellect() == 1) {
+            if (exportParams.isNeuropsychologyNeurodevelopmentalExamination()) {
+                content += messageSource.getMessage("label.neurodevelopmentalExamination", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExamination()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationAdaptability()) {
+                content += messageSource.getMessage("label.adaptability", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationAdaptability()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
+                content += messageSource.getMessage("label.speechExpressively", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
+                content += messageSource.getMessage("label.speechReceptively", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechReceptively()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills()) {
+                content += messageSource.getMessage("label.fineMotorSkills", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationFineMotorSkills()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills()) {
+                content += messageSource.getMessage("label.grossMotorSkills", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationGrossMotorSkills()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior()) {
+                content += messageSource.getMessage("label.socialBehavior", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSocialBehavior()),
+                        locale);
+                content += "\n";
+            }
         }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationAdaptability()) {
-            content += messageSource.getMessage("label.adaptability", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationAdaptability()),
-                    locale);
-            content += "\n";
+        if (neuropsychology.getIntellect() == 2) {
+            if (exportParams.isNeuropsychologyIntellectualPerformance()) {
+                content += messageSource.getMessage("label.intellectualPerformance", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformance()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams.isNeuropsychologyIntellectualPerformanceVerbally()) {
+                content += messageSource.getMessage("label.intellectualPerformanceVerbally", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceVerbally()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
+                content += messageSource.getMessage("label.intellectualPerformanceNonverbalAbstraction", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+                content += messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()),
+                        locale);
+                content += "\n";
+            }
         }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
-            content += messageSource.getMessage("label.speechExpressively", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
-            content += messageSource.getMessage("label.speechReceptively", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechReceptively()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills()) {
-            content += messageSource.getMessage("label.fineMotorSkills", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationFineMotorSkills()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills()) {
-            content += messageSource.getMessage("label.grossMotorSkills", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationGrossMotorSkills()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior()) {
-            content += messageSource.getMessage("label.socialBehavior", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSocialBehavior()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams.isNeuropsychologyIntellectualPerformance()) {
-            content += messageSource.getMessage("label.intellectualPerformance", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformance()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams.isNeuropsychologyIntellectualPerformanceVerbally()) {
-            content += messageSource.getMessage("label.intellectualPerformanceVerbally", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceVerbally()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
-            content += messageSource.getMessage("label.intellectualPerformanceNonverbalAbstraction", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
-            content += messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
-            content += messageSource.getMessage("label.neuropsychologicalProfile", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfile()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams.isNeuropsychologyNeuropsychologicalProfileAttention()) {
-            content += messageSource.getMessage("label.attention", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileAttention()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
-            content += messageSource.getMessage("label.cognitiveSpeed", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
-            content += messageSource.getMessage("label.executiveFunctionc" +
-                    "", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileExecutiveFunction()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
-            content += messageSource.getMessage("label.speechExpressively", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
-            content += messageSource.getMessage("label.speechUnderstanding", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
-            content += messageSource.getMessage("label.memoryOperating", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
-            content += messageSource.getMessage("label.memoryVerbal", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {
-            content += messageSource.getMessage("label.memoryNonverbal", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryNonverbal()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMemoryLearning()) {
-            content += messageSource.getMessage("label.memoryLearning", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryLearning()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech()) {
-            content += messageSource.getMessage("label.perceptionSpeech", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpeech()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfilePerceptionVisual()) {
-            content += messageSource.getMessage("label.perceptionVisual", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionVisual()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial()) {
-            content += messageSource.getMessage("label.perceptionSpatial", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpatial()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity()) {
-            content += messageSource.getMessage("label.motorSkillsDexterity", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorSkillsDexterity()),
-                    locale);
-            content += "\n";
-        }
-        if (exportParams
-                .isNeuropsychologyNeuropsychologicalProfileMotorCoordination()) {
-            content += messageSource.getMessage("label.motorCoordination", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorCoordination()),
-                    locale);
-            content += "\n";
+        if (neuropsychology.getNeuropsychologicalProfile() == 1) {
+            if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
+                content += messageSource.getMessage("label.neuropsychologicalProfile", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfile()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams.isNeuropsychologyNeuropsychologicalProfileAttention()) {
+                content += messageSource.getMessage("label.attention", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileAttention()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
+                content += messageSource.getMessage("label.cognitiveSpeed", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
+                content += messageSource.getMessage("label.executiveFunctionc" +
+                        "", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileExecutiveFunction()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
+                content += messageSource.getMessage("label.speechExpressively", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
+                content += messageSource.getMessage("label.speechUnderstanding", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
+                content += messageSource.getMessage("label.memoryOperating", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
+                content += messageSource.getMessage("label.memoryVerbal", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {
+                content += messageSource.getMessage("label.memoryNonverbal", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryNonverbal()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMemoryLearning()) {
+                content += messageSource.getMessage("label.memoryLearning", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryLearning()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech()) {
+                content += messageSource.getMessage("label.perceptionSpeech", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpeech()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfilePerceptionVisual()) {
+                content += messageSource.getMessage("label.perceptionVisual", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionVisual()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial()) {
+                content += messageSource.getMessage("label.perceptionSpatial", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpatial()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity()) {
+                content += messageSource.getMessage("label.motorSkillsDexterity", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorSkillsDexterity()),
+                        locale);
+                content += "\n";
+            }
+            if (exportParams
+                    .isNeuropsychologyNeuropsychologicalProfileMotorCoordination()) {
+                content += messageSource.getMessage("label.motorCoordination", null, locale);
+                content += " - ";
+                content += translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorCoordination()),
+                        locale);
+                content += "\n";
+            }
         }
         if (exportParams.isNeuropsychologyPresenceOfChanges()) {
             content += messageSource.getMessage("label.presenceOfChanges", null, locale);
@@ -930,13 +936,23 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
-        if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
-            content += messageSource.getMessage("label.presenceOfChangesDetail", null, locale);
+        if (neuropsychology.getPresenceOfChanges() == 0) {
+            if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
+                content += messageSource.getMessage("label.presenceOfChangesDetail", null, locale);
+                content += " - ";
+                content += translateComment(String.valueOf(neuropsychology.getPresenceOfChangesDetail()),
+                        locale);
+                content += "\n";
+            }
+        }
+        if (exportParams.isNeuropsychologyEmotionalStatus()) {
+            content += messageSource.getMessage("label.emotionalState", null, locale);
             content += " - ";
-            content += translateComment(String.valueOf(neuropsychology.getPresenceOfChangesDetail()),
+            content += translateComment(String.valueOf(neuropsychology.getEmotionalStatus()),
                     locale);
             content += "\n";
         }
+
         if (exportParams.isNeuropsychologyComment()) {
             content += (messageSource.getMessage("label.comment", null, locale));
             content += " - ";
@@ -1032,6 +1048,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
+        if (diagnosticTestScalpEEG.getDone()==2){
         if (exportParams.isDiagnosticTestEEGBasicActivity()) {
             content += messageSource.getMessage("label.basicEegActivity", null, locale);
             content += " - ";
@@ -1094,7 +1111,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateComment(String.valueOf(diagnosticTestScalpEEG.getComment()),
                     locale);
             content += "\n";
-        }
+        }}
         return content;
     }
 
@@ -1120,6 +1137,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
+        if (diagnosticTestScalpMRI.getDone() == 2) {
         if (exportParams.isDiagnosticTestMRIFinding()) {
             content += messageSource.getMessage("label.mriFinding", null, locale);
             content += " - ";
@@ -1252,7 +1270,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
                     locale);
             content += "\n";
-        }
+        }}
         return content;
     }
 
@@ -1278,6 +1296,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
+        if (invasiveTestECOG.getDone() == 2) {
         if (exportParams.isInvasiveTestECOGEcogCover()) {
             content += messageSource.getMessage("label.ecogCover", null, locale);
             content += " - ";
@@ -1305,7 +1324,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateComment(String.valueOf(invasiveTestECOG.getComment()),
                     locale);
             content += "\n";
-        }
+        }}
         return content;
     }
 
@@ -1330,7 +1349,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateValue(String.valueOf(invasiveTestEEG.getDone()),
                     locale);
             content += "\n";
-        }
+        }   if (invasiveTestEEG.getDone()==1){
         if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
             content += messageSource.getMessage("label.intracranialElectrodes", null, locale);
             content += " - ";
@@ -1394,7 +1413,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateComment(String.valueOf(invasiveTestEEG.getComment()),
                     locale);
             content += "\n";
-        }
+        }}
         return content;
     }
 
@@ -1419,7 +1438,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += translateValue(String.valueOf(invasiveTestCorticalMapping.getDone()),
                     locale);
             content += "\n";
-        }
+        }    if (invasiveTestCorticalMapping.getDone()==1){
         if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
             content += messageSource.getMessage("label.corticalMapping", null, locale);
             content += " - ";
@@ -1434,7 +1453,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     locale);
             content += "\n";
         }
-
+        }
         return content;
     }
 
@@ -1796,6 +1815,11 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += messageSource.getMessage("label.assignedDoctor", null, locale);
             content += " - ";
             content += translateComment(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale);
+            content += "\n";
+
+            content += messageSource.getMessage("label.dateOfExport", null, locale);
+            content += " - ";
+            content += translateComment(String.valueOf(TimeConverter.getDate(Calendar.getInstance().getTime())), locale);
             content += "\n";
         }
 
