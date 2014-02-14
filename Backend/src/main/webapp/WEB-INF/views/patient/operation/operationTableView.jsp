@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-operation-${operation.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse${operation.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -35,7 +35,7 @@
 
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.typeOfOperation"/>
+                <spring:message code="label.typeOperations"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.operationType.${operation.typeOperation}"/>
@@ -43,7 +43,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.rangeOfOperation"/>
+                <spring:message code="label.rangeOperations"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.operationRange.${operation.rangeOperation}"/>
@@ -51,7 +51,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.localizationOfOperation"/>
+                <spring:message code="label.localizationOperations"/>
             </th>
             <td class="col-xs-9">
                 ${operation.localizationOperation}
@@ -75,7 +75,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.vns"/>
+                <spring:message code="label.VNS"/>
             </th>
             <td class="col-xs-9">
                 <spring:message code="label.boolean.${operation.vns}"/>
@@ -83,7 +83,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.vnsImplantationDate"/>
+                <spring:message code="label.VNSImplantationDate"/>
             </th>
             <td class="col-xs-9">
                 ${operation.vnsImplantationDate}
