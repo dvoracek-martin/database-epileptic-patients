@@ -427,6 +427,7 @@ public class PatientController {
         exportParams.setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(true);
         exportParams.setNeuropsychologyPresenceOfChangesDetail(true);
         exportParams.setNeuropsychologyPatientId(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfile(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfileMotorCoordination(true);
