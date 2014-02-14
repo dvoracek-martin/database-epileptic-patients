@@ -367,6 +367,7 @@ public class PatientController {
     public String patientExportPOST(
             @ModelAttribute("exportParams") ExportParamsEntity exportParams,
             @RequestParam("patient") Integer[] patientID,
+            //@RequestParam("toTable") boolean toTable,
             @RequestParam("exportType") String exportType, Locale locale, boolean anonymize,
             Model model) {
         logger.setLogger(PatientController.class);
@@ -378,6 +379,7 @@ public class PatientController {
          * TODO
          * FOR TESTING PURPOSES ONLY ! DELETE AFTER TESTING
          */
+        boolean toTable=false;
 
         exportParams.setPatient(true);
         exportParams.setPatientBirthday(true);
@@ -414,6 +416,11 @@ public class PatientController {
         exportParams.setSeizureSeizuresWhileSleepLatent(true);
         exportParams.setSeizureSeizuresWhileSleepNonEpi(true);
 
+        exportParams.setPharmacotherapy(true);
+        exportParams.setPharmacotherapyDuringSurgery(true);
+        exportParams.setPharmacotherapyEffective(true);
+        exportParams.setPharmacotherapyComment(true);
+        exportParams.setPharmacotherapyAED(true);
 
         exportParams.setNeurologicalFinding(true);
         exportParams.setNeurologicalFindingAbnormalNeurologicalFinding(true);
@@ -455,6 +462,7 @@ public class PatientController {
         exportParams.setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(true);
         exportParams.setNeuropsychologyPresenceOfChangesDetail(true);
         exportParams.setNeuropsychologyPatientId(true);
+        exportParams.setNeuropsychologyNeuropsychologicalProfile(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(true);
         exportParams.setNeuropsychologyNeuropsychologicalProfileMotorCoordination(true);
@@ -546,7 +554,7 @@ public class PatientController {
             try {
                 String url = exportToPdfService.export(patientList,
                         userService.findUserByUsername(auth.getName()), locale,
-                        exportParams, shallAnonymize);
+                        exportParams, shallAnonymize,toTable);
                 return "redirect:/resources/downloads/" + url;
             } catch (FileNotFoundException e) {
                 logger.logError(
@@ -560,7 +568,7 @@ public class PatientController {
         } else if (exportType.equals("docx")) {
             String url = exportToDocxService.export(patientList,
                     userService.findUserByUsername(auth.getName()), locale,
-                    exportParams, shallAnonymize);
+                    exportParams, shallAnonymize, toTable);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("txt")) {
             String url = exportToTxtService.export(patientList,

@@ -18,5 +18,5 @@ public interface ExportToDocxService {
      * @param exportParams as ExportParamsEntity
      */
     public String export(List<PatientEntity> patientList, UserEntity user,
-                         Locale locale, ExportParamsEntity exportParams, boolean anonymize);
+                         Locale locale, ExportParamsEntity exportParams, boolean anonymize,boolean toTable);
 }

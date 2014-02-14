@@ -13,8 +13,8 @@ public class TimeConverter {
 
     public static String getCurrentAge(PatientEntity patient) {
         DateTime birth = new DateTime(patient.getBirthday());
-        DateTime epilepsy = new DateTime(Calendar.getInstance().getTime());
-        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
+        DateTime today = new DateTime(Calendar.getInstance().getTime());
+        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), today.withTimeAtStartOfDay());
 
         return Integer.toString(age.getYears());
     }
@@ -24,7 +24,6 @@ public class TimeConverter {
         if (patient.getAnamnesisList().size() < 1)
             return "NA";
         DateTime epilepsy = new DateTime(patient.getAnamnesisList().get(0).getBeginningEpilepsy());
-
         Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
 
         return Integer.toString(age.getYears());

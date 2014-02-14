@@ -135,11 +135,16 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
     @Override
     public int compareTo(AnamnesisEntity o) {
-        int comparison = this.date.compareTo(o.getDate());
-        if (comparison > 0) {
+        int dateComparison = this.date.compareTo(o.getDate());
+        int idComparison = this.id - o.getId();
+        if (dateComparison > 0) {
             return -1;
-        } else if (comparison == 0) {
-            return 0;
+        } else if (dateComparison == 0) {
+            if (idComparison < 0) {
+                return 1;
+            } else {
+                return -1;
+            }
         } else {
             return 1;
         }

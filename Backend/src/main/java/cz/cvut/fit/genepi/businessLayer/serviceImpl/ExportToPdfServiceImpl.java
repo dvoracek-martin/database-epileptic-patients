@@ -45,10 +45,10 @@ public class ExportToPdfServiceImpl implements ExportToPdfService {
      * @return
      */
     public String export(java.util.List<PatientEntity> patientList,
-                         UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize) {
+                         UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize,boolean toTable) {
         logger.setLogger(ExportToPdfServiceImpl.class);
 
-        String name = exportToDocxService.export(patientList, user, locale, exportParams, anonymize).replace("docx", "pdf");
+        String name = exportToDocxService.export(patientList, user, locale, exportParams, anonymize,toTable).replace("docx", "pdf");
 
         String downloadFolder = System.getProperty("user.home")
                 + System.getProperty("file.separator") + "Download_Links"

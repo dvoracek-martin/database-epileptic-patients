@@ -23,6 +23,6 @@ public interface ExportToPdfService {
      * @throws FileNotFoundException the file not found
      */
     public String export(List<PatientEntity> patientList, UserEntity user,
-                         Locale locale, ExportParamsEntity exportParams, boolean anonymize)
+                         Locale locale, ExportParamsEntity exportParams, boolean anonymize,boolean toTable)
             throws FileNotFoundException;
 }

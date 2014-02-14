@@ -255,11 +255,11 @@ public class AnamnesisControllerTest {
      * @Test public void list_PatientEntityNotFound() throws Exception {
 	 * when(patientServiceMock.findByID(PatientEntity.class, 1)).thenReturn(
 	 * null);
-	 * 
+	 *
 	 * mockMvc.perform(get("/patient/{patientID}/anamnesis/list", 1))
 	 * .andExpect(status().isNotFound()) .andExpect(view().name("error/404"))
 	 * .andExpect(forwardedUrl("/WEB-INF/jsp/error/404.jsp"));
-	 * 
+	 *
 	 * verify(patientServiceMock, times(1)).findByID(PatientEntity.class, 1);
 	 * verifyZeroInteractions(anamnesisServiceMock); }
 	 */
