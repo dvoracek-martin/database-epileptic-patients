@@ -883,7 +883,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(pharmacotherapy.getAed()), null, locale), locale), sheet, locale, styles, "table", p);
         }
         if (exportParams.isPharmacotherapyEffective()) {
-            addCells("label.efficiency", translateValue(String.valueOf(pharmacotherapy.getEfficiency()), locale), sheet, locale, styles, "table", p);
+            addCells("label.efficiency",translateValue(messageSource.getMessage("label.efficiency." +
+                    String.valueOf(pharmacotherapy.getEfficiency()), null, locale), locale), sheet, locale, styles, "table", p);
         }
         if (exportParams.isPharmacotherapyDuringSurgery()) {
             addCells("label.duringSurgery", translateValue(String.valueOf(pharmacotherapy.isDuringSurgery()), locale), sheet, locale, styles, "table", p);
@@ -965,118 +966,119 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationAdaptability()) {
-                addCells("label.adaptability", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationAdaptability()), locale), sheet, locale, styles, "cell", p);
+                addCells("label.adaptability", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
-                addCells("label.speechExpressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.speechExpressively", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {
-                addCells("label.speechReceptively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechReceptively()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.speechReceptively", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills()) {
-                addCells("label.fineMotorSkills", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationFineMotorSkills()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.fineMotorSkills",translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills()) {
-                addCells("label.grossMotorSkills", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationGrossMotorSkills()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.grossMotorSkills", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationSocialBehavior()) {
-                addCells("label.socialBehavior", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSocialBehavior()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.socialBehavior", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
         }
 
         if (neuropsychology.getIntellect() == 2) {
             if (exportParams.isNeuropsychologyIntellectualPerformance()) {
-                addCells("label.intellectualPerformance", translateValue(String.valueOf(neuropsychology.getIntellectualPerformance()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.intellectualPerformance",translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams.isNeuropsychologyIntellectualPerformanceVerbally()) {
-                addCells("label.intellectualPerformanceVerbally", translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceVerbally()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.intellectualPerformanceVerbally", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isNeuropsychologyIntellectualPerformanceNonverbalAbstraction()) {
-                addCells("label.comment", translateComment(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.intellectualPerformanceNonverbalAbstraction", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams
                     .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
-                addCells("label.intellectualPerformanceNonverbalDesignCapabilities", translateValue(String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.intellectualPerformanceNonverbalDesignCapabilities", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (exportParams.isNeuropsychologyNeuropsychologicalProfile()) {
-                addCells("label.neuropsychologicalProfile", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfile()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.neuropsychologicalProfile", translateValue(messageSource.getMessage("label.neuropsychologicalProfile." +
+                        String.valueOf(neuropsychology.getNeuropsychologicalProfile()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             if (neuropsychology.getNeuropsychologicalProfile() == 1) {
                 if (exportParams.isNeuropsychologyNeuropsychologicalProfileAttention()) {
-                    addCells("label.attention", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileAttention()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.attention",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileCognitiveSpeed()) {
-                    addCells("label.cognitiveSpeed", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileCognitiveSpeed()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.cognitiveSpeed", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
-                    addCells("label.executiveFunction", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileExecutiveFunction()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.executiveFunction",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileSpeechExpressively()) {
-                    addCells("label.speechExpressively", translateValue(String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.speechExpressively", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding()) {
-                    addCells("label.speechUnderstanding", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileSpeechUnderstanding()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.speechUnderstanding",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMemoryOperating()) {
-                    addCells("label.memoryOperating", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryOperating()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.memoryOperating", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMemoryVerbal()) {
-                    addCells("label.memoryVerbal", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryVerbal()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.memoryVerbal", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMemoryNonverbal()) {
-                    addCells("label.memoryNonverbal", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryNonverbal()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.memoryNonverbal",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMemoryLearning()) {
-                    addCells("label.memoryLearning", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMemoryLearning()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.memoryLearning",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfilePerceptionSpeech()) {
-                    addCells("label.perceptionSpeech", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpeech()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.perceptionSpeech",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfilePerceptionVisual()) {
-                    addCells("label.perceptionVisual", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionVisual()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.perceptionVisual",translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfilePerceptionSpatial()) {
-                    addCells("label.perceptionSpatial", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfilePerceptionSpatial()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.perceptionSpatial", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity()) {
-                    addCells("label.motorSkillsDexterity", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorSkillsDexterity()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.motorSkillsDexterity", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
                 if (exportParams
                         .isNeuropsychologyNeuropsychologicalProfileMotorCoordination()) {
-                    addCells("label.motorCoordination", translateValue(String.valueOf(neuropsychology.getNeuropsychologicalProfileMotorCoordination()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.motorCoordination", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             }
             if (exportParams.isNeuropsychologyPresenceOfChanges()) {
-                addCells("label.presenceOfChanges", translateValue(String.valueOf(neuropsychology.getPresenceOfChanges()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.presenceOfChanges",translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
 
             if (neuropsychology.getPresenceOfChanges() == 0) {
                 if (exportParams.isNeuropsychologyPresenceOfChangesDetail()) {
-                    addCells("label.presenceOfChangesDetail", translateValue(String.valueOf(neuropsychology.getPresenceOfChangesDetail()), locale), sheet, locale, styles, "cell", p);
-                }
+                    addCells("label.presenceOfChangesDetail", translateValue(messageSource.getMessage("label.deficit." +
+                            String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
             }
 
             if (exportParams.isNeuropsychologyEmotionalStatus()) {
-                addCells("label.emotionalState", translateValue(String.valueOf(neuropsychology.getEmotionalStatus()), locale), sheet, locale, styles, "cell", p);
-            }
+                addCells("label.emotionalState", translateValue(messageSource.getMessage("label.deficit." +
+                        String.valueOf(neuropsychology.getNeurodevelopmentalExamination()), null, locale), locale), sheet, locale, styles, "cell", p);        }
 
             if (exportParams.isNeuropsychologyComment()) {
                 addCells("label.comment", translateComment(String.valueOf(neuropsychology.getComment()), locale), sheet, locale, styles, "cell", p);
