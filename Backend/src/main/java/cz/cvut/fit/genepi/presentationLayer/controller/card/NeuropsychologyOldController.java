@@ -41,7 +41,6 @@ public class NeuropsychologyOldController {
      * Handles the GET request to hide neuropsychology.
      *
      * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -60,7 +59,6 @@ public class NeuropsychologyOldController {
      * Handles the GET request to unhide neuropsychology.
      *
      * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.

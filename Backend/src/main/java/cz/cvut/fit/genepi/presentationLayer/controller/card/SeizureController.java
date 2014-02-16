@@ -6,6 +6,8 @@ import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +61,6 @@ public class SeizureController {
      *
      * @param seizure   the seizure
      * @param result    the result
-     * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/seizure/save", method = RequestMethod.POST)
@@ -67,7 +68,7 @@ public class SeizureController {
             @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate()) || TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
             model.addAttribute("patient", patientService.getPatientByIdWithDoctor(patientId));
             return "patient/seizure/formView";
         } else {
@@ -91,7 +92,6 @@ public class SeizureController {
      * Handles the GET request to hide seizure.
      *
      * @param patientId   the id of a patient whom we are creating an seizure.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -110,7 +110,6 @@ public class SeizureController {
      * Handles the GET request to unhide seizure.
      *
      * @param patientId   the id of a patient whom we are creating an seizure.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.

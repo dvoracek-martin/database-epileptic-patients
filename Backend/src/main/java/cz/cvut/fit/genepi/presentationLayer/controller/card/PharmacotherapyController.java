@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -59,7 +60,7 @@ public class PharmacotherapyController {
             @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/pharmacotherapy/formView";
         } else {

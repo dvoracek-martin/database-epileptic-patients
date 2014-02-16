@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.util;
 
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.joda.time.Years;
 
 import java.text.DateFormat;
@@ -34,5 +35,29 @@ public class TimeConverter {
         String formatedDate = df.format(date);
         formatedDate = formatedDate.substring(0, 10);
         return formatedDate;
+    }
+
+    public static boolean compareDates (Date first, Date second){
+        boolean isFormer=true;
+
+        DateTime fistDate = new DateTime(first);
+        DateTime secondDate = new DateTime(second);
+        Days countOfTheDays = Days.daysBetween(fistDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
+
+        if (countOfTheDays.getDays()>=0)
+            isFormer=false;
+        return isFormer;
+    }
+
+    public static boolean compareDates (Date first, DateTime second){
+        boolean isFormer=true;
+
+        DateTime fistDate = new DateTime(first);
+        DateTime secondDate = new DateTime(second);
+        Days countOfTheDays = Days.daysBetween(fistDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
+
+        if (countOfTheDays.getDays()>=0)
+            isFormer=false;
+        return isFormer;
     }
 }

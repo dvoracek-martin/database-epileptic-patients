@@ -9,6 +9,8 @@ import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
+import cz.cvut.fit.genepi.util.TimeConverter;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -105,7 +108,7 @@ public class PatientController {
             @ModelAttribute("patient") @Valid PatientEntity patient,
             BindingResult result, @RequestParam("doctorId") Integer doctorId,
             Locale locale, Model model) {
-        if (result.hasErrors()) {
+        if (result.hasErrors() || TimeConverter.compareDates(patient.getBirthday(), DateTime.now())) {
             model.addAttribute("doctors", roleService.getAllDoctors());
             return "patient/createView";
         } else {

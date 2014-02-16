@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.DiagnosticTestMriVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -52,9 +53,7 @@ public class DiagnosticTestMriController {
     /**
      * Adds the diagnosticTestMRI.
      *
-     * @param diagnosticTestMRI the diagnosticTestMRI
      * @param result            the result
-     * @param patientID         the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/save", method = RequestMethod.POST)
@@ -63,7 +62,7 @@ public class DiagnosticTestMriController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestMri/formView";
         } else {

@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +55,6 @@ public class OperationController {
      *
      * @param operation the operation
      * @param result    the result
-     * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/operation/save", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class OperationController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/operation/formView";
         } else {

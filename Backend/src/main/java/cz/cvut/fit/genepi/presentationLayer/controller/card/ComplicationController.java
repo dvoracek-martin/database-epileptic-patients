@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.ComplicationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.ComplicationService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,7 +55,6 @@ public class ComplicationController {
      *
      * @param complication the complication
      * @param result       the result
-     * @param patientID    the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/complication/save", method = RequestMethod.POST)
@@ -63,7 +63,7 @@ public class ComplicationController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/complication/formView";
         } else {
@@ -87,7 +87,6 @@ public class ComplicationController {
      * Handles the GET request to hide complication.
      *
      * @param patientId   the id of a patient whom we are creating an complication.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
