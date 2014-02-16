@@ -1684,7 +1684,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             if (exportParams.isDiagnosticTestEEGInterictalEEGSpikes()) {
                 content.add(messageSource.getMessage("label.invasiveEegInterictalSpikes",
-                        null, locale) + delimiter + translateValue(messageSource.getMessage("label.done." +
+                        null, locale) + delimiter + translateValue(messageSource.getMessage("label.interictalEegSpikes." +
                         String.valueOf(diagnosticTestScalpEEG.getDone()), null, locale), locale));
             }
             if (exportParams.isDiagnosticTestEEGLocalizationInerictalEEGSpikes()) {
@@ -2671,7 +2671,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(messageSource.getMessage("label.histopathology",
                     null, locale) + delimiter + translateValue(messageSource.getMessage("label.histopathology." +
                     String.valueOf(histology.getHistopathology()), null, locale), locale));
-        }
+        }if (histology.getHistopathology()==2)
         if (exportParams.isHistologyFcdClassification()) {
             content.add(messageSource.getMessage("label.fcdClassification",
                     null, locale) + delimiter + translateValue(
