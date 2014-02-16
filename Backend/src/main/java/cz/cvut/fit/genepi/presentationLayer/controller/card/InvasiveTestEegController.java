@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEegService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,10 +54,7 @@ public class InvasiveTestEegController {
 
     /**
      * Adds the invasiveTestEEG.
-     *
-     * @param invasiveTestEEG the invasiveTestEEG
-     * @param result          the result
-     * @param patientID       the patient id
+          * @param result          the result
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/save", method = RequestMethod.POST)
@@ -65,7 +63,7 @@ public class InvasiveTestEegController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestEeg.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestEeg/formView";
         } else {

@@ -5,6 +5,7 @@ import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,7 +66,6 @@ public class OutcomeController {
      *
      * @param outcome   the outcome
      * @param result    the result
-     * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/outcome/save", method = RequestMethod.POST)
@@ -76,7 +76,7 @@ public class OutcomeController {
             @RequestParam("operationId") Integer operationId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             model.addAttribute("distance", distance);
             return "patient/outcome/formView";

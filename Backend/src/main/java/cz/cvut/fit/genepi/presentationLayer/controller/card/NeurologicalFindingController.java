@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -63,7 +64,7 @@ public class NeurologicalFindingController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/neurologicalFinding/formView";
         } else {

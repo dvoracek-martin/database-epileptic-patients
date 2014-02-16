@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestCorticalMappingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
+import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -101,7 +102,7 @@ public class InvasiveTestCorticalMappingController {
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model) {
 
-        if (result.hasErrors()) {
+        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestCorticalMapping.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestCorticalMapping/formView";
         } else {
