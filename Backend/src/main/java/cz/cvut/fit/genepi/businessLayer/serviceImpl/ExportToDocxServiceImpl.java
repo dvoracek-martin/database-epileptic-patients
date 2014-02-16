@@ -1888,7 +1888,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             if (exportParams.isDiagnosticTestMRIMrsFinding()) {
                 content.add(messageSource.getMessage("label.mrsFinding",
-                        null, locale) + delimiter +translateValue(messageSource.getMessage("label.resultType." +
+                        null, locale) + delimiter + translateValue(messageSource.getMessage("label.resultType." +
                         String.valueOf(diagnosticTestScalpMRI.getMriFinding()), null, locale), locale));
             }
             if (exportParams.isDiagnosticTestMRIDescriptionMrsAbnormality()) {
@@ -1924,12 +1924,12 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
 
             printOutValues(document, content);
-
-            if (exportParams.isDiagnosticTestMRIComment()) {
-                document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
-                        locale));
-            }
         }
+        if (exportParams.isDiagnosticTestMRIComment()) {
+            document.getMainDocumentPart().addStyledParagraphOfText("Normal", messageSource.getMessage("label.comment", null, locale) + delimiter + translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
+                    locale));
+        }
+
     }
 
     /**
@@ -1971,8 +1971,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             if (exportParams.isDiagnosticTestMRIFdgPet()) {
                 content.add(messageSource.getMessage("label.fdgPet", null, locale));
 
-                 content.add(translateValue(messageSource.getMessage("label.resultType." +
-                         String.valueOf(diagnosticTestScalpMRI.getFdgPet()), null, locale), locale));
+                content.add(translateValue(messageSource.getMessage("label.resultType." +
+                        String.valueOf(diagnosticTestScalpMRI.getFdgPet()), null, locale), locale));
             }
             if (exportParams.isDiagnosticTestMRIDescriptionPetHypometabolism()) {
                 content.add(messageSource.getMessage("label.descriptionPetHypometabolism", null, locale));
@@ -2071,14 +2071,15 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         locale));
 
             }
-            if (exportParams.isDiagnosticTestMRIComment()) {
-                content.add(messageSource.getMessage("label.comment", null, locale));
-
-                content.add(translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
-                        locale));
-
-            }
         }
+        if (exportParams.isDiagnosticTestMRIComment()) {
+            content.add(messageSource.getMessage("label.comment", null, locale));
+
+            content.add(translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()),
+                    locale));
+
+        }
+
         int writableWidthTwips = document.getDocumentModel().getSections().get(0).getPageDimensions().getWritableWidthTwips();
         Tbl tbl = TblFactory.createTable(content.size() / 2, 2, writableWidthTwips / 2);
         document.getMainDocumentPart().addObject(tbl);
@@ -2298,7 +2299,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestEEGDone()) {
             content.add(messageSource.getMessage("label.ieegDone", null, locale));
 
-            content.add( translateValue(messageSource.getMessage("label.done." +
+            content.add(translateValue(messageSource.getMessage("label.done." +
                     String.valueOf(invasiveTestEEG.getDone()), null, locale), locale));
 
         }
@@ -2306,7 +2307,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             if (exportParams.isInvasiveTestEEGIntracranialElectrodes()) {
                 content.add(messageSource.getMessage("label.intracranialElectrodes", null, locale));
 
-                content.add( translateValue(messageSource.getMessage("label.intracranialElectrodes." +
+                content.add(translateValue(messageSource.getMessage("label.intracranialElectrodes." +
                         String.valueOf(invasiveTestEEG.getIntracranialElectrodes()), null, locale), locale));
 
             }
@@ -2321,13 +2322,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 content.add(messageSource.getMessage("label.eegSlow", null, locale));
 
 
-                content.add( translateValue(messageSource.getMessage("label.eegSlow." +
+                content.add(translateValue(messageSource.getMessage("label.eegSlow." +
                         String.valueOf(invasiveTestEEG.getInvasiveEegSlow()), null, locale), locale));
             }
             if (exportParams.isInvasiveTestEEGInvasiveEEGInterictalSpikes()) {
                 content.add(messageSource.getMessage("label.interictalEegSpikes", null, locale));
 
-                content.add( translateValue(messageSource.getMessage("label.interictalEegSpikes." +
+                content.add(translateValue(messageSource.getMessage("label.interictalEegSpikes." +
                         String.valueOf(invasiveTestEEG.getInvasiveEegInterictalSpikes()), null, locale), locale));
             }
             if (exportParams
@@ -2348,7 +2349,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
                 content.add(messageSource.getMessage("label.ictalEegPatterns", null, locale));
 
-                content.add( translateValue(messageSource.getMessage("label.ictalEegPatterns." +
+                content.add(translateValue(messageSource.getMessage("label.ictalEegPatterns." +
                         String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()), null, locale), locale));
             }
             if (exportParams.isInvasiveTestEEGLocalizationIctalEEGPatterns()) {
@@ -2402,8 +2403,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isInvasiveTestCorticalMappingDone()) {
             content.add(messageSource.getMessage("label.corticalMappingDone",
                     null, locale) + delimiter +
-                 translateValue(messageSource.getMessage("label.done." +
-                         String.valueOf(invasiveTestCorticalMapping.getDone()), null, locale), locale));
+                    translateValue(messageSource.getMessage("label.done." +
+                            String.valueOf(invasiveTestCorticalMapping.getDone()), null, locale), locale));
         }
         if (invasiveTestCorticalMapping.getDone() == 1) {
             if (exportParams.isInvasiveTestCorticalMappingCorticalMapping()) {
@@ -2671,12 +2672,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(messageSource.getMessage("label.histopathology",
                     null, locale) + delimiter + translateValue(messageSource.getMessage("label.histopathology." +
                     String.valueOf(histology.getHistopathology()), null, locale), locale));
-        }if (histology.getHistopathology()==2)
-        if (exportParams.isHistologyFcdClassification()) {
-            content.add(messageSource.getMessage("label.fcdClassification",
-                    null, locale) + delimiter + translateValue(
-                    String.valueOf(histology.getFcdClassification()), locale));
         }
+        if (histology.getHistopathology() == 2)
+            if (exportParams.isHistologyFcdClassification()) {
+                content.add(messageSource.getMessage("label.fcdClassification",
+                        null, locale) + delimiter + translateValue(
+                        String.valueOf(histology.getFcdClassification()), locale));
+            }
 
         printOutValues(document, content);
 
@@ -2914,7 +2916,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isOutcomeAED()) {
             content.add(messageSource.getMessage("label.aed", null, locale));
 
-            content.add( translateValue(messageSource.getMessage("label.outcomeAed" +
+            content.add(translateValue(messageSource.getMessage("label.outcomeAed" +
                     String.valueOf(outcome.getAed()), null, locale), locale));
 
         }
@@ -2931,7 +2933,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(translateValue(messageSource.getMessage("label.done." +
                     String.valueOf(outcome.getNeuropsychology()), null, locale), locale));
         }
-         if (exportParams.isOutcomeComment()) {
+        if (exportParams.isOutcomeComment()) {
             content.add(messageSource.getMessage("label.comment", null, locale));
 
             content.add(translateComment(String.valueOf(outcome.getComment()),

@@ -1273,11 +1273,11 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             }
             if (exportParams.isDiagnosticTestMRIDetailsWada()) {
                 addCells("label.wadaDetails", translateValue(String.valueOf(diagnosticTestScalpMRI.getDetailsWada()), locale), sheet, locale, styles, "cell", p);
-            }
+            }    }
             if (exportParams.isDiagnosticTestMRIComment()) {
                 addCells("label.comment", translateComment(String.valueOf(diagnosticTestScalpMRI.getComment()), locale), sheet, locale, styles, "cell", p);
             }
-        }
+
     }
 
     private void printOutInvasiveTestECOG(PatientEntity patient,
