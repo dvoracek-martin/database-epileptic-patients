@@ -239,28 +239,50 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         query.setParameter("patientId", patientId);
         */
 
-
-       /* Query query = sessionFactory
+        Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList"
-                + " where p.id = :patientId");
+                        "FROM PatientEntity patient LEFT JOIN FETCH patient.doctor LEFT JOIN FETCH patient.neurologicalFindingList nfList"
+                                + " WHERE patient.id = :patientId AND ((nfList.hidden = false AND nfList.history = false) OR nfList = NULL)");
+        query.setParameter("patientId", patientId);
+        return this.findOne(query);
+
+     /*   Query query = sessionFactory
+                .getCurrentSession()
+                .createSQLQuery(
+                        "SELECT * FROM (select * from patient p WHERE p.id=:patientId) pa left join" +
+                                " (select * from neurological_finding nf2 where nf2.history=0 and nf2.hidden=0 ) nf on (pa.id=nf.patient_id)");
         query.setParameter("patientId", patientId);
         return this.findOne(query);*/
 
+        /*Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PatientEntity.class, "patient");
 
-        Criteria criteria = sessionFactory.getCurrentSession()
-                .createCriteria(PatientEntity.class, "patient");
         criteria.setFetchMode("patient.contact", FetchMode.JOIN);
 
         criteria.createAlias("patient.neurologicalFindingList", "nflist",
                 JoinType.LEFT_OUTER_JOIN);
 
         criteria.add(Restrictions.eq("id", patientId));
-        criteria.add(Restrictions.eq("nflist.hidden", false));
-        criteria.add(Restrictions.eq("nflist.history", false));
+        criteria.add(Restrictions.eqOrIsNull("nflist.hidden", false));
+        criteria.add(Restrictions.eqOrIsNull("nflist.history", false));
         PatientEntity patient =  (PatientEntity) criteria.uniqueResult();
-        return patient ;
+        return patient;*/
+
+        /*DetachedCriteria nf = DetachedCriteria.forClass(NeurologicalFindingEntity.class)
+                .add(Restrictions.eqOrIsNull("hidden", false))
+                .add(Restrictions.eqOrIsNull("history", false));
+
+        Criteria criteria = sessionFactory.getCurrentSession().createCriteria(PatientEntity.class, "patient");
+        criteria.setFetchMode("patient.contact", FetchMode.JOIN)
+                .add(Restrictions.eq("id", patientId))
+
+                .createCriteria("patient.neurologicalFindingList", "nflist", JoinType.LEFT_OUTER_JOIN)
+                .add(Subqueries.propertyIn("nflist.id",nf));
+              /*  .add(Restrictions.eqOrIsNull("nflist.hidden", false))
+                .add(Restrictions.eqOrIsNull("nflist.history", false));*/
+/*
+        PatientEntity patient = (PatientEntity) criteria.uniqueResult();
+        return patient;*/
     }
 
     /*
@@ -475,7 +497,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
 		/* Age when epilepsy began */
         if (!advancedSearch.getPatientAgeEpilepsy().equals("")) {
-			/* calculating years */
+            /* calculating years */
             LocalDate now = new LocalDate();
             LocalDate dateBeforeInput = now.minusYears(Integer
                     .parseInt(advancedSearch.getPatientAgeEpilepsy()));
@@ -512,7 +534,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             criteria.add(Restrictions.eq("doctor.id",
                     advancedSearch.getPatientDoctor()));
         }
-		/* Include parameters from section */
+        /* Include parameters from section */
         // ...
 
 		/* anamnesis specific section */
