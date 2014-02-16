@@ -262,7 +262,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                if (neurologicalFinding.getStatus() == 0)
+                if (!neurologicalFinding.isHidden())
                     content += this.printOutNeurologicalFinding(patient,
                             neurologicalFinding, locale, exportParams);
                 content += addDashLine();

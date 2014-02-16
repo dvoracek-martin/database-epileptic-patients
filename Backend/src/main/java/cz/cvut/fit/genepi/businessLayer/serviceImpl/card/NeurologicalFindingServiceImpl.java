@@ -13,16 +13,25 @@ public class NeurologicalFindingServiceImpl
 
     @Override
     @Transactional
-    public void hide(int neurologicalFindingId) {
+    public void saveAsHistory(int neurologicalFindingId) {
         NeurologicalFindingEntity entity = genericDAO.findByID(NeurologicalFindingEntity.class, neurologicalFindingId);
-        entity.setStatus(1);
+        entity.setHistory(true);
         genericDAO.save(entity);
     }
 
+    @Override
+    @Transactional
+    public void hide(int neurologicalFindingId) {
+        NeurologicalFindingEntity entity = genericDAO.findByID(NeurologicalFindingEntity.class, neurologicalFindingId);
+        entity.setHidden(true);
+        genericDAO.save(entity);
+    }
+
+    @Override
     @Transactional
     public void unhide(int neurologicalFindingId) {
         NeurologicalFindingEntity entity = genericDAO.findByID(NeurologicalFindingEntity.class, neurologicalFindingId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

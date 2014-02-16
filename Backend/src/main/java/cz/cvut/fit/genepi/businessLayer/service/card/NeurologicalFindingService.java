@@ -5,6 +5,8 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 
 public interface NeurologicalFindingService extends GenericCardService<NeurologicalFindingVO, NeurologicalFindingEntity> {
 
+    public void saveAsHistory(int neurologicalFindingId);
+
     public void hide(int neurologicalFindingId);
 
     public void unhide(int neurologicalFindingId);

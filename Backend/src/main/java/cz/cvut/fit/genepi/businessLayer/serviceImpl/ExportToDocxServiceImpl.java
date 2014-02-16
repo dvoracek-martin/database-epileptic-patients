@@ -193,7 +193,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                if (neurologicalFinding.getStatus() == 0)
+                if (!neurologicalFinding.isHidden())
                     this.printOutNeurologicalFinding(document, patient,
                             neurologicalFinding, locale, exportParams);
             }
@@ -371,7 +371,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                if (neurologicalFinding.getStatus() == 0)
+                if (!neurologicalFinding.isHidden())
                     this.printOutNeurologicalFindingToTable(document, patient,
                             neurologicalFinding, locale, exportParams);
             }

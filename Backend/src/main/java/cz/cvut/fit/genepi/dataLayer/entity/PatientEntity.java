@@ -97,8 +97,6 @@ public class PatientEntity {
     /* AnamnesisList */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
-    @Filters({
-            @Filter(name = "nonHidden", condition = "status != 1")})
     private Set<AnamnesisEntity> anamnesisList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
@@ -131,6 +129,8 @@ public class PatientEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
+    @Filters({
+            @Filter(name = "nonHidden", condition = "hidden == 0")})
     private Set<NeurologicalFindingEntity> neurologicalFindingList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")

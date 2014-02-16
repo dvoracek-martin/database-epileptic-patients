@@ -39,8 +39,11 @@ public class NeurologicalFindingEntity implements
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "hidden", nullable = false)
+    private boolean hidden;
+
+    @Column(name = "history", nullable = false)
+    private boolean history;
 
 	/* Other fields */
 
@@ -67,7 +70,7 @@ public class NeurologicalFindingEntity implements
      * The comment.
      */
 
-    @Column(name = "comment", length = 800, nullable = true)
+    @Column(name = "comment", nullable = true)
     private String comment;
 
     @Override
@@ -129,12 +132,20 @@ public class NeurologicalFindingEntity implements
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHidden() {
+        return hidden;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public boolean isHistory() {
+        return history;
+    }
+
+    public void setHistory(boolean history) {
+        this.history = history;
     }
 
     public Date getDate() {

@@ -29,7 +29,6 @@ public class NeurologicalFindingVO {
 
     private boolean visualFieldDefects;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

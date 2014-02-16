@@ -45,7 +45,6 @@ public class NeurologicalFindingController {
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         NeurologicalFindingVO vo = neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId);
-        model.addAttribute("neurologicalFindingOrig", vo);
         model.addAttribute("neurologicalFinding", vo);
         return "patient/neurologicalFinding/formView";
     }
@@ -69,16 +68,9 @@ public class NeurologicalFindingController {
             return "patient/neurologicalFinding/formView";
         } else {
 
-
             if (neurologicalFinding.getId() != 0) { //request came from edit
-                int origId = neurologicalFinding.getId();
-                neurologicalFinding.setPatientId(patientId);
-
-                //remake to be "hideAsEdited"
-                neurologicalFindingService.hide(origId);
-
-
-                neurologicalFinding.setId(0); //reset ID to be saved as a new entity by hiberante
+                neurologicalFindingService.saveAsHistory(neurologicalFinding.getId());
+                neurologicalFinding.setId(0); //reset ID to be saved as a new entity by hibernate
             }
 
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);

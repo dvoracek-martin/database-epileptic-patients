@@ -228,13 +228,39 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
      */
     @Override
     public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
-        Query query = sessionFactory
+
+      /*  Session session = sessionFactory
+                .getCurrentSession();
+        session.enableFilter("nonHidden");
+        Query query = session
+                .createQuery(
+                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.anamnesisList"
+                                + " where p.id = :patientId");
+        query.setParameter("patientId", patientId);
+        */
+
+
+       /* Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList"
-                                + " where p.id = :patientId ");
+                + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return this.findOne(query);*/
+
+
+        Criteria criteria = sessionFactory.getCurrentSession()
+                .createCriteria(PatientEntity.class, "patient");
+        criteria.setFetchMode("patient.contact", FetchMode.JOIN);
+
+        criteria.createAlias("patient.neurologicalFindingList", "nflist",
+                JoinType.LEFT_OUTER_JOIN);
+
+        criteria.add(Restrictions.eq("id", patientId));
+        criteria.add(Restrictions.eq("nflist.hidden", false));
+        criteria.add(Restrictions.eq("nflist.history", false));
+        PatientEntity patient =  (PatientEntity) criteria.uniqueResult();
+        return patient ;
     }
 
     /*

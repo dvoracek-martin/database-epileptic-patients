@@ -350,7 +350,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeurologicalFindingEntity neurologicalFinding : patient
                     .getNeurologicalFindingList()) {
-                if (neurologicalFinding.getStatus() == 0)
+                if (!neurologicalFinding.isHidden())
                     this.printOutNeurologicalFinding(patient,
                             neurologicalFinding, locale, exportParams, sheet, p);
             }
