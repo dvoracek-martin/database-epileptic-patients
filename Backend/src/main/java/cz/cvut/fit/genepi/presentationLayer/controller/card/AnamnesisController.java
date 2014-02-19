@@ -202,7 +202,7 @@ public class AnamnesisController {
         if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("displayAnamnesisCreate", true);
         } else {
-            model.addAttribute("displayCreate", false);
+            model.addAttribute("displayAnamnesisCreate", false);
         }
 
         model.addAttribute("patient", patient);

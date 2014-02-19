@@ -1,6 +1,7 @@
 package cz.cvut.fit.test;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
@@ -22,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.hamcrest.Matchers.isA;
@@ -68,7 +70,9 @@ public class AnamnesisControllerTest {
         PatientDisplayVO found = new PatientDisplayVO();
         found.setId(1);
 
-        when(patientServiceMock.getPatientDisplayByIdWithDoctor(1)).thenReturn(found);
+        found.setAnamnesisList(new ArrayList<AnamnesisDisplayVO>());
+
+        when(patientServiceMock.getPatientDisplayByIdWithAnamnesisList(1)).thenReturn(found);
 
         mockMvc.perform(get("/patient/{patientId}/anamnesis/create", 1))
                 .andExpect(status().isOk())
@@ -79,16 +83,48 @@ public class AnamnesisControllerTest {
                         model().attribute("anamnesis",
                                 isA(AnamnesisVO.class)));
 
-        verify(patientServiceMock, times(1)).getPatientDisplayByIdWithDoctor(1);
+        verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);
     }
 
     @Test
-    public void anamnesisCreatePOST_AnamnesisEntityValid() throws Exception {
+    public void anamnesisEditGET() throws Exception {
+        PatientDisplayVO patient = new PatientDisplayVO();
+        patient.setId(1);
+
+        AnamnesisVO anamnesis = new AnamnesisVO();
+        anamnesis.setId(1);
+
+        when(patientServiceMock.getPatientDisplayByIdWithDoctor(1)).thenReturn(patient);
+        when(anamnesisServiceMock.getById(AnamnesisVO.class, AnamnesisEntity.class, 1)).thenReturn(anamnesis);
+
+        mockMvc.perform(get("/patient/{patientId}/anamnesis/{anamnesisId}/edit", 1, 1))
+                .andExpect(status().isOk())
+                .andExpect(view().name("patient/anamnesis/formView"))
+                .andExpect(
+                        model().attribute("patient", isA(PatientDisplayVO.class)))
+                .andExpect(
+                        model().attribute("anamnesis",
+                                isA(AnamnesisVO.class)));
+
+        verify(patientServiceMock, times(1)).getPatientDisplayByIdWithDoctor(1);
+        verifyNoMoreInteractions(patientServiceMock);
+
+        verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class, AnamnesisEntity.class, 1);
+        verifyNoMoreInteractions(anamnesisServiceMock);
+    }
+
+    @Test
+    public void anamnesisSavePOST_AnamnesisEntityValid() throws Exception {
 
         AnamnesisVO anamnesis = new AnamnesisVO();
         anamnesis.setDate(new Date());
         anamnesis.setBeginningEpilepsy(new Date());
+
+        PatientEntity patient = new PatientEntity();
+        patient.setBirthday(new Date());
+
+        when(patientServiceMock.getPatientByIdWithDoctor(1)).thenReturn(patient);
 
         mockMvc.perform(
                 post("/patient/{patientId}/anamnesis/save", 1)
@@ -100,12 +136,12 @@ public class AnamnesisControllerTest {
                 .andExpect(status().isMovedTemporarily())
                 .andExpect(view().name("redirect:/patient/1/anamnesis/list"));
 
-        verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class,anamnesis);
+        verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class, anamnesis);
         verifyNoMoreInteractions(anamnesisServiceMock);
     }
 
     @Test
-    public void anamnesisCreatePOST_AnamnesisEntityNotValid() throws Exception {
+    public void anamnesisSavePOST_AnamnesisEntityNotValid() throws Exception {
         String nonCnsComorbidity = Util.createStringWithLength(900);
 
         LocalDate now = new LocalDate();
@@ -150,34 +186,8 @@ public class AnamnesisControllerTest {
 //		verifyNoMoreInteractions(anamnesisServiceMock);
 //	}
 
-    @Test
-    public void anamnesisEditGET() throws Exception {
-        PatientDisplayVO patient = new PatientDisplayVO();
-        patient.setId(1);
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
-        anamnesis.setId(1);
-
-        when(patientServiceMock.getPatientDisplayByIdWithDoctor(1)).thenReturn(patient);
-        when(anamnesisServiceMock.getById(AnamnesisVO.class,AnamnesisEntity.class, 1)).thenReturn(anamnesis);
-
-        mockMvc.perform(get("/patient/{patientId}/anamnesis/{anamnesisId}/edit", 1, 1))
-                .andExpect(status().isOk())
-                .andExpect(view().name("patient/anamnesis/formView"))
-                .andExpect(
-                        model().attribute("patient", isA(PatientDisplayVO.class)))
-                .andExpect(
-                        model().attribute("anamnesis",
-                                isA(AnamnesisVO.class)));
-
-        verify(patientServiceMock, times(1)).getPatientDisplayByIdWithDoctor(1);
-        verifyNoMoreInteractions(patientServiceMock);
-
-        verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class,AnamnesisEntity.class, 1);
-        verifyNoMoreInteractions(anamnesisServiceMock);
-    }
-
-    @Test
+   /* @Test
     public void anamnesisEditPOST_AnamnesisEntityValid() throws Exception {
 
         AnamnesisVO anamnesis = new AnamnesisVO();
@@ -196,9 +206,9 @@ public class AnamnesisControllerTest {
 
         verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class,anamnesis);
         verifyNoMoreInteractions(anamnesisServiceMock);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void anamnesisEditPOST_AnamnesisEntityNotValid() throws Exception {
         String nonCnsComorbidity = Util.createStringWithLength(900);
 
@@ -228,7 +238,7 @@ public class AnamnesisControllerTest {
                                 "nonCnsComorbidity"));
 
         verifyZeroInteractions(anamnesisServiceMock);
-    }
+    }*/
 
     // anamnesisHideGET
     // anamnesisUnhideGET
@@ -237,6 +247,7 @@ public class AnamnesisControllerTest {
     public void list_PatientEntityFound() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
         found.setId(1);
+        found.setAnamnesisList(new ArrayList<AnamnesisDisplayVO>());
 
         when(patientServiceMock.getPatientDisplayByIdWithAnamnesisList(1)).thenReturn(
                 found);
