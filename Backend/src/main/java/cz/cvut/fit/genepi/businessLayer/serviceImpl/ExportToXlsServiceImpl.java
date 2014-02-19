@@ -285,7 +285,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
 
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                if (anamnesis.getStatus() == 0)
+                //TODO: anamnesis has changed - ishistory???
+                if (!anamnesis.isHistory())
                     this.printOutAnamnesis(patient, anamnesis, locale,
                             exportParams, sheet, p);
             }
@@ -308,7 +309,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
 
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                if (seizure.getStatus() == 0)
+                if (!seizure.isHidden())
                     this.printOutSeizure(patient, seizure, locale,
                             exportParams, sheet, p);
             }
@@ -329,7 +330,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                if (pharmacotherapy.getStatus() == 0)
+                if (!pharmacotherapy.isHidden())
                     this.printOutPharmacotherapy(patient,
                             pharmacotherapy, locale, exportParams, sheet, p);
             }
@@ -371,7 +372,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                if (neuropsychology.getStatus() == 0)
+                if (!neuropsychology.isHidden())
                     this.printOutNeuropsychology(patient,
                             neuropsychology, locale, exportParams, sheet, p);
             }
@@ -393,7 +394,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                if (neuropsychologyOld.getStatus() == 0)
+                if (!neuropsychologyOld.isHidden())
                     this.printOutNeuropsychologyOld(patient,
                             neuropsychologyOld, locale, exportParams, sheet, p);
             }
@@ -415,7 +416,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                if (diagnosticTestEEG.getStatus() == 0)
+                if (!diagnosticTestEEG.isHidden())
                     this.printOutDiagnosticTestEEG(patient,
                             diagnosticTestEEG, locale, exportParams, sheet, p);
             }
@@ -437,7 +438,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                if (diagnosticTestMRI.getStatus() == 0)
+                if (!diagnosticTestMRI.isHidden())
                     this.printOutDiagnosticTestMRI(patient,
                             diagnosticTestMRI, locale, exportParams, sheet, p);
             }
@@ -459,7 +460,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                if (invasiveTestECOG.getStatus() == 0)
+                if (!invasiveTestECOG.isHidden())
                     this.printOutInvasiveTestECOG(patient,
                             invasiveTestECOG, locale, exportParams, sheet, p);
             }
@@ -481,7 +482,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                if (invasiveTestEEG.getStatus() == 0)
+                if (!invasiveTestEEG.isHidden())
                     this.printOutInvasiveTestEEG(patient,
                             invasiveTestEEG, locale, exportParams, sheet, p);
             }
@@ -503,7 +504,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                if (!invasiveTestCorticalMappingEntity.isHidden())
                     this.printOutInvasiveTestCorticalMapping(patient,
                             invasiveTestCorticalMappingEntity, locale,
                             exportParams, sheet, p);
@@ -525,7 +526,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OperationEntity operation : patient.getOperationList()) {
-                if (operation.getStatus() == 0)
+                if (!operation.isHidden())
                     this.printOutOperation(patient, operation, locale,
                             exportParams, sheet, p);
             }
@@ -545,7 +546,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (HistologyEntity histology : patient.getHistologyList()) {
-                if (histology.getStatus() == 0)
+                if (!histology.isHidden())
                     this.printOutHistology(patient, histology, locale,
                             exportParams, sheet, p);
             }
@@ -566,7 +567,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setCellcount(p.getCellcount() + 2);
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                if (complication.getStatus() == 0)
+                if (!complication.isHidden())
                     this.printOutComplication(patient, complication,
                             locale, exportParams, sheet, p);
             }
@@ -586,9 +587,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                if (outcome.getStatus() == 0)
-                    this.printOutOutcome(patient, outcome, locale,
-                            exportParams, sheet, p);
+                //TODO: outcome cannot be hidden
+              /*  if (!outcome.isHidden())
+                  this.printOutOutcome(patient, outcome, locale,
+                            exportParams, sheet, p);*/
             }
         }
 

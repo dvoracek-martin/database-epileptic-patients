@@ -233,7 +233,8 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isAnamnesis()) {
             content += addStarLine();
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                if (anamnesis.getStatus() == 0)
+                //TODO: anamnesis has changed - ishistory???
+                if (!anamnesis.isHistory())
                     content += this.printOutAnamnesis(patient, anamnesis, locale,
                             exportParams);
                 content += addDashLine();
@@ -242,7 +243,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isSeizure()) {
             content += addStarLine();
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                if (seizure.getStatus() == 0)
+                if (!seizure.isHidden())
                     content += this.printOutSeizure(patient, seizure, locale,
                             exportParams);
                 content += addDashLine();
@@ -252,7 +253,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                if (pharmacotherapy.getStatus() == 0)
+                if (!pharmacotherapy.isHidden())
                     content += this.printOutPharmacotherapy(patient,
                             pharmacotherapy, locale, exportParams);
                 content += addDashLine();
@@ -272,7 +273,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                if (neuropsychology.getStatus() == 0)
+                if (!neuropsychology.isHidden())
                     content += this.printOutNeuropsychology(patient,
                             neuropsychology, locale, exportParams);
                 content += addDashLine();
@@ -283,7 +284,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                if (neuropsychologyOld.getStatus() == 0)
+                if (!neuropsychologyOld.isHidden())
                     content += this.printOutNeuropsychologyOld(patient,
                             neuropsychologyOld, locale, exportParams);
                 content += addDashLine();
@@ -294,7 +295,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                if (diagnosticTestEEG.getStatus() == 0)
+                if (!diagnosticTestEEG.isHidden())
                     content += this.printOutDiagnosticTestEEG(patient,
                             diagnosticTestEEG, locale, exportParams);
                 content += addDashLine();
@@ -305,7 +306,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                if (diagnosticTestMRI.getStatus() == 0)
+                if (!diagnosticTestMRI.isHidden())
                     content += this.printOutDiagnosticTestMRI(patient,
                             diagnosticTestMRI, locale, exportParams);
                 content += addDashLine();
@@ -316,7 +317,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                if (invasiveTestECOG.getStatus() == 0)
+                if (!invasiveTestECOG.isHidden())
                     content += this.printOutInvasiveTestECOG(patient,
                             invasiveTestECOG, locale, exportParams);
                 content += addDashLine();
@@ -327,7 +328,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                if (invasiveTestEEG.getStatus() == 0)
+                if (!invasiveTestEEG.isHidden())
                     content += this.printOutInvasiveTestEEG(patient,
                             invasiveTestEEG, locale, exportParams);
                 content += addDashLine();
@@ -338,7 +339,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += addStarLine();
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                if (!invasiveTestCorticalMappingEntity.isHidden())
                     content += this
                             .printOutInvasiveTestCorticalMapping(patient,
                                     invasiveTestCorticalMappingEntity, locale,
@@ -349,7 +350,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         if (exportParams.isOperation()) {
             for (OperationEntity operation : patient.getOperationList()) {
-                if (operation.getStatus() == 0)
+                if (!operation.isHidden())
                     content += this.printOutOperation(patient, operation, locale,
                             exportParams);
                 content += addDashLine();
@@ -357,7 +358,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         }
         if (exportParams.isHistology()) {
             for (HistologyEntity histology : patient.getHistologyList()) {
-                if (histology.getStatus() == 0)
+                if (!histology.isHidden())
                     content += this.printOutHistology(patient, histology, locale,
                             exportParams);
                 content += addDashLine();
@@ -366,7 +367,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isComplication()) {
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                if (complication.getStatus() == 0)
+                if (!complication.isHidden())
                     content += this.printOutComplication(patient, complication,
                             locale, exportParams);
                 content += addDashLine();
@@ -374,9 +375,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         }
         if (exportParams.isOutcome()) {
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                if (outcome.getStatus() == 0)
+                //TODO: outcome cannot be hidden
+               /* if (!outcome.isHidden())
                     content += this.printOutOutcome(patient, outcome, locale,
-                            exportParams);
+                            exportParams);*/
                 content += addDashLine();
             }
         }

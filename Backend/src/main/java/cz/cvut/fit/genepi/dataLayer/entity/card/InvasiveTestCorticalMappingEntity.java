@@ -39,8 +39,11 @@ public class InvasiveTestCorticalMappingEntity implements
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "history", nullable = false)
+    private boolean history;
+
+    @Column(name = "hidden", nullable = false)
+    private boolean hidden;
 
 	/* Other fields */
 
@@ -121,12 +124,12 @@ public class InvasiveTestCorticalMappingEntity implements
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHidden() {
+        return hidden;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHidden(boolean status) {
+        this.hidden = status;
     }
 
     public Date getDate() {

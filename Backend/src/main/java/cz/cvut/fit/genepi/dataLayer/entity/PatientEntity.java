@@ -27,8 +27,9 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "patient")
-@FilterDefs({@FilterDef(name = "nonHidden"),
-})
+/*@FilterDefs({@FilterDef(name = "neurologicalFindingListNoHidden"),
+        @FilterDef(name = "neurologicalFindingListNoHistory")
+})*/
 public class PatientEntity {
 
     /**
@@ -129,8 +130,9 @@ public class PatientEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
-    @Filters({
-            @Filter(name = "nonHidden", condition = "history = 0")})
+   /* @Filters({
+            @Filter(name = "neurologicalFindingListNoHistory", condition = "history = 0"),
+            @Filter(name = "neurologicalFindingListNoHidden", condition = "hidden = 0")})*/
     private Set<NeurologicalFindingEntity> neurologicalFindingList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")

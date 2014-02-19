@@ -40,8 +40,8 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "history", nullable = false)
+    private boolean history;
 
 	/* Other fields */
 
@@ -141,12 +141,12 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHistory() {
+        return history;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHistory(boolean history) {
+        this.history = history;
     }
 
     public Date getDate() {

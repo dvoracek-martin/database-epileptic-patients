@@ -15,14 +15,14 @@ public class InvasiveTestEcogServiceImpl
     @Transactional
     public void hide(int invasiveTestEcogId) {
         InvasiveTestEcogEntity entity = genericDAO.findByID(InvasiveTestEcogEntity.class, invasiveTestEcogId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int invasiveTestEcogId) {
         InvasiveTestEcogEntity entity = genericDAO.findByID(InvasiveTestEcogEntity.class, invasiveTestEcogId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

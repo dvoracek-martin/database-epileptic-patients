@@ -15,14 +15,14 @@ public class HistologyServiceImpl
     @Transactional
     public void hide(int histologyId) {
         HistologyEntity entity = genericDAO.findByID(HistologyEntity.class, histologyId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int histologyId) {
         HistologyEntity entity = genericDAO.findByID(HistologyEntity.class, histologyId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

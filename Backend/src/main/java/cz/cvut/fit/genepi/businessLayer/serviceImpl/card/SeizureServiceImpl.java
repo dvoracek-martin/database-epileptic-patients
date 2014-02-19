@@ -15,7 +15,7 @@ public class SeizureServiceImpl
     @Transactional
     public void hide(int seizureId) {
         SeizureEntity entity = genericDAO.findByID(SeizureEntity.class, seizureId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
@@ -23,7 +23,7 @@ public class SeizureServiceImpl
     @Transactional
     public void unhide(int seizureId) {
         SeizureEntity entity = genericDAO.findByID(SeizureEntity.class, seizureId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

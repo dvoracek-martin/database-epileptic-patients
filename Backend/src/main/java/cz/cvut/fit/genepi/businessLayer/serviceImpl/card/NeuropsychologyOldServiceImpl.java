@@ -26,14 +26,14 @@ public class NeuropsychologyOldServiceImpl implements NeuropsychologyOldService 
     @Transactional
     public void hide(int neuropsychologyOldId) {
         NeuropsychologyOldEntity entity = genericDAO.findByID(NeuropsychologyOldEntity.class, neuropsychologyOldId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int neuropsychologyOldId) {
         NeuropsychologyOldEntity entity = genericDAO.findByID(NeuropsychologyOldEntity.class, neuropsychologyOldId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

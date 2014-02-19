@@ -14,8 +14,6 @@ import java.util.Date;
 @Table(name = "anamnesis")
 public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
-	/* Autofilled fields */
-
     /**
      * The id.
      */
@@ -44,8 +42,8 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "history", nullable = false)
+    private boolean history;
 
 	/* Other fields */
 
@@ -124,13 +122,13 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
     /**
      * The non cns comorbidity.
      */
-    @Column(name = "non_cns_comorbidity", length = 800)
+    @Column(name = "non_cns_comorbidity")
     private String nonCnsComorbidity;
 
     /**
      * The comment.
      */
-    @Column(name = "comment", length = 800)
+    @Column(name = "comment")
     private String comment;
 
     @Override
@@ -184,7 +182,6 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
         this.patient = patient;
     }
 
-
     public int getPatientId() {
         return patientId;
     }
@@ -193,12 +190,12 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHistory() {
+        return history;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHistory(boolean history) {
+        this.history = history;
     }
 
     public Date getDate() {

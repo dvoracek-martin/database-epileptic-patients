@@ -15,14 +15,14 @@ public class ComplicationServiceImpl
     @Transactional
     public void hide(int complicationId) {
         ComplicationEntity entity = genericDAO.findByID(ComplicationEntity.class, complicationId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int complicationId) {
         ComplicationEntity entity = genericDAO.findByID(ComplicationEntity.class, complicationId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

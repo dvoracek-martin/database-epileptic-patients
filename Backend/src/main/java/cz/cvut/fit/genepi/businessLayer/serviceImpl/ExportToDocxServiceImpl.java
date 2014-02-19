@@ -160,7 +160,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.anamnesis", null,
                     locale));
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                if (anamnesis.getStatus() == 0)
+                //TODO: anamnesis has changed - ishistory???
+                if (!anamnesis.isHistory())
+
                     this.printOutAnamnesis(document, patient, anamnesis, locale,
                             exportParams);
             }
@@ -171,7 +173,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                if (seizure.getStatus() == 0)
+                if (!seizure.isHidden())
                     this.printOutSeizure(document, patient, seizure, locale,
                             exportParams);
             }
@@ -182,7 +184,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                if (pharmacotherapy.getStatus() == 0)
+                if (!pharmacotherapy.isHidden())
                     this.printOutPharmacotherapy(document, patient,
                             pharmacotherapy, locale, exportParams);
             }
@@ -204,7 +206,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                if (neuropsychology.getStatus() == 0)
+                if (!neuropsychology.isHidden())
                     this.printOutNeuropsychology(document, patient,
                             neuropsychology, locale, exportParams);
             }
@@ -216,7 +218,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                if (neuropsychologyOld.getStatus() == 0)
+                if (!neuropsychologyOld.isHidden())
                     this.printOutNeuropsychologyOld(document, patient,
                             neuropsychologyOld, locale, exportParams);
             }
@@ -227,7 +229,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                if (diagnosticTestEEG.getStatus() == 0)
+                if (!diagnosticTestEEG.isHidden())
                     this.printOutDiagnosticTestEEG(document, patient,
                             diagnosticTestEEG, locale, exportParams);
             }
@@ -238,7 +240,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                if (diagnosticTestMRI.getStatus() == 0)
+                if (!diagnosticTestMRI.isHidden())
                     this.printOutDiagnosticTestMRI(document, patient,
                             diagnosticTestMRI, locale, exportParams);
             }
@@ -250,7 +252,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                if (invasiveTestECOG.getStatus() == 0)
+                if (!invasiveTestECOG.isHidden())
                     this.printOutInvasiveTestECOG(document, patient,
                             invasiveTestECOG, locale, exportParams);
             }
@@ -262,7 +264,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                if (invasiveTestEEG.getStatus() == 0)
+                if (!invasiveTestEEG.isHidden())
                     this.printOutInvasiveTestEEG(document, patient,
                             invasiveTestEEG, locale, exportParams);
             }
@@ -274,7 +276,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                if (!invasiveTestCorticalMappingEntity.isHidden())
                     printOutInvasiveTestCorticalMapping(document, patient,
                             invasiveTestCorticalMappingEntity, locale,
                             exportParams);
@@ -285,7 +287,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.operation", null,
                     locale));
             for (OperationEntity operation : patient.getOperationList()) {
-                if (operation.getStatus() == 0)
+                if (!operation.isHidden())
                     this.printOutOperation(document, patient, operation, locale,
                             exportParams);
             }
@@ -295,7 +297,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (HistologyEntity histology : patient.getHistologyList()) {
-                if (histology.getStatus() == 0)
+                if (!histology.isHidden())
                     this.printOutHistology(document, patient, histology, locale,
                             exportParams);
             }
@@ -306,7 +308,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                if (complication.getStatus() == 0)
+                if (!complication.isHidden())
                     this.printOutComplication(document, patient, complication,
                             locale, exportParams);
             }
@@ -316,9 +318,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                if (outcome.getStatus() == 0)
+                //TODO: outcome cannot be hidden
+                /*if (!outcome.isHidden())
                     this.printOutOutcome(document, patient, outcome, locale,
-                            exportParams);
+                            exportParams);*/
             }
         }
     }
@@ -338,7 +341,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.anamnesis", null,
                     locale));
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
-                if (anamnesis.getStatus() == 0)
+                //TODO: anamnesis has changed - ishistory???
+                if (!anamnesis.isHistory())
                     this.printOutAnamnesisToTable(document, patient, anamnesis, locale,
                             exportParams);
             }
@@ -349,7 +353,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (SeizureEntity seizure : patient.getSeizureList()) {
-                if (seizure.getStatus() == 0)
+                if (!seizure.isHidden())
                     this.printOutSeizureToTable(document, patient, seizure, locale,
                             exportParams);
             }
@@ -360,7 +364,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (PharmacotherapyEntity pharmacotherapy : patient
                     .getPharmacotherapyList()) {
-                if (pharmacotherapy.getStatus() == 0)
+                if (!pharmacotherapy.isHidden())
                     this.printOutPharmacotherapyToTable(document, patient,
                             pharmacotherapy, locale, exportParams);
             }
@@ -382,7 +386,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeuropsychologyEntity neuropsychology : patient
                     .getNeuropsychologyList()) {
-                if (neuropsychology.getStatus() == 0)
+                if (!neuropsychology.isHidden())
                     this.printOutNeuropsychologyToTable(document, patient,
                             neuropsychology, locale, exportParams);
             }
@@ -394,7 +398,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (NeuropsychologyOldEntity neuropsychologyOld : patient
                     .getNeuropsychologyOldList()) {
-                if (neuropsychologyOld.getStatus() == 0)
+                if (!neuropsychologyOld.isHidden())
                     this.printOutNeuropsychologyOldToTable(document, patient,
                             neuropsychologyOld, locale, exportParams);
             }
@@ -405,7 +409,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
             for (DiagnosticTestScalpEegEntity diagnosticTestEEG : patient
                     .getDiagnosticTestScalpEegList()) {
-                if (diagnosticTestEEG.getStatus() == 0)
+                if (!diagnosticTestEEG.isHidden())
                     this.printOutDiagnosticTestEEGToTable(document, patient,
                             diagnosticTestEEG, locale, exportParams);
             }
@@ -416,7 +420,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
             for (DiagnosticTestMriEntity diagnosticTestMRI : patient
                     .getDiagnosticTestMRIList()) {
-                if (diagnosticTestMRI.getStatus() == 0)
+                if (!diagnosticTestMRI.isHidden())
                     this.printOutDiagnosticTestMRIToTable(document, patient,
                             diagnosticTestMRI, locale, exportParams);
             }
@@ -428,7 +432,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestEcogEntity invasiveTestECOG : patient
                     .getInvasiveTestECOGList()) {
-                if (invasiveTestECOG.getStatus() == 0)
+                if (!invasiveTestECOG.isHidden())
                     this.printOutInvasiveTestECOGToTable(document, patient,
                             invasiveTestECOG, locale, exportParams);
             }
@@ -440,7 +444,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestEegEntity invasiveTestEEG : patient
                     .getInvasiveTestEEGList()) {
-                if (invasiveTestEEG.getStatus() == 0)
+                if (!invasiveTestEEG.isHidden())
                     this.printOutInvasiveTestEEGToTable(document, patient,
                             invasiveTestEEG, locale, exportParams);
             }
@@ -452,7 +456,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (InvasiveTestCorticalMappingEntity invasiveTestCorticalMappingEntity : patient
                     .getInvasiveTestCorticalMappingList()) {
-                if (invasiveTestCorticalMappingEntity.getStatus() == 0)
+                if (!invasiveTestCorticalMappingEntity.isHidden())
                     printOutInvasiveTestCorticalMappingToTable(document, patient,
                             invasiveTestCorticalMappingEntity, locale,
                             exportParams);
@@ -463,7 +467,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             document.getMainDocumentPart().addStyledParagraphOfText("Heading1", messageSource.getMessage("label.operation", null,
                     locale));
             for (OperationEntity operation : patient.getOperationList()) {
-                if (operation.getStatus() == 0)
+                if (!operation.isHidden())
                     this.printOutOperationToTable(document, patient, operation, locale,
                             exportParams);
             }
@@ -473,7 +477,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (HistologyEntity histology : patient.getHistologyList()) {
-                if (histology.getStatus() == 0)
+                if (!histology.isHidden())
                     this.printOutHistologyToTable(document, patient, histology, locale,
                             exportParams);
             }
@@ -484,7 +488,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             for (ComplicationEntity complication : patient
                     .getComplicationList()) {
-                if (complication.getStatus() == 0)
+                if (!complication.isHidden())
                     this.printOutComplicationToTable(document, patient, complication,
                             locale, exportParams);
             }
@@ -494,9 +498,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                if (outcome.getStatus() == 0)
+                //TODO: outcome cannot be hidden
+               /* if (!outcome.isHidden())
                     this.printOutOutcomeToTable(document, patient, outcome, locale,
-                            exportParams);
+                            exportParams);*/
             }
         }
     }

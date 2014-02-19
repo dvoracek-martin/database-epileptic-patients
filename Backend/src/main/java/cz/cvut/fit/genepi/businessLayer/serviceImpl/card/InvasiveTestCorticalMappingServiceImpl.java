@@ -15,14 +15,14 @@ public class InvasiveTestCorticalMappingServiceImpl
     @Transactional
     public void hide(int invasiveTestCorticalMappingId) {
         InvasiveTestCorticalMappingEntity entity = genericDAO.findByID(InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int invasiveTestCorticalMappingId) {
         InvasiveTestCorticalMappingEntity entity = genericDAO.findByID(InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 

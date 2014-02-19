@@ -15,14 +15,14 @@ public class OperationServiceImpl
     @Transactional
     public void hide(int operationId) {
         OperationEntity entity = genericDAO.findByID(OperationEntity.class, operationId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int operationId) {
         OperationEntity entity = genericDAO.findByID(OperationEntity.class, operationId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

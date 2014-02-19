@@ -15,14 +15,14 @@ public class DiagnosticTestScalpEegServiceImpl
     @Transactional
     public void hide(int diagnosticTestScalpEegId) {
         DiagnosticTestScalpEegEntity entity = genericDAO.findByID(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int diagnosticTestScalpEegId) {
         DiagnosticTestScalpEegEntity entity = genericDAO.findByID(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

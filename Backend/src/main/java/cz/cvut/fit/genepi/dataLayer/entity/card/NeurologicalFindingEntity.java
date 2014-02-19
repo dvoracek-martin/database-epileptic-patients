@@ -7,8 +7,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "neurological_finding")
-public class NeurologicalFindingEntity implements
-        Comparable<NeurologicalFindingEntity> {
+public class NeurologicalFindingEntity
+        implements Comparable<NeurologicalFindingEntity> {
 
 	/* Autofilled fields */
 
@@ -39,11 +39,12 @@ public class NeurologicalFindingEntity implements
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
+    @Column(name = "history", nullable = false)
+    private boolean history;
+
     @Column(name = "hidden", nullable = false)
     private boolean hidden;
 
-    @Column(name = "history", nullable = false)
-    private boolean history;
 
 	/* Other fields */
 

@@ -15,14 +15,14 @@ public class NeuropsychologyServiceImpl
     @Transactional
     public void hide(int neuropsychologyId) {
         NeuropsychologyEntity entity = genericDAO.findByID(NeuropsychologyEntity.class, neuropsychologyId);
-        entity.setStatus(1);
+        entity.setHidden(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int neuropsychologyId) {
         NeuropsychologyEntity entity = genericDAO.findByID(NeuropsychologyEntity.class, neuropsychologyId);
-        entity.setStatus(0);
+        entity.setHidden(false);
         genericDAO.save(entity);
     }
 }

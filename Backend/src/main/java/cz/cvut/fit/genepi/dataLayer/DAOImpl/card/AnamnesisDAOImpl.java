@@ -21,7 +21,7 @@ public class AnamnesisDAOImpl extends GenericDAOImpl<AnamnesisEntity> implements
     @Transactional
     public List<AnamnesisEntity> findAllHidden() {
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from AnamnesisEntity where status = 1");
+                "from AnamnesisEntity where history = 1");
         return query.list();
     }
 

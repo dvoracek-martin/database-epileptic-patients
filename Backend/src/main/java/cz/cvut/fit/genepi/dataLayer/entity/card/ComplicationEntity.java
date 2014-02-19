@@ -38,8 +38,11 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "history", nullable = false)
+    private boolean history;
+
+    @Column(name = "hidden", nullable = false)
+    private boolean hidden;
 
 	/* Other fields */
 
@@ -61,7 +64,7 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
     /**
      * The comment.
      */
-    @Column(name = "comment", length = 800)
+    @Column(name = "comment")
     private String comment;
 
     @Override
@@ -123,12 +126,20 @@ public class ComplicationEntity implements Comparable<ComplicationEntity> {
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHistory() {
+        return history;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHistory(boolean history) {
+        this.history = history;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 
     public Date getDate() {

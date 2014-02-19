@@ -20,14 +20,14 @@ public class AnamnesisServiceImpl
     @Transactional
     public void hide(int anamnesisId) {
         AnamnesisEntity entity = genericDAO.findByID(AnamnesisEntity.class, anamnesisId);
-        entity.setStatus(1);
+        entity.setHistory(true);
         genericDAO.save(entity);
     }
 
     @Transactional
     public void unhide(int anamnesisId) {
         AnamnesisEntity entity = genericDAO.findByID(AnamnesisEntity.class, anamnesisId);
-        entity.setStatus(0);
+        entity.setHistory(false);
         genericDAO.save(entity);
     }
 

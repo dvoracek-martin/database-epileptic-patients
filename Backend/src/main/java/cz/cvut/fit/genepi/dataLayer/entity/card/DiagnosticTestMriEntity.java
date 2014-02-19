@@ -42,8 +42,11 @@ public class DiagnosticTestMriEntity implements
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @Column(name = "status", nullable = false)
-    private int status;
+    @Column(name = "history", nullable = false)
+    private boolean history;
+
+    @Column(name = "hidden", nullable = false)
+    private boolean hidden;
 
 	/* Other fields */
 
@@ -176,12 +179,20 @@ public class DiagnosticTestMriEntity implements
         this.patientId = patientId;
     }
 
-    public int getStatus() {
-        return status;
+    public boolean isHistory() {
+        return history;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setHistory(boolean history) {
+        this.history = history;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean status) {
+        this.hidden = status;
     }
 
     public Date getDate() {
