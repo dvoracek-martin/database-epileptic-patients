@@ -194,6 +194,9 @@
                 <form:option value="4">
                     <spring:message code="label.speechExpressively.4"/>
                 </form:option>
+                <form:option value="5">
+                    <spring:message code="label.speechExpressively.5"/>
+                </form:option>
             </form:select>
         </div>
     </div>
@@ -237,6 +240,9 @@
                 <form:option value="2">
                     <spring:message code="label.perceptionOfSpeech.2"/>
                 </form:option>
+                <form:option value="3">
+                    <spring:message code="label.perceptionOfSpeech.3"/>
+                </form:option>
             </form:select>
         </div>
     </div>
@@ -270,6 +276,9 @@
 
     <div class="col-xs-8">
         <form:select path="presenceOfChanges" id="presenceOfChanges" type="text" class="form-control">
+            <form:option value="0">
+                <spring:message code="label.presenceOfChanges.0"/>
+            </form:option>
             <form:option value="1">
                 <spring:message code="label.presenceOfChanges.1"/>
             </form:option>
@@ -306,6 +315,9 @@
 
     <div class="col-xs-8">
         <form:select path="emotionalStatus" id="emotionalState" type="text" class="form-control">
+            <form:option value="0">
+                <spring:message code="label.emotionalState.0"/>
+            </form:option>
             <form:option value="1">
                 <spring:message code="label.emotionalState.1"/>
             </form:option>
