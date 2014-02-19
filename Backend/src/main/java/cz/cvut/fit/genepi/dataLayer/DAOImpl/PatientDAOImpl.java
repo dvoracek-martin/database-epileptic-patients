@@ -229,23 +229,23 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
     @Override
     public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
 
-      /*  Session session = sessionFactory
+      Session session = sessionFactory
                 .getCurrentSession();
         session.enableFilter("nonHidden");
         Query query = session
                 .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.anamnesisList"
+                        "from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList"
                                 + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
-        */
 
-        Query query = sessionFactory
+        return this.findOne(query);
+       /* Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "FROM PatientEntity patient LEFT JOIN FETCH patient.doctor LEFT JOIN FETCH patient.neurologicalFindingList nfList"
-                                + " WHERE patient.id = :patientId AND ((nfList.hidden = false AND nfList.history = false) OR nfList = NULL)");
+                                + " WHERE patient.id = :patientId AND ((nfList.hidden = xfalse AND nfList.history = false) OR nfList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return this.findOne(query);*/
 
      /*   Query query = sessionFactory
                 .getCurrentSession()
