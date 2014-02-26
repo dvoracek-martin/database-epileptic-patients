@@ -152,7 +152,7 @@
         <div class="col-xs-8">
             <form:select path="mrsProtocol" id="mrsProtocol" type="text" class="form-control">
                 <form:option value="0">
-                    Zvolte
+                    <spring:message code="label.mrsProtocol.0"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.mrsProtocol.1"/>
@@ -206,7 +206,7 @@
 
 
     <div class="form-group">
-        <label for="fmri" class="col-xs-3 control-label">
+        <label for="fmri" class="col-xs-3 control-label">pro
             <spring:message code="label.dti"/>
         </label>
 
