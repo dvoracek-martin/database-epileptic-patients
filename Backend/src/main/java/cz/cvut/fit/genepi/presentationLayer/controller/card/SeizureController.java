@@ -3,18 +3,23 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -26,6 +31,8 @@ public class SeizureController {
     private SeizureService seizureService;
 
     private SeizureDetailService seizureDetailService;
+
+    private UserService userService;
 
     @Autowired
     public SeizureController(PatientService patientService,
@@ -59,8 +66,8 @@ public class SeizureController {
     /**
      * Adds the seizure.
      *
-     * @param seizure   the seizure
-     * @param result    the result
+     * @param seizure the seizure
+     * @param result  the result
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/seizure/save", method = RequestMethod.POST)
@@ -73,6 +80,18 @@ public class SeizureController {
             return "patient/seizure/formView";
         } else {
             seizure.setPatientId(patientId);
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
+            boolean isSuperdoctor = false;
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
+                    isSuperdoctor = true;
+                    break;
+                }
+            }
+            if (!isSuperdoctor)
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             seizureService.save(SeizureEntity.class, seizure);
             return "redirect:/patient/" + patientId + "/seizure/list";
         }
@@ -91,13 +110,13 @@ public class SeizureController {
     /**
      * Handles the GET request to hide seizure.
      *
-     * @param patientId   the id of a patient whom we are creating an seizure.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an seizure.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/hide", method = RequestMethod.GET)
-    public String anamnesisDeleteGET(
+    public String seizureDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model) {
@@ -109,13 +128,13 @@ public class SeizureController {
     /**
      * Handles the GET request to unhide seizure.
      *
-     * @param patientId   the id of a patient whom we are creating an seizure.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an seizure.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/unhide", method = RequestMethod.GET)
-    public String anamnesisUnhideGET(
+    public String seizureUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model) {

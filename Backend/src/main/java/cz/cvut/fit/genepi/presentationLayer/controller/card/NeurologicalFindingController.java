@@ -3,16 +3,23 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -22,6 +29,8 @@ public class NeurologicalFindingController {
     private PatientService patientService;
 
     private NeurologicalFindingService neurologicalFindingService;
+
+    private UserService userService;
 
     @Autowired
     public NeurologicalFindingController(PatientService patientService,
@@ -74,6 +83,18 @@ public class NeurologicalFindingController {
                 neurologicalFindingService.saveAsHistory(neurologicalFinding.getId());
                 neurologicalFinding.setId(0); //reset ID to be saved as a new entity by hibernate
             }
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
+            boolean isSuperdoctor = false;
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
+                    isSuperdoctor = true;
+                    break;
+                }
+            }
+            if (!isSuperdoctor)
+                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
 
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";

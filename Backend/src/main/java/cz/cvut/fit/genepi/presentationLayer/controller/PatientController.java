@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
@@ -178,7 +177,7 @@ public class PatientController {
         if (verification == 1) {
             patientService.verifyPatient(patientId);
         } else if (verification == 2) {
-           patientService.voidVerifyPatient(patientId);
+            patientService.voidVerifyPatient(patientId);
         } else {
             //unexpected
         }
@@ -310,6 +309,16 @@ public class PatientController {
             model.addAttribute("doctors", roleService.getAllDoctors());
             return "patient/editView";
         } else {
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<RoleEntity> roles = userService.findUserByUsername(auth.getName()).getRoles();
+            boolean isSuperdoctor = false;
+            for (RoleEntity r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR"))
+                    isSuperdoctor = true;
+            }
+            if (!isSuperdoctor)
+                patient.setVerified(false);
             patientService.save(patient);
             return "redirect:/patient/" + /* Integer.toString( */patient.getId()/* ) */
                     + "/overview";
@@ -383,7 +392,7 @@ public class PatientController {
          * TODO
          * FOR TESTING PURPOSES ONLY ! DELETE AFTER TESTING
          */
-        boolean toTable=false;
+        boolean toTable = false;
 
         exportParams.setPatient(true);
         exportParams.setPatientBirthday(true);
@@ -558,7 +567,7 @@ public class PatientController {
             try {
                 String url = exportToPdfService.export(patientList,
                         userService.findUserByUsername(auth.getName()), locale,
-                        exportParams, shallAnonymize,toTable);
+                        exportParams, shallAnonymize, toTable);
                 return "redirect:/resources/downloads/" + url;
             } catch (FileNotFoundException e) {
                 logger.logError(

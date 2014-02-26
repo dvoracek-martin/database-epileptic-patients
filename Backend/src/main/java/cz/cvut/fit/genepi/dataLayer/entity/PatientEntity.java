@@ -427,7 +427,7 @@ public class PatientEntity {
      *
      * @return the checked
      */
-    public boolean getChecked() {
+    public boolean isVerified() {
         return verified;
     }
 
@@ -436,7 +436,7 @@ public class PatientEntity {
      *
      * @param checked the new checked
      */
-    public void setChecked(boolean checked) {
+    public void setVerified(boolean checked) {
         this.verified = checked;
     }
 
