@@ -24,7 +24,7 @@
                 </tr>
                 <tr>
                     <th><spring:message code="label.birthdate"/>:</th>
-                    <td>${patient.birthday} (${currentAge} let)</td>
+                    <td>${patient.birthday} (${currentAge}) let</td>
 
                     <th><spring:message code="label.gender"/>:</th>
                     <td><spring:message code="label.gender.${patient.gender}"/></td>
@@ -37,7 +37,7 @@
                 </tr>
                 <tr>
                     <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
-                    <td>(${beginningEpilepsy} let)</td>
+                    <td>${beginningEpilepsy} let</td>
 
                     <th><spring:message code="label.assignedDoctor"/>:</th>
                     <td>${patient.doctor.contact.firstName} ${patient.doctor.contact.lastName}</td>

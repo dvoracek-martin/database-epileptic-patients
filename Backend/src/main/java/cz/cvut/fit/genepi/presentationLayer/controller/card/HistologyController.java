@@ -3,16 +3,24 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.HistologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.jnlp.UnavailableServiceException;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -22,6 +30,8 @@ public class HistologyController {
     private PatientService patientService;
 
     private HistologyService histologyService;
+
+    private UserService userService;
 
     @Autowired
     public HistologyController(PatientService patientService,
@@ -68,6 +78,18 @@ public class HistologyController {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/histology/formView";
         } else {
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
+            boolean isSuperdoctor = false;
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
+                    isSuperdoctor = true;
+                    break;
+                }
+            }
+            if (!isSuperdoctor)
+                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
             histology.setPatientId(patientId);
             histologyService.save(HistologyEntity.class, histology);
             return "redirect:/patient/" + patientId + "/histology/list";

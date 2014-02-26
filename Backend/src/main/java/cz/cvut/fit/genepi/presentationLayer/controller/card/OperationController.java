@@ -3,16 +3,23 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -23,6 +30,7 @@ public class OperationController {
 
     private OperationService operationService;
 
+    private UserService userService;
     @Autowired
     public OperationController(PatientService patientService,
                                OperationService operationService) {
@@ -68,6 +76,18 @@ public class OperationController {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/operation/formView";
         } else {
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
+            boolean isSuperdoctor = false;
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
+                    isSuperdoctor = true;
+                    break;
+                }
+            }
+            if (!isSuperdoctor)
+                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
             operation.setPatientId(patientId);
             operationService.save(OperationEntity.class, operation);
             return "redirect:/patient/" + patientId + "/operation/list";

@@ -55,6 +55,9 @@
 
                 <div class="col-xs-8">
                     <form:select path="withComplication" id="process" type="text" class="form-control">
+                        <form:option value="0">
+                            <spring:message code="label.process.0"/>
+                        </form:option>
                         <form:option value="1">
                             <spring:message code="label.process.1"/>
                         </form:option>

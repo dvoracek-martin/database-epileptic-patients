@@ -3,17 +3,24 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.OutcomeVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -25,6 +32,8 @@ public class OutcomeController {
     private OutcomeService outcomeService;
 
     private OperationService operationService;
+
+    private UserService userService;
 
     @Autowired
     public OutcomeController(PatientService patientService,
@@ -82,6 +91,18 @@ public class OutcomeController {
             model.addAttribute("distance", distance);
             return "patient/outcome/formView";
         } else {
+            Authentication auth = SecurityContextHolder.getContext()
+                    .getAuthentication();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
+            boolean isSuperdoctor = false;
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
+                    isSuperdoctor = true;
+                    break;
+                }
+            }
+            if (!isSuperdoctor)
+                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
             outcome.setDistance(distance);
             outcome.setPatientId(patientId);
             outcomeService.save(OutcomeEntity.class, outcome);
@@ -120,7 +141,6 @@ public class OutcomeController {
      * Handles the GET request to unhide outcome.
      *
      * @param patientId   the id of a patient whom we are creating an outcome.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
