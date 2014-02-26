@@ -76,7 +76,7 @@
                     <form:select path="intracranialElectrodes" id="intracranialElectrodes" type="text"
                                  class="form-control">
                         <form:option value="0">
-                            Zvolte
+                            <spring:message code="label.intracranialElectrodes.0"/>
                         </form:option>
                         <form:option value="1">
                             <spring:message code="label.intracranialElectrodes.1"/>

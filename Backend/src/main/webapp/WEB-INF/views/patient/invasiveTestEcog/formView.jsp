@@ -86,7 +86,7 @@
                     <div class="col-xs-8">
                         <form:select path="ecogPatterns" id="ecogPatterns" type="text" class="form-control">
                             <form:option value="0">
-                                Zvolte
+                                <spring:message code="label.ecogPatterns.0"/>
                             </form:option>
                             <form:option value="1">
                                 <spring:message code="label.ecogPatterns.1"/>
@@ -115,7 +115,7 @@
                     <div class="col-xs-8">
                         <form:select path="afterResectionEcog" id="afterResectionEcog" type="text" class="form-control">
                             <form:option value="0">
-                                Zvolte
+                                <spring:message code="label.afterResectionEcog.0"/>
                             </form:option>
                             <form:option value="1">
                                 <spring:message code="label.afterResectionEcog.1"/>
