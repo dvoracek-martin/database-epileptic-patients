@@ -10,6 +10,9 @@
     <div class="col-xs-8">
         <form:select path="${param.propertyName}" id="${param.propertyName}" type="text"
                      class="form-control">
+            <form:option value="0">
+                <spring:message code="label.resultType.0"/>
+            </form:option>
             <form:option value="1">
                 <spring:message code="label.resultType.1"/>
             </form:option>
