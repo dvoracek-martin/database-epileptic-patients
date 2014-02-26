@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.util;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -12,7 +13,7 @@ import java.util.Date;
 
 public class TimeConverter {
 
-    public static String getCurrentAge(PatientEntity patient) {
+    public static String getCurrentAge(PatientDisplayVO patient) {
         DateTime birth = new DateTime(patient.getBirthday());
         DateTime today = new DateTime(Calendar.getInstance().getTime());
         Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), today.withTimeAtStartOfDay());
@@ -20,7 +21,7 @@ public class TimeConverter {
         return Integer.toString(age.getYears());
     }
 
-    public static String getAgeAtTheBeginningOfEpilepsy(PatientEntity patient) {
+    public static String getAgeAtTheBeginningOfEpilepsy(PatientDisplayVO patient) {
         DateTime birth = new DateTime(patient.getBirthday());
         if (patient.getAnamnesisList().size() < 1)
             return "NA";

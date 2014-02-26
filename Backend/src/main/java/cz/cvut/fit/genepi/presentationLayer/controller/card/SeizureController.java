@@ -140,7 +140,8 @@ public class SeizureController {
         PatientDisplayVO patient = patientService
                 .getPatientDisplayByIdWithSeizureList(patientId);
         model.addAttribute("patient", patient);
-
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
        /* PatientEntity patient = patientService
                 .getPatientByIdWithSeizureList(patientID);
         model.addAttribute("patient", patient);*/

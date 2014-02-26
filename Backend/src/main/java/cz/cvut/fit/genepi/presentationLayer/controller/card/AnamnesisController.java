@@ -204,7 +204,8 @@ public class AnamnesisController {
         } else {
             model.addAttribute("displayAnamnesisCreate", false);
         }
-
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";
     }

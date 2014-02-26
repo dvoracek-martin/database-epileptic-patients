@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.DiagnosticTestScalpEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
@@ -87,7 +88,6 @@ public class DiagnosticTestScalpEegController {
      *
      * @param patientId   the id of a patient whom we are creating an
      *                    diagnosticTestScalpEeg.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -107,7 +107,6 @@ public class DiagnosticTestScalpEegController {
      *
      * @param patientId   the id of a patient whom we are creating an
      *                    diagnosticTestScalpEeg.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -134,8 +133,10 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/list", method = RequestMethod.GET)
     public String diagnosticTestScalpEegListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDiagnosticTestScalpEegList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestScalpEegList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/diagnosticTestScalpEeg/listView";
     }
 }

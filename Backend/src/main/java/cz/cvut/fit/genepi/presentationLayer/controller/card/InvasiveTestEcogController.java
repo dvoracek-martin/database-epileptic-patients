@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
@@ -86,7 +87,6 @@ public class InvasiveTestEcogController {
      * Handles the GET request to hide invasiveTestEcog.
      *
      * @param patientId   the id of a patient whom we are creating an invasiveTestEcog.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -105,7 +105,6 @@ public class InvasiveTestEcogController {
      * Handles the GET request to unhide invasiveTestEcog.
      *
      * @param patientId   the id of a patient whom we are creating an invasiveTestEcog.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -132,8 +131,10 @@ public class InvasiveTestEcogController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/list", method = RequestMethod.GET)
     public String invasiveTestEcogListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithInvasiveTestEcogList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestEcogList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/invasiveTestEcog/listView";
     }
 }

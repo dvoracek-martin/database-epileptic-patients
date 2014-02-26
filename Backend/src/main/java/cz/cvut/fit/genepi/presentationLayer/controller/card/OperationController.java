@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
@@ -87,7 +88,6 @@ public class OperationController {
      * Handles the GET request to hide operation.
      *
      * @param patientId   the id of a patient whom we are creating an operation.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -106,7 +106,6 @@ public class OperationController {
      * Handles the GET request to unhide operation.
      *
      * @param patientId   the id of a patient whom we are creating an operation.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -133,8 +132,10 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/list", method = RequestMethod.GET)
     public String operationListGET(Locale locale, Model model,
                                    @PathVariable("patientId") Integer patientId) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithOperationList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/operation/listView";
     }
 }

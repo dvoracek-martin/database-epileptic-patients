@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeuropsychologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyService;
@@ -80,7 +81,6 @@ public class NeuropsychologyController {
      * Handles the GET request to hide neuropsychology.
      *
      * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -99,7 +99,6 @@ public class NeuropsychologyController {
      * Handles the GET request to unhide neuropsychology.
      *
      * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param anamnesisId
      * @param locale      the user's locale.
      * @param model       the model to be filled for view.
      * @return the address to which the user will be redirected.
@@ -127,7 +126,10 @@ public class NeuropsychologyController {
     public String neuropsychologyListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithNeuropsychologyList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeuropsychologyList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/neuropsychology/listView";
     }
 }

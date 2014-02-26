@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.OutcomeVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
@@ -145,8 +146,10 @@ public class OutcomeController {
     @RequestMapping(value = "/patient/{patientId}/outcome/list", method = RequestMethod.GET)
     public String outcomeListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithOperationWithOutcomeList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationWithOutcomeList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         /*
         PatientEntity patient = patientService
                 .getPatientByIdWithOperationList(patientID);

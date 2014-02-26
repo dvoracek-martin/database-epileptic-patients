@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
@@ -142,8 +143,10 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/list", method = RequestMethod.GET)
     public String neurologicalFindingListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithNeurologicalFindingList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeurologicalFindingList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/neurologicalFinding/listView";
     }
 }

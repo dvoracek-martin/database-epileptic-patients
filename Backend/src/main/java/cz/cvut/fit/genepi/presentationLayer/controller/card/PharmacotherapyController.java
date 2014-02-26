@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
@@ -128,8 +129,10 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
     public String pharmacotherapyListGET(
             @PathVariable("patientID") Integer patientId, Locale locale, Model model) {
-
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId));
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         return "patient/pharmacotherapy/listView";
     }
 }

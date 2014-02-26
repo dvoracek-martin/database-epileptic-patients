@@ -135,6 +135,17 @@ public class PatientController {
         return "patient/overviewView";
     }
 
+    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.GET)
+    public String patientVerifyGET(
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        model.addAttribute("patient", patient);
+
+        return "patient/verifyView";
+    }
+
+
     /**
      * Patient overview get.
      *
@@ -153,20 +164,10 @@ public class PatientController {
         } else {
             model.addAttribute("displayCreate", false);
         }
-
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/overviewView";
-    }
-
-
-    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.GET)
-    public String patientVerifyGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        model.addAttribute("patient", patient);
-
-        return "patient/verifyView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
