@@ -9,7 +9,7 @@ function filter(defaultMaxResults) {
 
     $.ajax({
         type: "Get",
-        url: "http://localhost:2001/GENEPI/patient/listSearch",
+        url: "http://localhost:8080/GENEPI/patient/listSearch",
         data: "search=" + search + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
         success: function (response) {
             var obj = JSON.parse(response);
