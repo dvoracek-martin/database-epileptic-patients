@@ -50,7 +50,7 @@
                     </div>
                     <div class="panel-body">
                         <ul>
-                            <li><a href="<c:url value="/user/list"/>"><spring:message
+                            <li><a href="<c:url value="/user/list?maxResults=20&pageNumber=1"/>"><spring:message
                                     code="label.users"/></a></li>
                             <li><a href="<c:url value="/hidden"/>"><spring:message
                                     code="label.users"/> Hidden</a></li>

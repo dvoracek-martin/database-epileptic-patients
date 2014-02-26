@@ -253,7 +253,7 @@ public class PatientController {
         model.addAttribute("maxResults", maxResults);
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("countOfPatients",
-                patientService.getCountOfUnhidden(PatientEntity.class));
+                patientService.getCountOfUnhidden(PatientEntity.class, name));
         JSONEncoder e = new JSONEncoder();
         return (e.encode(patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults,
@@ -311,6 +311,7 @@ public class PatientController {
         } else {
             Authentication auth = SecurityContextHolder.getContext()
                     .getAuthentication();
+
             List<RoleEntity> roles = userService.findUserByUsername(auth.getName()).getRoles();
             boolean isSuperdoctor = false;
             for (RoleEntity r : roles) {

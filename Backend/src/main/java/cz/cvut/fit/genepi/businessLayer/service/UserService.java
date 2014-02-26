@@ -35,4 +35,6 @@ public interface UserService extends GenericService<UserEntity> {
 
 
     public UserEntity findUserByEmail(String email);
+
+    public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
 }

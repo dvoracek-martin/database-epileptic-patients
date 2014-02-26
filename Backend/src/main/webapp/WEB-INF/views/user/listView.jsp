@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1.NEW303>
@@ -10,6 +11,14 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
+        <script>
+            function prepareDelete(userID) {
+                $('#confirmDelete').attr('href', userID + '/hide')
+            }
+            function prepareChangePassword(userID) {
+                $('#confirmChangePassword').attr('href', userID + '/change-password')
+            }
+        </script>
    	</jsp:attribute>
 
     <jsp:body>
@@ -46,14 +55,19 @@
                                             code="label.editRoles"/></a>
                                 </td>
                                 <td>
-                                    <a
-                                            href="<c:url value="/user/${user.id}/change-password" />"><spring:message
-                                            code="label.changePassword"/></a>
+
+                                    <a href=""# class="pull-right" data-toggle="modal" data-target="#edit"
+                                    onclick="prepareChangePassword(${user.id})">
+                                    <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
+                                    </a>
                                 </td>
                                 <td>
-                                    <a href="#userDeleteConfirm${user.id}" role="button" class="btn"
-                                       data-toggle="modal"><spring:message
-                                            code="label.deleteUser"/></a>
+                                    <a href="#" class="pull-right" data-toggle="modal" data-target="#delete"
+                                       onclick="prepareDelete(${user.id})">
+                                        <span class="glyphicon glyphicon-remove-circle"></span>
+                                        <spring:message
+                                                code="label.deleteUser"/>
+                                    </a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -62,7 +76,51 @@
             </div>
         </div>
 
+        <div class="modal fade" id="edit">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">  <spring:message
+                                code="label.changePassword"/></h4>
+                    </div>
 
+                    <div class="modal-body">
+                        <h5>  <spring:message
+                                code="label.reallyDeleteUser"/></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                code="label.no"/></button>
+                        <a id="confirmChangePassword" class="btn btn-primary" href=""><spring:message
+                                code="label.yes"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="delete">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">  <spring:message
+                                code="label.deleteUser"/></h4>
+                    </div>
+
+                    <div class="modal-body">
+                        <h5>  <spring:message
+                                code="label.reallyDeleteUser"/></h5>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><spring:message
+                                code="label.no"/></button>
+                        <a id="confirmDelete" class="btn btn-primary" href=""><spring:message
+                                code="label.yes"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%-- <c:forEach items="${userList}" var="user">
 
 

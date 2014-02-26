@@ -50,6 +50,9 @@ public class UserEntity {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<PatientEntity> patients;
 
+    @Column (name="HIDDEN")
+    private boolean hidden;
+
     /**
      * The contact.
      */
@@ -151,5 +154,17 @@ public class UserEntity {
     public void setPatients(List<PatientEntity> patients) {
         CollectionConverter<PatientEntity> converter = new CollectionConverter<>();
         this.patients = converter.toSet(patients);
+    }
+
+    public void setPatients(Set<PatientEntity> patients) {
+        this.patients = patients;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

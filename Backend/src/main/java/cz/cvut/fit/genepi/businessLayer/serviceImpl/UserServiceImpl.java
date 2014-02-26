@@ -67,6 +67,12 @@ public class UserServiceImpl extends
 
     @Override
     @Transactional
+    public List<UserEntity> findAllUsersWithPagination(int maxResults,int pageNumber) {
+        return userDAO.findAllUsersWithPagination(maxResults,pageNumber);
+    }
+
+    @Override
+    @Transactional
     public void create(UserEntity user, Locale locale) {
         String password = RandomStringUtils.randomAlphanumeric(10);
         //FIXME: bad logger

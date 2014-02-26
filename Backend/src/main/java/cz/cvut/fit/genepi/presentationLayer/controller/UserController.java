@@ -2,17 +2,26 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.session.SessionInformation;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,11 +147,18 @@ public class UserController {
         return "user/overviewView";
     }
 
-    @RequestMapping(value = "/user/{userID}/delete", method = RequestMethod.GET)
-    public String userDeleteGET(Locale locale, Model model,
+    @RequestMapping(value = "/user/{userID}/hide", method = RequestMethod.GET)
+    public String userHideGET(Locale locale, Model model,
                                 @PathVariable("userID") Integer userID) {
-        userService.delete(userService.findByID(UserEntity.class, userID));
-        return "redirect:/user/list";
+        UserEntity user = userService.findByID(UserEntity.class, userID);
+        user.setRoles(null);
+        user.setHidden(true);
+
+       //TODO
+        // logout deleted user
+
+        userService.save(user);
+        return "redirect:/user/list?maxResults=20&pageNumber=1";
     }
 
     /**
@@ -217,8 +233,11 @@ public class UserController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public String userListGET(Locale locale, Model model) {
-        model.addAttribute("userList", userService.findAll(UserEntity.class));
+        public String userListGET(Locale locale, Model model,    @RequestParam("maxResults") int maxResults,
+                                  @RequestParam("pageNumber") int pageNumber)
+    {
+        model.addAttribute("userList", userService.findAllUsersWithPagination(maxResults, pageNumber));
+        model.addAttribute("maxResults", maxResults);
         return "user/listView";
     }
 
