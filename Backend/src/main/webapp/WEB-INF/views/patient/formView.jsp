@@ -158,9 +158,12 @@
     <div class="col-xs-8">
 
         <form:select path="doctorId" class="form-control" id="doctorId">
-            <c:forEach items="${doctors}" var="doctor">
-                <form:option value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
-            </c:forEach>
+            <c:if test="${!empty doctors}">
+                <c:forEach items="${doctors}" var="doctor">
+                    <form:option
+                            value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+                </c:forEach>
+            </c:if>
         </form:select>
 
 
