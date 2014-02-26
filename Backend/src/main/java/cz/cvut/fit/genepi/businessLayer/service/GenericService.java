@@ -91,7 +91,7 @@ public interface GenericService<T> {
      * @param myClass the my class
      * @return int
      */
-    public int getCountOfUnhidden(Class<T> myClass);
+    public int getCountOfUnhidden(Class<T> myClass, String searchString);
 
     /**
      * Get list according to string pattern - for quick search

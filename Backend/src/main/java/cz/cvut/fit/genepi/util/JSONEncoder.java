@@ -11,8 +11,6 @@ import java.io.StringWriter;
 import java.util.List;
 
 public class JSONEncoder {
-    @Autowired
-    private PatientService patientService;
 
     @SuppressWarnings("unchecked")
     public String encode(List<PatientEntity> patientList,

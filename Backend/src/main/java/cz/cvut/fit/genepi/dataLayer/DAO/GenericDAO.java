@@ -65,7 +65,7 @@ public interface GenericDAO<T> {
      * @param myClass the my class
      * @return int
      */
-    public int getCountOfUnhidden(Class<T> myClass);
+    public int getCountOfUnhidden(Class<T> myClass,String searchString);
 
     /**
      * Find all.

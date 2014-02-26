@@ -86,7 +86,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     public int getCount(Class<T> myClass) {
         int i;
         i = ((Long) sessionFactory.getCurrentSession()
-                .createQuery("select count(*) from " + myClass.getName())
+                .createQuery("select count(*) from " + myClass.getName() + " WHERE status=0")
                 .uniqueResult()).intValue();
         return i;
     }
@@ -97,7 +97,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see
      * cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
      */
-    public int getCountOfUnhidden(Class<T> myClass) {
+    public int getCountOfUnhidden(Class<T> myClass, String searchString) {
         int i;
         i = ((Long) sessionFactory
                 .getCurrentSession()
@@ -146,7 +146,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
                                          int pageNumber) {
         List<T> T = null;
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from " + myClass.getName());
+                "from " + myClass.getName()+" WHERE status=0 ORDER BY contact.lastName,contact.firstName");
 
         query.setFirstResult(maxResults * (pageNumber - 1));
         query.setMaxResults(maxResults);
