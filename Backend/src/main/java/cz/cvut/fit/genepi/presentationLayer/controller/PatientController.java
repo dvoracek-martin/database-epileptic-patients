@@ -8,7 +8,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.util.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;

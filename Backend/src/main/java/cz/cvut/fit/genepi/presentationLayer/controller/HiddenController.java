@@ -32,6 +32,10 @@ public class HiddenController {
      */
     private ContactService contactService;
 
+    /**
+     * The anamnesis service.
+     */
+    private AnamnesisService anamnesisService;
 
     /**
      * Constructor which serves to autowire services.
@@ -71,4 +75,5 @@ public class HiddenController {
         model.addAttribute("patientsWithHiddenRecordsList", patientService.findAllWithHiddenRecords());
         return "hiddenView";
     }
+
 }

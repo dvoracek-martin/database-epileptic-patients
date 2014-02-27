@@ -46,19 +46,16 @@
                                 <td>
                                     <a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
                                 </td>
-                                <td>
-                                    <a href="<c:url value="/user/${user.id}/edit" />"><spring:message
-                                            code="label.editData"/></a>
-                                </td>
-                                <td>
+                                                                <td>
                                     <a href="<c:url value="/user/${user.id}/edit-roles" />"><spring:message
                                             code="label.editRoles"/></a>
                                 </td>
                                 <td>
 
-                                    <a href=""# class="pull-right" data-toggle="modal" data-target="#edit"
+                                    <a href="#" class="pull-right" data-toggle="modal" data-target="#edit"
                                     onclick="prepareChangePassword(${user.id})">
-                                    <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
+                                    <span class="glyphicon glyphicon-edit"></span>  <spring:message
+                                            code="label.changePassword"/>
                                     </a>
                                 </td>
                                 <td>

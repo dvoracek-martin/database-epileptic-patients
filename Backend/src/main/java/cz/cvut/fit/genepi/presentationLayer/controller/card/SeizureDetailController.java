@@ -8,7 +8,7 @@ import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
-import cz.cvut.fit.genepi.util.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;

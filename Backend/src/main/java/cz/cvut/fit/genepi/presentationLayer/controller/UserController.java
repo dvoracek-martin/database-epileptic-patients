@@ -4,10 +4,13 @@ import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.util.AuthorizationChecker;
+import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -103,7 +106,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=user.getId())){
+            return "deniedView";
+        }
         boolean unique = true;
         boolean mailUnique = true;
 
@@ -148,7 +164,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+            return "deniedView";
+        }
         model.addAttribute("user",
                 userService.findByID(UserEntity.class, userID));
         return "user/overviewView";
@@ -160,7 +189,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+            return "deniedView";
+        }
         UserEntity user = userService.findByID(UserEntity.class, userID);
         user.setRoles(null);
         user.setHidden(true);
@@ -186,7 +228,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+            return "deniedView";
+        }
         model.addAttribute("user",
                 userService.findByID(UserEntity.class, userID));
         model.addAttribute("isMailUnique", "unique");
@@ -210,6 +265,21 @@ public class UserController {
     public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
                                BindingResult result, Locale locale, Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=user.getId())){
             return "deniedView";
         }
 
@@ -257,7 +327,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized){
+            return "deniedView";
+        }
         model.addAttribute("userList", userService.findAllUsersWithPagination(maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
         return "user/listView";
@@ -309,6 +392,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized || (userService.findUserByUsername(name).getId()!=formUser.getId())){
+            return "deniedView";
+        }
 
         UserEntity realUser = userService.findByID(UserEntity.class, userID);
         if (result.hasErrors()) {
@@ -341,7 +438,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+            return "deniedView";
+        }
         if (logger.getLogger() == null)
             logger.setLogger(UserController.class);
 
@@ -377,7 +487,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id()==(5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+            return "deniedView";
+        }
 
         List<RoleEntity> newRoles = new ArrayList<RoleEntity>();
 
@@ -393,6 +516,6 @@ public class UserController {
             realUser.setRoles(newRoles);
             userService.save(realUser);
         }
-        return "redirect:/user/" + realUser.getId() + "/edit-roles";
+        return "redirect:/user/list?maxResults=20&pageNumber=1";
     }
 }
