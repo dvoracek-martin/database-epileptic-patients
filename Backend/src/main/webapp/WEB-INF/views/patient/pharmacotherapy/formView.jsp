@@ -54,6 +54,9 @@
 
                 <div class="col-xs-8">
                     <form:select path="aed" id="aed" type="text" class="form-control">
+                        <form:option value="0">
+                            <spring:message code="label.aed.0"/>
+                        </form:option>
                         <form:option value="1">
                             <spring:message code="label.aed.1"/>
                         </form:option>

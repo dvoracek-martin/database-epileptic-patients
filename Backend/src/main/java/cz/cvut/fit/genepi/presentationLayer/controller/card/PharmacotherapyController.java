@@ -71,6 +71,7 @@ public class PharmacotherapyController {
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
+            if (pharmacotherapy.getAed()==0)
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/pharmacotherapy/formView";
         } else {
