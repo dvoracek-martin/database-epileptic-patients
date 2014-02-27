@@ -95,7 +95,7 @@ public class UserServiceImpl extends
             map.put("subject", "creationOfANewUser");
             map.put("user", user);
             map.put("password", password);
-            mailService.sendMail("test", map, locale);
+            mailService.sendMail(user.getContact().getEmail(), map, locale);
             logger.logInfo("Email to new user sent");
 
         } catch (Exception e) {
