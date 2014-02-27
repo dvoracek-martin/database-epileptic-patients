@@ -25,28 +25,27 @@ public class ContactEntity {
     /**
      * The first name.
      */
-    @Pattern(regexp = "[^0-9]*")
-    //@Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
+    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
     //@NotNull
     //@NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 20)
     @Column(name = "FIRST_NAME", length = 20, nullable = false)
     private String firstName;
 
     /**
      * The last name.
      */
-    @Pattern(regexp = "[^0-9]*")
-    //@Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
+    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
     //@NotNull
     //@NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 20)
     @Column(name = "LAST_NAME", length = 20, nullable = false)
     private String lastName;
 
     /**
      * The address street.
      */
+    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
     //@NotNull
     //@NotBlank
     @Size(min = 1, max = 50)
@@ -56,7 +55,7 @@ public class ContactEntity {
     /**
      * The address hn.
      */
-    @Pattern(regexp = "[0-1]+[0-9]*")
+    @Pattern(regexp = "[0-9]*")
     //@NotNull
     //@NotBlank
     @Size(min = 1, max = 10)
@@ -69,14 +68,14 @@ public class ContactEntity {
     @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
     //@NotNull
     //@NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 30)
     @Column(name = "ADDRESS_CITY", length = 30, nullable = true)
     private String addressCity;
 
     /**
      * The address postalcode.
      */
-    @Pattern(regexp = "[1-9]+[0-9]*")
+    @Pattern(regexp = "[0-9]*")
     //@NotNull
     //@NotBlank
     @Size(min = 1, max = 10)
@@ -86,9 +85,10 @@ public class ContactEntity {
     /**
      * The address country.
      */
+    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
     //@NotNull
     //@NotBlank
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 20)
     @Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
     private String addressCountry;
 
