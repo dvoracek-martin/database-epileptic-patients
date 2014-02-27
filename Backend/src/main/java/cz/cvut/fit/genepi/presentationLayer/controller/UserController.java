@@ -252,7 +252,7 @@ public class UserController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public String userListGET(Locale locale, Model model, @RequestParam("maxResults") int maxResults,
+    public String userListGET(Locale locale, Model model, @RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults,
                               @RequestParam("pageNumber") int pageNumber, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
