@@ -82,10 +82,14 @@ public class SeizureController {
     public String seizureSavePOST(
             @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate()) || TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
+
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate())
+                || patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().size() ==0 ||
+                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
             model.addAttribute("patient", patientService.getPatientByIdWithDoctor(patientId));
             return "patient/seizure/formView";
         } else {
