@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.ContactService;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +32,6 @@ public class HiddenController {
      */
     private ContactService contactService;
 
-    /**
-     * The anamnesis service.
-     */
-    private AnamnesisService anamnesisService;
 
     /**
      * Constructor which serves to autowire services.
@@ -46,10 +41,11 @@ public class HiddenController {
      */
     @Autowired
     public HiddenController(PatientService patientService,
-                            AnamnesisService anamnesisService, ContactService contactService) {
+                            ContactService contactService) {
         this.patientService = patientService;
-        this.anamnesisService = anamnesisService;
+
         this.contactService = contactService;
+
     }
 
     /**
@@ -66,14 +62,13 @@ public class HiddenController {
      */
     @RequestMapping(value = "/hidden", method = RequestMethod.GET)
     public String userListGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
+    /*    if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
+        }*/
 
         model.addAttribute("hiddenPatientList", patientService.findAllHidden());
 
-        //model.addAttribute("anamnesisList", anamnesisService.findAllHidden());
+        model.addAttribute("patientsWithHiddenRecordsList", patientService.findAllWithHiddenRecords());
         return "hiddenView";
     }
-
 }

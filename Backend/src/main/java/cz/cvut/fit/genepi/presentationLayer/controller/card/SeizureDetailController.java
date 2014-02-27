@@ -12,6 +12,7 @@ import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -86,14 +87,18 @@ public class SeizureDetailController {
         } else {
             seizureDetail.setPatientId(patientId);
             seizureDetail.setSeizureId(seizureId);
+
             Authentication auth = SecurityContextHolder.getContext()
                     .getAuthentication();
-            List<RoleEntity> roles = userService.findUserByUsername(auth.getName()).getRoles();
+            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
             boolean isSuperdoctor = false;
-            for (RoleEntity r : roles) {
-                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR"))
+            for (GrantedAuthority r : roles) {
+                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
                     isSuperdoctor = true;
+                    break;
+                }
             }
+
             if (!isSuperdoctor)
                 patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             seizureDetailService.save(SeizureDetailEntity.class, seizureDetail);

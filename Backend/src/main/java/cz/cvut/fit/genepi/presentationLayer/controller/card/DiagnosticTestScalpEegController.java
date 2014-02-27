@@ -129,9 +129,11 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId);
         return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
@@ -169,9 +171,11 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/list", method = RequestMethod.GET)
     public String diagnosticTestScalpEegListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestScalpEegList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

@@ -276,6 +276,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         List<String> searchParams = new ArrayList<>();
         searchParams.add("contact.firstName");
         searchParams.add("contact.lastName");

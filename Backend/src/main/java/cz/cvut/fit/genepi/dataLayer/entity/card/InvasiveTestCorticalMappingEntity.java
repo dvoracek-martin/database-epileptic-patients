@@ -124,6 +124,14 @@ public class InvasiveTestCorticalMappingEntity implements
         this.patientId = patientId;
     }
 
+    public boolean isHistory() {
+        return history;
+    }
+
+    public void setHistory(boolean history) {
+        this.history = history;
+    }
+
     public boolean isHidden() {
         return hidden;
     }

@@ -197,4 +197,6 @@ public interface PatientService extends GenericService<PatientEntity> {
     public void hide(int patientId);
 
     public void unhide(int patientId);
+
+    public List<PatientDisplayVO> findAllWithHiddenRecords();
 }
