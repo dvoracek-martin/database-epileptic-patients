@@ -31,8 +31,6 @@ public class SearchController {
     /**
      * Constructor which serves to autowire services.
      *
-     * @param patientService   the patientService to be autowired.
-     * @param anamnesisService the anamnesisService to be autowired.
      */
     @Autowired
     public SearchController(SearchService searchService, RoleService roleService) {
