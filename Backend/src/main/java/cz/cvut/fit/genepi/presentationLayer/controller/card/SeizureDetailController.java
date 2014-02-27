@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureDetailVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureDetailVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
@@ -9,7 +9,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

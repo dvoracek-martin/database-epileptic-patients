@@ -2,7 +2,7 @@ package cz.cvut.fit.test;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;

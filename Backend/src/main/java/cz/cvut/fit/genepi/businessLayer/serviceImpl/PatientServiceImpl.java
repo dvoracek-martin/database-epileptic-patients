@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
@@ -293,7 +294,7 @@ public class PatientServiceImpl
     @Transactional
     public void verifyPatient(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
-        //patient.setVerified(1);
+        patient.setVerified(true);
         patientDAO.save(patient);
     }
 
@@ -301,7 +302,21 @@ public class PatientServiceImpl
     @Transactional
     public void voidVerifyPatient(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
-        //patient.setVerified(2);
+        patient.setVerified(false);
         patientDAO.save(patient);
+    }
+
+    @Override
+    @Transactional
+    public PatientVO getById(int patientId){
+        PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
+        PatientVO patientVO = dozer.map(patient, PatientVO.class);
+        return patientVO;
+    }
+
+    @Override
+    @Transactional
+    public void save(PatientVO patient){
+        genericDAO.save(dozer.map(patient, PatientEntity.class));
     }
 }

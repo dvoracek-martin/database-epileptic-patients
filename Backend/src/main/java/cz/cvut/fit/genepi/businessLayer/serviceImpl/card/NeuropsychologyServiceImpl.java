@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.NeuropsychologyVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.NeuropsychologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeuropsychologyEntity;
 import org.springframework.stereotype.Service;

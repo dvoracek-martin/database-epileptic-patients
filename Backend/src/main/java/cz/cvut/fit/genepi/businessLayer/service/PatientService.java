@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 import java.util.List;
@@ -189,4 +190,8 @@ public interface PatientService extends GenericService<PatientEntity> {
     public void verifyPatient(int patientId);
 
     public void voidVerifyPatient(int patientId);
+
+    public PatientVO getById(int patientId);
+
+    public void save(PatientVO patient);
 }

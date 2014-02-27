@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.VO.form;
+package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,24 +8,22 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Created by Jan on 21.1.14.
+ * Created by Jan on 25.1.14.
  */
-public class SeizureDetailVO {
+public class InvasiveTestCorticalMappingVO {
 
     private int id;
 
     private int patientId;
-
-    private int seizureId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     @NotNull
     private Date date;
 
-    private int sscClassification;
+    private int done;
 
-    private int ilaeClassification;
+    private int corticalMapping;
 
     @Size(max = 800)
     private String comment;
@@ -46,14 +44,6 @@ public class SeizureDetailVO {
         this.patientId = patientId;
     }
 
-    public int getSeizureId() {
-        return seizureId;
-    }
-
-    public void setSeizureId(int seizureId) {
-        this.seizureId = seizureId;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -62,20 +52,20 @@ public class SeizureDetailVO {
         this.date = date;
     }
 
-    public int getSscClassification() {
-        return sscClassification;
+    public int getDone() {
+        return done;
     }
 
-    public void setSscClassification(int sscClassification) {
-        this.sscClassification = sscClassification;
+    public void setDone(int done) {
+        this.done = done;
     }
 
-    public int getIlaeClassification() {
-        return ilaeClassification;
+    public int getCorticalMapping() {
+        return corticalMapping;
     }
 
-    public void setIlaeClassification(int ilaeClassification) {
-        this.ilaeClassification = ilaeClassification;
+    public void setCorticalMapping(int corticalMapping) {
+        this.corticalMapping = corticalMapping;
     }
 
     public String getComment() {

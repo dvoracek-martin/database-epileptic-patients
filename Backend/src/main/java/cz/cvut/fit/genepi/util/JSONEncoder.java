@@ -13,8 +13,7 @@ import java.util.List;
 public class JSONEncoder {
 
     @SuppressWarnings("unchecked")
-    public String encode(List<PatientEntity> patientList,
-                         int maxResults, int pageNumber, int patientsCount) {
+    public String encode(List<PatientEntity> patientList,int patientsCount) {
         JSONArray patientListJSON = new JSONArray();
 
         for (PatientEntity patient : patientList) {

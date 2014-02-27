@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -32,6 +33,7 @@ import java.util.Locale;
  * The Class CreatedPatientController.
  */
 @Controller
+@SessionAttributes({"patient","patientVO"})
 public class PatientController {
 
     @Autowired
@@ -127,6 +129,7 @@ public class PatientController {
      * @param model  the model
      * @return the string
      */
+    //TODO: unused
     @RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
     public String patientOverviewPOST(@RequestParam("id") int id,
                                       Locale locale, Model model) {
@@ -138,12 +141,30 @@ public class PatientController {
     public String patientVerifyGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        model.addAttribute("patient", patient);
+        PatientDisplayVO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        PatientVO patient = patientService.getById(patientId);
+
+        model.addAttribute("patient", patientDisplay);
+        model.addAttribute("patientVO", patient);
 
         return "patient/verifyView";
     }
 
+    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
+    public String patientVerifyPOST(
+            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            @PathVariable("patientId") Integer patientId,
+            Locale locale, Model model) {
+
+        if (result.hasErrors()) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            model.addAttribute("patientVO", patientService.getById(patientId));
+            return "patient/verifyView";
+        } else {
+            patientService.save(patientVO);
+            return "redirect:/patient/"+patientId+"/overview";
+        }
+    }
 
     /**
      * Patient overview get.
@@ -169,20 +190,6 @@ public class PatientController {
         return "patient/overviewView";
     }
 
-    @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
-    public String patientVerifyPOST(
-            @PathVariable("patientId") Integer patientId,
-            @RequestParam("verification") int verification, Locale locale, Model model) {
-
-        if (verification == 1) {
-            patientService.verifyPatient(patientId);
-        } else if (verification == 2) {
-            patientService.voidVerifyPatient(patientId);
-        } else {
-            //unexpected
-        }
-        return "redirect:/patient/list";
-    }
 
     /**
      * Patients list get.
@@ -247,16 +254,11 @@ public class PatientController {
         searchParams.add("contact.lastName");
         searchParams.add("nin");
 
-       /* model.addAttribute("patientList", patientService
-                .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, searchString));*/
-        model.addAttribute("maxResults", maxResults);
-        model.addAttribute("pageNumber", pageNumber);
         int patientsCount = patientService.getCountOfUnhidden(PatientEntity.class, searchString);
         JSONEncoder e = new JSONEncoder();
         return (e.encode(patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, searchString), maxResults, pageNumber, patientsCount));
+                        pageNumber, searchParams, searchString), patientsCount));
     }
 
     /**

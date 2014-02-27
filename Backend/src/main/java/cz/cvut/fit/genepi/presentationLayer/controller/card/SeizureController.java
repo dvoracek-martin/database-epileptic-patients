@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;

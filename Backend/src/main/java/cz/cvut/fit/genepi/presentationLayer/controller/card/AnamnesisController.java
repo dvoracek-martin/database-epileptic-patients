@@ -1,15 +1,13 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
-import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

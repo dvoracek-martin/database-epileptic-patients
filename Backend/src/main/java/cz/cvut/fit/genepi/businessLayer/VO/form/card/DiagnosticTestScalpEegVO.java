@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.VO.form;
+package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.AnamnesisVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import org.springframework.stereotype.Service;

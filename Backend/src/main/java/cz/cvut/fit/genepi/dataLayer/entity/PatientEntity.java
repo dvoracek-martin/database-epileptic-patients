@@ -93,7 +93,11 @@ public class PatientEntity {
     @Valid
     @OneToOne
     @Cascade({CascadeType.SAVE_UPDATE})
+    @JoinColumn(name = "contact_id", insertable = false, updatable = false)
     private ContactEntity contact;
+
+    @Column(name = "contact_id")
+    private int contactId;
 
     /* AnamnesisList */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
@@ -466,4 +470,11 @@ public class PatientEntity {
         this.doctor = doctor;
     }
 
+    public int getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(int contactId) {
+        this.contactId = contactId;
+    }
 }

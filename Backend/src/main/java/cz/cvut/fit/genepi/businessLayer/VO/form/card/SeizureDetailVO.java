@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.VO.form;
+package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -8,22 +8,24 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Created by Jan on 25.1.14.
+ * Created by Jan on 21.1.14.
  */
-public class HistologyVO {
+public class SeizureDetailVO {
 
     private int id;
 
     private int patientId;
+
+    private int seizureId;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
     @NotNull
     private Date date;
 
-    private int histopathology;
+    private int sscClassification;
 
-    private int fcdClassification;
+    private int ilaeClassification;
 
     @Size(max = 800)
     private String comment;
@@ -44,6 +46,14 @@ public class HistologyVO {
         this.patientId = patientId;
     }
 
+    public int getSeizureId() {
+        return seizureId;
+    }
+
+    public void setSeizureId(int seizureId) {
+        this.seizureId = seizureId;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -52,20 +62,20 @@ public class HistologyVO {
         this.date = date;
     }
 
-    public int getHistopathology() {
-        return histopathology;
+    public int getSscClassification() {
+        return sscClassification;
     }
 
-    public void setHistopathology(int histopathology) {
-        this.histopathology = histopathology;
+    public void setSscClassification(int sscClassification) {
+        this.sscClassification = sscClassification;
     }
 
-    public int getFcdClassification() {
-        return fcdClassification;
+    public int getIlaeClassification() {
+        return ilaeClassification;
     }
 
-    public void setFcdClassification(int fcdClassification) {
-        this.fcdClassification = fcdClassification;
+    public void setIlaeClassification(int ilaeClassification) {
+        this.ilaeClassification = ilaeClassification;
     }
 
     public String getComment() {

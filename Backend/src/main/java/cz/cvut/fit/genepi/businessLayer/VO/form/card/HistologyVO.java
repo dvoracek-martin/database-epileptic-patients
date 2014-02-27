@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.VO.form;
+package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by Jan on 25.1.14.
  */
-public class ComplicationVO {
+public class HistologyVO {
 
     private int id;
 
@@ -21,11 +21,9 @@ public class ComplicationVO {
     @NotNull
     private Date date;
 
-    private int withComplication;
+    private int histopathology;
 
-    private int complicationType;
-
-    private int complication;
+    private int fcdClassification;
 
     @Size(max = 800)
     private String comment;
@@ -54,28 +52,20 @@ public class ComplicationVO {
         this.date = date;
     }
 
-    public int getWithComplication() {
-        return withComplication;
+    public int getHistopathology() {
+        return histopathology;
     }
 
-    public void setWithComplication(int withComplication) {
-        this.withComplication = withComplication;
+    public void setHistopathology(int histopathology) {
+        this.histopathology = histopathology;
     }
 
-    public int getComplicationType() {
-        return complicationType;
+    public int getFcdClassification() {
+        return fcdClassification;
     }
 
-    public void setComplicationType(int complicationType) {
-        this.complicationType = complicationType;
-    }
-
-    public int getComplication() {
-        return complication;
-    }
-
-    public void setComplication(int complication) {
-        this.complication = complication;
+    public void setFcdClassification(int fcdClassification) {
+        this.fcdClassification = fcdClassification;
     }
 
     public String getComment() {

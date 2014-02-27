@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.SeizureDetailVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureDetailVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureDetailService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 import org.springframework.stereotype.Service;

@@ -25,26 +25,18 @@
 
         <%@include file="patientDetails.jsp" %>
 
-        <form class="form-horizontal" role="form" method="POST" action="/GENEPI/patient/${patient.id}/verify">
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/verify" commandName="patientVO">
+
 
             <div class="form-group">
-                <label for="verification" class="col-xs-3 control-label">
-                    <spring:message code="label.verifyPatient"/>
-                </label>
 
-                <div class="col-xs-8">
-                    <select id="verification" type="text" class="form-control">
-                        <option value="1">
-                           v poradku
-                        </option>
-                        <option value="2">
-                           ne v proadku
-                        </option>
-                    </select>
-                </div>
+                <form:checkbox path="verified" id="verified"/> overit?
+
             </div>
-
-        </form>
-
+            <button class="btn btn-primary" type="submit">
+                <spring:message code="label.add"/>ulozit
+            </button>
+        </form:form>
     </jsp:body>
 </t:menuLVL2.NEW303>

@@ -1,12 +1,11 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.InvasiveTestEcogVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;

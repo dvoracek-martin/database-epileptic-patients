@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.VO.form;
+package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * Created by Jan on 25.1.14.
  */
-public class InvasiveTestCorticalMappingVO {
+public class ComplicationVO {
 
     private int id;
 
@@ -21,9 +21,11 @@ public class InvasiveTestCorticalMappingVO {
     @NotNull
     private Date date;
 
-    private int done;
+    private int withComplication;
 
-    private int corticalMapping;
+    private int complicationType;
+
+    private int complication;
 
     @Size(max = 800)
     private String comment;
@@ -52,20 +54,28 @@ public class InvasiveTestCorticalMappingVO {
         this.date = date;
     }
 
-    public int getDone() {
-        return done;
+    public int getWithComplication() {
+        return withComplication;
     }
 
-    public void setDone(int done) {
-        this.done = done;
+    public void setWithComplication(int withComplication) {
+        this.withComplication = withComplication;
     }
 
-    public int getCorticalMapping() {
-        return corticalMapping;
+    public int getComplicationType() {
+        return complicationType;
     }
 
-    public void setCorticalMapping(int corticalMapping) {
-        this.corticalMapping = corticalMapping;
+    public void setComplicationType(int complicationType) {
+        this.complicationType = complicationType;
+    }
+
+    public int getComplication() {
+        return complication;
+    }
+
+    public void setComplication(int complication) {
+        this.complication = complication;
     }
 
     public String getComment() {
