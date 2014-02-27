@@ -310,9 +310,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/hide", method = RequestMethod.GET)
     public String patientHideGET(Locale locale, Model model,
                                    @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         patientService.hide(patientId);
         return "redirect:/patient/list?maxResults=20";
     }
@@ -320,9 +321,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/unhide", method = RequestMethod.GET)
     public String patientUnhideGET(Locale locale, Model model,
                                  @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         patientService.unhide(patientId);
         return "redirect:/hidden";
     }
