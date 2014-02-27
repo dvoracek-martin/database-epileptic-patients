@@ -71,7 +71,6 @@ public class MailServiceImpl implements MailService {
                          Locale locale) throws Exception { // Recipient's email
         // ID needs to be
         // mentioned.
-        String to = "Dworza@gmail.com";
 
         // Sender's email ID needs to be mentioned
         String from = "mailbot@genepi.com";
@@ -100,7 +99,7 @@ public class MailServiceImpl implements MailService {
 
             // Set To: header field of the header.
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(
-                    to));
+                    recipient));
             if (map.get("subject").equals("changeOfThePassword")) {
                 message.setSubject("Changed password to GENEPI system");
                 UserEntity user = (UserEntity) map.get("user");
