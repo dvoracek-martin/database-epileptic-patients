@@ -21,7 +21,7 @@
                                 access="ROLE_RESEARCHER"/>
 
 
-        <security:intercept-url pattern="/patient/**/"
+        <security:intercept-url pattern="/patient/**/**/"
                                 access="ROLE_DOCTOR"/>
         <security:intercept-url pattern="/patient/**/**/create"
                                 access="ROLE_DOCTOR"/>
