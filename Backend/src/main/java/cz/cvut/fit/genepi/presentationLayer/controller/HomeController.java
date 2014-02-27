@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.NewsMessageService;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +39,10 @@ public class HomeController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String homeGET(Locale locale, Model model) {
+    public String homeGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         // TODO: overide findAll rto return reverted news list
         List<NewsMessageEntity> newsMessages = newsMessageService
@@ -67,7 +72,10 @@ public class HomeController {
     @RequestMapping(value = "/news/create", method = RequestMethod.POST)
     public String newsMessageCreatePOST(
             @ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
-            BindingResult result, Locale locale, Model model) {
+            BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors()) {
             // TODO: override findAll to return reverted news list
             List<NewsMessageEntity> newsMessages = newsMessageService
@@ -99,7 +107,10 @@ public class HomeController {
     public String newsMessageEditPOST(
             @PathVariable("newsMessageID") Integer newsMessageID,
             @ModelAttribute("formNewsMessage") @Valid NewsMessageEntity formNewsMessage,
-            BindingResult result, Locale locale, Model model) {
+            BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         if (result.hasErrors()) {
             // TODO: override findAll to return reverted news list
@@ -128,7 +139,10 @@ public class HomeController {
     @RequestMapping(value = "/news/{newsMessageID}/delete", method = RequestMethod.GET)
     public String newsMessageDeleteGET(
             @PathVariable("newsMessageID") Integer newsMessageID,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         newsMessageService.delete(newsMessageService.findByID(
                 NewsMessageEntity.class, newsMessageID));
         return "redirect:/";
