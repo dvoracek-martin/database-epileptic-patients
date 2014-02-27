@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.util;
+package cz.cvut.fit.genepi.businessLayer.service;
 
 import javax.servlet.http.HttpServletRequest;
 

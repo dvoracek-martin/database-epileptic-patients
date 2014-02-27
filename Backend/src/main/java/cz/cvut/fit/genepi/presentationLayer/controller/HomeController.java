@@ -2,7 +2,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.NewsMessageService;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
-import cz.cvut.fit.genepi.util.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

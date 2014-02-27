@@ -37,8 +37,8 @@
     </div>
     <div class="col-xs-3">
         <h3 class="pull-right">
-            <a id="verify" href="<c:url value="/patient/${patient.id}/hide" />">
-                <spring:message code="label.verify"/>HIDE
+            <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
+                <spring:message code="label.hide"/>
             </a>
         </h3>
     </div>
@@ -84,7 +84,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -133,7 +133,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/seizure/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -178,7 +178,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -249,7 +249,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -298,7 +298,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -347,7 +347,7 @@
                 <th class="col-xs-4">
                     <a class="pull-right"
                        href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -395,7 +395,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -443,7 +443,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -491,7 +491,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -541,7 +541,7 @@
                 <th class="col-xs-4">
                     <a class="pull-right"
                        href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -590,7 +590,7 @@
                 <th class="col-xs-4">
                     <a class="pull-right"
                        href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -636,7 +636,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/histology/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
@@ -704,7 +704,7 @@
                 </th>
                 <th class="col-xs-4">
                     <a class="pull-right" href="<c:url value="/patient/${patient.id}/complication/list" />">
-                        Zobrazit vsechny
+                        <spring:message code="label.showAll"/>
                     </a>
                 </th>
             </tr>
