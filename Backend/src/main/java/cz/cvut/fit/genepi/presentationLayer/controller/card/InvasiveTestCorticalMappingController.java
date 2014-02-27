@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -35,6 +37,7 @@ public class InvasiveTestCorticalMappingController {
     private InvasiveTestCorticalMappingService invasiveTestCorticalMappingService;
 
     private UserService userService;
+
     /**
      * Constructor which serves to autowire services.
      *
@@ -61,7 +64,10 @@ public class InvasiveTestCorticalMappingController {
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/create", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestCorticalMapping", new InvasiveTestCorticalMappingVO());
@@ -82,7 +88,10 @@ public class InvasiveTestCorticalMappingController {
     public String invasiveTestCorticalMappingEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestCorticalMapping", invasiveTestCorticalMappingService.getById(InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMappingId));
@@ -91,7 +100,8 @@ public class InvasiveTestCorticalMappingController {
 
     /**
      * Handles the POST request to create new invasiveTestCorticalMapping.
-     *                  front-end. It is grabbed from POST string and validated.
+     * front-end. It is grabbed from POST string and validated.
+     *
      * @param result    the result of binding form from front-end to an
      *                  AnamnesisEntity. It is used to determine if there were some
      *                  errors during binding.
@@ -106,9 +116,12 @@ public class InvasiveTestCorticalMappingController {
     public String invasiveTestCorticalMappingSavePOST(
             @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestCorticalMapping.getDate())) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestCorticalMapping.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/invasiveTestCorticalMapping/formView";
         } else {
@@ -123,7 +136,7 @@ public class InvasiveTestCorticalMappingController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             invasiveTestCorticalMapping.setPatientId(patientId);
             invasiveTestCorticalMappingService.save(InvasiveTestCorticalMappingEntity.class, invasiveTestCorticalMapping);
             return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
@@ -133,17 +146,20 @@ public class InvasiveTestCorticalMappingController {
     /**
      * Handles the GET request to hide invasiveTestCorticalMapping.
      *
-     * @param patientId   the id of a patient whom we are creating an
-     *                    invasiveTestCorticalMapping.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an
+     *                  invasiveTestCorticalMapping.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/{invasiveTestCorticalMappingId}/hide", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         invasiveTestCorticalMappingService.hide(invasiveTestCorticalMappingId);
         return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
@@ -152,14 +168,17 @@ public class InvasiveTestCorticalMappingController {
     /**
      * Handles the GET request to unhide invasiveTestCorticalMapping.
      *
-     * @param patientId   the id of a patient whom we are creating an
-     *                    invasiveTestCorticalMapping.
+     * @param patientId the id of a patient whom we are creating an
+     *                  invasiveTestCorticalMapping.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/{invasiveTestCorticalMappingId}/unhide", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingUnhideGET(
             @PathVariable("patientId") Integer patientId,
-            @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId) {
+            @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         invasiveTestCorticalMappingService.unhide(invasiveTestCorticalMappingId);
         // TODO: address to get back to admin module where is list od hidden
@@ -190,7 +209,11 @@ public class InvasiveTestCorticalMappingController {
      */
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/list", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestCorticalMappingList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

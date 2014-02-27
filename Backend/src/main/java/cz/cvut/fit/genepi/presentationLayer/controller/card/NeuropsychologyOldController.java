@@ -2,8 +2,8 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 @Controller
@@ -34,8 +35,10 @@ public class NeuropsychologyOldController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/delete", method = RequestMethod.GET)
     public String neuropsychologyOldDeleteGET(Locale locale, Model model,
                                               @PathVariable("patientId") Integer patientId,
-                                              @PathVariable("neuropsychologyOldId") Integer neuropsychologyOldId) {
-
+                                              @PathVariable("neuropsychologyOldId") Integer neuropsychologyOldId, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         neuropsychologyOldService.delete(neuropsychologyOldId);
         return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
@@ -43,17 +46,19 @@ public class NeuropsychologyOldController {
     /**
      * Handles the GET request to hide neuropsychology.
      *
-     * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an neuropsychology.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/hide", method = RequestMethod.GET)
     public String neuropsychologyHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         neuropsychologyOldService.hide(neuropsychologyId);
         return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
@@ -61,17 +66,19 @@ public class NeuropsychologyOldController {
     /**
      * Handles the GET request to unhide neuropsychology.
      *
-     * @param patientId   the id of a patient whom we are creating an neuropsychology.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an neuropsychology.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/{neuropsychologyOldId}/unhide", method = RequestMethod.GET)
     public String neuropsychologyUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         neuropsychologyOldService.unhide(neuropsychologyId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -87,7 +94,10 @@ public class NeuropsychologyOldController {
 
     @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/list", method = RequestMethod.GET)
     public String neuropsychologyListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeuropsychologyOldList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

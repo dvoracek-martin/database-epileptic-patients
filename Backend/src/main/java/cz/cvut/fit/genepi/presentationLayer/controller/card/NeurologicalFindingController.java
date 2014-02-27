@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -40,8 +42,10 @@ public class NeurologicalFindingController {
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.GET)
     public String neurologicalFindingCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
         return "patient/neurologicalFinding/formView";
@@ -51,8 +55,10 @@ public class NeurologicalFindingController {
     public String neurologicalFindingEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         NeurologicalFindingVO vo = neurologicalFindingService.getById(NeurologicalFindingVO.class, NeurologicalFindingEntity.class, neurologicalFindingId);
         model.addAttribute("neurologicalFinding", vo);
@@ -71,9 +77,11 @@ public class NeurologicalFindingController {
     public String neurologicalFindingSavePOST(
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/neurologicalFinding/formView";
         } else {
@@ -93,7 +101,7 @@ public class NeurologicalFindingController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
 
             neurologicalFindingService.save(NeurologicalFindingEntity.class, neurologicalFinding);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
@@ -103,8 +111,10 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientID}/neurological-finding/{neurologicalFindingID}/delete", method = RequestMethod.GET)
     public String neurologicalFindingDeleteGET(
             @PathVariable("patientID") Integer patientID,
-            @PathVariable("neurologicalFindingID") Integer neurologicalFindingID, Locale locale, Model model) {
-
+            @PathVariable("neurologicalFindingID") Integer neurologicalFindingID, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         /*neurologicalFindingService.delete(neurologicalFindingService.findByID(
                 NeurologicalFindingVO.class, neurologicalFindingID));*/
         return "redirect:/patient/" + patientID + "/neurological-finding/list";
@@ -124,8 +134,10 @@ public class NeurologicalFindingController {
     public String neurologicalFindingHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         neurologicalFindingService.hide(neurologicalFindingId);
         return "redirect:/patient/" + patientId + "/neurological-finding/list";
     }
@@ -144,8 +156,10 @@ public class NeurologicalFindingController {
     public String neurologicalFindingGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         neurologicalFindingService.unhide(neurologicalFindingId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -162,7 +176,10 @@ public class NeurologicalFindingController {
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/list", method = RequestMethod.GET)
     public String neurologicalFindingListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeurologicalFindingList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

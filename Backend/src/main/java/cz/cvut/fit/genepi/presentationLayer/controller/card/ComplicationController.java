@@ -80,7 +80,7 @@ public class ComplicationController {
         if (!AuthorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/complication/formView";
         } else {
@@ -95,7 +95,7 @@ public class ComplicationController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             complication.setPatientId(patientId);
             complicationService.save(ComplicationEntity.class, complication);
             return "redirect:/patient/" + patientId + "/complication/list";
@@ -117,9 +117,9 @@ public class ComplicationController {
     /**
      * Handles the GET request to hide complication.
      *
-     * @param patientId   the id of a patient whom we are creating an complication.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an complication.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/hide", method = RequestMethod.GET)
@@ -137,9 +137,9 @@ public class ComplicationController {
     /**
      * Handles the GET request to unhide complication.
      *
-     * @param patientId   the id of a patient whom we are creating an complication.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an complication.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/unhide", method = RequestMethod.GET)

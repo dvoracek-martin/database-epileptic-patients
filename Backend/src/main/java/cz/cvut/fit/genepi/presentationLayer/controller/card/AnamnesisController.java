@@ -143,7 +143,7 @@ public class AnamnesisController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             anamnesis.setPatientId(patientId);
             anamnesisService.save(AnamnesisEntity.class, anamnesis);
             return "redirect:/patient/" + patientId + "/anamnesis/list";

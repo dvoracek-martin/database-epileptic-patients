@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -41,7 +43,10 @@ public class HistologyController {
 
     @RequestMapping(value = "/patient/{patientId}/histology/create", method = RequestMethod.GET)
     public String histologyCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("histology", new HistologyVO());
@@ -52,8 +57,10 @@ public class HistologyController {
     public String complicationEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("histology", histologyService.getById(HistologyVO.class, HistologyEntity.class, histologyId));
         return "patient/histology/formView";
@@ -70,9 +77,11 @@ public class HistologyController {
     public String histologySavePOST(
             @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), histology.getDate())) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), histology.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/histology/formView";
         } else {
@@ -87,7 +96,7 @@ public class HistologyController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             histology.setPatientId(patientId);
             histologyService.save(HistologyEntity.class, histology);
             return "redirect:/patient/" + patientId + "/histology/list";
@@ -98,8 +107,10 @@ public class HistologyController {
     public String histologyDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         histologyService.delete(HistologyEntity.class, histologyId);
         return "redirect:/patient/" + patientId + "/histology/list";
     }
@@ -107,17 +118,19 @@ public class HistologyController {
     /**
      * Handles the GET request to hide histology.
      *
-     * @param patientId   the id of a patient whom we are creating an histology.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an histology.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/hide", method = RequestMethod.GET)
     public String histologyHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         histologyService.hide(histologyId);
         return "redirect:/patient/" + patientId + "/histology/list";
     }
@@ -125,17 +138,19 @@ public class HistologyController {
     /**
      * Handles the GET request to unhide histology.
      *
-     * @param patientId   the id of a patient whom we are creating an histology.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an histology.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/unhide", method = RequestMethod.GET)
     public String histologyUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         histologyService.unhide(histologyId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -151,7 +166,10 @@ public class HistologyController {
 
     @RequestMapping(value = "/patient/{patientId}/histology/list", method = RequestMethod.GET)
     public String histologyListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithHistologyList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

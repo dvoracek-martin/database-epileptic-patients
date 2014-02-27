@@ -68,7 +68,7 @@ public class DiagnosticTestMriController {
     /**
      * Adds the diagnosticTestMRI.
      *
-     * @param result            the result
+     * @param result the result
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/save", method = RequestMethod.POST)
@@ -79,7 +79,7 @@ public class DiagnosticTestMriController {
         if (!AuthorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestMri/formView";
         } else {
@@ -94,7 +94,7 @@ public class DiagnosticTestMriController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             diagnosticTestMri.setPatientId(patientId);
             diagnosticTestMriService.save(DiagnosticTestMriEntity.class, diagnosticTestMri);
             return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
@@ -116,9 +116,9 @@ public class DiagnosticTestMriController {
     /**
      * Handles the GET request to hide diagnosticTestMri.
      *
-     * @param patientId   the id of a patient whom we are creating an diagnosticTestMri.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an diagnosticTestMri.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/hide", method = RequestMethod.GET)
@@ -136,9 +136,9 @@ public class DiagnosticTestMriController {
     /**
      * Handles the GET request to unhide diagnosticTestMri.
      *
-     * @param patientId   the id of a patient whom we are creating an diagnosticTestMri.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an diagnosticTestMri.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/unhide", method = RequestMethod.GET)
@@ -164,9 +164,10 @@ public class DiagnosticTestMriController {
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/list", method = RequestMethod.GET)
     public String diagnosticTestMriListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) { if (!AuthorizationChecker.checkAuthoritaion(request)) {
-        return "deniedView";
-    }
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestMriList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

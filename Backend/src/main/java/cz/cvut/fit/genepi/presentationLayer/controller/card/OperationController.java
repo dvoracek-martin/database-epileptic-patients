@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -30,6 +32,7 @@ public class OperationController {
     private OperationService operationService;
 
     private UserService userService;
+
     @Autowired
     public OperationController(PatientService patientService,
                                OperationService operationService) {
@@ -40,8 +43,10 @@ public class OperationController {
 
     @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.GET)
     public String operationCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("operation", new OperationVO());
         return "patient/operation/formView";
@@ -51,8 +56,10 @@ public class OperationController {
     public String complicationEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("operation", operationService.getById(OperationVO.class, OperationEntity.class, operationId));
         return "patient/operation/formView";
@@ -69,9 +76,11 @@ public class OperationController {
     public String operationSavePOST(
             @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/operation/formView";
         } else {
@@ -86,7 +95,7 @@ public class OperationController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             operation.setPatientId(patientId);
             operationService.save(OperationEntity.class, operation);
             return "redirect:/patient/" + patientId + "/operation/list";
@@ -97,8 +106,10 @@ public class OperationController {
     public String operationDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         operationService.delete(OperationEntity.class, operationId);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
@@ -106,17 +117,19 @@ public class OperationController {
     /**
      * Handles the GET request to hide operation.
      *
-     * @param patientId   the id of a patient whom we are creating an operation.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an operation.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/hide", method = RequestMethod.GET)
     public String operationHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         operationService.hide(operationId);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
@@ -124,17 +137,19 @@ public class OperationController {
     /**
      * Handles the GET request to unhide operation.
      *
-     * @param patientId   the id of a patient whom we are creating an operation.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an operation.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/operation/{anamnesisId}/unhide", method = RequestMethod.GET)
     public String operationUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         operationService.unhide(operationId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -150,7 +165,10 @@ public class OperationController {
 
     @RequestMapping(value = "/patient/{patientId}/operation/list", method = RequestMethod.GET)
     public String operationListGET(Locale locale, Model model,
-                                   @PathVariable("patientId") Integer patientId) {
+                                   @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

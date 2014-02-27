@@ -68,7 +68,7 @@ public class DiagnosticTestScalpEegController {
     /**
      * Adds the diagnosticTestScalpEEG.
      *
-     * @param result                 the result
+     * @param result the result
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/save", method = RequestMethod.POST)
@@ -79,7 +79,7 @@ public class DiagnosticTestScalpEegController {
         if (!AuthorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestScalpEeg/formView";
         } else {
@@ -94,7 +94,7 @@ public class DiagnosticTestScalpEegController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             diagnosticTestScalpEeg.setPatientId(patientId);
             diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEeg);
             return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
@@ -116,10 +116,10 @@ public class DiagnosticTestScalpEegController {
     /**
      * Handles the GET request to hide diagnosticTestScalpEeg.
      *
-     * @param patientId   the id of a patient whom we are creating an
-     *                    diagnosticTestScalpEeg.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an
+     *                  diagnosticTestScalpEeg.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/hide", method = RequestMethod.GET)
@@ -137,10 +137,10 @@ public class DiagnosticTestScalpEegController {
     /**
      * Handles the GET request to unhide diagnosticTestScalpEeg.
      *
-     * @param patientId   the id of a patient whom we are creating an
-     *                    diagnosticTestScalpEeg.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an
+     *                  diagnosticTestScalpEeg.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/unhide", method = RequestMethod.GET)

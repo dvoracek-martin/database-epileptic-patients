@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -36,7 +35,7 @@ import java.util.Locale;
  * The Class CreatedPatientController.
  */
 @Controller
-@SessionAttributes({"patient","patientVO"})
+@SessionAttributes({"patient", "patientVO"})
 public class PatientController {
 
     @Autowired
@@ -180,7 +179,7 @@ public class PatientController {
             return "patient/verifyView";
         } else {
             patientService.save(patientVO);
-            return "redirect:/patient/"+patientId+"/overview";
+            return "redirect:/patient/" + patientId + "/overview";
         }
     }
 

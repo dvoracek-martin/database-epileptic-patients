@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -40,8 +42,10 @@ public class PharmacotherapyController {
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.GET)
     public String pharmacotherapyCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", new PharmacotherapyVO());
         return "patient/pharmacotherapy/formView";
@@ -50,8 +54,10 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.GET)
     public String pharmacotherapyEditGET(@PathVariable("patientId") Integer patientId,
                                          @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
-                                         Locale locale, Model model) {
-
+                                         Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(PharmacotherapyVO.class, PharmacotherapyEntity.class, pharmacotherapyId));
         return "patient/pharmacotherapy/formView";
@@ -67,11 +73,13 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/save", method = RequestMethod.POST)
     public String pharmacotherapySavePOST(
             @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
-            if (pharmacotherapy.getAed()==0)
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (pharmacotherapy.getAed() == 0)
+                model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/pharmacotherapy/formView";
         } else {
             Authentication auth = SecurityContextHolder.getContext()
@@ -85,7 +93,7 @@ public class PharmacotherapyController {
                 }
             }
             if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class,patientId).setVerified(false);
+                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             pharmacotherapy.setPatientId(patientId);
             pharmacotherapyService.save(PharmacotherapyEntity.class, pharmacotherapy);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
@@ -95,8 +103,10 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/{pharmacotherapyID}/delete", method = RequestMethod.GET)
     public String pharmacotherapyDeleteGET(
             @PathVariable("patientID") Integer patientID,
-            @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, Locale locale, Model model) {
-
+            @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         /*pharmacotherapyService.delete(pharmacotherapyService.findByID(
                 PharmacotherapyEntity.class, pharmacotherapyID));*/
         return "redirect:/patient/" + patientID + "/pharmacotherapy/list";
@@ -105,17 +115,19 @@ public class PharmacotherapyController {
     /**
      * Handles the GET request to hide pharmacotherapy.
      *
-     * @param patientId   the id of a patient whom we are creating an pharmacotherapy.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an pharmacotherapy.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/hide", method = RequestMethod.GET)
     public String pharmacotherapyHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         pharmacotherapyService.hide(pharmacotherapyId);
         return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
     }
@@ -123,17 +135,19 @@ public class PharmacotherapyController {
     /**
      * Handles the GET request to unhide pharmacotherapy.
      *
-     * @param patientId   the id of a patient whom we are creating an pharmacotherapy.
-     * @param locale      the user's locale.
-     * @param model       the model to be filled for view.
+     * @param patientId the id of a patient whom we are creating an pharmacotherapy.
+     * @param locale    the user's locale.
+     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{anamnesisId}/unhide", method = RequestMethod.GET)
     public String pharmacotherapyUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         pharmacotherapyService.unhide(pharmacotherapyId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -143,13 +157,19 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/{pharmacotherapyID}/export", method = RequestMethod.GET)
     public String pharmacotherapyExportGET(Locale locale, Model model,
                                            @PathVariable("patientID") Integer patientID,
-                                           @PathVariable("pharmacotherapyID") Integer pharmacotherapyID) {
+                                           @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         return "redirect:/patient/" + patientID + "/pharmacotherapy/list";
     }
 
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
     public String pharmacotherapyListGET(
-            @PathVariable("patientID") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientID") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
