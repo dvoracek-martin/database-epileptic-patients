@@ -28,15 +28,23 @@
         <form:form class="form-horizontal" role="form" method="POST"
                    action="/GENEPI/patient/${patient.id}/verify" commandName="patientVO">
 
+            <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <div class="checkbox">
+                    <label>
+                        <form:checkbox path="verified" id="verified"/> overit?
+                    </label>
+                </div>
+            </div>
+            </div>
 
             <div class="form-group">
-
-                <form:checkbox path="verified" id="verified"/> overit?
-
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>ulozit
+                    </button>
+                </div>
             </div>
-            <button class="btn btn-primary" type="submit">
-                <spring:message code="label.add"/>ulozit
-            </button>
         </form:form>
     </jsp:body>
 </t:menuLVL2.NEW303>
