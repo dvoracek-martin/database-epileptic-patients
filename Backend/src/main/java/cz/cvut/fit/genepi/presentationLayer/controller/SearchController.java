@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Locale;
 
@@ -30,7 +32,6 @@ public class SearchController {
 
     /**
      * Constructor which serves to autowire services.
-     *
      */
     @Autowired
     public SearchController(SearchService searchService, RoleService roleService) {
@@ -39,17 +40,26 @@ public class SearchController {
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchGET(Locale locale, Model model) {
+    public String searchGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         return "search";
     }
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchPost(Locale locale, Model model) {
+    public String searchPost(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         return "searchResults";
     }
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
-    public String advancedSearchGET(Locale locale, Model model) {
+    public String advancedSearchGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("advancedSearch", new AdvancedSearchEntity());
         return "advancedSearchView";
@@ -58,7 +68,10 @@ public class SearchController {
     @RequestMapping(value = "/advanced-search", method = RequestMethod.POST)
     public String advancedSearchPOST(
             @ModelAttribute("advancedSearch") @Valid AdvancedSearchEntity advancedSearch,
-            BindingResult result, Locale locale, Model model) {
+            BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patients",
                 searchService.performAdvancedSearch(advancedSearch));
         return "searchResults";

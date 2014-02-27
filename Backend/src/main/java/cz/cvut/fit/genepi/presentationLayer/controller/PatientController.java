@@ -233,7 +233,7 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String patientsListGET(Locale locale, Model model,
-                                  @RequestParam("maxResults") int maxResults , HttpServletRequest request/*,
+                                  @RequestParam("maxResults") int maxResults, HttpServletRequest request/*,
                                   @RequestParam("pageNumber") int pageNumber*/) {
       /*  model.addAttribute("patientList", patientService.findAllWithPagination(PatientEntity.class, maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
