@@ -38,12 +38,12 @@
 <div class="row">
     <div class="col-xs-12">
         <div class="form-group">
-            <label for="search" class="col-xs-2 control-label">Filtruj:</label>
+            <label for="search" class="col-xs-2 control-label"><spring:message code="label.filter"/>:</label>
 
             <div class="col-xs-4 input-group">
                 <span class="input-group-addon glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" id="search"
-                       placeholder="jmeno/prijmeni" data-max-results="${maxResult}">
+                       placeholder="<spring:message code="label.lastname"/>/<spring:message code="label.firstname"/>/<spring:message code="label.nin"/>" data-max-results="${maxResult}">
             </div>
         </div>
     </div>
