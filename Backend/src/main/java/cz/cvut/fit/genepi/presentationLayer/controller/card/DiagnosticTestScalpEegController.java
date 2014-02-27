@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"diagnosticTestScalpEeg"})
 public class DiagnosticTestScalpEegController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.GET)
     public String diagnosticTestScalpEegCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -57,7 +59,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -76,7 +78,7 @@ public class DiagnosticTestScalpEegController {
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
@@ -106,7 +108,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
@@ -127,7 +129,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId);
@@ -148,7 +150,7 @@ public class DiagnosticTestScalpEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestScalpEegService.unhide(diagnosticTestScalpEegId);
@@ -167,7 +169,7 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/list", method = RequestMethod.GET)
     public String diagnosticTestScalpEegListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestScalpEegList(patientId);

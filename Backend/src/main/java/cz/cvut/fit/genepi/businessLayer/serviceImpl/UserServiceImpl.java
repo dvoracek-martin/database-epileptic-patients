@@ -67,8 +67,8 @@ public class UserServiceImpl extends
 
     @Override
     @Transactional
-    public List<UserEntity> findAllUsersWithPagination(int maxResults,int pageNumber) {
-        return userDAO.findAllUsersWithPagination(maxResults,pageNumber);
+    public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber) {
+        return userDAO.findAllUsersWithPagination(maxResults, pageNumber);
     }
 
     @Override

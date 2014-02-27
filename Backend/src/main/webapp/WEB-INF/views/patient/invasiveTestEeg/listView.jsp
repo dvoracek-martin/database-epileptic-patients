@@ -48,7 +48,8 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-invasive-test-eeg-${invasiveTestEeg.id}">
+                                        <a data-toggle="collapse"
+                                           href="#collapse-invasive-test-eeg-${invasiveTestEeg.id}">
                                             Zadano dne: ${invasiveTestEeg.date}
                                         </a>
                                     </th>

@@ -48,7 +48,8 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-neurological-finding-${neurologicalFinding.id}">
+                                        <a data-toggle="collapse"
+                                           href="#collapse-neurological-finding-${neurologicalFinding.id}">
                                             Zadano dne: ${neurologicalFinding.date}
                                         </a>
                                     </th>

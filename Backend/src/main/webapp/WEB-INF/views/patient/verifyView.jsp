@@ -29,13 +29,13 @@
                    action="/GENEPI/patient/${patient.id}/verify" commandName="patientVO">
 
             <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <div class="checkbox">
-                    <label>
-                        <form:checkbox path="verified" id="verified"/> overit?
-                    </label>
+                <div class="col-sm-offset-4 col-sm-8">
+                    <div class="checkbox">
+                        <label>
+                            <form:checkbox path="verified" id="verified"/> overit?
+                        </label>
+                    </div>
                 </div>
-            </div>
             </div>
 
             <div class="form-group">

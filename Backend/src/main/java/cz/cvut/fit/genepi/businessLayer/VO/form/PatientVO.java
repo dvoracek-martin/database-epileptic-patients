@@ -1,13 +1,8 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import org.hibernate.annotations.*;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;

@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"pharmacotherapy"})
 public class PharmacotherapyController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -43,7 +45,7 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.GET)
     public String pharmacotherapyCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -55,7 +57,7 @@ public class PharmacotherapyController {
     public String pharmacotherapyEditGET(@PathVariable("patientId") Integer patientId,
                                          @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
                                          Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -74,7 +76,7 @@ public class PharmacotherapyController {
     public String pharmacotherapySavePOST(
             @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
@@ -104,7 +106,7 @@ public class PharmacotherapyController {
     public String pharmacotherapyDeleteGET(
             @PathVariable("patientID") Integer patientID,
             @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         /*pharmacotherapyService.delete(pharmacotherapyService.findByID(
@@ -125,7 +127,7 @@ public class PharmacotherapyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         pharmacotherapyService.hide(pharmacotherapyId);
@@ -145,7 +147,7 @@ public class PharmacotherapyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("pharmacotherapyId") Integer pharmacotherapyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         pharmacotherapyService.unhide(pharmacotherapyId);
@@ -158,7 +160,7 @@ public class PharmacotherapyController {
     public String pharmacotherapyExportGET(Locale locale, Model model,
                                            @PathVariable("patientID") Integer patientID,
                                            @PathVariable("pharmacotherapyID") Integer pharmacotherapyID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         return "redirect:/patient/" + patientID + "/pharmacotherapy/list";
@@ -167,7 +169,7 @@ public class PharmacotherapyController {
     @RequestMapping(value = "/patient/{patientID}/pharmacotherapy/list", method = RequestMethod.GET)
     public String pharmacotherapyListGET(
             @PathVariable("patientID") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId);

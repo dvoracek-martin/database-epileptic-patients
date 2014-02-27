@@ -20,6 +20,8 @@ import java.util.Locale;
  */
 @Controller
 public class HiddenController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
@@ -64,7 +66,7 @@ public class HiddenController {
      */
     @RequestMapping(value = "/hidden", method = RequestMethod.GET)
     public String userListGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

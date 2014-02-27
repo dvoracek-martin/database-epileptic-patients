@@ -130,7 +130,6 @@
 </div>
 
 
-
 <%--
 <c:set var="countOfPagesString" value="${countOfPatients/maxResults}" scope="page"/>
 

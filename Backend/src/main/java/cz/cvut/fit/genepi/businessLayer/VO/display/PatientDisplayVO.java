@@ -23,7 +23,7 @@ public class PatientDisplayVO {
 
     //private int status;
 
-   // private boolean verified;
+    // private boolean verified;
 
     private UserDisplayVO doctor;
 

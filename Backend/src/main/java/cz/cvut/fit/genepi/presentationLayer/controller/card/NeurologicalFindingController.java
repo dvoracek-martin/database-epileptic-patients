@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"neurologicalFinding"})
 public class NeurologicalFindingController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -43,7 +45,7 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.GET)
     public String neurologicalFindingCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -56,7 +58,7 @@ public class NeurologicalFindingController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -78,7 +80,7 @@ public class NeurologicalFindingController {
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
@@ -112,7 +114,7 @@ public class NeurologicalFindingController {
     public String neurologicalFindingDeleteGET(
             @PathVariable("patientID") Integer patientID,
             @PathVariable("neurologicalFindingID") Integer neurologicalFindingID, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         /*neurologicalFindingService.delete(neurologicalFindingService.findByID(
@@ -135,7 +137,7 @@ public class NeurologicalFindingController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neurologicalFindingService.hide(neurologicalFindingId);
@@ -157,7 +159,7 @@ public class NeurologicalFindingController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neurologicalFindingId") Integer neurologicalFindingId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neurologicalFindingService.unhide(neurologicalFindingId);
@@ -177,7 +179,7 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/list", method = RequestMethod.GET)
     public String neurologicalFindingListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeurologicalFindingList(patientId);

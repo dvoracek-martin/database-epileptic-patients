@@ -56,27 +56,27 @@ public class TimeConverter {
         return formatedDate;
     }
 
-    public static boolean compareDates (Date first, Date second){
-        boolean isFormer=true;
+    public static boolean compareDates(Date first, Date second) {
+        boolean isFormer = true;
 
         DateTime fistDate = new DateTime(first);
         DateTime secondDate = new DateTime(second);
         Days countOfTheDays = Days.daysBetween(fistDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
 
-        if (countOfTheDays.getDays()>=0)
-            isFormer=false;
+        if (countOfTheDays.getDays() >= 0)
+            isFormer = false;
         return isFormer;
     }
 
-    public static boolean compareDates (Date first, DateTime second){
-        boolean isFormer=true;
+    public static boolean compareDates(Date first, DateTime second) {
+        boolean isFormer = true;
 
         DateTime fistDate = new DateTime(first);
         DateTime secondDate = new DateTime(second);
         Days countOfTheDays = Days.daysBetween(fistDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
 
-        if (countOfTheDays.getDays()>=0)
-            isFormer=false;
+        if (countOfTheDays.getDays() >= 0)
+            isFormer = false;
         return isFormer;
     }
 }

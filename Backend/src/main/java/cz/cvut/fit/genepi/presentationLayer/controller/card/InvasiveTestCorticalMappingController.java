@@ -28,6 +28,8 @@ import java.util.Locale;
 
 @Controller
 public class InvasiveTestCorticalMappingController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The patient service.
@@ -65,7 +67,7 @@ public class InvasiveTestCorticalMappingController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/create", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -89,7 +91,7 @@ public class InvasiveTestCorticalMappingController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -117,7 +119,7 @@ public class InvasiveTestCorticalMappingController {
             @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -157,7 +159,7 @@ public class InvasiveTestCorticalMappingController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -176,7 +178,7 @@ public class InvasiveTestCorticalMappingController {
     public String invasiveTestCorticalMappingUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestCorticalMappingId") Integer invasiveTestCorticalMappingId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -210,7 +212,7 @@ public class InvasiveTestCorticalMappingController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/list", method = RequestMethod.GET)
     public String invasiveTestCorticalMappingListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

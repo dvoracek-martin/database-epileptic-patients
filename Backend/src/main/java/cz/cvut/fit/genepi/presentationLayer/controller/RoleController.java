@@ -20,6 +20,8 @@ import java.util.Locale;
 //@Scope("session")
 @Controller
 public class RoleController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The role service.
@@ -29,7 +31,7 @@ public class RoleController {
 
     @RequestMapping(value = "/role/create", method = RequestMethod.GET)
     public String roleCreateGET(Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -41,7 +43,7 @@ public class RoleController {
     public String roleCreatePOST(
             @ModelAttribute("role") @Valid RoleEntity role,
             BindingResult result, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -57,7 +59,7 @@ public class RoleController {
     @RequestMapping(value = "/role/{roleID}/overview", method = RequestMethod.GET)
     public String roleOverviewGET(Locale locale, Model model,
                                   @PathVariable("roleID") Integer roleID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -69,7 +71,7 @@ public class RoleController {
 
     @RequestMapping(value = "/role/edit", method = RequestMethod.GET)
     public String roleEditGET(Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -80,7 +82,7 @@ public class RoleController {
     @RequestMapping(value = "/role/edit", method = RequestMethod.POST)
     public String roleEditPOST(@ModelAttribute("role") @Valid RoleEntity role,
                                BindingResult result, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -93,7 +95,7 @@ public class RoleController {
 
     @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
     public String roleDeleteGET(Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -104,7 +106,7 @@ public class RoleController {
     @RequestMapping(value = "/role/{roleID}/delete", method = RequestMethod.GET)
     public String roleDeleteGET(Locale locale, Model model,
                                 @PathVariable("roleID") Integer roleID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

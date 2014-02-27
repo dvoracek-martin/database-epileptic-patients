@@ -24,6 +24,8 @@ import java.util.Locale;
  */
 @Controller
 public class HomeController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The news message service.
@@ -40,7 +42,7 @@ public class HomeController {
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String homeGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -73,7 +75,7 @@ public class HomeController {
     public String newsMessageCreatePOST(
             @ModelAttribute("newsMessage") @Valid NewsMessageEntity newsMessage,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors()) {
@@ -108,7 +110,7 @@ public class HomeController {
             @PathVariable("newsMessageID") Integer newsMessageID,
             @ModelAttribute("formNewsMessage") @Valid NewsMessageEntity formNewsMessage,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -140,7 +142,7 @@ public class HomeController {
     public String newsMessageDeleteGET(
             @PathVariable("newsMessageID") Integer newsMessageID,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         newsMessageService.delete(newsMessageService.findByID(

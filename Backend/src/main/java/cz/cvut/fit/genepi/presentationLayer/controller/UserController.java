@@ -26,6 +26,8 @@ import java.util.Locale;
  */
 @Controller
 public class UserController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
@@ -71,7 +73,7 @@ public class UserController {
      */
     @RequestMapping(value = "/user/create", method = RequestMethod.GET)
     public String userCreateGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -98,7 +100,7 @@ public class UserController {
     public String userCreatePOST(
             @ModelAttribute("user") @Valid UserEntity user,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -143,7 +145,7 @@ public class UserController {
     @RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
     public String userOverviewGET(@PathVariable("userID") Integer userID,
                                   Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -155,7 +157,7 @@ public class UserController {
     @RequestMapping(value = "/user/{userID}/hide", method = RequestMethod.GET)
     public String userHideGET(Locale locale, Model model,
                               @PathVariable("userID") Integer userID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -181,7 +183,7 @@ public class UserController {
     @RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
     public String userEditGET(@PathVariable("userID") Integer userID,
                               Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -207,7 +209,7 @@ public class UserController {
     @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
     public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
                                BindingResult result, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -252,7 +254,7 @@ public class UserController {
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
     public String userListGET(Locale locale, Model model, @RequestParam("maxResults") int maxResults,
                               @RequestParam("pageNumber") int pageNumber, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -272,7 +274,7 @@ public class UserController {
     @RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
     public String userChangePasswordGET(@PathVariable("userID") Integer userID,
                                         Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -304,7 +306,7 @@ public class UserController {
             @ModelAttribute("user") @Valid UserEntity formUser,
             BindingResult result, @PathVariable("userID") Integer userID,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -336,7 +338,7 @@ public class UserController {
     @RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.GET)
     public String userEditRolesGET(Locale locale, Model model,
                                    @PathVariable("userID") Integer userID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -372,7 +374,7 @@ public class UserController {
             BindingResult result, Locale locale,
             @PathVariable("userID") Integer userID,
             @RequestParam(value = "role") int[] paramValues, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

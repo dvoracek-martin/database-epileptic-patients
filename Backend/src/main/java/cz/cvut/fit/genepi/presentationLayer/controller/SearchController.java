@@ -21,6 +21,8 @@ import java.util.Locale;
 @Controller
 public class SearchController {
     @Autowired
+    AuthorizationChecker authorizationChecker;
+    @Autowired
     private MessageSource messageSource;
 
     /**
@@ -41,7 +43,7 @@ public class SearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.GET)
     public String searchGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         return "search";
@@ -49,7 +51,7 @@ public class SearchController {
 
     @RequestMapping(value = "/search", method = RequestMethod.POST)
     public String searchPost(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         return "searchResults";
@@ -57,7 +59,7 @@ public class SearchController {
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
     public String advancedSearchGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("doctors", roleService.getAllDoctors());
@@ -69,7 +71,7 @@ public class SearchController {
     public String advancedSearchPOST(
             @ModelAttribute("advancedSearch") @Valid AdvancedSearchEntity advancedSearch,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patients",

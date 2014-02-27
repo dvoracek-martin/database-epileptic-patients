@@ -47,7 +47,8 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
+                                        <a data-toggle="collapse"
+                                           href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
                                             Zadano dne: ${invasiveTestCorticalMapping.date}
                                         </a>
                                     </th>

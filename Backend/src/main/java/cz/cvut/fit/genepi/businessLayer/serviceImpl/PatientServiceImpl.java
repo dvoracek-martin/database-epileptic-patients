@@ -308,7 +308,7 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public PatientVO getById(int patientId){
+    public PatientVO getById(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
         PatientVO patientVO = dozer.map(patient, PatientVO.class);
         return patientVO;
@@ -316,7 +316,7 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public void save(PatientVO patient){
+    public void save(PatientVO patient) {
         genericDAO.save(dozer.map(patient, PatientEntity.class));
     }
 

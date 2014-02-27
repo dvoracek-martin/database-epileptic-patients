@@ -27,6 +27,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"seizure"})
 public class SeizureController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -47,7 +49,7 @@ public class SeizureController {
     @RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
     public String seizureCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -60,7 +62,7 @@ public class SeizureController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -80,7 +82,7 @@ public class SeizureController {
     public String seizureSavePOST(
             @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate()) || TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
@@ -109,7 +111,7 @@ public class SeizureController {
     public String seizureDeleteGET(Locale locale, Model model,
                                    @PathVariable("patientID") Integer patientID,
                                    @PathVariable("seizureID") Integer seizureID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         /*seizureService.delete(seizureService.findByID(SeizureEntity.class,
@@ -130,7 +132,7 @@ public class SeizureController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         seizureService.hide(seizureId);
@@ -150,7 +152,7 @@ public class SeizureController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         seizureService.unhide(seizureId);
@@ -163,7 +165,7 @@ public class SeizureController {
     public String seizureExportGET(Locale locale, Model model,
                                    @PathVariable("patientID") Integer patientID,
                                    @PathVariable("seizureID") Integer seizureID, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         return "redirect:/patient/" + patientID + "/seizure/list";
@@ -172,7 +174,7 @@ public class SeizureController {
     @RequestMapping(value = "/patient/{patientId}/seizure/list", method = RequestMethod.GET)
     public String seizureListGET(Locale locale, Model model,
                                  @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService

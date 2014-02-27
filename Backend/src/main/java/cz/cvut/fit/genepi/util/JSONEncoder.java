@@ -1,10 +1,8 @@
 package cz.cvut.fit.genepi.util;
 
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -13,7 +11,7 @@ import java.util.List;
 public class JSONEncoder {
 
     @SuppressWarnings("unchecked")
-    public String encode(List<PatientEntity> patientList,int patientsCount) {
+    public String encode(List<PatientEntity> patientList, int patientsCount) {
         JSONArray patientListJSON = new JSONArray();
 
         for (PatientEntity patient : patientList) {
@@ -39,9 +37,9 @@ public class JSONEncoder {
 
         JSONObject obj = new JSONObject();
         obj.put("patientList", patientListJSON);
-        obj.put("patientsCount",patientsCount);
+        obj.put("patientsCount", patientsCount);
 
-       // System.out.println(obj);
+        // System.out.println(obj);
         StringWriter out = new StringWriter();
         try {
             obj.writeJSONString(out);

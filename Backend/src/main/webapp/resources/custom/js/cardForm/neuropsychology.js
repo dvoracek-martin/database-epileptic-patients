@@ -14,7 +14,7 @@ $(document).ready(function () {
     var presenceOfChangesDeterioration = $("#presence-of-changes-deterioration");
 
     //intellect section
-      intellect.change(function () {
+    intellect.change(function () {
         if (intellect.val() == 0) {
             intellectNeurodevelopmentalExamination.hide();
             intellectIntellectualPerformance.hide();

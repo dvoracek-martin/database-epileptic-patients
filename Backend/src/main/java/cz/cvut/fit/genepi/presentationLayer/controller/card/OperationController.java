@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"operation"})
 public class OperationController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.GET)
     public String operationCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -57,7 +59,7 @@ public class OperationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -77,7 +79,7 @@ public class OperationController {
             @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
@@ -107,7 +109,7 @@ public class OperationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         operationService.delete(OperationEntity.class, operationId);
@@ -127,7 +129,7 @@ public class OperationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         operationService.hide(operationId);
@@ -147,7 +149,7 @@ public class OperationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("operationId") Integer operationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         operationService.unhide(operationId);
@@ -166,7 +168,7 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/list", method = RequestMethod.GET)
     public String operationListGET(Locale locale, Model model,
                                    @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationList(patientId);

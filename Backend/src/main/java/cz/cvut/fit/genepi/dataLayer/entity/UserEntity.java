@@ -50,7 +50,7 @@ public class UserEntity {
     @OneToMany(fetch = FetchType.LAZY)
     private Set<PatientEntity> patients;
 
-    @Column (name="HIDDEN")
+    @Column(name = "HIDDEN")
     private boolean hidden;
 
     /**

@@ -48,7 +48,8 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-diagnostic-test-mri-${diagnosticTestMri.id}">
+                                        <a data-toggle="collapse"
+                                           href="#collapse-diagnostic-test-mri-${diagnosticTestMri.id}">
                                             Zadano dne: ${diagnosticTestMri.date}
                                         </a>
                                     </th>

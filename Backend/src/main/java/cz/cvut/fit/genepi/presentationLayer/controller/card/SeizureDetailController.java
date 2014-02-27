@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"seizureDetail"})
 public class SeizureDetailController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -47,7 +49,7 @@ public class SeizureDetailController {
     public String seizureDetailCreateGET(
             @PathVariable("patientId") Integer patientId, @PathVariable("seizureId") Integer seizureId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -61,7 +63,7 @@ public class SeizureDetailController {
             @PathVariable("seizureId") Integer seizureId,
             @PathVariable("seizureDetailId") Integer seizureDetailId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -75,7 +77,7 @@ public class SeizureDetailController {
             @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
             @PathVariable("patientId") Integer patientId, @PathVariable("seizureId") Integer seizureId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizureDetail.getDate())) {
@@ -104,7 +106,7 @@ public class SeizureDetailController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureDetailId") Integer seizureDetailId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         seizureDetailService.hide(seizureDetailId);
@@ -117,7 +119,7 @@ public class SeizureDetailController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("seizureDetailId") Integer seizureDetailId, Locale locale,
             Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         seizureDetailService.unhide(seizureDetailId);

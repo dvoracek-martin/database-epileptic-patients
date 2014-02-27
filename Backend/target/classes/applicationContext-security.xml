@@ -24,8 +24,8 @@
         <security:intercept-url pattern="/patient/**/**/delete"
                                 access="ROLE_DOCTOR"/>
 
-        <security:intercept-url pattern="/patient/**/**/verify"
-                                access="ROLE_SUPERDOCTOR"/>
+        <security:intercept-url pattern="/patient/**/verify"
+                                access="ROLE_SUPER_DOCTOR"/>
 
 
         <security:intercept-url pattern="/**" access="ROLE_USER"/>

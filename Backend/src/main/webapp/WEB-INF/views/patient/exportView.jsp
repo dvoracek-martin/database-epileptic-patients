@@ -246,7 +246,8 @@
                     <li><form:label path="SeizureDetailSSCClassification">SeizureDetailSSCClassification</form:label>
                         <form:checkbox path="SeizureDetailSSCClassification"
                                        class="input-block-level"/></li>
-                    <li><form:label path="SeizureSecondarilyGeneralizedSeizure">SeizureSecondarilyGeneralizedSeizure</form:label>
+                    <li><form:label
+                            path="SeizureSecondarilyGeneralizedSeizure">SeizureSecondarilyGeneralizedSeizure</form:label>
                         <form:checkbox path="SeizureSecondarilyGeneralizedSeizure"
                                        class="input-block-level"/></li>
                     <li><form:label path="SeizureSeizuresWhileAwakeEpi">SeizureSeizuresWhileAwakeEpi</form:label>

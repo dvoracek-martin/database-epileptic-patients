@@ -368,7 +368,7 @@ public class AdvancedSearchEntity {
     public void setOutcome(boolean outcome) {
         this.outcome = outcome;
     }
-	/* anamnesis specific  get n set*/
+    /* anamnesis specific  get n set*/
 
     public int getAnamnesisEpilepsyInFamily() {
         return anamnesisEpilepsyInFamily;

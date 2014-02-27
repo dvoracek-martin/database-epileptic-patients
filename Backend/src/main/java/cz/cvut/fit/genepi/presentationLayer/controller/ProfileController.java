@@ -19,6 +19,8 @@ import java.util.Locale;
  */
 @Controller
 public class ProfileController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
@@ -35,7 +37,7 @@ public class ProfileController {
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

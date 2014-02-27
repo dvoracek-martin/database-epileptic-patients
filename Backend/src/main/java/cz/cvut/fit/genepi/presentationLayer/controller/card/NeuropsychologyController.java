@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"neuropsychology"})
 public class NeuropsychologyController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class NeuropsychologyController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/create", method = RequestMethod.GET)
     public String neuropsychologyCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -57,7 +59,7 @@ public class NeuropsychologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -70,7 +72,7 @@ public class NeuropsychologyController {
             @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neuropsychology.getDate())) {
@@ -100,7 +102,7 @@ public class NeuropsychologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyService.delete(NeuropsychologyEntity.class, neuropsychologyId);
@@ -120,7 +122,7 @@ public class NeuropsychologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyService.hide(neuropsychologyId);
@@ -140,7 +142,7 @@ public class NeuropsychologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyService.unhide(neuropsychologyId);
@@ -159,7 +161,7 @@ public class NeuropsychologyController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/list", method = RequestMethod.GET)
     public String neuropsychologyListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeuropsychologyList(patientId);

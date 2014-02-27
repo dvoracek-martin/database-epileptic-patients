@@ -19,6 +19,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"neuropsychologyOld"})
 public class NeuropsychologyOldController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -36,7 +38,7 @@ public class NeuropsychologyOldController {
     public String neuropsychologyOldDeleteGET(Locale locale, Model model,
                                               @PathVariable("patientId") Integer patientId,
                                               @PathVariable("neuropsychologyOldId") Integer neuropsychologyOldId, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyOldService.delete(neuropsychologyOldId);
@@ -56,7 +58,7 @@ public class NeuropsychologyOldController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyOldService.hide(neuropsychologyId);
@@ -76,7 +78,7 @@ public class NeuropsychologyOldController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("neuropsychologyId") Integer neuropsychologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         neuropsychologyOldService.unhide(neuropsychologyId);
@@ -95,7 +97,7 @@ public class NeuropsychologyOldController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology-old/list", method = RequestMethod.GET)
     public String neuropsychologyListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeuropsychologyOldList(patientId);

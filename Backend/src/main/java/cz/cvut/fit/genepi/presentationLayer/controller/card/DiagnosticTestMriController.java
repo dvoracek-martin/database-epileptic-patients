@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"diagnosticTestMri"})
 public class DiagnosticTestMriController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -43,7 +45,7 @@ public class DiagnosticTestMriController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.GET)
     public String diagnosticTestMriCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -57,7 +59,7 @@ public class DiagnosticTestMriController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -76,7 +78,7 @@ public class DiagnosticTestMriController {
             @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
@@ -106,7 +108,7 @@ public class DiagnosticTestMriController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestMriService.delete(DiagnosticTestMriEntity.class, diagnosticTestMriId);
@@ -126,7 +128,7 @@ public class DiagnosticTestMriController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestMriService.hide(diagnosticTestMriId);
@@ -146,7 +148,7 @@ public class DiagnosticTestMriController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         diagnosticTestMriService.unhide(diagnosticTestMriId);
@@ -165,7 +167,7 @@ public class DiagnosticTestMriController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/list", method = RequestMethod.GET)
     public String diagnosticTestMriListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestMriList(patientId);

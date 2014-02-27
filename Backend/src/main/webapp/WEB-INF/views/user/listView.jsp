@@ -81,12 +81,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">  <spring:message
+                        <h4 class="modal-title"><spring:message
                                 code="label.changePassword"/></h4>
                     </div>
 
                     <div class="modal-body">
-                        <h5>  <spring:message
+                        <h5><spring:message
                                 code="label.reallyDeleteUser"/></h5>
                     </div>
                     <div class="modal-footer">
@@ -104,12 +104,12 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">  <spring:message
+                        <h4 class="modal-title"><spring:message
                                 code="label.deleteUser"/></h4>
                     </div>
 
                     <div class="modal-body">
-                        <h5>  <spring:message
+                        <h5><spring:message
                                 code="label.reallyDeleteUser"/></h5>
                     </div>
                     <div class="modal-footer">

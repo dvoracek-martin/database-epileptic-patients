@@ -29,8 +29,8 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity>
         return userEntity;
     }
 
-    public List<UserEntity> findAllUsersWithPagination(int maxResults,int pageNumber){
-        List<UserEntity> users= null;
+    public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber) {
+        List<UserEntity> users = null;
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from " + UserEntity.class.getName() + " WHERE hidden=0 ORDER BY contact.lastName,contact.firstName");
 

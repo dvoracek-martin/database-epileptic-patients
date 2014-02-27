@@ -186,7 +186,6 @@ public interface PatientService extends GenericService<PatientEntity> {
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId);
 
 
-
     public void verifyPatient(int patientId);
 
     public void voidVerifyPatient(int patientId);

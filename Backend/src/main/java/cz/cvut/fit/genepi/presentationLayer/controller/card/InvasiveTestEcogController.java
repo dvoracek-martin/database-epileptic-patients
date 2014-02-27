@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"invasiveTestEcog"})
 public class InvasiveTestEcogController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class InvasiveTestEcogController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/create", method = RequestMethod.GET)
     public String invasiveTestEcogCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -58,7 +60,7 @@ public class InvasiveTestEcogController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -78,7 +80,7 @@ public class InvasiveTestEcogController {
             @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -109,7 +111,7 @@ public class InvasiveTestEcogController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -130,7 +132,7 @@ public class InvasiveTestEcogController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -151,7 +153,7 @@ public class InvasiveTestEcogController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEcogId") Integer invasiveTestEcogId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -171,7 +173,7 @@ public class InvasiveTestEcogController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/list", method = RequestMethod.GET)
     public String invasiveTestEcogListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 

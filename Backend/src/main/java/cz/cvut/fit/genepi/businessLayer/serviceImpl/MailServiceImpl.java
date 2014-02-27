@@ -126,7 +126,7 @@ public class MailServiceImpl implements MailService {
             } else if (map.get("subject").equals("creationOfANewUser")) {
                 message.setSubject("New account to GENEPI system", "utf-8");
                 UserEntity user = (UserEntity) map.get("user");
-				/*
+                /*
 				 * String text = "Dear " + user.getUsername() + ",\n\n" +
 				 * "your account was created. Your password is: " +
 				 * map.get("password") +

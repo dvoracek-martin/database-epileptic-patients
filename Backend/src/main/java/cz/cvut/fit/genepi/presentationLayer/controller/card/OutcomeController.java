@@ -27,6 +27,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"outcome", "operation"})
 public class OutcomeController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -50,7 +52,7 @@ public class OutcomeController {
             @RequestParam("distance") Integer distance,
             @RequestParam("operation") Integer operation,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -65,7 +67,7 @@ public class OutcomeController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("outcomeId") Integer outcomeId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         OutcomeVO outcomeVO = outcomeService.getById(OutcomeVO.class, OutcomeEntity.class, outcomeId);
@@ -90,7 +92,7 @@ public class OutcomeController {
             @RequestParam("distance") Integer distance,
             @RequestParam("operationId") Integer operationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
@@ -173,7 +175,7 @@ public class OutcomeController {
     @RequestMapping(value = "/patient/{patientId}/outcome/list", method = RequestMethod.GET)
     public String outcomeListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationWithOutcomeList(patientId);

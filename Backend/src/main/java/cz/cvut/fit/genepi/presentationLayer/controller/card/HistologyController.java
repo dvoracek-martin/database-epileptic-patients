@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"histology"})
 public class HistologyController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/create", method = RequestMethod.GET)
     public String histologyCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
@@ -58,7 +60,7 @@ public class HistologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -78,7 +80,7 @@ public class HistologyController {
             @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), histology.getDate())) {
@@ -108,7 +110,7 @@ public class HistologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         histologyService.delete(HistologyEntity.class, histologyId);
@@ -128,7 +130,7 @@ public class HistologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         histologyService.hide(histologyId);
@@ -148,7 +150,7 @@ public class HistologyController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("histologyId") Integer histologyId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         histologyService.unhide(histologyId);
@@ -167,7 +169,7 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/list", method = RequestMethod.GET)
     public String histologyListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithHistologyList(patientId);

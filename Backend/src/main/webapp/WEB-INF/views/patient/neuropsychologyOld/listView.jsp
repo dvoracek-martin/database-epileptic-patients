@@ -40,7 +40,8 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-neuropsychology-old-${neuropsychologyOld.id}">
+                                        <a data-toggle="collapse"
+                                           href="#collapse-neuropsychology-old-${neuropsychologyOld.id}">
                                             Zadano dne: ${neuropsychologyOld.date}
                                         </a>
                                     </th>

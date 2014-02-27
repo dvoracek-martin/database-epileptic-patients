@@ -28,6 +28,8 @@ import java.util.Locale;
 
 @Controller
 public class InvasiveTestEegController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -46,7 +48,7 @@ public class InvasiveTestEegController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/create", method = RequestMethod.GET)
     public String invasiveTestEegCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -59,7 +61,7 @@ public class InvasiveTestEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -78,7 +80,7 @@ public class InvasiveTestEegController {
             @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestEeg.getDate())) {
@@ -108,7 +110,7 @@ public class InvasiveTestEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         invasiveTestEegService.delete(InvasiveTestEegEntity.class, invasiveTestEegId);
@@ -128,7 +130,7 @@ public class InvasiveTestEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         invasiveTestEegService.hide(invasiveTestEegId);
@@ -148,7 +150,7 @@ public class InvasiveTestEegController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("invasiveTestEegId") Integer invasiveTestEegId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         invasiveTestEegService.unhide(invasiveTestEegId);
@@ -167,7 +169,7 @@ public class InvasiveTestEegController {
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/list", method = RequestMethod.GET)
     public String invasiveTestEegListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestEegList(patientId);

@@ -30,6 +30,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"anamnesis"})
 public class AnamnesisController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     /**
      * The patient service.
@@ -68,7 +70,7 @@ public class AnamnesisController {
     @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.GET)
     public String anamnesisCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
@@ -98,7 +100,7 @@ public class AnamnesisController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("anamnesisId") Integer anamnesisId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -125,7 +127,7 @@ public class AnamnesisController {
             @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
@@ -155,7 +157,7 @@ public class AnamnesisController {
             @PathVariable("patientID") Integer patientID,
             @PathVariable("anamnesisId") Integer anamnesisId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         anamnesisService.delete(AnamnesisEntity.class, anamnesisId);
@@ -226,7 +228,7 @@ public class AnamnesisController {
     @RequestMapping(value = "/patient/{patientId}/anamnesis/list", method = RequestMethod.GET)
     public String anamnesisListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);

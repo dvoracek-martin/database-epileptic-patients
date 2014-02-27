@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * The Class GenericServiceImpl.
  *
- * @param <T>  the generic type
+ * @param <T> the generic type
  */
 @Service
 public class GenericServiceImpl<T> implements
@@ -112,8 +112,8 @@ public class GenericServiceImpl<T> implements
 
     @Override
     @Transactional
-    public int getCountOfUnhidden(Class<T> myClass,String searchString) {
-        return genericDAO.getCountOfUnhidden(myClass,searchString);
+    public int getCountOfUnhidden(Class<T> myClass, String searchString) {
+        return genericDAO.getCountOfUnhidden(myClass, searchString);
     }
 
     @Override

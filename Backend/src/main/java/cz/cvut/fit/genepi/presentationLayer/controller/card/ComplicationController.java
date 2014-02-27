@@ -26,6 +26,8 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"complication"})
 public class ComplicationController {
+    @Autowired
+    AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
@@ -44,7 +46,7 @@ public class ComplicationController {
     @RequestMapping(value = "/patient/{patientId}/complication/create", method = RequestMethod.GET)
     public String complicationCreateGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -57,7 +59,7 @@ public class ComplicationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -77,7 +79,7 @@ public class ComplicationController {
             @ModelAttribute("complication") @Valid ComplicationVO complication, BindingResult result,
             @PathVariable("patientId") Integer patientId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
@@ -107,7 +109,7 @@ public class ComplicationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         complicationService.delete(ComplicationEntity.class, complicationId);
@@ -127,7 +129,7 @@ public class ComplicationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         complicationService.hide(complicationId);
@@ -147,7 +149,7 @@ public class ComplicationController {
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
             Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         complicationService.unhide(complicationId);
@@ -167,7 +169,7 @@ public class ComplicationController {
     @RequestMapping(value = "/patient/{patientId}/complication/list", method = RequestMethod.GET)
     public String complicationListGET(
             @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
-        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithComplicationList(patientId);
