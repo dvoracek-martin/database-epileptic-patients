@@ -31,7 +31,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         /* sessionFactory.getCurrentSession().beginTransaction(); */
         sessionFactory.getCurrentSession().saveOrUpdate(entity);
         /*
-		 * sessionFactory.getCurrentSession().getTransaction().commit();
+         * sessionFactory.getCurrentSession().getTransaction().commit();
 		 * sessionFactory.getCurrentSession().disconnect();
 		 */
     }
@@ -102,8 +102,11 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
         i = ((Long) sessionFactory
                 .getCurrentSession()
                 .createQuery(
-                        "select count(*) from " + myClass.getName()
-                                + " where status=0").uniqueResult())
+                        "select count(id) " +
+                                "from " + myClass.getName()
+                                + " where status=0 AND (contact.firstName like '" + searchString + "%'" +
+                                " OR contact.lastName like '" + searchString + "%'" +
+                                " OR nin like '" + searchString + "%')").uniqueResult())
                 .intValue();
         return i;
     }
@@ -146,7 +149,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
                                          int pageNumber) {
         List<T> T = null;
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from " + myClass.getName()+" WHERE status=0 ORDER BY contact.lastName,contact.firstName");
+                "from " + myClass.getName() + " WHERE status=0 ORDER BY contact.lastName,contact.firstName");
 
         query.setFirstResult(maxResults * (pageNumber - 1));
         query.setMaxResults(maxResults);
@@ -160,13 +163,14 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
                                             int pageNumber, List<String> parameters, String name) {
         List<T> T = null;
 
-        String q = "from " + myClass.getName() + " where ";
+        String q = "from " + myClass.getName() + " where status=0 AND (";
         for (int i = 0; i != parameters.size(); i++) {
             q += parameters.get(i) + " like '" + name + "%'";
             if (i != parameters.size() - 1) {
                 q += " or ";
             }
         }
+        q += ") ORDER BY contact.lastName,contact.firstName";
         Query query = sessionFactory.getCurrentSession().createQuery(q);
 
         query.setFirstResult(maxResults * (pageNumber - 1));

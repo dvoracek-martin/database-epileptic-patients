@@ -16,7 +16,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-    <script src="<c:url value="/resources/custom/js/clickable-row.NEW303.js"/>"></script>
+
     <script src="<c:url value="/resources/custom/js/patient-list.js"/>"></script>
     </jsp:attribute>
 
@@ -37,19 +37,32 @@
 </div>
 <div class="row">
     <div class="col-xs-12">
-        <!-- <form class="form-horizontal" role="form"> -->
         <div class="form-group">
             <label for="search" class="col-xs-2 control-label">Filtruj:</label>
 
             <div class="col-xs-4 input-group">
                 <span class="input-group-addon glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" id="search"
-                       placeholder="jmeno/prijmeni" onkeyup="filter(${maxResults})">
+                       placeholder="jmeno/prijmeni" data-max-results="${maxResult}">
             </div>
         </div>
-        <!-- </form> -->
     </div>
 </div>
+
+<div class="text-center">
+    <ul class="pagination">
+        <li><a class="start" href="#">&laquo;</a></li>
+        <li><a class="prev" href="#">&lsaquo;</a></li>
+            <%-- <li><a href="#">1</a></li>
+             <li><a href="#">2</a></li>
+             <li><a href="#">3</a></li>
+             <li><a href="#">4</a></li>
+             <li><a href="#">5</a></li> --%>
+        <li class="next-li"><a class="next" href="#">&rsaquo;</a></li>
+        <li><a class="end" href="#">&raquo;</a></li>
+    </ul>
+</div>
+
 <div class="table-responsive">
     <table class="table table-striped table-hover">
         <thead>
@@ -72,41 +85,58 @@
         </tr>
         </thead>
         <tbody id="patientList">
-        <c:forEach items="${patientList}" var="patient">
-            <tr class="clickable-row" href="<c:url value="/patient/${patient.id}/overview" />">
-                <td>
-                        ${patient.contact.firstName}
-                </td>
-                <td>
-                        ${patient.contact.lastName}
-                </td>
-                <td>
-                        ${patient.nin}
-                </td>
-                <c:choose>
-                    <c:when test="${empty patient.contact.addressStreet}">
-                        <td></td>
-                    </c:when>
-                    <c:otherwise>
-                        <td>
-                                ${patient.contact.addressStreet}, ${patient.contact.addressHn}
-                        </td>
-                    </c:otherwise>
-                </c:choose>
-                <td>
-                        ${patient.contact.addressCity}
-                </td>
-            </tr>
-        </c:forEach>
+            <%--  <c:forEach items="${patientList}" var="patient">
+                  <tr class="clickable-row" href="<c:url value="/patient/${patient.id}/overview" />">
+                      <td>
+                              ${patient.contact.firstName}
+                      </td>
+                      <td>
+                              ${patient.contact.lastName}
+                      </td>
+                      <td>
+                              ${patient.nin}
+                      </td>
+                      <c:choose>
+                          <c:when test="${empty patient.contact.addressStreet}">
+                              <td></td>
+                          </c:when>
+                          <c:otherwise>
+                              <td>
+                                      ${patient.contact.addressStreet}, ${patient.contact.addressHn}
+                              </td>
+                          </c:otherwise>
+                      </c:choose>
+                      <td>
+                              ${patient.contact.addressCity}
+                      </td>
+                  </tr>
+              </c:forEach> --%>
         </tbody>
     </table>
 </div>
 
-<c:set var="temp" value="${countOfPatients/maxResults}" scope="page"/>
+<div class="text-center">
+    <ul class="pagination">
+        <li><a class="start" href="#">&laquo;</a></li>
+        <li><a class="prev" href="#">&lsaquo;</a></li>
+            <%-- <li><a href="#">1</a></li>
+             <li><a href="#">2</a></li>
+             <li><a href="#">3</a></li>
+             <li><a href="#">4</a></li>
+             <li><a href="#">5</a></li> --%>
+        <li class="next-li"><a class="next" href="#">&rsaquo;</a></li>
+        <li><a class="end" href="#">&raquo;</a></li>
+    </ul>
+</div>
 
-<fmt:formatNumber var="countOfPages" value="${temp}" maxFractionDigits="0"/>
 
-<c:if test="${countOfPages<temp}">
+
+<%--
+<c:set var="countOfPagesString" value="${countOfPatients/maxResults}" scope="page"/>
+
+<fmt:formatNumber var="countOfPages" value="${countOfPagesString}" maxFractionDigits="0"/>
+
+<c:if test="${countOfPages<countOfPagesString}">
     <c:set var="countOfPages" value="${countOfPages+1}" scope="page"/>
 </c:if>
 
@@ -248,6 +278,6 @@
         </li>
     </ul>
 </div>
-
+--%>
 </jsp:body>
 </t:menuLVL1.NEW303>

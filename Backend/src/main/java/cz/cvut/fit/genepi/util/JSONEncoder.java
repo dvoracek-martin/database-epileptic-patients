@@ -14,7 +14,7 @@ public class JSONEncoder {
 
     @SuppressWarnings("unchecked")
     public String encode(List<PatientEntity> patientList,
-                         int maxResults, int pageNumber) {
+                         int maxResults, int pageNumber, int patientsCount) {
         JSONArray patientListJSON = new JSONArray();
 
         for (PatientEntity patient : patientList) {
@@ -40,8 +40,9 @@ public class JSONEncoder {
 
         JSONObject obj = new JSONObject();
         obj.put("patientList", patientListJSON);
+        obj.put("patientsCount",patientsCount);
 
-        System.out.println(obj);
+       // System.out.println(obj);
         StringWriter out = new StringWriter();
         try {
             obj.writeJSONString(out);

@@ -214,15 +214,15 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String patientsListGET(Locale locale, Model model,
-                                  @RequestParam("maxResults") int maxResults,
-                                  @RequestParam("pageNumber") int pageNumber) {
-        model.addAttribute("patientList", patientService.findAllWithPagination(
-                PatientEntity.class, maxResults, pageNumber));
+                                  @RequestParam("maxResults") int maxResults /*,
+                                  @RequestParam("pageNumber") int pageNumber*/) {
+      /*  model.addAttribute("patientList", patientService.findAllWithPagination(PatientEntity.class, maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
         model.addAttribute("pageNumber", pageNumber);
         // hotfix - there will be some method for getting the count yet
         model.addAttribute("countOfPatients",
-                patientService.getCount(PatientEntity.class));
+                patientService.getCount(PatientEntity.class));*/
+        model.addAttribute("maxResult", maxResults);
         return "patient/listView";
     }
 
@@ -234,30 +234,29 @@ public class PatientController {
      * @param model  the model
      * @return the string
      */
-    @RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
     public
     @ResponseBody
     String patientsListSearchGET(Locale locale, Model model,
                                  @RequestParam("maxResults") int maxResults,
                                  @RequestParam("pageNumber") int pageNumber,
-                                 @RequestParam("search") String name) {
+                                 @RequestParam("search") String searchString) {
 
-        List<String> searchParams = new ArrayList<String>();
+        List<String> searchParams = new ArrayList<>();
         searchParams.add("contact.firstName");
         searchParams.add("contact.lastName");
         searchParams.add("nin");
 
-        model.addAttribute("patientList", patientService
+       /* model.addAttribute("patientList", patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, name));
+                        pageNumber, searchParams, searchString));*/
         model.addAttribute("maxResults", maxResults);
         model.addAttribute("pageNumber", pageNumber);
-        model.addAttribute("countOfPatients",
-                patientService.getCountOfUnhidden(PatientEntity.class, name));
+        int patientsCount = patientService.getCountOfUnhidden(PatientEntity.class, searchString);
         JSONEncoder e = new JSONEncoder();
         return (e.encode(patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, name), maxResults, pageNumber));
+                        pageNumber, searchParams, searchString), maxResults, pageNumber, patientsCount));
     }
 
     /**
@@ -311,7 +310,6 @@ public class PatientController {
         } else {
             Authentication auth = SecurityContextHolder.getContext()
                     .getAuthentication();
-
             List<RoleEntity> roles = userService.findUserByUsername(auth.getName()).getRoles();
             boolean isSuperdoctor = false;
             for (RoleEntity r : roles) {

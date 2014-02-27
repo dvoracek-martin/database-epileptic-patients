@@ -156,16 +156,22 @@
     </label>
 
     <div class="col-xs-8">
+        <c:choose>
+            <c:when test="${!empty doctors}">
+                <form:select path="doctorId" class="form-control" id="doctorId">
 
-        <form:select path="doctorId" class="form-control" id="doctorId">
-            <c:if test="${!empty doctors}">
-                <c:forEach items="${doctors}" var="doctor">
-                    <form:option
-                            value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
-                </c:forEach>
-            </c:if>
-        </form:select>
+                    <c:forEach items="${doctors}" var="doctor">
+                        <form:option
+                                value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+                    </c:forEach>
 
+                </form:select>
+            </c:when>
+            <c:otherwise>
+                <form:select path="doctorId" class="form-control" id="doctorId" disabled="true">
+                </form:select>
+            </c:otherwise>
+        </c:choose>
 
         <%--
         <form:select path="doctorId" class="form-control" id="doctorId">
