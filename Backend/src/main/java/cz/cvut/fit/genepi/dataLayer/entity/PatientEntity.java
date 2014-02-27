@@ -72,6 +72,7 @@ public class PatientEntity {
     /**
      * The deleted.
      */
+    //TODO: change status to hidden boolean
     @Column(name = "status", precision = 1, scale = 0)
     private int status;
 
@@ -476,5 +477,13 @@ public class PatientEntity {
 
     public void setContactId(int contactId) {
         this.contactId = contactId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

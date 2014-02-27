@@ -194,4 +194,8 @@ public interface PatientService extends GenericService<PatientEntity> {
     public PatientVO getById(int patientId);
 
     public void save(PatientVO patient);
+
+    public void hide(int patientId);
+
+    public void unhide(int patientId);
 }

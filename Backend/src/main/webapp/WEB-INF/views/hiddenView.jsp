@@ -42,7 +42,7 @@
             <div class="col-xs-12">
                 <div class="table-responsive">
                     <c:choose>
-                        <c:when test="${empty patientList}">
+                        <c:when test="${empty hiddenPatientList}">
                             <div class="text-center">
                                 <h4>
                                     Žádní skrytí pacienti.
@@ -68,9 +68,8 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${patientList}" var="patient">
-                                    <tr <%-- class="clickable-row" --%>
-                                            href="<c:url value="/patient/${patient.id}/overview" />">
+                                <c:forEach items="${hiddenPatientList}" var="patient">
+                                    <tr>
                                         <td>${patient.contact.firstName}
                                         </td>
                                         <td>${patient.contact.lastName}

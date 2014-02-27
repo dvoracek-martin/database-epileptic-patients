@@ -319,4 +319,20 @@ public class PatientServiceImpl
     public void save(PatientVO patient){
         genericDAO.save(dozer.map(patient, PatientEntity.class));
     }
+
+    @Override
+    @Transactional
+    public void hide(int patientId){
+        PatientEntity patient = genericDAO.findByID(PatientEntity.class, patientId);
+        patient.setStatus(1);
+        genericDAO.save(patient);
+    }
+
+    @Override
+    @Transactional
+    public void unhide(int patientId){
+        PatientEntity patient = genericDAO.findByID(PatientEntity.class,patientId);
+        patient.setStatus(0);
+        genericDAO.save(patient);
+    }
 }

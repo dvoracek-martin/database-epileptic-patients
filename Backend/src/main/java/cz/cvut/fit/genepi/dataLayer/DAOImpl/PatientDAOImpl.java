@@ -558,9 +558,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
     public List<PatientEntity> findAllHidden() {
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery(
-                        "from PatientEntity p left join fetch p.doctor"
-                                + " where p.status = 1");
+                .createQuery("from PatientEntity p left join fetch p.doctor where p.status = 1");
 
         return query.list();
     }

@@ -15,7 +15,7 @@
 
 <jsp:body>
 <div class="row">
-    <div class="col-xs-6">
+    <div class="col-xs-3">
         <h2>
             <spring:message code="label.patient"/>
         </h2>
@@ -32,6 +32,13 @@
         <h3 class="pull-right">
             <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
                 <spring:message code="label.verify"/>
+            </a>
+        </h3>
+    </div>
+    <div class="col-xs-3">
+        <h3 class="pull-right">
+            <a id="verify" href="<c:url value="/patient/${patient.id}/hide" />">
+                <spring:message code="label.verify"/>HIDE
             </a>
         </h3>
     </div>

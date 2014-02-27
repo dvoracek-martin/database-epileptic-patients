@@ -68,7 +68,8 @@ public class HiddenController {
             return "deniedView";
         }
 
-        model.addAttribute("patientList", patientService.findAllHidden());
+        model.addAttribute("hiddenPatientList", patientService.findAllHidden());
+
         //model.addAttribute("anamnesisList", anamnesisService.findAllHidden());
         return "hiddenView";
     }
