@@ -169,7 +169,7 @@ public class PatientController {
     public String patientVerifyPOST(
             @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model HttpServletRequest request) {
+            Locale locale, Model model, HttpServletRequest request) {
         if (!AuthorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
