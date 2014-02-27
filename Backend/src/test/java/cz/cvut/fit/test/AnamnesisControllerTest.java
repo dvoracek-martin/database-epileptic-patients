@@ -31,10 +31,10 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+/*
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:anamnesisControllerTestContext.xml"})
-@WebAppConfiguration
+@WebAppConfiguration*/
 public class AnamnesisControllerTest {
 /*
     private MockMvc mockMvc;
