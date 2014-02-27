@@ -8,6 +8,7 @@ import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -41,8 +43,10 @@ public class DiagnosticTestMriController {
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.GET)
     public String diagnosticTestMriCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestMri", new DiagnosticTestMriVO());
         return "patient/diagnosticTestMri/formView";
@@ -53,8 +57,10 @@ public class DiagnosticTestMriController {
     public String diagnosticTestMriEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class, diagnosticTestMriId));
         return "patient/diagnosticTestMri/formView";
@@ -70,8 +76,10 @@ public class DiagnosticTestMriController {
     public String diagnosticTestMriSavePOST(
             @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestMri/formView";
@@ -98,8 +106,10 @@ public class DiagnosticTestMriController {
     public String diagnosticTestMriDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         diagnosticTestMriService.delete(DiagnosticTestMriEntity.class, diagnosticTestMriId);
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
@@ -116,8 +126,10 @@ public class DiagnosticTestMriController {
     public String diagnosticTestMriHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         diagnosticTestMriService.hide(diagnosticTestMriId);
         return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
     }
@@ -134,8 +146,10 @@ public class DiagnosticTestMriController {
     public String diagnosticTestMriUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestMriId") Integer diagnosticTestMriId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         diagnosticTestMriService.unhide(diagnosticTestMriId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -151,7 +165,9 @@ public class DiagnosticTestMriController {
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/list", method = RequestMethod.GET)
     public String diagnosticTestMriListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) { if (!AuthorizationChecker.checkAuthoritaion(request)) {
+        return "deniedView";
+    }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestMriList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));

@@ -8,6 +8,7 @@ import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -67,8 +69,10 @@ public class AnamnesisController {
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.GET)
     public String anamnesisCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
 
         model.addAttribute("patient", patient);
@@ -95,8 +99,10 @@ public class AnamnesisController {
     public String anamnesisEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("anamnesisId") Integer anamnesisId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("anamnesis", anamnesisService.getById(AnamnesisVO.class, AnamnesisEntity.class, anamnesisId));
         return "patient/anamnesis/formView";
@@ -120,8 +126,10 @@ public class AnamnesisController {
     public String anamnesisSavePOST(
             @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/anamnesis/formView";
@@ -148,8 +156,10 @@ public class AnamnesisController {
     public String anamnesisDeleteGET(
             @PathVariable("patientID") Integer patientID,
             @PathVariable("anamnesisId") Integer anamnesisId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         anamnesisService.delete(AnamnesisEntity.class, anamnesisId);
         return "redirect:/hidden";
     }
@@ -217,8 +227,10 @@ public class AnamnesisController {
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/list", method = RequestMethod.GET)
     public String anamnesisListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
         if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("displayAnamnesisCreate", true);
