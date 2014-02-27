@@ -7,6 +7,7 @@ import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.ComplicationService;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
@@ -41,8 +43,10 @@ public class ComplicationController {
 
     @RequestMapping(value = "/patient/{patientId}/complication/create", method = RequestMethod.GET)
     public String complicationCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
-
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("complication", new ComplicationVO());
         return "patient/complication/formView";
@@ -52,8 +56,10 @@ public class ComplicationController {
     public String complicationEditGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("complication", complicationService.getById(ComplicationVO.class, ComplicationEntity.class, complicationId));
         return "patient/complication/formView";
@@ -70,8 +76,10 @@ public class ComplicationController {
     public String complicationSavePOST(
             @ModelAttribute("complication") @Valid ComplicationVO complication, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors()|| TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/complication/formView";
@@ -98,8 +106,10 @@ public class ComplicationController {
     public String complicationDeleteGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         complicationService.delete(ComplicationEntity.class, complicationId);
         return "redirect:/patient/" + patientId + "/complication/list";
     }
@@ -116,8 +126,10 @@ public class ComplicationController {
     public String complicationHideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         complicationService.hide(complicationId);
         return "redirect:/patient/" + patientId + "/complication/list";
     }
@@ -134,8 +146,10 @@ public class ComplicationController {
     public String complicationUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("complicationId") Integer complicationId,
-            Locale locale, Model model) {
-
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         complicationService.unhide(complicationId);
         // TODO: address to get back to admin module where is list od hidden
         // records.
@@ -152,7 +166,10 @@ public class ComplicationController {
 
     @RequestMapping(value = "/patient/{patientId}/complication/list", method = RequestMethod.GET)
     public String complicationListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithComplicationList(patientId);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
