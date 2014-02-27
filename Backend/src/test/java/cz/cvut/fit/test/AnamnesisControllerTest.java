@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(locations = {"classpath:anamnesisControllerTestContext.xml"})
 @WebAppConfiguration
 public class AnamnesisControllerTest {
-
+/*
     private MockMvc mockMvc;
 
     @Autowired
@@ -171,7 +171,7 @@ public class AnamnesisControllerTest {
 
         verifyZeroInteractions(anamnesisServiceMock);
     }
-
+*/
 //	@Test
 //	public void anamnesisDeleteGET() throws Exception {
 //		AnamnesisEntity anamnesis = new AnamnesisEntity();
@@ -242,7 +242,7 @@ public class AnamnesisControllerTest {
 
     // anamnesisHideGET
     // anamnesisUnhideGET
-
+/*
     @Test
     public void list_PatientEntityFound() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
@@ -261,7 +261,7 @@ public class AnamnesisControllerTest {
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);
     }
-
+*/
 	/*
      * @Test public void list_PatientEntityNotFound() throws Exception {
 	 * when(patientServiceMock.findByID(PatientEntity.class, 1)).thenReturn(
