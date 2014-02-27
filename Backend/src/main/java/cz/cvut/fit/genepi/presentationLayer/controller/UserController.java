@@ -2,26 +2,19 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.session.SessionInformation;
-import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -77,7 +70,11 @@ public class UserController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/create", method = RequestMethod.GET)
-    public String userCreateGET(Locale locale, Model model) {
+    public String userCreateGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("user", new UserEntity());
         model.addAttribute("isUnique", "unique");
         model.addAttribute("isMailUnique", "unique");
@@ -100,7 +97,11 @@ public class UserController {
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String userCreatePOST(
             @ModelAttribute("user") @Valid UserEntity user,
-            BindingResult result, Locale locale, Model model) {
+            BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         boolean unique = true;
         boolean mailUnique = true;
 
@@ -141,7 +142,11 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
     public String userOverviewGET(@PathVariable("userID") Integer userID,
-                                  Locale locale, Model model) {
+                                  Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("user",
                 userService.findByID(UserEntity.class, userID));
         return "user/overviewView";
@@ -149,12 +154,16 @@ public class UserController {
 
     @RequestMapping(value = "/user/{userID}/hide", method = RequestMethod.GET)
     public String userHideGET(Locale locale, Model model,
-                                @PathVariable("userID") Integer userID) {
+                              @PathVariable("userID") Integer userID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         UserEntity user = userService.findByID(UserEntity.class, userID);
         user.setRoles(null);
         user.setHidden(true);
 
-       //TODO
+        //TODO
         // logout deleted user
 
         userService.save(user);
@@ -171,7 +180,11 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
     public String userEditGET(@PathVariable("userID") Integer userID,
-                              Locale locale, Model model) {
+                              Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("user",
                 userService.findByID(UserEntity.class, userID));
         model.addAttribute("isMailUnique", "unique");
@@ -193,7 +206,11 @@ public class UserController {
      */
     @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
     public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
-                               BindingResult result, Locale locale, Model model) {
+                               BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
 
         boolean mailUnique = true;
 
@@ -233,9 +250,12 @@ public class UserController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-        public String userListGET(Locale locale, Model model,    @RequestParam("maxResults") int maxResults,
-                                  @RequestParam("pageNumber") int pageNumber)
-    {
+    public String userListGET(Locale locale, Model model, @RequestParam("maxResults") int maxResults,
+                              @RequestParam("pageNumber") int pageNumber, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("userList", userService.findAllUsersWithPagination(maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
         return "user/listView";
@@ -251,7 +271,10 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
     public String userChangePasswordGET(@PathVariable("userID") Integer userID,
-                                        Locale locale, Model model) {
+                                        Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         if (logger.getLogger() == null)
             logger.setLogger(UserController.class);
@@ -280,7 +303,11 @@ public class UserController {
     public String userChangePasswordPOST(
             @ModelAttribute("user") @Valid UserEntity formUser,
             BindingResult result, @PathVariable("userID") Integer userID,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         UserEntity realUser = userService.findByID(UserEntity.class, userID);
         if (result.hasErrors()) {
             return "user/" + realUser.getId() + "/change-password";
@@ -297,7 +324,7 @@ public class UserController {
                 map.put("subject", "changeOfThePassword");
                 map.put("user", realUser);
                 map.put("password", password);
-                mailService.sendMail("test", map, locale);
+                mailService.sendMail(realUser.getContact().getEmail(), map, locale);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -308,7 +335,11 @@ public class UserController {
     // TODO: revision
     @RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.GET)
     public String userEditRolesGET(Locale locale, Model model,
-                                   @PathVariable("userID") Integer userID) {
+                                   @PathVariable("userID") Integer userID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         if (logger.getLogger() == null)
             logger.setLogger(UserController.class);
 
@@ -340,7 +371,11 @@ public class UserController {
             @ModelAttribute("user") @Valid UserEntity formUser, Model model,
             BindingResult result, Locale locale,
             @PathVariable("userID") Integer userID,
-            @RequestParam(value = "role") int[] paramValues) {
+            @RequestParam(value = "role") int[] paramValues, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
 
         List<RoleEntity> newRoles = new ArrayList<RoleEntity>();
 

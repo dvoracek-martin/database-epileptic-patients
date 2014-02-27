@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 /**
@@ -32,7 +34,11 @@ public class ProfileController {
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profileGET(Locale locale, Model model) {
+    public String profileGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
 

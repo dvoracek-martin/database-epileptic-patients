@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Locale;
 
@@ -26,7 +28,11 @@ public class RoleController {
     private RoleService roleService;
 
     @RequestMapping(value = "/role/create", method = RequestMethod.GET)
-    public String roleCreateGET(Model model) {
+    public String roleCreateGET(Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("role", new RoleEntity());
         return "role/createView";
     }
@@ -34,7 +40,11 @@ public class RoleController {
     @RequestMapping(value = "/role/create", method = RequestMethod.POST)
     public String roleCreatePOST(
             @ModelAttribute("role") @Valid RoleEntity role,
-            BindingResult result, Model model) {
+            BindingResult result, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
 
         if (result.hasErrors()) {
             return "role/createView";
@@ -46,7 +56,11 @@ public class RoleController {
 
     @RequestMapping(value = "/role/{roleID}/overview", method = RequestMethod.GET)
     public String roleOverviewGET(Locale locale, Model model,
-                                  @PathVariable("roleID") Integer roleID) {
+                                  @PathVariable("roleID") Integer roleID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         RoleEntity role = roleService.findByID(RoleEntity.class, roleID);
         model.addAttribute("role", role);
         return "role/overviewView";
@@ -54,14 +68,22 @@ public class RoleController {
 
 
     @RequestMapping(value = "/role/edit", method = RequestMethod.GET)
-    public String roleEditGET(Model model) {
+    public String roleEditGET(Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("role", new RoleEntity());
         return "role/editView";
     }
 
     @RequestMapping(value = "/role/edit", method = RequestMethod.POST)
     public String roleEditPOST(@ModelAttribute("role") @Valid RoleEntity role,
-                               BindingResult result, Model model) {
+                               BindingResult result, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         if (result.hasErrors()) {
             return "role/editView";
         }
@@ -70,14 +92,22 @@ public class RoleController {
 
 
     @RequestMapping(value = "/role/delete", method = RequestMethod.GET)
-    public String roleDeleteGET(Model model) {
+    public String roleDeleteGET(Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         model.addAttribute("role", new RoleEntity());
         return "role/deleteView";
     }
 
     @RequestMapping(value = "/role/{roleID}/delete", method = RequestMethod.GET)
     public String roleDeleteGET(Locale locale, Model model,
-                                @PathVariable("roleID") Integer roleID) {
+                                @PathVariable("roleID") Integer roleID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
         roleService.delete(roleService.findByID(RoleEntity.class,
                 roleID));
         return "redirect:/role/list";

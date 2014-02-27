@@ -2,12 +2,14 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.util.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
@@ -21,6 +23,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -91,7 +94,10 @@ public class PatientController {
      * @return the string
      */
     @RequestMapping(value = "/patient/create", method = RequestMethod.GET)
-    public String patientCreateGET(Locale locale, Model model) {
+    public String patientCreateGET(Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("patient", new PatientEntity());
         return "patient/createView";
@@ -108,7 +114,10 @@ public class PatientController {
     public String patientCreatePOST(
             @ModelAttribute("patient") @Valid PatientEntity patient,
             BindingResult result, @RequestParam("doctorId") Integer doctorId,
-            Locale locale, Model model) {
+            Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (result.hasErrors() || TimeConverter.compareDates(patient.getBirthday(), DateTime.now())) {
             model.addAttribute("doctors", roleService.getAllDoctors());
             return "patient/createView";
@@ -132,14 +141,20 @@ public class PatientController {
     //TODO: unused
     @RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
     public String patientOverviewPOST(@RequestParam("id") int id,
-                                      Locale locale, Model model) {
+                                      Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("id");
         return "patient/overviewView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.GET)
     public String patientVerifyGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         PatientDisplayVO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
         PatientVO patient = patientService.getById(patientId);
@@ -154,7 +169,10 @@ public class PatientController {
     public String patientVerifyPOST(
             @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model) {
+            Locale locale, Model model HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         if (result.hasErrors()) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
@@ -175,7 +193,10 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model) {
+            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
 
@@ -221,7 +242,7 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String patientsListGET(Locale locale, Model model,
-                                  @RequestParam("maxResults") int maxResults /*,
+                                  @RequestParam("maxResults") int maxResults, HttpServletRequest request/*,
                                   @RequestParam("pageNumber") int pageNumber*/) {
       /*  model.addAttribute("patientList", patientService.findAllWithPagination(PatientEntity.class, maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
@@ -229,6 +250,9 @@ public class PatientController {
         // hotfix - there will be some method for getting the count yet
         model.addAttribute("countOfPatients",
                 patientService.getCount(PatientEntity.class));*/
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("maxResult", maxResults);
         return "patient/listView";
     }
@@ -247,8 +271,10 @@ public class PatientController {
     String patientsListSearchGET(Locale locale, Model model,
                                  @RequestParam("maxResults") int maxResults,
                                  @RequestParam("pageNumber") int pageNumber,
-                                 @RequestParam("search") String searchString) {
-
+                                 @RequestParam("search") String searchString, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         List<String> searchParams = new ArrayList<>();
         searchParams.add("contact.firstName");
         searchParams.add("contact.lastName");
@@ -271,7 +297,10 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
     public String patientDeleteGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID) {
+                                   @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         patientService.delete(patientService.findByID(PatientEntity.class,
                 patientID));
         return "redirect:/patient/list";
@@ -286,7 +315,10 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.GET)
     public String patientEditGET(Locale locale, Model model,
-                                 @PathVariable("patientId") Integer patientId) {
+                                 @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         model.addAttribute("patient",
                 patientService.getPatientByIdWithDoctor(patientId));
         model.addAttribute("doctors", roleService.getAllDoctors());
@@ -304,7 +336,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
     public String patientEditPOST(Locale locale, Model model,
                                   @Valid @ModelAttribute("patient") PatientEntity patient,
-                                  BindingResult result) {
+                                  BindingResult result, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
 
         if (result.hasErrors()) {
             model.addAttribute("doctors", roleService.getAllDoctors());
@@ -337,8 +372,10 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
     public String patientExportGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID) {
-
+                                   @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         UserEntity user = userService.findUserByUsername(auth.getName());
@@ -383,7 +420,10 @@ public class PatientController {
             @RequestParam("patient") Integer[] patientID,
             //@RequestParam("toTable") boolean toTable,
             @RequestParam("exportType") String exportType, Locale locale, boolean anonymize,
-            Model model) {
+            Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         logger.setLogger(PatientController.class);
 
         Authentication auth = SecurityContextHolder.getContext()
@@ -613,8 +653,10 @@ public class PatientController {
             @RequestParam("patient") Integer[] patient,
             @RequestParam("isGeneric") boolean isGeneric,
             @RequestParam("exportName") String exportName, Locale locale,
-            Model model) {
-
+            Model model, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         exportParams.setName(exportName);
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
@@ -630,8 +672,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/export/load", method = RequestMethod.POST)
     public String patientExportLoadPOST(Model model, Locale locale,
                                         @RequestParam("patient") Integer[] patientID,
-                                        @RequestParam("exportId") Integer exportID) {
-
+                                        @RequestParam("exportId") Integer exportID, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         if (logger.getLogger() == null)
             logger.setLogger(PatientController.class);
 
@@ -682,7 +726,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/export/delete", method = RequestMethod.POST)
     public String patientExportDeletePOST(
             @RequestParam("patient") Integer[] patientId,
-            @RequestParam("exportId") Integer exportId) {
+            @RequestParam("exportId") Integer exportId, HttpServletRequest request) {
+        if (!AuthorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
         exportParamsService.delete(exportParamsService.findByID(
                 ExportParamsEntity.class, exportId));
         return "redirect:/patient/" + patientId[0] + "/export";
