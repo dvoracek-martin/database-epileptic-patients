@@ -243,7 +243,7 @@ public class PatientController {
      */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
     public String patientsListGET(Locale locale, Model model,
-                                  @RequestParam("maxResults") int maxResults, HttpServletRequest request/*,
+                                  @RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults, HttpServletRequest request/*,
                                   @RequestParam("pageNumber") int pageNumber*/) {
       /*  model.addAttribute("patientList", patientService.findAllWithPagination(PatientEntity.class, maxResults, pageNumber));
         model.addAttribute("maxResults", maxResults);
@@ -283,9 +283,9 @@ public class PatientController {
 
         int patientsCount = patientService.getCountOfUnhidden(PatientEntity.class, searchString);
         JSONEncoder e = new JSONEncoder();
-        return (e.encode(patientService
-                .findByNameWithPagination(PatientEntity.class, maxResults,
-                        pageNumber, searchParams, searchString), patientsCount));
+        List<PatientEntity> patients = patientService
+                .findByNameWithPagination(PatientEntity.class, maxResults, pageNumber, searchParams, searchString);
+        return e.encode(patients, patientsCount);
     }
 
     /**
