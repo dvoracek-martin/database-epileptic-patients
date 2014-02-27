@@ -297,7 +297,7 @@ public class UserController {
                 map.put("subject", "changeOfThePassword");
                 map.put("user", realUser);
                 map.put("password", password);
-                mailService.sendMail("test", map, locale);
+                mailService.sendMail(realUser.getContact().getEmail(), map, locale);
             } catch (Exception e) {
                 e.printStackTrace();
             }
