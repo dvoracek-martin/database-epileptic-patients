@@ -34,7 +34,7 @@ public class UserEntity {
     @Pattern(regexp = "[A-Za-z0-9]*")
     // @NotBlank
     // @NotNull
-    @Size(min = 1, max = 10)
+    @Size(min = 6, max = 10)
     @Column(name = "USERNAME", length = 10, nullable = false)
     private String username;
 

@@ -19,7 +19,8 @@
 
         <security:intercept-url pattern="/patient/**/**/"
                                 access="ROLE_RESEARCHER"/>
-
+        <security:intercept-url pattern="/patient/**/"
+                                access="ROLE_RESEARCHER"/>
 
         <security:intercept-url pattern="/patient/**/**/"
                                 access="ROLE_DOCTOR"/>

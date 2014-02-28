@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,12 +111,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=user.getId())){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != user.getId())) {
             return "deniedView";
         }
         boolean unique = true;
@@ -170,12 +169,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
             return "deniedView";
         }
         model.addAttribute("user",
@@ -195,12 +194,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
             return "deniedView";
         }
         UserEntity user = userService.findByID(UserEntity.class, userID);
@@ -234,12 +233,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
             return "deniedView";
         }
         model.addAttribute("user",
@@ -274,12 +273,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=user.getId())){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != user.getId())) {
             return "deniedView";
         }
 
@@ -333,12 +332,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized){
+        if (!isAuthorized) {
             return "deniedView";
         }
         model.addAttribute("userList", userService.findAllUsersWithPagination(maxResults, pageNumber));
@@ -398,12 +397,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized || (userService.findUserByUsername(name).getId()!=formUser.getId())){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
             return "deniedView";
         }
 
@@ -444,12 +443,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
             return "deniedView";
         }
         if (logger.getLogger() == null)
@@ -493,12 +492,12 @@ public class UserController {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id()==(5)) {
+            if (r.getRole_id() == (5)) {
                 isAuthorized = true;
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId()!=userID)){
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
             return "deniedView";
         }
 
