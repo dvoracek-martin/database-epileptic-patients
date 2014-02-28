@@ -31,44 +31,10 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
      */
     @Override
     public PatientEntity getPatientByIdWithAllLists(int patientId) {
-        /*Criteria criteria = sessionFactory.getCurrentSession()
-                .createCriteria(PatientEntity.class, "patient")
-				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		
-		criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
-		criteria.createAlias("patient.doctor", "doctor");
-		
-		criteria.setFetchMode("doctor.contact", FetchMode.JOIN);
-		criteria.createAlias("doctor.contact", "contact");
-		
-		criteria.setFetchMode("patient.anamnesisList", FetchMode.JOIN);
-		criteria.createAlias("patient.anamnesisList", "anamnesisList");
-		
-		criteria.add(Restrictions.eq("id", patientId));
-		
-		criteria.add(Restrictions.eq("anamnesisList.status", 0));
 
-		
-
-
-		
-		DetachedCriteria maxDateQuery = DetachedCriteria.forClass(AnamnesisEntity.class);
-		ProjectionList proj = Projections.projectionList();
-		proj.add(Projections.max("date"));
-		//proj.add(Projections.groupProperty("connectionid"));
-		maxDateQuery.setProjection(proj);
-
-		criteria.add(Subqueries.eq("anamnesisList.date", maxDateQuery));
-		
-		return (PatientEntity) criteria.uniqueResult();
-*/
-
-
-        Session session = sessionFactory
-                .getCurrentSession();
-        //session.enableFilter("nonHidden");
-
-        Query query = session.createQuery(
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery(
                 "select p from PatientEntity p"
                         + " left join fetch p.doctor"
                         + " left join fetch p.anamnesisList anList"
@@ -88,7 +54,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         + " left join fetch p.seizureList seList"
                         + " left join fetch seList.seizureDetailList sdList"
                         + " where p.id = :patientId"
-                        + " AND ((anList.history = false) OR anList = NULL)"
+                        /*+ " AND ((anList.history = false) OR anList = NULL)"
                         + " AND ((coList.hidden = false AND coList.history = false) OR coList = NULL)"
                         + " AND ((dtseList.hidden = false AND dtseList.history = false) OR dtseList = NULL)"
                         + " AND ((dtmList.hidden = false AND dtmList.history = false) OR dtmList = NULL)"
@@ -103,7 +69,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         + " AND ((ouList.history = false) OR ouList = NULL)"
                         + " AND ((phList.hidden = false AND phList.history = false) OR phList = NULL)"
                         + " AND ((seList.hidden = false AND seList.history = false) OR seList = NULL)"
-                        + " AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)");
+                        + " AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/);
         query.setParameter("patientId", patientId);
         return this.findOne(query);
     }

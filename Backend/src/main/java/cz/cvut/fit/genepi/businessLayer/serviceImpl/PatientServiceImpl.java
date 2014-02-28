@@ -160,8 +160,7 @@ public class PatientServiceImpl
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithAnamnesisList(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithAnamnesisList(patientId);
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -171,14 +170,13 @@ public class PatientServiceImpl
 
         List<ComplicationEntity> recordList = new ArrayList<>();
         for (ComplicationEntity item : patient.getComplicationList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setComplicationList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -188,14 +186,13 @@ public class PatientServiceImpl
 
         List<DiagnosticTestMriEntity> recordList = new ArrayList<>();
         for (DiagnosticTestMriEntity item : patient.getDiagnosticTestMRIList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setDiagnosticTestMRIList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -205,14 +202,13 @@ public class PatientServiceImpl
 
         List<DiagnosticTestScalpEegEntity> recordList = new ArrayList<>();
         for (DiagnosticTestScalpEegEntity item : patient.getDiagnosticTestScalpEegList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setDiagnosticTestScalpEegList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -222,14 +218,13 @@ public class PatientServiceImpl
 
         List<HistologyEntity> recordList = new ArrayList<>();
         for (HistologyEntity item : patient.getHistologyList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setHistologyList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -239,14 +234,13 @@ public class PatientServiceImpl
 
         List<InvasiveTestCorticalMappingEntity> recordList = new ArrayList<>();
         for (InvasiveTestCorticalMappingEntity item : patient.getInvasiveTestCorticalMappingList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setInvasiveTestCorticalMappingList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -256,14 +250,13 @@ public class PatientServiceImpl
 
         List<InvasiveTestEcogEntity> recordList = new ArrayList<>();
         for (InvasiveTestEcogEntity item : patient.getInvasiveTestECOGList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setInvasiveTestECOGList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -273,14 +266,13 @@ public class PatientServiceImpl
 
         List<InvasiveTestEegEntity> recordList = new ArrayList<>();
         for (InvasiveTestEegEntity item : patient.getInvasiveTestEEGList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setInvasiveTestEEGList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -290,14 +282,13 @@ public class PatientServiceImpl
 
         List<NeuropsychologyEntity> recordList = new ArrayList<>();
         for (NeuropsychologyEntity item : patient.getNeuropsychologyList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setNeuropsychologyList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -307,14 +298,13 @@ public class PatientServiceImpl
 
         List<NeuropsychologyOldEntity> recordList = new ArrayList<>();
         for (NeuropsychologyOldEntity item : patient.getNeuropsychologyOldList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setNeuropsychologyOldList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -324,14 +314,13 @@ public class PatientServiceImpl
 
         List<NeurologicalFindingEntity> recordList = new ArrayList<>();
         for (NeurologicalFindingEntity item : patient.getNeurologicalFindingList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setNeurologicalFindingList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -341,14 +330,13 @@ public class PatientServiceImpl
 
         List<OperationEntity> recordList = new ArrayList<>();
         for (OperationEntity item : patient.getOperationList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setOperationList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -364,8 +352,7 @@ public class PatientServiceImpl
         }
         patient.setOperationList(recordList);
         */
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -379,20 +366,19 @@ public class PatientServiceImpl
             //process seizure detail
             List<SeizureDetailEntity> record2List = new ArrayList<>();
             for (SeizureDetailEntity item2 : item.getSeizureDetailList()) {
-                if (item2.isHidden() == false && item2.isHistory() == false) {
+                if (!item2.isHidden() && !item2.isHistory()) {
                     record2List.add(item2);
                 }
             }
             item.setSeizureDetailList(record2List);
 
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setSeizureList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -402,20 +388,134 @@ public class PatientServiceImpl
 
         List<PharmacotherapyEntity> recordList = new ArrayList<>();
         for (PharmacotherapyEntity item : patient.getPharmacotherapyList()) {
-            if (item.isHidden() == false && item.isHistory() == false) {
+            if (!item.isHidden() && !item.isHistory()) {
                 recordList.add(item);
             }
         }
         patient.setPharmacotherapyList(recordList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithAllLists(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithAllLists(patientId);
+
+        List<ComplicationEntity> recordComplicationEntityList = new ArrayList<>();
+        for (ComplicationEntity item : patient.getComplicationList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordComplicationEntityList.add(item);
+            }
+        }
+        patient.setComplicationList(recordComplicationEntityList);
+
+        List<DiagnosticTestMriEntity> recordDiagnosticTestMriEntityList = new ArrayList<>();
+        for (DiagnosticTestMriEntity item : patient.getDiagnosticTestMRIList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordDiagnosticTestMriEntityList.add(item);
+            }
+        }
+        patient.setDiagnosticTestMRIList(recordDiagnosticTestMriEntityList);
+
+        List<DiagnosticTestScalpEegEntity> recordDiagnosticTestScalpEegEntityList = new ArrayList<>();
+        for (DiagnosticTestScalpEegEntity item : patient.getDiagnosticTestScalpEegList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordDiagnosticTestScalpEegEntityList.add(item);
+            }
+        }
+        patient.setDiagnosticTestScalpEegList(recordDiagnosticTestScalpEegEntityList);
+
+        List<HistologyEntity> recordHistologyEntityList = new ArrayList<>();
+        for (HistologyEntity item : patient.getHistologyList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordHistologyEntityList.add(item);
+            }
+        }
+        patient.setHistologyList(recordHistologyEntityList);
+
+        List<InvasiveTestCorticalMappingEntity> recordInvasiveTestCorticalMappingEntityList = new ArrayList<>();
+        for (InvasiveTestCorticalMappingEntity item : patient.getInvasiveTestCorticalMappingList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordInvasiveTestCorticalMappingEntityList.add(item);
+            }
+        }
+        patient.setInvasiveTestCorticalMappingList(recordInvasiveTestCorticalMappingEntityList);
+
+        List<InvasiveTestEcogEntity> recordInvasiveTestEcogEntityList = new ArrayList<>();
+        for (InvasiveTestEcogEntity item : patient.getInvasiveTestECOGList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordInvasiveTestEcogEntityList.add(item);
+            }
+        }
+        patient.setInvasiveTestECOGList(recordInvasiveTestEcogEntityList);
+
+        List<InvasiveTestEegEntity> recordInvasiveTestEegEntityList = new ArrayList<>();
+        for (InvasiveTestEegEntity item : patient.getInvasiveTestEEGList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordInvasiveTestEegEntityList.add(item);
+            }
+        }
+        patient.setInvasiveTestEEGList(recordInvasiveTestEegEntityList);
+
+        List<NeuropsychologyEntity> recordNeuropsychologyEntityList = new ArrayList<>();
+        for (NeuropsychologyEntity item : patient.getNeuropsychologyList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordNeuropsychologyEntityList.add(item);
+            }
+        }
+        patient.setNeuropsychologyList(recordNeuropsychologyEntityList);
+
+        List<NeuropsychologyOldEntity> recordNeuropsychologyOldEntityList = new ArrayList<>();
+        for (NeuropsychologyOldEntity item : patient.getNeuropsychologyOldList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordNeuropsychologyOldEntityList.add(item);
+            }
+        }
+        patient.setNeuropsychologyOldList(recordNeuropsychologyOldEntityList);
+
+        List<NeurologicalFindingEntity> recordNeurologicalFindingEntityList = new ArrayList<>();
+        for (NeurologicalFindingEntity item : patient.getNeurologicalFindingList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordNeurologicalFindingEntityList.add(item);
+            }
+        }
+        patient.setNeurologicalFindingList(recordNeurologicalFindingEntityList);
+
+        List<OperationEntity> recordOperationEntityList = new ArrayList<>();
+        for (OperationEntity item : patient.getOperationList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordOperationEntityList.add(item);
+            }
+        }
+        patient.setOperationList(recordOperationEntityList);
+
+        List<SeizureEntity> recordSeizureEntityList = new ArrayList<>();
+        for (SeizureEntity item : patient.getSeizureList()) {
+
+            //process seizure detail
+            List<SeizureDetailEntity> recordSeizureDetailEntityList = new ArrayList<>();
+            for (SeizureDetailEntity item2 : item.getSeizureDetailList()) {
+                if (!item2.isHidden() && !item2.isHistory()) {
+                    recordSeizureDetailEntityList.add(item2);
+                }
+            }
+            item.setSeizureDetailList(recordSeizureDetailEntityList);
+
+            if (!item.isHidden() && !item.isHistory()) {
+                recordSeizureEntityList.add(item);
+            }
+        }
+        patient.setSeizureList(recordSeizureEntityList);
+
+        List<PharmacotherapyEntity> recordPharmacotherapyEntityList = new ArrayList<>();
+        for (PharmacotherapyEntity item : patient.getPharmacotherapyList()) {
+            if (!item.isHidden() && !item.isHistory()) {
+                recordPharmacotherapyEntityList.add(item);
+            }
+        }
+        patient.setPharmacotherapyList(recordPharmacotherapyEntityList);
+
         PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
         return patientVO;
     }
