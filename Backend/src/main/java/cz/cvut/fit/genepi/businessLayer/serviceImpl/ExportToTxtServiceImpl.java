@@ -566,7 +566,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             if (counter++ > 0)
                 content += addSubcatDelimiter();
 
-            if (exportParams.isSeizureDetailSSCClassification()) {
+            if (exportParams.isSeizureSSCClassification()) {
                 content += addOffset();
                 content += messageSource.getMessage("label.sscClassification", null, locale);
                 content += " - ";
@@ -575,7 +575,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                         locale);
                 content += "\n";
             }
-            if (exportParams.isSeizureDetailILAEClassification()) {
+            if (exportParams.isSeizureILAEClassification()) {
                 content += addOffset();
                 content += messageSource.getMessage("label.ilaeClassification", null, locale);
                 content += " - ";

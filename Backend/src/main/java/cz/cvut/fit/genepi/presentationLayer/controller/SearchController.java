@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Locale;
 
 //This controller is not doing anything right now
@@ -74,8 +76,8 @@ public class SearchController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        model.addAttribute("patients",
-                searchService.performAdvancedSearch(advancedSearch));
+        List<PatientEntity> patients=searchService.performAdvancedSearch(advancedSearch);
+        model.addAttribute("patients",patients);
         return "searchResults";
     }
 }

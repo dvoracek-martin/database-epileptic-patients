@@ -22,6 +22,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
@@ -459,7 +461,7 @@ public class PatientController {
          * FOR TESTING PURPOSES ONLY ! DELETE AFTER TESTING
          */
         boolean toTable = false;
-
+/*
         exportParams.setPatient(true);
         exportParams.setPatientBirthday(true);
         exportParams.setContactFirstName(true);
@@ -606,6 +608,33 @@ public class PatientController {
         exportParams.setDiagnosticTestMRIMrsProtocol(true);
         exportParams.setDiagnosticTestMRIPatientId(true);
         exportParams.setdiagnosticTestMRIInterictalSpect(true);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
 
         // Find out, if data should be anonymized or not
         boolean shallAnonymize = true;

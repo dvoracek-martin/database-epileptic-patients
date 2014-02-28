@@ -829,7 +829,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         }
         for (SeizureDetailEntity seizureDetail : seizure.getSeizureDetailList()) {
             //add empty line
-            if ((seizureDetail != seizure.getSeizureDetailList().get(0)) && p.getRowcount() > 2 && seizure.getSeizureDetailList().size() > 0 && (exportParams.isSeizureDetailSSCClassification() || exportParams.isSeizureDetailILAEClassification() || exportParams.isSeizureDetailComment())) {
+            if ((seizureDetail != seizure.getSeizureDetailList().get(0)) && p.getRowcount() > 2 && seizure.getSeizureDetailList().size() > 0 && (exportParams.isSeizureSSCClassification() || exportParams.isSeizureILAEClassification() || exportParams.isSeizureDetailComment())) {
                 Row tableRow = sheet.getRow(p.getRowcount());
                 if (tableRow == null)
                     tableRow = sheet.createRow(p.getRowcount());
@@ -845,11 +845,11 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
                 p.setRowcount(p.getRowcount() + 1);
             }
-            if (exportParams.isSeizureDetailSSCClassification()) {
+            if (exportParams.isSeizureSSCClassification()) {
                 addCells("label.sscClassification", translateValue(messageSource.getMessage("label.sscClassification." +
                         String.valueOf(seizureDetail.getSscClassification()), null, locale), locale), sheet, locale, styles, "table", p);
             }
-            if (exportParams.isSeizureDetailILAEClassification()) {
+            if (exportParams.isSeizureILAEClassification()) {
                 addCells("label.ilaeClassification", translateValue(messageSource.getMessage("label.ilaeClassification." +
                         String.valueOf(seizureDetail.getIlaeClassification()), null, locale), locale), sheet, locale, styles, "table", p);
             }

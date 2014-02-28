@@ -591,10 +591,6 @@ public class ExportParamsEntity {
     private boolean seizurePatientId;
 
     // SeizureDetail properties
-    @Column(name = "seizureDetailSSCClassification")
-    private boolean seizureDetailSSCClassification;
-    @Column(name = "seizureDetailILAEClassification")
-    private boolean seizureDetailILAEClassification;
     @Column(name = "seizureDetailComment")
     private boolean seizureDetailComment;
 
@@ -3036,23 +3032,6 @@ public class ExportParamsEntity {
         this.outcomeOperationId = outcomeOperationId;
     }
 
-    public boolean isSeizureDetailSSCClassification() {
-        return seizureDetailSSCClassification;
-    }
-
-    public void setSeizureDetailSSCClassification(
-            boolean seizureDetailSSCClassification) {
-        this.seizureDetailSSCClassification = seizureDetailSSCClassification;
-    }
-
-    public boolean isSeizureDetailILAEClassification() {
-        return seizureDetailILAEClassification;
-    }
-
-    public void setSeizureDetailILAEClassification(
-            boolean seizureDetailILAEClassification) {
-        this.seizureDetailILAEClassification = seizureDetailILAEClassification;
-    }
 
     public boolean isSeizureDetailComment() {
         return seizureDetailComment;

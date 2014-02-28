@@ -793,12 +793,12 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             List<String> detailContent = new ArrayList<String>();
 
 
-            if (exportParams.isSeizureDetailSSCClassification()) {
+            if (exportParams.isSeizureSSCClassification()) {
                 detailContent.add(messageSource.getMessage("label.sscClassification",
                         null, locale) + delimiter + messageSource.getMessage("label.sscClassification." +
                         String.valueOf(seizureDetail.getSscClassification()), null, locale));
             }
-            if (exportParams.isSeizureDetailILAEClassification()) {
+            if (exportParams.isSeizureILAEClassification()) {
                 detailContent.add(messageSource.getMessage("label.ilaeClassification",
                         null, locale) + delimiter + messageSource.getMessage("label.ilaeClassification." +
                         String.valueOf(seizureDetail.getIlaeClassification()), null, locale));
@@ -876,13 +876,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             List<String> detailContent = new ArrayList<String>();
 
 
-            if (exportParams.isSeizureDetailSSCClassification()) {
+            if (exportParams.isSeizureSSCClassification()) {
                 detailContent.add(messageSource.getMessage("label.sscClassification", null, locale));
                 detailContent.add(translateValue(messageSource.getMessage("label.sscClassification." +
                         String.valueOf(seizureDetail.getSscClassification()), null, locale),
                         locale));
             }
-            if (exportParams.isSeizureDetailILAEClassification()) {
+            if (exportParams.isSeizureILAEClassification()) {
                 detailContent.add(messageSource.getMessage("label.ilaeClassification", null, locale));
                 detailContent.add(translateValue(messageSource.getMessage("label.ilaeClassification." +
                         String.valueOf(seizureDetail.getIlaeClassification()), null, locale),
