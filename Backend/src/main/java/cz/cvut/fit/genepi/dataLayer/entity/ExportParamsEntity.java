@@ -672,6 +672,14 @@ public class ExportParamsEntity {
         this.isGeneric = isGeneric;
     }
 
+    public boolean isPatient() {
+        return patient;
+    }
+
+    public void setPatient(boolean patient) {
+        this.patient = patient;
+    }
+
     public boolean isAnamnesis() {
         return anamnesis;
     }
@@ -744,6 +752,22 @@ public class ExportParamsEntity {
         this.neuropsychology = neuropsychology;
     }
 
+    public boolean isNeuropsychologyOld() {
+        return neuropsychologyOld;
+    }
+
+    public void setNeuropsychologyOld(boolean neuropsychologyOld) {
+        this.neuropsychologyOld = neuropsychologyOld;
+    }
+
+    public boolean isInvasiveTestCorticalMapping() {
+        return invasiveTestCorticalMapping;
+    }
+
+    public void setInvasiveTestCorticalMapping(boolean invasiveTestCorticalMapping) {
+        this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
+    }
+
     public boolean isOperation() {
         return operation;
     }
@@ -776,22 +800,12 @@ public class ExportParamsEntity {
         this.seizure = seizure;
     }
 
-    public boolean isDiagnosticTestMRILocalizationPetHypometabolism() {
-        return diagnosticTestMRILocalizationPetHypometabolism;
+    public boolean isAnonymize() {
+        return anonymize;
     }
 
-    public void setDiagnosticTestMRILocalizationPetHypometabolism(
-            boolean diagnosticTestMRILocalizationPetHypometabolism) {
-        this.diagnosticTestMRILocalizationPetHypometabolism = diagnosticTestMRILocalizationPetHypometabolism;
-    }
-
-    public boolean isNeuropsychologyFindingDetail() {
-        return neuropsychologyFindingDetail;
-    }
-
-    public void setNeuropsychologyFindingDetail(
-            boolean neuropsychologyFindingDetail) {
-        this.neuropsychologyFindingDetail = neuropsychologyFindingDetail;
+    public void setAnonymize(boolean anonymize) {
+        this.anonymize = anonymize;
     }
 
     public boolean isPatientId() {
@@ -848,6 +862,14 @@ public class ExportParamsEntity {
 
     public void setPatientContactId(boolean patientContactId) {
         this.patientContactId = patientContactId;
+    }
+
+    public boolean isPatientAgeAtTheBeginningOfEpilepsy() {
+        return patientAgeAtTheBeginningOfEpilepsy;
+    }
+
+    public void setPatientAgeAtTheBeginningOfEpilepsy(boolean patientAgeAtTheBeginningOfEpilepsy) {
+        this.patientAgeAtTheBeginningOfEpilepsy = patientAgeAtTheBeginningOfEpilepsy;
     }
 
     public boolean isContactId() {
@@ -1046,8 +1068,7 @@ public class ExportParamsEntity {
         return anamnesisEarlyPmdRetardation;
     }
 
-    public void setAnamnesisEarlyPmdRetardation(
-            boolean anamnesisEarlyPmdRetardation) {
+    public void setAnamnesisEarlyPmdRetardation(boolean anamnesisEarlyPmdRetardation) {
         this.anamnesisEarlyPmdRetardation = anamnesisEarlyPmdRetardation;
     }
 
@@ -1069,6 +1090,10 @@ public class ExportParamsEntity {
 
     public boolean isComplicationId() {
         return complicationId;
+    }
+
+    public void setComplicationId(boolean complicationId) {
+        this.complicationId = complicationId;
     }
 
     public boolean isComplicationDate() {
@@ -1095,14 +1120,6 @@ public class ExportParamsEntity {
         this.complicationAdded = complicationAdded;
     }
 
-    public boolean setComplicationId() {
-        return complicationId;
-    }
-
-    public void setComplicationId(boolean complication) {
-        this.complicationId = complication;
-    }
-
     public boolean isComplicationComment() {
         return complicationComment;
     }
@@ -1127,6 +1144,30 @@ public class ExportParamsEntity {
         this.complicationAddUserId = complicationAddUserId;
     }
 
+    public boolean isComplicationWithCompication() {
+        return ComplicationWithCompication;
+    }
+
+    public void setComplicationWithCompication(boolean complicationWithCompication) {
+        ComplicationWithCompication = complicationWithCompication;
+    }
+
+    public boolean isComplicationComplicationType() {
+        return ComplicationComplicationType;
+    }
+
+    public void setComplicationComplicationType(boolean complicationComplicationType) {
+        ComplicationComplicationType = complicationComplicationType;
+    }
+
+    public boolean isComplicationComplication() {
+        return ComplicationComplication;
+    }
+
+    public void setComplicationComplication(boolean complicationComplication) {
+        ComplicationComplication = complicationComplication;
+    }
+
     public boolean isDiagnosticTestEEGId() {
         return diagnosticTestEEGId;
     }
@@ -1141,6 +1182,14 @@ public class ExportParamsEntity {
 
     public void setDiagnosticTestEEGDate(boolean diagnosticTestEEGDate) {
         this.diagnosticTestEEGDate = diagnosticTestEEGDate;
+    }
+
+    public boolean isDiagnosticTestEEGDone() {
+        return diagnosticTestEEGDone;
+    }
+
+    public void setDiagnosticTestEEGDone(boolean diagnosticTestEEGDone) {
+        this.diagnosticTestEEGDone = diagnosticTestEEGDone;
     }
 
     public boolean isDiagnosticTestEEGDoctorId() {
@@ -1163,8 +1212,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGBasicActivity;
     }
 
-    public void setDiagnosticTestEEGBasicActivity(
-            boolean diagnosticTestEEGBasicActivity) {
+    public void setDiagnosticTestEEGBasicActivity(boolean diagnosticTestEEGBasicActivity) {
         this.diagnosticTestEEGBasicActivity = diagnosticTestEEGBasicActivity;
     }
 
@@ -1180,8 +1228,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGInterictalEEGSpikes;
     }
 
-    public void setDiagnosticTestEEGInterictalEEGSpikes(
-            boolean diagnosticTestEEGInterictalEEGSpikes) {
+    public void setDiagnosticTestEEGInterictalEEGSpikes(boolean diagnosticTestEEGInterictalEEGSpikes) {
         this.diagnosticTestEEGInterictalEEGSpikes = diagnosticTestEEGInterictalEEGSpikes;
     }
 
@@ -1189,8 +1236,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGLocalizationInerictalEEGSpikes;
     }
 
-    public void setDiagnosticTestEEGLocalizationInerictalEEGSpikes(
-            boolean diagnosticTestEEGLocalizationInerictalEEGSpikes) {
+    public void setDiagnosticTestEEGLocalizationInerictalEEGSpikes(boolean diagnosticTestEEGLocalizationInerictalEEGSpikes) {
         this.diagnosticTestEEGLocalizationInerictalEEGSpikes = diagnosticTestEEGLocalizationInerictalEEGSpikes;
     }
 
@@ -1198,8 +1244,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGStatusEpilepticus;
     }
 
-    public void setDiagnosticTestEEGStatusEpilepticus(
-            boolean diagnosticTestEEGStatusEpilepticus) {
+    public void setDiagnosticTestEEGStatusEpilepticus(boolean diagnosticTestEEGStatusEpilepticus) {
         this.diagnosticTestEEGStatusEpilepticus = diagnosticTestEEGStatusEpilepticus;
     }
 
@@ -1207,8 +1252,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGSecondarySidedSynchrony;
     }
 
-    public void setDiagnosticTestEEGSecondarySidedSynchrony(
-            boolean diagnosticTestEEGSecondarySidedSynchrony) {
+    public void setDiagnosticTestEEGSecondarySidedSynchrony(boolean diagnosticTestEEGSecondarySidedSynchrony) {
         this.diagnosticTestEEGSecondarySidedSynchrony = diagnosticTestEEGSecondarySidedSynchrony;
     }
 
@@ -1216,8 +1260,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGIctalEEGPatterns;
     }
 
-    public void setDiagnosticTestEEGIctalEEGPatterns(
-            boolean diagnosticTestEEGIctalEEGPatterns) {
+    public void setDiagnosticTestEEGIctalEEGPatterns(boolean diagnosticTestEEGIctalEEGPatterns) {
         this.diagnosticTestEEGIctalEEGPatterns = diagnosticTestEEGIctalEEGPatterns;
     }
 
@@ -1225,8 +1268,7 @@ public class ExportParamsEntity {
         return diagnosticTestEEGLocalizationIctalEEGPattern;
     }
 
-    public void setDiagnosticTestEEGLocalizationIctalEEGPattern(
-            boolean diagnosticTestEEGLocalizationIctalEEGPattern) {
+    public void setDiagnosticTestEEGLocalizationIctalEEGPattern(boolean diagnosticTestEEGLocalizationIctalEEGPattern) {
         this.diagnosticTestEEGLocalizationIctalEEGPattern = diagnosticTestEEGLocalizationIctalEEGPattern;
     }
 
@@ -1254,12 +1296,28 @@ public class ExportParamsEntity {
         this.diagnosticTestEEGPatientId = diagnosticTestEEGPatientId;
     }
 
+    public boolean isDiagnosticTestEEGDescriptionVideoEEG() {
+        return diagnosticTestEEGDescriptionVideoEEG;
+    }
+
+    public void setDiagnosticTestEEGDescriptionVideoEEG(boolean diagnosticTestEEGDescriptionVideoEEG) {
+        this.diagnosticTestEEGDescriptionVideoEEG = diagnosticTestEEGDescriptionVideoEEG;
+    }
+
     public boolean isDiagnosticTestMRIId() {
         return diagnosticTestMRIId;
     }
 
     public void setDiagnosticTestMRIId(boolean diagnosticTestMRIId) {
         this.diagnosticTestMRIId = diagnosticTestMRIId;
+    }
+
+    public boolean isDiagnosticTestMRIDone() {
+        return diagnosticTestMRIDone;
+    }
+
+    public void setDiagnosticTestMRIDone(boolean diagnosticTestMRIDone) {
+        this.diagnosticTestMRIDone = diagnosticTestMRIDone;
     }
 
     public boolean isDiagnosticTestMRIDate() {
@@ -1302,12 +1360,11 @@ public class ExportParamsEntity {
         this.diagnosticTestMRIFdgPet = diagnosticTestMRIFdgPet;
     }
 
-    public boolean isdiagnosticTestMRIInterictalSpect() {
+    public boolean isDiagnosticTestMRIInterictalSpect() {
         return diagnosticTestMRIInterictalSpect;
     }
 
-    public void setdiagnosticTestMRIInterictalSpect(
-            boolean diagnosticTestMRIInterictalSpect) {
+    public void setDiagnosticTestMRIInterictalSpect(boolean diagnosticTestMRIInterictalSpect) {
         this.diagnosticTestMRIInterictalSpect = diagnosticTestMRIInterictalSpect;
     }
 
@@ -1323,9 +1380,72 @@ public class ExportParamsEntity {
         return diagnosticTestMRIMrsProtocol;
     }
 
-    public void setDiagnosticTestMRIMrsProtocol(
-            boolean diagnosticTestMRIMrsProtocol) {
+    public void setDiagnosticTestMRIMrsProtocol(boolean diagnosticTestMRIMrsProtocol) {
         this.diagnosticTestMRIMrsProtocol = diagnosticTestMRIMrsProtocol;
+    }
+
+    public boolean isDiagnosticTestMRIMrsFinding() {
+        return diagnosticTestMRIMrsFinding;
+    }
+
+    public void setDiagnosticTestMRIMrsFinding(boolean diagnosticTestMRIMrsFinding) {
+        this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
+    }
+
+    public boolean isDiagnosticTestMRIFinding() {
+        return diagnosticTestMRIFinding;
+    }
+
+    public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
+        this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
+    }
+
+    public boolean isDiagnosticTestMRIDescription() {
+        return diagnosticTestMRIDescription;
+    }
+
+    public void setDiagnosticTestMRIDescription(boolean diagnosticTestMRIDescription) {
+        this.diagnosticTestMRIDescription = diagnosticTestMRIDescription;
+    }
+
+    public boolean isDiagnosticTestMRIDescriptionPetHypometabolism() {
+        return diagnosticTestMRIDescriptionPetHypometabolism;
+    }
+
+    public void setDiagnosticTestMRIDescriptionPetHypometabolism(boolean diagnosticTestMRIDescriptionPetHypometabolism) {
+        this.diagnosticTestMRIDescriptionPetHypometabolism = diagnosticTestMRIDescriptionPetHypometabolism;
+    }
+
+    public boolean isDiagnosticTestMRIDescriptionSpectHypoperfuse() {
+        return diagnosticTestMRIDescriptionSpectHypoperfuse;
+    }
+
+    public void setDiagnosticTestMRIDescriptionSpectHypoperfuse(boolean diagnosticTestMRIDescriptionSpectHypoperfuse) {
+        this.diagnosticTestMRIDescriptionSpectHypoperfuse = diagnosticTestMRIDescriptionSpectHypoperfuse;
+    }
+
+    public boolean isDiagnosticTestMRIDescriptionMrsAbnormality() {
+        return diagnosticTestMRIDescriptionMrsAbnormality;
+    }
+
+    public void setDiagnosticTestMRIDescriptionMrsAbnormality(boolean diagnosticTestMRIDescriptionMrsAbnormality) {
+        this.diagnosticTestMRIDescriptionMrsAbnormality = diagnosticTestMRIDescriptionMrsAbnormality;
+    }
+
+    public boolean isDiagnosticTestMRIDescriptionSpectHyperperfuse() {
+        return diagnosticTestMRIDescriptionSpectHyperperfuse;
+    }
+
+    public void setDiagnosticTestMRIDescriptionSpectHyperperfuse(boolean diagnosticTestMRIDescriptionSpectHyperperfuse) {
+        this.diagnosticTestMRIDescriptionSpectHyperperfuse = diagnosticTestMRIDescriptionSpectHyperperfuse;
+    }
+
+    public boolean isDiagnosticTestMRIIctalSpect() {
+        return diagnosticTestMRIIctalSpect;
+    }
+
+    public void setDiagnosticTestMRIIctalSpect(boolean diagnosticTestMRIIctalSpect) {
+        this.diagnosticTestMRIIctalSpect = diagnosticTestMRIIctalSpect;
     }
 
     public boolean isDiagnosticTestMRIDti() {
@@ -1340,8 +1460,7 @@ public class ExportParamsEntity {
         return diagnosticTestMRIDtiDetailStudy;
     }
 
-    public void setDiagnosticTestMRIDtiDetailStudy(
-            boolean diagnosticTestMRIDtiDetailStudy) {
+    public void setDiagnosticTestMRIDtiDetailStudy(boolean diagnosticTestMRIDtiDetailStudy) {
         this.diagnosticTestMRIDtiDetailStudy = diagnosticTestMRIDtiDetailStudy;
     }
 
@@ -1357,9 +1476,16 @@ public class ExportParamsEntity {
         return diagnosticTestMRIDetailsFmri;
     }
 
-    public void setDiagnosticTestMRIDetailsFmri(
-            boolean diagnosticTestMRIDetailsFmri) {
+    public void setDiagnosticTestMRIDetailsFmri(boolean diagnosticTestMRIDetailsFmri) {
         this.diagnosticTestMRIDetailsFmri = diagnosticTestMRIDetailsFmri;
+    }
+
+    public boolean isDiagnosticTestMRIDetailsDtiStudy() {
+        return diagnosticTestMRIDetailsDtiStudy;
+    }
+
+    public void setDiagnosticTestMRIDetailsDtiStudy(boolean diagnosticTestMRIDetailsDtiStudy) {
+        this.diagnosticTestMRIDetailsDtiStudy = diagnosticTestMRIDetailsDtiStudy;
     }
 
     public boolean isDiagnosticTestMRIWada() {
@@ -1374,8 +1500,7 @@ public class ExportParamsEntity {
         return diagnosticTestMRIDetailsWada;
     }
 
-    public void setDiagnosticTestMRIDetailsWada(
-            boolean diagnosticTestMRIDetailsWada) {
+    public void setDiagnosticTestMRIDetailsWada(boolean diagnosticTestMRIDetailsWada) {
         this.diagnosticTestMRIDetailsWada = diagnosticTestMRIDetailsWada;
     }
 
@@ -1391,8 +1516,7 @@ public class ExportParamsEntity {
         return diagnosticTestMRILocalizationSpecHypoperfuse;
     }
 
-    public void setDiagnosticTestMRILocalizationSpecHypoperfuse(
-            boolean diagnosticTestMRILocalizationSpecHypoperfuse) {
+    public void setDiagnosticTestMRILocalizationSpecHypoperfuse(boolean diagnosticTestMRILocalizationSpecHypoperfuse) {
         this.diagnosticTestMRILocalizationSpecHypoperfuse = diagnosticTestMRILocalizationSpecHypoperfuse;
     }
 
@@ -1400,17 +1524,15 @@ public class ExportParamsEntity {
         return diagnosticTestMRILocalizationMrsAbnormality;
     }
 
-    public void setDiagnosticTestMRILocalizationMrsAbnormality(
-            boolean diagnosticTestMRILocalizationMrsAbnormality) {
+    public void setDiagnosticTestMRILocalizationMrsAbnormality(boolean diagnosticTestMRILocalizationMrsAbnormality) {
         this.diagnosticTestMRILocalizationMrsAbnormality = diagnosticTestMRILocalizationMrsAbnormality;
     }
 
-    public boolean isdiagnosticTestMRILocalizationPetHypometabolism() {
+    public boolean isDiagnosticTestMRILocalizationPetHypometabolism() {
         return diagnosticTestMRILocalizationPetHypometabolism;
     }
 
-    public void setdiagnosticTestMRILocalizationPetHypometabolism(
-            boolean diagnosticTestMRILocalizationPetHypometabolism) {
+    public void setDiagnosticTestMRILocalizationPetHypometabolism(boolean diagnosticTestMRILocalizationPetHypometabolism) {
         this.diagnosticTestMRILocalizationPetHypometabolism = diagnosticTestMRILocalizationPetHypometabolism;
     }
 
@@ -1418,8 +1540,7 @@ public class ExportParamsEntity {
         return diagnosticTestMRILocalizationSpecHyperperfuse;
     }
 
-    public void setDiagnosticTestMRILocalizationSpecHyperperfuse(
-            boolean diagnosticTestMRILocalizationSpecHyperperfuse) {
+    public void setDiagnosticTestMRILocalizationSpecHyperperfuse(boolean diagnosticTestMRILocalizationSpecHyperperfuse) {
         this.diagnosticTestMRILocalizationSpecHyperperfuse = diagnosticTestMRILocalizationSpecHyperperfuse;
     }
 
@@ -1427,8 +1548,7 @@ public class ExportParamsEntity {
         return diagnosticTestMRIFmriProtocols;
     }
 
-    public void setDiagnosticTestMRIFmriProtocols(
-            boolean diagnosticTestMRIFmriProtocols) {
+    public void setDiagnosticTestMRIFmriProtocols(boolean diagnosticTestMRIFmriProtocols) {
         this.diagnosticTestMRIFmriProtocols = diagnosticTestMRIFmriProtocols;
     }
 
@@ -1544,6 +1664,22 @@ public class ExportParamsEntity {
         this.invasiveTestECOGDate = invasiveTestECOGDate;
     }
 
+    public boolean isInvasiveTestECOGDone() {
+        return invasiveTestECOGDone;
+    }
+
+    public void setInvasiveTestECOGDone(boolean invasiveTestECOGDone) {
+        this.invasiveTestECOGDone = invasiveTestECOGDone;
+    }
+
+    public boolean isInvasiveTestECOGIntracranialElectrodes() {
+        return invasiveTestECOGIntracranialElectrodes;
+    }
+
+    public void setInvasiveTestECOGIntracranialElectrodes(boolean invasiveTestECOGIntracranialElectrodes) {
+        this.invasiveTestECOGIntracranialElectrodes = invasiveTestECOGIntracranialElectrodes;
+    }
+
     public boolean isInvasiveTestECOGDoctorId() {
         return invasiveTestECOGDoctorId;
     }
@@ -1564,8 +1700,7 @@ public class ExportParamsEntity {
         return invasiveTestECOGIntraOperativeEcog;
     }
 
-    public void setInvasiveTestECOGIntraOperativeEcog(
-            boolean invasiveTestECOGIntraOperativeEcog) {
+    public void setInvasiveTestECOGIntraOperativeEcog(boolean invasiveTestECOGIntraOperativeEcog) {
         this.invasiveTestECOGIntraOperativeEcog = invasiveTestECOGIntraOperativeEcog;
     }
 
@@ -1573,8 +1708,7 @@ public class ExportParamsEntity {
         return invasiveTestECOGEcogPatterns;
     }
 
-    public void setInvasiveTestECOGEcogPatterns(
-            boolean invasiveTestECOGEcogPatterns) {
+    public void setInvasiveTestECOGEcogPatterns(boolean invasiveTestECOGEcogPatterns) {
         this.invasiveTestECOGEcogPatterns = invasiveTestECOGEcogPatterns;
     }
 
@@ -1586,12 +1720,11 @@ public class ExportParamsEntity {
         this.invasiveTestECOGEcogCover = invasiveTestECOGEcogCover;
     }
 
-    public boolean setInvasiveTestECOGAfterResectionEcog() {
+    public boolean isInvasiveTestECOGAfterResectionEcog() {
         return invasiveTestECOGAfterResectionEcog;
     }
 
-    public void setInvasiveTestECOGAfterResectionEcog(
-            boolean invasiveTestECOGAfterResectionEcog) {
+    public void setInvasiveTestECOGAfterResectionEcog(boolean invasiveTestECOGAfterResectionEcog) {
         this.invasiveTestECOGAfterResectionEcog = invasiveTestECOGAfterResectionEcog;
     }
 
@@ -1599,8 +1732,7 @@ public class ExportParamsEntity {
         return invasiveTestECOGAwakeCraniotomy;
     }
 
-    public void setInvasiveTestECOGAwakeCraniotomy(
-            boolean invasiveTestECOGAwakeCraniotomy) {
+    public void setInvasiveTestECOGAwakeCraniotomy(boolean invasiveTestECOGAwakeCraniotomy) {
         this.invasiveTestECOGAwakeCraniotomy = invasiveTestECOGAwakeCraniotomy;
     }
 
@@ -1644,6 +1776,14 @@ public class ExportParamsEntity {
         this.invasiveTestEEGDate = invasiveTestEEGDate;
     }
 
+    public boolean isInvasiveTestEEGDone() {
+        return invasiveTestEEGDone;
+    }
+
+    public void setInvasiveTestEEGDone(boolean invasiveTestEEGDone) {
+        this.invasiveTestEEGDone = invasiveTestEEGDone;
+    }
+
     public boolean isInvasiveTestEEGDoctorId() {
         return invasiveTestEEGDoctorId;
     }
@@ -1664,8 +1804,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGInvasiveMonitoring;
     }
 
-    public void setInvasiveTestEEGInvasiveMonitoring(
-            boolean invasiveTestEEGInvasiveMonitoring) {
+    public void setInvasiveTestEEGInvasiveMonitoring(boolean invasiveTestEEGInvasiveMonitoring) {
         this.invasiveTestEEGInvasiveMonitoring = invasiveTestEEGInvasiveMonitoring;
     }
 
@@ -1673,8 +1812,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGLocalizationIntracranialElectrodes;
     }
 
-    public void setInvasiveTestEEGLocalizationIntracranialElectrodes(
-            boolean invasiveTestEEGLocalizationIntracranialElectrodes) {
+    public void setInvasiveTestEEGLocalizationIntracranialElectrodes(boolean invasiveTestEEGLocalizationIntracranialElectrodes) {
         this.invasiveTestEEGLocalizationIntracranialElectrodes = invasiveTestEEGLocalizationIntracranialElectrodes;
     }
 
@@ -1682,8 +1820,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGIntracranialElectrodes;
     }
 
-    public void setInvasiveTestEEGIntracranialElectrodes(
-            boolean invasiveTestEEGIntracranialElectrodes) {
+    public void setInvasiveTestEEGIntracranialElectrodes(boolean invasiveTestEEGIntracranialElectrodes) {
         this.invasiveTestEEGIntracranialElectrodes = invasiveTestEEGIntracranialElectrodes;
     }
 
@@ -1691,8 +1828,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGInvasiveEEGSlow;
     }
 
-    public void setInvasiveTestEEGInvasiveEEGSlow(
-            boolean invasiveTestEEGInvasiveEEGSlow) {
+    public void setInvasiveTestEEGInvasiveEEGSlow(boolean invasiveTestEEGInvasiveEEGSlow) {
         this.invasiveTestEEGInvasiveEEGSlow = invasiveTestEEGInvasiveEEGSlow;
     }
 
@@ -1700,8 +1836,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGInvasiveEEGInterictalSpikes;
     }
 
-    public void setInvasiveTestEEGInvasiveEEGInterictalSpikes(
-            boolean invasiveTestEEGInvasiveEEGInterictalSpikes) {
+    public void setInvasiveTestEEGInvasiveEEGInterictalSpikes(boolean invasiveTestEEGInvasiveEEGInterictalSpikes) {
         this.invasiveTestEEGInvasiveEEGInterictalSpikes = invasiveTestEEGInvasiveEEGInterictalSpikes;
     }
 
@@ -1709,8 +1844,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
     }
 
-    public void setInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes(
-            boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes) {
+    public void setInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes(boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes) {
         this.invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes = invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
     }
 
@@ -1718,8 +1852,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGStatusEpilepticus;
     }
 
-    public void setInvasiveTestEEGStatusEpilepticus(
-            boolean invasiveTestEEGStatusEpilepticus) {
+    public void setInvasiveTestEEGStatusEpilepticus(boolean invasiveTestEEGStatusEpilepticus) {
         this.invasiveTestEEGStatusEpilepticus = invasiveTestEEGStatusEpilepticus;
     }
 
@@ -1727,8 +1860,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGInvasiveIctalEEGPatterns;
     }
 
-    public void setInvasiveTestEEGInvasiveIctalEEGPatterns(
-            boolean invasiveTestEEGInvasiveIctalEEGPatterns) {
+    public void setInvasiveTestEEGInvasiveIctalEEGPatterns(boolean invasiveTestEEGInvasiveIctalEEGPatterns) {
         this.invasiveTestEEGInvasiveIctalEEGPatterns = invasiveTestEEGInvasiveIctalEEGPatterns;
     }
 
@@ -1736,8 +1868,7 @@ public class ExportParamsEntity {
         return invasiveTestEEGLocalizationIctalEEGPatterns;
     }
 
-    public void setInvasiveTestEEGLocalizationIctalEEGPatterns(
-            boolean invasiveTestEEGLocalizationIctalEEGPatterns) {
+    public void setInvasiveTestEEGLocalizationIctalEEGPatterns(boolean invasiveTestEEGLocalizationIctalEEGPatterns) {
         this.invasiveTestEEGLocalizationIctalEEGPatterns = invasiveTestEEGLocalizationIctalEEGPatterns;
     }
 
@@ -1785,8 +1916,7 @@ public class ExportParamsEntity {
         return neurologicalFindingDoctorId;
     }
 
-    public void setNeurologicalFindingDoctorId(
-            boolean neurologicalFindingDoctorId) {
+    public void setNeurologicalFindingDoctorId(boolean neurologicalFindingDoctorId) {
         this.neurologicalFindingDoctorId = neurologicalFindingDoctorId;
     }
 
@@ -1802,8 +1932,7 @@ public class ExportParamsEntity {
         return neurologicalFindingHemisphereDominance;
     }
 
-    public void setNeurologicalFindingHemisphereDominance(
-            boolean neurologicalFindingHemisphereDominance) {
+    public void setNeurologicalFindingHemisphereDominance(boolean neurologicalFindingHemisphereDominance) {
         this.neurologicalFindingHemisphereDominance = neurologicalFindingHemisphereDominance;
     }
 
@@ -1811,8 +1940,7 @@ public class ExportParamsEntity {
         return neurologicalFindingAbnormalNeurologicalFinding;
     }
 
-    public void setNeurologicalFindingAbnormalNeurologicalFinding(
-            boolean neurologicalFindingAbnormalNeurologicalFinding) {
+    public void setNeurologicalFindingAbnormalNeurologicalFinding(boolean neurologicalFindingAbnormalNeurologicalFinding) {
         this.neurologicalFindingAbnormalNeurologicalFinding = neurologicalFindingAbnormalNeurologicalFinding;
     }
 
@@ -1820,8 +1948,7 @@ public class ExportParamsEntity {
         return neurologicalFindingHemiparesis;
     }
 
-    public void setNeurologicalFindingHemiparesis(
-            boolean neurologicalFindingHemiparesis) {
+    public void setNeurologicalFindingHemiparesis(boolean neurologicalFindingHemiparesis) {
         this.neurologicalFindingHemiparesis = neurologicalFindingHemiparesis;
     }
 
@@ -1829,8 +1956,7 @@ public class ExportParamsEntity {
         return neurologicalFindingVisualFieldDefects;
     }
 
-    public void setNeurologicalFindingVisualFieldDefects(
-            boolean neurologicalFindingVisualFieldDefects) {
+    public void setNeurologicalFindingVisualFieldDefects(boolean neurologicalFindingVisualFieldDefects) {
         this.neurologicalFindingVisualFieldDefects = neurologicalFindingVisualFieldDefects;
     }
 
@@ -1846,8 +1972,7 @@ public class ExportParamsEntity {
         return neurologicalFindingAddUserId;
     }
 
-    public void setNeurologicalFindingAddUserId(
-            boolean neurologicalFindingAddUserId) {
+    public void setNeurologicalFindingAddUserId(boolean neurologicalFindingAddUserId) {
         this.neurologicalFindingAddUserId = neurologicalFindingAddUserId;
     }
 
@@ -1855,8 +1980,7 @@ public class ExportParamsEntity {
         return neurologicalFindingPatientId;
     }
 
-    public void setNeurologicalFindingPatientId(
-            boolean neurologicalFindingPatientId) {
+    public void setNeurologicalFindingPatientId(boolean neurologicalFindingPatientId) {
         this.neurologicalFindingPatientId = neurologicalFindingPatientId;
     }
 
@@ -1870,14 +1994,6 @@ public class ExportParamsEntity {
 
     public boolean isNeuropsychologyDate() {
         return neuropsychologyDate;
-    }
-
-    public boolean isNeuropsychologyIntellect() {
-        return neuropsychologyIntellect;
-    }
-
-    public void setNeuropsychologyIntellect(boolean neuropsychologyIntellect) {
-        this.neuropsychologyIntellect = neuropsychologyIntellect;
     }
 
     public void setNeuropsychologyDate(boolean neuropsychologyDate) {
@@ -1900,12 +2016,19 @@ public class ExportParamsEntity {
         this.neuropsychologyAdded = neuropsychologyAdded;
     }
 
+    public boolean isNeuropsychologyIntellect() {
+        return neuropsychologyIntellect;
+    }
+
+    public void setNeuropsychologyIntellect(boolean neuropsychologyIntellect) {
+        this.neuropsychologyIntellect = neuropsychologyIntellect;
+    }
+
     public boolean isNeuropsychologyNeurodevelopmentalExamination() {
         return neuropsychologyNeurodevelopmentalExamination;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExamination(
-            boolean neuropsychologyNeurodevelopmentalExamination) {
+    public void setNeuropsychologyNeurodevelopmentalExamination(boolean neuropsychologyNeurodevelopmentalExamination) {
         this.neuropsychologyNeurodevelopmentalExamination = neuropsychologyNeurodevelopmentalExamination;
     }
 
@@ -1913,8 +2036,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationAdaptability;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationAdaptability(
-            boolean neuropsychologyNeurodevelopmentalExaminationAdaptability) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationAdaptability(boolean neuropsychologyNeurodevelopmentalExaminationAdaptability) {
         this.neuropsychologyNeurodevelopmentalExaminationAdaptability = neuropsychologyNeurodevelopmentalExaminationAdaptability;
     }
 
@@ -1922,8 +2044,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively(
-            boolean neuropsychologyNeurodevelopmentalExaminationSpeechExpressively) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively(boolean neuropsychologyNeurodevelopmentalExaminationSpeechExpressively) {
         this.neuropsychologyNeurodevelopmentalExaminationSpeechExpressively = neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
     }
 
@@ -1931,8 +2052,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively(
-            boolean neuropsychologyNeurodevelopmentalExaminationSpeechReceptively) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively(boolean neuropsychologyNeurodevelopmentalExaminationSpeechReceptively) {
         this.neuropsychologyNeurodevelopmentalExaminationSpeechReceptively = neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
     }
 
@@ -1940,8 +2060,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills(
-            boolean neuropsychologyNeurodevelopmentalExaminationFineMotorSkills) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationFineMotorSkills(boolean neuropsychologyNeurodevelopmentalExaminationFineMotorSkills) {
         this.neuropsychologyNeurodevelopmentalExaminationFineMotorSkills = neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
     }
 
@@ -1949,8 +2068,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills(
-            boolean neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationGrossMotorSkills(boolean neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills) {
         this.neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills = neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
     }
 
@@ -1958,8 +2076,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
     }
 
-    public void setNeuropsychologyNeurodevelopmentalExaminationSocialBehavior(
-            boolean neuropsychologyNeurodevelopmentalExaminationSocialBehavior) {
+    public void setNeuropsychologyNeurodevelopmentalExaminationSocialBehavior(boolean neuropsychologyNeurodevelopmentalExaminationSocialBehavior) {
         this.neuropsychologyNeurodevelopmentalExaminationSocialBehavior = neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
     }
 
@@ -1967,8 +2084,7 @@ public class ExportParamsEntity {
         return neuropsychologyIntellectualPerformance;
     }
 
-    public void setNeuropsychologyIntellectualPerformance(
-            boolean neuropsychologyIntellectualPerformance) {
+    public void setNeuropsychologyIntellectualPerformance(boolean neuropsychologyIntellectualPerformance) {
         this.neuropsychologyIntellectualPerformance = neuropsychologyIntellectualPerformance;
     }
 
@@ -1976,8 +2092,7 @@ public class ExportParamsEntity {
         return neuropsychologyIntellectualPerformanceVerbally;
     }
 
-    public void setNeuropsychologyIntellectualPerformanceVerbally(
-            boolean neuropsychologyIntellectualPerformanceVerbally) {
+    public void setNeuropsychologyIntellectualPerformanceVerbally(boolean neuropsychologyIntellectualPerformanceVerbally) {
         this.neuropsychologyIntellectualPerformanceVerbally = neuropsychologyIntellectualPerformanceVerbally;
     }
 
@@ -1985,17 +2100,15 @@ public class ExportParamsEntity {
         return neuropsychologyIntellectualPerformanceNonverbalAbstraction;
     }
 
-    public void setNeuropsychologyIntellectualPerformanceNonverbalAbstraction(
-            boolean neuropsychologyIntellectualPerformanceNonverbalAbstraction) {
+    public void setNeuropsychologyIntellectualPerformanceNonverbalAbstraction(boolean neuropsychologyIntellectualPerformanceNonverbalAbstraction) {
         this.neuropsychologyIntellectualPerformanceNonverbalAbstraction = neuropsychologyIntellectualPerformanceNonverbalAbstraction;
     }
 
-    public boolean isneuropsychologyIntellectualPerformanceNonverbalDesignCap() {
+    public boolean isNeuropsychologyIntellectualPerformanceNonverbalDesignCap() {
         return neuropsychologyIntellectualPerformanceNonverbalDesignCap;
     }
 
-    public void setneuropsychologyIntellectualPerformanceNonverbalDesignCap(
-            boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap) {
+    public void setNeuropsychologyIntellectualPerformanceNonverbalDesignCap(boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap) {
         this.neuropsychologyIntellectualPerformanceNonverbalDesignCap = neuropsychologyIntellectualPerformanceNonverbalDesignCap;
     }
 
@@ -2003,8 +2116,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfile;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfile(
-            boolean neuropsychologyNeuropsychologicalProfile) {
+    public void setNeuropsychologyNeuropsychologicalProfile(boolean neuropsychologyNeuropsychologicalProfile) {
         this.neuropsychologyNeuropsychologicalProfile = neuropsychologyNeuropsychologicalProfile;
     }
 
@@ -2012,8 +2124,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileAttention;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileAttention(
-            boolean neuropsychologyNeuropsychologicalProfileAttention) {
+    public void setNeuropsychologyNeuropsychologicalProfileAttention(boolean neuropsychologyNeuropsychologicalProfileAttention) {
         this.neuropsychologyNeuropsychologicalProfileAttention = neuropsychologyNeuropsychologicalProfileAttention;
     }
 
@@ -2021,8 +2132,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileExecutiveFunction;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileExecutiveFunction(
-            boolean neuropsychologyNeuropsychologicalProfileExecutiveFunction) {
+    public void setNeuropsychologyNeuropsychologicalProfileExecutiveFunction(boolean neuropsychologyNeuropsychologicalProfileExecutiveFunction) {
         this.neuropsychologyNeuropsychologicalProfileExecutiveFunction = neuropsychologyNeuropsychologicalProfileExecutiveFunction;
     }
 
@@ -2030,8 +2140,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileCognitiveSpeed(
-            boolean neuropsychologyNeuropsychologicalProfileCognitiveSpeed) {
+    public void setNeuropsychologyNeuropsychologicalProfileCognitiveSpeed(boolean neuropsychologyNeuropsychologicalProfileCognitiveSpeed) {
         this.neuropsychologyNeuropsychologicalProfileCognitiveSpeed = neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
     }
 
@@ -2039,8 +2148,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileSpeechExpressively;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileSpeechExpressively(
-            boolean neuropsychologyNeuropsychologicalProfileSpeechExpressively) {
+    public void setNeuropsychologyNeuropsychologicalProfileSpeechExpressively(boolean neuropsychologyNeuropsychologicalProfileSpeechExpressively) {
         this.neuropsychologyNeuropsychologicalProfileSpeechExpressively = neuropsychologyNeuropsychologicalProfileSpeechExpressively;
     }
 
@@ -2048,8 +2156,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(
-            boolean neuropsychologyNeuropsychologicalProfileSpeechUnderstanding) {
+    public void setNeuropsychologyNeuropsychologicalProfileSpeechUnderstanding(boolean neuropsychologyNeuropsychologicalProfileSpeechUnderstanding) {
         this.neuropsychologyNeuropsychologicalProfileSpeechUnderstanding = neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
     }
 
@@ -2057,8 +2164,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMemoryOperating;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMemoryOperating(
-            boolean neuropsychologyNeuropsychologicalProfileMemoryOperating) {
+    public void setNeuropsychologyNeuropsychologicalProfileMemoryOperating(boolean neuropsychologyNeuropsychologicalProfileMemoryOperating) {
         this.neuropsychologyNeuropsychologicalProfileMemoryOperating = neuropsychologyNeuropsychologicalProfileMemoryOperating;
     }
 
@@ -2066,8 +2172,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMemoryVerbal;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMemoryVerbal(
-            boolean neuropsychologyNeuropsychologicalProfileMemoryVerbal) {
+    public void setNeuropsychologyNeuropsychologicalProfileMemoryVerbal(boolean neuropsychologyNeuropsychologicalProfileMemoryVerbal) {
         this.neuropsychologyNeuropsychologicalProfileMemoryVerbal = neuropsychologyNeuropsychologicalProfileMemoryVerbal;
     }
 
@@ -2075,8 +2180,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMemoryNonverbal(
-            boolean neuropsychologyNeuropsychologicalProfileMemoryNonverbal) {
+    public void setNeuropsychologyNeuropsychologicalProfileMemoryNonverbal(boolean neuropsychologyNeuropsychologicalProfileMemoryNonverbal) {
         this.neuropsychologyNeuropsychologicalProfileMemoryNonverbal = neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
     }
 
@@ -2084,8 +2188,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMemoryLearning;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMemoryLearning(
-            boolean neuropsychologyNeuropsychologicalProfileMemoryLearning) {
+    public void setNeuropsychologyNeuropsychologicalProfileMemoryLearning(boolean neuropsychologyNeuropsychologicalProfileMemoryLearning) {
         this.neuropsychologyNeuropsychologicalProfileMemoryLearning = neuropsychologyNeuropsychologicalProfileMemoryLearning;
     }
 
@@ -2093,8 +2196,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpeech(
-            boolean neuropsychologyNeuropsychologicalProfilePerceptionSpeech) {
+    public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpeech(boolean neuropsychologyNeuropsychologicalProfilePerceptionSpeech) {
         this.neuropsychologyNeuropsychologicalProfilePerceptionSpeech = neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
     }
 
@@ -2102,8 +2204,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfilePerceptionVisual;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(
-            boolean neuropsychologyNeuropsychologicalProfilePerceptionVisual) {
+    public void setNeuropsychologyNeuropsychologicalProfilePerceptionVisual(boolean neuropsychologyNeuropsychologicalProfilePerceptionVisual) {
         this.neuropsychologyNeuropsychologicalProfilePerceptionVisual = neuropsychologyNeuropsychologicalProfilePerceptionVisual;
     }
 
@@ -2111,8 +2212,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpatial(
-            boolean neuropsychologyNeuropsychologicalProfilePerceptionSpatial) {
+    public void setNeuropsychologyNeuropsychologicalProfilePerceptionSpatial(boolean neuropsychologyNeuropsychologicalProfilePerceptionSpatial) {
         this.neuropsychologyNeuropsychologicalProfilePerceptionSpatial = neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
     }
 
@@ -2120,8 +2220,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(
-            boolean neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity) {
+    public void setNeuropsychologyNeuropsychologicalProfileMotorSkillsDexterity(boolean neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity) {
         this.neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity = neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
     }
 
@@ -2129,8 +2228,7 @@ public class ExportParamsEntity {
         return neuropsychologyNeuropsychologicalProfileMotorCoordination;
     }
 
-    public void setNeuropsychologyNeuropsychologicalProfileMotorCoordination(
-            boolean neuropsychologyNeuropsychologicalProfileMotorCoordination) {
+    public void setNeuropsychologyNeuropsychologicalProfileMotorCoordination(boolean neuropsychologyNeuropsychologicalProfileMotorCoordination) {
         this.neuropsychologyNeuropsychologicalProfileMotorCoordination = neuropsychologyNeuropsychologicalProfileMotorCoordination;
     }
 
@@ -2138,8 +2236,7 @@ public class ExportParamsEntity {
         return neuropsychologyPresenceOfChanges;
     }
 
-    public void setNeuropsychologyPresenceOfChanges(
-            boolean neuropsychologyPresenceOfChanges) {
+    public void setNeuropsychologyPresenceOfChanges(boolean neuropsychologyPresenceOfChanges) {
         this.neuropsychologyPresenceOfChanges = neuropsychologyPresenceOfChanges;
     }
 
@@ -2147,8 +2244,7 @@ public class ExportParamsEntity {
         return neuropsychologyPresenceOfChangesDetail;
     }
 
-    public void setNeuropsychologyPresenceOfChangesDetail(
-            boolean neuropsychologyPresenceOfChangesDetail) {
+    public void setNeuropsychologyPresenceOfChangesDetail(boolean neuropsychologyPresenceOfChangesDetail) {
         this.neuropsychologyPresenceOfChangesDetail = neuropsychologyPresenceOfChangesDetail;
     }
 
@@ -2156,8 +2252,7 @@ public class ExportParamsEntity {
         return neuropsychologyEmotionalStatus;
     }
 
-    public void setNeuropsychologyEmotionalStatus(
-            boolean neuropsychologyEmotionalStatus) {
+    public void setNeuropsychologyEmotionalStatus(boolean neuropsychologyEmotionalStatus) {
         this.neuropsychologyEmotionalStatus = neuropsychologyEmotionalStatus;
     }
 
@@ -2185,6 +2280,14 @@ public class ExportParamsEntity {
         this.neuropsychologyPatientId = neuropsychologyPatientId;
     }
 
+    public boolean isNeuropsychologyFindingDetail() {
+        return neuropsychologyFindingDetail;
+    }
+
+    public void setNeuropsychologyFindingDetail(boolean neuropsychologyFindingDetail) {
+        this.neuropsychologyFindingDetail = neuropsychologyFindingDetail;
+    }
+
     public boolean isOperationId() {
         return operationId;
     }
@@ -2199,6 +2302,14 @@ public class ExportParamsEntity {
 
     public void setOperationDate(boolean operationDate) {
         this.operationDate = operationDate;
+    }
+
+    public boolean isOperationDateOperation() {
+        return operationDateOperation;
+    }
+
+    public void setOperationDateOperation(boolean operationDateOperation) {
+        this.operationDateOperation = operationDateOperation;
     }
 
     public boolean isOperationDoctorId() {
@@ -2237,8 +2348,7 @@ public class ExportParamsEntity {
         return operationLocalizationOperation;
     }
 
-    public void setOperationLocalizationOperation(
-            boolean operationLocalizationOperation) {
+    public void setOperationLocalizationOperation(boolean operationLocalizationOperation) {
         this.operationLocalizationOperation = operationLocalizationOperation;
     }
 
@@ -2250,7 +2360,7 @@ public class ExportParamsEntity {
         this.operationMst = operationMst;
     }
 
-    public boolean setOperationColostomy() {
+    public boolean isOperationColostomy() {
         return operationColostomy;
     }
 
@@ -2270,8 +2380,7 @@ public class ExportParamsEntity {
         return operationVNsImplantationDate;
     }
 
-    public void setOperationVNsImplantationDate(
-            boolean operationVNsImplantationDate) {
+    public void setOperationVNsImplantationDate(boolean operationVNsImplantationDate) {
         this.operationVNsImplantationDate = operationVNsImplantationDate;
     }
 
@@ -2343,14 +2452,32 @@ public class ExportParamsEntity {
         return outcomeAdded;
     }
 
+    public void setOutcomeAdded(boolean outcomeAdded) {
+        this.outcomeAdded = outcomeAdded;
+    }
+
+    public boolean isOutcomeFinallySeizures() {
+        return outcomeFinallySeizures;
+    }
+
+    public void setOutcomeFinallySeizures(boolean outcomeFinallySeizures) {
+        this.outcomeFinallySeizures = outcomeFinallySeizures;
+    }
 
     public boolean isOutcomeEEG() {
         return outcomeEEG;
     }
 
+    public void setOutcomeEEG(boolean outcomeEEG) {
+        this.outcomeEEG = outcomeEEG;
+    }
 
     public boolean isOutcomeAED() {
         return outcomeAED;
+    }
+
+    public void setOutcomeAED(boolean outcomeAED) {
+        this.outcomeAED = outcomeAED;
     }
 
     public boolean isOutcomeMRI() {
@@ -2391,6 +2518,30 @@ public class ExportParamsEntity {
 
     public void setOutcomePatientId(boolean outcomePatientId) {
         this.outcomePatientId = outcomePatientId;
+    }
+
+    public boolean isOutcomeSeizureOutcome() {
+        return outcomeSeizureOutcome;
+    }
+
+    public void setOutcomeSeizureOutcome(boolean outcomeSeizureOutcome) {
+        this.outcomeSeizureOutcome = outcomeSeizureOutcome;
+    }
+
+    public boolean isOutcomeDistance() {
+        return outcomeDistance;
+    }
+
+    public void setOutcomeDistance(boolean outcomeDistance) {
+        this.outcomeDistance = outcomeDistance;
+    }
+
+    public boolean isOutcomeOperationId() {
+        return outcomeOperationId;
+    }
+
+    public void setOutcomeOperationId(boolean outcomeOperationId) {
+        this.outcomeOperationId = outcomeOperationId;
     }
 
     public boolean isPharmacotherapyId() {
@@ -2445,8 +2596,7 @@ public class ExportParamsEntity {
         return pharmacotherapyDuringSurgery;
     }
 
-    public void setPharmacotherapyDuringSurgery(
-            boolean pharmacotherapyDuringSurgery) {
+    public void setPharmacotherapyDuringSurgery(boolean pharmacotherapyDuringSurgery) {
         this.pharmacotherapyDuringSurgery = pharmacotherapyDuringSurgery;
     }
 
@@ -2518,8 +2668,7 @@ public class ExportParamsEntity {
         return seizureSecondarilyGeneralizedSeizure;
     }
 
-    public void setSeizureSecondarilyGeneralizedSeizure(
-            boolean seizureSecondarilyGeneralizedSeizure) {
+    public void setSeizureSecondarilyGeneralizedSeizure(boolean seizureSecondarilyGeneralizedSeizure) {
         this.seizureSecondarilyGeneralizedSeizure = seizureSecondarilyGeneralizedSeizure;
     }
 
@@ -2551,8 +2700,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileAwakeEpi;
     }
 
-    public void setSeizureSeizuresWhileAwakeEpi(
-            boolean seizureSeizuresWhileAwakeEpi) {
+    public void setSeizureSeizuresWhileAwakeEpi(boolean seizureSeizuresWhileAwakeEpi) {
         this.seizureSeizuresWhileAwakeEpi = seizureSeizuresWhileAwakeEpi;
     }
 
@@ -2560,8 +2708,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileAwakeLatent;
     }
 
-    public void setSeizureSeizuresWhileAwakeLatent(
-            boolean seizureSeizuresWhileAwakeLatent) {
+    public void setSeizureSeizuresWhileAwakeLatent(boolean seizureSeizuresWhileAwakeLatent) {
         this.seizureSeizuresWhileAwakeLatent = seizureSeizuresWhileAwakeLatent;
     }
 
@@ -2569,8 +2716,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileAwakeNonEpi;
     }
 
-    public void setSeizureSeizuresWhileAwakeNonEpi(
-            boolean seizureSeizuresWhileAwakeNonEpi) {
+    public void setSeizureSeizuresWhileAwakeNonEpi(boolean seizureSeizuresWhileAwakeNonEpi) {
         this.seizureSeizuresWhileAwakeNonEpi = seizureSeizuresWhileAwakeNonEpi;
     }
 
@@ -2578,8 +2724,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileSleepEpi;
     }
 
-    public void setSeizureSeizuresWhileSleepEpi(
-            boolean seizureSeizuresWhileSleepEpi) {
+    public void setSeizureSeizuresWhileSleepEpi(boolean seizureSeizuresWhileSleepEpi) {
         this.seizureSeizuresWhileSleepEpi = seizureSeizuresWhileSleepEpi;
     }
 
@@ -2587,8 +2732,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileSleepLatent;
     }
 
-    public void setSeizureSeizuresWhileSleepLatent(
-            boolean seizureSeizuresWhileSleepLatent) {
+    public void setSeizureSeizuresWhileSleepLatent(boolean seizureSeizuresWhileSleepLatent) {
         this.seizureSeizuresWhileSleepLatent = seizureSeizuresWhileSleepLatent;
     }
 
@@ -2596,8 +2740,7 @@ public class ExportParamsEntity {
         return seizureSeizuresWhileSleepNonEpi;
     }
 
-    public void setSeizureSeizuresWhileSleepNonEpi(
-            boolean seizureSeizuresWhileSleepNonEpi) {
+    public void setSeizureSeizuresWhileSleepNonEpi(boolean seizureSeizuresWhileSleepNonEpi) {
         this.seizureSeizuresWhileSleepNonEpi = seizureSeizuresWhileSleepNonEpi;
     }
 
@@ -2625,21 +2768,12 @@ public class ExportParamsEntity {
         this.seizurePatientId = seizurePatientId;
     }
 
-    public boolean isNeuropsychologyOld() {
-        return neuropsychologyOld;
+    public boolean isSeizureDetailComment() {
+        return seizureDetailComment;
     }
 
-    public void setNeuropsychologyOld(boolean neuropsychologyOld) {
-        this.neuropsychologyOld = neuropsychologyOld;
-    }
-
-    public boolean isInvasiveTestCorticalMapping() {
-        return invasiveTestCorticalMapping;
-    }
-
-    public void setInvasiveTestCorticalMapping(
-            boolean invasiveTestCorticalMapping) {
-        this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
+    public void setSeizureDetailComment(boolean seizureDetailComment) {
+        this.seizureDetailComment = seizureDetailComment;
     }
 
     public boolean isNeuropsychologyOldId() {
@@ -2686,8 +2820,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldAddUserId;
     }
 
-    public void setNeuropsychologyOldAddUserId(
-            boolean neuropsychologyOldAddUserId) {
+    public void setNeuropsychologyOldAddUserId(boolean neuropsychologyOldAddUserId) {
         this.neuropsychologyOldAddUserId = neuropsychologyOldAddUserId;
     }
 
@@ -2695,8 +2828,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldPatientId;
     }
 
-    public void setNeuropsychologyOldPatientId(
-            boolean neuropsychologyOldPatientId) {
+    public void setNeuropsychologyOldPatientId(boolean neuropsychologyOldPatientId) {
         this.neuropsychologyOldPatientId = neuropsychologyOldPatientId;
     }
 
@@ -2704,8 +2836,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldNeuropsychologicalExamination;
     }
 
-    public void setNeuropsychologyOldNeuropsychologicalExamination(
-            boolean neuropsychologyOldNeuropsychologicalExamination) {
+    public void setNeuropsychologyOldNeuropsychologicalExamination(boolean neuropsychologyOldNeuropsychologicalExamination) {
         this.neuropsychologyOldNeuropsychologicalExamination = neuropsychologyOldNeuropsychologicalExamination;
     }
 
@@ -2713,8 +2844,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldIntelligenceLevel;
     }
 
-    public void setNeuropsychologyOldIntelligenceLevel(
-            boolean neuropsychologyOldIntelligenceLevel) {
+    public void setNeuropsychologyOldIntelligenceLevel(boolean neuropsychologyOldIntelligenceLevel) {
         this.neuropsychologyOldIntelligenceLevel = neuropsychologyOldIntelligenceLevel;
     }
 
@@ -2722,8 +2852,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldSpecificLearning;
     }
 
-    public void setNeuropsychologyOldSpecificLearning(
-            boolean neuropsychologyOldSpecificLearning) {
+    public void setNeuropsychologyOldSpecificLearning(boolean neuropsychologyOldSpecificLearning) {
         this.neuropsychologyOldSpecificLearning = neuropsychologyOldSpecificLearning;
     }
 
@@ -2731,8 +2860,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldDevelopmentalLanguageDisorders;
     }
 
-    public void setNeuropsychologyOldDevelopmentalLanguageDisorders(
-            boolean neuropsychologyOldDevelopmentalLanguageDisorders) {
+    public void setNeuropsychologyOldDevelopmentalLanguageDisorders(boolean neuropsychologyOldDevelopmentalLanguageDisorders) {
         this.neuropsychologyOldDevelopmentalLanguageDisorders = neuropsychologyOldDevelopmentalLanguageDisorders;
     }
 
@@ -2740,8 +2868,7 @@ public class ExportParamsEntity {
         return neuropsychologyOldAdhdSyndrome;
     }
 
-    public void setNeuropsychologyOldAdhdSyndrome(
-            boolean neuropsychologyOldAdhdSyndrome) {
+    public void setNeuropsychologyOldAdhdSyndrome(boolean neuropsychologyOldAdhdSyndrome) {
         this.neuropsychologyOldAdhdSyndrome = neuropsychologyOldAdhdSyndrome;
     }
 
@@ -2749,8 +2876,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingId;
     }
 
-    public void setInvasiveTestCorticalMappingId(
-            boolean invasiveTestCorticalMappingId) {
+    public void setInvasiveTestCorticalMappingId(boolean invasiveTestCorticalMappingId) {
         this.invasiveTestCorticalMappingId = invasiveTestCorticalMappingId;
     }
 
@@ -2758,8 +2884,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingDate;
     }
 
-    public void setInvasiveTestCorticalMappingDate(
-            boolean invasiveTestCorticalMappingDate) {
+    public void setInvasiveTestCorticalMappingDate(boolean invasiveTestCorticalMappingDate) {
         this.invasiveTestCorticalMappingDate = invasiveTestCorticalMappingDate;
     }
 
@@ -2767,8 +2892,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingDoctorId;
     }
 
-    public void setInvasiveTestCorticalMappingDoctorId(
-            boolean invasiveTestCorticalMappingDoctorId) {
+    public void setInvasiveTestCorticalMappingDoctorId(boolean invasiveTestCorticalMappingDoctorId) {
         this.invasiveTestCorticalMappingDoctorId = invasiveTestCorticalMappingDoctorId;
     }
 
@@ -2776,8 +2900,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingAdded;
     }
 
-    public void setInvasiveTestCorticalMappingAdded(
-            boolean invasiveTestCorticalMappingAdded) {
+    public void setInvasiveTestCorticalMappingAdded(boolean invasiveTestCorticalMappingAdded) {
         this.invasiveTestCorticalMappingAdded = invasiveTestCorticalMappingAdded;
     }
 
@@ -2785,8 +2908,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingComment;
     }
 
-    public void setInvasiveTestCorticalMappingComment(
-            boolean invasiveTestCorticalMappingComment) {
+    public void setInvasiveTestCorticalMappingComment(boolean invasiveTestCorticalMappingComment) {
         this.invasiveTestCorticalMappingComment = invasiveTestCorticalMappingComment;
     }
 
@@ -2794,8 +2916,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingAddUserId;
     }
 
-    public void setInvasiveTestCorticalMappingAddUserId(
-            boolean invasiveTestCorticalMappingAddUserId) {
+    public void setInvasiveTestCorticalMappingAddUserId(boolean invasiveTestCorticalMappingAddUserId) {
         this.invasiveTestCorticalMappingAddUserId = invasiveTestCorticalMappingAddUserId;
     }
 
@@ -2803,8 +2924,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingPatientId;
     }
 
-    public void setInvasiveTestCorticalMappingPatientId(
-            boolean invasiveTestCorticalMappingPatientId) {
+    public void setInvasiveTestCorticalMappingPatientId(boolean invasiveTestCorticalMappingPatientId) {
         this.invasiveTestCorticalMappingPatientId = invasiveTestCorticalMappingPatientId;
     }
 
@@ -2812,8 +2932,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingDone;
     }
 
-    public void setInvasiveTestCorticalMappingDone(
-            boolean invasiveTestCorticalMappingDone) {
+    public void setInvasiveTestCorticalMappingDone(boolean invasiveTestCorticalMappingDone) {
         this.invasiveTestCorticalMappingDone = invasiveTestCorticalMappingDone;
     }
 
@@ -2821,275 +2940,7 @@ public class ExportParamsEntity {
         return invasiveTestCorticalMappingCorticalMapping;
     }
 
-    public void setInvasiveTestCorticalMappingCorticalMapping(
-            boolean invasiveTestCorticalMappingCorticalMapping) {
+    public void setInvasiveTestCorticalMappingCorticalMapping(boolean invasiveTestCorticalMappingCorticalMapping) {
         this.invasiveTestCorticalMappingCorticalMapping = invasiveTestCorticalMappingCorticalMapping;
-    }
-
-    public boolean isDiagnosticTestEEGDone() {
-        return diagnosticTestEEGDone;
-    }
-
-    public void setDiagnosticTestEEGDone(boolean diagnosticTestEEGDone) {
-        this.diagnosticTestEEGDone = diagnosticTestEEGDone;
-    }
-
-    public boolean isDiagnosticTestEEGDescriptionVideoEEG() {
-        return diagnosticTestEEGDescriptionVideoEEG;
-    }
-
-    public void setDiagnosticTestEEGDescriptionVideoEEG(
-            boolean diagnosticTestEEGDescriptionVideoEEG) {
-        this.diagnosticTestEEGDescriptionVideoEEG = diagnosticTestEEGDescriptionVideoEEG;
-    }
-
-    public boolean isDiagnosticTestMRIDone() {
-        return diagnosticTestMRIDone;
-    }
-
-    public void setDiagnosticTestMRIDone(boolean diagnosticTestMRIDone) {
-        this.diagnosticTestMRIDone = diagnosticTestMRIDone;
-    }
-
-    public boolean isDiagnosticTestMRIInterictalSpect() {
-        return diagnosticTestMRIInterictalSpect;
-    }
-
-    public void setDiagnosticTestMRIInterictalSpect(
-            boolean diagnosticTestMRIInterictalSpect) {
-        this.diagnosticTestMRIInterictalSpect = diagnosticTestMRIInterictalSpect;
-    }
-
-    public boolean isDiagnosticTestMRIFinding() {
-        return diagnosticTestMRIFinding;
-    }
-
-    public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
-        this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
-    }
-
-    public boolean isDiagnosticTestMRIDescription() {
-        return diagnosticTestMRIDescription;
-    }
-
-    public void setDiagnosticTestMRIDescription(
-            boolean diagnosticTestMRIDescription) {
-        this.diagnosticTestMRIDescription = diagnosticTestMRIDescription;
-    }
-
-    public boolean isNeuropsychologyIntellectualPerformanceNonverbalDesignCap() {
-        return neuropsychologyIntellectualPerformanceNonverbalDesignCap;
-    }
-
-    public void setNeuropsychologyIntellectualPerformanceNonverbalDesignCap(
-            boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap) {
-        this.neuropsychologyIntellectualPerformanceNonverbalDesignCap = neuropsychologyIntellectualPerformanceNonverbalDesignCap;
-    }
-
-    public boolean isDiagnosticTestMRIDescriptionPetHypometabolism() {
-        return diagnosticTestMRIDescriptionPetHypometabolism;
-    }
-
-    public void setDiagnosticTestMRIDescriptionPetHypometabolism(
-            boolean diagnosticTestMRIDescriptionPetHypometabolism) {
-        this.diagnosticTestMRIDescriptionPetHypometabolism = diagnosticTestMRIDescriptionPetHypometabolism;
-    }
-
-    public boolean isDiagnosticTestMRIDescriptionSpectHypoperfuse() {
-        return diagnosticTestMRIDescriptionSpectHypoperfuse;
-    }
-
-    public void setDiagnosticTestMRIDescriptionSpectHypoperfuse(
-            boolean diagnosticTestMRIDescriptionSpectHypoperfuse) {
-        this.diagnosticTestMRIDescriptionSpectHypoperfuse = diagnosticTestMRIDescriptionSpectHypoperfuse;
-    }
-
-    public boolean isDiagnosticTestMRIDescriptionSpectHyperperfuse() {
-        return diagnosticTestMRIDescriptionSpectHyperperfuse;
-    }
-
-    public void setDiagnosticTestMRIDescriptionSpectHyperperfuse(
-            boolean diagnosticTestMRIDescriptionSpectHyperperfuse) {
-        this.diagnosticTestMRIDescriptionSpectHyperperfuse = diagnosticTestMRIDescriptionSpectHyperperfuse;
-    }
-
-    public boolean isDiagnosticTestMRIIctalSpect() {
-        return diagnosticTestMRIIctalSpect;
-    }
-
-    public void setDiagnosticTestMRIIctalSpect(
-            boolean diagnosticTestMRIIctalSpect) {
-        this.diagnosticTestMRIIctalSpect = diagnosticTestMRIIctalSpect;
-    }
-
-    public boolean isDiagnosticTestMRIMrsFinding() {
-        return diagnosticTestMRIMrsFinding;
-    }
-
-    public void setDiagnosticTestMRIMrsFinding(
-            boolean diagnosticTestMRIMrsFinding) {
-        this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
-    }
-
-    public boolean isDiagnosticTestMRIDescriptionMrsAbnormality() {
-        return diagnosticTestMRIDescriptionMrsAbnormality;
-    }
-
-    public void setDiagnosticTestMRIDescriptionMrsAbnormality(
-            boolean diagnosticTestMRIDescriptionMrsAbnormality) {
-        this.diagnosticTestMRIDescriptionMrsAbnormality = diagnosticTestMRIDescriptionMrsAbnormality;
-    }
-
-    public boolean isDiagnosticTestMRIDetailsDtiStudy() {
-        return diagnosticTestMRIDetailsDtiStudy;
-    }
-
-    public void setDiagnosticTestMRIDetailsDtiStudy(
-            boolean diagnosticTestMRIDetailsDtiStudy) {
-        this.diagnosticTestMRIDetailsDtiStudy = diagnosticTestMRIDetailsDtiStudy;
-    }
-
-    public boolean isInvasiveTestECOGDone() {
-        return invasiveTestECOGDone;
-    }
-
-    public void setInvasiveTestECOGDone(boolean invasiveTestECOGDone) {
-        this.invasiveTestECOGDone = invasiveTestECOGDone;
-    }
-
-    public boolean isInvasiveTestECOGIntracranialElectrodes() {
-        return invasiveTestECOGIntracranialElectrodes;
-    }
-
-    public void setInvasiveTestECOGIntracranialElectrodes(
-            boolean invasiveTestECOGIntracranialElectrodes) {
-        this.invasiveTestECOGIntracranialElectrodes = invasiveTestECOGIntracranialElectrodes;
-    }
-
-    public boolean isInvasiveTestEEGDone() {
-        return invasiveTestEEGDone;
-    }
-
-    public void setInvasiveTestEEGDone(boolean invasiveTestEEGDone) {
-        this.invasiveTestEEGDone = invasiveTestEEGDone;
-    }
-
-    public boolean isOperationDateOperation() {
-        return operationDateOperation;
-    }
-
-    public void setOperationDateOperation(boolean operationDateOperation) {
-        this.operationDateOperation = operationDateOperation;
-    }
-
-    public boolean isComplicationWithCompication() {
-        return ComplicationWithCompication;
-    }
-
-    public void setComplicationWithCompication(
-            boolean complicationWithCompication) {
-        ComplicationWithCompication = complicationWithCompication;
-    }
-
-    public boolean isComplicationComplicationType() {
-        return ComplicationComplicationType;
-    }
-
-    public void setComplicationComplicationType(
-            boolean complicationComplicationType) {
-        ComplicationComplicationType = complicationComplicationType;
-    }
-
-    public boolean isComplicationComplication() {
-        return ComplicationComplication;
-    }
-
-    public void setComplicationComplication(boolean complicationComplication) {
-        ComplicationComplication = complicationComplication;
-    }
-
-    public boolean isOutcomeSeizureOutcome() {
-        return outcomeSeizureOutcome;
-    }
-
-    public void setOutcomeSeizureOutcome(boolean outcomeSeizureOutcome) {
-        this.outcomeSeizureOutcome = outcomeSeizureOutcome;
-    }
-
-    public boolean isOutcomeDistance() {
-        return outcomeDistance;
-    }
-
-    public void setOutcomeDistance(boolean outcomeDistance) {
-        this.outcomeDistance = outcomeDistance;
-    }
-
-    public boolean isOutcomeOperationId() {
-        return outcomeOperationId;
-    }
-
-    public void setOutcomeOperationId(boolean outcomeOperationId) {
-        this.outcomeOperationId = outcomeOperationId;
-    }
-
-
-    public boolean isSeizureDetailComment() {
-        return seizureDetailComment;
-    }
-
-    public void setSeizureDetailComment(boolean seizureDetailComment) {
-        this.seizureDetailComment = seizureDetailComment;
-    }
-
-    public boolean isInvasiveTestECOGAfterResectionEcog() {
-        return invasiveTestECOGAfterResectionEcog;
-    }
-
-    public boolean isOperationColostomy() {
-        return operationColostomy;
-    }
-
-    public void setOutcomeAdded(boolean outcomeAdded) {
-        this.outcomeAdded = outcomeAdded;
-    }
-
-    public boolean isAnonymize() {
-        return anonymize;
-    }
-
-    public void setAnonymize(boolean anonymize) {
-        this.anonymize = anonymize;
-    }
-
-    public boolean isOutcomeFinallySeizures() {
-        return outcomeFinallySeizures;
-    }
-
-    public void setOutcomeFinallySeizures(boolean outcomeFinallySeizures) {
-        this.outcomeFinallySeizures = outcomeFinallySeizures;
-    }
-
-    public void setOutcomeEEG(boolean outcomeEEG) {
-        this.outcomeEEG = outcomeEEG;
-    }
-
-    public void setOutcomeAED(boolean outcomeAED) {
-        this.outcomeAED = outcomeAED;
-    }
-
-    public boolean isPatient() {
-        return patient;
-    }
-
-    public void setPatient(boolean patient) {
-        this.patient = patient;
-    }
-
-    public boolean isPatientAgeAtTheBeginningOfEpilepsy() {
-        return patientAgeAtTheBeginningOfEpilepsy;
-    }
-
-    public void setPatientAgeAtTheBeginningOfEpilepsy(boolean patientAgeAtTheBeginningOfEpilepsy) {
-        this.patientAgeAtTheBeginningOfEpilepsy = patientAgeAtTheBeginningOfEpilepsy;
     }
 }

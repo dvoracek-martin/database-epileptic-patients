@@ -1196,7 +1196,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()), null, locale), locale));
             }
             if (exportParams
-                    .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+                    .isNeuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
                 content.add(messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities",
                         null, locale) + delimiter + translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()), null, locale), locale));
@@ -1399,7 +1399,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()), null, locale), locale));
             }
             if (exportParams
-                    .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+                    .isNeuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
                 content.add(messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities", null, locale));
                 content.add(translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()), null, locale), locale));
