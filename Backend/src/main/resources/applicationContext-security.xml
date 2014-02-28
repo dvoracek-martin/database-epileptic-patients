@@ -17,22 +17,23 @@
         <security:intercept-url pattern="/news/**"
                                 access="ROLE_ADMIN"/>
 
-        <security:intercept-url pattern="/patient/**/**/"
-                                access="ROLE_RESEARCHER"/>
-        <security:intercept-url pattern="/patient/**/"
-                                access="ROLE_RESEARCHER"/>
 
-        <security:intercept-url pattern="/patient/**/**/"
+        <security:intercept-url pattern="/patient/create"
                                 access="ROLE_DOCTOR"/>
-        <security:intercept-url pattern="/patient/**/**/create"
-                                access="ROLE_DOCTOR"/>
-        <security:intercept-url pattern="/patient/**/**/delete"
+        <security:intercept-url pattern="/patient/**/hide"
                                 access="ROLE_DOCTOR"/>
 
         <security:intercept-url pattern="/patient/**/verify"
                                 access="ROLE_SUPER_DOCTOR"/>
+        <security:intercept-url pattern="/hidden"
+                                access="ROLE_SUPER_DOCTOR"/>
+        <security:intercept-url pattern="/patient/**/anamnesis/**/delete"
+                                access="ROLE_SUPER_DOCTOR"/>
 
 
+        <security:intercept-url pattern="/patient/**/**/"
+                                access="ROLE_RESEARCHER,ROLE_DOCTOR"/>
+        
         <security:intercept-url pattern="/**" access="ROLE_USER"/>
 
         <security:form-login login-page="/login"
