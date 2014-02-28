@@ -28,7 +28,7 @@ $(document).ready(function () {
         maxResults = $(this).data("max-results");
         searchString = searchSelector.val();
 
-        alert("ser="+searchString +" max= "+maxResults+" pag="+pageNumber);
+        //alert("ser="+searchString +" max= "+maxResults+" pag="+pageNumber);
 
         $.ajax({
             type: "GET",
