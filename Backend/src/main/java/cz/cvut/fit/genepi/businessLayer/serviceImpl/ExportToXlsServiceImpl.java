@@ -1013,7 +1013,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams
-                    .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+                    .isNeuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
                 addCells("label.intellectualPerformanceNonverbalDesignCapabilities", translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalDesignCapabilities()), null, locale), locale), sheet, locale, styles, "cell", p);
             }

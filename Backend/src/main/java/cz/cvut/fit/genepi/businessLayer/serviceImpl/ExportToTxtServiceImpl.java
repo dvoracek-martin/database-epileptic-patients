@@ -803,8 +803,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                         String.valueOf(neuropsychology.getIntellectualPerformanceNonverbalAbstraction()), null, locale), locale);
                 content += "\n";
             }
-            if (exportParams
-                    .isneuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
+            if (exportParams.isNeuropsychologyIntellectualPerformanceNonverbalDesignCap()) {
                 content += messageSource.getMessage("label.intellectualPerformanceNonverbalDesignCapabilities", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.deficit." +
