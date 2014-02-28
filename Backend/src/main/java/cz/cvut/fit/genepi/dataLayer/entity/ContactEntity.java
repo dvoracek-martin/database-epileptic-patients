@@ -25,31 +25,22 @@ public class ContactEntity {
     /**
      * The first name.
      */
-    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
-    //@NotNull
-    //@NotBlank
-    @Size(min = 1, max = 20)
-    @Column(name = "FIRST_NAME", length = 20, nullable = false)
+    @Size(min = 1, max = 100)
+    @Column(name = "FIRST_NAME", length = 100, nullable = false)
     private String firstName;
 
     /**
      * The last name.
      */
-    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
-    //@NotNull
-    //@NotBlank
-    @Size(min = 1, max = 20)
-    @Column(name = "LAST_NAME", length = 20, nullable = false)
+    @Size(min = 1, max = 100)
+    @Column(name = "LAST_NAME", length = 100, nullable = false)
     private String lastName;
 
     /**
      * The address street.
      */
-    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
-    //@NotNull
-    //@NotBlank
-    @Size(min = 1, max = 50)
-    @Column(name = "ADDRESS_STREET", length = 50, nullable = true)
+    @Size(min = 1, max = 100)
+    @Column(name = "ADDRESS_STREET", length = 100, nullable = true)
     private String addressStreet;
 
     /**
@@ -58,26 +49,21 @@ public class ContactEntity {
     @Pattern(regexp = "[0-9]*")
     //@NotNull
     //@NotBlank
-    @Size(min = 1, max = 10)
-    @Column(name = "ADDRESS_HN", length = 10, nullable = true)
+    @Size(min = 1, max = 20)
+    @Column(name = "ADDRESS_HN", length = 20, nullable = true)
     private String addressHn;
 
     /**
      * The address city.
      */
-    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
-    //@NotNull
-    //@NotBlank
-    @Size(min = 1, max = 30)
-    @Column(name = "ADDRESS_CITY", length = 30, nullable = true)
+    @Size(min = 1, max = 100)
+    @Column(name = "ADDRESS_CITY", length = 100, nullable = true)
     private String addressCity;
 
     /**
      * The address postalcode.
      */
-    @Pattern(regexp = "[0-9]*")
-    //@NotNull
-    //@NotBlank
+    @Pattern(regexp = "[1-9]+[0-9]*")
     @Size(min = 1, max = 10)
     @Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
     private String addressPostalcode;
@@ -85,9 +71,6 @@ public class ContactEntity {
     /**
      * The address country.
      */
-    @Pattern(regexp = "[ÁáČčĎďÉéĚěÍíŇňÓóŘřŠšŤťÚúŮůÝýŽžA-Za-z ]*")
-    //@NotNull
-    //@NotBlank
     @Size(min = 1, max = 20)
     @Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
     private String addressCountry;
@@ -95,7 +78,7 @@ public class ContactEntity {
     /**
      * The phone number.
      */
-    @Pattern(regexp = "[0-9+][0-9]*")
+    @Pattern(regexp = "[0-9]+[0-9]*")
     @Size(max = 20)
     @Column(name = "PHONE_NUMBER", length = 20, nullable = true)
     private String phoneNumber;
@@ -104,10 +87,9 @@ public class ContactEntity {
      * The email.
      */
     @Email
-    //@NotNull
     @NotBlank
-    @Size(min = 1, max = 50)
-    @Column(name = "EMAIL", length = 50, nullable = true)
+    @Size(min = 5, max = 100)
+    @Column(name = "EMAIL", length = 100, nullable = true)
     private String email;
 
     /**
