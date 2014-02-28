@@ -9,6 +9,7 @@
         <div class="table-responsive">
             <table class="table table-condensed">
                 <tbody>
+               <%-- <sec:authorize ifNotGranted="ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN"> --%>
                 <tr>
                     <th><spring:message code="label.patient"/>:</th>
                     <td>${patient.contact.firstName} ${patient.contact.lastName}</td>

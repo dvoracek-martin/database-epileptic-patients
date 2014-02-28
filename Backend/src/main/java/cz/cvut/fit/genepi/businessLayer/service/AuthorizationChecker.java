@@ -7,4 +7,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface AuthorizationChecker {
     public boolean checkAuthoritaion(HttpServletRequest request);
+
+    public boolean  onlyResearcher();
 }

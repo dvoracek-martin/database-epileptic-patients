@@ -17,8 +17,7 @@ public class JSONEncoder {
         for (PatientEntity patient : patientList) {
             JSONArray patientInfoJSON = new JSONArray();
             JSONObject patientContactInfoJSON = new JSONObject();
-            patientContactInfoJSON.put("patientID", patient.getContact()
-                    .getId());
+            patientContactInfoJSON.put("patientID", patient.getId());
             patientContactInfoJSON.put("patientLastName", patient.getContact()
                     .getLastName());
             patientContactInfoJSON.put("patientFirstName", patient.getContact()

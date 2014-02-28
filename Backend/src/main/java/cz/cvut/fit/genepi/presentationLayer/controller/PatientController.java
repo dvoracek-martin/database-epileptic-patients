@@ -8,7 +8,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
@@ -22,8 +21,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.FileNotFoundException;
@@ -39,6 +36,10 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"patient", "patientVO"})
 public class PatientController {
+
+    @Autowired
+    AnonymizeService anonymizeService;
+
     @Autowired
     AuthorizationChecker authorizationChecker;
 
@@ -288,6 +289,11 @@ public class PatientController {
         JSONEncoder e = new JSONEncoder();
         List<PatientEntity> patients = patientService
                 .findByNameWithPagination(PatientEntity.class, maxResults, pageNumber, searchParams, searchString);
+
+        if (authorizationChecker.onlyResearcher()) {
+            anonymizeService.anonymizePatients(patients);
+        }
+
         return e.encode(patients, patientsCount);
     }
 
@@ -312,7 +318,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/{patientId}/hide", method = RequestMethod.GET)
     public String patientHideGET(Locale locale, Model model,
-                                   @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+                                 @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -323,7 +329,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/{patientId}/unhide", method = RequestMethod.GET)
     public String patientUnhideGET(Locale locale, Model model,
-                                 @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+                                   @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -632,8 +638,6 @@ public class PatientController {
 
 
 */
-
-
 
 
         // Find out, if data should be anonymized or not
