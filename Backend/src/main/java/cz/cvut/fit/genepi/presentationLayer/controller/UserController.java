@@ -359,6 +359,20 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        boolean isAuthorized = false;
+        for (UserRoleEntity r : roles) {
+            if (r.getRole_id() == (5)) {
+                isAuthorized = true;
+                break;
+            }
+        }
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
+            return "deniedView";
+        }
 
         if (logger.getLogger() == null)
             logger.setLogger(UserController.class);

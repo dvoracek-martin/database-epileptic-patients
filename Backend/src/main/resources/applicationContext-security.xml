@@ -12,6 +12,13 @@
                    servlet-api-provision="false">
         <security:intercept-url pattern="/login**"
                                 access="IS_AUTHENTICATED_ANONYMOUSLY"/>
+
+
+        <security:intercept-url pattern="/" access="ROLE_USER"/>
+
+        <security:intercept-url pattern="/profile" access="ROLE_USER"/>
+        <security:intercept-url pattern="/user/**/**" access="ROLE_USER"/>
+
         <security:intercept-url pattern="/admin/**"
                                 access="ROLE_ADMIN"/>
         <security:intercept-url pattern="/news/**"
@@ -32,9 +39,7 @@
 
 
         <security:intercept-url pattern="/patient/**/**/"
-                                access="ROLE_RESEARCHER,ROLE_DOCTOR"/>
-        
-        <security:intercept-url pattern="/**" access="ROLE_USER"/>
+                                access="ROLE_RESEARCHER,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"/>
 
         <security:form-login login-page="/login"
                              authentication-failure-url="/denied" default-target-url="/"/>
