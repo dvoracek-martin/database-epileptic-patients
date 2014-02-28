@@ -27,7 +27,6 @@
             <spring:message code="label.cardIndex"/>
         </h2>
     </div>
-    <a href="http://localhost:2001/GENEPI/hidden">click</a>
     <div class="col-xs-6">
         <h3 class="pull-right">
             <a href="<c:url value="/patient/create" />">

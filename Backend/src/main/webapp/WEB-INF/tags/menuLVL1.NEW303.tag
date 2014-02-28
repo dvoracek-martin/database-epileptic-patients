@@ -37,7 +37,7 @@
                     <div class="panel-body">
                         <ul>
                             <li><a
-                                    href="<c:url value="/patient/list?maxResults=20&pageNumber=1"/>"><spring:message
+                                    href="<c:url value="/patient/list?maxResults=20"/>"><spring:message
                                     code="label.cardIndex"/></a></li>
                             <li><a href="<c:url value="/advanced-search"/>"><spring:message
                                     code="label.advancedSearch"/></a></li>

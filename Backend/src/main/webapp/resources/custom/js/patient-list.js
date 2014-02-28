@@ -28,9 +28,11 @@ $(document).ready(function () {
         maxResults = $(this).data("max-results");
         searchString = searchSelector.val();
 
+        alert("ser="+searchString +" max= "+maxResults+" pag="+pageNumber);
+
         $.ajax({
             type: "GET",
-            url: "http://localhost:2001/GENEPI/patient/listSearch",
+            url: "http://isarg.feld.cvut.cz:2001/GENEPI/patient/listSearch",
             data: "search=" + searchString + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
             success: function (response) {
                 var obj = JSON.parse(response);
