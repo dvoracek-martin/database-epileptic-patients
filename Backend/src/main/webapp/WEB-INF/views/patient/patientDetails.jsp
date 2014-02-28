@@ -9,10 +9,19 @@
         <div class="table-responsive">
             <table class="table table-condensed">
                 <tbody>
-               <%-- <sec:authorize ifNotGranted="ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN"> --%>
+                <%-- <sec:authorize ifNotGranted="ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN"> --%>
+                <%--  <sec:authorize var="researcheraccess" access="hasAnyRole('ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN')"/>--%>
                 <tr>
                     <th><spring:message code="label.patient"/>:</th>
-                    <td>${patient.contact.firstName} ${patient.contact.lastName}</td>
+                    <td>
+                        <%--   <c:choose>--%>
+                        <%--   <c:when test="researcheraccess">--%>
+                        ${patient.contact.firstName} ${patient.contact.lastName}
+                        <%--   </c:when>
+                          <c:otherwise>
+                              *****
+                          </c:otherwise>
+                      </c:choose>--%></td>
 
                     <th><spring:message code="label.birthIdentificationNumber"/>:</th>
                     <td>${patient.nin}</td>
