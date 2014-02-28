@@ -370,7 +370,7 @@ public class UserController {
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
             return "deniedView";
         }
 
