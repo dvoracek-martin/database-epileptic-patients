@@ -30,7 +30,7 @@ $(document).ready(function () {
 
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/GENEPI/patient/listSearch",
+            url: "http://localhost:5001/GENEPI/patient/listSearch",
             data: "search=" + searchString + "&maxResults=" + maxResults + "&pageNumber=" + pageNumber,
             success: function (response) {
                 var obj = JSON.parse(response);
