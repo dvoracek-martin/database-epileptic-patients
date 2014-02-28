@@ -44,19 +44,22 @@
                         </ul>
                     </div>
                 </div>
-				<div class="panel panel-default">
-                    <div class="panel-heading">
-                        <spring:message code="label.administration"/>
-                    </div>
-                    <div class="panel-body">
-                        <ul>
-                            <li><a href="<c:url value="/user/list?maxResults=20&pageNumber=1"/>"><spring:message
-                                    code="label.users"/></a></li>
-                            <li><a href="<c:url value="/hidden"/>"><spring:message
-                                    code="label.users"/> Hidden</a></li>
-                        </ul>
-                    </div>
-                </div>
+           <sec:authorize ifAnyGranted="ROLE_ADMIN">
+               <div class="panel panel-default">
+                   <div class="panel-heading">
+                       <spring:message code="label.administration"/>
+                   </div>
+                   <div class="panel-body">
+                       <ul>
+                           <li><a href="<c:url value="/user/list?maxResults=20&pageNumber=1"/>"><spring:message
+                                   code="label.users"/></a></li>
+                           <li><a href="<c:url value="/hidden"/>"><spring:message
+                                   code="label.users"/> Hidden</a></li>
+                       </ul>
+                   </div>
+               </div>
+           </sec:authorize>
+
 	</jsp:attribute>
 
 
