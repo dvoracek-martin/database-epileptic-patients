@@ -25,7 +25,7 @@
                 });
             });
         </script>
-					
+
 					<!--jQuery for changing action method of foorm when clicking on SAVE set-->
 					<script>
                         $('#saveButton')
@@ -70,7 +70,7 @@
                                         $('#userSets').submit();
                                     });
                         </script>
-				
+
 	</jsp:attribute>
 
 <jsp:body>
@@ -151,7 +151,6 @@
 </p>
 <ul class="nav nav-list tree">
 
-
 <li><form:label path="anamnesisBeginningEpilepsy">anamnesisBeginningEpilepsy</form:label>
     <form:checkbox path="anamnesisBeginningEpilepsy" class="input-block-level"/></li>
 
@@ -190,7 +189,7 @@
 <li><form:label path="anamnesisComment">anamnesisComment</form:label>
     <form:checkbox path="anamnesisComment" class="input-block-level"/></li>
 
-<li><form:label path="complicationComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="complicationComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="complicationComment" class="input-block-level"/></li>
 <li><form:label path="ComplicationWithCompication"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="ComplicationWithCompication" class="input-block-level"/></li>
@@ -218,7 +217,7 @@
     <form:checkbox path="diagnosticTestEEGIctalEEGPatterns" class="input-block-level"/></li>
 <li><form:label path="diagnosticTestEEGLocalizationIctalEEGPattern"> <spring:message code="label.export"/></form:label>
     <form:checkbox path="diagnosticTestEEGLocalizationIctalEEGPattern" class="input-block-level"/></li>
-<li><form:label path="diagnosticTestEEGComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="diagnosticTestEEGComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="diagnosticTestEEGComment" class="input-block-level"/></li>
 
 <li><form:label path="diagnosticTestEEGDescriptionVideoEEG"> <spring:message code="label.export"/></form:label>
@@ -280,14 +279,14 @@
     <form:checkbox path="diagnosticTestMRILocalizationSpecHyperperfuse" class="input-block-level"/></li>
 <li><form:label path="diagnosticTestMRIFmriProtocols"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="diagnosticTestMRIFmriProtocols" class="input-block-level"/></li>
-<li><form:label path="diagnosticTestMRIComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="diagnosticTestMRIComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="diagnosticTestMRIComment" class="input-block-level"/></li>
 
 <li><form:label path="histologyHistopathology"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="histologyHistopathology" class="input-block-level"/></li>
 <li><form:label path="histologyFcdClassification"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="histologyFcdClassification" class="input-block-level"/></li>
-<li><form:label path="histologyComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="histologyComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="histologyComment" class="input-block-level"/></li>
 
 
@@ -306,7 +305,7 @@
     <form:checkbox path="invasiveTestECOGAfterResectionEcog" class="input-block-level"/></li>
 <li><form:label path="invasiveTestECOGAwakeCraniotomy"> <spring:message code="label.export"/></form:label>
     <form:checkbox path="invasiveTestECOGAwakeCraniotomy" class="input-block-level"/></li>
-<li><form:label path="invasiveTestECOGComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="invasiveTestECOGComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="invasiveTestECOGComment" class="input-block-level"/></li>
 
 <li><form:label path="invasiveTestEEGDone"> <spring:message code="label.export"/></form:label> <form:checkbox
@@ -331,7 +330,7 @@
     <form:checkbox path="invasiveTestEEGInvasiveIctalEEGPatterns" class="input-block-level"/></li>
 <li><form:label path="invasiveTestEEGLocalizationIctalEEGPatterns"> <spring:message code="label.export"/></form:label>
     <form:checkbox path="invasiveTestEEGLocalizationIctalEEGPatterns" class="input-block-level"/></li>
-<li><form:label path="invasiveTestEEGComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="invasiveTestEEGComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="invasiveTestEEGComment" class="input-block-level"/></li>
 
 <li><form:label path="neurologicalFindingHemisphereDominance"> <spring:message code="label.export"/></form:label>
@@ -343,7 +342,7 @@
         path="neurologicalFindingHemiparesis" class="input-block-level"/></li>
 <li><form:label path="neurologicalFindingVisualFieldDefects"> <spring:message code="label.export"/></form:label>
     <form:checkbox path="neurologicalFindingVisualFieldDefects" class="input-block-level"/></li>
-<li><form:label path="neurologicalFindingComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="neurologicalFindingComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="neurologicalFindingComment" class="input-block-level"/></li>
 
 <li><form:label path="neuropsychologyIntellect"> <spring:message code="label.export"/></form:label> <form:checkbox
@@ -405,51 +404,51 @@
         code="label.export"/></form:label> <form:checkbox path="neuropsychologyNeuropsychologicalProfileMemoryLearning"
                                                           class="input-block-level"/></li>
 <li><form:label path="neuropsychologyNeuropsychologicalProfilePerceptionSpeech"> <spring:message
-        code="label.export"/></form:label> <form:checkbox
+        code="label.perceptionSpeech"/></form:label> <form:checkbox
         path="neuropsychologyNeuropsychologicalProfilePerceptionSpeech" class="input-block-level"/></li>
 <li><form:label path="neuropsychologyNeuropsychologicalProfilePerceptionVisual"> <spring:message
-        code="label.export"/></form:label> <form:checkbox
+        code="label.perceptionVisual"/></form:label> <form:checkbox
         path="neuropsychologyNeuropsychologicalProfilePerceptionVisual" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyNeuropsychologicalProfilePerceptionSpatial"> <spring:message code="label.export"/></form:label>
+<li><form:label path="neuropsychologyNeuropsychologicalProfilePerceptionSpatial"> <spring:message code="label.perceptionSpatial"/></form:label>
     <form:checkbox path="neuropsychologyNeuropsychologicalProfilePerceptionSpatial" class="input-block-level"/></li>
 <li><form:label path="neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity"> <spring:message
-        code="label.export"/></form:label> <form:checkbox
+        code="label.motorSkillsDexterity"/></form:label> <form:checkbox
         path="neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyNeuropsychologicalProfileMotorCoordination"> <spring:message code="label.export"/></form:label>
+<li><form:label path="neuropsychologyNeuropsychologicalProfileMotorCoordination"> <spring:message code="label.motorCoordination"/></form:label>
     <form:checkbox path="neuropsychologyNeuropsychologicalProfileMotorCoordination" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyPresenceOfChanges"> <spring:message code="label.export"/></form:label>
+<li><form:label path="neuropsychologyPresenceOfChanges"> <spring:message code="label.presenceOfChanges"/></form:label>
     <form:checkbox path="neuropsychologyPresenceOfChanges" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyPresenceOfChangesDetail"> <spring:message code="label.export"/></form:label>
+<li><form:label path="neuropsychologyPresenceOfChangesDetail"> <spring:message code="label.presenceOfChanges"/>+" - detail"</form:label>
     <form:checkbox path="neuropsychologyPresenceOfChangesDetail" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyEmotionalStatus"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="neuropsychologyEmotionalStatus"> <spring:message code="label.emotionalState"/></form:label> <form:checkbox
         path="neuropsychologyEmotionalStatus" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="neuropsychologyComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="neuropsychologyComment" class="input-block-level"/></li>
 
-<li><form:label path="neuropsychologyFindingDetail"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="neuropsychologyFindingDetail"> <spring:message code="label.neurologicalFinding"/></form:label>+" - detail" <form:checkbox
         path="neuropsychologyFindingDetail" class="input-block-level"/></li>
 
-<li><form:label path="operationTypeOperation"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationTypeOperation"> <spring:message code="label.typeOfOperation"/></form:label> <form:checkbox
         path="operationTypeOperation" class="input-block-level"/></li>
-<li><form:label path="operationRangeOperation"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationRangeOperation"> <spring:message code="label.rangeOfOperation"/></form:label> <form:checkbox
         path="operationRangeOperation" class="input-block-level"/></li>
-<li><form:label path="operationLocalizationOperation"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationLocalizationOperation"> <spring:message code="label.localizationOfOperation"/></form:label> <form:checkbox
         path="operationLocalizationOperation" class="input-block-level"/></li>
-<li><form:label path="operationMst"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationMst"> <spring:message code="label.mst"/></form:label> <form:checkbox
         path="operationMst" class="input-block-level"/></li>
-<li><form:label path="operationColostomy"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationColostomy"> <spring:message code="label.calosotomy"/></form:label> <form:checkbox
         path="operationColostomy" class="input-block-level"/></li>
-<li><form:label path="operationVNS"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationVNS"> <spring:message code="label.vns"/></form:label> <form:checkbox
         path="operationVNS" class="input-block-level"/></li>
 <li><form:label path="operationVNsImplantationDate"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="operationVNsImplantationDate" class="input-block-level"/></li>
-<li><form:label path="operationOperationDetails"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationOperationDetails"> <spring:message code="label.operationDetails"/></form:label> <form:checkbox
         path="operationOperationDetails" class="input-block-level"/></li>
-<li><form:label path="operationCompleteResection"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationCompleteResection"> <spring:message code="label.completeResection"/></form:label> <form:checkbox
         path="operationCompleteResection" class="input-block-level"/></li>
-<li><form:label path="operationComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="operationComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="operationComment" class="input-block-level"/></li>
-<li><form:label path="outcomeDate"> <spring:message code="label.export"/></form:label> <form:checkbox path="outcomeDate"
+<li><form:label path="outcomeDate"> <spring:message code="label.dateOfOperation"/></form:label> <form:checkbox path="outcomeDate"
                                                                                                       class="input-block-level"/></li>
 <li><form:label path="outcomeAdded"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="outcomeAdded" class="input-block-level"/></li>
@@ -464,46 +463,46 @@
                                                                                                      class="input-block-level"/></li>
 <li><form:label path="outcomeNeuropsychology"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="outcomeNeuropsychology" class="input-block-level"/></li>
-<li><form:label path="outcomeComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="outcomeComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="outcomeComment" class="input-block-level"/></li>
 
-<li><form:label path="outcomeSeizureOutcome"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="outcomeSeizureOutcome"> <spring:message code="label.seizureOutcome"/></form:label> <form:checkbox
         path="outcomeSeizureOutcome" class="input-block-level"/></li>
 <li><form:label path="outcomeDistance"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="outcomeDistance" class="input-block-level"/></li>
 
 
-<li><form:label path="pharmacotherapyAED"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="pharmacotherapyAED"> <spring:message code="label.aed"/></form:label> <form:checkbox
         path="pharmacotherapyAED" class="input-block-level"/></li>
-<li><form:label path="pharmacotherapyEffective"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="pharmacotherapyEffective"> <spring:message code="label.efficiency"/></form:label> <form:checkbox
         path="pharmacotherapyEffective" class="input-block-level"/></li>
-<li><form:label path="pharmacotherapyDuringSurgery"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="pharmacotherapyDuringSurgery"> <spring:message code="label.duringSurgery"/></form:label> <form:checkbox
         path="pharmacotherapyDuringSurgery" class="input-block-level"/></li>
-<li><form:label path="pharmacotherapyComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="pharmacotherapyComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="pharmacotherapyComment" class="input-block-level"/></li>
 
-<li><form:label path="neuropsychologyOldComment"> <spring:message code="label.export"/></form:label> <form:checkbox
+<li><form:label path="neuropsychologyOldComment"> <spring:message code="label.comment"/></form:label> <form:checkbox
         path="neuropsychologyOldComment" class="input-block-level"/></li>
 
 <li><form:label path="neuropsychologyOldNeuropsychologicalExamination"> <spring:message
-        code="label.export"/></form:label> <form:checkbox path="neuropsychologyOldNeuropsychologicalExamination"
-                                                          class="input-block-level"/></li>
-<li><form:label path="neuropsychologyOldIntelligenceLevel"> <spring:message code="label.export"/></form:label>
+        code="label.neuropsychologicalExamination"/></form:label> <form:checkbox path="neuropsychologyOldNeuropsychologicalExamination"
+                                                                                 class="input-block-level"/></li>
+<li><form:label path="neuropsychologyOldIntelligenceLevel"> <spring:message code="label.intelligenceLevel"/></form:label>
     <form:checkbox path="neuropsychologyOldIntelligenceLevel" class="input-block-level"/></li>
-<li><form:label path="neuropsychologyOldSpecificLearning"> <spring:message code="label.export"/></form:label>
+<li><form:label path="neuropsychologyOldSpecificLearning"> <spring:message code="label.specificLearning"/></form:label>
     <form:checkbox path="neuropsychologyOldSpecificLearning" class="input-block-level"/></li>
 <li><form:label path="neuropsychologyOldDevelopmentalLanguageDisorders"> <spring:message
-        code="label.export"/></form:label> <form:checkbox path="neuropsychologyOldDevelopmentalLanguageDisorders"
-                                                          class="input-block-level"/></li>
-<li><form:label path="neuropsychologyOldAdhdSyndrome"> <spring:message code="label.export"/></form:label> <form:checkbox
+        code="label.developmentalLanguageDisorders"/></form:label> <form:checkbox path="neuropsychologyOldDevelopmentalLanguageDisorders"
+                                                                                  class="input-block-level"/></li>
+<li><form:label path="neuropsychologyOldAdhdSyndrome"> <spring:message code="label.adhdSyndrome"/></form:label> <form:checkbox
         path="neuropsychologyOldAdhdSyndrome" class="input-block-level"/></li>
 
-<li><form:label path="invasiveTestCorticalMappingComment"> <spring:message code="label.export"/></form:label>
+<li><form:label path="invasiveTestCorticalMappingComment"> <spring:message code="label.comment"/></form:label>
     <form:checkbox path="invasiveTestCorticalMappingComment" class="input-block-level"/></li>
 
-<li><form:label path="invasiveTestCorticalMappingDone"> <spring:message code="label.export"/></form:label>
+<li><form:label path="invasiveTestCorticalMappingDone"> <spring:message code="label.corticalMappingDone"/></form:label>
     <form:checkbox path="invasiveTestCorticalMappingDone" class="input-block-level"/></li>
-<li><form:label path="invasiveTestCorticalMappingCorticalMapping"> <spring:message code="label.export"/></form:label>
+<li><form:label path="invasiveTestCorticalMappingCorticalMapping"> <spring:message code="label.invasiveTestCorticalMapping"/></form:label>
     <form:checkbox path="invasiveTestCorticalMappingCorticalMapping" class="input-block-level"/></li>
 
 
@@ -545,6 +544,10 @@
         </li>
         <li><form:label path="seizureILAEClassification"><spring:message
                 code="label.ilaeClassification"/></form:label><form:checkbox path="seizureILAEClassification"
+                                                                             class="input-block-level"/></li>
+
+        <li><form:label path="anonymize"><spring:message
+                code="label.anonymize"/></form:label><form:checkbox path="anonymize"
                                                                              class="input-block-level"/></li>
 
     </ul>
