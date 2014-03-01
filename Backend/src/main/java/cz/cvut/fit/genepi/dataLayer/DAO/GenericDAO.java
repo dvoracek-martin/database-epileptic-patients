@@ -10,7 +10,6 @@ import java.util.List;
  * The Interface GenericDAO.
  *
  * @param <T>  the generic type
- * @param <ID> the generic type
  */
 public interface GenericDAO<T> {
 
