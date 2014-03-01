@@ -34,7 +34,7 @@ import java.util.Locale;
  * The Class CreatedPatientController.
  */
 @Controller
-@SessionAttributes({"patient", "patientVO"})
+@SessionAttributes({"patient", "patientVO","exportParams"})
 public class PatientController {
 
     @Autowired
@@ -449,7 +449,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/export", method = RequestMethod.POST)
     public String patientExportPOST(
-            @ModelAttribute("exportParams") ExportParamsEntity exportParams,
+            @ModelAttribute("exportParams") ExportParamsEntity exportParams, BindingResult result,
             @RequestParam("patient") Integer[] patientID,
             //@RequestParam("toTable") boolean toTable,
             @RequestParam("exportType") String exportType, Locale locale, boolean anonymize,
