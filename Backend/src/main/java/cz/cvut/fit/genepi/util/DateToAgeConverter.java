@@ -1,4 +1,4 @@
-package cz.cvut.fit.genepi.businessLayer.converter;
+package cz.cvut.fit.genepi.util;
 
 import org.dozer.CustomConverter;
 import org.hibernate.MappingException;

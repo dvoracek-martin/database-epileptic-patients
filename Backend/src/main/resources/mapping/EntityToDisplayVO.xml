@@ -12,7 +12,7 @@
             <a>birthday</a>
             <b date-format="yyyy-MM-dd">birthday</b>
         </field>
-        <field custom-converter="cz.cvut.fit.genepi.businessLayer.converter.DateToAgeConverter">
+        <field custom-converter="cz.cvut.fit.genepi.util.DateToAgeConverter">
             <a>birthday</a>
             <b>age</b>
         </field>
