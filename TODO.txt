@@ -1,4 +1,0 @@
-1) z entity vyrobit POJO (VO/DTO pravdepodobne do package models) a probublavat dal uz jen to (framework dozer)
-7) refaktoring BE po provedeni zmen - poradne okomentovat tridy a metody pro javadoc, procistit a ucesat kod
-8) kompletni refaktoring FE - predelat FE, predelat kod podle novyho BE, optimalizovat kod, poradne okomentovat
-10) !!! odstranit problem s autoincrementem v dbt !!!
