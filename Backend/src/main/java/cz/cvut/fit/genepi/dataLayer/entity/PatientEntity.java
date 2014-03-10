@@ -98,6 +98,10 @@ public class PatientEntity {
     @Column(name = "contact_id")
     private int contactId;
 
+
+    @Column(name = "indicating_doctor")
+    private String indicatingDoctor;
+
     /* AnamnesisList */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
@@ -483,5 +487,13 @@ public class PatientEntity {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getIndicatingDoctor() {
+        return indicatingDoctor;
+    }
+
+    public void setIndicatingDoctor(String indicatingDoctor) {
+        this.indicatingDoctor = indicatingDoctor;
     }
 }

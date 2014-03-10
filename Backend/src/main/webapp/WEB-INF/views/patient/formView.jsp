@@ -189,3 +189,15 @@
         </form:select>--%>
     </div>
 </div>
+
+<div class="form-group">
+    <label for="indicatingDoctor" class="col-xs-3 control-label">
+        <spring:message code="label.indicatingDoctor"/>
+    </label>
+
+    <div class="col-xs-8">
+        <form:input path="indicatingDoctor" type="text"
+                    class="form-control" id="indicatingDoctor"/>
+        <form:errors path="indicatingDoctor" cssClass="error"/>
+    </div>
+</div>

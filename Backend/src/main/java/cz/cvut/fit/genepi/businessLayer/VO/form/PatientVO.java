@@ -52,6 +52,8 @@ public class PatientVO {
      */
     private boolean verified;
 
+    private String indicatingDoctor;
+
     public int getId() {
         return id;
     }
@@ -114,5 +116,13 @@ public class PatientVO {
 
     public void setContactId(int contactId) {
         this.contactId = contactId;
+    }
+
+    public String getIndicatingDoctor() {
+        return indicatingDoctor;
+    }
+
+    public void setIndicatingDoctor(String indicatingDoctor) {
+        this.indicatingDoctor = indicatingDoctor;
     }
 }
