@@ -1,20 +1,29 @@
-$(function () {
-    $(".datepicker-today").datepicker({
-        dateFormat: "yy-mm-dd",
-        changeYear: true,
-        yearRange: "1900:c",
 
+$(document).ready(function () {
+
+    /* datepicker with prefilled today date */
+    var datepickerToday = $(".datepicker-today");
+
+    datepickerToday.datetimepicker({
+        pickDate: true,
+        pickTime: false,
+        startDate: moment("1900-01-01"),
+        endDate: moment().add(50, "y"),
+        language: 'cs',
+        defaultDate: moment(),
+        format: "YYYY-MM-DD"
     });
-    if ($(".datepicker-today").val() == "") {
-        $(".datepicker-today").datepicker("setDate", "+0");
-    }
-});
 
-$(function () {
-    $(".datepicker").datepicker({
-        dateFormat: "yy-mm-dd",
-        changeYear: true,
-        yearRange: "1900:c",
-        defaultDate: new Date()
+
+    /* simple datepicker */
+    var datepicker = $(".datepicker");
+
+    datepicker.datetimepicker({
+        pickDate: true,
+        pickTime: false,
+        startDate: moment("1900-01-01"),
+        endDate: moment().add(50, "y"),
+        language: 'cs',
+        format: "YYYY-MM-DD"
     });
 });

@@ -5,19 +5,8 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
-    <label for="contact.firstName" class="col-xs-3 control-label">
-        <spring:message code="label.firstname"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:input path="contact.firstName" type="text" class="form-control" id="contact.firstName"/>
-        <form:errors path="contact.firstName" cssClass="error"/>
-    </div>
-</div>
-
-<div class="form-group">
     <label for="contact.lastName" class="col-xs-3 control-label">
-        <spring:message code="label.lastname"/>
+        <spring:message code="label.lastname"/>*
     </label>
 
     <div class="col-xs-8">
@@ -27,8 +16,19 @@
 </div>
 
 <div class="form-group">
+    <label for="contact.firstName" class="col-xs-3 control-label">
+        <spring:message code="label.firstname"/>*
+    </label>
+
+    <div class="col-xs-8">
+        <form:input path="contact.firstName" type="text" class="form-control" id="contact.firstName"/>
+        <form:errors path="contact.firstName" cssClass="error"/>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="birthday" class="col-xs-3 control-label">
-        <spring:message code="label.birthdate"/>
+        <spring:message code="label.birthdate"/>*
     </label>
 
     <div class="col-xs-8">
@@ -49,8 +49,8 @@
 </div>
 
 <div class="form-group">
-    <label for="gender" class="col-xs-3 control-label">
-        <spring:message code="label.gender"/>
+    <label class="col-xs-3 control-label">
+        <spring:message code="label.gender"/>*
     </label>
 
     <div class="col-xs-8">
@@ -152,7 +152,7 @@
 
 <div class="form-group">
     <label for="doctorId" class="col-xs-3 control-label">
-        <spring:message code="label.doctor"/>
+        <spring:message code="label.doctor"/>*
     </label>
 
     <div class="col-xs-8">
