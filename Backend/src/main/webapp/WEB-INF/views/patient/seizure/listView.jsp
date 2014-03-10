@@ -4,14 +4,14 @@
 <%@ page pageEncoding="UTF-8" %>
 
 
-<t:menuLVL2.NEW303>
+<t:menuLVL2>
 
     <jsp:attribute name="title">
       <spring:message code="label.seizures"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.NEW303.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -84,6 +84,6 @@
         </c:choose>
         <!-- Seizure list END -->
     </jsp:body>
-</t:menuLVL2.NEW303>
+</t:menuLVL2>
 
 

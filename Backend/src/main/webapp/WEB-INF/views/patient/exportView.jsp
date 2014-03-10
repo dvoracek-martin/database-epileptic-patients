@@ -7,7 +7,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 
-<t:menuLVL3>
+<t:menuLVL2>
 
 <jsp:attribute name="title">
       <spring:message code="label.patient"/>
@@ -599,4 +599,4 @@
 
 </div>
 </jsp:body>
-</t:menuLVL3>
+</t:menuLVL2>

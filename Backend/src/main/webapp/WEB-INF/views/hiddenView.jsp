@@ -5,7 +5,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 <jsp:attribute name="title">
       	Skryté záznamy
@@ -13,12 +13,12 @@
 
 	<jsp:attribute name="head">
     <link
-            href="<c:url value="/resources/custom/css/clickable-row.NEW303.css" />"
+            href="<c:url value="/resources/custom/css/clickable-row.css" />"
             rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="script">
- 	<script src="<c:url value="/resources/custom/js/clickable-row.NEW303.js"/>"></script>
+ 	<script src="<c:url value="/resources/custom/js/clickable-row.js"/>"></script>
     </jsp:attribute>
 
 <jsp:body>
@@ -315,4 +315,4 @@
 </div>
 --%>
 </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>

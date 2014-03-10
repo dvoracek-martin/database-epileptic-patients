@@ -5,14 +5,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 <jsp:attribute name="title">
       <spring:message code="label.cardIndex"/>
     </jsp:attribute>
 
 	<jsp:attribute name="head">
-    <link href="<c:url value="/resources/custom/css/clickable-row.NEW303.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/custom/css/clickable-row.css" />" rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -279,4 +279,4 @@
 </div>
 --%>
 </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>

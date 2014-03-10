@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 	<jsp:attribute name="head">
      <link href="<c:url value="/resources/custom/css/validation.css"/>" rel="stylesheet">
@@ -134,4 +134,4 @@
         </div>
         </div>
     </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>

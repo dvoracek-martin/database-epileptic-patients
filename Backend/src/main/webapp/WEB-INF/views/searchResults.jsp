@@ -6,7 +6,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL2>
+<t:menuLVL1>
 
 	<jsp:attribute name="title">
       Search Results
@@ -20,4 +20,4 @@
             ${patient.contact.firstName}
         </c:forEach>
     </jsp:body>
-</t:menuLVL2>
+</t:menuLVL1>

@@ -1,6 +1,6 @@
-<%@ tag description="menu LVL2" pageEncoding="UTF-8" %>
+<%@ tag description="menu LVL3" pageEncoding="UTF-8" %>
 
-<!-- taglib section -->
+<%-- Taglib section --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -9,44 +9,130 @@
 
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 
-<!-- attribute section -->
+<%-- Attribute section --%>
 <%@ attribute name="title" fragment="true" %>
 <%@ attribute name="head" fragment="true" %>
 <%@ attribute name="header" fragment="true" %>
-<%@ attribute name="menuLVL3" fragment="true" %>
 <%@ attribute name="script" fragment="true" %>
 
-<!-- template section -->
+<%-- Template section --%>
 <t:menuLVL1>
+
 	<jsp:attribute name="title">
-	<jsp:invoke fragment="title"/>
-	</jsp:attribute>
-	<jsp:attribute name="head">
-	<jsp:invoke fragment="head"/>
-	</jsp:attribute>
-	<jsp:attribute name="header">
-	<jsp:invoke fragment="header"/>
-	</jsp:attribute>
-	<jsp:attribute name="menuLVL2">
-	<jsp:invoke fragment="menuLVL3"/>
-		<li class="nav-header"><spring:message code="label.patients"/></li>
-		<li><a href="<c:url value="/patient/list?maxResults=20&pageNumber=1"/>"><spring:message
-                code="label.cardIndex"/></a></li>
-		<li><a href=""><spring:message
-                code="label.advancedSearch"/></a></li>
-		<li class="nav-header"><spring:message code="label.user"/>:</li>
-		<li><a href="<c:url value="/profile"/>"><spring:message code="label.profile"/></a></li>
-		<li><a href="<c:url value="/j_spring_security_logout"/>"><spring:message
-                code="label.logOut"/></a></li>
-		<li class="nav-header"><spring:message
-                code="label.administration"/>:
-        </li>
-		<li><a href="<c:url value="/user/list"/>"><spring:message
-                code="label.users"/></a></li>
+		<%-- Hook for filling title of page --%>
+        <jsp:invoke fragment="title"/>
 	</jsp:attribute>
 
-	<jsp:attribute name="script">
-	<jsp:invoke fragment="script"/>
+	<jsp:attribute name="head">
+		<%-- Hook for adding something to HEAD --%>
+        <jsp:invoke fragment="head"/>
+	</jsp:attribute>
+
+
+	<jsp:attribute name="menuLVL2">
+	<div class="panel panel-default">
+        <div class="panel-heading">
+            <spring:message code="label.patient"/>: ${patient.contact.firstName } ${patient.contact.lastName }
+        </div>
+        <div class="panel-body">
+            <ul>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/overview" />">
+                        Přehled
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
+                        Anamnéza
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/seizure/list" />">
+                        Záchvaty
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
+                        Farmakoterapie
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
+                        Neurologické nálezy
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">
+                        Neuropsychologie
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/neuropsychology-old/list" />">
+                        Neuropsychologie - Old
+                    </a>
+                </li>
+                <li>
+                    Diagnostické testy
+                    <ul>
+                        <li>
+                            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/list" />">
+                                Skalpové EEG
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
+                                Neurozobraz. testy
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Invazivní testy
+                    <ul>
+                        <li>
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
+                                ECoG
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
+                                iEEG
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
+                                Kortikální mapování
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/operation/list" />">
+                        Operace
+                    </a>
+                </li>
+                <li><a href="<c:url value="/patient/${patient.id}/histology/list" />">
+                    Histologie
+                </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/complication/list" />">
+                        Komplikace
+                    </a>
+                </li>
+                <li>
+                    <a href="<c:url value="/patient/${patient.id}/outcome/list" />">
+                        Outcome
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</jsp:attribute>
+
+<jsp:attribute name="script">
+    <%-- Hook for adding something to Script section --%>
+    <jsp:invoke fragment="script"/>
 	</jsp:attribute>
 
     <jsp:body>

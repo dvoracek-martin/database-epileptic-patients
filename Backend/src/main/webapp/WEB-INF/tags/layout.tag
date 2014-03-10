@@ -1,93 +1,120 @@
 <%@ tag description="Overall Page template" pageEncoding="UTF-8" %>
 
-<!-- taglib section -->
+<%-- Taglib section --%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
-<!-- attribute section -->
+<%-- Attribute section --%>
 <%@ attribute name="title" fragment="true" %>
 <%@ attribute name="head" fragment="true" %>
-<%@ attribute name="header" fragment="true" %>
 <%@ attribute name="menuLVL1" fragment="true" %>
 <%@ attribute name="script" fragment="true" %>
 
-<!-- template section -->
+<%-- Template section --%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8"/>
     <meta name="description" content="">
     <meta name="author" content="GENEPI team">
+
+    <%-- Hook for filling title of page --%>
     <title>
         <jsp:invoke fragment="title"/>
     </title>
+
     <link rel="icon" type="image/png"
-          href="<c:url value="/resources/img/logoIcon.ico" />">
-    <link href="<c:url value="/resources/css/bootstrap.min.css" />"
+          href="<c:url value="/resources/custom/img/logoIcon.ico" />">
+    <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />"
           rel="stylesheet">
-    <link href="<c:url value="/resources/css/bootstrap-responsive.css" />"
+    <link href="<c:url value="/resources/custom/css/menu.css" />"
           rel="stylesheet">
+
+    <%-- Hook for adding something to HEAD --%>
     <jsp:invoke fragment="head"/>
+
 </head>
 <body>
-<div class="container-fluid">
+<%-- Navbar section --%>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="<c:url value="/" />"><img
+                    src="<c:url value="/resources/custom/img/logo.ico" />">GENEPI</a>
+        </div>
 
-    <!-- header section (header hook)-->
-    <div id="header" class="navbar navbar-inverse">
-        <div class="navbar-inner">
-            <a class="btn btn-navbar" data-toggle="collapse"
-               data-target=".nav-collapse"> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span>
-            </a> <a class="brand" href="#">GENEPI -
-            <jsp:invoke
-                    fragment="header"/>
-        </a>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+            <ul class="nav navbar-nav navbar-right">
+
+                <%--<li class="dropdown"><a href="#" class="dropdown-toggle"
+                    data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span>
+                        Pepa Nový//send me UserEntity from BE</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="<c:url value="/profile" />"><spring:message code="label.profile" /></a></li>
+                        <li><a
+                            href="<c:url value="/user/BE give me ID/change-password" />"><spring:message code="label.changePassword" /></a></li>
+                    </ul></li>--%>
+                <li><a href="<c:url value="/profile"/>"><span class="glyphicon glyphicon-user"></span>
+                    <sec:authentication property="principal.username"/></a>
+                </li>
+                <li><a href="<c:url value="/j_spring_security_logout"/>"><span
+                        class="glyphicon glyphicon-off"></span>
+                    <spring:message code="label.logOut"/></a></li>
+                <li><a href="?lang=cs">CZ</a></li>
+                <li><a href="?lang=en">EN</a></li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<!-- /nav-->
+
+<%-- Body section --%>
+<div class="container">
+    <div class="row">
+        <button id="menu-button" type="button"
+                class="btn btn-default btn-lg btn-block visible-xs">menu/content
+        </button>
+        <br>
+        <%-- Menu section --%>
+        <div id="menu" class="hide-content col-sm-4 col-md-4 col-lg-3"
+             role="navigation">
+            <%-- Menu hook --%>
+            <jsp:invoke fragment="menuLVL1"/>
+        </div>
+
+        <%-- Content section --%>
+        <div id="content" class="col-sm-8 col-md-8 col-lg-9">
+            <%-- Hook for body --%>
+            <jsp:doBody/>
         </div>
     </div>
 
-    <!-- body section -->
-    <div id="body">
-        <div class="span3">
-
-            <!-- logo section -->
-            <div class="well sidebar-nav">
-                <a href="/GENEPI/"> <img class="photo1" width=2560 height=1600
-                                         src="<c:url value="/resources/img/logo.png"/>" alt="logo"/>
-                </a>
-            </div>
-
-            <!-- menu section (menuLVL1 hook) -->
-            <div id="menu" class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <jsp:invoke fragment="menuLVL1"/>
-                </ul>
-            </div>
-        </div>
-
-        <!-- content section (doBody hook) -->
-        <div id="content" class="span9">
-            <div class="hero-unit">
-                <jsp:doBody/>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- footer section -->
-    <div id="footer" class="span9">
-        <p>GENEPI, &copy; 2013, FIT CVUT</p>
-    </div>
+    <%-- Footer section --%>
+    <hr>
+    <footer>
+        <p>&copy; GENEPI 2013</p>
+    </footer>
 
 </div>
 
-<!-- script section (script hook)-->
+<%-- Script section --%>
+<script src="<c:url value="/resources/jquery/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/custom/js/menu.js"/>"></script>
 
-<script src="<c:url value="/resources/js/jquery.js"/>"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
+<%-- Hook for adding something to Script section --%>
 <jsp:invoke fragment="script"/>
-
 </body>
 </html>

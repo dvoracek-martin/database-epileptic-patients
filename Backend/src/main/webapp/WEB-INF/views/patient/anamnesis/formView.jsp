@@ -5,7 +5,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 
-<t:menuLVL2.NEW303>
+<t:menuLVL2>
 <jsp:attribute name="head">
       <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
     </jsp:attribute>
@@ -16,7 +16,7 @@
 
 	<jsp:attribute name="script">
 		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/custom/js/datepicker.NEW303.js" />"></script>
+		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
    </jsp:attribute>
 <jsp:body>
 
@@ -227,4 +227,4 @@
     </div>
 </form:form>
 </jsp:body>
-</t:menuLVL2.NEW303>
+</t:menuLVL2>

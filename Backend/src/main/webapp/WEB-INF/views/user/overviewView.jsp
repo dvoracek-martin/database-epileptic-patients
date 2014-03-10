@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 	<jsp:attribute name="title">
       <spring:message code="label.profile"/>
@@ -81,7 +81,7 @@
             value="<spring:message code="label.changePassword" />">
 
     </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>
 
 
 

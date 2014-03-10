@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 <jsp:attribute name="head">
       <link
               href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />"
@@ -482,4 +482,4 @@
 <option value="<spring:message code="country.ZW" />"/>
 </datalist>
 </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>

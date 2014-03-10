@@ -6,7 +6,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL2>
+<t:menuLVL1>
 
 <jsp:attribute name="title">
       Advanced Search
@@ -209,4 +209,4 @@
 
     </form:form>
 </jsp:body>
-</t:menuLVL2>
+</t:menuLVL1>

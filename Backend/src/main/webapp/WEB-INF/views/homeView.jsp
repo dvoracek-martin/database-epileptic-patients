@@ -6,7 +6,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 	<jsp:attribute name="title">
       Domovská stránka
@@ -153,4 +153,4 @@
         </div>
 
     </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>

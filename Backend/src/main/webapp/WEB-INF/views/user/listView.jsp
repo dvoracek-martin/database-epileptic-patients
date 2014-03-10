@@ -4,7 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL1.NEW303>
+<t:menuLVL1>
 
 	<jsp:attribute name="title">
       <spring:message code="label.allUsers"/>
@@ -167,5 +167,5 @@
      </c:forEach>--%>
 
     </jsp:body>
-</t:menuLVL1.NEW303>
+</t:menuLVL1>
 

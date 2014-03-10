@@ -4,14 +4,14 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL2.NEW303>
+<t:menuLVL2>
 
 <jsp:attribute name="title">
       <spring:message code="label.patient"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.NEW303.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -47,4 +47,4 @@
             </div>
         </form:form>
     </jsp:body>
-</t:menuLVL2.NEW303>
+</t:menuLVL2>
