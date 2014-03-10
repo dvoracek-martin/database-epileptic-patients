@@ -1,13 +1,21 @@
 package cz.cvut.fit.test;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.presentationLayer.controller.card.AnamnesisController;
+import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -15,7 +23,15 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.mockito.Mockito.reset;
+import java.util.ArrayList;
+import java.util.Date;
+
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:anamnesisControllerTestContext.xml"})
@@ -49,7 +65,7 @@ public class AnamnesisControllerTest {
         reset(patientServiceMock);
         reset(anamnesisServiceMock);
     }
-/*
+
     @Test
     public void anamnesisCreateGET() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
@@ -156,7 +172,7 @@ public class AnamnesisControllerTest {
 
         verifyZeroInteractions(anamnesisServiceMock);
     }
-*/
+
 //	@Test
 //	public void anamnesisDeleteGET() throws Exception {
 //		AnamnesisEntity anamnesis = new AnamnesisEntity();
@@ -172,7 +188,7 @@ public class AnamnesisControllerTest {
 //	}
 
 
-   /* @Test
+    @Test
     public void anamnesisEditPOST_AnamnesisEntityValid() throws Exception {
 
         AnamnesisVO anamnesis = new AnamnesisVO();
@@ -191,9 +207,9 @@ public class AnamnesisControllerTest {
 
         verify(anamnesisServiceMock, times(1)).save(AnamnesisEntity.class,anamnesis);
         verifyNoMoreInteractions(anamnesisServiceMock);
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void anamnesisEditPOST_AnamnesisEntityNotValid() throws Exception {
         String nonCnsComorbidity = Util.createStringWithLength(900);
 
@@ -223,11 +239,11 @@ public class AnamnesisControllerTest {
                                 "nonCnsComorbidity"));
 
         verifyZeroInteractions(anamnesisServiceMock);
-    }*/
+    }
 
     // anamnesisHideGET
     // anamnesisUnhideGET
-/*
+
     @Test
     public void list_PatientEntityFound() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
@@ -246,7 +262,7 @@ public class AnamnesisControllerTest {
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);
     }
-*/
+
     /*
      * @Test public void list_PatientEntityNotFound() throws Exception {
 	 * when(patientServiceMock.findByID(PatientEntity.class, 1)).thenReturn(
