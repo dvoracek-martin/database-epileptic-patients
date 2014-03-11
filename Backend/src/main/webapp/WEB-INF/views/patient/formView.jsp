@@ -38,8 +38,8 @@
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
-            <form:errors path="birthday" cssClass="text-danger"/>
         </div>
+        <form:errors path="birthday" cssClass="text-danger"/>
     </div>
 </div>
 
