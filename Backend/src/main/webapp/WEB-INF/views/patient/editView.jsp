@@ -6,7 +6,7 @@
 
 <t:menuLVL1>
 <jsp:attribute name="head">
-      <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker-min.css" />"
+      <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
             rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
@@ -14,9 +14,9 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-		<script src="<c:url value="/resources/moment/moment-min.js" />"></script>
-        <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker-min.js" />"></script>
-        <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datepicker.cs.js" />"></script>
+		<script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
+        <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
+        <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
    </jsp:attribute>
     <jsp:body>

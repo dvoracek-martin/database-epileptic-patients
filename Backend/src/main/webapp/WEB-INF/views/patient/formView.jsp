@@ -21,7 +21,8 @@
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.firstName" type="text" class=" form-control input-sm input-sm" id="contact.firstName"/>
+        <form:input path="contact.firstName" type="text" class=" form-control input-sm input-sm"
+                    id="contact.firstName"/>
         <form:errors path="contact.firstName" cssClass="text-danger"/>
     </div>
 </div>
@@ -32,8 +33,13 @@
     </label>
 
     <div class="col-xs-8">
-        <form:input path="birthday" type="text" class=" form-control input-sm datepicker" id="birthday"/>
-        <form:errors path="birthday" cssClass="text-danger"/>
+        <div class='input-group date datepicker'>
+            <form:input path="birthday" type="text" class="form-control input-sm" id="birthday"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            <form:errors path="birthday" cssClass="text-danger"/>
+        </div>
     </div>
 </div>
 
