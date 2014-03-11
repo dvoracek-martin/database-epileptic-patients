@@ -30,7 +30,7 @@ import java.util.Locale;
  * The Class PatientController.
  */
 @Controller
-@SessionAttributes({"patient", "patientVO", "exportParams"})
+@SessionAttributes({"patient", "patientVO", "exportParams", "doctors"})
 public class PatientController {
 
     private AnonymizeService anonymizeService;
@@ -105,17 +105,16 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
     public String patientCreatePOST(
-            @ModelAttribute("patient") @Valid PatientVO patient,
-            BindingResult result, Model model, HttpServletRequest request) {
+            @ModelAttribute("patientVO") @Valid PatientVO patientVO,
+            BindingResult result, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors() || TimeConverter.compareDates(patient.getBirthday(), DateTime.now())) {
-            model.addAttribute("doctors", roleService.getAllDoctors());
+        if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
             return "patient/createView";
         } else {
-            int patientId = patientService.save(patient);
+            int patientId = patientService.save(patientVO);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -127,25 +126,32 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("patientVO", patientService.getById(patientId));
-        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+
         return "patient/editView";
     }
 
-    @RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
     public String patientEditPOST(
-            @ModelAttribute("patient") @Valid PatientVO patient,
-            BindingResult result, Model model, HttpServletRequest request) {
+            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors() || TimeConverter.compareDates(patient.getBirthday(), DateTime.now())) {
-            model.addAttribute("doctors", roleService.getAllDoctors());
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patient.getId()));
+        if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
+            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";
         } else {
-            int patientId = patientService.save(patient);
+            patientService.save(patientVO);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -170,16 +176,15 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
     public String patientVerifyPOST(
             @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
-            @PathVariable("patientId") Integer patientId,
-            Model model, HttpServletRequest request) {
+            @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
         if (result.hasErrors()) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            model.addAttribute("patientVO", patientService.getById(patientId));
+            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/verifyView";
         } else {
             patientService.save(patientVO);

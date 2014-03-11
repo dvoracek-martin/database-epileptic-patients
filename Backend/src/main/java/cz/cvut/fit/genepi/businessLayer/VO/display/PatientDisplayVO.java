@@ -23,7 +23,7 @@ public class PatientDisplayVO {
 
     //private int status;
 
-    // private boolean verified;
+    private boolean verified;
 
     private UserDisplayVO doctor;
 
@@ -233,5 +233,13 @@ public class PatientDisplayVO {
 
     public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
         this.outcomeList = outcomeList;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

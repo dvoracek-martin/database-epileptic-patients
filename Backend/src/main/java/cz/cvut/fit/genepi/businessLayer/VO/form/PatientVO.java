@@ -4,6 +4,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -34,6 +35,7 @@ public class PatientVO {
     @NotNull
     private int gender;
 
+    @Min(1)
     private int doctorId;
 
     private int contactId;

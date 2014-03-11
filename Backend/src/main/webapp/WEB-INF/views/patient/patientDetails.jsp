@@ -59,4 +59,11 @@
             </table>
         </div>
     </div>
+    <c:if test="${not patient.verified}">
+        <div class="col-xs-12">
+            <p class="pull-right text-danger">
+                <spring:message code="label.recordsNotVerified"/>
+            </p>
+        </div>
+    </c:if>
 </div>

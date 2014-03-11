@@ -15,37 +15,37 @@
 
 <jsp:body>
 <div class="row">
-    <div class="col-xs-3">
+    <div class="col-xs-3 col-sm-6 col-lg-3">
         <h2>
             <spring:message code="label.patient"/>
         </h2>
-
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-3  col-sm-6 col-lg-3 ">
         <h3 class="pull-right">
             <a id="export" href="<c:url value="/patient/${patient.id}/export" />">
                 <spring:message code="label.exportPatient"/>
             </a>
         </h3>
     </div>
-    <div class="col-xs-2">
+    <div class="clearfix hidden-lg hidden-xs"></div>
+    <div class="col-xs-2 col-sm-4 col-lg-2">
         <h3 class="pull-right">
             <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
                 <spring:message code="label.verify"/>
             </a>
         </h3>
     </div>
-    <div class="col-xs-2">
+    <div class="col-xs-2 col-sm-4 col-lg-2">
         <h3 class="pull-right">
             <a id="edit" href="<c:url value="/patient/${patient.id}/edit" />">
                 <spring:message code="label.edit"/>
             </a>
         </h3>
     </div>
-    <div class="col-xs-2">
+    <div class="col-xs-2 col-sm-4 col-lg-2 ">
         <h3 class="pull-right">
             <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
-                <spring:message code="label.hide"/>
+                <spring:message code="label.delete"/>
             </a>
         </h3>
     </div>

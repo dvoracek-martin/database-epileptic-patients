@@ -11,7 +11,7 @@
 
     <div class="col-xs-8">
         <form:input path="contact.lastName" type="text" class="form-control input-sm" id="contact.lastName"/>
-        <form:errors path="contact.firstName" cssClass="error"/>
+        <form:errors path="contact.lastName" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -22,7 +22,7 @@
 
     <div class="col-xs-8">
         <form:input path="contact.firstName" type="text" class=" form-control input-sm input-sm" id="contact.firstName"/>
-        <form:errors path="contact.firstName" cssClass="error"/>
+        <form:errors path="contact.firstName" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -33,7 +33,7 @@
 
     <div class="col-xs-8">
         <form:input path="birthday" type="text" class=" form-control input-sm datepicker" id="birthday"/>
-        <form:errors path="birthday" cssClass="error"/>
+        <form:errors path="birthday" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -44,7 +44,7 @@
 
     <div class="col-xs-8">
         <form:input path="nin" type="text" class=" form-control input-sm" id="nin"/>
-        <form:errors path="nin" cssClass="error"/>
+        <form:errors path="nin" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -76,7 +76,7 @@
 
     <div class="col-xs-8">
         <form:input path="contact.addressStreet" type="text" class=" form-control input-sm" id="contact.addressStreet"/>
-        <form:errors path="contact.addressStreet" cssClass="error"/>
+        <form:errors path="contact.addressStreet" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -87,7 +87,7 @@
 
     <div class="col-xs-8">
         <form:input path="contact.addressHn" type="text" class=" form-control input-sm" id="contact.addressHn"/>
-        <form:errors path="contact.addressHn" cssClass="error"/>
+        <form:errors path="contact.addressHn" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -98,7 +98,7 @@
 
     <div class="col-xs-8">
         <form:input path="contact.addressCity" type="text" class=" form-control input-sm" id="contact.addressCity"/>
-        <form:errors path="contact.addressCity" cssClass="error"/>
+        <form:errors path="contact.addressCity" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -110,7 +110,7 @@
     <div class="col-xs-8">
         <form:input path="contact.addressPostalcode" type="text" class=" form-control input-sm"
                     id="contact.addressPostalcode"/>
-        <form:errors path="contact.addressPostalcode" cssClass="error"/>
+        <form:errors path="contact.addressPostalcode" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -122,7 +122,7 @@
     <div class="col-xs-8">
         <form:input path="contact.addressCountry" type="text" class=" form-control input-sm" id="contact.addressCountry"
                     list="countries"/>
-        <form:errors path="contact.addressCountry" cssClass="error"/>
+        <form:errors path="contact.addressCountry" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -134,7 +134,7 @@
     <div class="col-xs-8">
         <form:input path="contact.phoneNumber" type="text"
                     class=" form-control input-sm" id="contact.phoneNumber"/>
-        <form:errors path="contact.phoneNumber" cssClass="error"/>
+        <form:errors path="contact.phoneNumber" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -146,7 +146,7 @@
     <div class="col-xs-8">
         <form:input path="contact.email" type="text"
                     class=" form-control input-sm" id="contact.email"/>
-        <form:errors path="contact.email" cssClass="error"/>
+        <form:errors path="contact.email" cssClass="text-danger"/>
     </div>
 </div>
 
@@ -160,12 +160,16 @@
             <c:when test="${!empty doctors}">
                 <form:select path="doctorId" class=" form-control input-sm" id="doctorId">
 
+                    <form:option
+                            value="0"> Zvolte doktora</form:option>
+
                     <c:forEach items="${doctors}" var="doctor">
                         <form:option
                                 value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
                     </c:forEach>
 
                 </form:select>
+                <form:errors path="doctorId" cssClass="text-danger"/>
             </c:when>
             <c:otherwise>
                 <form:select path="doctorId" class=" form-control input-sm" id="doctorId" disabled="true">
@@ -183,7 +187,7 @@
     <div class="col-xs-8">
         <form:input path="indicatingDoctor" type="text"
                     class=" form-control input-sm" id="indicatingDoctor"/>
-        <form:errors path="indicatingDoctor" cssClass="error"/>
+        <form:errors path="indicatingDoctor" cssClass="text-danger"/>
     </div>
 </div>
 
