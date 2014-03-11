@@ -554,8 +554,8 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public void save(PatientVO patient) {
-        genericDAO.save(dozer.map(patient, PatientEntity.class));
+    public int save(PatientVO patient) {
+        return patientDAO.savePatient(dozer.map(patient, PatientEntity.class));
     }
 
     @Override

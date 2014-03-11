@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
@@ -13,7 +12,6 @@ import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -28,97 +26,88 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-// TODO: Auto-generated Javadoc
-
 /**
- * The Class CreatedPatientController.
+ * The Class PatientController.
  */
 @Controller
-@SessionAttributes({"patient", "patientVO","exportParams"})
+@SessionAttributes({"patient", "patientVO", "exportParams"})
 public class PatientController {
 
-    @Autowired
-    AnonymizeService anonymizeService;
+    private AnonymizeService anonymizeService;
 
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+    private AuthorizationChecker authorizationChecker;
 
-    @Autowired
-    private MessageSource messageSource;
-
-    @Autowired
     private ExportParamsService exportParamsService;
 
     /**
      * The patient service.
      */
-    @Autowired
     private PatientService patientService;
-
-    /**
-     * The anamnesis service.
-     */
-    @Autowired
-    private AnamnesisService anamnesisService;
 
     /**
      * The user service.
      */
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private RoleService roleService;
 
-    @Autowired
     private ExportToPdfService exportToPdfService;
 
-    @Autowired
     private ExportToXlsxService exportToXlsxService;
 
-    @Autowired
     private ExportToDocxService exportToDocxService;
 
-    @Autowired
     private ExportToTxtService exportToTxtService;
 
-    @Autowired
     private ExportToCsvService exportToCsvService;
+
+    @Autowired
+    public PatientController(AnonymizeService anonymizeService,
+                             AuthorizationChecker authorizationChecker,
+                             ExportParamsService exportParamsService,
+                             PatientService patientService,
+                             UserService userService,
+                             RoleService roleService,
+                             ExportToPdfService exportToPdfService,
+                             ExportToXlsxService exportToXlsxService,
+                             ExportToDocxService exportToDocxService,
+                             ExportToTxtService exportToTxtService,
+                             ExportToCsvService exportToCsvService) {
+
+        this.anonymizeService = anonymizeService;
+        this.authorizationChecker = authorizationChecker;
+        this.exportParamsService = exportParamsService;
+        this.patientService = patientService;
+        this.userService = userService;
+        this.roleService = roleService;
+        this.exportToPdfService = exportToPdfService;
+        this.exportToXlsxService = exportToXlsxService;
+        this.exportToDocxService = exportToDocxService;
+        this.exportToTxtService = exportToTxtService;
+        this.exportToCsvService = exportToCsvService;
+    }
 
     /**
      * The Constant logger.
      */
     private LoggingService logger = new LoggingService();
 
-    /**
-     * Creates the patient get.
-     *
-     * @param locale the locale
-     * @param model  the model
-     * @return the string
-     */
     @RequestMapping(value = "/patient/create", method = RequestMethod.GET)
-    public String patientCreateGET(Locale locale, Model model, HttpServletRequest request) {
+    public String patientCreateGET(HttpServletRequest request, Model model) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("patient", new PatientEntity());
+        model.addAttribute("patientVO", new PatientVO());
         return "patient/createView";
     }
 
-    /**
-     * Adds the patient.
-     *
-     * @param patient the patient
-     * @param result  the result
-     * @return the string
-     */
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
     public String patientCreatePOST(
-            @ModelAttribute("patient") @Valid PatientEntity patient,
-            BindingResult result, @RequestParam("doctorId") Integer doctorId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @ModelAttribute("patient") @Valid PatientVO patient,
+            BindingResult result, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -126,36 +115,45 @@ public class PatientController {
             model.addAttribute("doctors", roleService.getAllDoctors());
             return "patient/createView";
         } else {
-            // patient.setDoctor(userService.findByID(UserEntity.class,
-            // doctorId));
-            patientService.save(patient);
-            return "redirect:/patient/" + Integer.toString(patient.getId())
-                    + "/overview";
+            int patientId = patientService.save(patient);
+            return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
 
-    /**
-     * Patient overview post.
-     *
-     * @param id     the id
-     * @param locale the locale
-     * @param model  the model
-     * @return the string
-     */
-    //TODO: unused
-    @RequestMapping(value = "/patientOverview", method = RequestMethod.POST)
-    public String patientOverviewPOST(@RequestParam("id") int id,
-                                      Locale locale, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.GET)
+    public String patientEditGET(@PathVariable("patientId") int patientId,
+                                 Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        model.addAttribute("id");
-        return "patient/overviewView";
+        model.addAttribute("doctors", roleService.getAllDoctors());
+        model.addAttribute("patientVO", patientService.getById(patientId));
+        model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        return "patient/editView";
+    }
+
+    @RequestMapping(value = "/patient/edit", method = RequestMethod.POST)
+    public String patientEditPOST(
+            @ModelAttribute("patient") @Valid PatientVO patient,
+            BindingResult result, Model model, HttpServletRequest request) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+        if (result.hasErrors() || TimeConverter.compareDates(patient.getBirthday(), DateTime.now())) {
+            model.addAttribute("doctors", roleService.getAllDoctors());
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patient.getId()));
+            return "patient/editView";
+        } else {
+            int patientId = patientService.save(patient);
+            return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.GET)
     public String patientVerifyGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -173,7 +171,8 @@ public class PatientController {
     public String patientVerifyPOST(
             @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
             @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -188,16 +187,10 @@ public class PatientController {
         }
     }
 
-    /**
-     * Patient overview get.
-     *
-     * @param locale the locale
-     * @param model  the model
-     * @return the string
-     */
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -215,45 +208,11 @@ public class PatientController {
         return "patient/overviewView";
     }
 
-
-    /**
-     * Patients list get.
-     *
-     * @param locale
-     *            the locale
-     * @param model
-     *            the model
-     * @return the string
-     *
-     *         =====================================
-     *
-     *         DEPRECATED
-     *
-     *         =====================================
-     * @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
-     *                       public String patientsListGET(Locale locale, Model
-     *                       model) { model.addAttribute("patientList",
-     *                       patientService.findAll(PatientEntity.class));
-     *                       return "patient/listView"; }
-     */
-
-    /**
-     * Patients list get.
-     *
-     * @param locale the locale
-     * @param model  the model
-     * @return the string
-     */
     @RequestMapping(value = "/patient/list", method = RequestMethod.GET)
-    public String patientsListGET(Locale locale, Model model,
-                                  @RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults, HttpServletRequest request/*,
-                                  @RequestParam("pageNumber") int pageNumber*/) {
-      /*  model.addAttribute("patientList", patientService.findAllWithPagination(PatientEntity.class, maxResults, pageNumber));
-        model.addAttribute("maxResults", maxResults);
-        model.addAttribute("pageNumber", pageNumber);
-        // hotfix - there will be some method for getting the count yet
-        model.addAttribute("countOfPatients",
-                patientService.getCount(PatientEntity.class));*/
+    public String patientsListGET(
+            @RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -265,17 +224,16 @@ public class PatientController {
      * Patients list search get. This method is used to provide results for AJAX
      * calls
      *
-     * @param locale the locale
-     * @param model  the model
      * @return the string
      */
     @RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
     public
     @ResponseBody
-    String patientsListSearchGET(Locale locale, Model model,
-                                 @RequestParam("maxResults") int maxResults,
-                                 @RequestParam("pageNumber") int pageNumber,
-                                 @RequestParam("search") String searchString, HttpServletRequest request) {
+    String patientsListSearchGET(
+            @RequestParam("maxResults") int maxResults,
+            @RequestParam("pageNumber") int pageNumber,
+            @RequestParam("search") String searchString, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -300,14 +258,12 @@ public class PatientController {
     /**
      * Patient delete get.
      *
-     * @param locale    the locale
-     * @param model     the model
      * @param patientID the patient id
      * @return the string
      */
     @RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
-    public String patientDeleteGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
+    public String patientDeleteGET(
+            @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -317,8 +273,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/patient/{patientId}/hide", method = RequestMethod.GET)
-    public String patientHideGET(Locale locale, Model model,
-                                 @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+    public String patientHideGET(@PathVariable("patientId") Integer patientId, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -328,8 +283,7 @@ public class PatientController {
     }
 
     @RequestMapping(value = "/patient/{patientId}/unhide", method = RequestMethod.GET)
-    public String patientUnhideGET(Locale locale, Model model,
-                                   @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+    public String patientUnhideGET(@PathVariable("patientId") Integer patientId, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -338,74 +292,17 @@ public class PatientController {
         return "redirect:/hidden";
     }
 
-
-    /**
-     * Patient edit get.
-     *
-     * @param locale the locale
-     * @param model  the model
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.GET)
-    public String patientEditGET(Locale locale, Model model,
-                                 @PathVariable("patientId") Integer patientId, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
-            return "deniedView";
-        }
-        model.addAttribute("patient",
-                patientService.getPatientByIdWithDoctor(patientId));
-        model.addAttribute("doctors", roleService.getAllDoctors());
-        return "patient/editView";
-    }
-
-    /**
-     * Patient edit post.
-     *
-     * @param locale  the locale
-     * @param model   the model
-     * @param patient the patient
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
-    public String patientEditPOST(Locale locale, Model model,
-                                  @Valid @ModelAttribute("patient") PatientEntity patient,
-                                  BindingResult result, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
-            return "deniedView";
-        }
-
-        if (result.hasErrors()) {
-            model.addAttribute("doctors", roleService.getAllDoctors());
-            return "patient/editView";
-        } else {
-            Authentication auth = SecurityContextHolder.getContext()
-                    .getAuthentication();
-            List<RoleEntity> roles = userService.findUserByUsername(auth.getName()).getRoles();
-            boolean isSuperdoctor = false;
-            for (RoleEntity r : roles) {
-                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR"))
-                    isSuperdoctor = true;
-            }
-            if (!isSuperdoctor)
-                patient.setVerified(false);
-            patientService.save(patient);
-            return "redirect:/patient/" + /* Integer.toString( */patient.getId()/* ) */
-                    + "/overview";
-        }
-    }
-
     /**
      * Patient export get.
      *
-     * @param locale    the locale
      * @param model     the model
      * @param patientID the patient id
      * @return the string
      */
-
     @RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
-    public String patientExportGET(Locale locale, Model model,
-                                   @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
+    public String patientExportGET(
+            @PathVariable("patientID") Integer patientID,
+            Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -413,8 +310,8 @@ public class PatientController {
                 .getAuthentication();
         UserEntity user = userService.findUserByUsername(auth.getName());
 
-        List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
-        List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
+        List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<>();
+        List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<>();
         listOfSavedConfigurationsTmp = exportParamsService
                 .findAll(ExportParamsEntity.class);
 
@@ -423,7 +320,7 @@ public class PatientController {
                 listOfSavedConfigurations.add(exportEntityParams);
         }
 
-        List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<ExportParamsEntity>();
+        List<ExportParamsEntity> listOfUsersSavedConfigurations = new ArrayList<>();
         listOfUsersSavedConfigurations = exportParamsService
                 .findExportParamsEntityByUserID(user.getId());
 

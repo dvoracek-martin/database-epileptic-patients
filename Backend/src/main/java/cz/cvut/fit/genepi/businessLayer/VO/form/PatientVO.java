@@ -1,17 +1,14 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 27.2.14.
- */
 public class PatientVO {
 
     private int id;
@@ -19,7 +16,7 @@ public class PatientVO {
     /**
      * The nin.
      */
-    @Pattern(regexp = "[0-9]*")
+    //can contain chars as well   @Pattern(regexp = "[0-9]*")
     @Size(max = 10)
     private String nin;
 
@@ -34,13 +31,15 @@ public class PatientVO {
     /**
      * The gender.
      */
-    @NotBlank
-    @Size(max = 10)
-    private String gender;
+    @NotNull
+    private int gender;
 
     private int doctorId;
 
     private int contactId;
+
+    @Valid
+    private ContactVO contact;
 
     /**
      * The deleted.
@@ -53,6 +52,8 @@ public class PatientVO {
     private boolean verified;
 
     private String indicatingDoctor;
+
+    /* getters and setters */
 
     public int getId() {
         return id;
@@ -78,11 +79,11 @@ public class PatientVO {
         this.birthday = birthday;
     }
 
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -124,5 +125,13 @@ public class PatientVO {
 
     public void setIndicatingDoctor(String indicatingDoctor) {
         this.indicatingDoctor = indicatingDoctor;
+    }
+
+    public ContactVO getContact() {
+        return contact;
+    }
+
+    public void setContact(ContactVO contact) {
+        this.contact = contact;
     }
 }

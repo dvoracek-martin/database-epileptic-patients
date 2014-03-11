@@ -1,11 +1,6 @@
 package cz.cvut.fit.genepi.dataLayer.entity;
 
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 /**
  * This class is an Entity class which holds the definition of a Contact.
@@ -25,70 +20,55 @@ public class ContactEntity {
     /**
      * The first name.
      */
-    @Size(min = 1, max = 100)
     @Column(name = "FIRST_NAME", length = 100, nullable = false)
     private String firstName;
 
     /**
      * The last name.
      */
-    @Size(min = 1, max = 100)
     @Column(name = "LAST_NAME", length = 100, nullable = false)
     private String lastName;
 
     /**
      * The address street.
      */
-    @Size(min = 1, max = 100)
     @Column(name = "ADDRESS_STREET", length = 100, nullable = true)
     private String addressStreet;
 
     /**
      * The address hn.
      */
-    @Pattern(regexp = "[0-9]*")
-    //@NotNull
-    //@NotBlank
-    @Size(min = 1, max = 20)
     @Column(name = "ADDRESS_HN", length = 20, nullable = true)
     private String addressHn;
 
     /**
      * The address city.
      */
-    @Size(min = 1, max = 100)
     @Column(name = "ADDRESS_CITY", length = 100, nullable = true)
     private String addressCity;
 
     /**
      * The address postalcode.
      */
-    @Pattern(regexp = "[1-9]+[0-9]*")
-    @Size(min = 1, max = 10)
     @Column(name = "ADDRESS_POSTALCODE", length = 10, nullable = true)
     private String addressPostalcode;
 
     /**
      * The address country.
      */
-    @Size(min = 1, max = 20)
     @Column(name = "ADDRESS_COUNTRY", length = 20, nullable = true)
     private String addressCountry;
 
     /**
      * The phone number.
      */
-    @Pattern(regexp = "[0-9]+[0-9]*")
-    @Size(max = 20)
+
     @Column(name = "PHONE_NUMBER", length = 20, nullable = true)
     private String phoneNumber;
 
     /**
      * The email.
      */
-    @Email
-    @NotBlank
-    @Size(min = 5, max = 100)
     @Column(name = "EMAIL", length = 100, nullable = true)
     private String email;
 

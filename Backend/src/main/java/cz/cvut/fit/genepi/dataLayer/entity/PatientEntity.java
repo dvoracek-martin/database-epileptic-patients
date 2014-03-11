@@ -41,28 +41,20 @@ public class PatientEntity {
     /**
      * The nin.
      */
-    @Pattern(regexp = "[0-9]*")
-    @Size(max = 10)
     @Column(name = "nin", length = 10)
     private String nin;
 
     /**
      * The birthday.
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
-    @NotNull
     @Column(name = "birthday", nullable = false)
     private Date birthday;
 
     /**
      * The gender.
      */
-    @NotBlank
-    // @NotNull
-    @Size(max = 10)
-    @Column(name = "gender", length = 10, nullable = false)
-    private String gender;
+    @Column(name = "gender", nullable = false)
+    private int gender;
 
     @Column(name = "doctor_id", precision = 1, scale = 0)
     private int doctorId;
@@ -89,14 +81,14 @@ public class PatientEntity {
     /**
      * The contact.
      */
-    @Valid
+    // not needed or transfer to VOs   @Valid
     @OneToOne
     @Cascade({CascadeType.SAVE_UPDATE})
-    @JoinColumn(name = "contact_id", insertable = false, updatable = false)
+    @JoinColumn(name = "contact_id"/*, insertable = false, updatable = false*/)
     private ContactEntity contact;
 
-    @Column(name = "contact_id")
-    private int contactId;
+   /* @Column(name = "contact_id")
+    private int contactId;*/
 
 
     @Column(name = "indicating_doctor")
@@ -408,7 +400,7 @@ public class PatientEntity {
      *
      * @return the gender
      */
-    public String getGender() {
+    public int getGender() {
         return gender;
     }
 
@@ -417,7 +409,7 @@ public class PatientEntity {
      *
      * @param gender the new gender
      */
-    public void setGender(String gender) {
+    public void setGender(int gender) {
         this.gender = gender;
     }
 
@@ -473,13 +465,13 @@ public class PatientEntity {
         this.doctor = doctor;
     }
 
-    public int getContactId() {
+  /*  public int getContactId() {
         return contactId;
     }
 
     public void setContactId(int contactId) {
         this.contactId = contactId;
-    }
+    }*/
 
     public int getStatus() {
         return status;

@@ -567,4 +567,11 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                                 + " AND ((sdList.hidden = true AND sdList.history = false) OR sdList = NULL)");
         return query.list();
     }
+
+    @Override
+    public int savePatient(PatientEntity patient){
+        sessionFactory
+                .getCurrentSession().saveOrUpdate(patient);
+        return patient.getId();
+    }
 }

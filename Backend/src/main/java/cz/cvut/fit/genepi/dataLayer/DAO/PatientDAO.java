@@ -161,4 +161,6 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
     public List<PatientEntity> findAllHidden();
 
     public List<PatientEntity> findAllWithHiddenRecords();
+
+    public int savePatient(PatientEntity patient);
 }

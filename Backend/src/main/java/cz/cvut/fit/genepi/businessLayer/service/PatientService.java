@@ -192,7 +192,7 @@ public interface PatientService extends GenericService<PatientEntity> {
 
     public PatientVO getById(int patientId);
 
-    public void save(PatientVO patient);
+    public int save(PatientVO patient);
 
     public void hide(int patientId);
 

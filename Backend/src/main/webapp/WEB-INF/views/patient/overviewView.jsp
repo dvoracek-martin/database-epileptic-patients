@@ -28,14 +28,21 @@
             </a>
         </h3>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-2">
         <h3 class="pull-right">
             <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
                 <spring:message code="label.verify"/>
             </a>
         </h3>
     </div>
-    <div class="col-xs-3">
+    <div class="col-xs-2">
+        <h3 class="pull-right">
+            <a id="edit" href="<c:url value="/patient/${patient.id}/edit" />">
+                <spring:message code="label.edit"/>
+            </a>
+        </h3>
+    </div>
+    <div class="col-xs-2">
         <h3 class="pull-right">
             <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
                 <spring:message code="label.hide"/>

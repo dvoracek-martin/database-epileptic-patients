@@ -32,7 +32,7 @@
                 <div class="col-sm-offset-4 col-sm-8">
                     <div class="checkbox">
                         <label>
-                            <form:checkbox path="verified" id="verified"/> overit?
+                            <form:checkbox path="verified" id="verified"/> <spring:message code="label.recordsVerified"/>
                         </label>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     <button class="btn btn-primary" type="submit">
-                        <spring:message code="label.add"/>ulozit
+                        <spring:message code="label.save"/>
                     </button>
                 </div>
             </div>
