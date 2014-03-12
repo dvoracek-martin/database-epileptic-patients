@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.Valid;
@@ -41,7 +40,7 @@ public class PatientVO {
     private int contactId;
 
     @Valid
-    private ContactVO contact;
+    private PatientContactVO contact;
 
     /**
      * The deleted.
@@ -129,11 +128,11 @@ public class PatientVO {
         this.indicatingDoctor = indicatingDoctor;
     }
 
-    public ContactVO getContact() {
+    public PatientContactVO getContact() {
         return contact;
     }
 
-    public void setContact(ContactVO contact) {
+    public void setContact(PatientContactVO contact) {
         this.contact = contact;
     }
 }

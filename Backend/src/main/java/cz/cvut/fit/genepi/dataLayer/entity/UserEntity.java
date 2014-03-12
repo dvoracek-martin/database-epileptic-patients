@@ -6,12 +6,8 @@ import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Set;
-
-// TODO: Auto-generated Javadoc
 
 /**
  * The Class UserEntity.
@@ -31,20 +27,13 @@ public class UserEntity {
     /**
      * The username.
      */
-    @Pattern(regexp = "[A-Za-z0-9]*")
-    // @NotBlank
-    // @NotNull
-    @Size(min = 6, max = 10)
-    @Column(name = "USERNAME", length = 10, nullable = false)
+    @Column(name = "USERNAME", length = 20, nullable = false)
     private String username;
 
     /**
      * The password.
      */
-    // @NotBlank
-    // @NotNull
-    @Size(min = 8, max = 128)
-    @Column(name = "PASSWORD", precision = 128, scale = 0, nullable = true)
+    @Column(name = "PASSWORD", precision = 128)
     private String password;
 
     @OneToMany(fetch = FetchType.LAZY)
@@ -63,8 +52,12 @@ public class UserEntity {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @Cascade({CascadeType.ALL})
-    @JoinTable(name = "user_role", joinColumns = {@JoinColumn(name = "user_ID", nullable = false, updatable = false)}, inverseJoinColumns = {@JoinColumn(name = "role_ID", nullable = false, updatable = false)})
+    @JoinTable(name = "user_role",
+            joinColumns = {@JoinColumn(name = "user_ID", nullable = false, updatable = false)},
+            inverseJoinColumns = {@JoinColumn(name = "role_ID", nullable = false, updatable = false)})
     private List<RoleEntity> roles;
+
+    /* getters and setters */
 
     /**
      * Gets the id.

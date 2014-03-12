@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
 import java.util.List;
@@ -31,10 +32,14 @@ public interface UserService extends GenericService<UserEntity> {
      * @param user   as UserEntity
      * @param locale as Locale
      */
-    public void create(UserEntity user, Locale locale);
+    public int create(UserVO user, Locale locale);
 
 
     public UserEntity findUserByEmail(String email);
 
     public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
+
+    public boolean isUniqueUsername(String username);
+
+    public boolean isUniqueEmail(String email);
 }

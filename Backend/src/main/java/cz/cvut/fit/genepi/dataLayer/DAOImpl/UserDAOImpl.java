@@ -64,4 +64,10 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity>
         userEntity = findOne(query);
         return userEntity;
     }
+
+    @Override
+    public int saveUser(UserEntity userEntity) {
+        sessionFactory.getCurrentSession().saveOrUpdate(userEntity);
+        return userEntity.getId();
+    }
 }

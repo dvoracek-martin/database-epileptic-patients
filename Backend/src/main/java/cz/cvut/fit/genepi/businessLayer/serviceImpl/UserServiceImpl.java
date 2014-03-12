@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
@@ -9,6 +10,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.util.LoggingService;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,28 +20,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class UserServiceImpl.
  */
 @Service
-public class UserServiceImpl extends
-        GenericServiceImpl<UserEntity> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<UserEntity> implements UserService {
 
     private LoggingService logger = new LoggingService();
 
-    @Autowired
-    RoleService roleService;
+    private RoleService roleService;
 
-    @Autowired
-    MailService mailService;
+    private MailService mailService;
 
-    /**
-     * The user dao.
-     */
-    @Autowired
     private UserDAO userDAO;
+
+    private Mapper dozer;
+
+    @Autowired
+    public UserServiceImpl(RoleService roleService,
+                           MailService mailService,
+                           UserDAO userDAO,
+                           Mapper dozer) {
+        this.roleService = roleService;
+        this.mailService = mailService;
+        this.userDAO = userDAO;
+        this.dozer = dozer;
+    }
 
     /*
      * (non-Javadoc)
@@ -73,41 +79,58 @@ public class UserServiceImpl extends
 
     @Override
     @Transactional
-    public void create(UserEntity user, Locale locale) {
+    public int create(UserVO user, Locale locale) {
+
         String password = RandomStringUtils.randomAlphanumeric(10);
+        user.setPassword(DigestUtils.sha256Hex(password + "{" + user.getUsername() + "}"));
+
         //FIXME: bad logger
-        if (logger.getLogger() == null)
+         /*if (logger.getLogger() == null)
             logger.setLogger(UserServiceImpl.class);
         logger.logInfo("New password " + password + " for new user id "
-                + user.getId() + " generated.");
-        user.setPassword(DigestUtils.sha256Hex(password + "{"
-                + user.getUsername() + "}"));
+                + user.getId() + " generated.");*/
 
-		/* assigning roles to user */
-        ArrayList<RoleEntity> roles = new ArrayList<RoleEntity>();
+
+        UserEntity userEntity = dozer.map(user, UserEntity.class);
+        /* assigning roles to user */
+        ArrayList<RoleEntity> roles = new ArrayList<>();
         roles.add(roleService.findByID(RoleEntity.class, 1));
-        user.setRoles(roles);
-        this.save(user);
+        userEntity.setRoles(roles);
+        int userId = userDAO.saveUser(userEntity);
 
 		/* sending email to user about account creation */
         try {
-            HashMap<String, Object> map = new HashMap<String, Object>();
+            HashMap<String, Object> map = new HashMap<>();
             map.put("subject", "creationOfANewUser");
             map.put("user", user);
             map.put("password", password);
             mailService.sendMail(user.getContact().getEmail(), map, locale);
-            logger.logInfo("Email to new user sent");
+
+            //logger.logInfo("Email to new user sent");
 
         } catch (Exception e) {
-            logger.logError(
+          /*  logger.logError(
                     "Error when trying to send email after creating new user.",
-                    e);
+                    e);*/
         }
+        return userId;
     }
 
     @Override
     @Transactional
     public UserEntity findUserByEmail(String email) {
         return userDAO.findUserByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public boolean isUniqueUsername(String username) {
+        return this.findUserByUsername(username) == null;
+    }
+
+    @Override
+    @Transactional
+    public boolean isUniqueEmail(String email) {
+        return this.findUserByEmail(email) == null;
     }
 }

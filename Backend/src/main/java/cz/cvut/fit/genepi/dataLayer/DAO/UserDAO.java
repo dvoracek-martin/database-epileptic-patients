@@ -27,4 +27,6 @@ public interface UserDAO extends GenericDAO<UserEntity> {
     List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
 
     UserEntity findUserByEmail(String email);
+
+    public int saveUser(UserEntity userEntity);
 }

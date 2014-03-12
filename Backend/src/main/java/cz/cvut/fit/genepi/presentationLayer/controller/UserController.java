@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
@@ -27,38 +28,34 @@ import java.util.Locale;
  * user.
  */
 @Controller
+@SessionAttributes({"user"})
 public class UserController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
      */
-    @Autowired
     private UserService userService;
 
     /**
      * The role service.
      */
-    @Autowired
     private RoleService roleService;
 
     /**
      * The user role service.
      */
-    @Autowired
     private UserRoleService userRoleService;
 
     /**
      * The contact service.
      */
-    @Autowired
     private ContactService contactService;
 
     /**
      * The mail service.
      */
-    @Autowired
     private MailService mailService;
 
     /**
@@ -66,22 +63,37 @@ public class UserController {
      */
     private LoggingService logger = new LoggingService();
 
+    @Autowired
+    public UserController(AuthorizationChecker authorizationChecker,
+                          UserService userService,
+                          RoleService roleService,
+                          UserRoleService userRoleService,
+                          ContactService contactService,
+                          MailService mailService) {
+        this.authorizationChecker = authorizationChecker;
+        this.userService = userService;
+        this.roleService = roleService;
+        this.userRoleService = userRoleService;
+        this.contactService = contactService;
+        this.mailService = mailService;
+    }
+
     /**
      * Handles the request to access page for creating new user.
      *
-     * @param locale the user's locale.
-     * @param model  the model to be filled for view.
+     * @param model the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/create", method = RequestMethod.GET)
-    public String userCreateGET(Locale locale, Model model, HttpServletRequest request) {
+    public String userCreateGET(Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
-        model.addAttribute("user", new UserEntity());
-        model.addAttribute("isUnique", "unique");
-        model.addAttribute("isMailUnique", "unique");
+        model.addAttribute("uniqueUsername", true);
+        model.addAttribute("uniqueEmail", true);
+        model.addAttribute("user", new UserVO());
         return "user/createView";
     }
 
@@ -100,52 +112,23 @@ public class UserController {
      */
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String userCreatePOST(
-            @ModelAttribute("user") @Valid UserEntity user,
+            @ModelAttribute("user") @Valid UserVO user,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != user.getId())) {
-            return "deniedView";
-        }
-        boolean unique = true;
-        boolean mailUnique = true;
 
-        if (userService.findUserByUsername(user.getUsername()) != null)
-            unique = false;
-        if (userService.findUserByEmail(user.getContact().getEmail()) != null)
-            mailUnique = false;
-        if (result.hasErrors() || !unique || !mailUnique) {
-            if (!unique)
-                model.addAttribute("isUnique", "notUnique");
-            if (!mailUnique)
-                model.addAttribute("isMailUnique", "notUnique");
+        boolean uniqueUsername = userService.isUniqueUsername(user.getUsername());
+        boolean uniqueEmail = userService.isUniqueEmail(user.getContact().getEmail());
+
+        if (result.hasErrors() || !uniqueUsername || !uniqueEmail) {
+            model.addAttribute("uniqueUsername", uniqueUsername);
+            model.addAttribute("uniqueEmail", uniqueEmail);
             return "user/createView";
         } else {
-            // TODO: maybe userSrvice.create should do this IF and return
-            // boolean
-            if (userService.findUserByUsername(user.getUsername()) != null) {
-                model.addAttribute("isUnique", "notUnique");
-                return "user/createView";
-            } else {
-                userService.create(user, locale);
-                if (logger.getLogger() == null)
-                    logger.setLogger(UserController.class);
-                logger.logInfo("New user successfuly created.");
-                return "redirect:/user/" + Integer.toString(user.getId())
-                        + "/overview";
-            }
+            int userId = userService.create(user, locale);
+            return "redirect:/user/" + Integer.toString(userId) + "/overview";
         }
     }
 

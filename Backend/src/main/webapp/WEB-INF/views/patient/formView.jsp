@@ -1,7 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
@@ -21,7 +21,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.firstName" type="text" class=" form-control input-sm input-sm"
+        <form:input path="contact.firstName" type="text" class=" form-control input-sm"
                     id="contact.firstName"/>
         <form:errors path="contact.firstName" cssClass="text-danger"/>
     </div>
