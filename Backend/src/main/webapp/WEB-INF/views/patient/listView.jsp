@@ -16,7 +16,6 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-
     <script src="<c:url value="/resources/custom/js/patient-list.js"/>"></script>
     </jsp:attribute>
 

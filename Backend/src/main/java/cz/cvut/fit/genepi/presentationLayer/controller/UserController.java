@@ -135,17 +135,17 @@ public class UserController {
     /**
      * Handles the request to access page with user's overview.
      *
-     * @param userID the id of a user for whom the overview is to be rendered.
-     * @param locale the user's locale.
+     * @param userId the id of a user for whom the overview is to be rendered.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
-    @RequestMapping(value = "/user/{userID}/overview", method = RequestMethod.GET)
-    public String userOverviewGET(@PathVariable("userID") Integer userID,
-                                  Locale locale, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/overview", method = RequestMethod.GET)
+    public String userOverviewGET(@PathVariable("userId") Integer userId,
+                                 Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         String name = auth.getName();
@@ -157,11 +157,11 @@ public class UserController {
                 break;
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
+        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userId)) {
             return "deniedView";
         }
         model.addAttribute("user",
-                userService.findByID(UserEntity.class, userID));
+                userService.findByID(UserEntity.class, userId));
         return "user/overviewView";
     }
 
@@ -189,7 +189,6 @@ public class UserController {
         user.setRoles(null);
         user.setHidden(true);
 
-        //TODO
         // logout deleted user
 
         userService.save(user);
@@ -299,31 +298,18 @@ public class UserController {
     /**
      * Handles the request to access list of users page.
      *
-     * @param locale the user's locale.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)
-    public String userListGET(Locale locale, Model model, @RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults,
-                              @RequestParam("pageNumber") int pageNumber, HttpServletRequest request) {
+    public String userListGET(@RequestParam(value = "maxResults", defaultValue = "20", required = false) int maxResults,
+                              Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized) {
-            return "deniedView";
-        }
-        model.addAttribute("userList", userService.findAllUsersWithPagination(maxResults, pageNumber));
+
+        model.addAttribute("userList", userService.findAll(UserEntity.class));
         model.addAttribute("maxResults", maxResults);
         return "user/listView";
     }
