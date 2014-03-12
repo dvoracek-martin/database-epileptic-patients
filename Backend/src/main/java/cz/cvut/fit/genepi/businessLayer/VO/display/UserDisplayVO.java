@@ -1,8 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
-/**
- * Created by Jan on 20.1.14.
- */
 public class UserDisplayVO {
 
     private int id;

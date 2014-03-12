@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,61 +12,75 @@ import java.util.List;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class UserDAOImpl extends GenericDAOImpl<UserEntity>
-        implements UserDAO {
+public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
 
     /* (non-Javadoc)
      * @see cz.cvut.fit.genepi.DAO.UserDAO#findUserByUsername(java.lang.String)
      */
     @Override
     public UserEntity findUserByUsername(String username) {
-        UserEntity userEntity;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserEntity where username = :user_name");
-        query.setParameter("user_name", username);
-        userEntity = findOne(query);
-        return userEntity;
+
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from UserEntity where username = :user_name")
+                .setParameter("user_name", username);
+
+        return findOne(query);
     }
 
+    @SuppressWarnings("unchecked")
     public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber) {
-        List<UserEntity> users = null;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from " + UserEntity.class.getName() + " WHERE hidden=0 ORDER BY contact.lastName,contact.firstName");
 
-        query.setFirstResult(maxResults * (pageNumber - 1));
-        query.setMaxResults(maxResults);
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from " + UserEntity.class.getName() + "" +
+                        " WHERE hidden=0 ORDER BY contact.lastName,contact.firstName")
+                .setFirstResult(maxResults * (pageNumber - 1))
+                .setMaxResults(maxResults);
 
-        users = query.list();
-        return users;
+        return query.list();
     }
 
     /* (non-Javadoc)
      * @see cz.cvut.fit.genepi.DAO.UserDAO#getDoctors()
      */
+    //TODO really strange method!!!
     @Override
     public List<UserEntity> getDoctors() {
-        List<UserEntity> doctors = new ArrayList<UserEntity>();
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserEntity where username = :user_name");
 
-        doctors = findMany(query);
-        return doctors;
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from UserEntity where username = :user_name");
+
+        return findMany(query);
     }
-
 
     @Override
     public UserEntity findUserByEmail(String email) {
-        UserEntity userEntity;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserEntity where contact.email = :e_mail");
-        query.setParameter("e_mail", email);
-        userEntity = findOne(query);
-        return userEntity;
+
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from UserEntity where contact.email = :email")
+                .setParameter("email", email);
+
+        return findOne(query);
     }
 
     @Override
     public int saveUser(UserEntity userEntity) {
+
         sessionFactory.getCurrentSession().saveOrUpdate(userEntity);
+
         return userEntity.getId();
+    }
+
+    @Override
+    public List<UserEntity> findAllNonHidden() {
+
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from UserEntity where hidden = false");
+
+        return findMany(query);
     }
 }

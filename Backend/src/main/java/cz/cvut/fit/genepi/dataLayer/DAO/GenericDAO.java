@@ -4,12 +4,10 @@ import org.hibernate.Query;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Interface GenericDAO.
  *
- * @param <T>  the generic type
+ * @param <T> the generic type
  */
 public interface GenericDAO<T> {
 

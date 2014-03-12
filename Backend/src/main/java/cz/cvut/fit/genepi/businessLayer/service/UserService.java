@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
@@ -34,7 +35,6 @@ public interface UserService extends GenericService<UserEntity> {
      */
     public int create(UserVO user, Locale locale);
 
-
     public UserEntity findUserByEmail(String email);
 
     public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
@@ -44,4 +44,6 @@ public interface UserService extends GenericService<UserEntity> {
     public boolean isUniqueEmail(String email);
 
     public void hide(Integer userId);
+
+    public List<UserDisplayVO> findAllNonHidden();
 }

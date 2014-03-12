@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
@@ -142,5 +143,19 @@ public class UserServiceImpl extends GenericServiceImpl<UserEntity> implements U
         user.setRoles(null);
         user.setHidden(true);
         this.save(user);
+    }
+
+    @Override
+    @Transactional
+    public List<UserDisplayVO> findAllNonHidden() {
+
+        List<UserEntity> userEntityList = userDAO.findAllNonHidden();
+        List<UserDisplayVO> userDisplayVOList = new ArrayList<>();
+
+        for (UserEntity userEntity : userEntityList) {
+            userDisplayVOList.add(dozer.map(userEntity, UserDisplayVO.class));
+        }
+
+        return userDisplayVOList;
     }
 }

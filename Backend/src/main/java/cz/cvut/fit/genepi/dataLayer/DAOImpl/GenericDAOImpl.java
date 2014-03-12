@@ -28,12 +28,8 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see cz.cvut.fit.genepi.models.GenericDAO#save(java.lang.Object)
      */
     public void save(T entity) {
-        /* sessionFactory.getCurrentSession().beginTransaction(); */
+
         sessionFactory.getCurrentSession().saveOrUpdate(entity);
-        /*
-         * sessionFactory.getCurrentSession().getTransaction().commit();
-		 * sessionFactory.getCurrentSession().disconnect();
-		 */
     }
 
     /*
@@ -42,6 +38,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see cz.cvut.fit.genepi.models.GenericDAO#merge(java.lang.Object)
      */
     public void merge(T entity) {
+
         sessionFactory.getCurrentSession().merge(entity);
     }
 
@@ -51,6 +48,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see cz.cvut.fit.genepi.models.GenericDAO#delete(java.lang.Object)
      */
     public void delete(T entity) {
+
         sessionFactory.getCurrentSession().delete(entity);
     }
 
@@ -61,9 +59,8 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      */
     @SuppressWarnings("unchecked")
     public List<T> findMany(Query query) {
-        List<T> t;
-        t = (List<T>) query.list();
-        return t;
+
+        return (List<T>) query.list();
     }
 
     /*
@@ -73,9 +70,8 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      */
     @SuppressWarnings("unchecked")
     public T findOne(Query query) {
-        T t;
-        t = (T) query.uniqueResult();
-        return t;
+
+        return (T) query.uniqueResult();
     }
 
     /*
@@ -84,11 +80,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see cz.cvut.fit.genepi.models.GenericDAO#getCount(java.lang.Class)
      */
     public int getCount(Class<T> myClass) {
-        int i;
-        i = ((Long) sessionFactory.getCurrentSession()
-                .createQuery("select count(*) from " + myClass.getName() + " WHERE status=0")
-                .uniqueResult()).intValue();
-        return i;
+
+        Long count = ((Long) sessionFactory
+                .getCurrentSession()
+                .createQuery("select count(*) from " + myClass.getName() + " WHERE status = 0")
+                .uniqueResult());
+
+        return count.intValue();
     }
 
     /*
@@ -98,17 +96,17 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
      */
     public int getCountOfUnhidden(Class<T> myClass, String searchString) {
-        int i;
-        i = ((Long) sessionFactory
+
+        Long count = ((Long) sessionFactory
                 .getCurrentSession()
-                .createQuery(
-                        "select count(id) " +
-                                "from " + myClass.getName()
-                                + " where status=0 AND (contact.firstName like '" + searchString + "%'" +
-                                " OR contact.lastName like '" + searchString + "%'" +
-                                " OR nin like '" + searchString + "%')").uniqueResult())
-                .intValue();
-        return i;
+                .createQuery("select count(id) " +
+                        "from " + myClass.getName() +
+                        " where status=0 AND (contact.firstName like '" + searchString + "%'" +
+                        " OR contact.lastName like '" + searchString + "%'" +
+                        " OR nin like '" + searchString + "%')")
+                .uniqueResult());
+
+        return count.intValue();
     }
 
     /*
@@ -118,9 +116,10 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      */
     @SuppressWarnings("unchecked")
     public T findByID(Class<T> myClass, int id) {
-        T t = null;
-        t = (T) sessionFactory.getCurrentSession().get(myClass, id);
-        return t;
+
+        return (T) sessionFactory
+                .getCurrentSession()
+                .get(myClass, id);
     }
 
     /*
@@ -130,11 +129,12 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      */
     @SuppressWarnings("unchecked")
     public List<T> findAll(Class<T> myClass) {
-        List<T> T = null;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from " + myClass.getName());
-        T = query.list();
-        return T;
+
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from " + myClass.getName());
+
+        return (List<T>) query.list();
     }
 
     /*
@@ -145,23 +145,21 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * Class)
      */
     @SuppressWarnings("unchecked")
-    public List<T> findAllWithPagination(Class<T> myClass, int maxResults,
-                                         int pageNumber) {
-        List<T> T = null;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from " + myClass.getName() + " WHERE status=0 ORDER BY contact.lastName,contact.firstName");
+    public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
 
-        query.setFirstResult(maxResults * (pageNumber - 1));
-        query.setMaxResults(maxResults);
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from " + myClass.getName() +
+                        " WHERE status = 0 ORDER BY contact.lastName, contact.firstName")
+                .setFirstResult(maxResults * (pageNumber - 1))
+                .setMaxResults(maxResults);
 
-        T = query.list();
-        return T;
+        return (List<T>) query.list();
     }
 
     @SuppressWarnings("unchecked")
     public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
                                             int pageNumber, List<String> parameters, String name) {
-        List<T> T = null;
 
         String q = "from " + myClass.getName() + " where status=0 AND (";
         for (int i = 0; i != parameters.size(); i++) {
@@ -171,13 +169,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
             }
         }
         q += ") ORDER BY contact.lastName,contact.firstName";
-        Query query = sessionFactory.getCurrentSession().createQuery(q);
 
-        query.setFirstResult(maxResults * (pageNumber - 1));
-        query.setMaxResults(maxResults);
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery(q)
+                .setFirstResult(maxResults * (pageNumber - 1))
+                .setMaxResults(maxResults);
 
-        T = query.list();
-        return T;
+        return (List<T>) query.list();
     }
-
 }

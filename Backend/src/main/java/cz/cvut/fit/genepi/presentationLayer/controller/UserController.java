@@ -276,7 +276,7 @@ public class UserController {
             return "deniedView";
         }
 
-        model.addAttribute("userList", userService.findAll(UserEntity.class));
+        model.addAttribute("userList", userService.findAllNonHidden());
         model.addAttribute("maxResults", maxResults);
         return "user/listView";
     }

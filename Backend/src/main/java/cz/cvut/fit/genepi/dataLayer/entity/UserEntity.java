@@ -45,12 +45,11 @@ public class UserEntity {
     /**
      * The contact.
      */
-    @Valid
     @OneToOne
     @Cascade({CascadeType.ALL})
     private ContactEntity contact;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     @Cascade({CascadeType.ALL})
     @JoinTable(name = "user_role",
             joinColumns = {@JoinColumn(name = "user_ID", nullable = false, updatable = false)},
