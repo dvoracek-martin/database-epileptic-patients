@@ -142,26 +142,12 @@ public class UserController {
     @RequestMapping(value = "/user/{userId}/overview", method = RequestMethod.GET)
     public String userOverviewGET(@PathVariable("userId") Integer userId,
                                  Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userId)) {
-            return "deniedView";
-        }
-        model.addAttribute("user",
-                userService.findByID(UserEntity.class, userId));
+        model.addAttribute("user",  userService.findByID(UserEntity.class, userId));
         return "user/overviewView";
     }
 
