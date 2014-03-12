@@ -141,44 +141,25 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{userId}/overview", method = RequestMethod.GET)
     public String userOverviewGET(@PathVariable("userId") Integer userId,
-                                 Model model, HttpServletRequest request) {
+                                  Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
-        model.addAttribute("user",  userService.findByID(UserEntity.class, userId));
+        model.addAttribute("user", userService.findByID(UserEntity.class, userId));
         return "user/overviewView";
     }
 
-    @RequestMapping(value = "/user/{userID}/hide", method = RequestMethod.GET)
-    public String userHideGET(Locale locale, Model model,
-                              @PathVariable("userID") Integer userID, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/hide", method = RequestMethod.GET)
+    public String userHideGET(@PathVariable("userId") Integer userId, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
-            return "deniedView";
-        }
-        UserEntity user = userService.findByID(UserEntity.class, userID);
-        user.setRoles(null);
-        user.setHidden(true);
 
-        // logout deleted user
-
-        userService.save(user);
-        return "redirect:/user/list?maxResults=20&pageNumber=1";
+        userService.hide(userId);
+        return "redirect:/user/list?maxResults=20";
     }
 
     /**
@@ -284,7 +265,7 @@ public class UserController {
     /**
      * Handles the request to access list of users page.
      *
-     * @param model  the model to be filled for view.
+     * @param model the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/user/list", method = RequestMethod.GET)

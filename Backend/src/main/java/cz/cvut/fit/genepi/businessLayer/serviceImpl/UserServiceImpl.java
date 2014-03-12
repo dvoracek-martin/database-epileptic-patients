@@ -133,4 +133,14 @@ public class UserServiceImpl extends GenericServiceImpl<UserEntity> implements U
     public boolean isUniqueEmail(String email) {
         return this.findUserByEmail(email) == null;
     }
+
+    @Override
+    @Transactional
+    public void hide(Integer userId) {
+
+        UserEntity user = this.findByID(UserEntity.class, userId);
+        user.setRoles(null);
+        user.setHidden(true);
+        this.save(user);
+    }
 }

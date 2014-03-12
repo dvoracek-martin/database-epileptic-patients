@@ -42,4 +42,6 @@ public interface UserService extends GenericService<UserEntity> {
     public boolean isUniqueUsername(String username);
 
     public boolean isUniqueEmail(String email);
+
+    public void hide(Integer userId);
 }

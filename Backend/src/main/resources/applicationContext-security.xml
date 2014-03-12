@@ -29,6 +29,9 @@
                                 access="ROLE_ADMIN"/>
         <security:intercept-url pattern="/user/**/overview"
                                 access="ROLE_ADMIN"/>
+        <security:intercept-url pattern="/user/**/hide"
+                                access="ROLE_ADMIN"/>
+
 
 
         <security:intercept-url pattern="/patient/create"
