@@ -79,7 +79,7 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
 
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery("from UserEntity where hidden = false");
+                .createQuery("from UserEntity where hidden = false ORDER BY username");
 
         return findMany(query);
     }

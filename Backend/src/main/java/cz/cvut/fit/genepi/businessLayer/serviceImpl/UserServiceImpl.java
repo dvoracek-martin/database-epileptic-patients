@@ -158,4 +158,19 @@ public class UserServiceImpl extends GenericServiceImpl<UserEntity> implements U
 
         return userDisplayVOList;
     }
+
+    @Override
+    @Transactional
+    public void changePassword(UserVO user) {
+
+        user.setPassword(DigestUtils.sha256Hex(user.getPassword()
+                + "{" + user.getUsername() + "}"));
+        this.save(dozer.map(user, UserEntity.class));
+    }
+
+    @Override
+    @Transactional
+    public UserVO findById(int userId) {
+        return dozer.map(this.findByID(UserEntity.class, userId), UserVO.class);
+    }
 }

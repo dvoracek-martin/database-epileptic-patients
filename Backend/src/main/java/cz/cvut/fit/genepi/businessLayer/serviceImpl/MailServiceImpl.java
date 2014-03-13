@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import org.slf4j.Logger;
@@ -127,7 +128,7 @@ public class MailServiceImpl implements MailService {
                 message.setSubject("New account to GENEPI system", "utf-8");
                 UserEntity user = (UserEntity) map.get("user");
                 /*
-				 * String text = "Dear " + user.getUsername() + ",\n\n" +
+                 * String text = "Dear " + user.getUsername() + ",\n\n" +
 				 * "your account was created. Your password is: " +
 				 * map.get("password") +
 				 * ".\nPlease change it in your user administration as soon as possible.\n\nRegards,\nGENEPI team."
@@ -170,6 +171,18 @@ public class MailServiceImpl implements MailService {
                     + sw.toString());
 
             mex.printStackTrace();
+        }
+    }
+
+    public void notifyChangedPassword(UserVO user, String password, Locale locale) {
+        try {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("subject", "changeOfThePassword");
+            map.put("user", user);
+            map.put("password", password);
+            this.sendMail(user.getContact().getEmail(), map, locale);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

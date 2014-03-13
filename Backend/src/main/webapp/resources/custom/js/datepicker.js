@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
 
     /* datepicker with prefilled today date */

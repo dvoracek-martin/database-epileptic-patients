@@ -6,8 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
-import cz.cvut.fit.genepi.util.LoggingService;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -61,8 +59,7 @@ public class UserController {
     /**
      * The Constant logger.
      */
-    private LoggingService logger = new LoggingService();
-
+    // private LoggingService logger = new LoggingService();
     @Autowired
     public UserController(AuthorizationChecker authorizationChecker,
                           UserService userService,
@@ -148,6 +145,7 @@ public class UserController {
         }
 
         model.addAttribute("user", userService.findByID(UserEntity.class, userId));
+
         return "user/overviewView";
     }
 
@@ -284,127 +282,82 @@ public class UserController {
     /**
      * Handles the request to access page where user's password is changed.
      *
-     * @param userID the id of a user whose password is edited.
-     * @param locale the user's locale.
+     * @param userId the id of a user whose password is edited.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
-    @RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.GET)
-    public String userChangePasswordGET(@PathVariable("userID") Integer userID,
-                                        Locale locale, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/change-password", method = RequestMethod.GET)
+    public String userChangePasswordGET(@PathVariable("userId") Integer userId,
+                                        Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
+
+        if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
         }
 
-        if (logger.getLogger() == null)
-            logger.setLogger(UserController.class);
-        logger.logInfo("Changing password");
 
-        UserEntity user = userService.findByID(UserEntity.class, userID);
+      /*  if (logger.getLogger() == null)
+            logger.setLogger(UserController.class);
+        logger.logInfo("Changing password");*/
+
+        UserVO user = userService.findById(userId);
         user.setPassword("");
         model.addAttribute("user", user);
-        model.addAttribute("passwordChanged", false);
+        model.addAttribute("samePasswords", true);
         return "user/changePassword";
     }
 
     /**
-     * @param formUser the user whose password was edited in form at front-end. It is grabbed
-     *                 from POST string and validated.
-     * @param result   the result of binding form from front-end to an UserEntity. It
-     *                 is used to determine if there were some errors during binding.
-     * @param userID   the id of a user whose password is edited.
-     * @param locale   the user's locale.
-     * @param model    the model to be filled for view.
+     * @param user   the user whose password was edited in form at front-end. It is grabbed
+     *               from POST string and validated.
+     * @param result the result of binding form from front-end to an UserEntity. It
+     *               is used to determine if there were some errors during binding.
+     * @param userId the id of a user whose password is edited.
+     * @param locale the user's locale.
+     * @param model  the model to be filled for view.
      * @return the string of a view to be rendered if the binding has errors,
      * otherwise, the string of an address to which the user will be
      * redirected.
      */
-    @RequestMapping(value = "/user/{userID}/change-password", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/change-password", method = RequestMethod.POST)
     public String userChangePasswordPOST(
-            @ModelAttribute("user") @Valid UserEntity formUser,
-            BindingResult result, @PathVariable("userID") Integer userID,
+            @ModelAttribute("user") @Valid UserVO user, BindingResult result,
+            @PathVariable("userId") int userId,
+            @RequestParam("passwordAgain") String passwordAgain,
             Locale locale, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
+        } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
-        }
-
-        UserEntity realUser = userService.findByID(UserEntity.class, userID);
-        if (result.hasErrors()) {
-            return "user/" + realUser.getId() + "/change-password";
-        } else {
-            // TODO: transfer to Service
-            String password = formUser.getPassword();
-            realUser.setPassword(DigestUtils.sha256Hex(formUser.getPassword()
-                    + "{" + realUser.getUsername() + "}"));
-            userService.save(realUser);
-            model.addAttribute("passwordChanged", true);
-            /* send mail to user about cahnge of password */
-            try {
-                HashMap<String, Object> map = new HashMap<String, Object>();
-                map.put("subject", "changeOfThePassword");
-                map.put("user", realUser);
-                map.put("password", password);
-                mailService.sendMail(realUser.getContact().getEmail(), map, locale);
-            } catch (Exception e) {
-                e.printStackTrace();
+        } else if (result.hasErrors() || !user.getPassword().equals(passwordAgain)) {
+            if (!user.getPassword().equals(passwordAgain)) {
+                model.addAttribute("samePasswords", false);
             }
+            return "user/changePassword";
+        } else {
+            userService.changePassword(user);
+            mailService.notifyChangedPassword(user,passwordAgain,locale);
+            return "redirect:/user/" + userId + "/overview";
         }
-        return "redirect:/user/" + realUser.getId() + "/change-password";
     }
 
     // TODO: revision
-    @RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.GET)
-    public String userEditRolesGET(Locale locale, Model model,
-                                   @PathVariable("userID") Integer userID, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/edit-roles", method = RequestMethod.GET)
+    public String userEditRolesGET(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
-            return "deniedView";
-        }
-        if (logger.getLogger() == null)
-            logger.setLogger(UserController.class);
 
-        UserEntity user = userService.findByID(UserEntity.class, userID);
+        /*
+        if (logger.getLogger() == null)
+            logger.setLogger(UserController.class);*/
+
+        UserEntity user = userService.findByID(UserEntity.class, userId);
 
         List<RoleEntity> listOfPossibleRoles = new ArrayList<RoleEntity>();
 

@@ -46,4 +46,8 @@ public interface UserService extends GenericService<UserEntity> {
     public void hide(Integer userId);
 
     public List<UserDisplayVO> findAllNonHidden();
+
+    public void changePassword(UserVO user);
+
+    public UserVO findById(int userId);
 }
