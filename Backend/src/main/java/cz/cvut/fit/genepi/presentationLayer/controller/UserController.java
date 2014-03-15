@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
-import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -163,35 +161,26 @@ public class UserController {
     /**
      * Handles the request to page where the user can be edited.
      *
-     * @param userID the id of a user to be edited.
-     * @param locale the user's locale.
+     * @param userId the id of a user to be edited.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
-    @RequestMapping(value = "/user/{userID}/edit", method = RequestMethod.GET)
-    public String userEditGET(@PathVariable("userID") Integer userID,
-                              Locale locale, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.GET)
+    public String userEditGET(@PathVariable("userId") int userId,
+                              Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != userID)) {
+        } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
+        } else {
+
+            model.addAttribute("user", userService.findById(userId));
+            model.addAttribute("uniqueUsername", true);
+            model.addAttribute("uniqueEmail", true);
+
+            return "user/editView";
         }
-        model.addAttribute("user",
-                userService.findByID(UserEntity.class, userID));
-        model.addAttribute("isMailUnique", "unique");
-        return "user/editView";
     }
 
     /**
@@ -201,63 +190,34 @@ public class UserController {
      *               from POST string and validated.
      * @param result the result of binding form from front-end to an UserEntity. It
      *               is used to determine if there were some errors during binding.
-     * @param locale the user's locale.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered if the binding has errors,
      * otherwise, the string of an address to which the user will be
      * redirected.
      */
-    @RequestMapping(value = "/user/edit", method = RequestMethod.POST)
-    public String userEditPOST(@Valid @ModelAttribute("user") UserEntity user,
-                               BindingResult result, Locale locale, Model model, HttpServletRequest request) {
+    @RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.POST)
+    public String userEditPOST(@ModelAttribute("user") @Valid UserVO user, BindingResult result,
+                               @PathVariable("userId") int userId,
+                               Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
+        } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
+            return "deniedView";
+        } else {
 
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
+            boolean uniqueUsername = userService.isMineOrUniqueUsername(user.getId(), user.getUsername());
+            boolean uniqueEmail = userService.isMineOrUniqueEmail(user.getId(), user.getContact().getEmail());
+
+            if (result.hasErrors() || !uniqueUsername || !uniqueEmail) {
+                model.addAttribute("uniqueUsername", uniqueUsername);
+                model.addAttribute("uniqueEmail", uniqueEmail);
+                return "user/editView";
+            } else {
+                //userService.save(user);
+                return "redirect:/user/" + userId + "/overview";
             }
         }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != user.getId())) {
-            return "deniedView";
-        }
-
-
-        boolean mailUnique = true;
-
-        if (userService.findUserByEmail(user.getContact().getEmail()) != null)
-            mailUnique = false;
-        if (result.hasErrors() || !mailUnique) {
-
-            if (!mailUnique)
-                model.addAttribute("isMailUnique", "notUnique");
-            return "user/editView";
-        }
-        // TODO:veird sequence. is there a better solution??
-        ContactEntity contact = new ContactEntity();
-        contact.setId(userService.findByID(UserEntity.class, user.getId())
-                .getContact().getId());
-
-        contact.setFirstName(user.getContact().getFirstName());
-        contact.setLastName(user.getContact().getLastName());
-        contact.setAddressStreet(user.getContact().getAddressStreet());
-        contact.setAddressHn(user.getContact().getAddressHn());
-        contact.setAddressCity(user.getContact().getAddressCity());
-        contact.setAddressPostalcode(user.getContact().getAddressPostalcode());
-        contact.setAddressCountry(user.getContact().getAddressCountry());
-        contact.setPhoneNumber(user.getContact().getPhoneNumber());
-        contact.setEmail(user.getContact().getEmail());
-
-        contactService.merge(contact);
-        return "redirect:/user/" + Integer.toString(user.getId()) + "/overview";
-
     }
 
     /**
@@ -292,22 +252,15 @@ public class UserController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-
-        if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
+        } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
+        } else {
+            UserVO user = userService.findById(userId);
+            user.setPassword("");
+            model.addAttribute("user", user);
+            model.addAttribute("samePasswords", true);
+            return "user/changePassword";
         }
-
-
-      /*  if (logger.getLogger() == null)
-            logger.setLogger(UserController.class);
-        logger.logInfo("Changing password");*/
-
-        UserVO user = userService.findById(userId);
-        user.setPassword("");
-        model.addAttribute("user", user);
-        model.addAttribute("samePasswords", true);
-        return "user/changePassword";
     }
 
     /**
@@ -340,7 +293,7 @@ public class UserController {
             return "user/changePassword";
         } else {
             userService.changePassword(user);
-            mailService.notifyChangedPassword(user,passwordAgain,locale);
+            mailService.notifyChangedPassword(user, passwordAgain, locale);
             return "redirect:/user/" + userId + "/overview";
         }
     }

@@ -173,4 +173,26 @@ public class UserServiceImpl extends GenericServiceImpl<UserEntity> implements U
     public UserVO findById(int userId) {
         return dozer.map(this.findByID(UserEntity.class, userId), UserVO.class);
     }
+
+    @Override
+    @Transactional
+    public boolean isMineOrUniqueUsername(int userId, String username) {
+        UserVO user = this.findById(userId);
+        if (user.getUsername().equals(username)) {
+            return true;
+        } else {
+            return this.isUniqueUsername(username);
+        }
+    }
+
+    @Override
+    @Transactional
+    public boolean isMineOrUniqueEmail(int userId, String email) {
+        UserVO user = this.findById(userId);
+        if (user.getContact().getEmail().equals(email)) {
+            return true;
+        } else {
+            return this.isUniqueEmail(email);
+        }
+    }
 }

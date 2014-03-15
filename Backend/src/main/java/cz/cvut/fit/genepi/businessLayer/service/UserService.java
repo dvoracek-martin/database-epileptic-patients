@@ -50,4 +50,8 @@ public interface UserService extends GenericService<UserEntity> {
     public void changePassword(UserVO user);
 
     public UserVO findById(int userId);
+
+    public boolean isMineOrUniqueUsername(int userId,String username);
+
+    public boolean isMineOrUniqueEmail(int userId,String email);
 }
