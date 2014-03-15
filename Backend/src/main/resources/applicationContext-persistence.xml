@@ -14,8 +14,7 @@
     <context:property-placeholder location="classpath:connection.properties"/>
 
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close">
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!-- connection to DB -->
         <property name="driverClass" value="${jdbc.driverClassName}"/>
         <property name="jdbcUrl" value="${jdbc.url}"/>
@@ -29,12 +28,9 @@
         <property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
     </bean>
 
-    <bean id="sessionFactory"
-          class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="configLocation">
-            <value>classpath:hibernate.cfg.xml</value>
-        </property>
+        <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">${jdbc.dialect}</prop>
@@ -45,8 +41,7 @@
 
     <tx:annotation-driven/>
 
-    <bean id="transactionManager"
-          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 

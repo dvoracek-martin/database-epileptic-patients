@@ -16,6 +16,7 @@ import java.util.List;
 public class AnamnesisDAOImpl extends GenericDAOImpl<AnamnesisEntity> implements
         AnamnesisDAO {
 
+
     @SuppressWarnings("unchecked")
     @Override
     @Transactional

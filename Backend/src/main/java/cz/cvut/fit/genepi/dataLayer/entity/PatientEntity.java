@@ -81,7 +81,6 @@ public class PatientEntity {
     /**
      * The contact.
      */
-    // not needed or transfer to VOs   @Valid
     @OneToOne
     @Cascade({CascadeType.SAVE_UPDATE})
     @JoinColumn(name = "contact_id"/*, insertable = false, updatable = false*/)
@@ -129,9 +128,6 @@ public class PatientEntity {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")
     @Cascade({CascadeType.ALL})
-   /* @Filters({
-            @Filter(name = "neurologicalFindingListNoHistory", condition = "history = 0"),
-            @Filter(name = "neurologicalFindingListNoHidden", condition = "hidden = 0")})*/
     private Set<NeurologicalFindingEntity> neurologicalFindingList;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "patient")

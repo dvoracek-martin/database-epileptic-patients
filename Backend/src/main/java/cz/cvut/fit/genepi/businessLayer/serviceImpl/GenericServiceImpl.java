@@ -10,16 +10,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class GenericServiceImpl.
  *
  * @param <T> the generic type
  */
 @Service
-public class GenericServiceImpl<T> implements
-        GenericService<T> {
+public class GenericServiceImpl<T> implements GenericService<T> {
 
     /**
      * The generic dao.

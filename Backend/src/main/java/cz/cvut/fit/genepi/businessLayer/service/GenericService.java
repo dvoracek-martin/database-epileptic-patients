@@ -8,7 +8,6 @@ import java.util.List;
  * The Interface GenericService.
  *
  * @param <T>  the generic type
- * @param <ID> the generic type
  */
 public interface GenericService<T> {
 
