@@ -148,4 +148,11 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
         user.setRoles(new ArrayList<RoleEntity>());
         genericDAO.update(user);
     }
+
+  /*  @Override
+    @Transactional
+    public UserDisplayVO getDisplayById(int userId) {
+        UserEntity user = genericDAO.getById(userId, UserEntity.class);
+        return dozer.map(user, UserDisplayVO.class);
+    }*/
 }

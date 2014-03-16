@@ -18,4 +18,7 @@ public interface RoleService extends GenericService<RoleVO, RoleEntity> {
      * @return List of UserEntity
      */
     public List<UserDisplayVO> getAllDoctors();
+
+    //TODO should return other VO then one for FORM but theres no form for roles so its maybe ok
+    public List<RoleVO> getPossibleRoles(int userId);
 }

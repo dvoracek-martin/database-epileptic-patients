@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
@@ -297,12 +298,15 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-
+/*
             UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
 
             List<RoleVO> possibleRoles = roleService.getAll(RoleVO.class, RoleEntity.class);
             possibleRoles.removeAll(user.getRoles());
+*/
 
+            UserVO user = userService.getById(userId,UserVO.class,UserEntity.class);
+            List<RoleVO> possibleRoles = roleService.getPossibleRoles(userId);
             model.addAttribute("user", user);
             model.addAttribute("possibleRoles", possibleRoles);
             return "user/editRoles";
@@ -327,7 +331,7 @@ public class UserController {
             UserVO userVO = userService.getById(userId, UserVO.class, UserEntity.class);
             userVO.setRoles(newRoles);
 
-            userService.save(userVO, UserEntity.class);
+            userService.update(userVO, UserEntity.class);
             return "redirect:/user/list?maxResults=20";
         }
     }
