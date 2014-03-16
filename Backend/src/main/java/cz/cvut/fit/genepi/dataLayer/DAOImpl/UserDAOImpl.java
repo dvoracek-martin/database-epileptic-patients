@@ -22,7 +22,7 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
 
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery("from UserEntity where username = :user_name")
+                .createQuery("from UserEntity u left join fetch u.roles where u.username = :user_name")
                 .setParameter("user_name", username);
 
         return (UserEntity) query.uniqueResult();

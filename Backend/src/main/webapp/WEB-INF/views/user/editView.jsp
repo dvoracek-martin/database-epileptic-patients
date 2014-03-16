@@ -27,7 +27,7 @@
         <form:form class="form-horizontal" method="POST" action="/GENEPI/user/${user.id}/edit" commandName="user">
 
 
-            <div class="form-group">
+           <%-- <div class="form-group">
                 <label for="username" class="col-xs-3 control-label">
                     <spring:message code="label.username"/>*
                 </label>
@@ -39,7 +39,7 @@
                         <span class="text-danger"><spring:message code="label.nonUnique"/></span>
                     </c:if>
                 </div>
-            </div>
+            </div>--%>
 
             <div class="form-group">
                 <label for="contact.lastName" class="col-xs-3 control-label">
