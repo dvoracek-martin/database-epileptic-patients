@@ -19,12 +19,14 @@ public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
      * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByUserID(int)
      */
     @Override
+    @SuppressWarnings("unchecked")
     public List<UserRoleEntity> findAllUserRolesByUserID(int user_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from UserRoleEntity where user_id = :userID");
         query.setParameter("userID", user_id);
-        userRoleEntities = findMany(query);
+        userRoleEntities = (List<UserRoleEntity>) query.list();
+        userRoleEntities = (List<UserRoleEntity>) query.list();
         return userRoleEntities;
     }
 
@@ -32,12 +34,13 @@ public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
      * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByRoleID(int)
      */
     @Override
+    @SuppressWarnings("unchecked")
     public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from UserRoleEntity where role_id = :roleID");
         query.setParameter("roleID", role_id);
-        userRoleEntities = findMany(query);
+        userRoleEntities = (List<UserRoleEntity>) query.list();
         return userRoleEntities;
     }
 }

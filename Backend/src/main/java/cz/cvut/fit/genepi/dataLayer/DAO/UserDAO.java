@@ -31,4 +31,6 @@ public interface UserDAO extends GenericDAO<UserEntity> {
     public int saveUser(UserEntity userEntity);
 
     public List<UserEntity> findAllNonHidden();
+
+    public void hide(int userId);
 }

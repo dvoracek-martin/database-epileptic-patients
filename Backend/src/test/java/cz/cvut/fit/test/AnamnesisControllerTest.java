@@ -65,7 +65,7 @@ public class AnamnesisControllerTest {
         reset(patientServiceMock);
         reset(anamnesisServiceMock);
     }
-
+/*
     @Test
     public void anamnesisCreateGET() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
@@ -172,7 +172,7 @@ public class AnamnesisControllerTest {
 
         verifyZeroInteractions(anamnesisServiceMock);
     }
-
+*/
 //	@Test
 //	public void anamnesisDeleteGET() throws Exception {
 //		AnamnesisEntity anamnesis = new AnamnesisEntity();
@@ -187,7 +187,7 @@ public class AnamnesisControllerTest {
 //		verifyNoMoreInteractions(anamnesisServiceMock);
 //	}
 
-
+/*
     @Test
     public void anamnesisEditPOST_AnamnesisEntityValid() throws Exception {
 
@@ -239,11 +239,11 @@ public class AnamnesisControllerTest {
                                 "nonCnsComorbidity"));
 
         verifyZeroInteractions(anamnesisServiceMock);
-    }
+    }*/
 
     // anamnesisHideGET
     // anamnesisUnhideGET
-
+/*
     @Test
     public void list_PatientEntityFound() throws Exception {
         PatientDisplayVO found = new PatientDisplayVO();
@@ -262,7 +262,7 @@ public class AnamnesisControllerTest {
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);
     }
-
+*/
     /*
      * @Test public void list_PatientEntityNotFound() throws Exception {
 	 * when(patientServiceMock.findByID(PatientEntity.class, 1)).thenReturn(

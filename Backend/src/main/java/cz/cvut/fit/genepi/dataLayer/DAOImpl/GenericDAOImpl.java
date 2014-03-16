@@ -11,10 +11,10 @@ import java.util.List;
 /**
  * Implements GenericDAO.
  *
- * @param <T> the generic type
+ * @param <Entity> the generic type
  */
 @Repository
-public class GenericDAOImpl<T> implements GenericDAO<T> {
+public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
 
     /**
      * The session factory.
@@ -22,64 +22,40 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
     @Autowired
     protected SessionFactory sessionFactory;
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#save(java.lang.Object)
-     */
-    public void save(T entity) {
+    public int save(Entity entity) {
 
-        sessionFactory.getCurrentSession().saveOrUpdate(entity);
+        return (int) sessionFactory.getCurrentSession().save(entity);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#merge(java.lang.Object)
-     */
-    public void merge(T entity) {
-
-        sessionFactory.getCurrentSession().merge(entity);
+    @SuppressWarnings("unchecked")
+    public Entity getById(int id, Class<Entity> entityCass) {
+        return (Entity) sessionFactory.getCurrentSession().get(entityCass, id);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#delete(java.lang.Object)
-     */
-    public void delete(T entity) {
+    public void update(Entity entity) {
+        sessionFactory.getCurrentSession().update(entity);
+    }
+
+    public void delete(Entity entity) {
 
         sessionFactory.getCurrentSession().delete(entity);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#findMany(org.hibernate.Query)
-     */
     @SuppressWarnings("unchecked")
-    public List<T> findMany(Query query) {
+    public List<Entity> findAll(Class<Entity> myClass) {
 
-        return (List<T>) query.list();
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("from " + myClass.getName());
+
+        return (List<Entity>) query.list();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#findOne(org.hibernate.Query)
-     */
-    @SuppressWarnings("unchecked")
-    public T findOne(Query query) {
 
-        return (T) query.uniqueResult();
-    }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#getCount(java.lang.Class)
-     */
-    public int getCount(Class<T> myClass) {
+
+
+    public int getCount(Class<Entity> myClass) {
 
         Long count = ((Long) sessionFactory
                 .getCurrentSession()
@@ -95,7 +71,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see
      * cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
      */
-    public int getCountOfUnhidden(Class<T> myClass, String searchString) {
+    public int getCountOfUnhidden(Class<Entity> myClass, String searchString) {
 
         Long count = ((Long) sessionFactory
                 .getCurrentSession()
@@ -115,27 +91,13 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * @see cz.cvut.fit.genepi.models.GenericDAO#findByID(java.lang.Class, int)
      */
     @SuppressWarnings("unchecked")
-    public T findByID(Class<T> myClass, int id) {
+    public Entity findByID(Class<Entity> myClass, int id) {
 
-        return (T) sessionFactory
+        return (Entity) sessionFactory
                 .getCurrentSession()
                 .get(myClass, id);
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#findAll(java.lang.Class)
-     */
-    @SuppressWarnings("unchecked")
-    public List<T> findAll(Class<T> myClass) {
-
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery("from " + myClass.getName());
-
-        return (List<T>) query.list();
-    }
 
     /*
      * (non-Javadoc)
@@ -145,7 +107,7 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
      * Class)
      */
     @SuppressWarnings("unchecked")
-    public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
+    public List<Entity> findAllWithPagination(Class<Entity> myClass, int maxResults, int pageNumber) {
 
         Query query = sessionFactory
                 .getCurrentSession()
@@ -154,12 +116,12 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
                 .setFirstResult(maxResults * (pageNumber - 1))
                 .setMaxResults(maxResults);
 
-        return (List<T>) query.list();
+        return (List<Entity>) query.list();
     }
 
     @SuppressWarnings("unchecked")
-    public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
-                                            int pageNumber, List<String> parameters, String name) {
+    public List<Entity> findByNameWithPagination(Class<Entity> myClass, int maxResults,
+                                                 int pageNumber, List<String> parameters, String name) {
 
         String q = "from " + myClass.getName() + " where status=0 AND (";
         for (int i = 0; i != parameters.size(); i++) {
@@ -176,6 +138,6 @@ public class GenericDAOImpl<T> implements GenericDAO<T> {
                 .setFirstResult(maxResults * (pageNumber - 1))
                 .setMaxResults(maxResults);
 
-        return (List<T>) query.list();
+        return (List<Entity>) query.list();
     }
 }

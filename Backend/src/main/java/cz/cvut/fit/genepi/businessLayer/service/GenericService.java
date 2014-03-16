@@ -1,103 +1,37 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import org.hibernate.Query;
-
 import java.util.List;
 
-/**
- * The Interface GenericService.
- *
- * @param <T>  the generic type
- */
-public interface GenericService<T> {
+public interface GenericService<VO, Entity> {
 
-    /**
-     * Save.
-     *
-     * @param entity the entity
-     */
-    public void save(T entity);
+    public int save(VO vo, Class<Entity> entityClass);
 
-    /**
-     * Merge.
-     *
-     * @param entity the entity
-     */
-    public void merge(T entity);
+    public VO getById(int id, Class<VO> voClass, Class<Entity> entityClass);
 
-    /**
-     * Delete.
-     *
-     * @param entity the entity
-     */
-    public void delete(T entity);
+    public void update(VO vo, Class<Entity> entityClass);
 
-    /**
-     * Find many.
-     *
-     * @param query the query
-     * @return the list
-     */
-    public List<T> findMany(Query query);
+    public void delete(int id, Class<Entity> entityClass);
 
-    /**
-     * Find one.
-     *
-     * @param query the query
-     * @return the t
-     */
-    public T findOne(Query query);
+    public List<VO> getAll(Class<VO> voClass,Class<Entity> entityClass);
 
-    /**
-     * Find all.
-     *
-     * @param myClass the my class
-     * @return the list
-     */
-    public List<T> findAll(Class<T> myClass);
 
-    /**
-     * The same as findAll(Class<T> myClass), but this method can paginate the
-     * results
-     *
-     * @param myClass the my class
-     * @return the list
-     */
-    public List<T> findAllWithPagination(Class<T> myClass, int maxResults,
-                                         int pageNumber);
 
-    /**
-     * Find by id.
-     *
-     * @param myClass the my class
-     * @param id      the id
-     * @return the t
-     */
-    public T findByID(Class<T> myClass, int id);
 
-    /**
-     * Get count.
-     *
-     * @param myClass the my class
-     * @return int
-     */
+
+
+
+
+
+
+    /*
+    public List<VO> findAllWithPagination(VO vo, Class<Entity> clazz, int maxResults,
+                                          int pageNumber);
 
     public int getCount(Class<T> myClass);
 
-    /**
-     * Get count of unhidden
-     *
-     * @param myClass the my class
-     * @return int
-     */
     public int getCountOfUnhidden(Class<T> myClass, String searchString);
 
-    /**
-     * Get list according to string pattern - for quick search
-     *
-     * @param myClass the my class
-     * @return List<T>
-     */
-    public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
-                                            int pageNumber, List<String> parameters, String name);
+
+    public List<VO> findByNameWithPagination(Class<T> myClass, int maxResults,
+                                             int pageNumber, List<String> parameters, String name);*/
 }

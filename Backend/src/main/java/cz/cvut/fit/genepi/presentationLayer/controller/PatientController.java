@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -105,8 +106,8 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
     public String patientCreatePOST(
-            @ModelAttribute("patientVO") @Valid PatientVO patientVO,
-            BindingResult result, HttpServletRequest request) {
+            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
@@ -114,7 +115,7 @@ public class PatientController {
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
             return "patient/createView";
         } else {
-            int patientId = patientService.save(patientVO);
+            int patientId = patientService.save(patientVO,PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -132,7 +133,7 @@ public class PatientController {
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("patientVO", patientService.getById(patientId));
+        model.addAttribute("patientVO", patientService.getById(patientId,PatientVO.class,PatientEntity.class));
 
         return "patient/editView";
     }
@@ -151,7 +152,7 @@ public class PatientController {
             model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";
         } else {
-            patientService.save(patientVO);
+            patientService.save(patientVO,PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -165,7 +166,7 @@ public class PatientController {
         }
 
         PatientDisplayVO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        PatientVO patient = patientService.getById(patientId);
+        PatientVO patient = patientService.getById(patientId,PatientVO.class,PatientEntity.class);
 
         model.addAttribute("patient", patientDisplay);
         model.addAttribute("patientVO", patient);
@@ -187,7 +188,7 @@ public class PatientController {
             model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/verifyView";
         } else {
-            patientService.save(patientVO);
+            patientService.save(patientVO,PatientEntity.class);
             return "redirect:/patient/" + patientId + "/overview";
         }
     }
@@ -202,11 +203,11 @@ public class PatientController {
 
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
 
-        if (patient.getAnamnesisList().size() == 0) {
+       /* if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("displayAnamnesisCreate", true);
         } else {
             model.addAttribute("displayCreate", false);
-        }
+        }*/
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
@@ -248,10 +249,10 @@ public class PatientController {
         searchParams.add("contact.lastName");
         searchParams.add("nin");
 
-        int patientsCount = patientService.getCountOfUnhidden(PatientEntity.class, searchString);
+        int patientsCount = patientService.getCountOfUnhidden(searchString);
         JSONEncoder e = new JSONEncoder();
-        List<PatientEntity> patients = patientService
-                .findByNameWithPagination(PatientEntity.class, maxResults, pageNumber, searchParams, searchString);
+        List<PatientDisplayVO> patients = patientService
+                .findByNameWithPagination(maxResults, pageNumber, searchParams, searchString);
 
         if (authorizationChecker.onlyResearcher()) {
             anonymizeService.anonymizePatients(patients);
@@ -263,17 +264,15 @@ public class PatientController {
     /**
      * Patient delete get.
      *
-     * @param patientID the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/delete", method = RequestMethod.GET)
     public String patientDeleteGET(
-            @PathVariable("patientID") Integer patientID, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        patientService.delete(patientService.findByID(PatientEntity.class,
-                patientID));
+        patientService.delete(patientId, PatientEntity.class);
         return "redirect:/patient/list";
     }
 
@@ -301,24 +300,22 @@ public class PatientController {
      * Patient export get.
      *
      * @param model     the model
-     * @param patientID the patient id
+     * @param patientId the patient id
      * @return the string
      */
-    @RequestMapping(value = "/patient/{patientID}/export", method = RequestMethod.GET)
+    @RequestMapping(value = "/patient/{patientId}/export", method = RequestMethod.GET)
     public String patientExportGET(
-            @PathVariable("patientID") Integer patientID,
-            Model model, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) { 
+      /*  if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
-        UserEntity user = userService.findUserByUsername(auth.getName());
+        UserEntity user = userService.getUserByUsername(auth.getName());
 
         List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<>();
-        List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<>();
-        listOfSavedConfigurationsTmp = exportParamsService
-                .findAll(ExportParamsEntity.class);
+        List<ExportParamsEntity> listOfSavedConfigurationsTmp =  exportParamsService.findAll(ExportParamsEntity.class);
 
         for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
             if (exportEntityParams.isGeneric())
@@ -340,12 +337,12 @@ public class PatientController {
                 listOfUsersSavedConfigurations);
         model.addAttribute("user", user);
         model.addAttribute("exportParams",
-                exportParamsService.findByID(ExportParamsEntity.class, 1));
+                exportParamsService.getById(1, ExportParamsVO.class,ExportParamsEntity.class));
         List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
-        listOfPatients.add(patientService.findByID(PatientEntity.class,
-                patientID));
+        listOfPatients.add(patientService.findById(PatientEntity.class,
+                patientId));
         model.addAttribute("patientList", listOfPatients);
-        model.addAttribute("patient", listOfPatients.get(0));
+        model.addAttribute("patient", listOfPatients.get(0));*/
         return "patient/exportView";
     }
 
@@ -545,7 +542,7 @@ public class PatientController {
         // Find out, if data should be anonymized or not
         boolean shallAnonymize = true;
 
-        UserEntity user = userService.findUserByUsername(auth.getName());
+        UserEntity user = userService.getUserByUsername(auth.getName());
         List<RoleEntity> listOfAssignedRoles = user.getRoles();
 
         boolean approved = false;
@@ -567,7 +564,7 @@ public class PatientController {
         if (exportType.equals("pdf")) {
             try {
                 String url = exportToPdfService.export(patientList,
-                        userService.findUserByUsername(auth.getName()), locale,
+                        userService.getUserByUsername(auth.getName()), locale,
                         exportParams, shallAnonymize, toTable);
                 return "redirect:/resources/downloads/" + url;
             } catch (FileNotFoundException e) {
@@ -576,34 +573,34 @@ public class PatientController {
             }
         } else if (exportType.equals("xlsx")) {
             String url = exportToXlsxService.export(patientList,
-                    userService.findUserByUsername(auth.getName()), locale,
+                    userService.getUserByUsername(auth.getName()), locale,
                     exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("docx")) {
             String url = exportToDocxService.export(patientList,
-                    userService.findUserByUsername(auth.getName()), locale,
+                    userService.getUserByUsername(auth.getName()), locale,
                     exportParams, shallAnonymize, toTable);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("txt")) {
             String url = exportToTxtService.export(patientList,
-                    userService.findUserByUsername(auth.getName()), locale,
+                    userService.getUserByUsername(auth.getName()), locale,
                     exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         } else if (exportType.equals("csv")) {
             String url = exportToCsvService.export(patientList,
-                    userService.findUserByUsername(auth.getName()), locale,
+                    userService.getUserByUsername(auth.getName()), locale,
                     exportParams, shallAnonymize);
             return "redirect:/resources/downloads/" + url;
         }
 
-        List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
+    /*    List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
         listOfPatients.add(patientService.findByID(PatientEntity.class,
                 patientID[0]));
         model.addAttribute("patientList", listOfPatients);
         model.addAttribute("listOfPossibleExportParams",
                 exportParamsService.findAll(ExportParamsEntity.class));
         model.addAttribute("exportType", exportType);
-        model.addAttribute("patient", listOfPatients.get(0));
+        model.addAttribute("patient", listOfPatients.get(0));*/
         return "patient/exportView";
     }
 
@@ -620,10 +617,10 @@ public class PatientController {
         exportParams.setName(exportName);
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
-        exportParams.setUserID(userService.findUserByUsername(auth.getName())
+        exportParams.setUserID(userService.getUserByUsername(auth.getName())
                 .getId());
         exportParams.setGeneric(isGeneric);
-        exportParamsService.save(exportParams);
+       // exportParamsService.save(exportParams);
 
         return "redirect:/patient/" + patient[0] + "/export";
     }
@@ -639,12 +636,12 @@ public class PatientController {
         if (logger.getLogger() == null)
             logger.setLogger(PatientController.class);
 
-        ExportParamsEntity exportParams = exportParamsService.findByID(
+      /*  ExportParamsEntity exportParams = exportParamsService.findByID(
                 ExportParamsEntity.class, exportID);
 
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
-        UserEntity user = userService.findUserByUsername(auth.getName());
+        UserEntity user = userService.getUserByUsername(auth.getName());
 
         model.addAttribute("exportParams", exportParams);
 
@@ -672,14 +669,14 @@ public class PatientController {
         model.addAttribute("listOfUsersSavedConfigurations",
                 listOfUsersSavedConfigurations);
         model.addAttribute("user", user);
-        model.addAttribute("patient", /* patientService.delete( */
-                patientService.findByID(PatientEntity.class, patientID[0]))/* ) */;
+        model.addAttribute("patient",
+                patientService.findByID(PatientEntity.class, patientID[0]));
         List<PatientEntity> patientList = new ArrayList<PatientEntity>();
         for (Integer patient : patientID) {
             patientList.add(patientService.getPatientByIdWithAllLists(patient));
         }
 
-        model.addAttribute("patientList", patientList);
+        model.addAttribute("patientList", patientList);*/
         return "patient/exportView";
     }
 
@@ -690,8 +687,8 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        exportParamsService.delete(exportParamsService.findByID(
-                ExportParamsEntity.class, exportId));
+     /*  exportParamsService.delete(exportParamsService.findByID(
+                ExportParamsEntity.class, exportId));*/
         return "redirect:/patient/" + patientId[0] + "/export";
     }
 }

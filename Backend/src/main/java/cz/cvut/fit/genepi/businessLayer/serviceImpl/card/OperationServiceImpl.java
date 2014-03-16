@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
@@ -8,21 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OperationServiceImpl
-        extends GenericCardServiceImpl<OperationVO, OperationEntity>
+        extends GenericCardServiceImpl<OperationDisplayVO,OperationVO, OperationEntity>
         implements OperationService {
 
-    @Override
-    @Transactional
-    public void hide(int operationId) {
-        OperationEntity entity = genericDAO.findByID(OperationEntity.class, operationId);
-        entity.setHidden(true);
-        genericDAO.save(entity);
-    }
-
-    @Transactional
-    public void unhide(int operationId) {
-        OperationEntity entity = genericDAO.findByID(OperationEntity.class, operationId);
-        entity.setHidden(false);
-        genericDAO.save(entity);
-    }
 }

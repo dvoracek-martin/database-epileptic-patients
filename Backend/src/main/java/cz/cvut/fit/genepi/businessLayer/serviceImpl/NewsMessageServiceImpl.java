@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.NewsMessageVO;
 import cz.cvut.fit.genepi.businessLayer.service.NewsMessageService;
 import cz.cvut.fit.genepi.dataLayer.DAO.NewsMessageDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
@@ -13,13 +14,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class NewsMessageServiceImpl extends
-        GenericServiceImpl<NewsMessageEntity> implements
+        GenericServiceImpl<NewsMessageVO,NewsMessageEntity> implements
         NewsMessageService {
-
-    /**
-     * The news message dao.
-     */
-    @Autowired
-    private NewsMessageDAO newsMessageDAO;
 
 }

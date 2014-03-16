@@ -1,11 +1,9 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.OperationVO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 
-public interface OperationService extends GenericCardService<OperationVO, OperationEntity> {
+public interface OperationService extends GenericCardService<OperationDisplayVO,OperationVO, OperationEntity> {
 
-    public void hide(int operationId);
-
-    public void unhide(int operationId);
 }

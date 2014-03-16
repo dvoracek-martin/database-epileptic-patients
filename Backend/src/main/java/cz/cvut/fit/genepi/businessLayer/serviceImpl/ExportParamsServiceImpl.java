@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportParamsService;
 import cz.cvut.fit.genepi.dataLayer.DAO.ExportParamsDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -12,9 +13,10 @@ import java.util.List;
 import java.util.Locale;
 
 @Service
-public class ExportParamsServiceImpl extends
-        GenericServiceImpl<ExportParamsEntity> implements
-        ExportParamsService {
+public class ExportParamsServiceImpl
+        extends GenericServiceImpl<ExportParamsVO, ExportParamsEntity>
+        implements ExportParamsService {
+
     @Autowired
     private MessageSource messageSource;
 

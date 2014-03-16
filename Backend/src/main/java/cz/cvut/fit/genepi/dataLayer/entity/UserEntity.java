@@ -36,8 +36,8 @@ public class UserEntity {
     @Column(name = "PASSWORD", precision = 128)
     private String password;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<PatientEntity> patients;
+   /* @OneToMany(fetch = FetchType.LAZY)
+    private Set<PatientEntity> patients;*/
 
     @Column(name = "HIDDEN")
     private boolean hidden;
@@ -138,7 +138,7 @@ public class UserEntity {
         this.roles = roles;
     }
 
-    public List<PatientEntity> getPatients() {
+    /*public List<PatientEntity> getPatients() {
         CollectionConverter<PatientEntity> converter = new CollectionConverter<>();
         return converter.toList(this.patients);
     }
@@ -151,7 +151,7 @@ public class UserEntity {
     public void setPatients(Set<PatientEntity> patients) {
         this.patients = patients;
     }
-
+*/
     public boolean isHidden() {
         return hidden;
     }

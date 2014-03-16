@@ -10,7 +10,7 @@ import java.util.Locale;
 /**
  * The Interface UserService extends GenericService
  */
-public interface UserService extends GenericService<UserEntity> {
+public interface UserService extends GenericService<UserVO, UserEntity> {
 
     /**
      * Find user by username.
@@ -18,14 +18,9 @@ public interface UserService extends GenericService<UserEntity> {
      * @param username the username
      * @return the user entity
      */
-    public UserEntity findUserByUsername(String username);
+    public UserEntity getUserByUsername(String username);
 
-    /**
-     * Gets the doctors.
-     *
-     * @return the doctors
-     */
-    public List<UserEntity> getDoctors();
+    public UserEntity getUserByEmail(String email);
 
     /**
      * creates new user with his locale
@@ -35,23 +30,22 @@ public interface UserService extends GenericService<UserEntity> {
      */
     public int create(UserVO user, Locale locale);
 
-    public UserEntity findUserByEmail(String email);
-
-    public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
-
     public boolean isUniqueUsername(String username);
 
     public boolean isUniqueEmail(String email);
 
-    public void hide(Integer userId);
+    public boolean isMineOrUniqueUsername(int userId, String username);
+
+    public boolean isMineOrUniqueEmail(int userId, String email);
 
     public List<UserDisplayVO> findAllNonHidden();
 
     public void changePassword(UserVO user);
 
-    public UserVO findById(int userId);
+    public void hide(int userId);
 
-    public boolean isMineOrUniqueUsername(int userId,String username);
+    public void revokeRoles(int userId);
 
-    public boolean isMineOrUniqueEmail(int userId,String email);
+    //public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
+
 }

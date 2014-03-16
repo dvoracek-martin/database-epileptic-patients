@@ -1,39 +1,19 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.DAO.card.AnamnesisDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-// TODO: Auto-generated Javadoc
 
 /**
  * The Class AnamnesisServiceImpl.
  */
 @Service
 public class AnamnesisServiceImpl
-        extends GenericCardServiceImpl<AnamnesisVO, AnamnesisEntity>
+        extends GenericCardServiceImpl<AnamnesisDisplayVO,AnamnesisVO, AnamnesisEntity>
         implements AnamnesisService {
 
-    @Override
-    @Transactional
-    public void hide(int anamnesisId) {
-        AnamnesisEntity entity = genericDAO.findByID(AnamnesisEntity.class, anamnesisId);
-        entity.setHistory(true);
-        genericDAO.save(entity);
-    }
-
-    @Transactional
-    public void unhide(int anamnesisId) {
-        AnamnesisEntity entity = genericDAO.findByID(AnamnesisEntity.class, anamnesisId);
-        entity.setHistory(false);
-        genericDAO.save(entity);
-    }
-
-   /* @Override
-    @Transactional
-    public List<AnamnesisEntity> findAllHidden() {
-        return anamnesisDAO.findAllHidden();
-    }*/
 }

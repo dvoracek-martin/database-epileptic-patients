@@ -21,12 +21,13 @@ public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity>
      * @see cz.cvut.fit.genepi.DAO.SeizureDAO#findAnamnesisByPatientID(int)
      */
     @Override
+    @SuppressWarnings("unchecked")
     public List<SeizureEntity> findAnamnesisByPatientID(int patientId) {
         List<SeizureEntity> seizureEntities = new ArrayList<SeizureEntity>();
         Query query = sessionFactory.getCurrentSession()
                 .createQuery("from SeizureEntity where patientId = :patient_id");
         query.setParameter("patient_id", patientId);
-        seizureEntities = findMany(query);
+        seizureEntities = (List<SeizureEntity>) query.list();
 
         return seizureEntities;
     }

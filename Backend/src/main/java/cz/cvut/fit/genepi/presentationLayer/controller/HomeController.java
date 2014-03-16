@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.NewsMessageDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.NewsMessageVO;
 import cz.cvut.fit.genepi.businessLayer.service.NewsMessageService;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
@@ -24,6 +26,7 @@ import java.util.Locale;
  */
 @Controller
 public class HomeController {
+
     @Autowired
     AuthorizationChecker authorizationChecker;
 
@@ -36,24 +39,22 @@ public class HomeController {
     /**
      * Handles the request to access home page.
      *
-     * @param locale the user's locale.
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String homeGET(Locale locale, Model model, HttpServletRequest request) {
+    public String homeGET(Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
         // TODO: overide findAll rto return reverted news list
-        List<NewsMessageEntity> newsMessages = newsMessageService
-                .findAll(NewsMessageEntity.class);
+        /*List<NewsMessageDisplayVO> newsMessages = newsMessageService.getAll(NewsMessageDisplayVO.class, NewsMessageEntity.class);
         Collections.reverse(newsMessages);
         model.addAttribute("newsMessages", newsMessages);
         model.addAttribute("patientList",
                 newsMessageService.findAll(NewsMessageEntity.class));
-        model.addAttribute("emptyMessage", new NewsMessageEntity());
+        model.addAttribute("emptyMessage", new NewsMessageEntity());*/
         return "homeView";
     }
 
@@ -80,13 +81,13 @@ public class HomeController {
         }
         if (result.hasErrors()) {
             // TODO: override findAll to return reverted news list
-            List<NewsMessageEntity> newsMessages = newsMessageService
+          /*  List<NewsMessageEntity> newsMessages = newsMessageService
                     .findAll(NewsMessageEntity.class);
             Collections.reverse(newsMessages);
-            model.addAttribute("newsMessages", newsMessages);
+            model.addAttribute("newsMessages", newsMessages);*/
             return "homeView";
         }
-        newsMessageService.save(newsMessage);
+      //  newsMessageService.save(newsMessage);
         return "redirect:/";
     }
 
@@ -116,17 +117,17 @@ public class HomeController {
 
         if (result.hasErrors()) {
             // TODO: override findAll to return reverted news list
-            List<NewsMessageEntity> newsMessages = newsMessageService
+           /* List<NewsMessageEntity> newsMessages = newsMessageService
                     .findAll(NewsMessageEntity.class);
             Collections.reverse(newsMessages);
-            model.addAttribute("newsMessages", newsMessages);
+            model.addAttribute("newsMessages", newsMessages);*/
             return "homeView";
         }
 
-        NewsMessageEntity realNewsMessage = newsMessageService.findByID(
+       /* NewsMessageEntity realNewsMessage = newsMessageService.findByID(
                 NewsMessageEntity.class, newsMessageID);
         realNewsMessage.setMessage(formNewsMessage.getMessage());
-        newsMessageService.save(realNewsMessage);
+        newsMessageService.save(realNewsMessage);*/
         return "redirect:/";
     }
 
@@ -145,8 +146,8 @@ public class HomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        newsMessageService.delete(newsMessageService.findByID(
-                NewsMessageEntity.class, newsMessageID));
+     /*   newsMessageService.delete(newsMessageService.findByID(
+                NewsMessageEntity.class, newsMessageID));*/
         return "redirect:/";
     }
 }

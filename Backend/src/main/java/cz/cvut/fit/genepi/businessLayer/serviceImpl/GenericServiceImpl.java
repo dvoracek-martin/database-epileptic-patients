@@ -2,104 +2,78 @@ package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import cz.cvut.fit.genepi.businessLayer.service.GenericService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
-import org.hibernate.Query;
+import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * The Class GenericServiceImpl.
- *
- * @param <T> the generic type
- */
 @Service
-public class GenericServiceImpl<T> implements GenericService<T> {
+public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity> {
 
     /**
      * The generic dao.
      */
     @Autowired
     @Qualifier("genericDAOImpl")
-    protected GenericDAO<T> genericDAO;
+    protected GenericDAO<Entity> genericDAO;
 
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#save(java.lang.Object)
-     */
+    @Autowired
+    protected Mapper dozer;
+
+
     @Override
     @Transactional
-    public void save(T entity) {
-        genericDAO.save(entity);
+    public int save(VO vo, Class<Entity> entityClass) {
+        Entity entity = dozer.map(vo, entityClass);
+        return genericDAO.save(entity);
     }
 
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#merge(java.lang.Object)
-     */
     @Override
     @Transactional
-    public void merge(T entity) {
-        genericDAO.merge(entity);
+    public VO getById(int id, Class<VO> voClass, Class<Entity> entityClass) {
+        Entity entity = genericDAO.findByID(entityClass, id);
+        return dozer.map(entity, voClass);
     }
 
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#delete(java.lang.Object)
-     */
     @Override
     @Transactional
-    public void delete(T entity) {
+    public void update(VO vo, Class<Entity> entityClass) {
+        Entity entity = dozer.map(vo, entityClass);
+        genericDAO.update(entity);
+    }
+
+    @Override
+    @Transactional
+    public void delete(int id, Class<Entity> entityClass) {
+        Entity entity = genericDAO.findByID(entityClass, id);
         genericDAO.delete(entity);
     }
 
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#findMany(org.hibernate.Query)
-     */
     @Override
     @Transactional
-    public List<T> findMany(Query query) {
-        return genericDAO.findMany(query);
+    @SuppressWarnings("unchecked")
+    public List<VO> getAll(Class<VO> voClass, Class<Entity> entityClass) {
+        List<Entity> entityList = genericDAO.findAll(entityClass);
+        List<VO> voList = new ArrayList<>();
+        for (Entity entity : entityList) {
+            VO vo = dozer.map(entity, voClass);
+            voList.add(vo);
+        }
+        return voList;
     }
 
 
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#findOne(org.hibernate.Query)
-     */
-    @Override
-    @Transactional
-    public T findOne(Query query) {
-        return genericDAO.findOne(query);
-    }
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#findAll(java.lang.Class)
-     */
-    @Override
-    @Transactional
-    public List<T> findAll(Class<T> myClass) {
-        return genericDAO.findAll(myClass);
-    }
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#findAll(java.lang.Class)
-     */
+/*
     @Override
     @Transactional
     public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
         return genericDAO.findAllWithPagination(myClass, maxResults, pageNumber);
     }
 
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.GenericService#findByID(java.lang.Class, int)
-     */
-    @Override
-    @Transactional
-    public T findByID(Class<T> myClass, int id) {
-        return genericDAO.findByID(myClass, id);
-    }
 
     @Override
     @Transactional
@@ -118,5 +92,5 @@ public class GenericServiceImpl<T> implements GenericService<T> {
     public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
                                             int pageNumber, List<String> parameters, String name) {
         return genericDAO.findByNameWithPagination(myClass, maxResults, pageNumber, parameters, name);
-    }
+    }*/
 }

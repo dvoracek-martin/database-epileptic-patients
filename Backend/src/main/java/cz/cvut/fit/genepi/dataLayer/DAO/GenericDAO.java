@@ -1,68 +1,36 @@
 package cz.cvut.fit.genepi.dataLayer.DAO;
 
-import org.hibernate.Query;
-
 import java.util.List;
 
 /**
  * The Interface GenericDAO.
  *
- * @param <T> the generic type
+ * @param <Entity> the generic type
  */
-public interface GenericDAO<T> {
+public interface GenericDAO<Entity> {
 
     /**
      * Save.
      *
      * @param entity the entity
      */
-    public void save(T entity);
+    public int save(Entity entity);
+
+    public Entity getById(int id, Class<Entity> entityClass);
 
     /**
-     * Merge.
+     * update.
      *
      * @param entity the entity
      */
-    public void merge(T entity);
+    public void update(Entity entity);
 
     /**
      * Delete.
      *
      * @param entity the entity
      */
-    public void delete(T entity);
-
-    /**
-     * Find many.
-     *
-     * @param query the query
-     * @return the list
-     */
-    public List<T> findMany(Query query);
-
-    /**
-     * Find one.
-     *
-     * @param query the query
-     * @return the t
-     */
-    public T findOne(Query query);
-
-    /**
-     * get count
-     *
-     * @param myClass the my class
-     * @return int
-     */
-    public int getCount(Class<T> myClass);
-
-    /**
-     * get count of unhidden
-     *
-     * @param myClass the my class
-     * @return int
-     */
-    public int getCountOfUnhidden(Class<T> myClass, String searchString);
+    public void delete(Entity entity);
 
     /**
      * Find all.
@@ -70,7 +38,25 @@ public interface GenericDAO<T> {
      * @param myClass the my class
      * @return the list
      */
-    public List<T> findAll(Class<T> myClass);
+    public List<Entity> findAll(Class<Entity> myClass);
+
+
+    /**
+     * get count
+     *
+     * @param myClass the my class
+     * @return int
+     */
+    public int getCount(Class<Entity> myClass);
+
+    /**
+     * get count of unhidden
+     *
+     * @param myClass the my class
+     * @return int
+     */
+    public int getCountOfUnhidden(Class<Entity> myClass, String searchString);
+
 
     /**
      * Find by id.
@@ -79,18 +65,18 @@ public interface GenericDAO<T> {
      * @param id      the id
      * @return the t
      */
-    public T findByID(Class<T> myClass, int id);
+    public Entity findByID(Class<Entity> myClass, int id);
 
     /**
-     * The same as findAll(Class<T> myClass), but this method can paginate the
+     * The same as findAll(Class<Entity> myClass), but this method can paginate the
      * results
      *
      * @param myClass the my class
      * @return the list
      */
-    public List<T> findAllWithPagination(Class<T> myClass, int maxResults,
-                                         int pageNumber);
+    public List<Entity> findAllWithPagination(Class<Entity> myClass, int maxResults,
+                                              int pageNumber);
 
-    public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
-                                            int pageNumber, List<String> parameters, String name);
+    public List<Entity> findByNameWithPagination(Class<Entity> myClass, int maxResults,
+                                                 int pageNumber, List<String> parameters, String name);
 }

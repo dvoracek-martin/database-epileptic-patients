@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
@@ -8,12 +10,12 @@ import java.util.List;
 /**
  * The Interface RoleService extends GenericService
  */
-public interface RoleService extends GenericService<RoleEntity> {
+public interface RoleService extends GenericService<RoleVO, RoleEntity> {
 
     /**
      * Finds all users, that are doctors
      *
      * @return List of UserEntity
      */
-    public List<UserEntity> getAllDoctors();
+    public List<UserDisplayVO> getAllDoctors();
 }

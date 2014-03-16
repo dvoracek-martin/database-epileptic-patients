@@ -3,14 +3,12 @@ package cz.cvut.fit.genepi.dataLayer.DAOImpl;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
-import org.hibernate.Query;
-import org.hibernate.Session;
+import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -71,7 +69,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         + " AND ((seList.hidden = false AND seList.history = false) OR seList = NULL)"
                         + " AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/);
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -91,7 +89,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "FROM PatientEntity p LEFT JOIN FETCH p.doctor LEFT JOIN FETCH p.anamnesisList aList"
                                 + " WHERE p.id = :patientId");// AND ((aList.history = false) OR aList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -108,7 +106,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "from PatientEntity p left join fetch p.doctor left join fetch p.complicationList cList"
                                 + " where p.id = :patientId");//" AND ((cList.hidden = false AND cList.history = false) OR cList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -126,7 +124,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEegList dtseList"
                                 + " where p.id = :patientId");// AND ((dtseList.hidden = false AND dtseList.history = false) OR dtseList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -143,7 +141,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestMRIList dtmList"
                                 + " where p.id = :patientId");// AND ((dtmList.hidden = false AND dtmList.history = false) OR dtmList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     @Override
@@ -154,7 +152,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.histologyList hList"
                                 + " where p.id = :patientId");//AND ((hList.hidden = false AND hList.history = false) OR hList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -172,7 +170,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList itcmList"
                                 + " where p.id = :patientId");//AND ((itcmList.hidden = false AND itcmList.history = false) OR itcmList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     @Override
@@ -183,7 +181,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestECOGList iteList"
                                 + " where p.id = :patientId");//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -200,7 +198,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestEEGList iteList"
                                 + " where p.id = :patientId");//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -210,29 +208,15 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
      * getPatientByIdWithNeurologicalFindingList(int)
      */
     @Override
+    @Transactional
     public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
-
-       /*
-       DO NOT DELETE - FILTER EXAMPLE
-       Session session = sessionFactory
-                .getCurrentSession();
-        session.enableFilter("neurologicalFindingListNoHidden");
-        session.enableFilter("neurologicalFindingListNoHistory");
-        Query query = session
-                .createQuery(
-                        "from PatientEntity p left join fetch p.doctor left join fetch p.neurologicalFindingList"
-                                + " where p.id = :patientId");
-        query.setParameter("patientId", patientId);
-
-        return this.findOne(query);*/
-
       /*  Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "FROM PatientEntity patient LEFT JOIN FETCH patient.doctor LEFT JOIN FETCH patient.neurologicalFindingList nfList"
                                 + " WHERE patient.id = :patientId");//AND ((nfList.hidden = false AND nfList.history = false) OR nfList = NULL)");
         query.setParameter("patientId", patientId);
-        PatientEntity patient = this.findOne(query);*/
+        PatientEntity patient = (PatientEntity) query.uniqueResult();*/
 
 
        Criteria criteria = sessionFactory.getCurrentSession()
@@ -240,7 +224,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
         criteria.setFetchMode("doctor", FetchMode.JOIN);
        // criteria.setFetchMode("contact", FetchMode.JOIN);
-       // criteria.setFetchMode("neurologicalFindingList", FetchMode.JOIN);
+        criteria.setFetchMode("neurologicalFindingList", FetchMode.JOIN);
         criteria.add(Restrictions.eq("id", patientId));
 
         PatientEntity patient = (PatientEntity) criteria.uniqueResult();
@@ -262,7 +246,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList nList"
                                 + " where p.id = :patientId");//AND ((nList.hidden = false AND nList.history = false) OR nList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -279,7 +263,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyOldList noList"
                                 + " where p.id = :patientId");//AND ((noList.hidden = false AND noList.history = false) OR noList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -297,7 +281,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList oList"
                                 + " where p.id = :patientId");//AND ((oList.hidden = false AND oList.history = false) OR oList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     @Override
@@ -308,7 +292,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList left join fetch p.operationList"//TODO:join outcomes
                                 + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
 
@@ -327,7 +311,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.outcomeList"
                                 + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -344,7 +328,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.pharmacotherapyList pList"
                                 + " where p.id = :patientId");//AND ((pList.hidden = false AND pList.history = false) OR pList = NULL)");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -365,7 +349,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                                 " AND ((sList.hidden = false AND sList.history = false) OR sList = NULL)" +
                                 "AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/);
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     /*
@@ -530,7 +514,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         "select p from PatientEntity p left join fetch p.doctor"
                                 + " where p.id = :patientId");
         query.setParameter("patientId", patientId);
-        return this.findOne(query);
+        return (PatientEntity) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")

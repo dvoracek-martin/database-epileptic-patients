@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 public class UserVO {
 
@@ -26,6 +27,8 @@ public class UserVO {
      */
     @Valid
     private UserContactVO contact;
+
+    private List<RoleVO> roles;
 
     /* getters and setters */
 
@@ -67,5 +70,13 @@ public class UserVO {
 
     public void setContact(UserContactVO contact) {
         this.contact = contact;
+    }
+
+    public List<RoleVO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleVO> roles) {
+        this.roles = roles;
     }
 }

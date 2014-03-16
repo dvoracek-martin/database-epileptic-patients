@@ -5,15 +5,8 @@ import cz.cvut.fit.genepi.util.CollectionConverter;
 import cz.cvut.fit.genepi.util.Sorter;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-import org.hibernate.validator.constraints.NotBlank;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -25,9 +18,6 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "patient")
-/*@FilterDefs({@FilterDef(name = "neurologicalFindingListNoHidden"),
-        @FilterDef(name = "neurologicalFindingListNoHistory")
-})*/
 public class PatientEntity {
 
     /**

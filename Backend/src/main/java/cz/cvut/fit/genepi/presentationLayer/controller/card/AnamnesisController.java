@@ -2,17 +2,12 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Locale;
 
 /**
  * This class is a controller class which handles requests connected with
@@ -30,6 +23,7 @@ import java.util.Locale;
 @Controller
 @SessionAttributes({"anamnesis"})
 public class AnamnesisController {
+
     @Autowired
     AuthorizationChecker authorizationChecker;
 
@@ -43,7 +37,6 @@ public class AnamnesisController {
      */
     private AnamnesisService anamnesisService;
 
-    private UserService userService;
 
     /**
      * Constructor which serves to autowire services.
@@ -63,13 +56,13 @@ public class AnamnesisController {
      * Handles the GET request to access page for creating new anamnesis.
      *
      * @param patientId the id of a patient whom we are creating an anamnesis.
-     * @param locale    the user's locale.
      * @param model     the model to be filled for view.
      * @return the name of a view to be rendered.
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.GET)
     public String anamnesisCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -91,20 +84,20 @@ public class AnamnesisController {
      * Handles the GET request to access page for editing anamnesis.
      *
      * @param patientId the id of a patient whom we are editing an anamnesis.
-     * @param locale    the user's locale.
      * @param model     the model to be filled for view.
      * @return the name of a view to be rendered.
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.GET)
     public String anamnesisEditGET(
-            @PathVariable("patientId") Integer patientId,
+            @PathVariable("patientId") int patientId,
             @PathVariable("anamnesisId") Integer anamnesisId,
-            Locale locale, Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", anamnesisService.getById(AnamnesisVO.class, AnamnesisEntity.class, anamnesisId));
+        model.addAttribute("anamnesis", anamnesisService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
         return "patient/anamnesis/formView";
     }
 
@@ -117,7 +110,6 @@ public class AnamnesisController {
      *                  AnamnesisEntity. It is used to determine if there were some
      *                  errors during binding.
      * @param patientId the id of a patient whom we are creating an anamnesis.
-     * @param locale    the user's locale.
      * @param model     the model to be filled for view.
      * @return the name of a view to be rendered if the binding has errors
      * otherwise, the address to which the user will be redirected.
@@ -125,8 +117,9 @@ public class AnamnesisController {
     @RequestMapping(value = "/patient/{patientId}/anamnesis/save", method = RequestMethod.POST)
     public String anamnesisSavePOST(
             @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
-            @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -134,25 +127,15 @@ public class AnamnesisController {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/anamnesis/formView";
         } else {
-            Authentication auth = SecurityContextHolder.getContext()
-                    .getAuthentication();
-            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
-            boolean isSuperdoctor = false;
-            for (GrantedAuthority r : roles) {
-                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
-                    isSuperdoctor = true;
-                    break;
-                }
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
             }
-            if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
-            anamnesis.setPatientId(patientId);
-            anamnesisService.save(AnamnesisEntity.class, anamnesis);
+            anamnesisService.save(anamnesis, AnamnesisEntity.class);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
 
-    @RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisId}/delete", method = RequestMethod.GET)
+  /*  @RequestMapping(value = "/patient/{patientID}/anamnesis/{anamnesisId}/delete", method = RequestMethod.GET)
     public String anamnesisDeleteGET(
             @PathVariable("patientID") Integer patientID,
             @PathVariable("anamnesisId") Integer anamnesisId,
@@ -162,7 +145,7 @@ public class AnamnesisController {
         }
         anamnesisService.delete(AnamnesisEntity.class, anamnesisId);
         return "redirect:/hidden";
-    }
+    }*/
 
     /**
      * Handles the GET request to hide anamnesis.
@@ -221,13 +204,12 @@ public class AnamnesisController {
      * Handles the GET request to access page for listing anamnesis.
      *
      * @param patientId the id of a patient whose anamnesis we are listing.
-     * @param locale    the user's locale.
      * @param model     the model to be filled for view.
      * @return the name of a view to be rendered.
      */
     @RequestMapping(value = "/patient/{patientId}/anamnesis/list", method = RequestMethod.GET)
     public String anamnesisListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

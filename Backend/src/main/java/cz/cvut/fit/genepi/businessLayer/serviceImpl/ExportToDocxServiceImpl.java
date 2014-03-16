@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import com.lowagie.text.Paragraph;
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -3057,7 +3058,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isPatientDoctorId()) {
             content.add(messageSource.getMessage("label.assignedDoctor",
-                    null, locale) + delimiter + translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale));
+                    null, locale) + delimiter + translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale));
         }
 
         content.add(messageSource.getMessage("label.dateOfExport",
@@ -3148,7 +3149,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isPatientDoctorId()) {
             content.add(messageSource.getMessage("label.assignedDoctor", null, locale));
-            content.add(translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale));
+            content.add(translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale));
         }
 
         content.add(messageSource.getMessage("label.dateOfExport", null, locale));

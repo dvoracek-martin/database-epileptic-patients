@@ -2,18 +2,14 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.OutcomeVO;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,9 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
 import java.util.Locale;
 
+//TODO: revision
 @Controller
 @SessionAttributes({"outcome", "operation"})
 public class OutcomeController {
@@ -48,10 +44,11 @@ public class OutcomeController {
 
     @RequestMapping(value = "/patient/{patientId}/outcome/create", method = RequestMethod.GET)
     public String outcomeCreateGET(
-            @PathVariable("patientId") Integer patientId,
-            @RequestParam("distance") Integer distance,
-            @RequestParam("operation") Integer operation,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @RequestParam("distance") int distance,
+            @RequestParam("operation") int operation,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -64,13 +61,14 @@ public class OutcomeController {
 
     @RequestMapping(value = "/patient/{patientId}/outcome/{outcomeId}/edit", method = RequestMethod.GET)
     public String outcomeEditGET(
-            @PathVariable("patientId") Integer patientId,
-            @PathVariable("outcomeId") Integer outcomeId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @PathVariable("outcomeId") int outcomeId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        OutcomeVO outcomeVO = outcomeService.getById(OutcomeVO.class, OutcomeEntity.class, outcomeId);
+        OutcomeVO outcomeVO = outcomeService.getById(outcomeId, OutcomeVO.class, OutcomeEntity.class);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("outcome", outcomeVO);
         model.addAttribute("distance", outcomeVO.getDistance());
@@ -88,10 +86,11 @@ public class OutcomeController {
     @RequestMapping(value = "/patient/{patientId}/outcome/save", method = RequestMethod.POST)
     public String outcomeSavePOST(
             @ModelAttribute("outcome") @Valid OutcomeVO outcome, BindingResult result,
-            @PathVariable("patientId") Integer patientId,
-            @RequestParam("distance") Integer distance,
-            @RequestParam("operationId") Integer operationId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @RequestParam("distance") int distance,
+            @RequestParam("operationId") int operationId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -100,21 +99,12 @@ public class OutcomeController {
             model.addAttribute("distance", distance);
             return "patient/outcome/formView";
         } else {
-            Authentication auth = SecurityContextHolder.getContext()
-                    .getAuthentication();
-            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
-            boolean isSuperdoctor = false;
-            for (GrantedAuthority r : roles) {
-                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
-                    isSuperdoctor = true;
-                    break;
-                }
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
             }
-            if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
             outcome.setDistance(distance);
             outcome.setPatientId(patientId);
-            outcomeService.save(OutcomeEntity.class, outcome);
+            outcomeService.save(outcome, OutcomeEntity.class);
             return "redirect:/patient/" + patientId + "/outcome/list";
         }
     }

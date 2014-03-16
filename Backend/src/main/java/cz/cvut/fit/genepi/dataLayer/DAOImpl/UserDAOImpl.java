@@ -15,7 +15,7 @@ import java.util.List;
 public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
 
     /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.DAO.UserDAO#findUserByUsername(java.lang.String)
+     * @see cz.cvut.fit.genepi.DAO.UserDAO#getUserByUsername(java.lang.String)
      */
     @Override
     public UserEntity findUserByUsername(String username) {
@@ -25,7 +25,7 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
                 .createQuery("from UserEntity where username = :user_name")
                 .setParameter("user_name", username);
 
-        return findOne(query);
+        return (UserEntity) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
@@ -46,13 +46,14 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
      */
     //TODO really strange method!!!
     @Override
+    @SuppressWarnings("unchecked")
     public List<UserEntity> getDoctors() {
 
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery("from UserEntity where username = :user_name");
 
-        return findMany(query);
+        return (List<UserEntity>) query.list();
     }
 
     @Override
@@ -63,7 +64,7 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
                 .createQuery("from UserEntity where contact.email = :email")
                 .setParameter("email", email);
 
-        return findOne(query);
+        return (UserEntity) query.uniqueResult();
     }
 
     @Override
@@ -75,12 +76,22 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public List<UserEntity> findAllNonHidden() {
 
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery("from UserEntity where hidden = false ORDER BY username");
 
-        return findMany(query);
+        return (List<UserEntity>) query.list();
+    }
+
+    @Override
+    public void hide(int userId) {
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery("UPDATE UserEntity SET hidden = true WHERE id = :userId");
+        query.setParameter("userId", userId);
+        query.executeUpdate();
     }
 }

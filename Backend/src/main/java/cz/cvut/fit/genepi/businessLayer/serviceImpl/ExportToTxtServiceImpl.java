@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToTxtService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -1818,7 +1819,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
             content += messageSource.getMessage("label.assignedDoctor", null, locale);
             content += " - ";
-            content += translateComment(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale);
+            content += translateComment(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale);
             content += "\n";
 
             content += messageSource.getMessage("label.dateOfExport", null, locale);

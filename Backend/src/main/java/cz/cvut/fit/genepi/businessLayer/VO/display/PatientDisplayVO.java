@@ -4,9 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
 
 import java.util.List;
 
-/**
- * Created by Jan on 20.1.14.
- */
+
 public class PatientDisplayVO {
 
     private int id;
@@ -29,8 +27,8 @@ public class PatientDisplayVO {
 
     private ContactDisplayVO contact;
 
-    private List<AnamnesisDisplayVO> anamnesisList;
-
+   private List<AnamnesisDisplayVO> anamnesisList;
+/*
     private List<SeizureDisplayVO> seizureList;
 
     private List<PharmacotherapyDisplayVO> pharmacotherapyList;
@@ -57,7 +55,7 @@ public class PatientDisplayVO {
 
     private List<ComplicationDisplayVO> complicationList;
 
-    private List<OutcomeDisplayVO> outcomeList;
+    private List<OutcomeDisplayVO> outcomeList;*/
 
     public int getId() {
         return id;
@@ -122,7 +120,7 @@ public class PatientDisplayVO {
     public void setAnamnesisList(List<AnamnesisDisplayVO> anamnesisList) {
         this.anamnesisList = anamnesisList;
     }
-
+/*
     public List<SeizureDisplayVO> getSeizureList() {
         return seizureList;
     }
@@ -234,7 +232,7 @@ public class PatientDisplayVO {
     public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
         this.outcomeList = outcomeList;
     }
-
+*/
     public boolean isVerified() {
         return verified;
     }

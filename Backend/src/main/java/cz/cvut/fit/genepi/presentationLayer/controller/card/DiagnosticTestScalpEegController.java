@@ -2,17 +2,12 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestScalpEegVO;
-import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
-import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Locale;
 
 @Controller
 @SessionAttributes({"diagnosticTestScalpEeg"})
@@ -33,8 +26,6 @@ public class DiagnosticTestScalpEegController {
 
     private DiagnosticTestScalpEegService diagnosticTestScalpEegService;
 
-    private UserService userService;
-
     @Autowired
     public DiagnosticTestScalpEegController(PatientService patientService,
                                             DiagnosticTestScalpEegService diagnosticTestScalpEegService) {
@@ -45,7 +36,8 @@ public class DiagnosticTestScalpEegController {
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.GET)
     public String diagnosticTestScalpEegCreateGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -56,14 +48,15 @@ public class DiagnosticTestScalpEegController {
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.GET)
     public String diagnosticTestScalpEegEditGET(
-            @PathVariable("patientId") Integer patientId,
-            @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegService.getById(DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId));
+        model.addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class));
         return "patient/diagnosticTestScalpEeg/formView";
     }
 
@@ -76,42 +69,33 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/save", method = RequestMethod.POST)
     public String diagnosticTestScalpEegSavePOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
-            @PathVariable("patientId") Integer patientId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/diagnosticTestScalpEeg/formView";
         } else {
-            Authentication auth = SecurityContextHolder.getContext()
-                    .getAuthentication();
-            List<GrantedAuthority> roles = (List<GrantedAuthority>) auth.getAuthorities();
-            boolean isSuperdoctor = false;
-            for (GrantedAuthority r : roles) {
-                if (r.getAuthority().equals("ROLE_SUPER_DOCTOR")) {
-                    isSuperdoctor = true;
-                    break;
-                }
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
             }
-            if (!isSuperdoctor)
-                patientService.findByID(PatientEntity.class, patientId).setVerified(false);
-            diagnosticTestScalpEeg.setPatientId(patientId);
-            diagnosticTestScalpEegService.save(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEeg);
+            diagnosticTestScalpEegService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
             return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
         }
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/delete", method = RequestMethod.GET)
     public String diagnosticTestScalpEegDeleteGET(
-            @PathVariable("patientId") Integer patientId,
-            @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
+            HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestScalpEegService.delete(DiagnosticTestScalpEegEntity.class, diagnosticTestScalpEegId);
+        diagnosticTestScalpEegService.delete(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
@@ -120,21 +104,18 @@ public class DiagnosticTestScalpEegController {
      *
      * @param patientId the id of a patient whom we are creating an
      *                  diagnosticTestScalpEeg.
-     * @param locale    the user's locale.
-     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/hide", method = RequestMethod.GET)
     public String diagnosticTestScalpEegHideGET(
-            @PathVariable("patientId") Integer patientId,
-            @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
-            Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
+            HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
-        diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId);
+        diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
@@ -143,34 +124,26 @@ public class DiagnosticTestScalpEegController {
      *
      * @param patientId the id of a patient whom we are creating an
      *                  diagnosticTestScalpEeg.
-     * @param locale    the user's locale.
-     * @param model     the model to be filled for view.
      * @return the address to which the user will be redirected.
      */
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/unhide", method = RequestMethod.GET)
     public String diagnosticTestScalpEegUnhideGET(
             @PathVariable("patientId") Integer patientId,
             @PathVariable("diagnosticTestScalpEegId") Integer diagnosticTestScalpEegId,
-            Locale locale, Model model, HttpServletRequest request) {
+            HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestScalpEegService.unhide(diagnosticTestScalpEegId);
+        diagnosticTestScalpEegService.unhide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
     }
 
-    /*@RequestMapping(value = "/patient/{patientID}/diagnosticTestScalpEEG/{diagnosticTestScalpEEGID}/export", method = RequestMethod.GET)
-    public String diagnosticTestScalpEEGExportGET(Locale locale, Model model,
-                                                  @PathVariable("patientID") Integer patientID,
-                                                  @PathVariable("diagnosticTestScalpEEGID") Integer diagnosticTestScalpEEGID) {
-        return "redirect:/patient/" + patientID + "/diagnosticTestScalpEEG/list";
-    }*/
-
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/list", method = RequestMethod.GET)
     public String diagnosticTestScalpEegListGET(
-            @PathVariable("patientId") Integer patientId, Locale locale, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";

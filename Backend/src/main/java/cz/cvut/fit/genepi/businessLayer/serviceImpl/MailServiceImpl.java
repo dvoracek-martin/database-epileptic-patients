@@ -38,28 +38,6 @@ public class MailServiceImpl implements MailService {
     private static final Logger logger = LoggerFactory
             .getLogger(MailServiceImpl.class);
 
-    /**
-     * The Message type.
-     */
-    private String MessageType;
-
-    /**
-     * Gets the message type.
-     *
-     * @return the message type
-     */
-    public String getMessageType() {
-        return MessageType;
-    }
-
-    /**
-     * Sets the message type.
-     *
-     * @param messageType the new message type
-     */
-    public void setMessageType(String messageType) {
-        MessageType = messageType;
-    }
 
     /**
      * Send mail.
@@ -69,7 +47,8 @@ public class MailServiceImpl implements MailService {
      * @throws Exception the exception
      */
     public void sendMail(String recipient, HashMap<String, Object> map,
-                         Locale locale) throws Exception { // Recipient's email
+                         Locale locale) throws Exception {
+        // Recipient's email
         // ID needs to be
         // mentioned.
 
@@ -166,7 +145,6 @@ public class MailServiceImpl implements MailService {
             StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             mex.printStackTrace(pw);
-            sw.toString(); // stack trace as a string
             logger.info(reportDate + " Error when attemting to send an email: "
                     + sw.toString());
 

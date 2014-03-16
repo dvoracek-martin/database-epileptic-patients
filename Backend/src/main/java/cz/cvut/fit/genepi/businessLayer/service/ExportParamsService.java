@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 
 import java.util.List;
@@ -8,8 +9,7 @@ import java.util.Locale;
 /**
  * The Interface ExportToCsvService extends GenericService
  */
-public interface ExportParamsService extends
-        GenericService<ExportParamsEntity> {
+public interface ExportParamsService extends GenericService<ExportParamsVO,ExportParamsEntity> {
 
     /**
      * Find export configurations according to user's ID
@@ -22,7 +22,6 @@ public interface ExportParamsService extends
     /**
      * Changes id of the configs to chained values in string
      *
-     * @param userID as int, locale as Locale
      * @return String
      * @deprecated
      */

@@ -42,8 +42,7 @@ public class HiddenController {
      * Constructor which serves to autowire services.
      *
      * @param patientService   the patientService to be autowired.
-     * @param anamnesisService the anamnesisService to be autowired.
-     */
+     * @param anamnesisService the anamnesisService to be autowired.     */
     @Autowired
     public HiddenController(PatientService patientService,
                             ContactService contactService) {

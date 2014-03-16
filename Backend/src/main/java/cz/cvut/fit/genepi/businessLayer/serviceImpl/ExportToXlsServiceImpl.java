@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToXlsxService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -679,7 +680,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.ageAtTheBeginningOfEpilepsy", translateValue(String.valueOf(getAgeAtTheBeginningOfEpilepsy(patient)), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isPatientDoctorId()) {
-            addCells("label.assignedDoctor", (translateValue(String.valueOf(userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getFirstName() + " " + userService.findByID(UserEntity.class, patient.getDoctorId()).getContact().getLastName()), locale)), sheet, locale, styles, "cell", p);
+            addCells("label.assignedDoctor", (translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale)), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isPatientDoctorId()) {
             addCells("label.dateOfExport", (translateValue(String.valueOf(TimeConverter.getDate(Calendar.getInstance().getTime())), locale)), sheet, locale, styles, "cell", p);

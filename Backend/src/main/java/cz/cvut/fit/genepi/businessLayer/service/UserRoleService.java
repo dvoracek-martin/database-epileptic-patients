@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * The Interface UserRoleService extends GenericService
  */
-public interface UserRoleService extends GenericService<UserRoleEntity> {
+public interface UserRoleService {
 
     /**
      * Find all user roles by user id.

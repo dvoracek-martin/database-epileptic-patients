@@ -1,17 +1,16 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-/**
- * Created by Jan on 23.1.14.
- */
-public interface GenericCardService<CardVO, CardEntity> {
+import cz.cvut.fit.genepi.businessLayer.service.GenericService;
 
-    public CardVO getById(Class<CardVO> cardVoClass, Class<CardEntity> cardEntityClass, int recordId);
+import java.util.List;
 
-    public void save(Class<CardEntity> cardEntityClass, CardVO cardVo);
+public interface GenericCardService<CardDisplayVo, CardFormVo, CardEntity> extends GenericService<CardFormVo, CardEntity> {
 
-    public void delete(Class<CardEntity> cardEntityClass, int recordId);
+    public void hide(int id, Class<CardEntity> entityClass);
 
-  /*  public void hide(int id);
+    public void unhide(int id, Class<CardEntity> entityClass);
 
-    public void unhide(int id);*/
+    public void makeHistory(int id, Class<CardEntity> entityClass);
+
+    public List<CardDisplayVo> getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass);
 }

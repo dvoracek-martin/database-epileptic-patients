@@ -26,7 +26,7 @@ public class RoleController {
     /**
      * The role service.
      */
-    @Autowired
+   /* @Autowired
     private RoleService roleService;
 
     @RequestMapping(value = "/role/create", method = RequestMethod.GET)
@@ -113,5 +113,5 @@ public class RoleController {
         roleService.delete(roleService.findByID(RoleEntity.class,
                 roleID));
         return "redirect:/role/list";
-    }
+    }*/
 }

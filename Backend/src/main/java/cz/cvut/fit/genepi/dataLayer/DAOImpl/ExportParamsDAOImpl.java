@@ -21,13 +21,13 @@ public class ExportParamsDAOImpl extends GenericDAOImpl<ExportParamsEntity>
      * (non-Javadoc)
 	 * @see cz.cvut.fit.genepi.dataLayer.DAO.ExportParamsDAO#findExportParamsByUserID(int)
 	 */
-
+    @SuppressWarnings("unchecked")
     public List<ExportParamsEntity> findExportParamsByUserID(int userID) {
         List<ExportParamsEntity> exportParamsEntities = new ArrayList<ExportParamsEntity>();
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from ExportParamsEntity where userID = :user_id");
         query.setParameter("user_id", userID);
-        exportParamsEntities = findMany(query);
+        exportParamsEntities =  (List<ExportParamsEntity>) query.list();
 
         return exportParamsEntities;
     }

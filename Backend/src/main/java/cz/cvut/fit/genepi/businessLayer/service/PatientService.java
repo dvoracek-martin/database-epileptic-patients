@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The Interface PatientService extends GenericService
  */
-public interface PatientService extends GenericService<PatientEntity> {
+public interface PatientService extends GenericService<PatientVO,PatientEntity> {
 
     /**
      * Finds patient and all his cards according to his ID
@@ -185,18 +185,17 @@ public interface PatientService extends GenericService<PatientEntity> {
 
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId);
 
-
     public void verifyPatient(int patientId);
 
     public void voidVerifyPatient(int patientId);
-
-    public PatientVO getById(int patientId);
-
-    public int save(PatientVO patient);
 
     public void hide(int patientId);
 
     public void unhide(int patientId);
 
     public List<PatientDisplayVO> findAllWithHiddenRecords();
+
+    public int getCountOfUnhidden(String searchString);
+
+    public List<PatientDisplayVO> findByNameWithPagination(int maxResults,int  pageNumber,List<String>  searchParams, String searchString);
 }

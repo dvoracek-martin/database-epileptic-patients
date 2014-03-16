@@ -1,13 +1,14 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
-import cz.cvut.fit.genepi.businessLayer.service.*;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.MailService;
+import cz.cvut.fit.genepi.businessLayer.service.RoleService;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.UserRoleEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -40,16 +41,6 @@ public class UserController {
     private RoleService roleService;
 
     /**
-     * The user role service.
-     */
-    private UserRoleService userRoleService;
-
-    /**
-     * The contact service.
-     */
-    private ContactService contactService;
-
-    /**
      * The mail service.
      */
     private MailService mailService;
@@ -62,14 +53,11 @@ public class UserController {
     public UserController(AuthorizationChecker authorizationChecker,
                           UserService userService,
                           RoleService roleService,
-                          UserRoleService userRoleService,
-                          ContactService contactService,
                           MailService mailService) {
+
         this.authorizationChecker = authorizationChecker;
         this.userService = userService;
         this.roleService = roleService;
-        this.userRoleService = userRoleService;
-        this.contactService = contactService;
         this.mailService = mailService;
     }
 
@@ -142,7 +130,7 @@ public class UserController {
             return "deniedView";
         }
 
-        model.addAttribute("user", userService.findByID(UserEntity.class, userId));
+        model.addAttribute("user", userService.getById(userId, UserVO.class, UserEntity.class));
 
         return "user/overviewView";
     }
@@ -155,6 +143,7 @@ public class UserController {
         }
 
         userService.hide(userId);
+        userService.revokeRoles(userId);
         return "redirect:/user/list?maxResults=20";
     }
 
@@ -175,7 +164,7 @@ public class UserController {
             return "deniedView";
         } else {
 
-            model.addAttribute("user", userService.findById(userId));
+            model.addAttribute("user", userService.getById(userId, UserVO.class, UserEntity.class));
             model.addAttribute("uniqueUsername", true);
             model.addAttribute("uniqueEmail", true);
 
@@ -214,7 +203,11 @@ public class UserController {
                 model.addAttribute("uniqueEmail", uniqueEmail);
                 return "user/editView";
             } else {
-                //userService.save(user);
+                userService.update(user, UserEntity.class);
+            }
+            if(!authorizationChecker.isAdmin()){
+                return "redirect:/user/profile";
+            }else{
                 return "redirect:/user/" + userId + "/overview";
             }
         }
@@ -255,7 +248,7 @@ public class UserController {
         } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
         } else {
-            UserVO user = userService.findById(userId);
+            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
             user.setPassword("");
             model.addAttribute("user", user);
             model.addAttribute("samePasswords", true);
@@ -298,79 +291,44 @@ public class UserController {
         }
     }
 
-    // TODO: revision
     @RequestMapping(value = "/user/{userId}/edit-roles", method = RequestMethod.GET)
     public String userEditRolesGET(@PathVariable("userId") Integer userId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
+        } else {
+
+            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
+
+            List<RoleVO> possibleRoles = roleService.getAll(RoleVO.class, RoleEntity.class);
+            possibleRoles.removeAll(user.getRoles());
+
+            model.addAttribute("user", user);
+            model.addAttribute("possibleRoles", possibleRoles);
+            return "user/editRoles";
         }
-
-        /*
-        if (logger.getLogger() == null)
-            logger.setLogger(UserController.class);*/
-
-        UserEntity user = userService.findByID(UserEntity.class, userId);
-
-        List<RoleEntity> listOfPossibleRoles = new ArrayList<RoleEntity>();
-
-        boolean found = false;
-        for (RoleEntity possibleRole : roleService.findAll(RoleEntity.class)) {
-            found = false;
-            for (RoleEntity role : user.getRoles())
-                if (role.getId() == possibleRole.getId()) {
-                    found = true;
-                    continue;
-                }
-            if (!found) {
-                listOfPossibleRoles.add(possibleRole);
-            }
-        }
-
-        model.addAttribute("listOfPossibleRoles", listOfPossibleRoles);
-        model.addAttribute("user", user);
-        return "user/editRoles";
     }
 
-    // TODO: revision
-    @RequestMapping(value = "/user/{userID}/edit-roles", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{userId}/edit-roles", method = RequestMethod.POST)
     public String userEditRolesPOST(
-            @ModelAttribute("user") @Valid UserEntity formUser, Model model,
-            BindingResult result, Locale locale,
-            @PathVariable("userID") Integer userID,
-            @RequestParam(value = "role") int[] paramValues, HttpServletRequest request) {
+            @PathVariable("userId") Integer userId,
+            @RequestParam("role") int[] roleIds, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        Authentication auth = SecurityContextHolder.getContext()
-                .getAuthentication();
-        String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
-        boolean isAuthorized = false;
-        for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (5)) {
-                isAuthorized = true;
-                break;
-            }
-        }
-        if (!isAuthorized && (userService.findUserByUsername(name).getId() != formUser.getId())) {
-            return "deniedView";
-        }
-
-        List<RoleEntity> newRoles = new ArrayList<RoleEntity>();
-
-        for (int id : paramValues) {
-            newRoles.add(roleService.findByID(RoleEntity.class, id));
-        }
-
-        UserEntity realUser = userService.findByID(UserEntity.class, userID);
-
-        if (result.hasErrors()) {
-            return "user/" + realUser.getId() + "/edit-roles";
         } else {
-            realUser.setRoles(newRoles);
-            userService.save(realUser);
+
+            List<RoleVO> newRoles = new ArrayList<>();
+
+            for (int id : roleIds) {
+                newRoles.add(roleService.getById(id, RoleVO.class, RoleEntity.class));
+            }
+
+            UserVO userVO = userService.getById(userId, UserVO.class, UserEntity.class);
+            userVO.setRoles(newRoles);
+
+            userService.save(userVO, UserEntity.class);
+            return "redirect:/user/list?maxResults=20";
         }
-        return "redirect:/user/list?maxResults=20&pageNumber=1";
     }
 }

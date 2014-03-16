@@ -20,19 +20,18 @@ public class LoginController {
 
     // TODO: is this even used?
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPOST(Model model, Locale locale) {
+    public String loginPOST() {
         return "loginView";
     }
 
     /**
      * Handles the request to access login page.
      *
-     * @param locale the user's locale.
-     * @param model  the model to be filled for view.
+
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGET(Locale locale, Model model) {
+    public String loginGET() {
         return "loginView";
     }
 }

@@ -21,12 +21,11 @@ public class DeniedController {
     /**
      * Handles the request to access denied page.
      *
-     * @param locale the user's locale.
-     * @param model  the model to be filled for view.
+
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/denied", method = RequestMethod.GET)
-    public String deniedGET(Locale locale, Model model) {
+    public String deniedGET() {
         return "deniedView";
     }
 }

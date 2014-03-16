@@ -9,13 +9,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class UserRoleServiceImpl.
  */
 @Service
-public class UserRoleServiceImpl extends GenericServiceImpl<UserRoleEntity> implements UserRoleService {
+public class UserRoleServiceImpl implements UserRoleService {
 
     /**
      * The user role dao.

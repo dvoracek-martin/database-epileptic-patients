@@ -19,6 +19,7 @@ import java.util.Locale;
  */
 @Controller
 public class ProfileController {
+
     @Autowired
     AuthorizationChecker authorizationChecker;
 
@@ -31,12 +32,12 @@ public class ProfileController {
     /**
      * Handles the request to access user's profile page.
      *
-     * @param locale the user's locale.
+
      * @param model  the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
-    public String profileGET(Locale locale, Model model, HttpServletRequest request) {
+    public String profileGET(Model model, HttpServletRequest request) {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -45,7 +46,7 @@ public class ProfileController {
                 .getAuthentication();
 
         model.addAttribute("user",
-                userService.findUserByUsername(auth.getName()));
+                userService.getUserByUsername(auth.getName()));
         return "profileView";
     }
 }

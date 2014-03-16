@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Service
 public class PatientServiceImpl
-        extends GenericServiceImpl<PatientEntity>
+        extends GenericServiceImpl<PatientVO, PatientEntity>
         implements PatientService {
 
     /**
@@ -308,7 +308,7 @@ public class PatientServiceImpl
     }
 
     @Override
-    @Transactional
+
     public PatientDisplayVO getPatientDisplayByIdWithNeurologicalFindingList(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithNeurologicalFindingList(patientId);
 
@@ -516,16 +516,14 @@ public class PatientServiceImpl
         }
         patient.setPharmacotherapyList(recordPharmacotherapyEntityList);
 
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
-        PatientDisplayVO patientVO = dozer.map(patient, PatientDisplayVO.class);
-        return patientVO;
+        return dozer.map(patient, PatientDisplayVO.class);
     }
 
     @Override
@@ -542,20 +540,6 @@ public class PatientServiceImpl
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
         patient.setVerified(false);
         patientDAO.save(patient);
-    }
-
-    @Override
-    @Transactional
-    public PatientVO getById(int patientId) {
-        PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
-        PatientVO patientVO = dozer.map(patient, PatientVO.class);
-        return patientVO;
-    }
-
-    @Override
-    @Transactional
-    public int save(PatientVO patient) {
-        return patientDAO.savePatient(dozer.map(patient, PatientEntity.class));
     }
 
     @Override
@@ -589,5 +573,19 @@ public class PatientServiceImpl
         dozer.map(patientsWithHiddenRecordsList, patientVOsWithHiddenRecordsList);
 */
         return patientVOsWithHiddenRecordsList;
+    }
+
+    public int getCountOfUnhidden(String searchString) {
+        return genericDAO.getCountOfUnhidden(PatientEntity.class, searchString);
+    }
+
+    public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString) {
+        List<PatientEntity> patientList = genericDAO.findByNameWithPagination(PatientEntity.class, maxResults, pageNumber, searchParams, searchString);
+        List<PatientDisplayVO> paientDisplaVoList = new ArrayList<>();
+        for (PatientEntity patient : patientList) {
+            PatientDisplayVO patientDisplayVO = dozer.map(patient, PatientDisplayVO.class);
+            paientDisplaVoList.add(patientDisplayVO);
+        }
+        return paientDisplaVoList;
     }
 }

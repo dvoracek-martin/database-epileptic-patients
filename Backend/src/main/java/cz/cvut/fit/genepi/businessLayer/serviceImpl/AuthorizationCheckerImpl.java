@@ -18,6 +18,7 @@ import java.util.List;
 
 @Service
 public class AuthorizationCheckerImpl implements AuthorizationChecker {
+
     @Autowired
     private UserRoleService userRoleService;
 
@@ -28,7 +29,7 @@ public class AuthorizationCheckerImpl implements AuthorizationChecker {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         String name = auth.getName();
-        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.findUserByUsername(name)).getId());
+        List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.getUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
             if (r.getRole_id() == (1)) {
@@ -51,13 +52,9 @@ public class AuthorizationCheckerImpl implements AuthorizationChecker {
                 .getAuthentication()
                 .getName();
 
-        List<RoleEntity> roles = (userService.findUserByUsername(name)).getRoles();
+        List<RoleEntity> roles = (userService.getUserByUsername(name)).getRoles();
 
-        if ((roles.size() == 2) && ((roles.get(0).getId() == 1 && roles.get(1).getId() == 2) || ((roles.get(0).getId() == 2 && roles.get(1).getId() == 1)))) {
-            return true;
-        } else {
-            return false;
-        }
+        return (roles.size() == 2) && ((roles.get(0).getId() == 1 && roles.get(1).getId() == 2) || ((roles.get(0).getId() == 2 && roles.get(1).getId() == 1)));
     }
 
     @Override
@@ -67,7 +64,7 @@ public class AuthorizationCheckerImpl implements AuthorizationChecker {
                 .getAuthentication()
                 .getName();
 
-        List<RoleEntity> roles = (userService.findUserByUsername(name)).getRoles();
+        List<RoleEntity> roles = (userService.getUserByUsername(name)).getRoles();
 
         for (RoleEntity role : roles) {
             if (role.getId() == 5) {
@@ -84,17 +81,25 @@ public class AuthorizationCheckerImpl implements AuthorizationChecker {
                 .getAuthentication()
                 .getName();
 
-        UserEntity user = userService.findUserByUsername(name);
+        UserEntity user = userService.getUserByUsername(name);
 
-        if (user.getId() == userId) {
-            return true;
-        } else {
-            return false;
-        }
+        return user.getId() == userId;
     }
 
-   /* make gettin roles reusable an use in both methods above
-   private   List<UserRoleEntity> getRoles(){
+    @Override
+    @Transactional
+    public boolean isSuperDoctor() {
+        String name = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
 
-    }*/
+        List<RoleEntity> roles = (userService.getUserByUsername(name)).getRoles();
+
+        for (RoleEntity role : roles) {
+            if (role.getId() == 4) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
