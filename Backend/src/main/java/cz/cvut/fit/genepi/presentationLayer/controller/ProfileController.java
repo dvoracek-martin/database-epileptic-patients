@@ -38,6 +38,7 @@ public class ProfileController {
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
     public String profileGET(Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -45,8 +46,7 @@ public class ProfileController {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
 
-        model.addAttribute("user",
-                userService.getUserByUsername(auth.getName()));
+        model.addAttribute("user", userService.getUserByUsername(auth.getName()));
         return "profileView";
     }
 }

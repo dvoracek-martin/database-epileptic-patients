@@ -18,8 +18,9 @@ public interface UserService extends GenericService<UserVO, UserEntity> {
      * @param username the username
      * @return the user entity
      */
+    //TODO should return some VO
     public UserEntity getUserByUsername(String username);
-
+    //TODO should return some VO
     public UserEntity getUserByEmail(String email);
 
     /**

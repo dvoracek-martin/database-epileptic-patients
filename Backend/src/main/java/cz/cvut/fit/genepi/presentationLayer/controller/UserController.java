@@ -207,7 +207,7 @@ public class UserController {
                 userService.update(user, UserEntity.class);
             }
             if(!authorizationChecker.isAdmin()){
-                return "redirect:/user/profile";
+                return "redirect:/profile";
             }else{
                 return "redirect:/user/" + userId + "/overview";
             }
@@ -288,7 +288,11 @@ public class UserController {
         } else {
             userService.changePassword(user);
             mailService.notifyChangedPassword(user, passwordAgain, locale);
-            return "redirect:/user/" + userId + "/overview";
+            if(!authorizationChecker.isAdmin()){
+                return "redirect:/profile";
+            }else{
+                return "redirect:/user/" + userId + "/overview";
+            }
         }
     }
 
@@ -305,7 +309,7 @@ public class UserController {
             possibleRoles.removeAll(user.getRoles());
 */
 
-            UserVO user = userService.getById(userId,UserVO.class,UserEntity.class);
+            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
             List<RoleVO> possibleRoles = roleService.getPossibleRoles(userId);
             model.addAttribute("user", user);
             model.addAttribute("possibleRoles", possibleRoles);
