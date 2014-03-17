@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientWithAllListsDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -115,7 +115,7 @@ public class PatientController {
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
             return "patient/createView";
         } else {
-            int patientId = patientService.save(patientVO,PatientEntity.class);
+            int patientId = patientService.save(patientVO, PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -133,7 +133,7 @@ public class PatientController {
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("patientVO", patientService.getById(patientId,PatientVO.class,PatientEntity.class));
+        model.addAttribute("patientVO", patientService.getById(patientId, PatientVO.class, PatientEntity.class));
 
         return "patient/editView";
     }
@@ -152,7 +152,7 @@ public class PatientController {
             model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";
         } else {
-            patientService.save(patientVO,PatientEntity.class);
+            patientService.save(patientVO, PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -166,7 +166,7 @@ public class PatientController {
         }
 
         PatientDisplayVO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        PatientVO patient = patientService.getById(patientId,PatientVO.class,PatientEntity.class);
+        PatientVO patient = patientService.getById(patientId, PatientVO.class, PatientEntity.class);
 
         model.addAttribute("patient", patientDisplay);
         model.addAttribute("patientVO", patient);
@@ -188,7 +188,7 @@ public class PatientController {
             model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/verifyView";
         } else {
-            patientService.save(patientVO,PatientEntity.class);
+            patientService.save(patientVO, PatientEntity.class);
             return "redirect:/patient/" + patientId + "/overview";
         }
     }
@@ -201,15 +201,18 @@ public class PatientController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
+        PatientWithAllListsDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
+
+        //TODO hotfix
+        PatientDisplayVO patientHot = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
        /* if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("displayAnamnesisCreate", true);
         } else {
             model.addAttribute("displayCreate", false);
         }*/
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientHot));
+        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patientHot));
         model.addAttribute("patient", patient);
         return "patient/overviewView";
     }
@@ -232,7 +235,7 @@ public class PatientController {
      *
      * @return the string
      */
-    @RequestMapping(value = "/patient/listSearch", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
+    @RequestMapping(value = "/patient/list-search", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
     public
     @ResponseBody
     String patientsListSearchGET(
@@ -620,7 +623,7 @@ public class PatientController {
         exportParams.setUserID(userService.getUserByUsername(auth.getName())
                 .getId());
         exportParams.setGeneric(isGeneric);
-       // exportParamsService.save(exportParams);
+        // exportParamsService.save(exportParams);
 
         return "redirect:/patient/" + patient[0] + "/export";
     }

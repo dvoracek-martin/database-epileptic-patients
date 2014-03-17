@@ -3,7 +3,10 @@ package cz.cvut.fit.genepi.dataLayer.DAOImpl;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import org.hibernate.*;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
@@ -219,11 +222,11 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         PatientEntity patient = (PatientEntity) query.uniqueResult();*/
 
 
-       Criteria criteria = sessionFactory.getCurrentSession()
+        Criteria criteria = sessionFactory.getCurrentSession()
                 .createCriteria(PatientEntity.class);
 
         criteria.setFetchMode("doctor", FetchMode.JOIN);
-       // criteria.setFetchMode("contact", FetchMode.JOIN);
+        // criteria.setFetchMode("contact", FetchMode.JOIN);
         criteria.setFetchMode("neurologicalFindingList", FetchMode.JOIN);
         criteria.add(Restrictions.eq("id", patientId));
 
@@ -565,10 +568,37 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         return query.list();
     }
 
-    @Override
-    public int savePatient(PatientEntity patient){
-        sessionFactory
-                .getCurrentSession().saveOrUpdate(patient);
-        return patient.getId();
+    public int getCountOfUnhidden(String searchString) {
+        Long count = ((Long) sessionFactory
+                .getCurrentSession()
+                .createQuery("select count(id) " +
+                        "from PatientEntity" +
+                        " where status=0 AND (contact.firstName like '" + searchString + "%'" +
+                        " OR contact.lastName like '" + searchString + "%'" +
+                        " OR nin like '" + searchString + "%')")
+                .uniqueResult());
+
+        return count.intValue();
+    }
+
+    @SuppressWarnings("unchecked")
+    public List<PatientEntity> findByNameWithPagination(int maxResults, int pageNumber, List<String> parameters, String name) {
+
+        String q = "from PatientEntity where status=0 AND (";
+        for (int i = 0; i != parameters.size(); i++) {
+            q += parameters.get(i) + " like '" + name + "%'";
+            if (i != parameters.size() - 1) {
+                q += " or ";
+            }
+        }
+        q += ") ORDER BY contact.lastName, contact.firstName";
+
+        Query query = sessionFactory
+                .getCurrentSession()
+                .createQuery(q)
+                .setFirstResult(maxResults * (pageNumber - 1))
+                .setMaxResults(maxResults);
+
+        return (List<PatientEntity>) query.list();
     }
 }

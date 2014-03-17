@@ -162,5 +162,7 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
 
     public List<PatientEntity> findAllWithHiddenRecords();
 
-    public int savePatient(PatientEntity patient);
+    public int getCountOfUnhidden(String searchString);
+
+    public List<PatientEntity> findByNameWithPagination(int maxResults, int pageNumber, List<String> parameters, String name);
 }

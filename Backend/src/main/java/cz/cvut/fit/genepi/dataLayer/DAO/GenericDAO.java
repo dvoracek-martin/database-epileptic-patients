@@ -40,24 +40,6 @@ public interface GenericDAO<Entity> {
      */
     public List<Entity> findAll(Class<Entity> myClass);
 
-
-    /**
-     * get count
-     *
-     * @param myClass the my class
-     * @return int
-     */
-    public int getCount(Class<Entity> myClass);
-
-    /**
-     * get count of unhidden
-     *
-     * @param myClass the my class
-     * @return int
-     */
-    public int getCountOfUnhidden(Class<Entity> myClass, String searchString);
-
-
     /**
      * Find by id.
      *
@@ -77,6 +59,4 @@ public interface GenericDAO<Entity> {
     public List<Entity> findAllWithPagination(Class<Entity> myClass, int maxResults,
                                               int pageNumber);
 
-    public List<Entity> findByNameWithPagination(Class<Entity> myClass, int maxResults,
-                                                 int pageNumber, List<String> parameters, String name);
 }

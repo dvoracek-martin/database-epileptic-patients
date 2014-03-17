@@ -43,7 +43,8 @@ public class ProfileController {
             return "deniedView";
         }
 
-        Authentication auth = SecurityContextHolder.getContext()
+        Authentication auth = SecurityContextHolder
+                .getContext()
                 .getAuthentication();
 
         model.addAttribute("user", userService.getUserByUsername(auth.getName()));

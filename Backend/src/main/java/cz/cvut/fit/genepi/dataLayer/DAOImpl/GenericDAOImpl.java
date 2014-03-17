@@ -51,10 +51,6 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
         return (List<Entity>) query.list();
     }
 
-
-
-
-
     public int getCount(Class<Entity> myClass) {
 
         Long count = ((Long) sessionFactory
@@ -65,31 +61,6 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
         return count.intValue();
     }
 
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * cz.cvut.fit.genepi.models.GenericDAO#getCountOfUnhidden(java.lang.Class)
-     */
-    public int getCountOfUnhidden(Class<Entity> myClass, String searchString) {
-
-        Long count = ((Long) sessionFactory
-                .getCurrentSession()
-                .createQuery("select count(id) " +
-                        "from " + myClass.getName() +
-                        " where status=0 AND (contact.firstName like '" + searchString + "%'" +
-                        " OR contact.lastName like '" + searchString + "%'" +
-                        " OR nin like '" + searchString + "%')")
-                .uniqueResult());
-
-        return count.intValue();
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see cz.cvut.fit.genepi.models.GenericDAO#findByID(java.lang.Class, int)
-     */
     @SuppressWarnings("unchecked")
     public Entity findByID(Class<Entity> myClass, int id) {
 
@@ -119,25 +90,5 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
         return (List<Entity>) query.list();
     }
 
-    @SuppressWarnings("unchecked")
-    public List<Entity> findByNameWithPagination(Class<Entity> myClass, int maxResults,
-                                                 int pageNumber, List<String> parameters, String name) {
 
-        String q = "from " + myClass.getName() + " where status=0 AND (";
-        for (int i = 0; i != parameters.size(); i++) {
-            q += parameters.get(i) + " like '" + name + "%'";
-            if (i != parameters.size() - 1) {
-                q += " or ";
-            }
-        }
-        q += ") ORDER BY contact.lastName,contact.firstName";
-
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(q)
-                .setFirstResult(maxResults * (pageNumber - 1))
-                .setMaxResults(maxResults);
-
-        return (List<Entity>) query.list();
-    }
 }

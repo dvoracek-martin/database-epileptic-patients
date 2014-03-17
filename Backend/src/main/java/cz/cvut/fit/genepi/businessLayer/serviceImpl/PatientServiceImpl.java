@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientWithAllListsDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
@@ -399,7 +400,7 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public PatientDisplayVO getPatientDisplayByIdWithAllLists(int patientId) {
+    public PatientWithAllListsDisplayVO getPatientDisplayByIdWithAllLists(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithAllLists(patientId);
 
         List<ComplicationEntity> recordComplicationEntityList = new ArrayList<>();
@@ -516,7 +517,7 @@ public class PatientServiceImpl
         }
         patient.setPharmacotherapyList(recordPharmacotherapyEntityList);
 
-        return dozer.map(patient, PatientDisplayVO.class);
+        return dozer.map(patient, PatientWithAllListsDisplayVO.class);
     }
 
     @Override
@@ -575,12 +576,16 @@ public class PatientServiceImpl
         return patientVOsWithHiddenRecordsList;
     }
 
+    @Override
+    @Transactional
     public int getCountOfUnhidden(String searchString) {
-        return genericDAO.getCountOfUnhidden(PatientEntity.class, searchString);
+        return patientDAO.getCountOfUnhidden(searchString);
     }
 
+    @Override
+    @Transactional
     public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString) {
-        List<PatientEntity> patientList = genericDAO.findByNameWithPagination(PatientEntity.class, maxResults, pageNumber, searchParams, searchString);
+        List<PatientEntity> patientList = patientDAO.findByNameWithPagination(maxResults, pageNumber, searchParams, searchString);
         List<PatientDisplayVO> paientDisplaVoList = new ArrayList<>();
         for (PatientEntity patient : patientList) {
             PatientDisplayVO patientDisplayVO = dozer.map(patient, PatientDisplayVO.class);
