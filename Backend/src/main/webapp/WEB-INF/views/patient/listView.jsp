@@ -1,8 +1,9 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1>
@@ -27,11 +28,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/create" />">
-                <spring:message code="label.addPatient"/>
-            </a>
-        </h3>
+        <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/create" />">
+                    <spring:message code="label.addPatient"/>
+                </a>
+            </h3>
+        </sec:authorize>
     </div>
 </div>
 <div class="row">
@@ -42,7 +45,8 @@
             <div class="col-xs-4 input-group">
                 <span class="input-group-addon glyphicon glyphicon-search"></span>
                 <input type="text" class="form-control" id="search"
-                       placeholder="<spring:message code="label.lastname"/>/<spring:message code="label.firstname"/>/<spring:message code="label.nin"/>" data-max-results="${maxResult}">
+                       placeholder="<spring:message code="label.lastname"/>/<spring:message code="label.firstname"/>/<spring:message code="label.nin"/>"
+                       data-max-results="${maxResult}">
             </div>
         </div>
     </div>
