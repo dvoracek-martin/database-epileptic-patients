@@ -102,6 +102,8 @@ public class NeurologicalFindingController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
+            neurologicalFindingService.makeHistory(neurologicalFindingId, NeurologicalFindingEntity.class);
+            neurologicalFinding.setId(0);
             neurologicalFindingService.save(neurologicalFinding, NeurologicalFindingEntity.class);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }

@@ -24,8 +24,8 @@ import javax.validation.Valid;
 @SessionAttributes({"anamnesis"})
 public class AnamnesisController {
 
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     /**
      * The patient service.
@@ -37,7 +37,6 @@ public class AnamnesisController {
      */
     private AnamnesisService anamnesisService;
 
-
     /**
      * Constructor which serves to autowire services.
      *
@@ -45,9 +44,11 @@ public class AnamnesisController {
      * @param anamnesisService the anamnesisService to be autowired.
      */
     @Autowired
-    public AnamnesisController(PatientService patientService,
+    public AnamnesisController(AuthorizationChecker authorizationChecker,
+                               PatientService patientService,
                                AnamnesisService anamnesisService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.anamnesisService = anamnesisService;
     }
@@ -69,6 +70,7 @@ public class AnamnesisController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
 
         model.addAttribute("patient", patient);
+
         if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("anamnesis", new AnamnesisVO());
             return "patient/anamnesis/formView";
@@ -77,7 +79,6 @@ public class AnamnesisController {
         } else {
             return null; // exception
         }
-
     }
 
     /**
@@ -145,6 +146,7 @@ public class AnamnesisController {
     @RequestMapping(value = "/patient/{patientId}/anamnesis/list", method = RequestMethod.GET)
     public String anamnesisListGET(
             @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

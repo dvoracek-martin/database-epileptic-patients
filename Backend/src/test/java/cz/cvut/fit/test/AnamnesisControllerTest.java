@@ -55,9 +55,9 @@ public class AnamnesisControllerTest {
     // The setUp() method is omitted.
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(
+      /*  mockMvc = MockMvcBuilders.standaloneSetup(
                 new AnamnesisController(patientServiceMock,
-                        anamnesisServiceMock)).build();
+                        anamnesisServiceMock)).build();*/
     }
 
     @After
