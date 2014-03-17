@@ -6,9 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
-/**
- * Created by Jan on 29.12.13.
- */
 public class NeurologicalFindingVO {
 
     private int id;

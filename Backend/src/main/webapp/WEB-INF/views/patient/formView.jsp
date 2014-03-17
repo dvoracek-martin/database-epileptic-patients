@@ -34,7 +34,7 @@
 
     <div class="col-xs-8">
         <div class='input-group date datepicker'>
-            <form:input path="birthday" type="text" class="form-control input-sm" id="birthday"/>
+            <form:input path="birthday" type="text" class="form-control input-sm" id="birthday" autocomplete="off"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>

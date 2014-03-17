@@ -22,7 +22,6 @@ import java.util.List;
 @SessionAttributes({"neurologicalFinding"})
 public class NeurologicalFindingController {
 
-    @Autowired
     private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
@@ -30,9 +29,11 @@ public class NeurologicalFindingController {
     private NeurologicalFindingService neurologicalFindingService;
 
     @Autowired
-    public NeurologicalFindingController(PatientService patientService,
+    public NeurologicalFindingController(AuthorizationChecker authorizationChecker,
+                                         PatientService patientService,
                                          NeurologicalFindingService neurologicalFindingService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.neurologicalFindingService = neurologicalFindingService;
     }
@@ -47,6 +48,26 @@ public class NeurologicalFindingController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
         return "patient/neurologicalFinding/formView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
+    public String neurologicalFindingCreatePOST(
+            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/neurologicalFinding/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            neurologicalFindingService.save(neurologicalFinding, NeurologicalFindingEntity.class);
+            return "redirect:/patient/" + patientId + "/neurological-finding/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.GET)
@@ -64,17 +85,18 @@ public class NeurologicalFindingController {
         return "patient/neurologicalFinding/formView";
     }
 
-    @RequestMapping(value = "/patient/{patientId}/neurological-finding/save", method = RequestMethod.POST)
-    public String neurologicalFindingSavePOST(
+    @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.POST)
+    public String neurologicalFindingEditPOST(
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("neurologicalFindingId") int neurologicalFindingId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/neurologicalFinding/formView";
+            return "patient/neurologicalFinding/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);

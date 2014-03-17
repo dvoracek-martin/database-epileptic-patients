@@ -206,11 +206,11 @@ public class PatientController {
         //TODO hotfix
         PatientDisplayVO patientHot = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
-       /* if (patient.getAnamnesisList().size() == 0) {
+        if (patient.getAnamnesisList().size() == 0) {
             model.addAttribute("displayAnamnesisCreate", true);
         } else {
             model.addAttribute("displayCreate", false);
-        }*/
+        }
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientHot));
         model.addAttribute("currentAge", TimeConverter.getCurrentAge(patientHot));
         model.addAttribute("patient", patient);
