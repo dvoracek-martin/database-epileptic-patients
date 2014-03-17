@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -29,25 +30,31 @@
     </div>
     <div class="clearfix hidden-lg hidden-xs"></div>
     <div class="col-xs-2 col-sm-4 col-lg-2">
-        <h3 class="pull-right">
-            <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
-                <spring:message code="label.verify"/>
-            </a>
-        </h3>
+        <sec:authorize ifAnyGranted="ROLE_SUPER_DOCTOR,ROLE_ADMIN">
+            <h3 class="pull-right">
+                <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
+                    <spring:message code="label.verify"/>
+                </a>
+            </h3>
+        </sec:authorize>
     </div>
     <div class="col-xs-2 col-sm-4 col-lg-2">
-        <h3 class="pull-right">
-            <a id="edit" href="<c:url value="/patient/${patient.id}/edit" />">
-                <spring:message code="label.edit"/>
-            </a>
-        </h3>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
+            <h3 class="pull-right">
+                <a id="edit" href="<c:url value="/patient/${patient.id}/edit" />">
+                    <spring:message code="label.edit"/>
+                </a>
+            </h3>
+        </sec:authorize>
     </div>
     <div class="col-xs-2 col-sm-4 col-lg-2 ">
-        <h3 class="pull-right">
-            <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
-                <spring:message code="label.delete"/>
-            </a>
-        </h3>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
+            <h3 class="pull-right">
+                <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
+                    <spring:message code="label.delete"/>
+                </a>
+            </h3>
+        </sec:authorize>
     </div>
 </div>
 
