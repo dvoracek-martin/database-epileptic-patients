@@ -49,6 +49,11 @@
         <div class="row">
             <div class="col-xs-6">
                 <div class="row">
+                    <div class="col-xs-12">
+                        <h4><spring:message code="label.basicInfo"/></h4>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-6">
                         <spring:message code="label.userID"/>
                     </div>
@@ -98,7 +103,19 @@
                 </div>
             </div>
             <div class="col-xs-6">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h4><spring:message code="label.assignedRoles"/></h4>
+                    </div>
+                </div>
+                <c:forEach items="${user.roles}" var="role">
+                    <div class="row">
 
+                        <div class="col-xs-12">
+                                ${role.authority}
+                        </div>
+                    </div>
+                </c:forEach>
             </div>
         </div>
 
