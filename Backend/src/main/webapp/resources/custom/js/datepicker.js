@@ -15,9 +15,9 @@ $(document).ready(function () {
 
 
     /* simple datepicker */
-    var datepicker = $(".datepicker");
+    var datepickerSimple = $(".datepicker-simple");
 
-    datepicker.datetimepicker({
+    datepickerSimple.datetimepicker({
         pickDate: true,
         pickTime: false,
         startDate: moment("1900-01-01"),

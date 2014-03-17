@@ -10,13 +10,13 @@
     </label>
 
     <div class="col-xs-8">
-        <div class='input-group date datepicker-today'>
+        <div class='input-group date datepicker-simple'>
             <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <form:errors path="date" cssClass="error"/>
+        <form:errors path="date" cssClass="text-danger"/>
     </div>
 </div>
 

@@ -38,7 +38,7 @@
                    action="/GENEPI/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/edit"
                    commandName="neurologicalFinding">
 
-            <%@include file="../patientDetails.jsp" %>
+            <%@include file="formView.jsp" %>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">

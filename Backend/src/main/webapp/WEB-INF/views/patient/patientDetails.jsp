@@ -9,9 +9,6 @@
     <div class="col-xs-12">
         <div class="table-responsive">
             <table class="table table-condensed">
-                <tbody>
-                <%-- <sec:authorize ifNotGranted="ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN"> --%>
-                <%--  <sec:authorize var="researcheraccess" access="hasAnyRole('ROLE_DOCTOR,ROLE_SUPERDOCTOR,ROLE_ADMIN')"/>--%>
                 <tr>
                     <th><spring:message code="label.patient"/>:</th>
                     <td>
@@ -27,38 +24,32 @@
                     <th><spring:message code="label.birthIdentificationNumber"/>:</th>
                     <td>${patient.nin}</td>
 
-                    <th><spring:message code="label.address"/>:</th>
-                    <td>${patient.contact.addressStreet}</td>
-
-                    <th><spring:message code="label.telephone"/>:</th>
-                    <td>${patient.contact.phoneNumber}</td>
+                    <th><spring:message code="label.birthdate"/>:</th>
+                    <td>${patient.birthday} (${patient.age}) let</td>
                 </tr>
                 <tr>
-                    <th><spring:message code="label.birthdate"/>:</th>
-                    <td>${patient.birthday} (${currentAge}) let</td>
+                    <th><spring:message code="label.assignedDoctor"/>:</th>
+                    <td>${patient.doctor.contact.firstName} ${patient.doctor.contact.lastName}</td>
 
                     <th><spring:message code="label.gender"/>:</th>
                     <td><spring:message code="label.gender.${patient.gender}"/></td>
 
-                    <td></td>
-                    <td>${patient.contact.addressCity}</td>
+                    <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
+                    <td>${beginningEpilepsy} let</td>
+                </tr>
+                <tr>
+                    <th><spring:message code="label.address"/>:</th>
+                    <td>${patient.contact.addressStreet}, ${patient.contact.addressCity}, ${patient.contact.addressCountry}</td>
+
+                    <th><spring:message code="label.telephone"/>:</th>
+                    <td>${patient.contact.phoneNumber}</td>
 
                     <th><spring:message code="label.email"/>:</th>
                     <td>${patient.contact.email}</td>
                 </tr>
-                <tr>
-                    <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
-                    <td>${beginningEpilepsy} let</td>
-
-                    <th><spring:message code="label.assignedDoctor"/>:</th>
-                    <td>${patient.doctor.contact.firstName} ${patient.doctor.contact.lastName}</td>
-
-                    <td></td>
-                    <td>${patient.contact.addressCountry}</td>
-                </tr>
-                </tbody>
             </table>
         </div>
+
     </div>
     <c:if test="${not patient.verified}">
         <div class="col-xs-12">

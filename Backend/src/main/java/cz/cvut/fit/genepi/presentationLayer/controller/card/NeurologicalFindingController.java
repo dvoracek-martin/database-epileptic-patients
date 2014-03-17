@@ -45,9 +45,10 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
-        return "patient/neurologicalFinding/formView";
+        return "patient/neurologicalFinding/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
@@ -82,7 +83,7 @@ public class NeurologicalFindingController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         NeurologicalFindingVO vo = neurologicalFindingService.getById(neurologicalFindingId, NeurologicalFindingVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFinding", vo);
-        return "patient/neurologicalFinding/formView";
+        return "patient/neurologicalFinding/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.POST)
@@ -171,7 +172,6 @@ public class NeurologicalFindingController {
         List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = neurologicalFindingService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFindingList", neurologicalFindingDisplayVO);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/neurologicalFinding/listView";
     }

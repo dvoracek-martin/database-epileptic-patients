@@ -13,6 +13,14 @@ import java.util.Date;
 
 public class TimeConverter {
 
+    public static String getCurrentAge(Date birthdate) {
+        DateTime birth = new DateTime(birthdate);
+        DateTime today = new DateTime(Calendar.getInstance().getTime());
+        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), today.withTimeAtStartOfDay());
+
+        return Integer.toString(age.getYears());
+    }
+
     public static String getCurrentAge(PatientDisplayVO patient) {
         DateTime birth = new DateTime(patient.getBirthday());
         DateTime today = new DateTime(Calendar.getInstance().getTime());
