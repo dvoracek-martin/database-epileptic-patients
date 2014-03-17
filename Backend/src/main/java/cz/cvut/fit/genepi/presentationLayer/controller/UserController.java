@@ -1,6 +1,5 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
@@ -168,7 +167,7 @@ public class UserController {
             model.addAttribute("user", userService.getById(userId, UserVO.class, UserEntity.class));
             model.addAttribute("uniqueUsername", true);
             model.addAttribute("uniqueEmail", true);
-
+            model.addAttribute("isAdmin", authorizationChecker.isAdmin());
             return "user/editView";
         }
     }
@@ -202,13 +201,14 @@ public class UserController {
             if (result.hasErrors() || !uniqueUsername || !uniqueEmail) {
                 model.addAttribute("uniqueUsername", uniqueUsername);
                 model.addAttribute("uniqueEmail", uniqueEmail);
+                model.addAttribute("isAdmin", authorizationChecker.isAdmin());
                 return "user/editView";
             } else {
                 userService.update(user, UserEntity.class);
             }
-            if(!authorizationChecker.isAdmin()){
+            if (!authorizationChecker.isAdmin()) {
                 return "redirect:/profile";
-            }else{
+            } else {
                 return "redirect:/user/" + userId + "/overview";
             }
         }
@@ -253,6 +253,7 @@ public class UserController {
             user.setPassword("");
             model.addAttribute("user", user);
             model.addAttribute("samePasswords", true);
+            model.addAttribute("isAdmin", authorizationChecker.isAdmin());
             return "user/changePassword";
         }
     }
@@ -283,14 +284,15 @@ public class UserController {
         } else if (result.hasErrors() || !user.getPassword().equals(passwordAgain)) {
             if (!user.getPassword().equals(passwordAgain)) {
                 model.addAttribute("samePasswords", false);
+                model.addAttribute("isAdmin", authorizationChecker.isAdmin());
             }
             return "user/changePassword";
         } else {
             userService.changePassword(user);
             mailService.notifyChangedPassword(user, passwordAgain, locale);
-            if(!authorizationChecker.isAdmin()){
+            if (!authorizationChecker.isAdmin()) {
                 return "redirect:/profile";
-            }else{
+            } else {
                 return "redirect:/user/" + userId + "/overview";
             }
         }
@@ -336,7 +338,7 @@ public class UserController {
             userVO.setRoles(newRoles);
 
             userService.update(userVO, UserEntity.class);
-            return "redirect:/user/list?maxResults=20";
+            return "redirect:/user/" + userId + "/overview";
         }
     }
 }

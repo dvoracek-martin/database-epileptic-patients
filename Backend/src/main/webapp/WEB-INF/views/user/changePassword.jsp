@@ -18,10 +18,15 @@
 
     <jsp:body>
         <h2>
-            <spring:message code="label.changePassword"/>
-            <a href="<c:url value="/user/${user.id}/overview"/>">
-                    ${user.username}
-            </a>
+            <spring:message code="label.editUser"/>
+            <c:choose>
+                <c:when test="${isAdmin}">
+                    <a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="<c:url value="/profile" />">${user.username}</a>
+                </c:otherwise>
+            </c:choose>
         </h2>
         <form:form class="form-horizontal" method="POST" action="/GENEPI/user/${user.id}/change-password"
                    commandName="user">

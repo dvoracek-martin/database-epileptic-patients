@@ -21,25 +21,32 @@
 
         <h2>
             <spring:message code="label.editUser"/>
-            <a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
+            <c:choose>
+                <c:when test="${isAdmin}">
+                    <a href="<c:url value="/user/${user.id}/overview" />">${user.username}</a>
+                </c:when>
+                <c:otherwise>
+                    <a href="<c:url value="/profile" />">${user.username}</a>
+                </c:otherwise>
+            </c:choose>
         </h2>
 
         <form:form class="form-horizontal" method="POST" action="/GENEPI/user/${user.id}/edit" commandName="user">
 
 
-           <%-- <div class="form-group">
-                <label for="username" class="col-xs-3 control-label">
-                    <spring:message code="label.username"/>*
-                </label>
+            <%-- <div class="form-group">
+                 <label for="username" class="col-xs-3 control-label">
+                     <spring:message code="label.username"/>*
+                 </label>
 
-                <div class="col-xs-8">
-                    <form:input path="username" type="text" class=" form-control input-sm" id="username"/>
-                    <form:errors path="username" cssClass="text-danger"/>
-                    <c:if test="${not uniqueUsername}">
-                        <span class="text-danger"><spring:message code="label.nonUnique"/></span>
-                    </c:if>
-                </div>
-            </div>--%>
+                 <div class="col-xs-8">
+                     <form:input path="username" type="text" class=" form-control input-sm" id="username"/>
+                     <form:errors path="username" cssClass="text-danger"/>
+                     <c:if test="${not uniqueUsername}">
+                         <span class="text-danger"><spring:message code="label.nonUnique"/></span>
+                     </c:if>
+                 </div>
+             </div>--%>
 
             <div class="form-group">
                 <label for="contact.lastName" class="col-xs-3 control-label">
@@ -145,7 +152,8 @@
                 </label>
 
                 <div class="col-xs-8">
-                    <form:input path="contact.phoneNumber" type="text" class=" form-control input-sm" id="contact.phoneNumber"/>
+                    <form:input path="contact.phoneNumber" type="text" class=" form-control input-sm"
+                                id="contact.phoneNumber"/>
                     <form:errors path="contact.phoneNumber" cssClass="text-danger"/>
                 </div>
             </div>

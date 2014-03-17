@@ -1,10 +1,9 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1>
-
 
 	<jsp:attribute name="head">
     </jsp:attribute>
@@ -106,7 +105,7 @@
                     <div class="row">
 
                         <div class="col-xs-12">
-                            ${role.authority}
+                                ${role.authority}
                         </div>
                     </div>
                 </c:forEach>
@@ -115,4 +114,3 @@
 
     </jsp:body>
 </t:menuLVL1>
-

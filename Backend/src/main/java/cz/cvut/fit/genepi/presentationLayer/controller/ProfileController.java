@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
 
 /**
  * This class is a controller class which handles requests connected with a
@@ -32,8 +31,7 @@ public class ProfileController {
     /**
      * Handles the request to access user's profile page.
      *
-
-     * @param model  the model to be filled for view.
+     * @param model the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/profile", method = RequestMethod.GET)
