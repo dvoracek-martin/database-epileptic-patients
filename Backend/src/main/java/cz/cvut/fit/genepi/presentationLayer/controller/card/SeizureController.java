@@ -19,16 +19,19 @@ import javax.validation.Valid;
 @Controller
 @SessionAttributes({"seizure"})
 public class SeizureController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private SeizureService seizureService;
 
     @Autowired
-    public SeizureController(PatientService patientService,
+    public SeizureController(AuthorizationChecker authorizationChecker,
+                             PatientService patientService,
                              SeizureService seizureService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.seizureService = seizureService;
     }

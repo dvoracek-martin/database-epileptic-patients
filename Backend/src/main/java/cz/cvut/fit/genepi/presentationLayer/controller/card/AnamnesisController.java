@@ -1,13 +1,16 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +27,7 @@ import javax.validation.Valid;
 @SessionAttributes({"anamnesis"})
 public class AnamnesisController {
 
+    private GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService;
 
     private AuthorizationChecker authorizationChecker;
 
@@ -46,8 +50,11 @@ public class AnamnesisController {
     @Autowired
     public AnamnesisController(AuthorizationChecker authorizationChecker,
                                PatientService patientService,
-                               AnamnesisService anamnesisService) {
+                               AnamnesisService anamnesisService,
+                               @Qualifier("genericCardServiceImpl")
+                               GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService) {
 
+        this.genericCardService = genericCardService;
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.anamnesisService = anamnesisService;
@@ -67,17 +74,38 @@ public class AnamnesisController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
+
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
 
         model.addAttribute("patient", patient);
 
-        if (patient.getAnamnesisList().size() == 0) {
+        if (anamnesisDisplayVo == null) {
             model.addAttribute("anamnesis", new AnamnesisVO());
-            return "patient/anamnesis/formView";
-        } else if (patient.getAnamnesisList().size() > 0) {
-            return "redirect:/patient/" + patientId + "/anamnesis/list";
+            return "patient/anamnesis/createView";
         } else {
-            return null; // exception
+            return "redirect:/patient/" + patientId + "/anamnesis/list";
+        }
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.POST)
+    public String anamnesisCreatePOST(
+            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/anamnesis/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            anamnesisService.save(anamnesis, AnamnesisEntity.class);
+            return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
 
@@ -99,26 +127,14 @@ public class AnamnesisController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("anamnesis", anamnesisService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
-        return "patient/anamnesis/formView";
+        return "patient/anamnesis/editView";
     }
 
-    /**
-     * Handles the POST request to create new anamnesis.
-     *
-     * @param anamnesis the anamnesis which was filled in form at front-end. It is
-     *                  grabbed from POST string and validated.
-     * @param result    the result of binding form from front-end to an
-     *                  AnamnesisEntity. It is used to determine if there were some
-     *                  errors during binding.
-     * @param patientId the id of a patient whom we are creating an anamnesis.
-     * @param model     the model to be filled for view.
-     * @return the name of a view to be rendered if the binding has errors
-     * otherwise, the address to which the user will be redirected.
-     */
-    @RequestMapping(value = "/patient/{patientId}/anamnesis/save", method = RequestMethod.POST)
-    public String anamnesisSavePOST(
+    @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.POST)
+    public String anamnesisEditPOST(
             @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("anamnesisId") Integer anamnesisId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -126,11 +142,13 @@ public class AnamnesisController {
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/anamnesis/formView";
+            return "patient/anamnesis/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
+            genericCardService.makeHistory(anamnesisId, AnamnesisEntity.class);
+            anamnesis.setId(0);
             anamnesisService.save(anamnesis, AnamnesisEntity.class);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
@@ -150,14 +168,16 @@ public class AnamnesisController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithAnamnesisList(patientId);
-        if (patient.getAnamnesisList().size() == 0) {
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
+        if (anamnesisDisplayVo == null) {
             model.addAttribute("displayAnamnesisCreate", true);
         } else {
             model.addAttribute("displayAnamnesisCreate", false);
         }
+
+        model.addAttribute("anamnesisDisplayVo", anamnesisDisplayVo);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";
     }

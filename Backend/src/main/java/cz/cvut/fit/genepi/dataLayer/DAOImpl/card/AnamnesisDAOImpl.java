@@ -3,7 +3,10 @@ package cz.cvut.fit.genepi.dataLayer.DAOImpl.card;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.AnamnesisDAO;
 import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,4 +29,14 @@ public class AnamnesisDAOImpl extends GenericDAOImpl<AnamnesisEntity> implements
         return query.list();
     }
 
+    @Override
+    public AnamnesisEntity getRecordsByPatientId(int patientId) {
+        Criteria criteria = sessionFactory
+                .getCurrentSession()
+                .createCriteria(AnamnesisEntity.class)
+                .add(Restrictions.eq("patientId", patientId))
+                .add(Restrictions.eq("history", false));
+
+        return (AnamnesisEntity) criteria.uniqueResult();
+    }
 }

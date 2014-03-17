@@ -28,6 +28,7 @@
     <link rel="icon" type="image/png" href="<c:url value="/resources/custom/img/logoIcon.ico" />">
     <link href="<c:url value="/resources/bootstrap/css/bootstrap.min.css" />" rel="stylesheet">
     <link href="<c:url value="/resources/custom/css/menu.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
 
     <%-- Hook for adding something to HEAD --%>
     <jsp:invoke fragment="head"/>

@@ -7,9 +7,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class AnamnesisVO {
 
     private int id;
@@ -37,7 +34,6 @@ public class AnamnesisVO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
-    @NotNull
     private Date beginningEpilepsy;
 
     private boolean firstFever;
@@ -46,10 +42,8 @@ public class AnamnesisVO {
 
     private int specificSyndrome;
 
-    @Size(max = 800)
     private String nonCnsComorbidity;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

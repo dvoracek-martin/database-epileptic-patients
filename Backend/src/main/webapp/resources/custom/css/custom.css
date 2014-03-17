@@ -3,9 +3,14 @@
 }
 
 .record-head {
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
-.role-list{
+.role-list {
     border: 5px solid CornflowerBlue;
+}
+
+textarea.resize-vertical {
+    min-height: 28px;
+    resize: vertical;
 }

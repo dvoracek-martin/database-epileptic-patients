@@ -68,6 +68,6 @@
     </label>
 
     <div class="col-xs-8">
-        <form:textarea style="resize:vertical" path="comment" id="comment" class=" form-control"/>
+        <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
     </div>
 </div>
