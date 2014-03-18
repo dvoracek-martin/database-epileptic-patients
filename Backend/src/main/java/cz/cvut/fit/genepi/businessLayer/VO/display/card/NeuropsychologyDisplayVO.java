@@ -66,7 +66,7 @@ public class NeuropsychologyDisplayVO {
 
     private int presenceOfChanges;
 
-    private String presenceOfChangesDetail;
+    private int[] presenceOfChangesDetail;
 
     private int emotionalStatus;
 
@@ -312,11 +312,11 @@ public class NeuropsychologyDisplayVO {
         this.presenceOfChanges = presenceOfChanges;
     }
 
-    public String getPresenceOfChangesDetail() {
+    public int[] getPresenceOfChangesDetail() {
         return presenceOfChangesDetail;
     }
 
-    public void setPresenceOfChangesDetail(String presenceOfChangesDetail) {
+    public void setPresenceOfChangesDetail(int[] presenceOfChangesDetail) {
         this.presenceOfChangesDetail = presenceOfChangesDetail;
     }
 

@@ -2,7 +2,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div class="form-group"><label for="${param.propertyName}" class="col-xs-3 control-label">
+<div class="form-group"><label for="${param.propertyName}" class="col-xs-4 control-label">
     <spring:message code="label.${param.labelName}"/>
 </label>
 

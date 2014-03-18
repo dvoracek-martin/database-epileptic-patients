@@ -1,60 +1,32 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL2>
-
-<jsp:attribute name="head">
-      <link href="<c:url value="/resources/jquery-ui-datepicker/jquery-ui.min.css" />" rel="stylesheet">
-    </jsp:attribute>
-
-	<jsp:attribute name="title">
-      <spring:message code="label.addRecord"/>
-    </jsp:attribute>
-
-	<jsp:attribute name="script">
-		<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
-		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
-        	<script src="<c:url value="/resources/custom/js/cardForm/neuropsychology.js" />"></script>
-    </jsp:attribute>
-
-<jsp:body>
-<div class="row">
-    <div class="col-xs-12">
-        <h2>
-            <spring:message code="label.neuropsychology"/>
-        </h2>
-    </div>
-</div>
-
-<%@include file="../patientDetails.jsp" %>
-
-<%-- mapping resource in action with c:url caused errors --%>
-<form:form class="form-horizontal" role="form" method="POST"
-           action="/GENEPI/patient/${patient.id}/neuropsychology/save" commandName="neuropsychology">
-
 <div class="form-group">
-    <label for="date" class="col-xs-3 control-label">
-        <spring:message code="label.dateExamination"/>
+    <label for="date" class="col-xs-4 control-label">
+        <spring:message code="label.dateExamination"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:input path="date" id="date" type="text" class="form-control datepicker-today"
-                    autocomplete="off"/>
-        <form:errors path="date" cssClass="error">
-        </form:errors>
+        <div class='input-group date datepicker-simple'>
+            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <form:errors path="date" cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="intellect" class="col-xs-3 control-label">
+    <label for="intellect" class="col-xs-4 control-label">
         <spring:message code="label.intellect"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="intellect" id="intellect" type="text" class="form-control">
+        <form:select path="intellect" id="intellect" type="text" class="form-control input-sm">
             <form:option value="0">
                 <spring:message code="label.intellect.0"/>
             </form:option>
@@ -136,13 +108,13 @@
 <%-- if intellect == intellectualPerformance END--%>
 
 <div class="form-group">
-    <label for="neuropsychologicalProfile" class="col-xs-3 control-label">
+    <label for="neuropsychologicalProfile" class="col-xs-4 control-label">
         <spring:message code="label.neuropsychologicalProfile"/>
     </label>
 
     <div class="col-xs-8">
         <form:select path="neuropsychologicalProfile" id="neuropsychologicalProfile" type="text"
-                     class="form-control">
+                     class="form-control input-sm">
             <form:option value="0">
                 <spring:message code="label.neuropsychologicalProfile.0"/>
             </form:option>
@@ -174,14 +146,14 @@
     </jsp:include>
 
     <div class="form-group">
-        <label for="neuropsychologicalProfileSpeechExpressively" class="col-xs-3 control-label">
+        <label for="neuropsychologicalProfileSpeechExpressively" class="col-xs-4 control-label">
             <spring:message code="label.speechExpressively"/>
         </label>
 
         <div class="col-xs-8">
             <form:select path="neuropsychologicalProfileSpeechExpressively"
                          id="neuropsychologicalProfileSpeechExpressively"
-                         type="text" class="form-control">
+                         type="text" class="form-control input-sm">
                 <form:option value="1">
                     <spring:message code="label.speechExpressively.1"/>
                 </form:option>
@@ -227,13 +199,13 @@
     </jsp:include>
 
     <div class="form-group">
-        <label for="neuropsychologicalProfilePerceptionSpeech" class="col-xs-3 control-label">
+        <label for="neuropsychologicalProfilePerceptionSpeech" class="col-xs-4 control-label">
             <spring:message code="label.perceptionSpeech"/>
         </label>
 
         <div class="col-xs-8">
             <form:select path="neuropsychologicalProfilePerceptionSpeech" id="neuropsychologicalProfilePerceptionSpeech"
-                         type="text" class="form-control">
+                         type="text" class="form-control input-sm">
                 <form:option value="1">
                     <spring:message code="label.perceptionOfSpeech.1"/>
                 </form:option>
@@ -270,12 +242,12 @@
 <%-- if neuropsychologicalProfile == concernes END--%>
 
 <div class="form-group">
-    <label for="presenceOfChanges" class="col-xs-3 control-label">
-        <spring:message code="label.presenceOfChanges"/>
+    <label for="presenceOfChanges" class="col-xs-4 control-label">
+        <spring:message code="label.presenceOfChanges"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:select path="presenceOfChanges" id="presenceOfChanges" type="text" class="form-control">
+        <form:select path="presenceOfChanges" id="presenceOfChanges" type="text" class="form-control  input-sm">
             <form:option value="0">
                 <spring:message code="label.presenceOfChanges.0"/>
             </form:option>
@@ -289,19 +261,70 @@
                 <spring:message code="label.presenceOfChanges.3"/>
             </form:option>
         </form:select>
+        <form:errors path="presenceOfChanges" cssClass="text-danger"/>
     </div>
 </div>
 
 <%-- if presenceOfChanges == deteriorace START--%>
 <div id="presence-of-changes-deterioration">
     <div class="form-group">
-        <label for="presenceOfChangesDetail" class="col-xs-3 control-label">
+        <label for="presenceOfChangesDetail" class="col-xs-4 control-label">
             <spring:message code="label.presenceOfChangesDetail"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="presenceOfChangesDetail" id="presenceOfChangesDetail" type="text" class="form-control">
-
+            <form:select path="presenceOfChangesDetail" id="presenceOfChangesDetail" type="text" class="form-control input-sm" multiple="multiple">
+                <form:option value="1">
+                    <spring:message code="label.deteriorace.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.deteriorace.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.deteriorace.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.deteriorace.4"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.deteriorace.5"/>
+                </form:option>
+                <form:option value="6">
+                    <spring:message code="label.deteriorace.6"/>
+                </form:option>
+                <form:option value="7">
+                    <spring:message code="label.deteriorace.7"/>
+                </form:option>
+                <form:option value="8">
+                    <spring:message code="label.deteriorace.8"/>
+                </form:option>
+                <form:option value="9">
+                    <spring:message code="label.deteriorace.9"/>
+                </form:option>
+                <form:option value="10">
+                    <spring:message code="label.deteriorace.10"/>
+                </form:option>
+                <form:option value="11">
+                    <spring:message code="label.deteriorace.11"/>
+                </form:option>
+                <form:option value="12">
+                    <spring:message code="label.deteriorace.12"/>
+                </form:option>
+                <form:option value="13">
+                    <spring:message code="label.deteriorace.13"/>
+                </form:option>
+                <form:option value="14">
+                    <spring:message code="label.deteriorace.14"/>
+                </form:option>
+                <form:option value="15">
+                    <spring:message code="label.deteriorace.15"/>
+                </form:option>
+                <form:option value="16">
+                    <spring:message code="label.deteriorace.16"/>
+                </form:option>
+                <form:option value="17">
+                    <spring:message code="label.deteriorace.17"/>
+                </form:option>
             </form:select>
         </div>
     </div>
@@ -309,12 +332,12 @@
 <%-- if presenceOfChanges == deteriorace END--%>
 
 <div class="form-group">
-    <label for="emotionalState" class="col-xs-3 control-label">
-        <spring:message code="label.emotionalState"/>
+    <label for="emotionalState" class="col-xs-4 control-label">
+        <spring:message code="label.emotionalState"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:select path="emotionalStatus" id="emotionalState" type="text" class="form-control">
+        <form:select path="emotionalStatus" id="emotionalState" type="text" class="form-control input-sm">
             <form:option value="0">
                 <spring:message code="label.emotionalState.0"/>
             </form:option>
@@ -340,27 +363,16 @@
                 <spring:message code="label.emotionalState.7"/>
             </form:option>
         </form:select>
+        <form:errors path="emotionalStatus" cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="comment" class="col-xs-3 control-label">
+    <label for="comment" class="col-xs-4 control-label">
         <spring:message code="label.comment"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="comment" id="comment" class="form-control"/>
+        <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
     </div>
 </div>
-
-<div class="form-group">
-    <div class="col-xs-offset-3 col-xs-8">
-        <button class="btn btn-primary" type="submit">
-            <spring:message code="label.add"/>
-        </button>
-    </div>
-</div>
-</form:form>
-
-</jsp:body>
-</t:menuLVL2>

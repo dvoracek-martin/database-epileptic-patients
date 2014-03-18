@@ -46,7 +46,7 @@ public class GenericCardServiceImpl<CardDisplayVo, CardFormVo, CardEntity>
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<CardDisplayVo> getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass) {
+    public List<CardDisplayVo>  getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass) {
         List<CardEntity> cardEntityList = genericCardDAO.getRecordsByPatientId(patientId, entityClass);
         List<CardDisplayVo> cardDisplayVoList = new ArrayList<>();
         for (CardEntity entity : cardEntityList) {

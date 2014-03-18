@@ -1,16 +1,12 @@
 package cz.cvut.fit.genepi.util;
 
 import org.dozer.CustomConverter;
-import org.hibernate.MappingException;
+import org.dozer.MappingException;
 import org.joda.time.DateTime;
 import org.joda.time.Years;
 
 import java.util.Date;
 
-
-/**
- * Created by Jan on 20.1.14.
- */
 public class DateToAgeConverter implements CustomConverter {
 
     public Object convert(Object destination, Object source,

@@ -6,7 +6,6 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
-import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +27,16 @@ public class PharmacotherapyController {
 
     private PatientService patientService;
 
-    private PharmacotherapyService pharmacotherapyService;
-
     private GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService;
 
     @Autowired
     public PharmacotherapyController(AuthorizationChecker authorizationChecker,
                                      PatientService patientService,
-                                     PharmacotherapyService pharmacotherapyService,
                                      @Qualifier("genericCardServiceImpl")
                                      GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.pharmacotherapyService = pharmacotherapyService;
         this.genericCardService = genericCardService;
     }
 
@@ -122,7 +117,7 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        pharmacotherapyService.delete(pharmacotherapyId, PharmacotherapyEntity.class);
+        genericCardService.delete(pharmacotherapyId, PharmacotherapyEntity.class);
         return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
     }
 
@@ -141,7 +136,7 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        pharmacotherapyService.hide(pharmacotherapyId, PharmacotherapyEntity.class);
+        genericCardService.hide(pharmacotherapyId, PharmacotherapyEntity.class);
         return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
     }
 
@@ -160,7 +155,7 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        pharmacotherapyService.unhide(pharmacotherapyId, PharmacotherapyEntity.class);
+        genericCardService.unhide(pharmacotherapyId, PharmacotherapyEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/pharmacotherapy/list";

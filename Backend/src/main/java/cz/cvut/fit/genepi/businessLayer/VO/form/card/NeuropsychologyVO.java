@@ -2,14 +2,11 @@ package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class NeuropsychologyVO {
 
     private int id;
@@ -75,10 +72,12 @@ public class NeuropsychologyVO {
 
     private int neuropsychologicalProfileMotorCoordination;
 
+    @Min(1)
     private int presenceOfChanges;
 
-    private int presenceOfChangesDetail;
+    private int[] presenceOfChangesDetail;
 
+    @Min(1)
     private int emotionalStatus;
 
     private String comment;
@@ -331,11 +330,11 @@ public class NeuropsychologyVO {
         this.presenceOfChanges = presenceOfChanges;
     }
 
-    public int getPresenceOfChangesDetail() {
+    public int[] getPresenceOfChangesDetail() {
         return presenceOfChangesDetail;
     }
 
-    public void setPresenceOfChangesDetail(int presenceOfChangesDetail) {
+    public void setPresenceOfChangesDetail(int[] presenceOfChangesDetail) {
         this.presenceOfChangesDetail = presenceOfChangesDetail;
     }
 

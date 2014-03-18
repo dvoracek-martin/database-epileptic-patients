@@ -247,17 +247,28 @@
         <spring:message code="label.presenceOfChanges.${neuropsychology.presenceOfChanges}"/>
     </td>
 </tr>
+
 <c:if test="${neuropsychology.presenceOfChanges == 1}">
     <tr>
         <th class="col-xs-3">
             <spring:message code="label.presenceOfChangesDetail"/>
         </th>
-        <td class="col-xs-9">
-            FIXME
-        </td>
+    <c:choose>
+        <c:when test="${empty presenceOfChanges}">
+            <td class="col-xs-9">
+                <spring:message code="label.noRecords"/>
+            </td>
+        </c:when>
+        <c:otherwise>
+            <td class="col-xs-9">
+                <c:forEach items="${neuropsychology.presenceOfChangesDetail}" var="presenceOfChangesDetail">
+                    <spring:message code="label.deteriorace.${presenceOfChangesDetail}"/>,
+                </c:forEach>
+            </td>
+        </c:otherwise>
+    </c:choose>
     </tr>
 </c:if>
-
 
 <tr>
     <th class="col-xs-3">

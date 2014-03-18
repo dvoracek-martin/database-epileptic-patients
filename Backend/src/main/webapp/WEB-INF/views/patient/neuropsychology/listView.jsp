@@ -34,7 +34,7 @@
         <!-- neuropsychology list START -->
 
         <c:choose>
-            <c:when test="${empty patient.neuropsychologyList}">
+            <c:when test="${empty neuropsychologyList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,7 +42,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.neuropsychologyList}" var="neuropsychology">
+                    <c:forEach items="${neuropsychologyList}" var="neuropsychology">
                         <div>
                             <table class="record-head table">
                                 <tbody>
