@@ -14,6 +14,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -42,10 +44,22 @@ public class SeizureServiceImpl
 
     @Override
     @Transactional
-    public List<SeizureDisplayVO> getRecordsByPatientId(int patientId){
-        List<SeizureEntity> seizureEntityList = seizureDAO.getRecordsByPatientId(patientId);
+    public List<SeizureDisplayVO> getRecordsByPatientId(int patientId) {
+        List<SeizureEntity> seizureEntityList = genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class);
         List<SeizureDisplayVO> seizureDisplayVoList = new ArrayList<>();
         for (SeizureEntity entity : seizureEntityList) {
+
+            List<SeizureDetailEntity> seizureDetailEntityList = entity.getSeizureDetailList();
+            Iterator<SeizureDetailEntity> iterator = seizureDetailEntityList.iterator();
+            while (iterator.hasNext()) {
+                SeizureDetailEntity seizureDetailEntity = iterator.next();
+                if (seizureDetailEntity.isHidden() || seizureDetailEntity.isHistory()) {
+                    iterator.remove();
+                }
+            }
+            Collections.sort(entity.getSeizureDetailList());
+            Collections.reverse(entity.getSeizureDetailList());
+
             SeizureDisplayVO vo = dozer.map(entity, SeizureDisplayVO.class);
             seizureDisplayVoList.add(vo);
         }

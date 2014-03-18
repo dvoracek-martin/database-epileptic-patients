@@ -17,6 +17,4 @@ public interface SeizureDAO extends GenericDAO<SeizureEntity> {
      * @return the list
      */
     List<SeizureEntity> findAnamnesisByPatientID(int patientId);
-
-    public List<SeizureEntity> getRecordsByPatientId(int patientId);
 }

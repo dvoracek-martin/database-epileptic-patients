@@ -21,7 +21,6 @@ import javax.validation.Valid;
 @SessionAttributes({"seizureDetail"})
 public class SeizureDetailController {
 
-
     private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
