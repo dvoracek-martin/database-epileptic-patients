@@ -254,7 +254,7 @@
             <spring:message code="label.presenceOfChangesDetail"/>
         </th>
     <c:choose>
-        <c:when test="${empty presenceOfChanges}">
+        <c:when test="${empty neuropsychology.presenceOfChangesDetail}">
             <td class="col-xs-9">
                 <spring:message code="label.noRecords"/>
             </td>
