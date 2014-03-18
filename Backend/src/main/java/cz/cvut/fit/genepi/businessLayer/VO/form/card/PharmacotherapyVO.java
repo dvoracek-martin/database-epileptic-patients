@@ -8,9 +8,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 22.1.14.
- */
 public class PharmacotherapyVO {
 
     private int id;

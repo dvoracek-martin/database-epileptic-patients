@@ -1,13 +1,16 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.PharmacotherapyVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.businessLayer.service.card.PharmacotherapyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.PharmacotherapyEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,23 +18,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"pharmacotherapy"})
 public class PharmacotherapyController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private PharmacotherapyService pharmacotherapyService;
 
+    private GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService;
 
     @Autowired
-    public PharmacotherapyController(PatientService patientService,
-                                     PharmacotherapyService pharmacotherapyService) {
+    public PharmacotherapyController(AuthorizationChecker authorizationChecker,
+                                     PatientService patientService,
+                                     PharmacotherapyService pharmacotherapyService,
+                                     @Qualifier("genericCardServiceImpl")
+                                     GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.pharmacotherapyService = pharmacotherapyService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.GET)
@@ -43,7 +54,27 @@ public class PharmacotherapyController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("pharmacotherapy", new PharmacotherapyVO());
-        return "patient/pharmacotherapy/formView";
+        return "patient/pharmacotherapy/createView";
+    }
+
+
+    @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.POST)
+    public String pharmacotherapyCreatePOST(
+            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/pharmacotherapy/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(pharmacotherapy, PharmacotherapyEntity.class);
+            return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.GET)
@@ -55,31 +86,30 @@ public class PharmacotherapyController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", pharmacotherapyService.getById(pharmacotherapyId, PharmacotherapyVO.class, PharmacotherapyEntity.class));
-        return "patient/pharmacotherapy/formView";
+        model.addAttribute("pharmacotherapy", genericCardService.getById(pharmacotherapyId, PharmacotherapyVO.class, PharmacotherapyEntity.class));
+        return "patient/pharmacotherapy/editView";
     }
 
-    /**
-     * Adds the pharmacotherapy.
-     *
-     * @param pharmacotherapy the pharmacotherapy
-     * @param result          the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/save", method = RequestMethod.POST)
-    public String pharmacotherapySavePOST(
+
+    @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.POST)
+    public String pharmacotherapyEditPOST(
             @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
-            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId,
+            @PathVariable("pharmacotherapyId") int pharmacotherapyId,
+            Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), pharmacotherapy.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/pharmacotherapy/formView";
+            return "patient/pharmacotherapy/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            pharmacotherapyService.save(pharmacotherapy, PharmacotherapyEntity.class);
+            genericCardService.makeHistory(pharmacotherapyId, PharmacotherapyEntity.class);
+            pharmacotherapy.setId(0);
+            genericCardService.save(pharmacotherapy, PharmacotherapyEntity.class);
             return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
         }
     }
@@ -143,9 +173,10 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithPharmacotherapyList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
+        model.addAttribute("pharmacotherapyList", pharmacotherapyDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/pharmacotherapy/listView";
     }

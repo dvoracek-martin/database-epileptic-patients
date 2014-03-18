@@ -1,10 +1,11 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
-<jsp:attribute name="title">
+
+    <jsp:attribute name="title">
       <spring:message code="label.pharmacotherapy"/>
     </jsp:attribute>
 
@@ -34,7 +35,7 @@
         <!-- neurologicalFinding list START -->
 
         <c:choose>
-            <c:when test="${empty patient.pharmacotherapyList}">
+            <c:when test="${empty pharmacotherapyList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -58,7 +59,7 @@
                             <th class="col-xs-4"></th>
                         </tr>
                     </table>
-                    <c:forEach items="${patient.pharmacotherapyList}" var="pharmacotherapy">
+                    <c:forEach items="${pharmacotherapyList}" var="pharmacotherapy">
                         <div>
 
                             <%@ include file="pharmacotherapyTableView.jsp" %>
@@ -72,14 +73,3 @@
         <!-- neurologicalFinding list END -->
     </jsp:body>
 </t:menuLVL2>
-
-
-
-
-
-
-
-
-
-
-
