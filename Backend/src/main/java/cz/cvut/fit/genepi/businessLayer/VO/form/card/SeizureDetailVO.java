@@ -7,9 +7,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 21.1.14.
- */
 public class SeizureDetailVO {
 
     private int id;
@@ -27,7 +24,6 @@ public class SeizureDetailVO {
 
     private int ilaeClassification;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

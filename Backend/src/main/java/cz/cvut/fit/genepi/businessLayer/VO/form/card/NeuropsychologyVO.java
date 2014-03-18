@@ -81,7 +81,6 @@ public class NeuropsychologyVO {
 
     private int emotionalStatus;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

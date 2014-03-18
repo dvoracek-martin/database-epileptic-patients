@@ -29,7 +29,6 @@ public class DiagnosticTestScalpEegVO {
 
     private int interictalEegSpikes;
 
-    @Size(max = 800)
     private String localizationInterictalEegSpikes;
 
     private boolean eegStatusEpilepticus;
@@ -38,13 +37,10 @@ public class DiagnosticTestScalpEegVO {
 
     private int ictalEegPatterns;
 
-    @Size(max = 800)
     private String localizationIctalEegPattern;
 
-    @Size(max = 800)
     private String descriptionVideoEeg;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

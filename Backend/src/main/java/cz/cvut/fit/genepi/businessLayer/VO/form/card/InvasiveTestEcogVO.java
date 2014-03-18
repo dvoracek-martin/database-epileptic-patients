@@ -30,7 +30,6 @@ public class InvasiveTestEcogVO {
 
     private int afterResectionEcog;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

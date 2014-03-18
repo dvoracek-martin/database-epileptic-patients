@@ -27,7 +27,6 @@ public class ComplicationVO {
 
     private int complication;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

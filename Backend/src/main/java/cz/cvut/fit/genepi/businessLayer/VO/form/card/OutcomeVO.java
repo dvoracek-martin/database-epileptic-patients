@@ -35,7 +35,6 @@ public class OutcomeVO {
 
     private int operationId;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

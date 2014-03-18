@@ -89,6 +89,4 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
 
         return (List<Entity>) query.list();
     }
-
-
 }

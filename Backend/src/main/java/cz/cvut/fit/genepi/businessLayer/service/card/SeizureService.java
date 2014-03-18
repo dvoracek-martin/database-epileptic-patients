@@ -6,4 +6,5 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 
 public interface SeizureService extends GenericCardService<SeizureDetailDisplayVO,SeizureVO, SeizureEntity> {
 
+    public int save(SeizureVO seizure);
 }

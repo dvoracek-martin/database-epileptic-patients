@@ -249,6 +249,4 @@ public class SeizureEntity implements Comparable<SeizureEntity> {
     public void setSeizureDetailList(List<SeizureDetailEntity> seizureDetailList) {
         this.seizureDetailList = seizureDetailList;
     }
-
-
 }

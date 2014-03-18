@@ -5,12 +5,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
+import java.util.List;
 
-/**
- * Created by Jan on 21.1.14.
- */
 public class SeizureVO {
 
     private int id;
@@ -33,8 +30,9 @@ public class SeizureVO {
 
     private int seizureOccurrence;
 
-    @Size(max = 800)
     private String comment;
+
+    private List<SeizureDetailVO> seizureDetailList;
 
     public int getId() {
         return id;
@@ -106,5 +104,13 @@ public class SeizureVO {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public List<SeizureDetailVO> getSeizureDetailList() {
+        return seizureDetailList;
+    }
+
+    public void setSeizureDetailList(List<SeizureDetailVO> seizureDetailList) {
+        this.seizureDetailList = seizureDetailList;
     }
 }

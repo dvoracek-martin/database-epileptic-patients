@@ -25,22 +25,18 @@ public class DiagnosticTestMriVO {
 
     private int mriFinding;
 
-    @Size(max = 800)
     private String mriDescription;
 
     private int fdgPet;
 
-    @Size(max = 800)
     private String descriptionPetHypometabolism;
 
     private int interictalSpect;
 
-    @Size(max = 800)
     private String descriptionSpectHypoperfuse;
 
     private int ictalSpect;
 
-    @Size(max = 800)
     private String descriptionSpectHyperperfuse;
 
     private boolean siscom;
@@ -49,25 +45,20 @@ public class DiagnosticTestMriVO {
 
     private int mrsFinding;
 
-    @Size(max = 800)
     private String descriptionMrsAbnormality;
 
     private boolean fmri;
 
-    @Size(max = 800)
     private String detailsFmri;
 
     private boolean dti;
 
-    @Size(max = 800)
     private String detailsDtiStudy;
 
     private boolean wada;
 
-    @Size(max = 800)
     private String detailsWada;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

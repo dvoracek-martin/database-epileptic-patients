@@ -44,12 +44,10 @@ public class OperationVO {
     @NotNull
     private Date vnsImplantationDate;
 
-    @Size(max = 800)
     private String operationDetails;
 
     private boolean completeResection;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

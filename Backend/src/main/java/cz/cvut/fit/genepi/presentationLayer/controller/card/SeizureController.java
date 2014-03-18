@@ -30,15 +30,19 @@ public class SeizureController {
 
     private GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService;
 
+    private SeizureService seizureService;
+
     @Autowired
     public SeizureController(AuthorizationChecker authorizationChecker,
                              PatientService patientService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService) {
+                             GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService,
+                             SeizureService seizureService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.genericCardService = genericCardService;
+        this.seizureService = seizureService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.GET)
@@ -109,7 +113,7 @@ public class SeizureController {
             }
             genericCardService.makeHistory(seizureId, SeizureEntity.class);
             seizure.setId(0);
-            genericCardService.save(seizure, SeizureEntity.class);
+            seizureService.save(seizure);
             return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }

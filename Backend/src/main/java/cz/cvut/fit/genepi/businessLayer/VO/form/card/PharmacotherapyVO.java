@@ -29,7 +29,6 @@ public class PharmacotherapyVO {
 
     private boolean duringSurgery;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

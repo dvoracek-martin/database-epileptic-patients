@@ -25,7 +25,6 @@ public class InvasiveTestCorticalMappingVO {
 
     private int corticalMapping;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {

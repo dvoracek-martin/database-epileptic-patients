@@ -39,7 +39,6 @@ public class InvasiveTestEegVO {
 
     private String localizationInvasiveIctalEegPatterns;
 
-    @Size(max = 800)
     private String comment;
 
     public int getId() {
