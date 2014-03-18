@@ -28,20 +28,16 @@ public class NeuropsychologyController {
 
     private PatientService patientService;
 
-    private NeuropsychologyService neuropsychologyService;
-
     private GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService;
 
     @Autowired
     public NeuropsychologyController(AuthorizationChecker authorizationChecker,
                                      PatientService patientService,
-                                     NeuropsychologyService neuropsychologyService,
                                      @Qualifier("genericCardServiceImpl")
                                      GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.neuropsychologyService = neuropsychologyService;
         this.genericCardService = genericCardService;
     }
 
@@ -175,8 +171,8 @@ public class NeuropsychologyController {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<NeuropsychologyDisplayVO> NeuropsychologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
-        model.addAttribute("neuropsychologyList", NeuropsychologyDisplayVoList);
+        List<NeuropsychologyDisplayVO> neuropsychologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
+        model.addAttribute("neuropsychologyList", neuropsychologyDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neuropsychology/listView";

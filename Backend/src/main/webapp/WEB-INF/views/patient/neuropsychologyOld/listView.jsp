@@ -4,6 +4,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
+
     <jsp:attribute name="title">
       <spring:message code="label.neuropsychology"/>
     </jsp:attribute>
@@ -26,7 +27,7 @@
         <!-- neuropsychology old list START -->
 
         <c:choose>
-            <c:when test="${empty patient.neuropsychologyOldList}">
+            <c:when test="${empty neuropsychologyOldList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -34,7 +35,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.neuropsychologyOldList}" var="neuropsychologyOld">
+                    <c:forEach items="${neuropsychologyOldList}" var="neuropsychologyOld">
                         <div>
                             <table class="record-head table">
                                 <tbody>

@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
@@ -14,21 +15,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"neuropsychologyOld"})
 public class NeuropsychologyOldController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private NeuropsychologyOldService neuropsychologyOldService;
 
     @Autowired
-    public NeuropsychologyOldController(PatientService patientService,
+    public NeuropsychologyOldController(AuthorizationChecker authorizationChecker,
+                                        PatientService patientService,
                                         NeuropsychologyOldService neuropsychologyOldService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.neuropsychologyOldService = neuropsychologyOldService;
     }
@@ -92,9 +96,10 @@ public class NeuropsychologyOldController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithNeuropsychologyOldList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<NeuropsychologyOldDisplayVO> neuropsychologyOldDisplayVoList = neuropsychologyOldService.getRecordsByPatientId(patientId);
+        model.addAttribute("neuropsychologyOldList", neuropsychologyOldDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/neuropsychologyOld/listView";
     }
