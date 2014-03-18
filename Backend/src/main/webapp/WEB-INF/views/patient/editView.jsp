@@ -10,7 +10,7 @@
             rel="stylesheet">
     </jsp:attribute>
 	<jsp:attribute name="title">
-      Přidat pacienta
+      <spring:message code="label.editPatient"/>
     </jsp:attribute>
 
 	<jsp:attribute name="script">
