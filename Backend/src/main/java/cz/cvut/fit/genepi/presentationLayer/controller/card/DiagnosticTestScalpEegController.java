@@ -1,13 +1,18 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestScalpEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,23 +20,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"diagnosticTestScalpEeg"})
 public class DiagnosticTestScalpEegController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private DiagnosticTestScalpEegService diagnosticTestScalpEegService;
 
-    @Autowired
-    public DiagnosticTestScalpEegController(PatientService patientService,
-                                            DiagnosticTestScalpEegService diagnosticTestScalpEegService) {
+    private GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService;
 
+    @Autowired
+    public DiagnosticTestScalpEegController(AuthorizationChecker authorizationChecker,
+                                            PatientService patientService,
+                                            DiagnosticTestScalpEegService diagnosticTestScalpEegService,
+                                            @Qualifier("genericCardServiceImpl")
+                                            GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.diagnosticTestScalpEegService = diagnosticTestScalpEegService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.GET)
@@ -43,7 +56,27 @@ public class DiagnosticTestScalpEegController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestScalpEeg", new DiagnosticTestScalpEegVO());
-        return "patient/diagnosticTestScalpEeg/formView";
+        return "patient/diagnosticTestScalpEeg/createView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.POST)
+    public String diagnosticTestScalpEegCreatePOST(
+            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/diagnosticTestScalpEeg/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
+            return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.GET)
@@ -56,32 +89,29 @@ public class DiagnosticTestScalpEegController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class));
-        return "patient/diagnosticTestScalpEeg/formView";
+        model.addAttribute("diagnosticTestScalpEeg", genericCardService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class));
+        return "patient/diagnosticTestScalpEeg/editView";
     }
 
-    /**
-     * Adds the diagnosticTestScalpEEG.
-     *
-     * @param result the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/save", method = RequestMethod.POST)
-    public String diagnosticTestScalpEegSavePOST(
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.POST)
+    public String diagnosticTestScalpEegEditPOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/diagnosticTestScalpEeg/formView";
+            return "patient/diagnosticTestScalpEeg/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            diagnosticTestScalpEegService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
+            genericCardService.makeHistory(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
+            diagnosticTestScalpEeg.setId(0);
+            genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
             return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
         }
     }
@@ -95,7 +125,7 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestScalpEegService.delete(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
+        genericCardService.delete(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
@@ -115,7 +145,7 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestScalpEegService.hide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
+        genericCardService.hide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
     }
 
@@ -135,7 +165,7 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestScalpEegService.unhide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
+        genericCardService.unhide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
@@ -149,9 +179,10 @@ public class DiagnosticTestScalpEegController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestScalpEegList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
+        model.addAttribute("diagnosticTestScalpEegList", diagnosticTestScalpEegDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestScalpEeg/listView";
     }

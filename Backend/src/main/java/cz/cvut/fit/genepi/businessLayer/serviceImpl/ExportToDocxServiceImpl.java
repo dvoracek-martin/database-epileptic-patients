@@ -1698,7 +1698,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         null, locale) + delimiter + translateValue(String.valueOf(diagnosticTestScalpEEG.getInterictalEegSpikes()), locale));
             }
             if (exportParams.isDiagnosticTestEEGStatusEpilepticus() && diagnosticTestScalpEEG.isEegStatusEpilepticus()) {
-                content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+                content.add(messageSource.getMessage("label.eegStatusEpilepticus", null, locale));
             }
             if (exportParams.isDiagnosticTestEEGSecondarySidedSynchrony() && diagnosticTestScalpEEG.isSecondarySidedSynchrony()) {
                 content.add(messageSource.getMessage("label.secondarySidedSynchrony", null, locale));
@@ -1767,7 +1767,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             }
             if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
-                content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+                content.add(messageSource.getMessage("label.eegStatusEpilepticus", null, locale));
 
                 content.add(translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()),
                         locale));
@@ -2266,7 +2266,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()), locale));
             }
             if (exportParams.isInvasiveTestEEGStatusEpilepticus() && invasiveTestEEG.isInvasiveEegStatusEpilepticus()) {
-                content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+                content.add(messageSource.getMessage("label.eegStatusEpilepticus", null, locale));
             }
             if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
                 content.add(messageSource.getMessage("label.ictalEegPatterns",
@@ -2346,7 +2346,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             }
             if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-                content.add(messageSource.getMessage("label.EegStatusEpilepticus", null, locale));
+                content.add(messageSource.getMessage("label.eegStatusEpilepticus", null, locale));
 
                 content.add(translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()),
                         locale));

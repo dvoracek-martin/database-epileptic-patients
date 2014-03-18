@@ -53,7 +53,7 @@
             </tr>
             <tr>
                 <th class="col-xs-3">
-                    <spring:message code="label.EegStatusEpilepticus"/>
+                    <spring:message code="label.eegStatusEpilepticus"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message code="label.boolean.${diagnosticTestScalpEeg.eegStatusEpilepticus}"/>

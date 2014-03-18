@@ -1082,7 +1082,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += "\n";
             }
             if (exportParams.isDiagnosticTestEEGStatusEpilepticus()) {
-                content += messageSource.getMessage("label.EegStatusEpilepticus", null, locale);
+                content += messageSource.getMessage("label.eegStatusEpilepticus", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(diagnosticTestScalpEEG.isEegStatusEpilepticus()),
                         locale);
@@ -1396,7 +1396,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += "\n";
             }
             if (exportParams.isInvasiveTestEEGStatusEpilepticus()) {
-                content += messageSource.getMessage("label.EegStatusEpilepticus", null, locale);
+                content += messageSource.getMessage("label.eegStatusEpilepticus", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(invasiveTestEEG.isInvasiveEegStatusEpilepticus()),
                         locale);

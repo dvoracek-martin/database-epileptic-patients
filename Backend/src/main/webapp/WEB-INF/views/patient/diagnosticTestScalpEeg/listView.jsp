@@ -34,7 +34,7 @@
         <!-- Diagnostic test scalp EEG list START -->
 
         <c:choose>
-            <c:when test="${empty patient.diagnosticTestScalpEegList}">
+            <c:when test="${empty diagnosticTestScalpEegList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,7 +42,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.diagnosticTestScalpEegList}" var="diagnosticTestScalpEeg">
+                    <c:forEach items="${diagnosticTestScalpEegList}" var="diagnosticTestScalpEeg">
                         <div>
                             <table class="record-head table">
                                 <tbody>
