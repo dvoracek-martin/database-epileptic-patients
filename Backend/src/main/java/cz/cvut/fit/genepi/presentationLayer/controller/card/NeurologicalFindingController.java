@@ -5,10 +5,11 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDispl
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.NeurologicalFindingVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.NeurologicalFindingService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -26,16 +27,17 @@ public class NeurologicalFindingController {
 
     private PatientService patientService;
 
-    private NeurologicalFindingService neurologicalFindingService;
+    private GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> genericCardService;
 
     @Autowired
     public NeurologicalFindingController(AuthorizationChecker authorizationChecker,
                                          PatientService patientService,
-                                         NeurologicalFindingService neurologicalFindingService) {
+                                         @Qualifier("genericCardServiceImpl")
+                                         GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.neurologicalFindingService = neurologicalFindingService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.GET)
@@ -66,7 +68,7 @@ public class NeurologicalFindingController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            neurologicalFindingService.save(neurologicalFinding, NeurologicalFindingEntity.class);
+            genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
@@ -81,7 +83,7 @@ public class NeurologicalFindingController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        NeurologicalFindingVO vo = neurologicalFindingService.getById(neurologicalFindingId, NeurologicalFindingVO.class, NeurologicalFindingEntity.class);
+        NeurologicalFindingVO vo = genericCardService.getById(neurologicalFindingId, NeurologicalFindingVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFinding", vo);
         return "patient/neurologicalFinding/editView";
     }
@@ -102,9 +104,9 @@ public class NeurologicalFindingController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            neurologicalFindingService.makeHistory(neurologicalFindingId, NeurologicalFindingEntity.class);
+            genericCardService.makeHistory(neurologicalFindingId, NeurologicalFindingEntity.class);
             neurologicalFinding.setId(0);
-            neurologicalFindingService.save(neurologicalFinding, NeurologicalFindingEntity.class);
+            genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
             return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
@@ -117,7 +119,7 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        neurologicalFindingService.delete(neurologicalFindingId, NeurologicalFindingEntity.class);
+        genericCardService.delete(neurologicalFindingId, NeurologicalFindingEntity.class);
         return "redirect:/patient/" + patientId + "/neurological-finding/list";
     }
 
@@ -137,7 +139,7 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        neurologicalFindingService.hide(neurologicalFindingId, NeurologicalFindingEntity.class);
+        genericCardService.hide(neurologicalFindingId, NeurologicalFindingEntity.class);
         return "redirect:/patient/" + patientId + "/neurological-finding/list";
     }
 
@@ -157,7 +159,7 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        neurologicalFindingService.unhide(neurologicalFindingId, NeurologicalFindingEntity.class);
+        genericCardService.unhide(neurologicalFindingId, NeurologicalFindingEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/neurological-finding/list";
@@ -171,7 +173,7 @@ public class NeurologicalFindingController {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = neurologicalFindingService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
+        List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = genericCardService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFindingList", neurologicalFindingDisplayVO);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);

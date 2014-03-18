@@ -104,7 +104,7 @@ public class AnamnesisController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            anamnesisService.save(anamnesis, AnamnesisEntity.class);
+            genericCardService.save(anamnesis, AnamnesisEntity.class);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
@@ -126,7 +126,7 @@ public class AnamnesisController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", anamnesisService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
+        model.addAttribute("anamnesis", genericCardService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
         return "patient/anamnesis/editView";
     }
 
@@ -149,7 +149,7 @@ public class AnamnesisController {
             }
             genericCardService.makeHistory(anamnesisId, AnamnesisEntity.class);
             anamnesis.setId(0);
-            anamnesisService.save(anamnesis, AnamnesisEntity.class);
+            genericCardService.save(anamnesis, AnamnesisEntity.class);
             return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }

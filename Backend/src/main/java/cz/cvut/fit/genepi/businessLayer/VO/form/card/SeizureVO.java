@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -21,6 +22,7 @@ public class SeizureVO {
     @NotNull
     private Date date;
 
+    @Min(1)
     private int seizureFrequency;
 
     private boolean secondarilyGeneralizedSeizure;

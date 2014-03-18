@@ -545,7 +545,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isSeizureStatusEpilepticus()) {
-            content += messageSource.getMessage("label.stausEpilepticus", null, locale);
+            content += messageSource.getMessage("label.statusEpilepticus", null, locale);
             content += " - ";
             content += translateValue(String.valueOf(seizure.isStatusEpilepticus()),
                     locale);

@@ -823,7 +823,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.secondarilyGeneralizedSeizure", translateValue(String.valueOf(seizure.isSecondarilyGeneralizedSeizure()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureStatusEpilepticus()) {
-            addCells("label.stausEpilepticus", translateValue(String.valueOf(seizure.isStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.statusEpilepticus", translateValue(String.valueOf(seizure.isStatusEpilepticus()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isSeizureComment()) {
             addCells("label.comment", translateComment(String.valueOf(seizure.getComment()), locale), sheet, locale, styles, "cell", p);

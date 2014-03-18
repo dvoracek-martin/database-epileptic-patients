@@ -26,7 +26,7 @@
         </tr>
         <tr>
             <th class="col-xs-3">
-                <spring:message code="label.stausEpilepticus"/>
+                <spring:message code="label.statusEpilepticus"/>
             </th>
             <td>
                 <spring:message code="label.boolean.${seizure.statusEpilepticus}"/>

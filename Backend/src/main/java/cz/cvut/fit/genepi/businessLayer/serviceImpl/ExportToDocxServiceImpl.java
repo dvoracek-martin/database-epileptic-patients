@@ -773,7 +773,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
         }
         if (exportParams.isSeizureStatusEpilepticus() && seizure.isStatusEpilepticus()) {
-            content.add(messageSource.getMessage("label.stausEpilepticus", null, locale));
+            content.add(messageSource.getMessage("label.statusEpilepticus", null, locale));
         }
 
         printOutValues(document, content);
@@ -838,7 +838,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
         }
         if (exportParams.isSeizureStatusEpilepticus()) {
-            content.add(messageSource.getMessage("label.stausEpilepticus", null, locale));
+            content.add(messageSource.getMessage("label.statusEpilepticus", null, locale));
             content.add(translateValue(String.valueOf(seizure.isStatusEpilepticus()),
                     locale));
         }
