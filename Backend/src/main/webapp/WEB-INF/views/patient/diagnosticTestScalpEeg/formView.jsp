@@ -136,7 +136,6 @@
         <jsp:param name="messageCode" value="eegStatusEpilepticus"/>
     </jsp:include>
 
-
     <jsp:include page="../../components/checkboxComponentView.jsp">
         <jsp:param name="propertyName" value="secondarySidedSynchrony"/>
         <jsp:param name="messageCode" value="secondarySidedSynchrony"/>
@@ -186,6 +185,16 @@
     </div>
 
     <div class="form-group">
+        <label for="descriptionVideoEeg" class="col-xs-4 control-label">
+            <spring:message code="label.descriptionVideoEeg"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:textarea path="descriptionVideoEeg" id="descriptionVideoEeg" class="form-control resize-vertical"/>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label for="comment" class="col-xs-4 control-label">
             <spring:message code="label.comment"/>
         </label>
@@ -195,13 +204,4 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="descriptionVideoEeg" class="col-xs-4 control-label">
-            <spring:message code="label.descriptionVideoEeg"/>
-        </label>
-
-        <div class="col-xs-8">
-            <form:textarea path="descriptionVideoEeg" id="descriptionVideoEeg" class="form-control resize-vertical"/>
-        </div>
-    </div>
 </div>

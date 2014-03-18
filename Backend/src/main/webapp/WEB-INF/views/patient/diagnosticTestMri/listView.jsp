@@ -34,7 +34,7 @@
         <!-- diagnostic test MRI list START -->
 
         <c:choose>
-            <c:when test="${empty patient.diagnosticTestMriList}">
+            <c:when test="${empty diagnosticTestMriList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,7 +42,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.diagnosticTestMriList}" var="diagnosticTestMri">
+                    <c:forEach items="${diagnosticTestMriList}" var="diagnosticTestMri">
                         <div>
                             <table class="record-head table">
                                 <tbody>

@@ -1,13 +1,18 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestMriDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestMriVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestMriService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestMriEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,24 +20,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"diagnosticTestMri"})
 public class DiagnosticTestMriController {
 
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private DiagnosticTestMriService diagnosticTestMriService;
 
+    private GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService;
 
     @Autowired
-    public DiagnosticTestMriController(PatientService patientService,
-                                       DiagnosticTestMriService diagnosticTestMriService) {
+    public DiagnosticTestMriController(AuthorizationChecker authorizationChecker,
+                                       PatientService patientService,
+                                       DiagnosticTestMriService diagnosticTestMriService,
+                                       @Qualifier("genericCardServiceImpl")
+                                       GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.diagnosticTestMriService = diagnosticTestMriService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.GET)
@@ -44,9 +56,28 @@ public class DiagnosticTestMriController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestMri", new DiagnosticTestMriVO());
-        return "patient/diagnosticTestMri/formView";
+        return "patient/diagnosticTestMri/createView";
     }
 
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.POST)
+    public String diagnosticTestMriCreatePOST(
+            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/diagnosticTestMri/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
+            return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
+        }
+    }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/edit", method = RequestMethod.GET)
     public String diagnosticTestMriEditGET(
@@ -58,32 +89,29 @@ public class DiagnosticTestMriController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestMri", diagnosticTestMriService.getById(diagnosticTestMriId, DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class));
-        return "patient/diagnosticTestMri/formView";
+        model.addAttribute("diagnosticTestMri", genericCardService.getById(diagnosticTestMriId, DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class));
+        return "patient/diagnosticTestMri/editView";
     }
 
-    /**
-     * Adds the diagnosticTestMRI.
-     *
-     * @param result the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/save", method = RequestMethod.POST)
-    public String diagnosticTestMriSavePOST(
+    @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/edit", method = RequestMethod.POST)
+    public String diagnosticTestMriEditPOST(
             @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("diagnosticTestMriId") int diagnosticTestMriId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/diagnosticTestMri/formView";
+            return "patient/diagnosticTestMri/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            diagnosticTestMriService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
+            genericCardService.makeHistory(diagnosticTestMriId, DiagnosticTestMriEntity.class);
+            diagnosticTestMri.setId(0);
+            genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
             return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
@@ -97,7 +125,7 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestMriService.delete(diagnosticTestMriId, DiagnosticTestMriEntity.class);
+        genericCardService.delete(diagnosticTestMriId, DiagnosticTestMriEntity.class);
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 
@@ -116,7 +144,7 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestMriService.hide(diagnosticTestMriId, DiagnosticTestMriEntity.class);
+        genericCardService.hide(diagnosticTestMriId, DiagnosticTestMriEntity.class);
         return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
     }
 
@@ -135,7 +163,7 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        diagnosticTestMriService.unhide(diagnosticTestMriId, DiagnosticTestMriEntity.class);
+        genericCardService.unhide(diagnosticTestMriId, DiagnosticTestMriEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
@@ -148,9 +176,11 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDiagnosticTestMriList(patientId);
+
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<DiagnosticTestMriDisplayVO> diagnosticTestMriDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
+        model.addAttribute("diagnosticTestMriList", diagnosticTestMriDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestMri/listView";
     }

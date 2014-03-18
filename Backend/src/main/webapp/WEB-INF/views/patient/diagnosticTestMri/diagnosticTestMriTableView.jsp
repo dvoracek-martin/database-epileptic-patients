@@ -161,25 +161,25 @@
                         ${diagnosticTestMri.detailsWada}
                 </td>
             </tr>
-        </c:if>
 
-        <tr>
-            <th class="col-xs-3">
-                <spring:message code="label.comment"/>
-            </th>
-            <c:choose>
-                <c:when test="${empty diagnosticTestMri.comment}">
-                    <td class="col-xs-9">
-                        <spring:message code="label.noComments"/>
-                    </td>
-                </c:when>
-                <c:otherwise>
-                    <td class="col-xs-9">
-                            ${diagnosticTestMri.comment}
-                    </td>
-                </c:otherwise>
-            </c:choose>
-        </tr>
+            <tr>
+                <th class="col-xs-3">
+                    <spring:message code="label.comment"/>
+                </th>
+                <c:choose>
+                    <c:when test="${empty diagnosticTestMri.comment}">
+                        <td class="col-xs-9">
+                            <spring:message code="label.noComments"/>
+                        </td>
+                    </c:when>
+                    <c:otherwise>
+                        <td class="col-xs-9">
+                                ${diagnosticTestMri.comment}
+                        </td>
+                    </c:otherwise>
+                </c:choose>
+            </tr>
+        </c:if>
         </tbody>
     </table>
 </div>
