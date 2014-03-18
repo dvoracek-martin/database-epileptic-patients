@@ -74,6 +74,7 @@
                             </table>
 
                             <%@include file="seizureTableView.jsp" %>
+
                         </div>
                         <c:set var="count" value="1" scope="page"/>
                     </c:forEach>

@@ -47,6 +47,7 @@ public class GenericCardDAOImpl<CardEntity>
         Criteria criteria = sessionFactory
                 .getCurrentSession()
                 .createCriteria(entityClass)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
                 .add(Restrictions.eq("patientId", patientId))
                 .add(Restrictions.eq("hidden", false))
                 .add(Restrictions.eq("history", false))

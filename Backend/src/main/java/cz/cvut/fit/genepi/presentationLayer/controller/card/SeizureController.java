@@ -178,7 +178,7 @@ public class SeizureController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         model.addAttribute("patient", patient);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        List<SeizureDisplayVO> SeizureDisplayVoList = genericCardService.getRecordsByPatientId(patientId, SeizureDisplayVO.class, SeizureEntity.class);
+        List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
         model.addAttribute("seizureList", SeizureDisplayVoList);
         return "patient/seizure/listView";
     }
