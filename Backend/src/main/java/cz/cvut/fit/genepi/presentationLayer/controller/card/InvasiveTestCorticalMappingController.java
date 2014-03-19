@@ -1,49 +1,48 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestCorticalMappingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestCorticalMappingVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
+@SessionAttributes({"invasiveTestCorticalMapping"})
 public class InvasiveTestCorticalMappingController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
 
-    /**
-     * The patient service.
-     */
+    private AuthorizationChecker authorizationChecker;
+
     private PatientService patientService;
 
-    private InvasiveTestCorticalMappingService invasiveTestCorticalMappingService;
-
+    private GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService;
 
     /**
      * Constructor which serves to autowire services.
      *
      * @param patientService                     the patientService to be autowired.
-     * @param invasiveTestCorticalMappingService the invasiveTestCorticalMappingService to be autowired.
      */
     @Autowired
-    public InvasiveTestCorticalMappingController(PatientService patientService,
-                                                 InvasiveTestCorticalMappingService invasiveTestCorticalMappingService) {
+    public InvasiveTestCorticalMappingController(AuthorizationChecker authorizationChecker,
+                                                 PatientService patientService,
+                                                 @Qualifier("genericCardServiceImpl")
+                                                 GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.invasiveTestCorticalMappingService = invasiveTestCorticalMappingService;
+        this.genericCardService = genericCardService;
     }
 
     /**
@@ -86,7 +85,7 @@ public class InvasiveTestCorticalMappingController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestCorticalMapping", invasiveTestCorticalMappingService.getById(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class));
+        model.addAttribute("invasiveTestCorticalMapping", genericCardService.getById(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class));
         return "patient/invasiveTestCorticalMapping/formView";
     }
 
@@ -118,7 +117,7 @@ public class InvasiveTestCorticalMappingController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            invasiveTestCorticalMappingService.save(invasiveTestCorticalMapping, InvasiveTestCorticalMappingEntity.class);
+            genericCardService.save(invasiveTestCorticalMapping, InvasiveTestCorticalMappingEntity.class);
             return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
         }
     }
@@ -139,7 +138,7 @@ public class InvasiveTestCorticalMappingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestCorticalMappingService.hide(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
+        genericCardService.hide(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
         return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
     }
 
@@ -158,7 +157,7 @@ public class InvasiveTestCorticalMappingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestCorticalMappingService.unhide(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
+        genericCardService.unhide(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";

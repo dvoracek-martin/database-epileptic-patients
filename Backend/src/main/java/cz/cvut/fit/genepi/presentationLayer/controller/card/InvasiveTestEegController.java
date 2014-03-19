@@ -1,40 +1,43 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEegService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
+@SessionAttributes({"invasiveTestEeg"})
 public class InvasiveTestEegController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
-    private InvasiveTestEegService invasiveTestEegService;
-
+    private GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> genericCardService;
 
     @Autowired
-    public InvasiveTestEegController(PatientService patientService,
-                                     InvasiveTestEegService invasiveTestEegService) {
+    public InvasiveTestEegController(AuthorizationChecker authorizationChecker,
+                                     PatientService patientService,
+                                     @Qualifier("genericCardServiceImpl")
+                                     GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> genericCardService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.invasiveTestEegService = invasiveTestEegService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/create", method = RequestMethod.GET)
@@ -46,7 +49,27 @@ public class InvasiveTestEegController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestEeg", new InvasiveTestEegVO());
-        return "patient/invasiveTestEeg/formView";
+        return "patient/invasiveTestEeg/createView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/create", method = RequestMethod.POST)
+    public String invasiveTestEegCreatePOST(
+            @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestEeg.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/invasiveTestEeg/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(invasiveTestEeg, InvasiveTestEegEntity.class);
+            return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/edit", method = RequestMethod.GET)
@@ -59,20 +82,15 @@ public class InvasiveTestEegController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEeg", invasiveTestEegService.getById(invasiveTestEegId, InvasiveTestEegVO.class, InvasiveTestEegEntity.class));
-        return "patient/invasiveTestEeg/formView";
+        model.addAttribute("invasiveTestEeg", genericCardService.getById(invasiveTestEegId, InvasiveTestEegVO.class, InvasiveTestEegEntity.class));
+        return "patient/invasiveTestEeg/editView";
     }
 
-    /**
-     * Adds the invasiveTestEEG.
-     *
-     * @param result the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-eeg/{invasiveTestEegId}/edit", method = RequestMethod.POST)
     public String invasiveTestEegSavePOST(
             @ModelAttribute("invasiveTestEeg") @Valid InvasiveTestEegVO invasiveTestEeg, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("invasiveTestEegId") int invasiveTestEegId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -84,7 +102,9 @@ public class InvasiveTestEegController {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            invasiveTestEegService.save(invasiveTestEeg, InvasiveTestEegEntity.class);
+            genericCardService.makeHistory(invasiveTestEegId, InvasiveTestEegEntity.class);
+            invasiveTestEeg.setId(0);
+            genericCardService.save(invasiveTestEeg, InvasiveTestEegEntity.class);
             return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
         }
     }
@@ -98,7 +118,7 @@ public class InvasiveTestEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestEegService.delete(invasiveTestEegId, InvasiveTestEegEntity.class);
+        genericCardService.delete(invasiveTestEegId, InvasiveTestEegEntity.class);
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
@@ -117,7 +137,7 @@ public class InvasiveTestEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestEegService.hide(invasiveTestEegId, InvasiveTestEegEntity.class);
+        genericCardService.hide(invasiveTestEegId, InvasiveTestEegEntity.class);
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
@@ -136,7 +156,7 @@ public class InvasiveTestEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestEegService.unhide(invasiveTestEegId, InvasiveTestEegEntity.class);
+        genericCardService.unhide(invasiveTestEegId, InvasiveTestEegEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
@@ -149,9 +169,10 @@ public class InvasiveTestEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestEegList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
+        model.addAttribute("invasiveTestEegList", invasiveTestEegDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestEeg/listView";
     }

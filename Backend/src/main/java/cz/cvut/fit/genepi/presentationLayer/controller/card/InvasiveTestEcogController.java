@@ -2,14 +2,11 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
-import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -30,20 +27,16 @@ public class InvasiveTestEcogController {
 
     private PatientService patientService;
 
-    private InvasiveTestEcogService invasiveTestEcogService;
-
     private GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService;
 
     @Autowired
     public InvasiveTestEcogController(AuthorizationChecker authorizationChecker,
                                       PatientService patientService,
-                                      InvasiveTestEcogService invasiveTestEcogService,
                                       @Qualifier("genericCardServiceImpl")
                                       GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.invasiveTestEcogService = invasiveTestEcogService;
         this.genericCardService = genericCardService;
     }
 
