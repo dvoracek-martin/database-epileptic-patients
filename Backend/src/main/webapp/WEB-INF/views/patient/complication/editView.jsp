@@ -1,14 +1,14 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
 
-<jsp:attribute name="head">
-  <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
-        rel="stylesheet">
+    <jsp:attribute name="head">
+   <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
+         rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -16,18 +16,18 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-	<script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
+ <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
-        <script src="<c:url value="/resources/custom/js/cardForm/customjs.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/cardForm/complication.js" />"></script>
     </jsp:attribute>
 
     <jsp:body>
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.diagnosticTestScalpEeg"/>
+                    <spring:message code="label.complication"/>
                 </h2>
             </div>
         </div>
@@ -35,9 +35,9 @@
         <%@include file="../patientDetails.jsp" %>
 
         <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/diagnostic-test-scalp-eeg/create"
-                   commandName="diagnosticTestScalpEeg">
+        <form:form class="form-horizontal" method="POST"
+                   action="/GENEPI/patient/${patient.id}/complication/${complication.id}/edit"
+                   commandName="complication">
 
             <%@include file="formView.jsp" %>
 
@@ -49,6 +49,5 @@
                 </div>
             </div>
         </form:form>
-
     </jsp:body>
 </t:menuLVL2>

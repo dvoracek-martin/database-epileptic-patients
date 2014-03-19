@@ -6,9 +6,11 @@ $(document).ready(function () {
     var sectionWithComplicationSelector = $("#section-with-complication");
 
     withComplicationSelector.change(function () {
-        if (sectionWithComplicationSelector.val() == 1) {
+        if (withComplicationSelector.val() == 0) {
             sectionWithComplicationSelector.hide();
-        } else if (sectionWithComplicationSelector.val() == 2) {
+        } else if (withComplicationSelector.val() == 1) {
+            sectionWithComplicationSelector.hide();
+        } else if (withComplicationSelector.val() == 2) {
             sectionWithComplicationSelector.show();
         } else {
             //unexpected behavior

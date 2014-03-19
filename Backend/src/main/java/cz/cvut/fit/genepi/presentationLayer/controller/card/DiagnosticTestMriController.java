@@ -30,20 +30,16 @@ public class DiagnosticTestMriController {
 
     private PatientService patientService;
 
-    private DiagnosticTestMriService diagnosticTestMriService;
-
     private GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestMriController(AuthorizationChecker authorizationChecker,
                                        PatientService patientService,
-                                       DiagnosticTestMriService diagnosticTestMriService,
                                        @Qualifier("genericCardServiceImpl")
                                        GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.diagnosticTestMriService = diagnosticTestMriService;
         this.genericCardService = genericCardService;
     }
 
