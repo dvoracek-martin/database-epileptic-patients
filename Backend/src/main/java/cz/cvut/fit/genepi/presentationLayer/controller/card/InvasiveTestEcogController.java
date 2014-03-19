@@ -1,13 +1,18 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEcogVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestEcogService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEcogEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,24 +20,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"invasiveTestEcog"})
 public class InvasiveTestEcogController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private InvasiveTestEcogService invasiveTestEcogService;
 
+    private GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService;
 
     @Autowired
-    public InvasiveTestEcogController(PatientService patientService,
-                                      InvasiveTestEcogService invasiveTestEcogService) {
+    public InvasiveTestEcogController(AuthorizationChecker authorizationChecker,
+                                      PatientService patientService,
+                                      InvasiveTestEcogService invasiveTestEcogService,
+                                      @Qualifier("genericCardServiceImpl")
+                                      GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService) {
 
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.invasiveTestEcogService = invasiveTestEcogService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/create", method = RequestMethod.GET)
@@ -44,7 +56,27 @@ public class InvasiveTestEcogController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestEcog", new InvasiveTestEcogVO());
-        return "patient/invasiveTestEcog/formView";
+        return "patient/invasiveTestEcog/createView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/create", method = RequestMethod.POST)
+    public String invasiveTestEcogCreatePOST(
+            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestEcog.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/invasiveTestEcog/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(invasiveTestEcog, InvasiveTestEcogEntity.class);
+            return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/edit", method = RequestMethod.GET)
@@ -57,32 +89,29 @@ public class InvasiveTestEcogController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEcog", invasiveTestEcogService.getById(invasiveTestEcogId, InvasiveTestEcogVO.class, InvasiveTestEcogEntity.class));
-        return "patient/invasiveTestEcog/formView";
+        model.addAttribute("invasiveTestEcog", genericCardService.getById(invasiveTestEcogId, InvasiveTestEcogVO.class, InvasiveTestEcogEntity.class));
+        return "patient/invasiveTestEcog/editView";
     }
 
-    /**
-     * Adds the invasiveTestECOG.
-     *
-     * @param result the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/save", method = RequestMethod.POST)
-    public String invasiveTestEcogSavePOST(
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/edit", method = RequestMethod.POST)
+    public String invasiveTestEcogEditPOST(
             @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("invasiveTestEcogId") int invasiveTestEcogId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestEcog.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/invasiveTestEcog/formView";
+            return "patient/invasiveTestEcog/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            invasiveTestEcogService.save(invasiveTestEcog, InvasiveTestEcogEntity.class);
+            genericCardService.makeHistory(invasiveTestEcogId, InvasiveTestEcogEntity.class);
+            invasiveTestEcog.setId(0);
+            genericCardService.save(invasiveTestEcog, InvasiveTestEcogEntity.class);
             return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
         }
     }
@@ -97,7 +126,7 @@ public class InvasiveTestEcogController {
             return "deniedView";
         }
 
-        invasiveTestEcogService.delete(invasiveTestEcogId, InvasiveTestEcogEntity.class);
+        genericCardService.delete(invasiveTestEcogId, InvasiveTestEcogEntity.class);
         return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 
@@ -116,7 +145,7 @@ public class InvasiveTestEcogController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestEcogService.hide(invasiveTestEcogId, InvasiveTestEcogEntity.class);
+        genericCardService.hide(invasiveTestEcogId, InvasiveTestEcogEntity.class);
         return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
 
@@ -135,18 +164,11 @@ public class InvasiveTestEcogController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        invasiveTestEcogService.unhide(invasiveTestEcogId, InvasiveTestEcogEntity.class);
+        genericCardService.unhide(invasiveTestEcogId, InvasiveTestEcogEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/invasive-test-ecog/list";
     }
-
-   /* @RequestMapping(value = "/patient/{patientID}/invasive-test-ecog/{invasiveTestECOGID}/export", method = RequestMethod.GET)
-    public String invasiveTestECOGExportGET(Locale locale, Model model,
-                                            @PathVariable("patientID") Integer patientID,
-                                            @PathVariable("invasiveTestECOGID") Integer invasiveTestECOGID) {
-        return "redirect:/patient/" + patientID + "/invasive-test-ecog/list";
-    }*/
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/list", method = RequestMethod.GET)
     public String invasiveTestEcogListGET(
@@ -155,9 +177,10 @@ public class InvasiveTestEcogController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestEcogList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
+        model.addAttribute("invasiveTestEcogList", invasiveTestEcogDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestEcog/listView";
     }
