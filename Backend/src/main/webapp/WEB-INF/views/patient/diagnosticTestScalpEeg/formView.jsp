@@ -26,7 +26,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="done" id="done" type="text" class="form-control">
+        <form:select path="done" id="done" type="text" class="input-sm form-control">
             <form:option value="1">
                 <spring:message code="label.done.1"/>
             </form:option>
@@ -45,7 +45,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="form-control">
+            <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="input-sm form-control">
                 <form:option value="0">
                     Zvolte
                 </form:option>
@@ -65,7 +65,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="eegSlow" id="eegSlow" type="text" class="form-control">
+            <form:select path="eegSlow" id="eegSlow" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.eegSlow.0"/>
                 </form:option>
@@ -94,7 +94,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="form-control">
+            <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.interictalEegSpikes.0"/>
                 </form:option>
@@ -147,7 +147,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="form-control">
+            <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.ictalEegPatterns.0"/>
                 </form:option>

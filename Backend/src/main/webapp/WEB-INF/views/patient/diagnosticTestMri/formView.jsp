@@ -26,7 +26,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="done" id="done" type="text" class="form-control">
+        <form:select path="done" id="done" type="text" class="input-sm form-control">
             <form:option value="1">
                 <spring:message code="label.done.1"/>
             </form:option>
@@ -113,7 +113,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="mrsProtocol" id="mrsProtocol" type="text" class="form-control">
+            <form:select path="mrsProtocol" id="mrsProtocol" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.mrsProtocol.0"/>
                 </form:option>
@@ -163,7 +163,7 @@
 
 
     <div class="form-group">
-        <label for="fmri" class="col-xs-4 control-label">pro
+        <label for="dti" class="col-xs-4 control-label">pro
             <spring:message code="label.dti"/>
         </label>
 

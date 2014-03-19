@@ -1,13 +1,18 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.OperationVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
+import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,23 +20,31 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"operation"})
 public class OperationController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;
 
     private OperationService operationService;
 
-    @Autowired
-    public OperationController(PatientService patientService,
-                               OperationService operationService) {
+    private GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService;
 
+    @Autowired
+    public OperationController(AuthorizationChecker authorizationChecker,
+                               PatientService patientService,
+                               OperationService operationService,
+                               @Qualifier("genericCardServiceImpl")
+                               GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
         this.operationService = operationService;
+        this.genericCardService = genericCardService;
     }
 
     @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.GET)
@@ -43,7 +56,27 @@ public class OperationController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("operation", new OperationVO());
-        return "patient/operation/formView";
+        return "patient/operation/createView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.POST)
+    public String operationCreatePOST(
+            @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/operation/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(operation, OperationEntity.class);
+            return "redirect:/patient/" + patientId + "/operation/list";
+        }
     }
 
     @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/edit", method = RequestMethod.GET)
@@ -56,33 +89,29 @@ public class OperationController {
             return "deniedView";
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("operation", operationService.getById(operationId, OperationVO.class, OperationEntity.class));
-        return "patient/operation/formView";
+        model.addAttribute("operation", genericCardService.getById(operationId, OperationVO.class, OperationEntity.class));
+        return "patient/operation/editView";
     }
 
-    /**
-     * Adds the operation.
-     *
-     * @param operation the operation
-     * @param result    the result
-     * @return the string
-     */
-    @RequestMapping(value = "/patient/{patientId}/operation/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/edit", method = RequestMethod.POST)
     public String operationSavePOST(
             @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("operationId") int operationId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/operation/formView";
+            return "patient/operation/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
-            operationService.save(operation, OperationEntity.class);
+            genericCardService.makeHistory(operationId, OperationEntity.class);
+            operation.setId(0);
+            genericCardService.save(operation, OperationEntity.class);
             return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
@@ -96,7 +125,7 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        operationService.delete(operationId, OperationEntity.class);
+        genericCardService.delete(operationId, OperationEntity.class);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
@@ -115,7 +144,7 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        operationService.hide(operationId, OperationEntity.class);
+        genericCardService.hide(operationId, OperationEntity.class);
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
@@ -134,7 +163,7 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        operationService.unhide(operationId, OperationEntity.class);
+        genericCardService.unhide(operationId, OperationEntity.class);
         // TODO: address to get back to admin module where is list od hidden
         // records.
         return "redirect:/patient/" + patientId + "/operation/list";
@@ -147,9 +176,10 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithOperationList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<OperationDisplayVO> operationDisplayVoList = genericCardService.getRecordsByPatientId(patientId, OperationDisplayVO.class, OperationEntity.class);
+        model.addAttribute("operationList", operationDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/operation/listView";
     }

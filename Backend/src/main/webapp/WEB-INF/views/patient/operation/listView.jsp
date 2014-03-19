@@ -34,7 +34,7 @@
         <!-- Operation list START -->
 
         <c:choose>
-            <c:when test="${empty patient.operationList}">
+            <c:when test="${empty operationList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,7 +42,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.operationList}" var="operation">
+                    <c:forEach items="${operationList}" var="operation">
                         <div>
                             <table class="record-head table">
                                 <tbody>

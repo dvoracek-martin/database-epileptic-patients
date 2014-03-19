@@ -45,7 +45,7 @@
 
         <div class="col-xs-8">
             <form:select path="intracranialElectrodes" id="intracranialElectrodes" type="text"
-                         class="form-control">
+                         class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.intracranialElectrodes.0"/>
                 </form:option>
@@ -92,7 +92,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveEegSlow" id="invasiveEegSlow" type="text" class="form-control">
+            <form:select path="invasiveEegSlow" id="invasiveEegSlow" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.invasiveEegSlowing.0"/>
                 </form:option>

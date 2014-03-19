@@ -30,7 +30,6 @@ public class OperationVO {
 
     private int rangeOperation;
 
-    @Size(max = 800)
     private String localizationOperation;
 
     private boolean mst;
@@ -41,7 +40,6 @@ public class OperationVO {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
-    @NotNull
     private Date vnsImplantationDate;
 
     private String operationDetails;

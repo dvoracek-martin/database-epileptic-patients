@@ -9,7 +9,7 @@
 
     <div class="col-xs-8">
         <form:select path="${param.propertyName}" id="${param.propertyName}" type="text"
-                     class="form-control">
+                     class="input-sm form-control">
             <form:option value="0">
                 <spring:message code="label.invasiveEeg.0"/>
             </form:option>

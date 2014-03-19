@@ -26,7 +26,7 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="done" id="done" type="text" class="form-control">
+        <form:select path="done" id="done" type="text" class="input-sm form-control">
             <form:option value="1">
                 <spring:message code="label.done.1"/>
             </form:option>
@@ -45,7 +45,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="corticalMapping" id="corticalMapping" type="text" class="form-control">
+            <form:select path="corticalMapping" id="corticalMapping" type="text" class="input-sm form-control">
                 <form:option value="0">
                     <spring:message code="label.corticalMapping.0"/>
                 </form:option>
