@@ -23,7 +23,6 @@ import java.util.List;
 @SessionAttributes({"complication"})
 public class ComplicationController {
 
-
     private AuthorizationChecker authorizationChecker;
 
     private PatientService patientService;

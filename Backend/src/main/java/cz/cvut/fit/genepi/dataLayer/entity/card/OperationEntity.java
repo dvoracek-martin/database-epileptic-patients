@@ -91,7 +91,7 @@ public class OperationEntity implements Comparable<OperationEntity> {
 
 	/* Relations */
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "operation")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "operation")
     private List<OutcomeEntity> outcomeList;
 
     @Override

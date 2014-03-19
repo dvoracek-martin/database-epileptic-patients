@@ -2,9 +2,6 @@ package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
 import java.util.List;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class OperationDisplayVO {
 
     private int id;
@@ -32,8 +29,6 @@ public class OperationDisplayVO {
     private boolean completeResection;
 
     private String comment;
-
-    private List<OutcomeDisplayVO> outcomeList;
 
     public int getId() {
         return id;
@@ -137,13 +132,5 @@ public class OperationDisplayVO {
 
     public void setComment(String comment) {
         this.comment = comment;
-    }
-
-    public List<OutcomeDisplayVO> getOutcomeList() {
-        return outcomeList;
-    }
-
-    public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
-        this.outcomeList = outcomeList;
     }
 }

@@ -69,7 +69,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
     @Column(name = "distance")
     private int distance;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "operation_id", insertable = false, updatable = false)
     private OperationEntity operation;
 
