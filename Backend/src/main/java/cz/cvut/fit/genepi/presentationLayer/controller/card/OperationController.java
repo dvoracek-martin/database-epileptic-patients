@@ -177,7 +177,7 @@ public class OperationController {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<OperationDisplayVO> operationDisplayVoList = genericCardService.getRecordsByPatientId(patientId, OperationDisplayVO.class, OperationEntity.class);
+        List<OperationDisplayVO> operationDisplayVoList = operationService.getOperationList(patientId);
         model.addAttribute("operationList", operationDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);

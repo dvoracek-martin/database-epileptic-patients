@@ -15,23 +15,23 @@
                 ${operation.dateOperation}
             </td>
         </tr>
-        <%--compute hie mapping
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.ageAtSurgery"/>
             </th>
             <td class="col-xs-9">
-                ${operation.ageAtSurgery}
+                ${operation.ageAtOperation}
             </td>
         </tr>
-        <tr>
-            <th class="col-xs-3">
-                <spring:message code="label.durationOfEpilepsyAtTheTimeOfSurgery"/>
-            </th>
-            <td class="col-xs-9">
-                ${operation.durationOfEpilepsyAtTheTimeOfSurgery}
-            </td>
-        </tr>--%>
+        <%--
+       <tr>
+           <th class="col-xs-3">
+               <spring:message code="label.durationOfEpilepsyAtTheTimeOfSurgery"/>
+           </th>
+           <td class="col-xs-9">
+               ${operation.durationOfEpilepsyAtTheTimeOfSurgery}
+           </td>
+       </tr>--%>
 
         <tr>
             <th class="col-xs-3">

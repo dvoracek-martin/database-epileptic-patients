@@ -1,14 +1,19 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
+import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
+import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.OperationDAO;
-import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import org.dozer.Mapper;
+import org.joda.time.DateTime;
+import org.joda.time.Years;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +30,34 @@ public class OperationServiceImpl implements OperationService {
     @Autowired
     private Mapper dozer;
 
+    @Autowired
+    @Qualifier("genericCardDAOImpl")
+    private GenericCardDAO<OperationEntity> genericCardDAO;
+
+    @Autowired
+    @Qualifier("genericDAOImpl")
+    private GenericDAO<PatientEntity> genericDAO;
+
+    @Override
+    @Transactional
+    public List<OperationDisplayVO> getOperationList(int patientId) {
+        List<OperationEntity> operationEntityList = genericCardDAO.getRecordsByPatientId(patientId, OperationEntity.class);
+        PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
+
+        DateTime patientBirthDate = new DateTime(patient.getBirthday());
+        List<OperationDisplayVO> operationDisplayVoList = new ArrayList<>();
+
+        for (OperationEntity operationEntity : operationEntityList) {
+            DateTime operationDate = new DateTime(operationEntity.getDateOperation());
+            Years ageAtOperation = Years.yearsBetween(patientBirthDate.withTimeAtStartOfDay(), operationDate.withTimeAtStartOfDay());
+            OperationDisplayVO operationDisplayVo = dozer.map(operationEntity, OperationDisplayVO.class);
+            operationDisplayVo.setAgeAtOperation(ageAtOperation.getYears());
+            operationDisplayVoList.add(operationDisplayVo);
+        }
+
+        return operationDisplayVoList;
+    }
+
     @Override
     @Transactional
     public List<OperationWithOutcomesDisplayVO> getOperationWithOutcomeList(int patientId) {
@@ -37,9 +70,9 @@ public class OperationServiceImpl implements OperationService {
             Iterator<OutcomeEntity> i = operationEntity.getOutcomeList().iterator();
             while (i.hasNext()) {
                 OutcomeEntity outcomeEntity = i.next();
-               if(outcomeEntity.isHistory()){
-                   i.remove();
-               }
+                if (outcomeEntity.isHistory()) {
+                    i.remove();
+                }
             }
 
             OperationWithOutcomesDisplayVO operationWithOutcomesDisplayVo = dozer.map(operationEntity, OperationWithOutcomesDisplayVO.class);

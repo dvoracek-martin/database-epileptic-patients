@@ -30,6 +30,10 @@ public class OperationDisplayVO {
 
     private String comment;
 
+    private int ageAtOperation;
+
+    private int epilepsyLastAtOperation;
+
     public int getId() {
         return id;
     }
@@ -132,5 +136,21 @@ public class OperationDisplayVO {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public int getAgeAtOperation() {
+        return ageAtOperation;
+    }
+
+    public void setAgeAtOperation(int ageAtOperation) {
+        this.ageAtOperation = ageAtOperation;
+    }
+
+    public int getEpilepsyLastAtOperation() {
+        return epilepsyLastAtOperation;
+    }
+
+    public void setEpilepsyLastAtOperation(int epilepsyLastAtOperation) {
+        this.epilepsyLastAtOperation = epilepsyLastAtOperation;
     }
 }
