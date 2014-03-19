@@ -34,7 +34,7 @@
         <!-- histology list START -->
 
         <c:choose>
-            <c:when test="${empty patient.histologyList}">
+            <c:when test="${empty histologyList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -57,7 +57,7 @@
                             </th>
                         </tr>
                     </table>
-                    <c:forEach items="${patient.histologyList}" var="histology">
+                    <c:forEach items="${histologyList}" var="histology">
                         <div>
 
                             <%@ include file="histologyTableView.jsp" %>

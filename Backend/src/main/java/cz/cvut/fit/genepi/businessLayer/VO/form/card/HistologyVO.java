@@ -2,14 +2,11 @@ package cz.cvut.fit.genepi.businessLayer.VO.form.card;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class HistologyVO {
 
     private int id;
@@ -21,6 +18,7 @@ public class HistologyVO {
     @NotNull
     private Date date;
 
+    @Min(1)
     private int histopathology;
 
     private int fcdClassification;
