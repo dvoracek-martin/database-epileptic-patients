@@ -33,7 +33,7 @@
         <!-- Invasive test cortival mapping list START -->
 
         <c:choose>
-            <c:when test="${empty patient.invasiveTestCorticalMappingList}">
+            <c:when test="${empty invasiveTestCorticalMappingList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -41,7 +41,7 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${patient.invasiveTestCorticalMappingList}" var="invasiveTestCorticalMapping">
+                    <c:forEach items="${invasiveTestCorticalMappingList}" var="invasiveTestCorticalMapping">
                         <div>
                             <table class="record-head table">
                                 <tbody>

@@ -6,8 +6,8 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestCorticalMapping
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
-import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @SessionAttributes({"invasiveTestCorticalMapping"})
@@ -32,7 +33,7 @@ public class InvasiveTestCorticalMappingController {
     /**
      * Constructor which serves to autowire services.
      *
-     * @param patientService                     the patientService to be autowired.
+     * @param patientService the patientService to be autowired.
      */
     @Autowired
     public InvasiveTestCorticalMappingController(AuthorizationChecker authorizationChecker,
@@ -63,7 +64,27 @@ public class InvasiveTestCorticalMappingController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestCorticalMapping", new InvasiveTestCorticalMappingVO());
-        return "patient/invasiveTestCorticalMapping/formView";
+        return "patient/invasiveTestCorticalMapping/createView";
+    }
+
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/create", method = RequestMethod.POST)
+    public String invasiveTestCorticalMappingCreatePOST(
+            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
+            @PathVariable("patientId") int patientId,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestCorticalMapping.getDate())) {
+            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            return "patient/invasiveTestCorticalMapping/createView";
+        } else {
+            if (!authorizationChecker.isSuperDoctor()) {
+                patientService.voidVerifyPatient(patientId);
+            }
+            genericCardService.save(invasiveTestCorticalMapping, InvasiveTestCorticalMappingEntity.class);
+            return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
+        }
     }
 
     /**
@@ -86,37 +107,27 @@ public class InvasiveTestCorticalMappingController {
         }
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("invasiveTestCorticalMapping", genericCardService.getById(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class));
-        return "patient/invasiveTestCorticalMapping/formView";
+        return "patient/invasiveTestCorticalMapping/editView";
     }
 
-    /**
-     * Handles the POST request to create new invasiveTestCorticalMapping.
-     * front-end. It is grabbed from POST string and validated.
-     *
-     * @param result    the result of binding form from front-end to an
-     *                  AnamnesisEntity. It is used to determine if there were some
-     *                  errors during binding.
-     * @param patientId the id of a patient whom we are creating an
-     *                  invasiveTestCorticalMapping.
-     * @param model     the model to be filled for view.
-     * @return the name of a view to be rendered if the binding has errors
-     * otherwise, the address to which the user will be redirected.
-     */
-    @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/{invasiveTestCorticalMappingId}/edit", method = RequestMethod.POST)
     public String invasiveTestCorticalMappingSavePOST(
             @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
             @PathVariable("patientId") int patientId,
+            @PathVariable("invasiveTestCorticalMappingId") int invasiveTestCorticalMappingId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), invasiveTestCorticalMapping.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-            return "patient/invasiveTestCorticalMapping/formView";
+            return "patient/invasiveTestCorticalMapping/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
                 patientService.voidVerifyPatient(patientId);
             }
+            genericCardService.makeHistory(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
+            invasiveTestCorticalMapping.setId(0);
             genericCardService.save(invasiveTestCorticalMapping, InvasiveTestCorticalMappingEntity.class);
             return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
         }
@@ -177,9 +188,10 @@ public class InvasiveTestCorticalMappingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithInvasiveTestCorticalMappingList(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<InvasiveTestCorticalMappingDisplayVO> corticalMappingDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
+        model.addAttribute("invasiveTestCorticalMappingList", corticalMappingDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestCorticalMapping/listView";
     }
