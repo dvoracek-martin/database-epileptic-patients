@@ -170,13 +170,8 @@ public class AnamnesisController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
-        if (anamnesisDisplayVo == null) {
-            model.addAttribute("displayAnamnesisCreate", true);
-        } else {
-            model.addAttribute("displayAnamnesisCreate", false);
-        }
 
-        model.addAttribute("anamnesisDisplayVo", anamnesisDisplayVo);
+        model.addAttribute("anamnesis", anamnesisDisplayVo);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";

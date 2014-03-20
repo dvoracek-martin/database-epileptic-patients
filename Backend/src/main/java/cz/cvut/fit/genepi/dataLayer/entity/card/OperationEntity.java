@@ -3,6 +3,7 @@ package cz.cvut.fit.genepi.dataLayer.entity.card;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -92,7 +93,7 @@ public class OperationEntity implements Comparable<OperationEntity> {
 	/* Relations */
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "operation")
-    private List<OutcomeEntity> outcomeList;
+    private List<OutcomeEntity> outcomeList = new ArrayList<>();
 
     @Override
     public int compareTo(OperationEntity o) {

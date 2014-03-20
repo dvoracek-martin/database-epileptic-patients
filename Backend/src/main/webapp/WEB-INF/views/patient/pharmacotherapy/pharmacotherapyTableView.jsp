@@ -8,7 +8,7 @@
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
-            <a data-toggle="collapse" href="#collapse${pharmacotherapy.id}">
+            <a data-toggle="collapse" href="#collapse-pharmacotherapy-${pharmacotherapy.id}">
                 ${pharmacotherapy.date}
             </a>
         </td>
@@ -34,7 +34,7 @@
     </tr>
 </table>
 
-<div id="collapse${pharmacotherapy.id}" class="collapse">
+<div id="collapse-pharmacotherapy-${pharmacotherapy.id}" class="collapse">
     <table class="table">
         <tr>
             <td class="col-xs-4">

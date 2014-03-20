@@ -38,7 +38,7 @@ public class SeizureDetailEntity implements Comparable<SeizureDetailEntity> {
     @Column(name = "patient_id", nullable = false)
     private int patientId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "seizure_id", insertable = false, updatable = false)
     private SeizureEntity seizure;
 

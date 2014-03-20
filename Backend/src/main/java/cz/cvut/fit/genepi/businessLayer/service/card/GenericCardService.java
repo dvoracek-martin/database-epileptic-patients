@@ -13,4 +13,6 @@ public interface GenericCardService<CardDisplayVo, CardFormVo, CardEntity> exten
     public void makeHistory(int id, Class<CardEntity> entityClass);
 
     public List<CardDisplayVo> getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass);
+
+    public CardDisplayVo getLatestRecordByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass);
 }

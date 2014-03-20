@@ -5,7 +5,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-anamnesis-${anamnesisDisplayVo.id}" class="collapse in">
+<div id="collapse-anamnesis-${anamnesis.id}" class="collapse in">
     <table class="table">
         <tbody>
         <tr>
@@ -13,7 +13,7 @@
                 <spring:message code="label.epilepsyInFamily"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.epilepsyInFamily}"/>
+                <spring:message code="label.boolean.${anamnesis.epilepsyInFamily}"/>
             </td>
         </tr>
         <tr>
@@ -21,7 +21,7 @@
                 <spring:message code="label.prenatalRisk"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.prenatalRisk}"/>
+                <spring:message code="label.boolean.${anamnesis.prenatalRisk}"/>
             </td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
                 <spring:message code="label.fibrilConvulsions"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.fibrilConvulsions}"/>
+                <spring:message code="label.boolean.${anamnesis.fibrilConvulsions}"/>
             </td>
         </tr>
         <tr>
@@ -37,7 +37,7 @@
                 <spring:message code="label.inflammationCns"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.inflammationCns}"/>
+                <spring:message code="label.boolean.${anamnesis.inflammationCns}"/>
             </td>
         </tr>
         <tr>
@@ -45,7 +45,7 @@
                 <spring:message code="label.injuryCns"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.injuryCns}"/>
+                <spring:message code="label.boolean.${anamnesis.injuryCns}"/>
             </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                 <spring:message code="label.operationCns"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.operationCns}"/>
+                <spring:message code="label.boolean.${anamnesis.operationCns}"/>
             </td>
         </tr>
         <tr>
@@ -61,7 +61,7 @@
                 <spring:message code="label.earlyPmdRetardation"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.earlyPmdRetardation}"/>
+                <spring:message code="label.boolean.${anamnesis.earlyPmdRetardation}"/>
             </td>
         </tr>
         <tr>
@@ -69,7 +69,7 @@
                 <spring:message code="label.beginningEpilepsy"/>
             </th>
             <td>
-                ${anamnesisDisplayVo.beginningEpilepsy}
+                ${anamnesis.beginningEpilepsy}
             </td>
         </tr>
         <tr>
@@ -77,7 +77,7 @@
                 <spring:message code="label.firstFever"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.firstFever}"/>
+                <spring:message code="label.boolean.${anamnesis.firstFever}"/>
             </td>
         </tr>
         <tr>
@@ -85,7 +85,7 @@
                 <spring:message code="label.infantileSpasm"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${anamnesisDisplayVo.infantileSpasm}"/>
+                <spring:message code="label.boolean.${anamnesis.infantileSpasm}"/>
             </td>
         </tr>
         <tr>
@@ -93,7 +93,7 @@
                 <spring:message code="label.epilepticSyndrome"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.specificSyndrome.${anamnesisDisplayVo.specificSyndrome}"/>
+                <spring:message code="label.specificSyndrome.${anamnesis.specificSyndrome}"/>
             </td>
         </tr>
         <tr>
@@ -101,14 +101,14 @@
                 <spring:message code="label.nonCnsComorbidity"/>
             </th>
             <c:choose>
-                <c:when test="${empty anamnesisDisplayVo.nonCnsComorbidity}">
+                <c:when test="${empty anamnesis.nonCnsComorbidity}">
                     <td>
                         -
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${anamnesisDisplayVo.nonCnsComorbidity}
+                            ${anamnesis.nonCnsComorbidity}
                     </td>
                 </c:otherwise>
             </c:choose>
@@ -118,14 +118,14 @@
                 <spring:message code="label.comment"/>
             </th>
             <c:choose>
-                <c:when test="${empty anamnesisDisplayVo.comment}">
+                <c:when test="${empty anamnesis.comment}">
                     <td class="col-xs-9">
                         <spring:message code="label.noComments"/>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td>
-                            ${anamnesisDisplayVo.comment}
+                            ${anamnesis.comment}
                     </td>
                 </c:otherwise>
             </c:choose>

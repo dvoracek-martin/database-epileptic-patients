@@ -32,7 +32,27 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
      */
     @Override
     public PatientEntity getPatientByIdWithAllLists(int patientId) {
+Criteria criteria =sessionFactory
+        .getCurrentSession()
+        .createCriteria(PatientEntity.class)
+        .setFetchMode("doctor",FetchMode.JOIN)
+        .setFetchMode("anamnesisList",FetchMode.JOIN)
+        .setFetchMode("complicationList",FetchMode.JOIN)
+        .setFetchMode("diagnosticTestScalpEegList",FetchMode.JOIN)
+        .setFetchMode("diagnosticTestMRIList",FetchMode.JOIN)
+        .setFetchMode("histologyList",FetchMode.JOIN)
+        .setFetchMode("invasiveTestCorticalMappingList",FetchMode.JOIN)
+        .setFetchMode("invasiveTestECOGList",FetchMode.JOIN)
+        .setFetchMode("invasiveTestEEGList",FetchMode.JOIN)
+        .setFetchMode("neurologicalFindingList",FetchMode.JOIN)
+        .setFetchMode("neuropsychologyList",FetchMode.JOIN)
+        .setFetchMode("neuropsychologyOldList",FetchMode.JOIN)
+        .setFetchMode("operationList",FetchMode.JOIN)
+        .setFetchMode("pharmacotherapyList",FetchMode.JOIN)
+        .setFetchMode("seizureList",FetchMode.JOIN);
 
+        return (PatientEntity) criteria.uniqueResult();
+/*
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery(
@@ -54,7 +74,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                                 + " left join fetch p.pharmacotherapyList phList"
                                 + " left join fetch p.seizureList seList"
                                 + " left join fetch seList.seizureDetailList sdList"
-                                + " where p.id = :patientId"
+                                + " where p.id = :patientId");*/
                         /*+ " AND ((anList.history = false) OR anList = NULL)"
                         + " AND ((coList.hidden = false AND coList.history = false) OR coList = NULL)"
                         + " AND ((dtseList.hidden = false AND dtseList.history = false) OR dtseList = NULL)"
@@ -70,9 +90,9 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                         + " AND ((ouList.history = false) OR ouList = NULL)"
                         + " AND ((phList.hidden = false AND phList.history = false) OR phList = NULL)"
                         + " AND ((seList.hidden = false AND seList.history = false) OR seList = NULL)"
-                        + " AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/);
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
+                        + " AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)");*/
+      /*  query.setParameter("patientId", patientId);
+        return (PatientEntity) query.uniqueResult();*/
     }
 
     /*

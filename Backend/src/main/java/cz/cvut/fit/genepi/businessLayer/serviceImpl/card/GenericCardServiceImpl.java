@@ -46,7 +46,7 @@ public class GenericCardServiceImpl<CardDisplayVo, CardFormVo, CardEntity>
     @Override
     @Transactional
     @SuppressWarnings("unchecked")
-    public List<CardDisplayVo>  getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass) {
+    public List<CardDisplayVo> getRecordsByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass) {
         List<CardEntity> cardEntityList = genericCardDAO.getRecordsByPatientId(patientId, entityClass);
         List<CardDisplayVo> cardDisplayVoList = new ArrayList<>();
         for (CardEntity entity : cardEntityList) {
@@ -54,5 +54,16 @@ public class GenericCardServiceImpl<CardDisplayVo, CardFormVo, CardEntity>
             cardDisplayVoList.add(vo);
         }
         return cardDisplayVoList;
+    }
+
+    @Override
+    @Transactional
+    public CardDisplayVo getLatestRecordByPatientId(int patientId, Class<CardDisplayVo> voClass, Class<CardEntity> entityClass) {
+        CardEntity cardEntity = genericCardDAO.getLatestRecordByPatientId(patientId, entityClass);
+        if (cardEntity == null) {
+            return null;
+        } else {
+            return dozer.map(cardEntity, voClass);
+        }
     }
 }

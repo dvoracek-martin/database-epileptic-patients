@@ -56,4 +56,21 @@ public class GenericCardDAOImpl<CardEntity>
 
         return (List<CardEntity>) criteria.list();
     }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass) {
+        Criteria criteria = sessionFactory
+                .getCurrentSession()
+                .createCriteria(entityClass)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .add(Restrictions.eq("patientId", patientId))
+                .add(Restrictions.eq("hidden", false))
+                .add(Restrictions.eq("history", false))
+                .addOrder(Order.desc("date"))
+                .addOrder(Order.desc("id"))
+                .setMaxResults(1);
+
+        return (CardEntity) criteria.uniqueResult();
+    }
 }

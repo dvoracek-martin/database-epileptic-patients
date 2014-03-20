@@ -30,20 +30,16 @@ public class HistologyController {
 
     private PatientService patientService;
 
-    private HistologyService histologyService;
-
     private GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService;
 
     @Autowired
     public HistologyController(AuthorizationChecker authorizationChecker,
                                PatientService patientService,
-                               HistologyService histologyService,
                                @Qualifier("genericCardServiceImpl")
                                GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.histologyService = histologyService;
         this.genericCardService = genericCardService;
     }
 

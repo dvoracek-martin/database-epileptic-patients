@@ -1,18 +1,27 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientWithAllListsDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
+import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.card.*;
 import cz.cvut.fit.genepi.businessLayer.service.*;
+import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
+import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
+import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
+import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
+import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import cz.cvut.fit.genepi.util.JSONEncoder;
 import cz.cvut.fit.genepi.util.LoggingService;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -62,6 +71,43 @@ public class PatientController {
 
     private ExportToCsvService exportToCsvService;
 
+
+    @Autowired
+    @Qualifier("genericCardServiceImpl")
+    private GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> pharmacotherapyCardService;
+
+    @Autowired
+    @Qualifier("genericDAOImpl")
+    private GenericDAO<ExportParamsEntity> genericDAOExportParams;
+
+    @Autowired
+    @Qualifier("genericDAOImpl")
+    private GenericDAO<PatientEntity> genericDAOPatient;
+
+    private AnamnesisService anamnesisService;
+
+    private SeizureService seizureService;
+
+    private GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService;
+
+    private GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService;
+
+    private GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService;
+
+    private GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService;
+
+    private GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService;
+
+    private GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService;
+
+    private GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService;
+
+    private OperationService operationService;
+
+    private GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService;
+
+    private GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService;
+
     @Autowired
     public PatientController(AnonymizeService anonymizeService,
                              AuthorizationChecker authorizationChecker,
@@ -73,7 +119,28 @@ public class PatientController {
                              ExportToXlsxService exportToXlsxService,
                              ExportToDocxService exportToDocxService,
                              ExportToTxtService exportToTxtService,
-                             ExportToCsvService exportToCsvService) {
+                             ExportToCsvService exportToCsvService,
+                             AnamnesisService anamnesisService,
+                             SeizureService seizureService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService,
+                             OperationService operationService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService,
+                             @Qualifier("genericCardServiceImpl")
+                             GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService) {
 
         this.anonymizeService = anonymizeService;
         this.authorizationChecker = authorizationChecker;
@@ -86,6 +153,18 @@ public class PatientController {
         this.exportToDocxService = exportToDocxService;
         this.exportToTxtService = exportToTxtService;
         this.exportToCsvService = exportToCsvService;
+        this.anamnesisService = anamnesisService;
+        this.seizureService = seizureService;
+        this.nerologicalFindingCardService = nerologicalFindingCardService;
+        this.neuropsychologyCardService = neuropsychologyCardService;
+        this.diagnosticTestScalpEegCardService = diagnosticTestScalpEegCardService;
+        this.diagnosticTestMriCardService = diagnosticTestMriCardService;
+        this.invasiveTestEcogCardService = invasiveTestEcogCardService;
+        this.invasiveTestEegCardService = invasiveTestEegCardService;
+        this.invasiveTestCorticalMappingCardService = invasiveTestCorticalMappingCardService;
+        this.operationService = operationService;
+        this.histologyCardService = histologyCardService;
+        this.complicationCardService = complicationCardService;
     }
 
     /**
@@ -201,19 +280,48 @@ public class PatientController {
             return "deniedView";
         }
 
-        PatientWithAllListsDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);
+       /* PatientWithAllListsDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);*/
 
         //TODO hotfix
-        PatientDisplayVO patientHot = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
-        if (patient.getAnamnesisList().size() == 0) {
-            model.addAttribute("displayAnamnesisCreate", true);
-        } else {
-            model.addAttribute("displayCreate", false);
-        }
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientHot));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patientHot));
-        model.addAttribute("patient", patient);
+        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+
+        /* get all patients records */
+        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
+        SeizureDisplayVO seizureDisplayVo = seizureService.getLatestRecordByPatientId(patientId);
+        List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = pharmacotherapyCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
+        NeurologicalFindingDisplayVO neurologicalFindingDisplayVo = nerologicalFindingCardService.getLatestRecordByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
+        NeuropsychologyDisplayVO neuropsychologyDisplayVo = neuropsychologyCardService.getLatestRecordByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
+        DiagnosticTestScalpEegDisplayVO diagnosticTestScalpEegVo = diagnosticTestScalpEegCardService.getLatestRecordByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
+        DiagnosticTestMriDisplayVO diagnosticTestMriVo = diagnosticTestMriCardService.getLatestRecordByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
+        InvasiveTestEcogDisplayVO invasiveTestEcogVo = invasiveTestEcogCardService.getLatestRecordByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
+        InvasiveTestEegDisplayVO invasiveTestEegVo = invasiveTestEegCardService.getLatestRecordByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
+        InvasiveTestCorticalMappingDisplayVO invasiveTestCorticalMappingVo = invasiveTestCorticalMappingCardService.getLatestRecordByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
+        OperationDisplayVO operationDisplayVo = operationService.getLatestOperationByPatientId(patientId);
+        List<HistologyDisplayVO> histologyDisplayVoList = histologyCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
+        List<ComplicationDisplayVO> complicationDisplayVoList = complicationCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
+        OperationWithOutcomesDisplayVO operationWithOutcomesDisplayVo = operationService.getLatestOperationWithOutcomesByPatientId(patientId);
+
+        /* pass patient and all records to model */
+        model.addAttribute("patient", patient)
+                .addAttribute("anamnesis", anamnesisDisplayVo)
+                .addAttribute("seizure", seizureDisplayVo)
+                .addAttribute("pharmacotherapyList", pharmacotherapyDisplayVoList)
+                .addAttribute("neurologicalFinding", neurologicalFindingDisplayVo)
+                .addAttribute("neuropsychology", neuropsychologyDisplayVo)
+                .addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegVo)
+                .addAttribute("diagnosticTestMri", diagnosticTestMriVo)
+                .addAttribute("invasiveTestEcog", invasiveTestEcogVo)
+                .addAttribute("invasiveTestEeg", invasiveTestEegVo)
+                .addAttribute("invasiveTestCorticalMapping", invasiveTestCorticalMappingVo)
+                .addAttribute("operation", operationDisplayVo)
+                .addAttribute("histologyList", histologyDisplayVoList)
+                .addAttribute("complicationList", complicationDisplayVoList)
+                .addAttribute("operationWithOutcomes", operationWithOutcomesDisplayVo);
+
+        //  .addAttribute("anamnesis",anamnesisDisplayVo);
+
         return "patient/overviewView";
     }
 
@@ -309,8 +417,8 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/export", method = RequestMethod.GET)
     public String patientExportGET(
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request) { 
-      /*  if (!authorizationChecker.checkAuthoritaion(request)) {
+            Model model, HttpServletRequest request) {
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         Authentication auth = SecurityContextHolder.getContext()
@@ -318,7 +426,7 @@ public class PatientController {
         UserEntity user = userService.getUserByUsername(auth.getName());
 
         List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<>();
-        List<ExportParamsEntity> listOfSavedConfigurationsTmp =  exportParamsService.findAll(ExportParamsEntity.class);
+        List<ExportParamsEntity> listOfSavedConfigurationsTmp = genericDAOExportParams.findAll(ExportParamsEntity.class);
 
         for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
             if (exportEntityParams.isGeneric())
@@ -340,12 +448,11 @@ public class PatientController {
                 listOfUsersSavedConfigurations);
         model.addAttribute("user", user);
         model.addAttribute("exportParams",
-                exportParamsService.getById(1, ExportParamsVO.class,ExportParamsEntity.class));
+                exportParamsService.getById(1, ExportParamsVO.class, ExportParamsEntity.class));
         List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
-        listOfPatients.add(patientService.findById(PatientEntity.class,
-                patientId));
+        listOfPatients.add(genericDAOPatient.getById(patientId, PatientEntity.class));
         model.addAttribute("patientList", listOfPatients);
-        model.addAttribute("patient", listOfPatients.get(0));*/
+        model.addAttribute("patient", listOfPatients.get(0));
         return "patient/exportView";
     }
 
@@ -596,14 +703,13 @@ public class PatientController {
             return "redirect:/resources/downloads/" + url;
         }
 
-    /*    List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
-        listOfPatients.add(patientService.findByID(PatientEntity.class,
-                patientID[0]));
+        List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
+        listOfPatients.add(genericDAOPatient.getById(patientID[0], PatientEntity.class));
         model.addAttribute("patientList", listOfPatients);
         model.addAttribute("listOfPossibleExportParams",
-                exportParamsService.findAll(ExportParamsEntity.class));
+                genericDAOExportParams.findAll(ExportParamsEntity.class));
         model.addAttribute("exportType", exportType);
-        model.addAttribute("patient", listOfPatients.get(0));*/
+        model.addAttribute("patient", listOfPatients.get(0));
         return "patient/exportView";
     }
 
@@ -639,8 +745,7 @@ public class PatientController {
         if (logger.getLogger() == null)
             logger.setLogger(PatientController.class);
 
-      /*  ExportParamsEntity exportParams = exportParamsService.findByID(
-                ExportParamsEntity.class, exportID);
+        ExportParamsEntity exportParams = genericDAOExportParams.getById(exportID, ExportParamsEntity.class);
 
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
@@ -650,7 +755,7 @@ public class PatientController {
 
         List<ExportParamsEntity> listOfSavedConfigurations = new ArrayList<ExportParamsEntity>();
         List<ExportParamsEntity> listOfSavedConfigurationsTmp = new ArrayList<ExportParamsEntity>();
-        listOfSavedConfigurationsTmp = exportParamsService
+        listOfSavedConfigurationsTmp = genericDAOExportParams
                 .findAll(ExportParamsEntity.class);
 
         for (ExportParamsEntity exportEntityParams : listOfSavedConfigurationsTmp) {
@@ -673,13 +778,13 @@ public class PatientController {
                 listOfUsersSavedConfigurations);
         model.addAttribute("user", user);
         model.addAttribute("patient",
-                patientService.findByID(PatientEntity.class, patientID[0]));
+                genericDAOPatient.getById(patientID[0], PatientEntity.class));
         List<PatientEntity> patientList = new ArrayList<PatientEntity>();
         for (Integer patient : patientID) {
             patientList.add(patientService.getPatientByIdWithAllLists(patient));
         }
 
-        model.addAttribute("patientList", patientList);*/
+        model.addAttribute("patientList", patientList);
         return "patient/exportView";
     }
 

@@ -46,23 +46,51 @@ public class SeizureServiceImpl
     @Transactional
     public List<SeizureDisplayVO> getRecordsByPatientId(int patientId) {
         List<SeizureEntity> seizureEntityList = genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class);
-        List<SeizureDisplayVO> seizureDisplayVoList = new ArrayList<>();
-        for (SeizureEntity entity : seizureEntityList) {
+        if (seizureEntityList.isEmpty()) {
+            return null;
+        } else {
+            List<SeizureDisplayVO> seizureDisplayVoList = new ArrayList<>();
+            for (SeizureEntity entity : seizureEntityList) {
 
-            List<SeizureDetailEntity> seizureDetailEntityList = entity.getSeizureDetailList();
-            Iterator<SeizureDetailEntity> iterator = seizureDetailEntityList.iterator();
+                List<SeizureDetailEntity> seizureDetailEntityList = entity.getSeizureDetailList();
+                Iterator<SeizureDetailEntity> iterator = seizureDetailEntityList.iterator();
+                while (iterator.hasNext()) {
+                    SeizureDetailEntity seizureDetailEntity = iterator.next();
+                    if (seizureDetailEntity.isHidden() || seizureDetailEntity.isHistory()) {
+                        iterator.remove();
+                    }
+                }
+                Collections.sort(entity.getSeizureDetailList());
+                Collections.reverse(entity.getSeizureDetailList());
+
+                SeizureDisplayVO vo = dozer.map(entity, SeizureDisplayVO.class);
+                seizureDisplayVoList.add(vo);
+            }
+            return seizureDisplayVoList;
+        }
+    }
+
+    @Override
+    @Transactional
+    public SeizureDisplayVO getLatestRecordByPatientId(int patientId) {
+        List<SeizureEntity> seizureEntityList = genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class);
+        if (seizureEntityList.isEmpty()) {
+            return null;
+        } else {
+            SeizureEntity seizureEntity = seizureEntityList.get(0);
+
+
+            Iterator<SeizureDetailEntity> iterator = seizureEntity.getSeizureDetailList().iterator();
             while (iterator.hasNext()) {
                 SeizureDetailEntity seizureDetailEntity = iterator.next();
                 if (seizureDetailEntity.isHidden() || seizureDetailEntity.isHistory()) {
                     iterator.remove();
                 }
             }
-            Collections.sort(entity.getSeizureDetailList());
-            Collections.reverse(entity.getSeizureDetailList());
+            Collections.sort(seizureEntity.getSeizureDetailList());
+            Collections.reverse(seizureEntity.getSeizureDetailList());
 
-            SeizureDisplayVO vo = dozer.map(entity, SeizureDisplayVO.class);
-            seizureDisplayVoList.add(vo);
+            return dozer.map(seizureEntity, SeizureDisplayVO.class);
         }
-        return seizureDisplayVoList;
     }
 }

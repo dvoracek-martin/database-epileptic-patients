@@ -40,31 +40,60 @@ public class OperationServiceImpl implements OperationService {
 
     @Override
     @Transactional
-    public List<OperationDisplayVO> getOperationList(int patientId) {
+    public OperationDisplayVO getLatestOperationByPatientId(int patientId) {
         List<OperationEntity> operationEntityList = genericCardDAO.getRecordsByPatientId(patientId, OperationEntity.class);
-        PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
+        if (operationEntityList.isEmpty()) {
+            return null;
+        } else {
+            OperationEntity operationEntity = operationEntityList.get(0);
+            PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
 
-        DateTime patientBirthDate = new DateTime(patient.getBirthday());
-        List<OperationDisplayVO> operationDisplayVoList = new ArrayList<>();
+            DateTime patientBirthDate = new DateTime(patient.getBirthday());
 
-        for (OperationEntity operationEntity : operationEntityList) {
             DateTime operationDate = new DateTime(operationEntity.getDateOperation());
             Years ageAtOperation = Years.yearsBetween(patientBirthDate.withTimeAtStartOfDay(), operationDate.withTimeAtStartOfDay());
             OperationDisplayVO operationDisplayVo = dozer.map(operationEntity, OperationDisplayVO.class);
             operationDisplayVo.setAgeAtOperation(ageAtOperation.getYears());
-            operationDisplayVoList.add(operationDisplayVo);
-        }
 
-        return operationDisplayVoList;
+            return operationDisplayVo;
+        }
     }
+
 
     @Override
     @Transactional
-    public List<OperationWithOutcomesDisplayVO> getOperationWithOutcomeList(int patientId) {
-        List<OperationEntity> operationEntityList = operationDAO.getOperationWithOutcomeList(patientId);
-        List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = new ArrayList<>();
+    public List<OperationDisplayVO> getOperationList(int patientId) {
+        List<OperationEntity> operationEntityList = genericCardDAO.getRecordsByPatientId(patientId, OperationEntity.class);
+        if (operationEntityList.isEmpty()) {
+            return null;
+        } else {
+            PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
 
-        for (OperationEntity operationEntity : operationEntityList) {
+            DateTime patientBirthDate = new DateTime(patient.getBirthday());
+            List<OperationDisplayVO> operationDisplayVoList = new ArrayList<>();
+
+            for (OperationEntity operationEntity : operationEntityList) {
+                DateTime operationDate = new DateTime(operationEntity.getDateOperation());
+                Years ageAtOperation = Years.yearsBetween(patientBirthDate.withTimeAtStartOfDay(), operationDate.withTimeAtStartOfDay());
+                OperationDisplayVO operationDisplayVo = dozer.map(operationEntity, OperationDisplayVO.class);
+                operationDisplayVo.setAgeAtOperation(ageAtOperation.getYears());
+                operationDisplayVoList.add(operationDisplayVo);
+            }
+
+            return operationDisplayVoList;
+        }
+    }
+
+
+    @Override
+    @Transactional
+    public OperationWithOutcomesDisplayVO getLatestOperationWithOutcomesByPatientId(int patientId) {
+        List<OperationEntity> operationEntityList = operationDAO.getOperationWithOutcomeList(patientId);
+        if (operationEntityList.isEmpty()) {
+            return null;
+        } else {
+            OperationEntity operationEntity = operationEntityList.get(0);
+
 
             //remove all hidden outcomes from collection TODO find more effective way to return operation without them
             Iterator<OutcomeEntity> i = operationEntity.getOutcomeList().iterator();
@@ -75,9 +104,35 @@ public class OperationServiceImpl implements OperationService {
                 }
             }
 
-            OperationWithOutcomesDisplayVO operationWithOutcomesDisplayVo = dozer.map(operationEntity, OperationWithOutcomesDisplayVO.class);
-            operationWithOutcomesDisplayVoList.add(operationWithOutcomesDisplayVo);
+            return dozer.map(operationEntity, OperationWithOutcomesDisplayVO.class);
         }
-        return operationWithOutcomesDisplayVoList;
+    }
+
+
+    @Override
+    @Transactional
+    public List<OperationWithOutcomesDisplayVO> getOperationWithOutcomeList(int patientId) {
+        List<OperationEntity> operationEntityList = operationDAO.getOperationWithOutcomeList(patientId);
+        if (operationEntityList.isEmpty()) {
+            return null;
+        } else {
+            List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = new ArrayList<>();
+
+            for (OperationEntity operationEntity : operationEntityList) {
+
+                //remove all hidden outcomes from collection TODO find more effective way to return operation without them
+                Iterator<OutcomeEntity> i = operationEntity.getOutcomeList().iterator();
+                while (i.hasNext()) {
+                    OutcomeEntity outcomeEntity = i.next();
+                    if (outcomeEntity.isHistory()) {
+                        i.remove();
+                    }
+                }
+
+                OperationWithOutcomesDisplayVO operationWithOutcomesDisplayVo = dozer.map(operationEntity, OperationWithOutcomesDisplayVO.class);
+                operationWithOutcomesDisplayVoList.add(operationWithOutcomesDisplayVo);
+            }
+            return operationWithOutcomesDisplayVoList;
+        }
     }
 }

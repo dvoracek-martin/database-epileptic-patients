@@ -11,7 +11,6 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -22,7 +21,7 @@
                 </h2>
             </div>
             <div class="col-xs-6">
-                <c:if test="${displayAnamnesisCreate==true}">
+                <c:if test="${empty anamnesis}">
                     <h3 class="pull-right">
                         <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                             <spring:message code="label.addRecord"/>
@@ -36,7 +35,7 @@
 
 
         <c:choose>
-            <c:when test="${empty anamnesisDisplayVo}">
+            <c:when test="${empty anamnesis}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -48,19 +47,19 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
-                                            Zadano dne: ${anamnesisDisplayVo.date}
+                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesis.id}">
+                                            Zadano dne: ${anamnesis.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <!-- <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a> -->
                                     </th>

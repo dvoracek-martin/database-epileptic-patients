@@ -7,7 +7,11 @@ import java.util.List;
 
 public interface OperationService {
 
+    public OperationDisplayVO getLatestOperationByPatientId(int patientId);
+
     public List<OperationDisplayVO> getOperationList(int patientId);
+
+    public OperationWithOutcomesDisplayVO getLatestOperationWithOutcomesByPatientId(int patientId);
 
     public List<OperationWithOutcomesDisplayVO> getOperationWithOutcomeList(int patientId);
 }

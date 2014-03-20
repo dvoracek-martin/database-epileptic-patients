@@ -10,11 +10,5 @@ import java.util.List;
  */
 public interface SeizureDAO extends GenericDAO<SeizureEntity> {
 
-    /**
-     * Find anamnesis by patient id.
-     *
-     * @param patientId the patient id
-     * @return the list
-     */
-    List<SeizureEntity> findAnamnesisByPatientID(int patientId);
+
 }

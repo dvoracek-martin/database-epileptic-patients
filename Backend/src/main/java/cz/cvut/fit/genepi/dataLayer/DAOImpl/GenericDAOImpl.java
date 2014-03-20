@@ -5,6 +5,7 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -28,6 +29,7 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
     }
 
     @SuppressWarnings("unchecked")
+    @Transactional
     public Entity getById(int id, Class<Entity> entityCass) {
         return (Entity) sessionFactory.getCurrentSession().get(entityCass, id);
     }
@@ -42,6 +44,7 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
     }
 
     @SuppressWarnings("unchecked")
+    @Transactional
     public List<Entity> findAll(Class<Entity> myClass) {
 
         Query query = sessionFactory

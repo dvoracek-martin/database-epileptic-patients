@@ -107,7 +107,7 @@ public class SeizureEntity implements Comparable<SeizureEntity> {
 
 	/* Relations */
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "seizure")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "seizure")
     private List<SeizureDetailEntity> seizureDetailList;
 
     @Override

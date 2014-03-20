@@ -69,7 +69,7 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <c:if test="${displayAnamnesisCreate==true}">
+        <c:if test="${empty anamnesis}">
             <h3 class="pull-right">
                 <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                     <spring:message code="label.addRecord"/>
@@ -80,14 +80,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.anamnesisList}">
+    <c:when test="${empty anamnesis}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="anamnesis" value="${patient.anamnesisList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -129,14 +128,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.seizureList}">
+    <c:when test="${empty seizure}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="seizure" value="${patient.seizureList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -178,7 +176,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.pharmacotherapyList}">
+    <c:when test="${empty pharmacotherapyList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -216,7 +214,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${patient.pharmacotherapyList}" var="pharmacotherapy">
+            <c:forEach items="${pharmacotherapyList}" var="pharmacotherapy">
                 <div>
 
                     <%@ include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
@@ -245,14 +243,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.neurologicalFindingList}">
+    <c:when test="${empty neurologicalFinding}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="neurologicalFinding" value="${patient.neurologicalFindingList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -294,14 +291,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.neuropsychologyList}">
+    <c:when test="${empty neuropsychology}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="neuropsychology" value="${patient.neuropsychologyList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -325,6 +321,7 @@
     </c:otherwise>
 </c:choose>
 
+
 <%-- Diagnostic test scalp EEG --%>
 <div class="row">
     <div class="col-xs-6">
@@ -342,14 +339,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.diagnosticTestScalpEegList}">
+    <c:when test="${empty diagnosticTestScalpEeg}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="diagnosticTestScalpEeg" value="${patient.diagnosticTestScalpEegList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -391,14 +387,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.diagnosticTestMriList}">
+    <c:when test="${empty diagnosticTestMri}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="diagnosticTestMri" value="${patient.diagnosticTestMriList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -422,6 +417,7 @@
     </c:otherwise>
 </c:choose>
 
+
 <%-- Invasive test ECoG --%>
 <div class="row">
     <div class="col-xs-6">
@@ -439,14 +435,14 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.invasiveTestEcogList}">
+    <c:when test="${empty invasiveTestEcog}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="invasiveTestEcog" value="${patient.invasiveTestEcogList[0]}" scope="page"/>
+
         <table class="record-head table">
             <tbody>
             <tr>
@@ -487,14 +483,14 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.invasiveTestEegList}">
+    <c:when test="${empty invasiveTestEeg}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="invasiveTestEeg" value="${patient.invasiveTestEegList[0]}" scope="page"/>
+
         <table class="record-head table">
             <tbody>
             <tr>
@@ -535,14 +531,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.invasiveTestCorticalMappingList}">
+    <c:when test="${empty invasiveTestCorticalMapping}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="invasiveTestCorticalMapping" value="${patient.invasiveTestCorticalMappingList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -585,14 +580,13 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.operationList}">
+    <c:when test="${empty operation}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
     </c:when>
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
-        <c:set var="operation" value="${patient.operationList[0]}" scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
@@ -636,7 +630,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.histologyList}">
+    <c:when test="${empty histologyList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -675,7 +669,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${patient.histologyList}" var="histology">
+            <c:forEach items="${histologyList}" var="histology">
                 <div>
 
                     <%@ include file="histology/histologyTableView.jsp" %>
@@ -704,7 +698,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.complicationList}">
+    <c:when test="${empty complicationList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -743,7 +737,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${patient.complicationList}" var="complication">
+            <c:forEach items="${complicationList}" var="complication">
                 <div>
 
                     <%@ include file="complication/complicationTableView.jsp" %>
@@ -766,7 +760,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty patient.operationList}">
+    <c:when test="${empty operationWithOutcomes}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -774,14 +768,13 @@
     <c:otherwise>
         <c:set var="count" value="0" scope="page"/>
         <div class="list-striped">
-            <c:set var="operation" value="${patient.operationList[0]}" scope="page"/>
             <div>
                 <table class="record-head table">
                     <tbody>
                     <tr>
                         <th class="col-xs-12">
-                            <a data-toggle="collapse" href="#collapse-outcome-${operation.id}">
-                                <spring:message code="label.operationFromDay"/>: ${operation.dateOperation}
+                            <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomes.id}">
+                                <spring:message code="label.operationFromDay"/>: ${operationWithOutcomes.dateOperation}
                             </a>
                         </th>
                     </tr>

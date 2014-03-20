@@ -27,7 +27,7 @@
         <!-- Outcome list START -->
 
         <c:choose>
-            <c:when test="${empty operationList}">
+            <c:when test="${empty operationWithOutcomesList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -35,14 +35,14 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationList}" var="operation">
+                    <c:forEach items="${operationWithOutcomesList}" var="operationWithOutcomes">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-12">
-                                        <a data-toggle="collapse" href="#collapse-outcome-${operation.id}">
-                                            <spring:message code="label.operationFromDay"/>: ${operation.dateOperation}
+                                        <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomes.id}">
+                                            <spring:message code="label.operationFromDay"/>: ${operationWithOutcomes.dateOperation}
                                         </a>
                                     </th>
                                 </tr>

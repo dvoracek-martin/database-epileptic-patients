@@ -12,4 +12,6 @@ public interface SeizureService extends GenericCardService<SeizureDetailDisplayV
     public int save(SeizureVO seizure);
 
     public List<SeizureDisplayVO> getRecordsByPatientId(int patientId);
+
+    public SeizureDisplayVO getLatestRecordByPatientId(int patientId);
 }

@@ -403,6 +403,7 @@ public class PatientServiceImpl
     public PatientWithAllListsDisplayVO getPatientDisplayByIdWithAllLists(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithAllLists(patientId);
 
+        //TODO we can use iterator on all of therse foreaches
         List<ComplicationEntity> recordComplicationEntityList = new ArrayList<>();
         for (ComplicationEntity item : patient.getComplicationList()) {
             if (!item.isHidden() && !item.isHistory()) {
