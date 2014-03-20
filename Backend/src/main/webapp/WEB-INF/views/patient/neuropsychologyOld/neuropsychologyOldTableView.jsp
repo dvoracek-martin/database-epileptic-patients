@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-neuropsychology-old-${neuropsychologyOld.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-neuropsychology-old-${neuropsychologyOldDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -12,7 +12,7 @@
                 <spring:message code="label.neuropsychologicalExamination"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neuropsychologyOld.neuropsychologicalExamination}"/>
+                <spring:message code="label.boolean.${neuropsychologyOldDisplayVo.neuropsychologicalExamination}"/>
             </td>
         </tr>
         <tr>
@@ -28,7 +28,7 @@
                 <spring:message code="label.intelligenceLevel"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.intelligenceLevel.${neuropsychologyOld.intelligenceLevel}"/>
+                <spring:message code="label.intelligenceLevel.${neuropsychologyOldDisplayVo.intelligenceLevel}"/>
             </td>
         </tr>
         <tr>
@@ -36,7 +36,7 @@
                 <spring:message code="label.specificLearning"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neuropsychologyOld.specificLearning}"/>
+                <spring:message code="label.boolean.${neuropsychologyOldDisplayVo.specificLearning}"/>
             </td>
         </tr>
         <tr>
@@ -44,7 +44,7 @@
                 <spring:message code="label.developmentalLanguageDisorders"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neuropsychologyOld.developmentalLanguageDisorders}"/>
+                <spring:message code="label.boolean.${neuropsychologyOldDisplayVo.developmentalLanguageDisorders}"/>
             </td>
         </tr>
         <tr>
@@ -52,7 +52,7 @@
                 <spring:message code="label.adhdSyndrome"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neuropsychologyOld.adhdSyndrome}"/>
+                <spring:message code="label.boolean.${neuropsychologyOldDisplayVo.adhdSyndrome}"/>
             </td>
         </tr>
         <tr>
@@ -60,14 +60,14 @@
                 <spring:message code="label.comment"/>
             </th>
             <c:choose>
-                <c:when test="${empty neuropsychologyOld.comment}">
+                <c:when test="${empty neuropsychologyOldDisplayVo.comment}">
                     <td class="col-xs-9">
                         <spring:message code="label.noComments"/>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${neuropsychologyOld.comment}
+                            ${neuropsychologyOldDisplayVo.comment}
                     </td>
                 </c:otherwise>
             </c:choose>

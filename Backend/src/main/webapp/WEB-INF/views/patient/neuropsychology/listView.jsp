@@ -34,7 +34,7 @@
         <!-- neuropsychology list START -->
 
         <c:choose>
-            <c:when test="${empty neuropsychologyList}">
+            <c:when test="${empty neuropsychologyDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,26 +42,26 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${neuropsychologyList}" var="neuropsychology">
+                    <c:forEach items="${neuropsychologyDisplayVoList}" var="neuropsychologyDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-neuropsychology-${neuropsychology.id}">
-                                            Zadano dne: ${neuropsychology.date}
+                                           href="#collapse-neuropsychology-${neuropsychologyDisplayVo.id}">
+                                            Zadano dne: ${neuropsychologyDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychology.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychology.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

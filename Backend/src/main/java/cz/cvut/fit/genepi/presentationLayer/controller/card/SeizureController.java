@@ -179,7 +179,7 @@ public class SeizureController {
         model.addAttribute("patient", patient);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
-        model.addAttribute("seizureList", SeizureDisplayVoList);
+        model.addAttribute("seizureDisplayVoList", SeizureDisplayVoList);
         return "patient/seizure/listView";
     }
 }

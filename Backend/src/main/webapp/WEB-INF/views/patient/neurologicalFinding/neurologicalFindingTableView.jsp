@@ -5,7 +5,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-neurological-finding-${neurologicalFinding.id}"
+<div id="collapse-neurological-finding-${neurologicalFindingDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -14,7 +14,7 @@
                 <spring:message code="label.hemisphereDominance"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.hemisphereDominance.${neurologicalFinding.hemisphereDominance}"/>
+                <spring:message code="label.hemisphereDominance.${neurologicalFindingDisplayVo.hemisphereDominance}"/>
             </td>
         </tr>
         <tr>
@@ -22,7 +22,7 @@
                 <spring:message code="label.abnormalNeurologicalFinding"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neurologicalFinding.abnormalNeurologicalFinding}"/>
+                <spring:message code="label.boolean.${neurologicalFindingDisplayVo.abnormalNeurologicalFinding}"/>
             </td>
         </tr>
         <tr>
@@ -30,7 +30,7 @@
                 <spring:message code="label.hemiparesis"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neurologicalFinding.hemiparesis}"/>
+                <spring:message code="label.boolean.${neurologicalFindingDisplayVo.hemiparesis}"/>
             </td>
         </tr>
         <tr>
@@ -38,7 +38,7 @@
                 <spring:message code="label.visualFieldDefect"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${neurologicalFinding.visualFieldDefects}"/>
+                <spring:message code="label.boolean.${neurologicalFindingDisplayVo.visualFieldDefects}"/>
             </td>
         </tr>
         <tr>
@@ -46,14 +46,14 @@
                 <spring:message code="label.comment"/>
             </th>
             <c:choose>
-                <c:when test="${empty neurologicalFinding.comment}">
+                <c:when test="${empty neurologicalFindingDisplayVo.comment}">
                     <td class="col-xs-9">
                         <spring:message code="label.noComments"/>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${neurologicalFinding.comment}
+                            ${neurologicalFindingDisplayVo.comment}
                     </td>
                 </c:otherwise>
             </c:choose>

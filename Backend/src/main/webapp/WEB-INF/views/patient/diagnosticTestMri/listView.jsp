@@ -34,7 +34,7 @@
         <!-- diagnostic test MRI list START -->
 
         <c:choose>
-            <c:when test="${empty diagnosticTestMriList}">
+            <c:when test="${empty diagnosticTestMriDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,26 +42,26 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${diagnosticTestMriList}" var="diagnosticTestMri">
+                    <c:forEach items="${diagnosticTestMriDisplayVoList}" var="diagnosticTestMriDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-diagnostic-test-mri-${diagnosticTestMri.id}">
-                                            Zadano dne: ${diagnosticTestMri.date}
+                                           href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}">
+                                            Zadano dne: ${diagnosticTestMriDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMri.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMri.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

@@ -10,6 +10,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -174,7 +175,7 @@ public class NeurologicalFindingController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = genericCardService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
-        model.addAttribute("neurologicalFindingList", neurologicalFindingDisplayVO);
+        model.addAttribute("neurologicalFindingDisplayVoList", neurologicalFindingDisplayVO);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neurologicalFinding/listView";

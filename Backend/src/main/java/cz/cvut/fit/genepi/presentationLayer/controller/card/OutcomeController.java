@@ -143,8 +143,8 @@ public class OutcomeController {
             return "deniedView";
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<OperationWithOutcomesDisplayVO> OperationWithOutcomesDisplayVoList = operationService.getOperationWithOutcomeList(patientId);
-        model.addAttribute("operationWithOutcomes", OperationWithOutcomesDisplayVoList);
+        List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = operationService.getOperationWithOutcomeList(patientId);
+        model.addAttribute("operationWithOutcomesDisplayVoList", operationWithOutcomesDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
 

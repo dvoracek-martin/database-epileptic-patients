@@ -69,7 +69,7 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <c:if test="${empty anamnesis}">
+        <c:if test="${empty anamnesisDisplayVo}">
             <h3 class="pull-right">
                 <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                     <spring:message code="label.addRecord"/>
@@ -80,7 +80,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty anamnesis}">
+    <c:when test="${empty anamnesisDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -91,8 +91,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesis.id}">
-                        Zadano dne: ${anamnesis.date}
+                    <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
+                        Zadano dne: ${anamnesisDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -128,7 +128,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty seizure}">
+    <c:when test="${empty seizureDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -139,8 +139,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-seizure-${seizure.id}">
-                        Zadano dne: ${seizure.date}
+                    <a data-toggle="collapse" href="#collapse-seizure-${seizureDisplayVo.id}">
+                        Zadano dne: ${seizureDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -176,7 +176,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty pharmacotherapyList}">
+    <c:when test="${empty pharmacotherapyDisplayVoList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -214,7 +214,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${pharmacotherapyList}" var="pharmacotherapy">
+            <c:forEach items="${pharmacotherapyDisplayVoList}" var="pharmacotherapyDisplayVo">
                 <div>
 
                     <%@ include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
@@ -243,7 +243,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty neurologicalFinding}">
+    <c:when test="${empty neurologicalFindingDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -254,8 +254,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-neurological-finding-${neurologicalFinding.id}">
-                        Zadano dne: ${neurologicalFinding.date}
+                    <a data-toggle="collapse" href="#collapse-neurological-finding-${neurologicalFindingDisplayVo.id}">
+                        Zadano dne: ${neurologicalFindingDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -291,7 +291,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty neuropsychology}">
+    <c:when test="${empty neuropsychologyDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -302,8 +302,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-neuropsychology-${neuropsychology.id}">
-                        Zadano dne: ${neuropsychology.date}
+                    <a data-toggle="collapse" href="#collapse-neuropsychology-${neuropsychologyDisplayVo.id}">
+                        Zadano dne: ${neuropsychologyDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -339,7 +339,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty diagnosticTestScalpEeg}">
+    <c:when test="${empty diagnosticTestScalpEegDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -350,8 +350,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEeg.id}">
-                        Zadano dne: ${diagnosticTestScalpEeg.date}
+                    <a data-toggle="collapse" href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}">
+                        Zadano dne: ${diagnosticTestScalpEegDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -387,7 +387,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty diagnosticTestMri}">
+    <c:when test="${empty diagnosticTestMriDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -398,8 +398,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-diagnostic-test-mri-${diagnosticTestMri.id}">
-                        Zadano dne: ${diagnosticTestMri.date}
+                    <a data-toggle="collapse" href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}">
+                        Zadano dne: ${diagnosticTestMriDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -435,7 +435,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty invasiveTestEcog}">
+    <c:when test="${empty invasiveTestEcogDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -447,8 +447,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-invasive-test-ecog-${invasiveTestEcog.id}">
-                        Zadano dne: ${invasiveTestEcog.date}
+                    <a data-toggle="collapse" href="#collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}">
+                        Zadano dne: ${invasiveTestEcogDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -483,7 +483,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty invasiveTestEeg}">
+    <c:when test="${empty invasiveTestEegDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -495,8 +495,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-invasive-test-eeg-${invasiveTestEeg.id}">
-                        Zadano dne: ${invasiveTestEeg.date}
+                    <a data-toggle="collapse" href="#collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}">
+                        Zadano dne: ${invasiveTestEegDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -531,7 +531,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty invasiveTestCorticalMapping}">
+    <c:when test="${empty invasiveTestCorticalMappingDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -543,8 +543,8 @@
             <tr>
                 <th class="col-xs-8">
                     <a data-toggle="collapse"
-                       href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
-                        Zadano dne: ${invasiveTestCorticalMapping.date}
+                       href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayVo.id}">
+                        Zadano dne: ${invasiveTestCorticalMappingDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -580,7 +580,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty operation}">
+    <c:when test="${empty operationDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -591,8 +591,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-operation-${operation.id}">
-                        Zadano dne: ${operation.date}
+                    <a data-toggle="collapse" href="#collapse-operation-${operationDisplayVo.id}">
+                        Zadano dne: ${operationDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -630,7 +630,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty histologyList}">
+    <c:when test="${empty histologyDisplayVoList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -669,7 +669,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${histologyList}" var="histology">
+            <c:forEach items="${histologyDisplayVoList}" var="histologyDisplayVo">
                 <div>
 
                     <%@ include file="histology/histologyTableView.jsp" %>
@@ -698,7 +698,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty complicationList}">
+    <c:when test="${empty complicationDisplayVoList}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -737,7 +737,7 @@
                     <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${complicationList}" var="complication">
+            <c:forEach items="${complicationDisplayVoList}" var="complicationDisplayVo">
                 <div>
 
                     <%@ include file="complication/complicationTableView.jsp" %>
@@ -760,7 +760,7 @@
 </div>
 
 <c:choose>
-    <c:when test="${empty operationWithOutcomes}">
+    <c:when test="${empty operationWithOutcomesDisplayVo}">
         <div class="alert alert-info">
             <spring:message code="label.noRecords"/>
         </div>
@@ -773,8 +773,8 @@
                     <tbody>
                     <tr>
                         <th class="col-xs-12">
-                            <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomes.id}">
-                                <spring:message code="label.operationFromDay"/>: ${operationWithOutcomes.dateOperation}
+                            <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
+                                <spring:message code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
                             </a>
                         </th>
                     </tr>

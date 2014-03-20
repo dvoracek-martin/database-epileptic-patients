@@ -181,7 +181,7 @@ public class ComplicationController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<ComplicationDisplayVO> complicationDisplayVoList = genericCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
-        model.addAttribute("complicationList", complicationDisplayVoList);
+        model.addAttribute("complicationDisplayVoList", complicationDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/complication/listView";

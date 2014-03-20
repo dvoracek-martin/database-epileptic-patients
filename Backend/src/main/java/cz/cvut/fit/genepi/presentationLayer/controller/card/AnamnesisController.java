@@ -171,7 +171,7 @@ public class AnamnesisController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
 
-        model.addAttribute("anamnesis", anamnesisDisplayVo);
+        model.addAttribute("anamnesisDisplayVo", anamnesisDisplayVo);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";

@@ -45,8 +45,8 @@ public class OperationDAOImpl implements OperationDAO {
                 .add(Restrictions.eq("history", false))
                 .addOrder(Order.desc("date"))
                 .addOrder(Order.desc("id"))
-                .createCriteria("outcomeList", JoinType.LEFT_OUTER_JOIN)
-                .add(Restrictions.eq("history",false));
+                .createCriteria("outcomeList", JoinType.LEFT_OUTER_JOIN);
+                //.add(Restrictions.eq("history",false));
 
         return (List<OperationEntity>) criteria.list();
     }

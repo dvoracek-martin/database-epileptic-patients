@@ -34,7 +34,7 @@
         <!-- Invasive test EEG list START -->
 
         <c:choose>
-            <c:when test="${empty invasiveTestEegList}">
+            <c:when test="${empty invasiveTestEegDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,26 +42,26 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${invasiveTestEegList}" var="invasiveTestEeg">
+                    <c:forEach items="${invasiveTestEegDisplayVoList}" var="invasiveTestEegDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-invasive-test-eeg-${invasiveTestEeg.id}">
-                                            Zadano dne: ${invasiveTestEeg.date}
+                                           href="#collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}">
+                                            Zadano dne: ${invasiveTestEegDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/invasive-test-eeg/${invasiveTestEeg.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/invasive-test-eeg/${invasiveTestEegDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/invasive-test-eeg/${invasiveTestEeg.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/invasive-test-eeg/${invasiveTestEegDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

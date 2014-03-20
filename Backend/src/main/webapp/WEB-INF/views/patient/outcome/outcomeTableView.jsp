@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-outcome-${operationWithOutcomes.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
 
 
 <%-- getting outcomes --%>
@@ -14,22 +14,22 @@
 <c:set var="outcome60" value=""/>
 <c:set var="outcome120" value=""/>
 
-<c:forEach items="${operationWithOutcomes.outcomeList}" var="outcome">
+<c:forEach items="${operationWithOutcomesDisplayVo.outcomeList}" var="outcomeDisplayVo">
     <c:choose>
-        <c:when test="${outcome.distance==6}">
-            <c:set var="outcome6" value="${outcome}"/>
+        <c:when test="${outcomeDisplayVo.distance==6}">
+            <c:set var="outcome6" value="${outcomeDisplayVo}"/>
         </c:when>
-        <c:when test="${outcome.distance==12}">
-            <c:set var="outcome12" value="${outcome}"/>
+        <c:when test="${outcomeDisplayVo.distance==12}">
+            <c:set var="outcome12" value="${outcomeDisplayVo}"/>
         </c:when>
         <c:when test="${outcome.distance==24}">
-            <c:set var="outcome24" value="${outcome}"/>
+            <c:set var="outcome24" value="${outcomeDisplayVo}"/>
         </c:when>
-        <c:when test="${outcome.distance==60}">
-            <c:set var="outcome60" value="${outcome}"/>
+        <c:when test="${outcomeDisplayVo.distance==60}">
+            <c:set var="outcome60" value="${outcomeDisplayVo}"/>
         </c:when>
-        <c:when test="${outcome.distance==120}">
-            <c:set var="outcome120" value="${outcome}"/>
+        <c:when test="${outcomeDisplayVo.distance==120}">
+            <c:set var="outcome120" value="${outcomeDisplayVo}"/>
         </c:when>
     </c:choose>
 </c:forEach>
@@ -57,7 +57,7 @@
             <td><spring:message code="label.done.${outcome6.mri}"/></td>
             <td><spring:message code="label.done.${outcome6.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.editRecord"/>
                 </a>
             </td>
@@ -69,7 +69,7 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.addRecord"/>
                 </a>
             </td>
@@ -110,7 +110,7 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.addRecord"/>
                 </a>
             </td>
@@ -151,7 +151,7 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.addRecord"/>
                 </a>
             </td>
@@ -192,7 +192,7 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.addRecord"/>
                 </a>
             </td>
@@ -233,7 +233,7 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operation.id}" />">
+                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
                     <spring:message code="label.addRecord"/>
                 </a>
             </td>

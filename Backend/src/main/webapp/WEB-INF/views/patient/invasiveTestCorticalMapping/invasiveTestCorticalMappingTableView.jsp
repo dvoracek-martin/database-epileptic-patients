@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}"
+<div id="collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -13,17 +13,17 @@
                 <spring:message code="label.invasiveTestCorticalMapping"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${invasiveTestCorticalMapping.done}"/>
+                <spring:message code="label.done.${invasiveTestCorticalMappingDisplayVo.done}"/>
             </td>
         </tr>
 
-        <c:if test="${invasiveTestCorticalMapping.done==2}">
+        <c:if test="${invasiveTestCorticalMappingDisplayVo.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.corticalMapping"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.corticalMapping.${invasiveTestCorticalMapping.corticalMapping}"/>
+                    <spring:message code="label.corticalMapping.${invasiveTestCorticalMappingDisplayVo.corticalMapping}"/>
                 </td>
             </tr>
             <tr>
@@ -31,14 +31,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty invasiveTestCorticalMapping.comment}">
+                    <c:when test="${empty invasiveTestCorticalMappingDisplayVo.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${invasiveTestCorticalMapping.comment}
+                                ${invasiveTestCorticalMappingDisplayVo.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

@@ -5,7 +5,7 @@
            prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-diagnostic-test-mri-${diagnosticTestMri.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -13,16 +13,16 @@
                 <spring:message code="label.diagnosticTestMri"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${diagnosticTestMri.done}"/>
+                <spring:message code="label.done.${diagnosticTestMriDisplayVo.done}"/>
             </td>
         </tr>
-        <c:if test="${diagnosticTestMri.done==2}">
+        <c:if test="${diagnosticTestMriDisplayVo.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.mriFinding"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.resultType.${diagnosticTestMri.mriFinding}"/>
+                    <spring:message code="label.resultType.${diagnosticTestMriDisplayVo.mriFinding}"/>
                 </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                     <spring:message code="label.descriptionMri"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.mriDescription}
+                        ${diagnosticTestMriDisplayVo.mriDescription}
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                     <spring:message code="label.fdgPet"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.resultType.${diagnosticTestMri.fdgPet}"/>
+                    <spring:message code="label.resultType.${diagnosticTestMriDisplayVo.fdgPet}"/>
                 </td>
             </tr>
             <tr>
@@ -46,7 +46,7 @@
                     <spring:message code="label.descriptionPetHypometabolism"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.descriptionPetHypometabolism}
+                        ${diagnosticTestMriDisplayVo.descriptionPetHypometabolism}
                 </td>
             </tr>
             <tr>
@@ -54,7 +54,7 @@
                     <spring:message code="label.interictalSpect"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.resultType.${diagnosticTestMri.interictalSpect}"/>
+                    <spring:message code="label.resultType.${diagnosticTestMriDisplayVo.interictalSpect}"/>
                 </td>
             </tr>
             <tr>
@@ -62,7 +62,7 @@
                     <spring:message code="label.descriptionSpectHypoperfuse"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.descriptionSpectHypoperfuse}
+                        ${diagnosticTestMriDisplayVo.descriptionSpectHypoperfuse}
                 </td>
             </tr>
             <tr>
@@ -70,7 +70,7 @@
                     <spring:message code="label.interictalSpect"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.resultType.${diagnosticTestMri.ictalSpect}"/>
+                    <spring:message code="label.resultType.${diagnosticTestMriDisplayVo.ictalSpect}"/>
                 </td>
             </tr>
             <tr>
@@ -78,7 +78,7 @@
                     <spring:message code="label.descriptionSpectHyperperfuse"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.descriptionSpectHyperperfuse}
+                        ${diagnosticTestMriDisplayVo.descriptionSpectHyperperfuse}
                 </td>
             </tr>
             <tr>
@@ -86,7 +86,7 @@
                     <spring:message code="label.siscom"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestMri.siscom}"/>
+                    <spring:message code="label.boolean.${diagnosticTestMriDisplayVo.siscom}"/>
                 </td>
             </tr>
             <tr>
@@ -94,7 +94,7 @@
                     <spring:message code="label.mrsProtocol"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.mrsProtocol.${diagnosticTestMri.mrsProtocol}"/>
+                    <spring:message code="label.mrsProtocol.${diagnosticTestMriDisplayVo.mrsProtocol}"/>
                 </td>
             </tr>
             <tr>
@@ -102,7 +102,7 @@
                     <spring:message code="label.mrsFinding"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.resultType.${diagnosticTestMri.mrsFinding}"/>
+                    <spring:message code="label.resultType.${diagnosticTestMriDisplayVo.mrsFinding}"/>
                 </td>
             </tr>
             <tr>
@@ -110,7 +110,7 @@
                     <spring:message code="label.descriptionMrsAbnormality"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.descriptionMrsAbnormality}
+                        ${diagnosticTestMriDisplayVo.descriptionMrsAbnormality}
                 </td>
             </tr>
             <tr>
@@ -118,7 +118,7 @@
                     <spring:message code="label.fmri"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestMri.fmri}"/>
+                    <spring:message code="label.boolean.${diagnosticTestMriDisplayVo.fmri}"/>
                 </td>
             </tr>
             <tr>
@@ -126,7 +126,7 @@
                     <spring:message code="label.fmriDetails"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.detailsFmri}
+                        ${diagnosticTestMriDisplayVo.detailsFmri}
                 </td>
             </tr>
             <tr>
@@ -134,7 +134,7 @@
                     <spring:message code="label.dti"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestMri.dti}"/>
+                    <spring:message code="label.boolean.${diagnosticTestMriDisplayVo.dti}"/>
                 </td>
             </tr>
             <tr>
@@ -142,7 +142,7 @@
                     <spring:message code="label.dtiStudyDetails"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.detailsDtiStudy}
+                        ${diagnosticTestMriDisplayVo.detailsDtiStudy}
                 </td>
             </tr>
             <tr>
@@ -150,7 +150,7 @@
                     <spring:message code="label.wada"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestMri.wada}"/>
+                    <spring:message code="label.boolean.${diagnosticTestMriDisplayVo.wada}"/>
                 </td>
             </tr>
             <tr>
@@ -158,7 +158,7 @@
                     <spring:message code="label.wadaDetails"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestMri.detailsWada}
+                        ${diagnosticTestMriDisplayVo.detailsWada}
                 </td>
             </tr>
 
@@ -167,14 +167,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty diagnosticTestMri.comment}">
+                    <c:when test="${empty diagnosticTestMriDisplayVo.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${diagnosticTestMri.comment}
+                                ${diagnosticTestMriDisplayVo.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

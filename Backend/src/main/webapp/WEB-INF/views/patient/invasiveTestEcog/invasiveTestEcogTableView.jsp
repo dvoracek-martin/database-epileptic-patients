@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-invasive-test-ecog-${invasiveTestEcog.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -12,17 +12,17 @@
                 <spring:message code="label.invasiveTestECoG"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${invasiveTestEcog.done}"/>
+                <spring:message code="label.done.${invasiveTestEcogDisplayVo.done}"/>
             </td>
         </tr>
 
-        <c:if test="${invasiveTestEcog.done==2}">
+        <c:if test="${invasiveTestEcogDisplayVo.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.ecogCover"/>
                 </th>
                 <td class="col-xs-9">
-                        ${invasiveTestEcog.ecogCover}
+                        ${invasiveTestEcogDisplayVo.ecogCover}
                 </td>
             </tr>
             <tr>
@@ -30,7 +30,7 @@
                     <spring:message code="label.ecogPatterns"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.ecogPatterns.${invasiveTestEcog.ecogPatterns}"/>
+                    <spring:message code="label.ecogPatterns.${invasiveTestEcogDisplayVo.ecogPatterns}"/>
                 </td>
             </tr>
             <tr>
@@ -38,7 +38,7 @@
                     <spring:message code="label.ecogAfterResection"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.afterResectionEcog.${invasiveTestEcog.afterResectionEcog}"/>
+                    <spring:message code="label.afterResectionEcog.${invasiveTestEcogDisplayVo.afterResectionEcog}"/>
                 </td>
             </tr>
             <tr>
@@ -46,14 +46,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty invasiveTestEcog.comment}">
+                    <c:when test="${empty invasiveTestEcogDisplayVo.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${invasiveTestEcog.comment}
+                                ${invasiveTestEcogDisplayVo.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

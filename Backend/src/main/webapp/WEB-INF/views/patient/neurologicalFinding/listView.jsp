@@ -37,7 +37,7 @@
         <!-- neurological finding list START -->
 
         <c:choose>
-            <c:when test="${empty neurologicalFindingList}">
+            <c:when test="${empty neurologicalFindingDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -45,26 +45,26 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${neurologicalFindingList}" var="neurologicalFinding">
+                    <c:forEach items="${neurologicalFindingDisplayVoList}" var="neurologicalFindingDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-neurological-finding-${neurologicalFinding.id}">
-                                            Zadano dne: ${neurologicalFinding.date}
+                                           href="#collapse-neurological-finding-${neurologicalFindingDisplayVo.id}">
+                                            Zadano dne: ${neurologicalFindingDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFindingDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/neurological-finding/${neurologicalFindingDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

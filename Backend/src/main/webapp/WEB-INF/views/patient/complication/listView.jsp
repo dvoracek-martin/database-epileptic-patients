@@ -34,7 +34,7 @@
         <!-- complication list START -->
 
         <c:choose>
-            <c:when test="${empty complicationList}">
+            <c:when test="${empty complicationDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -57,7 +57,7 @@
                             <th class="col-xs-4"></th>
                         </tr>
                     </table>
-                    <c:forEach items="${complicationList}" var="complication">
+                    <c:forEach items="${complicationDisplayVoList}" var="complicationDisplayVo">
                         <div>
 
                             <%@ include file="complicationTableView.jsp" %>

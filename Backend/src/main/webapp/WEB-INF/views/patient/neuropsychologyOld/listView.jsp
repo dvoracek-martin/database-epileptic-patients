@@ -27,7 +27,7 @@
         <!-- neuropsychology old list START -->
 
         <c:choose>
-            <c:when test="${empty neuropsychologyOldList}">
+            <c:when test="${empty neuropsychologyOldDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -35,15 +35,15 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${neuropsychologyOldList}" var="neuropsychologyOld">
+                    <c:forEach items="${neuropsychologyOldDisplayVoList}" var="neuropsychologyOldDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-neuropsychology-old-${neuropsychologyOld.id}">
-                                            Zadano dne: ${neuropsychologyOld.date}
+                                           href="#collapse-neuropsychology-old-${neuropsychologyOldDisplayVo.id}">
+                                            Zadano dne: ${neuropsychologyOldDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
@@ -51,7 +51,7 @@
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOld.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOldDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

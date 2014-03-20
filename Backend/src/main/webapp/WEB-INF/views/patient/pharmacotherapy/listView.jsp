@@ -35,7 +35,7 @@
         <!-- neurologicalFinding list START -->
 
         <c:choose>
-            <c:when test="${empty pharmacotherapyList}">
+            <c:when test="${empty pharmacotherapyDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -59,7 +59,7 @@
                             <th class="col-xs-4"></th>
                         </tr>
                     </table>
-                    <c:forEach items="${pharmacotherapyList}" var="pharmacotherapy">
+                    <c:forEach items="${pharmacotherapyDisplayVoList}" var="pharmacotherapyDisplayVo">
                         <div>
 
                             <%@ include file="pharmacotherapyTableView.jsp" %>

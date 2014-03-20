@@ -35,7 +35,7 @@
 
 
         <c:choose>
-            <c:when test="${empty anamnesis}">
+            <c:when test="${empty anamnesisDisplayVo}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -47,19 +47,19 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesis.id}">
-                                            Zadano dne: ${anamnesis.date}
+                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
+                                            Zadano dne: ${anamnesisDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <!-- <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesis.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a> -->
                                     </th>

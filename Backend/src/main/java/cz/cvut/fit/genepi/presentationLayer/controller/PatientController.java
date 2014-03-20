@@ -28,6 +28,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionAttributeStore;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -275,11 +278,10 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(
             @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
-
+request.getSession().setAttribute("neuropsychology",null);
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-
        /* PatientWithAllListsDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);*/
 
         //TODO hotfix
@@ -293,11 +295,11 @@ public class PatientController {
         List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = pharmacotherapyCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
         NeurologicalFindingDisplayVO neurologicalFindingDisplayVo = nerologicalFindingCardService.getLatestRecordByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
         NeuropsychologyDisplayVO neuropsychologyDisplayVo = neuropsychologyCardService.getLatestRecordByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
-        DiagnosticTestScalpEegDisplayVO diagnosticTestScalpEegVo = diagnosticTestScalpEegCardService.getLatestRecordByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
-        DiagnosticTestMriDisplayVO diagnosticTestMriVo = diagnosticTestMriCardService.getLatestRecordByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
-        InvasiveTestEcogDisplayVO invasiveTestEcogVo = invasiveTestEcogCardService.getLatestRecordByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
-        InvasiveTestEegDisplayVO invasiveTestEegVo = invasiveTestEegCardService.getLatestRecordByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
-        InvasiveTestCorticalMappingDisplayVO invasiveTestCorticalMappingVo = invasiveTestCorticalMappingCardService.getLatestRecordByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
+        DiagnosticTestScalpEegDisplayVO diagnosticTestScalpEegDisplayVo = diagnosticTestScalpEegCardService.getLatestRecordByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
+        DiagnosticTestMriDisplayVO diagnosticTestMriDisplayVo = diagnosticTestMriCardService.getLatestRecordByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
+        InvasiveTestEcogDisplayVO invasiveTestEcogDisplayVo = invasiveTestEcogCardService.getLatestRecordByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
+        InvasiveTestEegDisplayVO invasiveTestEegDisplayVo = invasiveTestEegCardService.getLatestRecordByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
+        InvasiveTestCorticalMappingDisplayVO invasiveTestCorticalMappingDisplayVo = invasiveTestCorticalMappingCardService.getLatestRecordByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
         OperationDisplayVO operationDisplayVo = operationService.getLatestOperationByPatientId(patientId);
         List<HistologyDisplayVO> histologyDisplayVoList = histologyCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
         List<ComplicationDisplayVO> complicationDisplayVoList = complicationCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
@@ -305,20 +307,20 @@ public class PatientController {
 
         /* pass patient and all records to model */
         model.addAttribute("patient", patient)
-                .addAttribute("anamnesis", anamnesisDisplayVo)
-                .addAttribute("seizure", seizureDisplayVo)
-                .addAttribute("pharmacotherapyList", pharmacotherapyDisplayVoList)
-                .addAttribute("neurologicalFinding", neurologicalFindingDisplayVo)
-                .addAttribute("neuropsychology", neuropsychologyDisplayVo)
-                .addAttribute("diagnosticTestScalpEeg", diagnosticTestScalpEegVo)
-                .addAttribute("diagnosticTestMri", diagnosticTestMriVo)
-                .addAttribute("invasiveTestEcog", invasiveTestEcogVo)
-                .addAttribute("invasiveTestEeg", invasiveTestEegVo)
-                .addAttribute("invasiveTestCorticalMapping", invasiveTestCorticalMappingVo)
-                .addAttribute("operation", operationDisplayVo)
-                .addAttribute("histologyList", histologyDisplayVoList)
-                .addAttribute("complicationList", complicationDisplayVoList)
-                .addAttribute("operationWithOutcomes", operationWithOutcomesDisplayVo);
+                .addAttribute("anamnesisDisplayVo", anamnesisDisplayVo)
+                .addAttribute("seizureDisplayVo", seizureDisplayVo)
+                .addAttribute("pharmacotherapyDisplayVoList", pharmacotherapyDisplayVoList)
+                .addAttribute("neurologicalFindingDisplayVo", neurologicalFindingDisplayVo)
+                .addAttribute("neuropsychologyDisplayVo", neuropsychologyDisplayVo)
+                .addAttribute("diagnosticTestScalpEegDisplayVo", diagnosticTestScalpEegDisplayVo)
+                .addAttribute("diagnosticTestMriDisplayVo", diagnosticTestMriDisplayVo)
+                .addAttribute("invasiveTestEcogDisplayVo", invasiveTestEcogDisplayVo)
+                .addAttribute("invasiveTestEegDisplayVo", invasiveTestEegDisplayVo)
+                .addAttribute("invasiveTestCorticalMappingDisplayVo", invasiveTestCorticalMappingDisplayVo)
+                .addAttribute("operationDisplayVo", operationDisplayVo)
+                .addAttribute("histologyDisplayVoList", histologyDisplayVoList)
+                .addAttribute("complicationDisplayVoList", complicationDisplayVoList)
+                .addAttribute("operationWithOutcomesDisplayVo", operationWithOutcomesDisplayVo);
 
         //  .addAttribute("anamnesis",anamnesisDisplayVo);
 

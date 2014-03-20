@@ -34,7 +34,7 @@
         <!-- Operation list START -->
 
         <c:choose>
-            <c:when test="${empty operationList}">
+            <c:when test="${empty operationDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -42,25 +42,25 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationList}" var="operation">
+                    <c:forEach items="${operationDisplayVoList}" var="operationDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-operation-${operation.id}">
-                                            Zadano dne: ${operation.date}
+                                        <a data-toggle="collapse" href="#collapse-operation-${operationDisplayVo.id}">
+                                            Zadano dne: ${operationDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/operation/${operation.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/operation/${operation.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

@@ -33,7 +33,7 @@
         <!-- Invasive test cortival mapping list START -->
 
         <c:choose>
-            <c:when test="${empty invasiveTestCorticalMappingList}">
+            <c:when test="${empty invasiveTestCorticalMappingDisplayVoList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -41,26 +41,26 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${invasiveTestCorticalMappingList}" var="invasiveTestCorticalMapping">
+                    <c:forEach items="${invasiveTestCorticalMappingDisplayVoList}" var="invasiveTestCorticalMappingDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMapping.id}">
-                                            Zadano dne: ${invasiveTestCorticalMapping.date}
+                                           href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayVo.id}">
+                                            Zadano dne: ${invasiveTestCorticalMappingDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/${invasiveTestCorticalMapping.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/${invasiveTestCorticalMappingDisplayVo.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span> edit
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/${invasiveTestCorticalMapping.id}/hide"/>">
+                                           href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/${invasiveTestCorticalMappingDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a>
                                     </th>

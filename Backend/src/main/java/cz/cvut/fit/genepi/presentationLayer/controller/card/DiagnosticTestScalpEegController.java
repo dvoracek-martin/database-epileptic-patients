@@ -30,20 +30,16 @@ public class DiagnosticTestScalpEegController {
 
     private PatientService patientService;
 
-    private DiagnosticTestScalpEegService diagnosticTestScalpEegService;
-
     private GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestScalpEegController(AuthorizationChecker authorizationChecker,
                                             PatientService patientService,
-                                            DiagnosticTestScalpEegService diagnosticTestScalpEegService,
                                             @Qualifier("genericCardServiceImpl")
                                             GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
-        this.diagnosticTestScalpEegService = diagnosticTestScalpEegService;
         this.genericCardService = genericCardService;
     }
 
@@ -181,7 +177,7 @@ public class DiagnosticTestScalpEegController {
 
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
-        model.addAttribute("diagnosticTestScalpEegList", diagnosticTestScalpEegDisplayVoList);
+        model.addAttribute("diagnosticTestScalpEegDisplayVoList", diagnosticTestScalpEegDisplayVoList);
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestScalpEeg/listView";

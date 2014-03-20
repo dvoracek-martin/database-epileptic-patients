@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-neuropsychology-${neuropsychology.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-neuropsychology-${neuropsychologyDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
 <table class="table">
 <tbody>
 
@@ -13,18 +13,18 @@
         <spring:message code="label.intellect"/>
     </th>
     <td class="col-xs-9">
-        <spring:message code="label.intellect.${neuropsychology.intellect}"/>
+        <spring:message code="label.intellect.${neuropsychologyDisplayVo.intellect}"/>
     </td>
 </tr>
 <c:choose>
-    <c:when test="${neuropsychology.intellect == 1}">
+    <c:when test="${neuropsychologyDisplayVo.intellect == 1}">
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.neurodevelopmentalExamination"/>
             </th>
             <td class="col-xs-9">
                 <spring:message
-                        code="label.deficit.${neuropsychology.neurodevelopmentalExamination}"/>
+                        code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExamination}"/>
             </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
                 <spring:message code="label.adaptability"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.neurodevelopmentalExaminationAdaptability}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationAdaptability}"/>
             </td>
         </tr>
         <tr>
@@ -41,7 +41,7 @@
             </th>
             <td class="col-xs-9">
                 <spring:message
-                        code="label.deficit.${neuropsychology.neurodevelopmentalExaminationSpeechExpressively}"/>
+                        code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationSpeechExpressively}"/>
             </td>
         </tr>
         <tr>
@@ -49,7 +49,7 @@
                 <spring:message code="label.speechReceptively"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.neurodevelopmentalExaminationSpeechReceptively}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationSpeechReceptively}"/>
             </td>
         </tr>
         <tr>
@@ -57,7 +57,7 @@
                 <spring:message code="label.fineMotorSkills"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.neurodevelopmentalExaminationFineMotorSkills}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationFineMotorSkills}"/>
             </td>
         </tr>
         <tr>
@@ -65,7 +65,7 @@
                 <spring:message code="label.grossMotorSkills"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.neurodevelopmentalExaminationGrossMotorSkills}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationGrossMotorSkills}"/>
             </td>
         </tr>
         <tr>
@@ -73,17 +73,17 @@
                 <spring:message code="label.socialBehavior"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.neurodevelopmentalExaminationSocialBehavior}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.neurodevelopmentalExaminationSocialBehavior}"/>
             </td>
         </tr>
     </c:when>
-    <c:when test="${neuropsychology.neuropsychologicalProfile == 2}">
+    <c:when test="${neuropsychologyDisplayVo.neuropsychologicalProfile == 2}">
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.intellectualPerformance"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.intellectualPerformance}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.intellectualPerformance}"/>
             </td>
         </tr>
         <tr>
@@ -91,7 +91,7 @@
                 <spring:message code="label.intellectualPerformanceVerbally"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.intellectualPerformanceVerbally}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.intellectualPerformanceVerbally}"/>
             </td>
         </tr>
         <tr>
@@ -99,7 +99,7 @@
                 <spring:message code="label.intellectualPerformanceNonverbalAbstraction"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.deficit.${neuropsychology.intellectualPerformanceNonverbalAbstraction}"/>
+                <spring:message code="label.deficit.${neuropsychologyDisplayVo.intellectualPerformanceNonverbalAbstraction}"/>
             </td>
         </tr>
         <tr>
@@ -108,7 +108,7 @@
             </th>
             <td class="col-xs-9">
                 <spring:message
-                        code="label.deficit.${neuropsychology.intellectualPerformanceNonverbalDesignCapabilities}"/>
+                        code="label.deficit.${neuropsychologyDisplayVo.intellectualPerformanceNonverbalDesignCapabilities}"/>
             </td>
         </tr>
     </c:when>
@@ -119,16 +119,16 @@
         <spring:message code="label.neuropsychologicalProfile"/>
     </th>
     <td class="col-xs-9">
-        <spring:message code="label.neuropsychologicalProfile.${neuropsychology.neuropsychologicalProfile}"/>
+        <spring:message code="label.neuropsychologicalProfile.${neuropsychologyDisplayVo.neuropsychologicalProfile}"/>
     </td>
 </tr>
-<c:if test="${neuropsychology.neuropsychologicalProfile == 1}">
+<c:if test="${neuropsychologyDisplayVo.neuropsychologicalProfile == 1}">
     <tr>
         <th class="col-xs-3">
             <spring:message code="label.attention"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileAttention}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileAttention}"/>
         </td>
     </tr>
     <tr>
@@ -136,7 +136,7 @@
             <spring:message code="label.executiveFunction"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileExecutiveFunction}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileExecutiveFunction}"/>
         </td>
     </tr>
     <tr>
@@ -144,7 +144,7 @@
             <spring:message code="label.cognitiveSpeed"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileCognitiveSpeed}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileCognitiveSpeed}"/>
         </td>
     </tr>
     <tr>
@@ -153,7 +153,7 @@
         </th>
         <td class="col-xs-9">
             <spring:message
-                    code="label.speechExpressively.${neuropsychology.neuropsychologicalProfileSpeechExpressively}"/>
+                    code="label.speechExpressively.${neuropsychologyDisplayVo.neuropsychologicalProfileSpeechExpressively}"/>
         </td>
     </tr>
     <tr>
@@ -161,7 +161,7 @@
             <spring:message code="label.speechUnderstanding"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileSpeechUnderstanding}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileSpeechUnderstanding}"/>
         </td>
     </tr>
     <tr>
@@ -169,7 +169,7 @@
             <spring:message code="label.memoryOperating"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMemoryOperating}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMemoryOperating}"/>
         </td>
     </tr>
     <tr>
@@ -177,7 +177,7 @@
             <spring:message code="label.memoryVerbal"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMemoryVerbal}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMemoryVerbal}"/>
         </td>
     </tr>
     <tr>
@@ -185,7 +185,7 @@
             <spring:message code="label.memoryNonverbal"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMemoryNonverbal}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMemoryNonverbal}"/>
         </td>
     </tr>
     <tr>
@@ -193,7 +193,7 @@
             <spring:message code="label.memoryLearning"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMemoryLearning}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMemoryLearning}"/>
         </td>
     </tr>
     <tr>
@@ -202,7 +202,7 @@
         </th>
         <td class="col-xs-9">
             <spring:message
-                    code="label.perceptionOfSpeech.${neuropsychology.neuropsychologicalProfilePerceptionSpeech}"/>
+                    code="label.perceptionOfSpeech.${neuropsychologyDisplayVo.neuropsychologicalProfilePerceptionSpeech}"/>
         </td>
     </tr>
     <tr>
@@ -210,7 +210,7 @@
             <spring:message code="label.perceptionVisual"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfilePerceptionVisual}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfilePerceptionVisual}"/>
         </td>
     </tr>
     <tr>
@@ -218,7 +218,7 @@
             <spring:message code="label.perceptionSpatial"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfilePerceptionSpatial}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfilePerceptionSpatial}"/>
         </td>
     </tr>
     <tr>
@@ -226,7 +226,7 @@
             <spring:message code="label.motorSkillsDexterity"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMotorSkillsDexterity}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMotorSkillsDexterity}"/>
         </td>
     </tr>
     <tr>
@@ -234,7 +234,7 @@
             <spring:message code="label.motorCoordination"/>
         </th>
         <td class="col-xs-9">
-            <spring:message code="label.deficit.${neuropsychology.neuropsychologicalProfileMotorCoordination}"/>
+            <spring:message code="label.deficit.${neuropsychologyDisplayVo.neuropsychologicalProfileMotorCoordination}"/>
         </td>
     </tr>
 </c:if>
@@ -244,24 +244,24 @@
         <spring:message code="label.presenceOfChanges"/>
     </th>
     <td class="col-xs-9">
-        <spring:message code="label.presenceOfChanges.${neuropsychology.presenceOfChanges}"/>
+        <spring:message code="label.presenceOfChanges.${neuropsychologyDisplayVo.presenceOfChanges}"/>
     </td>
 </tr>
 
-<c:if test="${neuropsychology.presenceOfChanges == 1}">
+<c:if test="${neuropsychologyDisplayVo.presenceOfChanges == 1}">
     <tr>
         <th class="col-xs-3">
             <spring:message code="label.presenceOfChangesDetail"/>
         </th>
     <c:choose>
-        <c:when test="${empty neuropsychology.presenceOfChangesDetail}">
+        <c:when test="${empty neuropsychologyDisplayVo.presenceOfChangesDetail}">
             <td class="col-xs-9">
                 <spring:message code="label.noRecords"/>
             </td>
         </c:when>
         <c:otherwise>
             <td class="col-xs-9">
-                <c:forEach items="${neuropsychology.presenceOfChangesDetail}" var="presenceOfChangesDetail">
+                <c:forEach items="${neuropsychologyDisplayVo.presenceOfChangesDetail}" var="presenceOfChangesDetail">
                     <spring:message code="label.deteriorace.${presenceOfChangesDetail}"/>,
                 </c:forEach>
             </td>
@@ -275,7 +275,7 @@
         <spring:message code="label.emotionalState"/>
     </th>
     <td class="col-xs-9">
-        <spring:message code="label.emotionalState.${neuropsychology.emotionalStatus}"/>
+        <spring:message code="label.emotionalState.${neuropsychologyDisplayVo.emotionalStatus}"/>
     </td>
 </tr>
 
@@ -284,14 +284,14 @@
         <spring:message code="label.comment"/>
     </th>
     <c:choose>
-        <c:when test="${empty neuropsychology.comment}">
+        <c:when test="${empty neuropsychologyDisplayVo.comment}">
             <td class="col-xs-9">
                 <spring:message code="label.noComments"/>
             </td>
         </c:when>
         <c:otherwise>
             <td class="col-xs-9">
-                    ${neuropsychology.comment}
+                    ${neuropsychologyDisplayVo.comment}
             </td>
         </c:otherwise>
     </c:choose>
