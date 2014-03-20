@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.dataLayer.DAOImpl.card;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.OperationDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OperationEntity;
 import org.hibernate.Criteria;
-import org.hibernate.FetchMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -46,7 +45,7 @@ public class OperationDAOImpl implements OperationDAO {
                 .addOrder(Order.desc("date"))
                 .addOrder(Order.desc("id"))
                 .createCriteria("outcomeList", JoinType.LEFT_OUTER_JOIN);
-                //.add(Restrictions.eq("history",false));
+        //.add(Restrictions.eq("history",false));
 
         return (List<OperationEntity>) criteria.list();
     }

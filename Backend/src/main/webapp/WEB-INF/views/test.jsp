@@ -1,4 +1,3 @@
-
 anamnesisId")
 anamnesisId;
 anamnesisDate")

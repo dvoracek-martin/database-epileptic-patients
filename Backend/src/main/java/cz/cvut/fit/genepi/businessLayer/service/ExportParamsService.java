@@ -9,7 +9,7 @@ import java.util.Locale;
 /**
  * The Interface ExportToCsvService extends GenericService
  */
-public interface ExportParamsService extends GenericService<ExportParamsVO,ExportParamsEntity> {
+public interface ExportParamsService extends GenericService<ExportParamsVO, ExportParamsEntity> {
 
     /**
      * Find export configurations according to user's ID

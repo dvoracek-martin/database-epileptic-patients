@@ -5,11 +5,10 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.HistologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class HistologyServiceImpl
-        extends GenericCardServiceImpl<HistologyDisplayVO,HistologyVO, HistologyEntity>
+        extends GenericCardServiceImpl<HistologyDisplayVO, HistologyVO, HistologyEntity>
         implements HistologyService {
 
 }

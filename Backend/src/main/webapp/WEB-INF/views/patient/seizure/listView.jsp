@@ -54,19 +54,22 @@
                                     <th class="col-xs-3">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/create"/>">
-                                            <span class="glyphicon glyphicon-edit"></span><spring:message code="label.addSeizureDetail"/>&nbsp;
+                                            <span class="glyphicon glyphicon-edit"></span><spring:message
+                                                code="label.addSeizureDetail"/>&nbsp;
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> <spring:message code="label.edit"/>&nbsp;
+                                            <span class="glyphicon glyphicon-edit"></span> <spring:message
+                                                code="label.edit"/>&nbsp;
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> <spring:message code="label.delete"/>
+                                            <span class="glyphicon glyphicon-remove-circle"></span> <spring:message
+                                                code="label.delete"/>
                                         </a>
                                     </th>
                                 </tr>

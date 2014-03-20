@@ -28,9 +28,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionAttributeStore;
-import org.springframework.web.bind.support.SessionStatus;
-import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -278,7 +275,7 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/overview", method = RequestMethod.GET)
     public String patientOverviewGET(
             @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
-request.getSession().setAttribute("neuropsychology",null);
+        request.getSession().setAttribute("neuropsychology", null);
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

@@ -1,9 +1,9 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -76,8 +76,8 @@ public class SearchController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        List<PatientEntity> patients=searchService.performAdvancedSearch(advancedSearch);
-        model.addAttribute("patients",patients);
+        List<PatientEntity> patients = searchService.performAdvancedSearch(advancedSearch);
+        model.addAttribute("patients", patients);
         return "searchResults";
     }
 }

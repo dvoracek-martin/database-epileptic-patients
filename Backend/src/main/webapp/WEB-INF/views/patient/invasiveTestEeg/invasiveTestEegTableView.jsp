@@ -4,7 +4,8 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}"
+     class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -22,7 +23,8 @@
                     <spring:message code="label.intracranialElectrodes"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.intracranialElectrodes.${invasiveTestEegDisplayVo.intracranialElectrodes}"/>
+                    <spring:message
+                            code="label.intracranialElectrodes.${invasiveTestEegDisplayVo.intracranialElectrodes}"/>
                 </td>
             </tr>
             <tr>

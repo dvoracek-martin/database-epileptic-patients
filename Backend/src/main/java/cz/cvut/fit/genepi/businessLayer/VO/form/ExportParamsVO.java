@@ -1,9 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
 /**
  * Created by Jan on 16.3.14.
  */
@@ -11,634 +7,634 @@ public class ExportParamsVO {
 
     private int id;
 
-    
+
     private String name;
 
-    
+
     private int userID;
 
-    
+
     private boolean isGeneric;
 
-    
+
     private boolean patient;
 
-    
+
     private boolean anamnesis;
 
-    
+
     private boolean complication;
 
-    
+
     private boolean diagnosticTestEEG;
 
-    
+
     private boolean diagnosticTestMRI;
 
-    
+
     private boolean histology;
 
-    
+
     private boolean invasiveTestECOG;
 
-    
+
     private boolean invasiveTestEEG;
 
-    
+
     private boolean neurologicalFinding;
 
-    
+
     private boolean neuropsychology;
 
-    
+
     private boolean neuropsychologyOld;
 
-    
+
     private boolean invasiveTestCorticalMapping;
 
-    
+
     private boolean operation;
 
-    
+
     private boolean outcome;
 
-    
+
     private boolean pharmacotherapy;
 
-    
+
     private boolean seizure;
 
-    
+
     private boolean anonymize;
 
     // Patient properties
-    
+
     private boolean patientId;
-    
+
     private boolean patientNin;
-    
+
     private boolean patientBirthday;
-    
+
     private boolean patientGender;
-    
+
     private boolean patientDoctorId;
-    
+
     private boolean patientChecked;
-    
+
     private boolean patientContactId;
-    
+
     private boolean patientAgeAtTheBeginningOfEpilepsy;
 
     // Contact properties
-    
+
     private boolean contactId;
-    
+
     private boolean contactFirstName;
-    
+
     private boolean contactLastName;
-    
+
     private boolean contactAddressStreet;
-    
+
     private boolean contactAddressHn;
-    
+
     private boolean contactAddressCity;
-    
+
     private boolean contactPostalCode;
-    
+
     private boolean contactCountry;
-    
+
     private boolean contactPhoneNumber;
-    
+
     private boolean contactEmail;
 
     // Anamnesis properties
-    
+
     private boolean anamnesisId;
-    
+
     private boolean anamnesisDate;
-    
+
     private boolean anamnesisDoctorId;
-    
+
     private boolean anamnesisAdded;
-    
+
     private boolean anamnesisBeginningEpilepsy;
-    
+
     private boolean anamnesisFirstFever;
-    
+
     private boolean anamnesisInfantileSpasm;
-    
+
     private boolean anamnesisSpecificSyndrome;
-    
+
     private boolean anamnesisEpilepsyInFamily;
-    
+
     private boolean anamnesisParentalRisk;
-    
+
     private boolean anamnesisFibrilConvulsions;
-    
+
     private boolean anamnesisInflammationCns;
-    
+
     private boolean anamnesisInjuryCns;
-    
+
     private boolean anamnesisOperationCns;
-    
+
     private boolean anamnesisEarlyPmdRetardation;
-    
+
     private boolean anamnesisNonCnsComorbidity;
-    
+
     private boolean anamnesisComment;
 
     // Complication properties
-    
+
     private boolean complicationId;
-    
+
     private boolean complicationDate;
-    
+
     private boolean complicationDoctorId;
-    
+
     private boolean complicationAdded;
-    
+
     private boolean complicationComment;
-    
+
     private boolean complicationPatientId;
-    
+
     private boolean complicationAddUserId;
-    
+
     private boolean ComplicationWithCompication;
-    
+
     private boolean ComplicationComplicationType;
-    
+
     private boolean ComplicationComplication;
 
     // DiagnosticTestEEG properties
-    
+
     private boolean diagnosticTestEEGId;
-    
+
     private boolean diagnosticTestEEGDate;
-    
+
     private boolean diagnosticTestEEGDone;
-    
+
     private boolean diagnosticTestEEGDoctorId;
-    
+
     private boolean diagnosticTestEEGAdded;
-    
+
     private boolean diagnosticTestEEGBasicActivity;
-    
+
     private boolean diagnosticTestEEGSlow;
-    
+
     private boolean diagnosticTestEEGInterictalEEGSpikes;
-    
+
     private boolean diagnosticTestEEGLocalizationInerictalEEGSpikes;
-    
+
     private boolean diagnosticTestEEGStatusEpilepticus;
-    
+
     private boolean diagnosticTestEEGSecondarySidedSynchrony;
-    
+
     private boolean diagnosticTestEEGIctalEEGPatterns;
-    
+
     private boolean diagnosticTestEEGLocalizationIctalEEGPattern;
-    
+
     private boolean diagnosticTestEEGComment;
-    
+
     private boolean diagnosticTestEEGAddUserId;
-    
+
     private boolean diagnosticTestEEGPatientId;
-    
+
     private boolean diagnosticTestEEGDescriptionVideoEEG;
 
     // DiagnosticTestMRI properties
-    
+
     private boolean diagnosticTestMRIId;
-    
+
     private boolean diagnosticTestMRIDone;
-    
+
     private boolean diagnosticTestMRIDate;
-    
+
     private boolean diagnosticTestMRIDoctorId;
-    
+
     private boolean diagnosticTestMRIAdded;
-    
+
     private boolean diagnosticTestMRIProtocol;
-    
+
     private boolean diagnosticTestMRIFdgPet;
-    
+
     private boolean diagnosticTestMRIInterictalSpect;
-    
+
     private boolean diagnosticTestMRISiscom;
-    
+
     private boolean diagnosticTestMRIMrsProtocol;
-    
+
     private boolean diagnosticTestMRIMrsFinding;
-    
+
     private boolean diagnosticTestMRIFinding;
-    
+
     private boolean diagnosticTestMRIDescription;
-    
+
     private boolean diagnosticTestMRIDescriptionPetHypometabolism;
-    
+
     private boolean diagnosticTestMRIDescriptionSpectHypoperfuse;
-    
+
     private boolean diagnosticTestMRIDescriptionMrsAbnormality;
-    
+
     private boolean diagnosticTestMRIDescriptionSpectHyperperfuse;
-    
+
     private boolean diagnosticTestMRIIctalSpect;
-    
+
     private boolean diagnosticTestMRIDti;
-    
+
     private boolean diagnosticTestMRIDtiDetailStudy;
-    
+
     private boolean diagnosticTestMRIFmri;
-    
+
     private boolean diagnosticTestMRIDetailsFmri;
-    
+
     private boolean diagnosticTestMRIDetailsDtiStudy;
-    
+
     private boolean diagnosticTestMRIWada;
-    
+
     private boolean diagnosticTestMRIDetailsWada;
-    
+
     private boolean diagnosticTestMRIDescribe;
-    
+
     private boolean diagnosticTestMRILocalizationSpecHypoperfuse;
-    
+
     private boolean diagnosticTestMRILocalizationMrsAbnormality;
-    
+
     private boolean diagnosticTestMRILocalizationPetHypometabolism;
-    
+
     private boolean diagnosticTestMRILocalizationSpecHyperperfuse;
-    
+
     private boolean diagnosticTestMRIFmriProtocols;
-    
+
     private boolean diagnosticTestMRIComment;
-    
+
     private boolean diagnosticTestMRIPatientId;
-    
+
     private boolean diagnosticTestMRIAddUserId;
 
     // Histology properties
-    
+
     private boolean histologyId;
-    
+
     private boolean histologyDate;
-    
+
     private boolean histologyDoctorId;
-    
+
     private boolean histologyAdded;
-    
+
     private boolean histologyHistopathology;
-    
+
     private boolean histologyFcdClassification;
-    
+
     private boolean histologyComment;
-    
+
     private boolean histologyPatientId;
-    
+
     private boolean histologyAddUserId;
 
     // InvasiveTestECOG properties
-    
+
     private boolean invasiveTestECOGId;
-    
+
     private boolean invasiveTestECOGDate;
-    
+
     private boolean invasiveTestECOGDone;
-    
+
     private boolean invasiveTestECOGIntracranialElectrodes;
-    
+
     private boolean invasiveTestECOGDoctorId;
-    
+
     private boolean invasiveTestECOGAdded;
-    
+
     private boolean invasiveTestECOGIntraOperativeEcog;
-    
+
     private boolean invasiveTestECOGEcogPatterns;
-    
+
     private boolean invasiveTestECOGEcogCover;
-    
+
     private boolean invasiveTestECOGAfterResectionEcog;
-    
+
     private boolean invasiveTestECOGAwakeCraniotomy;
-    
+
     private boolean invasiveTestECOGComment;
-    
+
     private boolean invasiveTestECOGAddUserId;
-    
+
     private boolean invasiveTestECOGPatientId;
 
     // InvasiveTestEEG properties
-    
+
     private boolean invasiveTestEEGId;
-    
+
     private boolean invasiveTestEEGDate;
-    
+
     private boolean invasiveTestEEGDone;
-    
+
     private boolean invasiveTestEEGDoctorId;
-    
+
     private boolean invasiveTestEEGAdded;
-    
+
     private boolean invasiveTestEEGInvasiveMonitoring;
-    
+
     private boolean invasiveTestEEGLocalizationIntracranialElectrodes;
-    
+
     private boolean invasiveTestEEGIntracranialElectrodes;
-    
+
     private boolean invasiveTestEEGInvasiveEEGSlow;
-    
+
     private boolean invasiveTestEEGInvasiveEEGInterictalSpikes;
-    
+
     private boolean invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes;
-    
+
     private boolean invasiveTestEEGStatusEpilepticus;
-    
+
     private boolean invasiveTestEEGInvasiveIctalEEGPatterns;
-    
+
     private boolean invasiveTestEEGLocalizationIctalEEGPatterns;
-    
+
     private boolean invasiveTestEEGComment;
-    
+
     private boolean invasiveTestEEGAddUserId;
-    
+
     private boolean invasiveTestEEGPatientId;
 
     // Neurological finding property
-    
+
     private boolean neurologicalFindingId;
-    
+
     private boolean neurologicalFindingDate;
-    
+
     private boolean neurologicalFindingDoctorId;
-    
+
     private boolean neurologicalFindingAdded;
-    
+
     private boolean neurologicalFindingHemisphereDominance;
-    
+
     private boolean neurologicalFindingAbnormalNeurologicalFinding;
-    
+
     private boolean neurologicalFindingHemiparesis;
-    
+
     private boolean neurologicalFindingVisualFieldDefects;
-    
+
     private boolean neurologicalFindingComment;
-    
+
     private boolean neurologicalFindingAddUserId;
-    
+
     private boolean neurologicalFindingPatientId;
 
     // Neuropsychology properties
-    
+
     private boolean neuropsychologyId;
-    
+
     private boolean neuropsychologyDate;
-    
+
     private boolean neuropsychologyDoctorId;
-    
+
     private boolean neuropsychologyAdded;
-    
+
     private boolean neuropsychologyIntellect;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExamination;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationAdaptability;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationSpeechExpressively;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationSpeechReceptively;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationFineMotorSkills;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationGrossMotorSkills;
-    
+
     private boolean neuropsychologyNeurodevelopmentalExaminationSocialBehavior;
-    
+
     private boolean neuropsychologyIntellectualPerformance;
-    
+
     private boolean neuropsychologyIntellectualPerformanceVerbally;
-    
+
     private boolean neuropsychologyIntellectualPerformanceNonverbalAbstraction;
-    
+
     private boolean neuropsychologyIntellectualPerformanceNonverbalDesignCap;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfile;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileAttention;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileExecutiveFunction;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileCognitiveSpeed;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileSpeechExpressively;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileSpeechUnderstanding;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMemoryOperating;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMemoryVerbal;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMemoryNonverbal;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMemoryLearning;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfilePerceptionSpeech;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfilePerceptionVisual;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfilePerceptionSpatial;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMotorSkillsDexterity;
-    
+
     private boolean neuropsychologyNeuropsychologicalProfileMotorCoordination;
-    
+
     private boolean neuropsychologyPresenceOfChanges;
-    
+
     private boolean neuropsychologyPresenceOfChangesDetail;
-    
+
     private boolean neuropsychologyEmotionalStatus;
-    
+
     private boolean neuropsychologyComment;
-    
+
     private boolean neuropsychologyAddUserId;
-    
+
     private boolean neuropsychologyPatientId;
-    
+
     private boolean neuropsychologyFindingDetail;
 
     // Operation properties
-    
+
     private boolean operationId;
-    
+
     private boolean operationDate;
-    
+
     private boolean operationDateOperation;
-    
+
     private boolean operationDoctorId;
-    
+
     private boolean operationAdded;
-    
+
     private boolean operationTypeOperation;
-    
+
     private boolean operationRangeOperation;
-    
+
     private boolean operationLocalizationOperation;
-    
+
     private boolean operationMst;
-    
+
     private boolean operationColostomy;
-    
+
     private boolean operationVNS;
-    
+
     private boolean operationVNsImplantationDate;
-    
+
     private boolean operationOperationDetails;
-    
+
     private boolean operationCompleteResection;
-    
+
     private boolean operationComment;
-    
+
     private boolean operationAddUserId;
-    
+
     private boolean operationPatientId;
 
     // Outcome properties
-    
+
     private boolean outcomeId;
-    
+
     private boolean outcomeDate;
-    
+
     private boolean outcomeDoctorId;
-    
+
     private boolean outcomeAdded;
-    
+
     private boolean outcomeFinallySeizures;
-    
+
     private boolean outcomeEEG;
-    
+
     private boolean outcomeAED;
-    
+
     private boolean outcomeMRI;
-    
+
     private boolean outcomeNeuropsychology;
-    
+
     private boolean outcomeComment;
-    
+
     private boolean outcomeAddUserId;
-    
+
     private boolean outcomePatientId;
-    
+
     private boolean outcomeSeizureOutcome;
-    
+
     private boolean outcomeDistance;
-    
+
     private boolean outcomeOperationId;
 
     // Pharmacotherapy properties
-    
+
     private boolean pharmacotherapyId;
-    
+
     private boolean pharmacotherapyDate;
-    
+
     private boolean pharmacotherapyDoctorId;
-    
+
     private boolean pharmacotherapyAdded;
-    
+
     private boolean pharmacotherapyAED;
-    
+
     private boolean pharmacotherapyEffective;
-    
+
     private boolean pharmacotherapyDuringSurgery;
-    
+
     private boolean pharmacotherapyComment;
-    
+
     private boolean pharmacotherapyAddUserId;
-    
+
     private boolean pharmacotherapyPatientId;
 
     // Seizure properties
-    
+
     private boolean seizureId;
-    
+
     private boolean seizureDate;
-    
+
     private boolean seizureDoctorId;
-    
+
     private boolean seizureAdded;
-    
+
     private boolean seizureFrequency;
-    
+
     private boolean seizureSecondarilyGeneralizedSeizure;
-    
+
     private boolean seizureStatusEpilepticus;
-    
+
     private boolean seizureSSCClassification;
-    
+
     private boolean seizureILAEClassification;
-    
+
     private boolean seizureSeizuresWhileAwakeEpi;
-    
+
     private boolean seizureSeizuresWhileAwakeLatent;
-    
+
     private boolean seizureSeizuresWhileAwakeNonEpi;
-    
+
     private boolean seizureSeizuresWhileSleepEpi;
-    
+
     private boolean seizureSeizuresWhileSleepLatent;
-    
+
     private boolean seizureSeizuresWhileSleepNonEpi;
-    
+
     private boolean seizureComment;
-    
+
     private boolean seizureAddUserId;
-    
+
     private boolean seizurePatientId;
 
     // SeizureDetail properties
-    
+
     private boolean seizureDetailComment;
 
     // NeuropsychologyOld properties
-    
+
     private boolean neuropsychologyOldId;
-    
+
     private boolean neuropsychologyOldDate;
-    
+
     private boolean neuropsychologyOldDoctorId;
-    
+
     private boolean neuropsychologyOldAdded;
-    
+
     private boolean neuropsychologyOldComment;
-    
+
     private boolean neuropsychologyOldAddUserId;
-    
+
     private boolean neuropsychologyOldPatientId;
-    
+
     private boolean neuropsychologyOldNeuropsychologicalExamination;
-    
+
     private boolean neuropsychologyOldIntelligenceLevel;
-    
+
     private boolean neuropsychologyOldSpecificLearning;
-    
+
     private boolean neuropsychologyOldDevelopmentalLanguageDisorders;
-    
+
     private boolean neuropsychologyOldAdhdSyndrome;
 
     // InvasiveTestCorticalMapping properties
-    
+
     private boolean invasiveTestCorticalMappingId;
-    
+
     private boolean invasiveTestCorticalMappingDate;
-    
+
     private boolean invasiveTestCorticalMappingDoctorId;
-    
+
     private boolean invasiveTestCorticalMappingAdded;
-    
+
     private boolean invasiveTestCorticalMappingComment;
-    
+
     private boolean invasiveTestCorticalMappingAddUserId;
-    
+
     private boolean invasiveTestCorticalMappingPatientId;
-    
+
     private boolean invasiveTestCorticalMappingDone;
-    
+
     private boolean invasiveTestCorticalMappingCorticalMapping;
 
     public int getId() {

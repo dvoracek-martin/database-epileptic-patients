@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class OutcomeServiceImpl
-        extends GenericCardServiceImpl<OutcomeDisplayVO,OutcomeVO, OutcomeEntity>
+        extends GenericCardServiceImpl<OutcomeDisplayVO, OutcomeVO, OutcomeEntity>
         implements OutcomeService {
 }

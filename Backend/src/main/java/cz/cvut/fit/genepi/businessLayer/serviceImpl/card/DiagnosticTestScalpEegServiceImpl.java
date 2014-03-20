@@ -5,11 +5,10 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestScalpEegVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.DiagnosticTestScalpEegService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DiagnosticTestScalpEegServiceImpl
-        extends GenericCardServiceImpl<DiagnosticTestScalpEegDisplayVO,DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity>
+        extends GenericCardServiceImpl<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity>
         implements DiagnosticTestScalpEegService {
 
 }

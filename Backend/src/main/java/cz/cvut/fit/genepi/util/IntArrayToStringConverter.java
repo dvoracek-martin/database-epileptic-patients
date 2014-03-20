@@ -27,7 +27,7 @@ public class IntArrayToStringConverter implements CustomConverter {
                 return sb.toString();
             }
         } else if (source instanceof String) {
-            if(source.equals("[]")){
+            if (source.equals("[]")) {
                 return null;
             }
             String str = ((String) source).replaceAll("[^\\d,]", "");

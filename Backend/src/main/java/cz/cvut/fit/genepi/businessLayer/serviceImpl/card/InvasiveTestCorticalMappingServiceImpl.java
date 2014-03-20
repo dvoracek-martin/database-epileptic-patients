@@ -5,11 +5,10 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestCorticalMapping
 import cz.cvut.fit.genepi.businessLayer.service.card.InvasiveTestCorticalMappingService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class InvasiveTestCorticalMappingServiceImpl
-        extends GenericCardServiceImpl<InvasiveTestCorticalMappingDisplayVO,InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity>
+        extends GenericCardServiceImpl<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity>
         implements InvasiveTestCorticalMappingService {
 
 }

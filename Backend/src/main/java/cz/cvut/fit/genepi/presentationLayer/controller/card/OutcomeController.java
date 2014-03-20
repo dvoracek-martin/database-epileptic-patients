@@ -8,7 +8,6 @@ import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
 import cz.cvut.fit.genepi.businessLayer.service.card.OperationService;
-import cz.cvut.fit.genepi.businessLayer.service.card.OutcomeService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;

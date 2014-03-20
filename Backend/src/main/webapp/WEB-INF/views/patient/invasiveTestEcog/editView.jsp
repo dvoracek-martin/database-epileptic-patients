@@ -36,7 +36,8 @@
 
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcog.id}/edit" commandName="invasiveTestEcog">
+                   action="/GENEPI/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcog.id}/edit"
+                   commandName="invasiveTestEcog">
 
             <%@include file="formView.jsp" %>
 

@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.businessLayer.service;
 import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
 import cz.cvut.fit.genepi.dataLayer.entity.RoleEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 
 import java.util.List;
 

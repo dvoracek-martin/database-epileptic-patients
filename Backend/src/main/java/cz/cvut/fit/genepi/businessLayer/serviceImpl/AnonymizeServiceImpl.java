@@ -3,8 +3,6 @@ package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 import cz.cvut.fit.genepi.businessLayer.VO.display.ContactDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.service.AnonymizeService;
-import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -25,7 +23,7 @@ public class AnonymizeServiceImpl implements AnonymizeService {
         anonymizedContact.setPhoneNumber("****");
 
         for (PatientDisplayVO patient : patients) {
-          patient.setContact(anonymizedContact);
+            patient.setContact(anonymizedContact);
             patient.setNin("****");
         }
     }

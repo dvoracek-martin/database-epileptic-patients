@@ -12,7 +12,7 @@ public interface GenericCardDAO<CardEntity> extends GenericDAO<CardEntity> {
 
     public void makeHistory(int id, Class<CardEntity> entityClass);
 
-    public List<CardEntity> getRecordsByPatientId(int patientId,Class<CardEntity> entityClass);
+    public List<CardEntity> getRecordsByPatientId(int patientId, Class<CardEntity> entityClass);
 
-    public CardEntity getLatestRecordByPatientId(int patientId,Class<CardEntity> entityClass );
+    public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass);
 }

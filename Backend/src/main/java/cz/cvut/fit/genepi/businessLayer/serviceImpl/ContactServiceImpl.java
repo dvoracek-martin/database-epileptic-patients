@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ContactServiceImpl extends
-        GenericServiceImpl<ContactVO,ContactEntity> implements
+        GenericServiceImpl<ContactVO, ContactEntity> implements
         ContactService {
 
 }

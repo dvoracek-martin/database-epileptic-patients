@@ -20,6 +20,7 @@ public interface UserService extends GenericService<UserVO, UserEntity> {
      */
     //TODO should return some VO
     public UserEntity getUserByUsername(String username);
+
     //TODO should return some VO
     public UserEntity getUserByEmail(String email);
 
@@ -47,7 +48,7 @@ public interface UserService extends GenericService<UserVO, UserEntity> {
 
     public void revokeRoles(int userId);
 
-   // public UserDisplayVO getDisplayById(int userId);
+    // public UserDisplayVO getDisplayById(int userId);
 
     //public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
 

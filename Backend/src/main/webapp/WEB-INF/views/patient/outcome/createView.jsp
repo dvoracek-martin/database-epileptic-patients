@@ -22,31 +22,31 @@
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
     </jsp:attribute>
 
-<jsp:body>
-    <div class="row">
-        <div class="col-xs-12">
-            <h2>
-                <spring:message code="label.outcome"/>
-            </h2>
-        </div>
-    </div>
-
-    <%@include file="../patientDetails.jsp" %>
-
-    <%-- mapping resource in action with c:url caused errors --%>
-    <form:form class="form-horizontal" role="form" method="POST"
-               action="/GENEPI/patient/${patient.id}/outcome/create" commandName="outcome">
-
-        <%@include file="formView.jsp" %>
-
-        <div class="form-group">
-            <div class="col-xs-offset-4 col-xs-8">
-                <button class="btn btn-primary" type="submit">
-                    <spring:message code="label.add"/>
-                </button>
+    <jsp:body>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.outcome"/>
+                </h2>
             </div>
         </div>
-    </form:form>
 
-</jsp:body>
+        <%@include file="../patientDetails.jsp" %>
+
+        <%-- mapping resource in action with c:url caused errors --%>
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/outcome/create" commandName="outcome">
+
+            <%@include file="formView.jsp" %>
+
+            <div class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
+                </div>
+            </div>
+        </form:form>
+
+    </jsp:body>
 </t:menuLVL2>

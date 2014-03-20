@@ -23,31 +23,32 @@
         <script src="<c:url value="/resources/custom/js/cardForm/customjs.js" />"></script>
     </jsp:attribute>
 
-<jsp:body>
-<div class="row">
-    <div class="col-xs-12">
-        <h2>
-            <spring:message code="label.diagnosticTestsMri"/>
-        </h2>
-    </div>
-</div>
+    <jsp:body>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.diagnosticTestsMri"/>
+                </h2>
+            </div>
+        </div>
 
-<%@include file="../patientDetails.jsp" %>
+        <%@include file="../patientDetails.jsp" %>
 
-<%-- mapping resource in action with c:url caused errors --%>
-<form:form class="form-horizontal" role="form" method="POST"
-           action="/GENEPI/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMri.id}/edit" commandName="diagnosticTestMri">
+        <%-- mapping resource in action with c:url caused errors --%>
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMri.id}/edit"
+                   commandName="diagnosticTestMri">
 
-    <%@include file="formView.jsp" %>
+            <%@include file="formView.jsp" %>
 
-<div class="form-group">
-    <div class="col-xs-offset-4 col-xs-8">
-        <button class="btn btn-primary" type="submit">
-            <spring:message code="label.add"/>
-        </button>
-    </div>
-</div>
-</form:form>
+            <div class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.add"/>
+                    </button>
+                </div>
+            </div>
+        </form:form>
 
-</jsp:body>
+    </jsp:body>
 </t:menuLVL2>

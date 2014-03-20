@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class NeurologicalFindingServiceImpl
-        extends GenericCardServiceImpl<NeurologicalFindingDisplayVO,NeurologicalFindingVO, NeurologicalFindingEntity>
+        extends GenericCardServiceImpl<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity>
         implements NeurologicalFindingService {
 
 }

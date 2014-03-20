@@ -54,7 +54,7 @@
                                 <spring:message code="label.patient"/>:
                             </th>
                             <td>
-                                    ****
+                                ****
                             </td>
 
                             <th><spring:message code="label.birthIdentificationNumber"/>:</th>

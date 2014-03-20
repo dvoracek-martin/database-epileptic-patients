@@ -23,7 +23,8 @@
                     <spring:message code="label.corticalMapping"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.corticalMapping.${invasiveTestCorticalMappingDisplayVo.corticalMapping}"/>
+                    <spring:message
+                            code="label.corticalMapping.${invasiveTestCorticalMappingDisplayVo.corticalMapping}"/>
                 </td>
             </tr>
             <tr>

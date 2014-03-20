@@ -144,7 +144,8 @@
                 </label>
 
                 <div class="col-xs-8">
-                    <form:input path="contact.phoneNumber" type="text" class=" form-control input-sm" id="contact.phoneNumber"/>
+                    <form:input path="contact.phoneNumber" type="text" class=" form-control input-sm"
+                                id="contact.phoneNumber"/>
                     <form:errors path="contact.phoneNumber" cssClass="text-danger"/>
                 </div>
             </div>

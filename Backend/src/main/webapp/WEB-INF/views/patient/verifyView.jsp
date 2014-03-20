@@ -32,7 +32,8 @@
                 <div class="col-sm-offset-4 col-sm-8">
                     <div class="checkbox">
                         <label>
-                            <form:checkbox path="verified" id="verified"/> <spring:message code="label.recordsVerified"/>
+                            <form:checkbox path="verified" id="verified"/> <spring:message
+                                code="label.recordsVerified"/>
                         </label>
                     </div>
                 </div>

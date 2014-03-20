@@ -35,7 +35,7 @@
     </jsp:attribute>
 
     <jsp:body>
-       <div class="row">
+        <div class="row">
             <div class="col-xs-6">
                 <h2>
                     <spring:message code="label.news"/>
@@ -152,6 +152,6 @@
                     </div>
                 </div>
         --%>
-       Zprávy jsou Dočasně mimo provoz
+        Zprávy jsou Dočasně mimo provoz
     </jsp:body>
 </t:menuLVL1>

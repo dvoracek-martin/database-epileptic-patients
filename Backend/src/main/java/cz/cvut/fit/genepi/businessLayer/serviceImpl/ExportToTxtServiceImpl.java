@@ -572,8 +572,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += messageSource.getMessage("label.sscClassification", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.sscClassification." +
-                        String.valueOf(seizureDetail.getSscClassification()), null, locale),
-                        locale);
+                                String.valueOf(seizureDetail.getSscClassification()), null, locale),
+                        locale
+                );
                 content += "\n";
             }
             if (exportParams.isSeizureILAEClassification()) {
@@ -581,8 +582,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += messageSource.getMessage("label.ilaeClassification", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.ilaeClassification." +
-                        String.valueOf(seizureDetail.getSscClassification()), null, locale),
-                        locale);
+                                String.valueOf(seizureDetail.getSscClassification()), null, locale),
+                        locale
+                );
                 content += "\n";
             }
             if (exportParams.isSeizureDetailComment()) {

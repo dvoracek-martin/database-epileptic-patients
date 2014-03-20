@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * The Interface PatientService extends GenericService
  */
-public interface PatientService extends GenericService<PatientVO,PatientEntity> {
+public interface PatientService extends GenericService<PatientVO, PatientEntity> {
 
     /**
      * Finds patient and all his cards according to his ID
@@ -198,5 +198,5 @@ public interface PatientService extends GenericService<PatientVO,PatientEntity> 
 
     public int getCountOfUnhidden(String searchString);
 
-    public List<PatientDisplayVO> findByNameWithPagination(int maxResults,int  pageNumber,List<String>  searchParams, String searchString);
+    public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString);
 }

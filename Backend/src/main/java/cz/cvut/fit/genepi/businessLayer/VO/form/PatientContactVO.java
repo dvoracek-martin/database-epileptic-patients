@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -13,13 +12,13 @@ public class PatientContactVO {
     /**
      * The first name.
      */
-    @Size(min=1, max = 100)
+    @Size(min = 1, max = 100)
     private String firstName;
 
     /**
      * The last name.
      */
-    @Size(min=1, max = 100)
+    @Size(min = 1, max = 100)
     private String lastName;
 
     /**

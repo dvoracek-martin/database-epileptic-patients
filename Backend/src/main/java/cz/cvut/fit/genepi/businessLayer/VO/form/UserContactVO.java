@@ -13,13 +13,13 @@ public class UserContactVO {
     /**
      * The first name.
      */
-    @Size(min=1, max = 100)
+    @Size(min = 1, max = 100)
     private String firstName;
 
     /**
      * The last name.
      */
-    @Size(min=1, max = 100)
+    @Size(min = 1, max = 100)
     private String lastName;
 
     /**

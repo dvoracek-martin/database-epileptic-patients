@@ -27,7 +27,7 @@ public class ExportParamsDAOImpl extends GenericDAOImpl<ExportParamsEntity>
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from ExportParamsEntity where userID = :user_id");
         query.setParameter("user_id", userID);
-        exportParamsEntities =  (List<ExportParamsEntity>) query.list();
+        exportParamsEntities = (List<ExportParamsEntity>) query.list();
 
         return exportParamsEntities;
     }

@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.util;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

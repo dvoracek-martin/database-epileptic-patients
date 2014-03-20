@@ -65,10 +65,11 @@
                 </form:form>
             </div>
         </div>
-        
+
         <div class="row">
             <div class="col-xs-12">
-                <button form="role-form" type="submit"class="btn btn-primary"><spring:message code="label.save"/></button>
+                <button form="role-form" type="submit" class="btn btn-primary"><spring:message
+                        code="label.save"/></button>
             </div>
         </div>
     </jsp:body>

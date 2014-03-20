@@ -1,13 +1,10 @@
 package cz.cvut.fit.genepi.dataLayer.entity;
 
-import cz.cvut.fit.genepi.util.CollectionConverter;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import java.util.List;
-import java.util.Set;
 
 /**
  * The Class UserEntity.

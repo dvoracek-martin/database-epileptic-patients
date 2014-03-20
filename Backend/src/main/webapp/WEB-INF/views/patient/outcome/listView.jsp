@@ -41,8 +41,10 @@
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-12">
-                                        <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
-                                            <spring:message code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
+                                        <a data-toggle="collapse"
+                                           href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
+                                            <spring:message
+                                                    code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
                                         </a>
                                     </th>
                                 </tr>

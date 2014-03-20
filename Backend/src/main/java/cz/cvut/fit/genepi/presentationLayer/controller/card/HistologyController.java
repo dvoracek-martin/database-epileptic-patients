@@ -2,14 +2,11 @@ package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.HistologyDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestCorticalMappingDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.HistologyVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
-import cz.cvut.fit.genepi.businessLayer.service.card.HistologyService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.HistologyEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestCorticalMappingEntity;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -35,7 +35,8 @@
 
         <%-- mapping resource in action with c:url caused errors --%>
         <form:form class="form-horizontal" method="POST"
-                   action="/GENEPI/patient/${patient.id}/pharmacotherapy/${pharmacotherapy.id}/edit" commandName="pharmacotherapy">
+                   action="/GENEPI/patient/${patient.id}/pharmacotherapy/${pharmacotherapy.id}/edit"
+                   commandName="pharmacotherapy">
 
             <%@include file="formView.jsp" %>
 

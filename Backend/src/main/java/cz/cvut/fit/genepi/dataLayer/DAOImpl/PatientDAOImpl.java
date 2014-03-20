@@ -32,24 +32,24 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
      */
     @Override
     public PatientEntity getPatientByIdWithAllLists(int patientId) {
-Criteria criteria =sessionFactory
-        .getCurrentSession()
-        .createCriteria(PatientEntity.class)
-        .setFetchMode("doctor",FetchMode.JOIN)
-        .setFetchMode("anamnesisList",FetchMode.JOIN)
-        .setFetchMode("complicationList",FetchMode.JOIN)
-        .setFetchMode("diagnosticTestScalpEegList",FetchMode.JOIN)
-        .setFetchMode("diagnosticTestMRIList",FetchMode.JOIN)
-        .setFetchMode("histologyList",FetchMode.JOIN)
-        .setFetchMode("invasiveTestCorticalMappingList",FetchMode.JOIN)
-        .setFetchMode("invasiveTestECOGList",FetchMode.JOIN)
-        .setFetchMode("invasiveTestEEGList",FetchMode.JOIN)
-        .setFetchMode("neurologicalFindingList",FetchMode.JOIN)
-        .setFetchMode("neuropsychologyList",FetchMode.JOIN)
-        .setFetchMode("neuropsychologyOldList",FetchMode.JOIN)
-        .setFetchMode("operationList",FetchMode.JOIN)
-        .setFetchMode("pharmacotherapyList",FetchMode.JOIN)
-        .setFetchMode("seizureList",FetchMode.JOIN);
+        Criteria criteria = sessionFactory
+                .getCurrentSession()
+                .createCriteria(PatientEntity.class)
+                .setFetchMode("doctor", FetchMode.JOIN)
+                .setFetchMode("anamnesisList", FetchMode.JOIN)
+                .setFetchMode("complicationList", FetchMode.JOIN)
+                .setFetchMode("diagnosticTestScalpEegList", FetchMode.JOIN)
+                .setFetchMode("diagnosticTestMRIList", FetchMode.JOIN)
+                .setFetchMode("histologyList", FetchMode.JOIN)
+                .setFetchMode("invasiveTestCorticalMappingList", FetchMode.JOIN)
+                .setFetchMode("invasiveTestECOGList", FetchMode.JOIN)
+                .setFetchMode("invasiveTestEEGList", FetchMode.JOIN)
+                .setFetchMode("neurologicalFindingList", FetchMode.JOIN)
+                .setFetchMode("neuropsychologyList", FetchMode.JOIN)
+                .setFetchMode("neuropsychologyOldList", FetchMode.JOIN)
+                .setFetchMode("operationList", FetchMode.JOIN)
+                .setFetchMode("pharmacotherapyList", FetchMode.JOIN)
+                .setFetchMode("seizureList", FetchMode.JOIN);
 
         return (PatientEntity) criteria.uniqueResult();
 /*
@@ -110,7 +110,8 @@ Criteria criteria =sessionFactory
         Query query = session
                 .createQuery(
                         "FROM PatientEntity p LEFT JOIN FETCH p.doctor LEFT JOIN FETCH p.anamnesisList aList"
-                                + " WHERE p.id = :patientId");// AND ((aList.history = false) OR aList = NULL)");
+                                + " WHERE p.id = :patientId"
+                );// AND ((aList.history = false) OR aList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -127,7 +128,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "from PatientEntity p left join fetch p.doctor left join fetch p.complicationList cList"
-                                + " where p.id = :patientId");//" AND ((cList.hidden = false AND cList.history = false) OR cList = NULL)");
+                                + " where p.id = :patientId"
+                );//" AND ((cList.hidden = false AND cList.history = false) OR cList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -145,7 +147,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEegList dtseList"
-                                + " where p.id = :patientId");// AND ((dtseList.hidden = false AND dtseList.history = false) OR dtseList = NULL)");
+                                + " where p.id = :patientId"
+                );// AND ((dtseList.hidden = false AND dtseList.history = false) OR dtseList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -162,7 +165,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestMRIList dtmList"
-                                + " where p.id = :patientId");// AND ((dtmList.hidden = false AND dtmList.history = false) OR dtmList = NULL)");
+                                + " where p.id = :patientId"
+                );// AND ((dtmList.hidden = false AND dtmList.history = false) OR dtmList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -173,7 +177,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.histologyList hList"
-                                + " where p.id = :patientId");//AND ((hList.hidden = false AND hList.history = false) OR hList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((hList.hidden = false AND hList.history = false) OR hList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -191,7 +196,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList itcmList"
-                                + " where p.id = :patientId");//AND ((itcmList.hidden = false AND itcmList.history = false) OR itcmList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((itcmList.hidden = false AND itcmList.history = false) OR itcmList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -202,7 +208,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestECOGList iteList"
-                                + " where p.id = :patientId");//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -219,7 +226,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestEEGList iteList"
-                                + " where p.id = :patientId");//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -267,7 +275,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList nList"
-                                + " where p.id = :patientId");//AND ((nList.hidden = false AND nList.history = false) OR nList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((nList.hidden = false AND nList.history = false) OR nList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -284,7 +293,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyOldList noList"
-                                + " where p.id = :patientId");//AND ((noList.hidden = false AND noList.history = false) OR noList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((noList.hidden = false AND noList.history = false) OR noList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -302,7 +312,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList oList"
-                                + " where p.id = :patientId");//AND ((oList.hidden = false AND oList.history = false) OR oList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((oList.hidden = false AND oList.history = false) OR oList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -313,7 +324,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList left join fetch p.operationList"//TODO:join outcomes
-                                + " where p.id = :patientId");
+                                + " where p.id = :patientId"
+                );
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -332,7 +344,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.outcomeList"
-                                + " where p.id = :patientId");
+                                + " where p.id = :patientId"
+                );
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -349,7 +362,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor left join fetch p.pharmacotherapyList pList"
-                                + " where p.id = :patientId");//AND ((pList.hidden = false AND pList.history = false) OR pList = NULL)");
+                                + " where p.id = :patientId"
+                );//AND ((pList.hidden = false AND pList.history = false) OR pList = NULL)");
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -370,7 +384,8 @@ Criteria criteria =sessionFactory
                                 " left join fetch sList.seizureDetailList sdList"
                                 + " where p.id = :patientId" /*+
                                 " AND ((sList.hidden = false AND sList.history = false) OR sList = NULL)" +
-                                "AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/);
+                                "AND ((sdList.hidden = false AND sdList.history = false) OR sdList = NULL)"*/
+                );
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -535,7 +550,8 @@ Criteria criteria =sessionFactory
                 .getCurrentSession()
                 .createQuery(
                         "select p from PatientEntity p left join fetch p.doctor"
-                                + " where p.id = :patientId");
+                                + " where p.id = :patientId"
+                );
         query.setParameter("patientId", patientId);
         return (PatientEntity) query.uniqueResult();
     }
@@ -584,7 +600,8 @@ Criteria criteria =sessionFactory
                                 + " AND ((opList.hidden = true AND opList.history = false) OR opList = NULL)"
                                 + " AND ((phList.hidden = true AND phList.history = false) OR phList = NULL)"
                                 + " AND ((seList.hidden = true AND seList.history = false) OR seList = NULL)"
-                                + " AND ((sdList.hidden = true AND sdList.history = false) OR sdList = NULL)");
+                                + " AND ((sdList.hidden = true AND sdList.history = false) OR sdList = NULL)"
+                );
         return query.list();
     }
 

@@ -5,11 +5,10 @@ import cz.cvut.fit.genepi.businessLayer.VO.form.card.ComplicationVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.ComplicationService;
 import cz.cvut.fit.genepi.dataLayer.entity.card.ComplicationEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ComplicationServiceImpl
-        extends GenericCardServiceImpl<ComplicationDisplayVO,ComplicationVO, ComplicationEntity>
+        extends GenericCardServiceImpl<ComplicationDisplayVO, ComplicationVO, ComplicationEntity>
         implements ComplicationService {
 
 }

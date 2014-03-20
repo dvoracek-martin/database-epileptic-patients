@@ -66,7 +66,8 @@
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism" class="form-control resize-vertical"/>
+            <form:textarea path="descriptionPetHypometabolism" id="descriptionPetHypometabolism"
+                           class="form-control resize-vertical"/>
         </div>
     </div>
 
@@ -82,7 +83,8 @@
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse" class="form-control resize-vertical"/>
+            <form:textarea path="descriptionSpectHypoperfuse" id="descriptionSpectHypoperfuse"
+                           class="form-control resize-vertical"/>
         </div>
     </div>
 
@@ -98,7 +100,8 @@
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse" class="form-control resize-vertical"/>
+            <form:textarea path="descriptionSpectHyperperfuse" id="descriptionSpectHyperperfuse"
+                           class="form-control resize-vertical"/>
         </div>
     </div>
 
@@ -141,7 +144,8 @@
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality" class="form-control resize-vertical"/>
+            <form:textarea path="descriptionMrsAbnormality" id="descriptionMrsAbnormality"
+                           class="form-control resize-vertical"/>
         </div>
     </div>
 
@@ -185,9 +189,9 @@
     </div>
 
     <jsp:include page="../../components/checkboxComponentView.jsp">
-    <jsp:param name="propertyName" value="wada"/>
-    <jsp:param name="messageCode" value="wada"/>
-</jsp:include>
+        <jsp:param name="propertyName" value="wada"/>
+        <jsp:param name="messageCode" value="wada"/>
+    </jsp:include>
 
 
     <div class="form-group">

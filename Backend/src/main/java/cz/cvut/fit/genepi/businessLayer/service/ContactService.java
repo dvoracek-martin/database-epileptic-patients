@@ -7,6 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.ContactEntity;
  * The Interface ContactService extends GenericService
  */
 public interface ContactService extends
-        GenericService<ContactVO,ContactEntity> {
+        GenericService<ContactVO, ContactEntity> {
 
 }

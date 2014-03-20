@@ -42,34 +42,34 @@
             </c:when>
             <c:otherwise>
                 <div class="list-striped">
-                        <div>
-                            <table class="record-head table">
-                                <tbody>
-                                <tr>
-                                    <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
-                                            Zadano dne: ${anamnesisDisplayVo.date}
-                                        </a>
-                                    </th>
-                                    <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> edit
-                                        </a>
-                                    </th>
-                                    <th class="col-xs-2">
-                                        <!-- <a class="pull-right"
+                    <div>
+                        <table class="record-head table">
+                            <tbody>
+                            <tr>
+                                <th class="col-xs-8">
+                                    <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
+                                        Zadano dne: ${anamnesisDisplayVo.date}
+                                    </a>
+                                </th>
+                                <th class="col-xs-2">
+                                    <a class="pull-right"
+                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
+                                        <span class="glyphicon glyphicon-edit"></span> edit
+                                    </a>
+                                </th>
+                                <th class="col-xs-2">
+                                    <!-- <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/hide"/>">
                                             <span class="glyphicon glyphicon-remove-circle"></span> delete
                                         </a> -->
-                                    </th>
-                                </tr>
-                                </tbody>
-                            </table>
+                                </th>
+                            </tr>
+                            </tbody>
+                        </table>
 
-                            <%@include file="anamnesisTableView.jsp" %>
+                        <%@include file="anamnesisTableView.jsp" %>
 
-                        </div>
+                    </div>
                 </div>
             </c:otherwise>
         </c:choose>

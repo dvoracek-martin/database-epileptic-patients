@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
-import java.util.List;
-
 public class OperationDisplayVO {
 
     private int id;

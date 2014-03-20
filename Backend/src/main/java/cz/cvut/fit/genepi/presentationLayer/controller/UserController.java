@@ -331,7 +331,7 @@ public class UserController {
             //todo transfer to service
             List<RoleVO> newRoles = new ArrayList<>();
 
-            if (roleIds.length >0 && roleIds[0] != 0) {
+            if (roleIds.length > 0 && roleIds[0] != 0) {
                 for (int id : roleIds) {
                     newRoles.add(roleService.getById(id, RoleVO.class, RoleEntity.class));
                 }

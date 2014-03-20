@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
+import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
 
 import java.util.List;
 
@@ -27,7 +27,7 @@ public class PatientDisplayVO {
 
     private ContactDisplayVO contact;
 
-   private List<AnamnesisDisplayVO> anamnesisList;
+    private List<AnamnesisDisplayVO> anamnesisList;
 /*
     private List<SeizureDisplayVO> seizureList;
 
@@ -120,119 +120,120 @@ public class PatientDisplayVO {
     public void setAnamnesisList(List<AnamnesisDisplayVO> anamnesisList) {
         this.anamnesisList = anamnesisList;
     }
-/*
-    public List<SeizureDisplayVO> getSeizureList() {
-        return seizureList;
-    }
 
-    public void setSeizureList(List<SeizureDisplayVO> seizureList) {
-        this.seizureList = seizureList;
-    }
+    /*
+        public List<SeizureDisplayVO> getSeizureList() {
+            return seizureList;
+        }
 
-    public List<PharmacotherapyDisplayVO> getPharmacotherapyList() {
-        return pharmacotherapyList;
-    }
+        public void setSeizureList(List<SeizureDisplayVO> seizureList) {
+            this.seizureList = seizureList;
+        }
 
-    public void setPharmacotherapyList(List<PharmacotherapyDisplayVO> pharmacotherapyList) {
-        this.pharmacotherapyList = pharmacotherapyList;
-    }
+        public List<PharmacotherapyDisplayVO> getPharmacotherapyList() {
+            return pharmacotherapyList;
+        }
 
-    public List<NeurologicalFindingDisplayVO> getNeurologicalFindingList() {
-        return neurologicalFindingList;
-    }
+        public void setPharmacotherapyList(List<PharmacotherapyDisplayVO> pharmacotherapyList) {
+            this.pharmacotherapyList = pharmacotherapyList;
+        }
 
-    public void setNeurologicalFindingList(List<NeurologicalFindingDisplayVO> neurologicalFindingList) {
-        this.neurologicalFindingList = neurologicalFindingList;
-    }
+        public List<NeurologicalFindingDisplayVO> getNeurologicalFindingList() {
+            return neurologicalFindingList;
+        }
 
-    public List<NeuropsychologyDisplayVO> getNeuropsychologyList() {
-        return neuropsychologyList;
-    }
+        public void setNeurologicalFindingList(List<NeurologicalFindingDisplayVO> neurologicalFindingList) {
+            this.neurologicalFindingList = neurologicalFindingList;
+        }
 
-    public void setNeuropsychologyList(List<NeuropsychologyDisplayVO> neuropsychologyList) {
-        this.neuropsychologyList = neuropsychologyList;
-    }
+        public List<NeuropsychologyDisplayVO> getNeuropsychologyList() {
+            return neuropsychologyList;
+        }
 
-    public List<NeuropsychologyOldDisplayVO> getNeuropsychologyOldList() {
-        return neuropsychologyOldList;
-    }
+        public void setNeuropsychologyList(List<NeuropsychologyDisplayVO> neuropsychologyList) {
+            this.neuropsychologyList = neuropsychologyList;
+        }
 
-    public void setNeuropsychologyOldList(List<NeuropsychologyOldDisplayVO> neuropsychologyOldList) {
-        this.neuropsychologyOldList = neuropsychologyOldList;
-    }
+        public List<NeuropsychologyOldDisplayVO> getNeuropsychologyOldList() {
+            return neuropsychologyOldList;
+        }
 
-    public List<DiagnosticTestScalpEegDisplayVO> getDiagnosticTestScalpEegList() {
-        return diagnosticTestScalpEegList;
-    }
+        public void setNeuropsychologyOldList(List<NeuropsychologyOldDisplayVO> neuropsychologyOldList) {
+            this.neuropsychologyOldList = neuropsychologyOldList;
+        }
 
-    public void setDiagnosticTestScalpEegList(List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList) {
-        this.diagnosticTestScalpEegList = diagnosticTestScalpEegList;
-    }
+        public List<DiagnosticTestScalpEegDisplayVO> getDiagnosticTestScalpEegList() {
+            return diagnosticTestScalpEegList;
+        }
 
-    public List<DiagnosticTestMriDisplayVO> getDiagnosticTestMriList() {
-        return diagnosticTestMriList;
-    }
+        public void setDiagnosticTestScalpEegList(List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegList) {
+            this.diagnosticTestScalpEegList = diagnosticTestScalpEegList;
+        }
 
-    public void setDiagnosticTestMriList(List<DiagnosticTestMriDisplayVO> diagnosticTestMriList) {
-        this.diagnosticTestMriList = diagnosticTestMriList;
-    }
+        public List<DiagnosticTestMriDisplayVO> getDiagnosticTestMriList() {
+            return diagnosticTestMriList;
+        }
 
-    public List<InvasiveTestEcogDisplayVO> getInvasiveTestEcogList() {
-        return invasiveTestEcogList;
-    }
+        public void setDiagnosticTestMriList(List<DiagnosticTestMriDisplayVO> diagnosticTestMriList) {
+            this.diagnosticTestMriList = diagnosticTestMriList;
+        }
 
-    public void setInvasiveTestEcogList(List<InvasiveTestEcogDisplayVO> invasiveTestEcogList) {
-        this.invasiveTestEcogList = invasiveTestEcogList;
-    }
+        public List<InvasiveTestEcogDisplayVO> getInvasiveTestEcogList() {
+            return invasiveTestEcogList;
+        }
 
-    public List<InvasiveTestEegDisplayVO> getInvasiveTestEegList() {
-        return invasiveTestEegList;
-    }
+        public void setInvasiveTestEcogList(List<InvasiveTestEcogDisplayVO> invasiveTestEcogList) {
+            this.invasiveTestEcogList = invasiveTestEcogList;
+        }
 
-    public void setInvasiveTestEegList(List<InvasiveTestEegDisplayVO> invasiveTestEegList) {
-        this.invasiveTestEegList = invasiveTestEegList;
-    }
+        public List<InvasiveTestEegDisplayVO> getInvasiveTestEegList() {
+            return invasiveTestEegList;
+        }
 
-    public List<InvasiveTestCorticalMappingDisplayVO> getInvasiveTestCorticalMappingList() {
-        return invasiveTestCorticalMappingList;
-    }
+        public void setInvasiveTestEegList(List<InvasiveTestEegDisplayVO> invasiveTestEegList) {
+            this.invasiveTestEegList = invasiveTestEegList;
+        }
 
-    public void setInvasiveTestCorticalMappingList(List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingList) {
-        this.invasiveTestCorticalMappingList = invasiveTestCorticalMappingList;
-    }
+        public List<InvasiveTestCorticalMappingDisplayVO> getInvasiveTestCorticalMappingList() {
+            return invasiveTestCorticalMappingList;
+        }
 
-    public List<OperationDisplayVO> getOperationList() {
-        return operationList;
-    }
+        public void setInvasiveTestCorticalMappingList(List<InvasiveTestCorticalMappingDisplayVO> invasiveTestCorticalMappingList) {
+            this.invasiveTestCorticalMappingList = invasiveTestCorticalMappingList;
+        }
 
-    public void setOperationList(List<OperationDisplayVO> operationList) {
-        this.operationList = operationList;
-    }
+        public List<OperationDisplayVO> getOperationList() {
+            return operationList;
+        }
 
-    public List<HistologyDisplayVO> getHistologyList() {
-        return histologyList;
-    }
+        public void setOperationList(List<OperationDisplayVO> operationList) {
+            this.operationList = operationList;
+        }
 
-    public void setHistologyList(List<HistologyDisplayVO> histologyList) {
-        this.histologyList = histologyList;
-    }
+        public List<HistologyDisplayVO> getHistologyList() {
+            return histologyList;
+        }
 
-    public List<ComplicationDisplayVO> getComplicationList() {
-        return complicationList;
-    }
+        public void setHistologyList(List<HistologyDisplayVO> histologyList) {
+            this.histologyList = histologyList;
+        }
 
-    public void setComplicationList(List<ComplicationDisplayVO> complicationList) {
-        this.complicationList = complicationList;
-    }
+        public List<ComplicationDisplayVO> getComplicationList() {
+            return complicationList;
+        }
 
-    public List<OutcomeDisplayVO> getOutcomeList() {
-        return outcomeList;
-    }
+        public void setComplicationList(List<ComplicationDisplayVO> complicationList) {
+            this.complicationList = complicationList;
+        }
 
-    public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
-        this.outcomeList = outcomeList;
-    }
-*/
+        public List<OutcomeDisplayVO> getOutcomeList() {
+            return outcomeList;
+        }
+
+        public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
+            this.outcomeList = outcomeList;
+        }
+    */
     public boolean isVerified() {
         return verified;
     }

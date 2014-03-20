@@ -40,7 +40,8 @@
                     <spring:message code="label.interictalEegSpikes"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.interictalEegSpikes.${diagnosticTestScalpEegDisplayVo.interictalEegSpikes}"/>
+                    <spring:message
+                            code="label.interictalEegSpikes.${diagnosticTestScalpEegDisplayVo.interictalEegSpikes}"/>
                 </td>
             </tr>
             <tr>

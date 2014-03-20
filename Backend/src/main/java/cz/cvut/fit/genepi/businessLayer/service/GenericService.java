@@ -12,5 +12,5 @@ public interface GenericService<VO, Entity> {
 
     public void delete(int id, Class<Entity> entityClass);
 
-    public List<VO> getAll(Class<VO> voClass,Class<Entity> entityClass);
+    public List<VO> getAll(Class<VO> voClass, Class<Entity> entityClass);
 }

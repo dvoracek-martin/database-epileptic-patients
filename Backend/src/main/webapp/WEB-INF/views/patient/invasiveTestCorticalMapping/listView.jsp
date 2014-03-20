@@ -41,7 +41,8 @@
             <c:otherwise>
                 <c:set var="count" value="0" scope="page"/>
                 <div class="list-striped">
-                    <c:forEach items="${invasiveTestCorticalMappingDisplayVoList}" var="invasiveTestCorticalMappingDisplayVo">
+                    <c:forEach items="${invasiveTestCorticalMappingDisplayVoList}"
+                               var="invasiveTestCorticalMappingDisplayVo">
                         <div>
                             <table class="record-head table">
                                 <tbody>

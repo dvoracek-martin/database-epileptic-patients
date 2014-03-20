@@ -350,7 +350,8 @@
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}">
+                    <a data-toggle="collapse"
+                       href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}">
                         Zadano dne: ${diagnosticTestScalpEegDisplayVo.date}
                     </a>
                 </th>
@@ -774,7 +775,8 @@
                     <tr>
                         <th class="col-xs-12">
                             <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
-                                <spring:message code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
+                                <spring:message
+                                        code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
                             </a>
                         </th>
                     </tr>

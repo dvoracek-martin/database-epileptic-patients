@@ -829,8 +829,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isSeizureFrequency()) {
             content.add(messageSource.getMessage("label.seizureFrequency", null, locale));
             content.add(translateValue(messageSource.getMessage("label.seizureFrequency." +
-                    String.valueOf(seizure.getSeizureFrequency()), null, locale),
-                    locale));
+                            String.valueOf(seizure.getSeizureFrequency()), null, locale),
+                    locale
+            ));
         }
         if (exportParams.isSeizureSecondarilyGeneralizedSeizure()) {
             content.add(messageSource.getMessage("label.secondarilyGeneralizedSeizure", null, locale));
@@ -880,14 +881,16 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             if (exportParams.isSeizureSSCClassification()) {
                 detailContent.add(messageSource.getMessage("label.sscClassification", null, locale));
                 detailContent.add(translateValue(messageSource.getMessage("label.sscClassification." +
-                        String.valueOf(seizureDetail.getSscClassification()), null, locale),
-                        locale));
+                                String.valueOf(seizureDetail.getSscClassification()), null, locale),
+                        locale
+                ));
             }
             if (exportParams.isSeizureILAEClassification()) {
                 detailContent.add(messageSource.getMessage("label.ilaeClassification", null, locale));
                 detailContent.add(translateValue(messageSource.getMessage("label.ilaeClassification." +
-                        String.valueOf(seizureDetail.getIlaeClassification()), null, locale),
-                        locale));
+                                String.valueOf(seizureDetail.getIlaeClassification()), null, locale),
+                        locale
+                ));
             }
             if (exportParams.isSeizureDetailComment()) {
                 detailContent.add(messageSource.getMessage("label.comment", null, locale));

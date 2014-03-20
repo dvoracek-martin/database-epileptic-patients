@@ -22,32 +22,32 @@
 		    <script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
        </jsp:attribute>
 
-<jsp:body>
+    <jsp:body>
 
-<div class="row">
-    <div class="col-xs-12">
-        <h2>
-            <spring:message code="label.seizures"/> Záchvaty - Přidání záchvatu
-        </h2>
-    </div>
-</div>
-
-<%@include file="../../patientDetails.jsp" %>
-
-<form:form class="form-horizontal" role="form" method="POST"
-           action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/${seizureDetail.id}/edit"
-           commandName="seizureDetail">
-
-    <%@include file="formView.jsp" %>
-
-    <div class="form-group">
-        <div class="col-xs-offset-4 col-xs-8">
-            <button class="btn btn-primary" type="submit">
-                <spring:message code="label.save"/>
-            </button>
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>
+                    <spring:message code="label.seizures"/> Záchvaty - Přidání záchvatu
+                </h2>
+            </div>
         </div>
-    </div>
-</form:form>
 
-</jsp:body>
+        <%@include file="../../patientDetails.jsp" %>
+
+        <form:form class="form-horizontal" role="form" method="POST"
+                   action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/${seizureDetail.id}/edit"
+                   commandName="seizureDetail">
+
+            <%@include file="formView.jsp" %>
+
+            <div class="form-group">
+                <div class="col-xs-offset-4 col-xs-8">
+                    <button class="btn btn-primary" type="submit">
+                        <spring:message code="label.save"/>
+                    </button>
+                </div>
+            </div>
+        </form:form>
+
+    </jsp:body>
 </t:menuLVL2>
