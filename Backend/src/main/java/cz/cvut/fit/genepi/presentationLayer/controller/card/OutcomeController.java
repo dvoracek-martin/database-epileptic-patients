@@ -148,26 +148,6 @@ public class OutcomeController {
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
 
-        /*
-        PatientEntity patient = patientService
-                .getPatientByIdWithOperationList(patientID);
-        model.addAttribute("patient", patient);
-        List<OperationEntity> list = patient.getOperationList();
-        System.out.println("sss");
-        for (Iterator<OperationEntity> i = list.iterator(); i.hasNext(); ) {
-            System.out.println("sssIN");
-            OperationEntity o = i.next();
-            System.out.println(o.getId());
-            List<OutcomeEntity> ou = o.getOutcomeList();
-            System.out.println(ou.size());
-            for (Iterator<OutcomeEntity> j = ou.iterator(); j.hasNext(); ) {
-                System.out.println("sssIN2");
-                OutcomeEntity out = j.next();
-                System.out.println(out.getDistance());
-            }
-
-        }
-        System.out.println("sss2");*/
         return "patient/outcome/listView";
     }
 }

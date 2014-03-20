@@ -33,7 +33,7 @@ public class OutcomeEntity implements Comparable<OutcomeEntity> {
     @Column(name = "added", nullable = false, insertable = false)
     private Date added;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", insertable = false, updatable = false)
     private PatientEntity patient;
 
