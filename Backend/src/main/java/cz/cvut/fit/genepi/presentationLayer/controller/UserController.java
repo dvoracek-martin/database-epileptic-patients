@@ -322,18 +322,20 @@ public class UserController {
     @RequestMapping(value = "/user/{userId}/edit-roles", method = RequestMethod.POST)
     public String userEditRolesPOST(
             @PathVariable("userId") Integer userId,
-            @RequestParam("role") int[] roleIds, HttpServletRequest request) {
+            @RequestParam(value = "role", defaultValue = "0") int[] roleIds, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
 
+            //todo transfer to service
             List<RoleVO> newRoles = new ArrayList<>();
 
-            for (int id : roleIds) {
-                newRoles.add(roleService.getById(id, RoleVO.class, RoleEntity.class));
+            if (roleIds.length >0 && roleIds[0] != 0) {
+                for (int id : roleIds) {
+                    newRoles.add(roleService.getById(id, RoleVO.class, RoleEntity.class));
+                }
             }
-
             UserVO userVO = userService.getById(userId, UserVO.class, UserEntity.class);
             userVO.setRoles(newRoles);
 
