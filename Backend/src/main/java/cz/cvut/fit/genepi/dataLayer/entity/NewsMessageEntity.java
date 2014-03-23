@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.dataLayer.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.Size;
 import java.util.Date;
 
 // TODO: Auto-generated Javadoc
@@ -11,7 +10,8 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "NEWS_MESSAGE")
-public class NewsMessageEntity {
+public class NewsMessageEntity implements
+        Comparable<NewsMessageEntity> {
 
     /**
      * The id.
@@ -21,15 +21,35 @@ public class NewsMessageEntity {
     @GeneratedValue
     private int id;
 
+    @Column(name = "heading")
+    private String heading;
     /**
      * The message.
      */
-    @Size(max = 2000)
-    @Column(name = "MESSAGE", length = 2000, nullable = false)
+    @Column(name = "MESSAGE")
     private String message;
 
     @Column(name = "DATE", nullable = true)
     private Date date;
+
+
+    @Override
+    public int compareTo(NewsMessageEntity o) {
+        int dateComparison = this.date.compareTo(o.getDate());
+        int idComparison = this.id - o.getId();
+        if (dateComparison > 0) {
+            return -1;
+        } else if (dateComparison == 0) {
+            if (idComparison < 0) {
+                return 1;
+            } else {
+                return -1;
+            }
+        } else {
+            return 1;
+        }
+    }
+
 
     /**
      * Gets the id.
@@ -47,6 +67,15 @@ public class NewsMessageEntity {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
 
     /**

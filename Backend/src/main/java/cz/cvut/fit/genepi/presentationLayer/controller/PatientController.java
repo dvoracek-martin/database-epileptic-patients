@@ -279,9 +279,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-       /* PatientWithAllListsDisplayVO patient = patientService.getPatientDisplayByIdWithAllLists(patientId);*/
 
-        //TODO hotfix
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
         model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
@@ -417,6 +415,7 @@ public class PatientController {
     public String patientExportGET(
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

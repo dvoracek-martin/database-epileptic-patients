@@ -35,7 +35,7 @@ public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity
     @Override
     @Transactional
     public VO getById(int id, Class<VO> voClass, Class<Entity> entityClass) {
-        Entity entity = genericDAO.findByID(entityClass, id);
+        Entity entity = genericDAO.getById(id,entityClass);
         return dozer.map(entity, voClass);
     }
 
@@ -49,7 +49,7 @@ public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity
     @Override
     @Transactional
     public void delete(int id, Class<Entity> entityClass) {
-        Entity entity = genericDAO.findByID(entityClass, id);
+        Entity entity = genericDAO.getById(id,entityClass);
         genericDAO.delete(entity);
     }
 

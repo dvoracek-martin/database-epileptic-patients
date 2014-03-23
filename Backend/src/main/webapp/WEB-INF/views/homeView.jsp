@@ -1,37 +1,17 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1>
 
 	<jsp:attribute name="title">
-      Domovská stránka
+       <spring:message code="label.homepage"/>
     </jsp:attribute>
 
     <jsp:attribute name="script">
-     	<script>
-            function prepareEdit(messageID) {
-                $('#editForm').attr('action', '/GENEPI/news/' + messageID + '/edit');
-                var message = $("#message" + messageID).html();
-                $("#editContent").val(message);
-            }
-
-            function prepareDelete(messageID) {
-                $('#confirmDelete').attr('href', '/GENEPI/news/' + messageID + '/delete')
-            }
-
-            function cleanEdit() {
-                $("#editContent").val("");
-            }
-
-            function cleanCreate() {
-                $("#createContent").val("");
-            }
-        </script>
     </jsp:attribute>
 
     <jsp:body>
@@ -44,114 +24,88 @@
             <sec:authorize ifAnyGranted="ROLE_ADMIN">
                 <div class="col-xs-6">
                     <h3 class="pull-right">
-                        <a data-toggle="modal" data-target="#create">Přidat zprávu</a>
+                        <a href="<c:url value="/news/create" />">
+                            <spring:message code="label.addMessage"/>
+                        </a>
                     </h3>
                 </div>
             </sec:authorize>
         </div>
-        <%--
-                <div class="panel-group" id="accordion">
-                    <c:forEach items="${newsMessages}" var="newsMessage">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                <span>
-                                        ${newsMessage.date}
-                                </span>
-
-                                    <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                                        <a class="pull-right" data-toggle="modal" data-target="#delete"
-                                           onclick="prepareDelete(${newsMessage.id})">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                        </a>
-                                        <a class="pull-right" data-toggle="modal" data-target="#edit"
-                                           onclick="prepareEdit(${newsMessage.id})">
-                                            <span class="glyphicon glyphicon-edit"></span> edit&nbsp;
-                                        </a>
-                                    </sec:authorize>
-                                </h4>
-                            </div>
-                            <div class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <table class="table">
-                                        <tbody>
-                                        <tr><p id="message${newsMessage.id}">${newsMessage.message}</p></tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+        <c:choose>
+            <c:when test="${empty newsMessages}">
+                <div class="alert alert-info">
+                    <spring:message code="label.noMessages"/>
                 </div>
+            </c:when>
+            <c:otherwise>
 
-                <div class="modal fade" id="edit">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title"><spring:message code="label.messageEditing"/></h4>
-                            </div>
-                            <form:form id="editForm" method="POST" modelAttribute="emptyMessage"
-                                       action="/GENEPI/news/${newsMessage.id}/edit"
-                                       commandName="emptyMessage">
+                <c:forEach items="${newsMessages}" var="newsMessage">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3>
+                                    ${newsMessage.date}
+                            </h3>
+                        </div>
+
+                        <div class="col-xs-2"></div>
+                        <div class="col-xs-2">
+                            <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                                <h3 class="pull-right">
+                                    <a href="<c:url value="/news/${newsMessage.id}/edit" />">
+                                        <spring:message code="label.edit"/>
+                                    </a>
+                                </h3>
+                            </sec:authorize>
+                        </div>
+                        <div class="col-xs-2">
+                            <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                                <h3 class="pull-right">
+                                    <a href="#delete-news-${newsMessage.id}" data-toggle="modal">
+                                        <spring:message code="label.delete"/>
+                                    </a>
+                                </h3>
+                            </sec:authorize>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <h3>
+                                    ${newsMessage.heading}
+                            </h3>
+
+                            <p>
+                                    ${newsMessage.message}
+                            </p>
+                        </div>
+                    </div>
+                    <hr>
+                </c:forEach>
+
+
+                <c:forEach items="${newsMessages}" var="newsMessage">
+                    <!-- Modal -->
+                    <div class="modal fade" id="delete-news-${newsMessage.id}" tabindex="-1" role="dialog"
+                         aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
                                 <div class="modal-body">
-                                    <form:input type="text" path="message" class="form-control" id="editContent"/>
+                                    <spring:message code="label.reallyDeleteMessage"/>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cleanEdit()">
-                                        Close
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        <spring:message code="label.cancel"/>
                                     </button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                    <a type="button" class="btn btn-primary"
+                                       href="<c:url value="/news/${newsMessage.id}/delete" />">
+                                        <spring:message code="label.yes"/>
+                                    </a>
                                 </div>
-                            </form:form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" id="delete">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Smaz zprávu</h4>
-                            </div>
-
-                            <div class="modal-body">
-                                <h5>Opravdu chcete smazat zprávu?</h5>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Ne</button>
-                                <a id="confirmDelete" class="btn btn-primary" href="">Ano</a>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="modal fade" id="create">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Přidat novou zprávu</h4>
-                            </div>
-
-                            <form:form method="POST" modelAttribute="emptyMessage"
-                                       action="/GENEPI/news/create" commandName="emptyMessage">
-
-                                <div class="modal-body">
-                                    <form:input type="text" path="message" class="form-control" id="createContent"/>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="cleanCreate()">
-                                        Close
-                                    </button>
-                                    <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </form:form>
-                        </div>
-                    </div>
-                </div>
-        --%>
-        Zprávy jsou Dočasně mimo provoz
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
     </jsp:body>
 </t:menuLVL1>

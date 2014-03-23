@@ -41,15 +41,6 @@ public interface GenericDAO<Entity> {
     public List<Entity> findAll(Class<Entity> myClass);
 
     /**
-     * Find by id.
-     *
-     * @param myClass the my class
-     * @param id      the id
-     * @return the t
-     */
-    public Entity findByID(Class<Entity> myClass, int id);
-
-    /**
      * The same as findAll(Class<Entity> myClass), but this method can paginate the
      * results
      *

@@ -184,12 +184,6 @@
         </field>
     </mapping>
 
-    <!-- Outcome -mby not needed
-    <mapping type="one-way">
-        <class-a>cz.cvut.fit.genepi.dataLayer.entity.card.OutcomeEntity</class-a>
-        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.card.OutcomeDisplayVO</class-b>
-
-    </mapping>-->
 
     <mapping>
         <class-a>cz.cvut.fit.genepi.businessLayer.VO.form.card.NeuropsychologyVO</class-a>
@@ -197,6 +191,16 @@
         <field custom-converter="cz.cvut.fit.genepi.util.IntArrayToStringConverter">
             <a>presenceOfChangesDetail</a>
             <b>presenceOfChangesDetail</b>
+        </field>
+    </mapping>
+
+    <!-- News Message -->
+    <mapping type="one-way">
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.display.NewsMessageDisplayVO</class-b>
+        <field>
+            <a>date</a>
+            <b date-format="yyyy-MM-dd">date</b>
         </field>
     </mapping>
 

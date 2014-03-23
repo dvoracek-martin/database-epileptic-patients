@@ -547,7 +547,7 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public void hide(int patientId) {
-        PatientEntity patient = genericDAO.findByID(PatientEntity.class, patientId);
+        PatientEntity patient = genericDAO.getById(patientId,PatientEntity.class);
         patient.setStatus(1);
         genericDAO.save(patient);
     }
@@ -555,7 +555,7 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public void unhide(int patientId) {
-        PatientEntity patient = genericDAO.findByID(PatientEntity.class, patientId);
+        PatientEntity patient = genericDAO.getById(patientId,PatientEntity.class);
         patient.setStatus(0);
         genericDAO.save(patient);
     }

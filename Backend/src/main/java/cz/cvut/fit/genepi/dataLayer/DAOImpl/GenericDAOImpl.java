@@ -64,14 +64,6 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
         return count.intValue();
     }
 
-    @SuppressWarnings("unchecked")
-    public Entity findByID(Class<Entity> myClass, int id) {
-
-        return (Entity) sessionFactory
-                .getCurrentSession()
-                .get(myClass, id);
-    }
-
 
     /*
      * (non-Javadoc)
