@@ -400,146 +400,22 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
     @SuppressWarnings("unchecked")
     @Override
     public List<PatientEntity> performSearch(AdvancedSearchEntity advancedSearch) {
+
         Criteria criteria = sessionFactory.getCurrentSession()
                 .createCriteria(PatientEntity.class, "patient")
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
+        //alias for contact
+        criteria.createAlias("patient.contact", "contact", JoinType.LEFT_OUTER_JOIN);
 
-		/* fetching and creating aliases for sub collections */
+        /* General parameters - Specific person */
 
-		/* Setting criterias from search */
+        /* firstname */
 
-		/* General parameters - specific person section */
-
-		/* Fetching and creating alias for sub collection contact */
-        criteria.setFetchMode("patient.contact", FetchMode.JOIN);
-        criteria.createAlias("patient.contact", "contact");
-
-		/* Firstname */
         if (!advancedSearch.getPatientFirstname().equals("")) {
-            criteria.add(Restrictions.like("contact.firstName", "%"
-                    + advancedSearch.getPatientFirstname() + "%"));
+            criteria.add(Restrictions.like("contact.firstName", "%" + advancedSearch.getPatientFirstname() + "%"));
         }
 
-		/* Lastname */
-        if (!advancedSearch.getPatientLastname().equals("")) {
-            criteria.add(Restrictions.like("contact.lastName", "%"
-                    + advancedSearch.getPatientLastname() + "%"));
-        }
-
-		/* Birth number */
-        if (!advancedSearch.getPatientNin().equals("")) {
-            criteria.add(Restrictions.like("contact.nin",
-                    advancedSearch.getPatientNin() + "%"));
-        }
-
-		/* Town */
-        if (!advancedSearch.getPatientTown().equals("")) {
-            criteria.add(Restrictions.like("contact.addressTown",
-                    advancedSearch.getPatientTown() + "%"));
-        }
-
-		/* Country */
-        if (!advancedSearch.getPatientCountry().equals("")) {
-            criteria.add(Restrictions.like("contact.addressCountry",
-                    advancedSearch.getPatientCountry() + "%"));
-        }
-
-		/* General parameters section */
-
-		/* Gender */
-        if (advancedSearch.getPatientGender().equals("F")) {
-            criteria.add(Restrictions.eq("gender", "female"));
-        } else if (advancedSearch.getPatientGender().equals("M")) {
-            criteria.add(Restrictions.eq("gender", "male"));
-        }
-
-		/* Age of patient */
-        if (!advancedSearch.getPatientAge().equals("")) {
-            /* calculating years */
-            LocalDate now = new LocalDate();
-            LocalDate dateBeforeInput = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAge()));
-            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAge()) + 1);
-
-            if (advancedSearch.getPatientAgeFilter().equals("=")) {
-                criteria.add(Restrictions.gt("birthday",
-                        dateBeforeInputPlusOneYear.toDate()));
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeFilter().equals(">")) {
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInputPlusOneYear.toDate()));
-            } else if (advancedSearch.getPatientAgeFilter().equals("<")) {
-                criteria.add(Restrictions.gt("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeFilter().equals(">=")) {
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeFilter().equals("<=")) {
-                criteria.add(Restrictions.ge("birthday",
-                        dateBeforeInput.toDate()));
-            }
-        }
-
-		/* Age when epilepsy began */
-        if (!advancedSearch.getPatientAgeEpilepsy().equals("")) {
-            /* calculating years */
-            LocalDate now = new LocalDate();
-            LocalDate dateBeforeInput = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAgeEpilepsy()));
-            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAgeEpilepsy()) + 1);
-
-            if (advancedSearch.getPatientAgeEpilepsyFilter().equals("=")) {
-                criteria.add(Restrictions.gt("birthday",
-                        dateBeforeInputPlusOneYear.toDate()));
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals(">")) {
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInputPlusOneYear.toDate()));
-            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals("<")) {
-                criteria.add(Restrictions.gt("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeEpilepsyFilter()
-                    .equals(">=")) {
-                criteria.add(Restrictions.le("birthday",
-                        dateBeforeInput.toDate()));
-            } else if (advancedSearch.getPatientAgeEpilepsyFilter()
-                    .equals("<=")) {
-                criteria.add(Restrictions.ge("birthday",
-                        dateBeforeInput.toDate()));
-            }
-        }
-
-		/* Fetching and creating alias for sub collection doctor */
-        criteria.setFetchMode("patient.doctor", FetchMode.JOIN);
-        criteria.createAlias("patient.doctor", "doctor");
-
-        if (advancedSearch.getPatientDoctor() != 0) {
-            criteria.add(Restrictions.eq("doctor.id",
-                    advancedSearch.getPatientDoctor()));
-        }
-        /* Include parameters from section */
-        // ...
-
-		/* anamnesis specific section */
-
-		/* Fetching and creating alias for sub collection contact anamnesisList */
-        criteria.createAlias("patient.anamnesisList", "anamnesisList",
-                JoinType.LEFT_OUTER_JOIN);
-
-        if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
-            if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
-                criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
-                        true));
-            } else {
-                criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
-                        false));
-            }
-        }
 
         return (List<PatientEntity>) criteria.list();
     }

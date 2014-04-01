@@ -1,5 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
@@ -16,5 +18,5 @@ public interface SearchService {
      * @return List of PatientEntity
      * @params advancedSearch as AdvancedSearchEntyt
      */
-    public List<PatientEntity> performAdvancedSearch(AdvancedSearchEntity advancedSearch);
+    public List<PatientDisplayVO> performAdvancedSearch(AdvancedSearchVO advancedSearch);
 }

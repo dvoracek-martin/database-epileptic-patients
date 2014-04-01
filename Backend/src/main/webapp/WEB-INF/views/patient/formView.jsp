@@ -5,7 +5,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
-    <label for="contact.lastName" class="col-xs-3 control-label">
+    <label for="contact.lastName" class="col-xs-4 control-label">
         <spring:message code="label.lastname"/>*
     </label>
 
@@ -16,7 +16,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.firstName" class="col-xs-3 control-label">
+    <label for="contact.firstName" class="col-xs-4 control-label">
         <spring:message code="label.firstname"/>*
     </label>
 
@@ -28,7 +28,7 @@
 </div>
 
 <div class="form-group">
-    <label for="birthday" class="col-xs-3 control-label">
+    <label for="birthday" class="col-xs-4 control-label">
         <spring:message code="label.birthdate"/>*
     </label>
 
@@ -44,7 +44,7 @@
 </div>
 
 <div class="form-group">
-    <label for="nin" class="col-xs-3 control-label">
+    <label for="nin" class="col-xs-4 control-label">
         <spring:message code="label.idnumber"/>
     </label>
 
@@ -55,7 +55,7 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-3 control-label">
+    <label class="col-xs-4 control-label">
         <spring:message code="label.gender"/>*
     </label>
 
@@ -76,7 +76,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.addressStreet" class="col-xs-3 control-label">
+    <label for="contact.addressStreet" class="col-xs-4 control-label">
         <spring:message code="label.street"/>
     </label>
 
@@ -87,7 +87,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.addressHn" class="col-xs-3 control-label">
+    <label for="contact.addressHn" class="col-xs-4 control-label">
         <spring:message code="label.addressHn"/>
     </label>
 
@@ -98,7 +98,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.addressCity" class="col-xs-3 control-label">
+    <label for="contact.addressCity" class="col-xs-4 control-label">
         <spring:message code="label.addressCity"/>
     </label>
 
@@ -109,7 +109,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.addressPostalcode" class="col-xs-3 control-label">
+    <label for="contact.addressPostalcode" class="col-xs-4 control-label">
         <spring:message code="label.addressPostalcode"/>
     </label>
 
@@ -121,7 +121,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.addressCountry" class="col-xs-3 control-label">
+    <label for="contact.addressCountry" class="col-xs-4 control-label">
         <spring:message code="label.addressCountry"/>
     </label>
 
@@ -133,7 +133,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.phoneNumber" class="col-xs-3 control-label">
+    <label for="contact.phoneNumber" class="col-xs-4 control-label">
         <spring:message code="label.telephone"/>
     </label>
 
@@ -145,7 +145,7 @@
 </div>
 
 <div class="form-group">
-    <label for="contact.email" class="col-xs-3 control-label">
+    <label for="contact.email" class="col-xs-4 control-label">
         <spring:message code="label.email"/>
     </label>
 
@@ -157,7 +157,7 @@
 </div>
 
 <div class="form-group">
-    <label for="doctorId" class="col-xs-3 control-label">
+    <label for="doctorId" class="col-xs-4 control-label">
         <spring:message code="label.doctor"/>*
     </label>
 
@@ -186,7 +186,7 @@
 </div>
 
 <div class="form-group">
-    <label for="indicatingDoctor" class="col-xs-3 control-label">
+    <label for="indicatingDoctor" class="col-xs-4 control-label">
         <spring:message code="label.indicatingDoctor"/>
     </label>
 

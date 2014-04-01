@@ -11,9 +11,7 @@
 	<jsp:attribute name="title">
       Search Results
     </jsp:attribute>
-	<jsp:attribute name="header">
-      
-    </jsp:attribute>
+
 
     <jsp:body>
         <c:forEach items="${patients}" var="patient">

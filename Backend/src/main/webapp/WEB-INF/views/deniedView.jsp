@@ -11,10 +11,7 @@
       <spring:message code="label.permissionDenied"/>
     </jsp:attribute>
 
-
     <jsp:body>
         <h1><spring:message code="label.permissionDenied"/></h1>
     </jsp:body>
 </t:layout>
-
-

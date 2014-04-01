@@ -4,7 +4,6 @@ import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.ContactService;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
-import cz.cvut.fit.genepi.util.LoggingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +19,7 @@ import java.util.Locale;
  */
 @Controller
 public class HiddenController {
+
     @Autowired
     AuthorizationChecker authorizationChecker;
 
@@ -54,11 +54,6 @@ public class HiddenController {
     }
 
     /**
-     * The Constant logger.
-     */
-    private LoggingService s = new LoggingService();
-
-    /**
      * Handles the request to access list of hidden records.
      *
      * @param locale the user's locale.
@@ -67,9 +62,10 @@ public class HiddenController {
      */
     @RequestMapping(value = "/hidden", method = RequestMethod.GET)
     public String userListGET(Locale locale, Model model, HttpServletRequest request) {
-    /*    if (!authorizationChecker.checkAuthoritaion(request)) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }*/
+        }
 
         model.addAttribute("hiddenPatientList", patientService.findAllHidden());
 
