@@ -417,6 +417,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         }
 
 
+
         return (List<PatientEntity>) criteria.list();
     }
 

@@ -40,6 +40,16 @@ public class SearchServiceImpl implements SearchService {
             patientDisplayVoList.add(dozer.map(patientEntity, PatientDisplayVO.class));
         }
 
+      /*  List<List<PatientDisplayVO>> lists = new ArrayList<>();
+
+        double partCount = Math.ceil(patientDisplayVoList.size() / 20);
+
+
+        for (int i = 0; i < patientDisplayVoList.size(); i += 19) {
+
+        }*/
+
+
         return patientDisplayVoList;
     }
 }
