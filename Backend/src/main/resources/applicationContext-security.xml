@@ -40,6 +40,7 @@
 
 
         <security:intercept-url pattern="/patient/**/**/" access="ROLE_RESEARCHER,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"/>
+        <security:intercept-url pattern="/advanced-search/**" access="ROLE_RESEARCHER,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"/>
 
         <security:form-login login-page="/login" authentication-failure-url="/denied" default-target-url="/"/>
         <security:logout logout-success-url="/login"/>

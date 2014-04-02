@@ -50,21 +50,6 @@ public class SearchController {
         this.roleService = roleService;
     }
 
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String searchGET(Locale locale, Model model, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
-            return "deniedView";
-        }
-        return "search";
-    }
-
-    @RequestMapping(value = "/search", method = RequestMethod.POST)
-    public String searchPost(Locale locale, Model model, HttpServletRequest request) {
-        if (!authorizationChecker.checkAuthoritaion(request)) {
-            return "deniedView";
-        }
-        return "searchResults";
-    }
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
     public String advancedSearchGET(Model model, HttpServletRequest request) {
@@ -75,7 +60,7 @@ public class SearchController {
 
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("advancedSearch", new AdvancedSearchVO());
-        return "advancedSearchView";
+        return "search/advancedSearchView";
     }
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.POST)
@@ -88,7 +73,7 @@ public class SearchController {
         }
 
         if (result.hasErrors()) {
-            return "advancedSearchView";
+            return "search/advancedSearchView";
         } else {
             return "redirect:/advanced-search/result";
         }
@@ -105,27 +90,23 @@ public class SearchController {
         List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch((AdvancedSearchVO) model.get("advancedSearch"));
         model.addAttribute("patients", patients);
         model.addAttribute("pages", patients.size());
-        return "searchResults";
+        return "search/searchResults";
     }
 
     @RequestMapping(value = "/advanced-search/save", method = RequestMethod.POST)
     public String advancedSearchSaveGET(
             @ModelAttribute("advancedSearch") @Valid AdvancedSearchVO advancedSearch, BindingResult result,
-            ModelMap model, HttpServletRequest request) {
+           HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
         if (result.hasErrors()) {
-            return "advancedSearchView";
+            return "search/advancedSearchView";
         } else {
-            Authentication auth = SecurityContextHolder.getContext()
-                    .getAuthentication();
-            String name = auth.getName();
-//TODO transfer to service
-            advancedSearch.setUserId(userService.getUserByUsername(name).getId());
-            genericService.save(advancedSearch, AdvancedSearchEntity.class);
+
+            searchService.save(advancedSearch);
 
             return "redirect:/advanced-search/load";
         }
@@ -140,7 +121,7 @@ public class SearchController {
         }
 
         model.addAttribute("advancedSearchList", searchService.loadAll());
-        return "loadView";
+        return "search/loadView";
     }
 
     @RequestMapping(value = "/advanced-search/load/{adancedSearchId}", method = RequestMethod.GET)
@@ -153,7 +134,7 @@ public class SearchController {
         }
 
         model.addAttribute("advancedSearch", genericService.getById(adancedSearchId, AdvancedSearchVO.class, AdvancedSearchEntity.class));
-        return "advancedSearchView";
+        return "search/advancedSearchView";
     }
 
 }

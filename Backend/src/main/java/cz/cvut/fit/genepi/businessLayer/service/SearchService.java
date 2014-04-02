@@ -21,5 +21,6 @@ public interface SearchService {
      */
     public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch);
 
+    public void save(AdvancedSearchVO advancedSearch);
     public List<AdvancedSearchDisplayVO> loadAll();
 }
