@@ -11,7 +11,6 @@
       <spring:message code="label.advancedSearch"/>
     </jsp:attribute>
 
-
 <jsp:body>
 
 <div class="row">
@@ -19,10 +18,8 @@
         <h2>
             <spring:message code="label.advancedSearch"/>
         </h2>
-
     </div>
     <div class="col-xs-6">
-
     </div>
 </div>
 
@@ -39,7 +36,7 @@
 
     <div class="form-group">
         <label for="patientFirstname" class="col-xs-4 control-label">
-            <spring:message code="label.lastname"/>*
+            <spring:message code="label.firstname"/>
         </label>
 
         <div class="col-xs-8">
@@ -53,7 +50,207 @@
         </div>
     </div>
 
-    <hr>
+    <div class="form-group">
+        <label for="patientLastname" class="col-xs-4 control-label">
+            <spring:message code="label.lastname"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientLastname"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientLastname"/>
+
+            <form:errors path="patientLastname"
+                         cssClass="text-danger"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="patientLastname" class="col-xs-4 control-label">
+            <spring:message code="label.nin"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientNin"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientNin"/>
+
+            <form:errors path="patientNin"
+                         cssClass="text-danger"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="patientCity" class="col-xs-4 control-label">
+            <spring:message code="label.addressCity"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientCity"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientCity"/>
+
+            <form:errors path="patientCity"
+                         cssClass="text-danger"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="patientCountry" class="col-xs-4 control-label">
+            <spring:message code="label.addressCountry"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientCountry"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientCountry"/>
+
+            <form:errors path="patientCountry"
+                         cssClass="text-danger"/>
+        </div>
+    </div>
+
+</fieldset>
+
+
+<fieldset>
+    <legend>
+        <spring:message code="label.generalParametersSpecificPerson"/>
+    </legend>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientGender">
+            <spring:message code="label.firstname"/>patientGender
+        </label>
+
+        <div class="col-xs-8">
+            <form:radiobutton path="patientGender" value="1"/>Male
+            <form:radiobutton path="patientGender" value="2"/>Female
+            <form:radiobutton path="patientGender" value="3" checked="true"/>Nerozlisovat
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientAgeFilter">
+            <spring:message code="label.firstname"/>patientAgeFilter
+        </label>
+
+        <div class="col-xs-8">
+            <form:select id="patientAgeFilter"
+                         class="form-control input-sm"
+                         type="text"
+                         path="patientAgeFilter">
+
+                <form:option value="=">
+                    =
+                </form:option>
+                <form:option value=">">
+                    >
+                </form:option>
+                <form:option value="<">
+                    <
+                </form:option>
+                <form:option value=">=">
+                    >=
+                </form:option>
+                <form:option value="<=">
+                    <=
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientAge">
+            <spring:message code="label.firstname"/>patientAge
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientAge"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientAge"/>
+
+            <form:errors path="patientAge"
+                         cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientAgeEpilepsyFilter"><strong><spring:message
+                code="label.firstname"/>patientAgeEpilepsyFilter</strong></label>
+
+        <div class="col-xs-8">
+            <form:select id="patientAgeEpilepsyFilter"
+                         class="form-control input-sm"
+                         type="text"
+                         path="patientAgeEpilepsyFilter">
+
+                <form:option value="=">=</form:option>
+                <form:option value=">">
+                    >
+                </form:option>
+                <form:option value="<">
+                    <
+                </form:option>
+                <form:option value=">=">
+                    >=
+                </form:option>
+                <form:option value="<=">
+                    <=
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientAgeEpilepsy">
+            <spring:message code="label.firstname"/>patientAgeEpilepsy
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientAgeEpilepsy"
+                        class="form-control input-sm"
+                        type="text"
+                        path="patientAgeEpilepsy"/>
+
+            <form:errors path="patientAgeEpilepsy"
+                         cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="patientDoctor">
+            <spring:message code="label.doctor"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:select id="patientDoctor"
+                         class="form-control input-sm"
+                         type="text"
+                         path="patientDoctor">
+
+                <form:option value="0">
+                    Nezvoleno
+                </form:option>
+                <c:forEach items="${doctors}" var="doctor">
+                    <form:option value="${doctor.id}">
+                        ${doctor.contact.firstName} ${doctor.contact.lastName}
+                    </form:option>
+                </c:forEach>
+            </form:select>
+        </div>
+    </div>
+
 </fieldset>
 
 <div class="form-group">
@@ -63,195 +260,8 @@
         </button>
     </div>
 </div>
-<%--
-        <div class="control-group">
-            <label class="control-label" for="patientFirstname"><strong><spring:message
-                    code="label.firstname"/></strong></label>
 
-            <div class="controls">
-                <form:input path="patientFirstname" type="text"
-                            class="input-medium"/>
-                <form:errors path="patientFirstname" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientLastname"><strong><spring:message
-                    code="label.firstname"/>patientLastname</strong></label>
-
-            <div class="controls">
-                <form:input path="patientLastname" type="text"
-                            class="input-medium"/>
-                <form:errors path="patientLastname" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientNin"><strong><spring:message
-                    code="label.firstname"/>patientNin</strong></label>
-
-            <div class="controls">
-                <form:input path="patientNin" type="text" class="input-medium"/>
-                <form:errors path="patientNin" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientTown"><strong><spring:message
-                    code="label.firstname"/>patientTown</strong></label>
-
-            <div class="controls">
-                <form:input path="patientTown" type="text" class="input-medium"/>
-                <form:errors path="patientTown" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientCountry"><strong><spring:message
-                    code="label.firstname"/>patientCountry</strong></label>
-
-            <div class="controls">
-                <form:input path="patientCountry" type="text"
-                            class="input-medium"/>
-                <form:errors path="patientCountry" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientGender"><strong><spring:message
-                    code="label.firstname"/>patientGender</strong></label>
-
-            <div class="controls">
-                <form:radiobutton path="patientGender" value="M"/>Male
-                <form:radiobutton path="patientGender" value="F"/>Female
-                <form:radiobutton path="patientGender" value="N" checked="true"/>Nerozlisovat
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientAgeFilter"><strong><spring:message
-                    code="label.firstname"/>patientAgeFilter</strong></label>
-
-            <div class="controls">
-                <form:select path="patientAgeFilter" id="patientAgeFilter"
-                             type="text" class="input-large">
-                    <form:option value="=">=</form:option>
-                    <form:option value=">">
-                        >
-                    </form:option>
-                    <form:option value="<">
-                        <
-                    </form:option>
-                    <form:option value=">=">
-                        >=
-                    </form:option>
-                    <form:option value="<=">
-                        <=
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-
-        <div class="control-group">
-            <label class="control-label" for="patientAge"><strong><spring:message
-                    code="label.firstname"/>patientAge</strong></label>
-
-            <div class="controls">
-                <form:input path="patientAge" type="text" class="input-medium"/>
-                <form:errors path="patientAge" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="patientAgeEpilepsyFilter"><strong><spring:message
-                    code="label.firstname"/>patientAgeEpilepsyFilter</strong></label>
-
-            <div class="controls">
-                <form:select path="patientAgeEpilepsyFilter"
-                             id="patientAgeEpilepsyFilter" type="text" class="input-large">
-                    <form:option value="=">=</form:option>
-                    <form:option value=">">
-                        >
-                    </form:option>
-                    <form:option value="<">
-                        <
-                    </form:option>
-                    <form:option value=">=">
-                        >=
-                    </form:option>
-                    <form:option value="<=">
-                        <=
-                    </form:option>
-                </form:select>
-            </div>
-        </div>
-
-
-        <div class="control-group">
-            <label class="control-label" for="patientAgeEpilepsy"><strong><spring:message
-                    code="label.firstname"/>patientAgeEpilepsy</strong></label>
-
-            <div class="controls">
-                <form:input path="patientAgeEpilepsy" type="text"
-                            class="input-medium"/>
-                <form:errors path="patientAgeEpilepsy" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-
-        <form:label path="patientDoctor">
-            <spring:message code="label.doctor"/>
-        </form:label>
-        <form:select path="patientDoctor" type="text"
-                     class="input-block-level">
-            <form:option value="0">choose</form:option>
-            <c:forEach items="${doctors}" var="doctor">
-                <form:option
-                        value="${doctor.id}">${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
-            </c:forEach>
-        </form:select>
-
-
-        <div class="control-group">
-            <label class="control-label" for="anamnesis"><strong><spring:message
-                    code="label.firstname"/>anamnesis</strong></label>
-
-            <div class="controls">
-                <form:checkbox path="anamnesis"
-                               class="input-medium" checked="true"/>
-                <form:errors path="anamnesis" cssClass="error">
-                </form:errors>
-            </div>
-        </div>
-        <!-- other checkboxes for cards and functionality -->
-
-
-        <div class="control-group">
-            <label class="control-label" for="anamnesisEpilepsyInFamily"><strong><spring:message
-                    code="label.firstname"/>anamnesisEpilepsyInFamily</strong></label>
-
-            <div class="controls">
-                <form:radiobutton path="anamnesisEpilepsyInFamily" value="1"/>ano
-                <form:radiobutton path="anamnesisEpilepsyInFamily" value="2"/>ne
-                <form:radiobutton path="anamnesisEpilepsyInFamily" value="0" checked="true"/>Nerozlisovat
-            </div>
-        </div>
-
-        <div class="control-group">
-            <div class="controls">
-                <button class="btn btn-primary" type="submit">
-                    <spring:message code="label.add"/>
-                </button>
-            </div>
-        </div>
---%>
 </form:form>
+
 </jsp:body>
 </t:menuLVL1>

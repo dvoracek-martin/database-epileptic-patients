@@ -36,15 +36,15 @@ public class AdvancedSearchEntity {
     @Column(name = "patient_nin")
     private String patientNin;
 
-    @Column(name = "patient_town")
-    private String patientTown;
+    @Column(name = "patient_city")
+    private String patientCity;
 
     @Column(name = "patient_country")
     private String patientCountry;
 
     /* General parameters */
     @Column(name = "patient_gender")
-    private String patientGender;
+    private int patientGender;
 
     @Column(name = "patient_age")
     private String patientAge;
@@ -199,12 +199,12 @@ public class AdvancedSearchEntity {
         this.patientNin = patientNin;
     }
 
-    public String getPatientTown() {
-        return patientTown;
+    public String getPatientCity() {
+        return patientCity;
     }
 
-    public void setPatientTown(String patientTown) {
-        this.patientTown = patientTown;
+    public void setPatientCity(String patientTown) {
+        this.patientCity = patientTown;
     }
 
     public String getPatientCountry() {
@@ -216,11 +216,11 @@ public class AdvancedSearchEntity {
     }
 
     /* General parameters get n set*/
-    public String getPatientGender() {
+    public int getPatientGender() {
         return patientGender;
     }
 
-    public void setPatientGender(String patientGender) {
+    public void setPatientGender(int patientGender) {
         this.patientGender = patientGender;
     }
 
