@@ -22,9 +22,11 @@ public class AdvancedSearchEntity {
     private boolean hidden;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserEntity user;
 
+    @Column(name = "user_id")
+    private int userId;
 
     /* General parameters - specific person */
     @Column(name = "patient_firstname")
@@ -127,8 +129,8 @@ public class AdvancedSearchEntity {
     @Column(name = "anamnesis_first_fever")
     private boolean anamnesisFirstFever;
 
-    @Column(name = "anamnesis_infantile_spasm")
-    private boolean anamnesisInfantileSpasm;
+  /*  @Column(name = "anamnesis_infantile_spasm")
+    private boolean anamnesisInfantileSpasm;*/
 
     @Column(name = "anamnesis_specific_syndrome")
     private boolean anamnesisSpecificSyndrome;
@@ -378,5 +380,11 @@ public class AdvancedSearchEntity {
         this.anamnesisEpilepsyInFamily = anamnesisEpilepsyInFamily;
     }
 
+    public int getUserId() {
+        return userId;
+    }
 
+    public void setUserId(int user_id) {
+        this.userId = user_id;
+    }
 }

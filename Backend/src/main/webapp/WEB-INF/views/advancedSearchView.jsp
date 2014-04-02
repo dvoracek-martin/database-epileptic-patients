@@ -11,6 +11,24 @@
       <spring:message code="label.advancedSearch"/>
     </jsp:attribute>
 
+    <jsp:attribute name="script">
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                var advancedSearchFormSel = $("#advancedSearchForm");
+
+                $("#searchButton").click(function () {
+                    advancedSearchFormSel.submit();
+                });
+
+                $("#saveButton").click(function () {
+                    advancedSearchFormSel.submit().attr('action', '<c:url value="/advanced-search/save" />')
+                    advancedSearchFormSel.submit();
+                });
+            });
+        </script>
+    </jsp:attribute>
+
 <jsp:body>
 
 <div class="row">
@@ -20,10 +38,16 @@
         </h2>
     </div>
     <div class="col-xs-6">
+        <h3 class="pull-right">
+            <a href="<c:url value="/advanced-search/load" />">
+                    <%--<spring:message code="label.addRecord"/>--%>nacist
+            </a>
+        </h3>
     </div>
 </div>
 
-<form:form class="form-horizontal"
+<form:form id="advancedSearchForm"
+           class="form-horizontal"
            method="POST"
            action="/GENEPI/advanced-search"
            role="form"
@@ -255,11 +279,41 @@
 
 <div class="form-group">
     <div class="col-xs-offset-4 col-xs-8">
-        <button class="btn btn-primary" type="submit">
+        <button id="searchButton" class="btn btn-primary">
             <spring:message code="label.search"/>
         </button>
     </div>
 </div>
+
+
+<fieldset>
+    <legend>
+            <%-- <spring:message code="label.save"/>--%>ulozit parametry
+    </legend>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label" for="saveName">
+                <%--  <spring:message code="label.name"/>--%>nazev
+        </label>
+
+        <div class="col-xs-6">
+            <form:input id="saveName"
+                        class="form-control input-sm"
+                        type="text"
+                        path="name"/>
+
+            <form:errors path="name"
+                         cssClass="error">
+            </form:errors>
+        </div>
+
+        <div class="col-xs-2">
+            <button id="saveButton" class="btn btn-primary">
+                <spring:message code="label.save"/>
+            </button>
+        </div>
+    </div>
+</fieldset>
 
 </form:form>
 

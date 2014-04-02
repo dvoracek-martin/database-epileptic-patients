@@ -461,6 +461,7 @@ public class PatientController {
             //@RequestParam("toTable") boolean toTable,
             @RequestParam("exportType") String exportType, Locale locale, boolean anonymize,
             Model model, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

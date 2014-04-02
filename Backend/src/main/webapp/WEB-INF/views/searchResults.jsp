@@ -33,7 +33,7 @@
 
                 <c:forEach items="${patients}" var="patientList">
                     <c:forEach items="${patientList}" var="patient">
-                        <input type="hidden" name="patient" value="${patient.id}">
+                        <input type="hidden" name="patientId" value="${patient.id}">
                     </c:forEach>
                 </c:forEach>
 
@@ -46,7 +46,7 @@
         </div>
 
         <c:choose>
-            <c:when test="${isEmpty}">
+            <c:when test="${empty patients}">
                 no result
             </c:when>
             <c:otherwise>

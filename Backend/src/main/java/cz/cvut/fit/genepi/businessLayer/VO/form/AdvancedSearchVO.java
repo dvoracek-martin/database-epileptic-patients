@@ -1,12 +1,23 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 public class AdvancedSearchVO {
 
-    @Size(max=100)
+    private int id;
+
+    private Date added;
+
+    private String name;
+
+//    private boolean hidden;
+
+//    private UserEntity user;
+    private int userId;
+
+    @Size(max = 100)
     private String patientFirstname;
 
     private String patientLastname;
@@ -117,5 +128,37 @@ public class AdvancedSearchVO {
 
     public void setPatientFirstname(String patientFirstname) {
         this.patientFirstname = patientFirstname;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Date getAdded() {
+        return added;
+    }
+
+    public void setAdded(Date added) {
+        this.added = added;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
