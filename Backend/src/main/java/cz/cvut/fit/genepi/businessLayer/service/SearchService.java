@@ -18,5 +18,5 @@ public interface SearchService {
      * @return List of PatientEntity
      * @params advancedSearch as AdvancedSearchEntyt
      */
-    public List<PatientDisplayVO> performAdvancedSearch(AdvancedSearchVO advancedSearch);
+    public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch);
 }

@@ -98,10 +98,10 @@ public class SearchController {
             return "deniedView";
         }
 
-        List<PatientDisplayVO> patients = searchService.performAdvancedSearch((AdvancedSearchVO) model.get("advancedSearch"));
+        List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch((AdvancedSearchVO) model.get("advancedSearch"));
         model.addAttribute("patients", patients);
         model.addAttribute("isEmpty", patients.isEmpty());
-        model.addAttribute("pages", patients.size() < 20 ? 1 : Math.ceil(patients.size() / 20));
+        model.addAttribute("pages", patients.size());
         return "searchResults";
     }
 
