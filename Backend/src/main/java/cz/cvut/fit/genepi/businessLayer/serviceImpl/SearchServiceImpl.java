@@ -54,13 +54,7 @@ public class SearchServiceImpl implements SearchService {
                 patientDisplayVoList.add(dozer.map(patientEntity, PatientDisplayVO.class));
             }
 
-            int pageCount;
-
-            if (patientDisplayVoList.size() < 20) {
-                pageCount = 1;
-            } else {
-                pageCount = patientDisplayVoList.size() / 20;
-            }
+            int pageCount = patientDisplayVoList.size() / 20;
 
             for (int i = 0; i < pageCount; i++) {
                 lists.add(patientDisplayVoList.subList(i * 20, (i + 1) * 20));
