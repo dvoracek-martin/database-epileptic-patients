@@ -109,32 +109,31 @@ public class AdvancedSearchEntity {
     private int anamnesisEpilepsyInFamily;
 
     @Column(name = "anamnesis_prenatal_risk")
-    private boolean anamnesisPrenatalRisk;
+    private int anamnesisPrenatalRisk;
 
     @Column(name = "anamnesis_fibril_convulsions")
-    private boolean anamnesisFibrilConvulsions;
+    private int anamnesisFibrilConvulsions;
 
     @Column(name = "anamnesis_inflammation_cns")
-    private boolean anamnesisInflammationCns;
+    private int anamnesisInflammationCns;
 
     @Column(name = "anamnesis_operation_cns")
-    private boolean anamnesisOperationCns;
+    private int anamnesisOperationCns;
 
     @Column(name = "anamnesis_injury_cns")
-    private boolean anamnesisInjuryCns;
+    private int anamnesisInjuryCns;
 
     @Column(name = "anamnesis_early_pmd_retardation")
-    private boolean anamnesisEarlyPmdRetardation;
+    private int anamnesisEarlyPmdRetardation;
 
     @Column(name = "anamnesis_first_fever")
-    private boolean anamnesisFirstFever;
+    private int anamnesisFirstFever;
 
-  /*  @Column(name = "anamnesis_infantile_spasm")
-    private boolean anamnesisInfantileSpasm;*/
+  @Column(name = "anamnesis_infantile_spasm")
+    private int anamnesisInfantileSpasm;
 
     @Column(name = "anamnesis_specific_syndrome")
-    private boolean anamnesisSpecificSyndrome;
-
+    private int anamnesisSpecificSyndrome;
 
     public int getId() {
         return id;
@@ -176,7 +175,14 @@ public class AdvancedSearchEntity {
         this.user = user;
     }
 
-    /* General parameters - specific person get n set*/
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
     public String getPatientFirstname() {
         return patientFirstname;
     }
@@ -205,8 +211,8 @@ public class AdvancedSearchEntity {
         return patientCity;
     }
 
-    public void setPatientCity(String patientTown) {
-        this.patientCity = patientTown;
+    public void setPatientCity(String patientCity) {
+        this.patientCity = patientCity;
     }
 
     public String getPatientCountry() {
@@ -217,7 +223,6 @@ public class AdvancedSearchEntity {
         this.patientCountry = patientCountry;
     }
 
-    /* General parameters get n set*/
     public int getPatientGender() {
         return patientGender;
     }
@@ -265,7 +270,6 @@ public class AdvancedSearchEntity {
     public void setPatientDoctor(int patientDoctor) {
         this.patientDoctor = patientDoctor;
     }
-    /* Include params from get n set */
 
     public boolean isAnamnesis() {
         return anamnesis;
@@ -355,7 +359,7 @@ public class AdvancedSearchEntity {
         this.histology = histology;
     }
 
-    public boolean getComplication() {
+    public boolean isComplication() {
         return complication;
     }
 
@@ -363,14 +367,13 @@ public class AdvancedSearchEntity {
         this.complication = complication;
     }
 
-    public boolean getOutcome() {
+    public boolean isOutcome() {
         return outcome;
     }
 
     public void setOutcome(boolean outcome) {
         this.outcome = outcome;
     }
-    /* anamnesis specific  get n set*/
 
     public int getAnamnesisEpilepsyInFamily() {
         return anamnesisEpilepsyInFamily;
@@ -380,11 +383,75 @@ public class AdvancedSearchEntity {
         this.anamnesisEpilepsyInFamily = anamnesisEpilepsyInFamily;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getAnamnesisPrenatalRisk() {
+        return anamnesisPrenatalRisk;
     }
 
-    public void setUserId(int user_id) {
-        this.userId = user_id;
+    public void setAnamnesisPrenatalRisk(int anamnesisPrenatalRisk) {
+        this.anamnesisPrenatalRisk = anamnesisPrenatalRisk;
+    }
+
+    public int getAnamnesisFibrilConvulsions() {
+        return anamnesisFibrilConvulsions;
+    }
+
+    public void setAnamnesisFibrilConvulsions(int anamnesisFibrilConvulsions) {
+        this.anamnesisFibrilConvulsions = anamnesisFibrilConvulsions;
+    }
+
+    public int getAnamnesisInflammationCns() {
+        return anamnesisInflammationCns;
+    }
+
+    public void setAnamnesisInflammationCns(int anamnesisInflammationCns) {
+        this.anamnesisInflammationCns = anamnesisInflammationCns;
+    }
+
+    public int getAnamnesisOperationCns() {
+        return anamnesisOperationCns;
+    }
+
+    public void setAnamnesisOperationCns(int anamnesisOperationCns) {
+        this.anamnesisOperationCns = anamnesisOperationCns;
+    }
+
+    public int getAnamnesisInjuryCns() {
+        return anamnesisInjuryCns;
+    }
+
+    public void setAnamnesisInjuryCns(int anamnesisInjuryCns) {
+        this.anamnesisInjuryCns = anamnesisInjuryCns;
+    }
+
+    public int getAnamnesisEarlyPmdRetardation() {
+        return anamnesisEarlyPmdRetardation;
+    }
+
+    public void setAnamnesisEarlyPmdRetardation(int anamnesisEarlyPmdRetardation) {
+        this.anamnesisEarlyPmdRetardation = anamnesisEarlyPmdRetardation;
+    }
+
+    public int getAnamnesisFirstFever() {
+        return anamnesisFirstFever;
+    }
+
+    public void setAnamnesisFirstFever(int anamnesisFirstFever) {
+        this.anamnesisFirstFever = anamnesisFirstFever;
+    }
+
+    public int getAnamnesisInfantileSpasm() {
+        return anamnesisInfantileSpasm;
+    }
+
+    public void setAnamnesisInfantileSpasm(int anamnesisInfantileSpasm) {
+        this.anamnesisInfantileSpasm = anamnesisInfantileSpasm;
+    }
+
+    public int getAnamnesisSpecificSyndrome() {
+        return anamnesisSpecificSyndrome;
+    }
+
+    public void setAnamnesisSpecificSyndrome(int anamnesisSpecificSyndrome) {
+        this.anamnesisSpecificSyndrome = anamnesisSpecificSyndrome;
     }
 }

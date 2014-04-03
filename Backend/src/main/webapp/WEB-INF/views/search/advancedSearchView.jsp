@@ -12,6 +12,7 @@
     </jsp:attribute>
 
     <jsp:attribute name="script">
+        <script src="<c:url value="/resources/custom/js/advanced-search.js" />"></script>
         <script type="text/javascript">
             $(document).ready(function () {
 
@@ -40,7 +41,7 @@
     <div class="col-xs-6">
         <h3 class="pull-right">
             <a href="<c:url value="/advanced-search/load" />">
-                    <%--<spring:message code="label.addRecord"/>--%>nacist
+                <spring:message code="label.load"/>
             </a>
         </h3>
     </div>
@@ -143,25 +144,26 @@
 
 <fieldset>
     <legend>
-        <spring:message code="label.generalParametersSpecificPerson"/>
+        <spring:message code="label.generalParameters"/>
     </legend>
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientGender">
-            <spring:message code="label.firstname"/>patientGender
+            <spring:message code="label.gender"/>
         </label>
 
         <div class="col-xs-8">
-            <form:radiobutton path="patientGender" value="1"/>Male
-            <form:radiobutton path="patientGender" value="2"/>Female
-            <form:radiobutton path="patientGender" value="3" checked="true"/>Nerozlisovat
+            <form:radiobutton path="patientGender" value="1"/> <spring:message code="label.male"/>
+            <form:radiobutton path="patientGender" value="2"/> <spring:message code="label.female"/>
+            <form:radiobutton path="patientGender" value="3" checked="true"/><spring:message
+                code="label.notDistinguish"/>
         </div>
     </div>
 
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientAgeFilter">
-            <spring:message code="label.firstname"/>patientAgeFilter
+            <spring:message code="label.age"/>
         </label>
 
         <div class="col-xs-8">
@@ -192,7 +194,7 @@
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientAge">
-            <spring:message code="label.firstname"/>patientAge
+            <spring:message code="label.age"/>
         </label>
 
         <div class="col-xs-8">
@@ -209,7 +211,7 @@
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientAgeEpilepsyFilter"><strong><spring:message
-                code="label.firstname"/>patientAgeEpilepsyFilter</strong></label>
+                code="label.age"/>patientAgeEpilepsyFilter</strong></label>
 
         <div class="col-xs-8">
             <form:select id="patientAgeEpilepsyFilter"
@@ -236,7 +238,7 @@
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientAgeEpilepsy">
-            <spring:message code="label.firstname"/>patientAgeEpilepsy
+            <spring:message code="label.ageAtTheBeginningOfEpilepsy"/>
         </label>
 
         <div class="col-xs-8">
@@ -277,6 +279,135 @@
 
 </fieldset>
 
+<fieldset>
+    <legend>
+        <spring:message code="label.includeParametersFrom"/>
+    </legend>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="anamnesis"/>
+        <jsp:param name="messageCode" value="anamnesis"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="seizure"/>
+        <jsp:param name="messageCode" value="seizures"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="seizure"/>
+        <jsp:param name="messageCode" value="seizures"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="pharmacotherapy"/>
+        <jsp:param name="messageCode" value="pharmacotherapy"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="neurologicalFinding"/>
+        <jsp:param name="messageCode" value="neurologicalFinding"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="neuropsychology"/>
+        <jsp:param name="messageCode" value="neuropsychology"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="diagnosticTestScalpEeg"/>
+        <jsp:param name="messageCode" value="diagnosticTestScalpEeg"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="diagnosticTestMri"/>
+        <jsp:param name="messageCode" value="diagnosticTestMri"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="invasiveTestEeg"/>
+        <jsp:param name="messageCode" value="invasiveTestIeeg"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="invasiveTestEcog"/>
+        <jsp:param name="messageCode" value="invasiveTestECoG"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="operation"/>
+        <jsp:param name="messageCode" value="operation"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="histology"/>
+        <jsp:param name="messageCode" value="histology"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="complication"/>
+        <jsp:param name="messageCode" value="complication"/>
+    </jsp:include>
+
+    <jsp:include page="../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="outcome"/>
+        <jsp:param name="messageCode" value="outcome"/>
+    </jsp:include>
+
+</fieldset>
+
+<fieldset id="anamnesisFieldset">
+    <legend>
+        <spring:message code="label.anamnesis"/>
+    </legend>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisEpilepsyInFamily"/>
+        <jsp:param name="messageCode" value="epilepsyInFamily"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisPrenatalRisk"/>
+        <jsp:param name="messageCode" value="prenatalRisk"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisFibrilConvulsions"/>
+        <jsp:param name="messageCode" value="fibrilConvulsions"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisInflammationCns"/>
+        <jsp:param name="messageCode" value="inflammationCns"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisInjuryCns"/>
+        <jsp:param name="messageCode" value="injuryCns"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisOperationCns"/>
+        <jsp:param name="messageCode" value="operationCns"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisEarlyPmdRetardation"/>
+        <jsp:param name="messageCode" value="earlyPmdRetardation"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisFirstFever"/>
+        <jsp:param name="messageCode" value="firstFever"/>
+    </jsp:include>
+
+    <jsp:include page="decideRadiobuttons.jsp">
+        <jsp:param name="propertyName" value="anamnesisInfantileSpasm"/>
+        <jsp:param name="messageCode" value="infantileSpasm"/>
+    </jsp:include>
+
+</fieldset>
+
 <div class="form-group">
     <div class="col-xs-offset-4 col-xs-8">
         <button id="searchButton" class="btn btn-primary">
@@ -288,12 +419,12 @@
 
 <fieldset>
     <legend>
-            <%-- <spring:message code="label.save"/>--%>ulozit parametry
+        <spring:message code="label.saveParameters"/>
     </legend>
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="saveName">
-                <%--  <spring:message code="label.name"/>--%>nazev
+            <spring:message code="label.name"/>
         </label>
 
         <div class="col-xs-6">

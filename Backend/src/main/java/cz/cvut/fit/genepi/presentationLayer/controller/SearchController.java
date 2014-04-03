@@ -60,6 +60,7 @@ public class SearchController {
 
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("advancedSearch", new AdvancedSearchVO());
+        model.addAttribute("toCheck", true);
         return "search/advancedSearchView";
     }
 
@@ -134,6 +135,8 @@ public class SearchController {
         }
 
         model.addAttribute("advancedSearch", genericService.getById(adancedSearchId, AdvancedSearchVO.class, AdvancedSearchEntity.class));
+        model.addAttribute("doctors", roleService.getAllDoctors());
+        model.addAttribute("toCheck", false);
         return "search/advancedSearchView";
     }
 

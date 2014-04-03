@@ -500,29 +500,27 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 //        }
 
 		/* Fetching and creating alias for sub collection doctor */
-        criteria.createAlias("patient.doctor", "doctor",JoinType.LEFT_OUTER_JOIN);
+        criteria.createAlias("patient.doctor", "doctor", JoinType.LEFT_OUTER_JOIN);
 
         if (advancedSearch.getPatientDoctor() != 0) {
             criteria.add(Restrictions.eq("doctor.id", advancedSearch.getPatientDoctor()));
         }
-        /* Include parameters from section */
-        // ...
+
 
 		/* anamnesis specific section */
 
-		/* Fetching and creating alias for sub collection contact anamnesisList*/
-//        criteria.createAlias("patient.anamnesisList", "anamnesisList",
-//                JoinType.LEFT_OUTER_JOIN);
-//
-//        if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
-//            if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
-//                criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
-//                        true));
-//            } else {
-//                criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily",
-//                        false));
-//            }
-//        }
+        if (advancedSearch.isAnamnesis()) {
+        /* Fetching and creating alias for sub collection contact anamnesisList*/
+            criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
+                if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", false));
+                }
+            }
+        }
 
         return (List<PatientEntity>) criteria.list();
     }

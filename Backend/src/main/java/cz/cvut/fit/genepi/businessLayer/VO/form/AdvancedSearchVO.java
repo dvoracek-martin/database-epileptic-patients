@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -41,29 +42,91 @@ public class AdvancedSearchVO {
 
     private int patientDoctor;
 
+    private boolean anamnesis;
 
-    public String getPatientAgeEpilepsy() {
-        return patientAgeEpilepsy;
+    private boolean seizure;
+
+    private boolean pharmacotherapy;
+
+    private boolean neurologicalFinding;
+
+    private boolean neuropsychology;
+
+    private boolean diagnosticTestScalpEeg;
+
+    private boolean diagnosticTestMri;
+
+    private boolean invasiveTestEeg;
+
+    private boolean invasiveTestEcog;
+
+    private boolean operation;
+
+    private boolean histology;
+
+    private boolean complication;
+
+    private boolean outcome;
+
+
+    private int anamnesisEpilepsyInFamily;
+
+    private int anamnesisPrenatalRisk;
+
+    private int anamnesisFibrilConvulsions;
+
+    private int anamnesisInflammationCns;
+
+    private int anamnesisOperationCns;
+
+    private int anamnesisInjuryCns;
+
+    private int anamnesisEarlyPmdRetardation;
+
+    private int anamnesisFirstFever;
+
+    private int anamnesisInfantileSpasm;
+
+    private int anamnesisSpecificSyndrome;
+
+    public int getId() {
+        return id;
     }
 
-    public String getPatientAgeEpilepsyFilter() {
-        return patientAgeEpilepsyFilter;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public void setPatientAgeEpilepsyFilter(String patientAgeEpilepsyFilter) {
-        this.patientAgeEpilepsyFilter = patientAgeEpilepsyFilter;
+    public Date getAdded() {
+        return added;
     }
 
-    public int getPatientDoctor() {
-        return patientDoctor;
+    public void setAdded(Date added) {
+        this.added = added;
     }
 
-    public void setPatientDoctor(int patientDoctor) {
-        this.patientDoctor = patientDoctor;
+    public String getName() {
+        return name;
     }
 
-    public void setPatientAgeEpilepsy(String patientAgeEpilepsy) {
-        this.patientAgeEpilepsy = patientAgeEpilepsy;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public String getPatientFirstname() {
+        return patientFirstname;
+    }
+
+    public void setPatientFirstname(String patientFirstname) {
+        this.patientFirstname = patientFirstname;
     }
 
     public String getPatientLastname() {
@@ -122,43 +185,211 @@ public class AdvancedSearchVO {
         this.patientAgeFilter = patientAgeFilter;
     }
 
-    public String getPatientFirstname() {
-        return patientFirstname;
+    public String getPatientAgeEpilepsy() {
+        return patientAgeEpilepsy;
     }
 
-    public void setPatientFirstname(String patientFirstname) {
-        this.patientFirstname = patientFirstname;
+    public void setPatientAgeEpilepsy(String patientAgeEpilepsy) {
+        this.patientAgeEpilepsy = patientAgeEpilepsy;
     }
 
-    public int getId() {
-        return id;
+    public String getPatientAgeEpilepsyFilter() {
+        return patientAgeEpilepsyFilter;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setPatientAgeEpilepsyFilter(String patientAgeEpilepsyFilter) {
+        this.patientAgeEpilepsyFilter = patientAgeEpilepsyFilter;
     }
 
-    public Date getAdded() {
-        return added;
+    public int getPatientDoctor() {
+        return patientDoctor;
     }
 
-    public void setAdded(Date added) {
-        this.added = added;
+    public void setPatientDoctor(int patientDoctor) {
+        this.patientDoctor = patientDoctor;
     }
 
-    public String getName() {
-        return name;
+    public boolean isAnamnesis() {
+        return anamnesis;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setAnamnesis(boolean anamnesis) {
+        this.anamnesis = anamnesis;
     }
 
-    public int getUserId() {
-        return userId;
+    public boolean isSeizure() {
+        return seizure;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setSeizure(boolean seizure) {
+        this.seizure = seizure;
+    }
+
+    public boolean isPharmacotherapy() {
+        return pharmacotherapy;
+    }
+
+    public void setPharmacotherapy(boolean pharmacotherapy) {
+        this.pharmacotherapy = pharmacotherapy;
+    }
+
+    public boolean isNeurologicalFinding() {
+        return neurologicalFinding;
+    }
+
+    public void setNeurologicalFinding(boolean neurologicalFinding) {
+        this.neurologicalFinding = neurologicalFinding;
+    }
+
+    public boolean isNeuropsychology() {
+        return neuropsychology;
+    }
+
+    public void setNeuropsychology(boolean neuropsychology) {
+        this.neuropsychology = neuropsychology;
+    }
+
+    public boolean isDiagnosticTestScalpEeg() {
+        return diagnosticTestScalpEeg;
+    }
+
+    public void setDiagnosticTestScalpEeg(boolean diagnosticTestScalpEeg) {
+        this.diagnosticTestScalpEeg = diagnosticTestScalpEeg;
+    }
+
+    public boolean isDiagnosticTestMri() {
+        return diagnosticTestMri;
+    }
+
+    public void setDiagnosticTestMri(boolean diagnosticTestMri) {
+        this.diagnosticTestMri = diagnosticTestMri;
+    }
+
+    public boolean isInvasiveTestEeg() {
+        return invasiveTestEeg;
+    }
+
+    public void setInvasiveTestEeg(boolean invasiveTestEeg) {
+        this.invasiveTestEeg = invasiveTestEeg;
+    }
+
+    public boolean isInvasiveTestEcog() {
+        return invasiveTestEcog;
+    }
+
+    public void setInvasiveTestEcog(boolean invasiveTestEcog) {
+        this.invasiveTestEcog = invasiveTestEcog;
+    }
+
+    public boolean isOperation() {
+        return operation;
+    }
+
+    public void setOperation(boolean operation) {
+        this.operation = operation;
+    }
+
+    public boolean isHistology() {
+        return histology;
+    }
+
+    public void setHistology(boolean histology) {
+        this.histology = histology;
+    }
+
+    public boolean isComplication() {
+        return complication;
+    }
+
+    public void setComplication(boolean complication) {
+        this.complication = complication;
+    }
+
+    public boolean isOutcome() {
+        return outcome;
+    }
+
+    public void setOutcome(boolean outcome) {
+        this.outcome = outcome;
+    }
+
+    public int getAnamnesisEpilepsyInFamily() {
+        return anamnesisEpilepsyInFamily;
+    }
+
+    public void setAnamnesisEpilepsyInFamily(int anamnesisEpilepsyInFamily) {
+        this.anamnesisEpilepsyInFamily = anamnesisEpilepsyInFamily;
+    }
+
+    public int getAnamnesisPrenatalRisk() {
+        return anamnesisPrenatalRisk;
+    }
+
+    public void setAnamnesisPrenatalRisk(int anamnesisPrenatalRisk) {
+        this.anamnesisPrenatalRisk = anamnesisPrenatalRisk;
+    }
+
+    public int getAnamnesisFibrilConvulsions() {
+        return anamnesisFibrilConvulsions;
+    }
+
+    public void setAnamnesisFibrilConvulsions(int anamnesisFibrilConvulsions) {
+        this.anamnesisFibrilConvulsions = anamnesisFibrilConvulsions;
+    }
+
+    public int getAnamnesisInflammationCns() {
+        return anamnesisInflammationCns;
+    }
+
+    public void setAnamnesisInflammationCns(int anamnesisInflammationCns) {
+        this.anamnesisInflammationCns = anamnesisInflammationCns;
+    }
+
+    public int getAnamnesisOperationCns() {
+        return anamnesisOperationCns;
+    }
+
+    public void setAnamnesisOperationCns(int anamnesisOperationCns) {
+        this.anamnesisOperationCns = anamnesisOperationCns;
+    }
+
+    public int getAnamnesisInjuryCns() {
+        return anamnesisInjuryCns;
+    }
+
+    public void setAnamnesisInjuryCns(int anamnesisInjuryCns) {
+        this.anamnesisInjuryCns = anamnesisInjuryCns;
+    }
+
+    public int getAnamnesisEarlyPmdRetardation() {
+        return anamnesisEarlyPmdRetardation;
+    }
+
+    public void setAnamnesisEarlyPmdRetardation(int anamnesisEarlyPmdRetardation) {
+        this.anamnesisEarlyPmdRetardation = anamnesisEarlyPmdRetardation;
+    }
+
+    public int getAnamnesisFirstFever() {
+        return anamnesisFirstFever;
+    }
+
+    public void setAnamnesisFirstFever(int anamnesisFirstFever) {
+        this.anamnesisFirstFever = anamnesisFirstFever;
+    }
+
+    public int getAnamnesisInfantileSpasm() {
+        return anamnesisInfantileSpasm;
+    }
+
+    public void setAnamnesisInfantileSpasm(int anamnesisInfantileSpasm) {
+        this.anamnesisInfantileSpasm = anamnesisInfantileSpasm;
+    }
+
+    public int getAnamnesisSpecificSyndrome() {
+        return anamnesisSpecificSyndrome;
+    }
+
+    public void setAnamnesisSpecificSyndrome(int anamnesisSpecificSyndrome) {
+        this.anamnesisSpecificSyndrome = anamnesisSpecificSyndrome;
     }
 }
