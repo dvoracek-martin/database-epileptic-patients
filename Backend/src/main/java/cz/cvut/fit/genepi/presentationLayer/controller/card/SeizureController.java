@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"seizure"})
+@SessionAttributes({"seizure", "patient"})
 public class SeizureController {
 
     private AuthorizationChecker authorizationChecker;
@@ -60,15 +61,25 @@ public class SeizureController {
     @RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.POST)
     public String seizureCreatePOST(
             @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
-            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
+            @PathVariable("patientId") int patientId, Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate())
-                || patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().size() == 0 ||
-                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getBeginningEpilepsy(), seizure.getDate())) {
+        } else if (patientDisplayVo.getAgeAtTheBeginningOfEpilepsy().equals("NA")) {
+            return "patient/seizure/createView";
+        } else if (result.hasErrors()
+                || TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate())
+                || TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate())) {
 
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
+            if (TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate())) {
+                model.addAttribute("dateBeforeEpiBeginning", true);
+            }
+
             return "patient/seizure/createView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
@@ -99,14 +110,22 @@ public class SeizureController {
             @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate())
-                || patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().size() == 0 ||
-                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getBeginningEpilepsy(), seizure.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+        } else if (result.hasErrors()
+                || TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate())
+                || TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate())) {
+
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
+            if (TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate())) {
+                model.addAttribute("dateBeforeEpiBeginning", true);
+            }
             return "patient/seizure/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
@@ -178,7 +197,7 @@ public class SeizureController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         model.addAttribute("patient", patient);
-       // model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+        // model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
         model.addAttribute("seizureDisplayVoList", SeizureDisplayVoList);
         return "patient/seizure/listView";

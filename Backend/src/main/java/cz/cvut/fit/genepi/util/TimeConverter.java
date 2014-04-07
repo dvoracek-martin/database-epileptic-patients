@@ -89,4 +89,29 @@ public class TimeConverter {
             isFormer = false;
         return isFormer;
     }
+
+    public static boolean compareDates(String first, Date second) {
+        boolean isFormer = true;
+
+        DateTime fistDate = new DateTime(first);
+        DateTime secondDate = new DateTime(second);
+        Days countOfTheDays = Days.daysBetween(fistDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
+
+        if (countOfTheDays.getDays() >= 0)
+            isFormer = false;
+        return isFormer;
+    }
+
+    public static boolean beforeDatePlusYears(String first, String years, Date second) {
+        boolean isFormer = true;
+
+        DateTime firstDate = new DateTime(first);
+        firstDate = firstDate.plusYears(Integer.parseInt(years));
+        DateTime secondDate = new DateTime(second);
+        Days countOfTheDays = Days.daysBetween(firstDate.withTimeAtStartOfDay(), secondDate.withTimeAtStartOfDay());
+
+        if (countOfTheDays.getDays() >= 0)
+            isFormer = false;
+        return isFormer;
+    }
 }

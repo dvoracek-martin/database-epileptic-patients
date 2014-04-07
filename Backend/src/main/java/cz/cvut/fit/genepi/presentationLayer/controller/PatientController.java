@@ -226,7 +226,7 @@ public class PatientController {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
-            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+//            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 //            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
 //            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";

@@ -17,6 +17,17 @@
             </span>
         </div>
         <form:errors path="date" cssClass="text-danger"/>
+        <c:if test="${dateBeforeBirth}">
+            <span id="date.errors" class="text-danger">
+                <spring:message code="label.cannotBeBeforeBirth"/>
+            </span>
+        </c:if>
+        <c:if test="${dateBeforeEpiBeginning}">
+            <br>
+            <span id="date.errors" class="text-danger">
+                 <spring:message code="label.cannotBeBeforeEpiBeginning"/>
+            </span>
+        </c:if>
     </div>
 </div>
 
