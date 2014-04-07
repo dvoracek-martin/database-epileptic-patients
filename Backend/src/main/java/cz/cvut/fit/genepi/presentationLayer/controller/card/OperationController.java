@@ -177,7 +177,7 @@ public class OperationController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<OperationDisplayVO> operationDisplayVoList = operationService.getOperationList(patientId);
         model.addAttribute("operationDisplayVoList", operationDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/operation/listView";
     }

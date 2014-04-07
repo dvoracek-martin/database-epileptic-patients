@@ -175,7 +175,7 @@ public class NeurologicalFindingController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = genericCardService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFindingDisplayVoList", neurologicalFindingDisplayVO);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neurologicalFinding/listView";
     }

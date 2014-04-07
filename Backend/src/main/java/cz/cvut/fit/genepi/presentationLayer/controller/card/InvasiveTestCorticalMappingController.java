@@ -190,7 +190,7 @@ public class InvasiveTestCorticalMappingController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<InvasiveTestCorticalMappingDisplayVO> corticalMappingDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
         model.addAttribute("invasiveTestCorticalMappingDisplayVoList", corticalMappingDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestCorticalMapping/listView";
     }

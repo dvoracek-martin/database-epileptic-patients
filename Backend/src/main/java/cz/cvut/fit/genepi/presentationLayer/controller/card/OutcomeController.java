@@ -144,7 +144,7 @@ public class OutcomeController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = operationService.getOperationWithOutcomeList(patientId);
         model.addAttribute("operationWithOutcomesDisplayVoList", operationWithOutcomesDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
 
         return "patient/outcome/listView";

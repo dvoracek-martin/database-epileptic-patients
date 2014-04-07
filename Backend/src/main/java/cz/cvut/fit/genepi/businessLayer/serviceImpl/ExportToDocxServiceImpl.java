@@ -568,12 +568,13 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(messageSource.getMessage("label.earlyPmdRetardation",
                     null, locale));
         }
-        if (exportParams.isAnamnesisBeginningEpilepsy()) {
+       /* TODO martin revision
+       if (exportParams.isAnamnesisBeginningEpilepsy()) {
             content.add(messageSource.getMessage("label.beginningEpilepsy",
                     null, locale) + delimiter + translateValue(
                     TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
                     locale));
-        }
+        }*/
         if (exportParams.isAnamnesisFirstFever() && anamnesis.isFirstFever()) {
             content.add(messageSource.getMessage("label.firstFever", null,
                     locale));
@@ -677,7 +678,8 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     String.valueOf(anamnesis.isEarlyPmdRetardation()), locale));
 
         }
-        if (exportParams.isAnamnesisBeginningEpilepsy()) {
+      /*  TODO martin revision
+      if (exportParams.isAnamnesisBeginningEpilepsy()) {
             content.add(messageSource.getMessage("label.beginningEpilepsy",
                     null, locale));
 
@@ -686,7 +688,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
                     locale));
 
-        }
+        }*/
         if (exportParams.isAnamnesisFirstFever()) {
             content.add(messageSource.getMessage("label.firstFever", null,
                     locale));

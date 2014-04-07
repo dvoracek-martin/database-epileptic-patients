@@ -96,12 +96,6 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
     private boolean earlyPmdRetardation;
 
     /**
-     * The beginning epilepsy.
-     */
-    @Column(name = "beginning_epilepsy", length = 7)
-    private Date beginningEpilepsy;
-
-    /**
      * The first fever.
      */
     @Column(name = "first_fever")
@@ -260,14 +254,6 @@ public class AnamnesisEntity implements Comparable<AnamnesisEntity> {
 
     public void setEarlyPmdRetardation(boolean earlyPmdRetardation) {
         this.earlyPmdRetardation = earlyPmdRetardation;
-    }
-
-    public Date getBeginningEpilepsy() {
-        return beginningEpilepsy;
-    }
-
-    public void setBeginningEpilepsy(Date beginningEpilepsy) {
-        this.beginningEpilepsy = beginningEpilepsy;
     }
 
     public boolean isFirstFever() {

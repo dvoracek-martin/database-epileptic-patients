@@ -35,7 +35,7 @@
                             <td><spring:message code="label.gender.${patient.gender}"/></td>
 
                             <th><spring:message code="label.ageAtTheBeginningOfEpilepsy"/>:</th>
-                            <td>${beginningEpilepsy} let</td>
+                            <td>${patient.ageAtTheBeginningOfEpilepsy} let</td>
                         </tr>
                         <tr>
                             <th><spring:message code="label.address"/>:</th>

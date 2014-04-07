@@ -28,6 +28,10 @@ public class PatientVO {
     @NotNull
     private Date birthday;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Past
+    private Date beginningEpilepsy;
+
     /**
      * The gender.
      */
@@ -134,5 +138,13 @@ public class PatientVO {
 
     public void setContact(PatientContactVO contact) {
         this.contact = contact;
+    }
+
+    public Date getBeginningEpilepsy() {
+        return beginningEpilepsy;
+    }
+
+    public void setBeginningEpilepsy(Date beginningEpilepsy) {
+        this.beginningEpilepsy = beginningEpilepsy;
     }
 }

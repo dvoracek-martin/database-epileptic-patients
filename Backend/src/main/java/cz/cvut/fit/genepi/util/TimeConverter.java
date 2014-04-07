@@ -29,15 +29,15 @@ public class TimeConverter {
         return Integer.toString(age.getYears());
     }
 
-    public static String getAgeAtTheBeginningOfEpilepsy(PatientDisplayVO patient) {
+   /* public static String getAgeAtTheBeginningOfEpilepsy(PatientDisplayVO patient) {
         DateTime birth = new DateTime(patient.getBirthday());
         if (patient.getAnamnesisList().size() < 1)
             return "NA";
-        DateTime epilepsy = new DateTime(patient.getAnamnesisList().get(0).getBeginningEpilepsy());
+        DateTime epilepsy = new DateTime(patient.getB);
         Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
 
         return Integer.toString(age.getYears());
-    }
+    }*/
 
     public static String getCurrentAge(PatientEntity patient) {
         DateTime birth = new DateTime(patient.getBirthday());
@@ -47,11 +47,13 @@ public class TimeConverter {
         return Integer.toString(age.getYears());
     }
 
+    //TODO martin revivion
     public static String getAgeAtTheBeginningOfEpilepsy(PatientEntity patient) {
         DateTime birth = new DateTime(patient.getBirthday());
-        if (patient.getAnamnesisList().size() < 1)
+        if (patient.getBeginningEpilepsy() == null) {
             return "NA";
-        DateTime epilepsy = new DateTime(patient.getAnamnesisList().get(0).getBeginningEpilepsy());
+        }
+        DateTime epilepsy = new DateTime(patient.getBeginningEpilepsy());
         Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
 
         return Integer.toString(age.getYears());

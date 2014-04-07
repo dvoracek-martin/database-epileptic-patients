@@ -23,8 +23,6 @@ public class AnamnesisDisplayVO {
 
     private boolean earlyPmdRetardation;
 
-    private String beginningEpilepsy;
-
     private boolean firstFever;
 
     private boolean infantileSpasm;
@@ -105,14 +103,6 @@ public class AnamnesisDisplayVO {
 
     public void setEarlyPmdRetardation(boolean earlyPmdRetardation) {
         this.earlyPmdRetardation = earlyPmdRetardation;
-    }
-
-    public String getBeginningEpilepsy() {
-        return beginningEpilepsy;
-    }
-
-    public void setBeginningEpilepsy(String beginningEpilepsy) {
-        this.beginningEpilepsy = beginningEpilepsy;
     }
 
     public boolean isFirstFever() {

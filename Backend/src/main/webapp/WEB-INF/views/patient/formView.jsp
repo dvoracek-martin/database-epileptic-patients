@@ -44,6 +44,31 @@
 </div>
 
 <div class="form-group">
+    <label for="date" class="col-xs-4 control-label">
+        <spring:message code="label.beginningEpilepsy"/>
+    </label>
+
+    <div class="col-xs-8">
+        <c:choose>
+            <c:when test="${empty beginningEpilepsy}">
+                <div class='input-group date datepicker-simple'>
+                    <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
+                                autocomplete="off"/>
+                    <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
+                            disabled="true"/>
+            </c:otherwise>
+        </c:choose>
+        <form:errors path="beginningEpilepsy" cssClass="text-danger"/>
+    </div>
+</div>
+
+<div class="form-group">
     <label for="nin" class="col-xs-4 control-label">
         <spring:message code="label.idnumber"/>
     </label>

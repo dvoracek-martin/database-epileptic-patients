@@ -461,6 +461,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     String.valueOf(anamnesis.isEarlyPmdRetardation()), locale);
             content += "\n";
         }
+       /* TODO martin revision
         if (exportParams.isAnamnesisBeginningEpilepsy()) {
             content += messageSource.getMessage("label.beginningEpilepsy",
                     null, locale);
@@ -470,7 +471,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
                     locale);
             content += "\n";
-        }
+        }*/
         if (exportParams.isAnamnesisFirstFever()) {
             content += messageSource.getMessage("label.firstFever", null,
                     locale);

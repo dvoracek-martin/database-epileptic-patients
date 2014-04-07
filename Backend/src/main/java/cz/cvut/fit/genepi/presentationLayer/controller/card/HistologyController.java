@@ -172,7 +172,7 @@ public class HistologyController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<HistologyDisplayVO> histologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
         model.addAttribute("histologyDisplayVoList", histologyDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/histology/listView";
     }

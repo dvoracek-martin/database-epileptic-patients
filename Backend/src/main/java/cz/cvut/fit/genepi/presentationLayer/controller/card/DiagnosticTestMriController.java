@@ -173,7 +173,7 @@ public class DiagnosticTestMriController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<DiagnosticTestMriDisplayVO> diagnosticTestMriDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
         model.addAttribute("diagnosticTestMriDisplayVoList", diagnosticTestMriDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestMri/listView";
     }

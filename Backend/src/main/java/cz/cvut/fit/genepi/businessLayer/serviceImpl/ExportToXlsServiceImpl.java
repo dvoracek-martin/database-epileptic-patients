@@ -750,11 +750,12 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.earlyPmdRetardation", translateValue(
                     String.valueOf(anamnesis.isEarlyPmdRetardation()), locale), sheet, locale, styles, "cell", p);
         }
+       /* TODO martin revision
         if (exportParams.isAnamnesisBeginningEpilepsy()) {
             addCells("label.beginningEpilepsy", translateValue(
                     TimeConverter.getDate(anamnesis.getBeginningEpilepsy()),
                     locale), sheet, locale, styles, "cell", p);
-        }
+        }*/
         if (exportParams.isAnamnesisFirstFever()) {
             addCells("label.firstFever", translateValue(
                     String.valueOf(anamnesis.isFirstFever()), locale), sheet, locale, styles, "cell", p);

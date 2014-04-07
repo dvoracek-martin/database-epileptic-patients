@@ -208,8 +208,8 @@ public class PatientController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("patientVO", patientService.getById(patientId, PatientVO.class, PatientEntity.class));
@@ -227,8 +227,8 @@ public class PatientController {
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
             PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+//            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";
         } else {
             patientService.save(patientVO, PatientEntity.class);
@@ -263,8 +263,8 @@ public class PatientController {
         }
         if (result.hasErrors()) {
             PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+//            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/verifyView";
         } else {
             patientService.save(patientVO, PatientEntity.class);
@@ -282,7 +282,7 @@ public class PatientController {
 
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
 
         /* get all patients records */
         AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);

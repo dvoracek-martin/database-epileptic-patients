@@ -7,7 +7,10 @@ import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.*;
+import cz.cvut.fit.genepi.util.TimeConverter;
+import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
+import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -524,8 +527,11 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
-        PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
-        return dozer.map(patient, PatientDisplayVO.class);
+        PatientEntity patientEntity = patientDAO.getPatientByIdWithDoctor(patientId);
+        PatientDisplayVO patientDisplayVO = dozer.map(patientEntity, PatientDisplayVO.class);
+        String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
+        patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(Integer.parseInt(ageAtTheBeginningOfEpilepsy));
+        return patientDisplayVO;
     }
 
     @Override
@@ -547,7 +553,7 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public void hide(int patientId) {
-        PatientEntity patient = genericDAO.getById(patientId,PatientEntity.class);
+        PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
         patient.setStatus(1);
         genericDAO.save(patient);
     }
@@ -555,7 +561,7 @@ public class PatientServiceImpl
     @Override
     @Transactional
     public void unhide(int patientId) {
-        PatientEntity patient = genericDAO.getById(patientId,PatientEntity.class);
+        PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
         patient.setStatus(0);
         genericDAO.save(patient);
     }

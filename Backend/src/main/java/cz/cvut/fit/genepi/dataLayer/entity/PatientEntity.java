@@ -41,6 +41,12 @@ public class PatientEntity {
     private Date birthday;
 
     /**
+     * The beginning epilepsy.
+     */
+    @Column(name = "beginning_epilepsy")
+    private Date beginningEpilepsy;
+
+    /**
      * The gender.
      */
     @Column(name = "gender", nullable = false)
@@ -473,5 +479,13 @@ public class PatientEntity {
 
     public void setIndicatingDoctor(String indicatingDoctor) {
         this.indicatingDoctor = indicatingDoctor;
+    }
+
+    public Date getBeginningEpilepsy() {
+        return beginningEpilepsy;
+    }
+
+    public void setBeginningEpilepsy(Date beginningEpilepsy) {
+        this.beginningEpilepsy = beginningEpilepsy;
     }
 }

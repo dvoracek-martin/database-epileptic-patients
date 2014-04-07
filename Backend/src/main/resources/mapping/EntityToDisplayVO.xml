@@ -26,10 +26,6 @@
             <a>date</a>
             <b date-format="yyyy-MM-dd">date</b>
         </field>
-        <field>
-            <a>beginningEpilepsy</a>
-            <b date-format="yyyy-MM-dd">beginningEpilepsy</b>
-        </field>
     </mapping>
 
     <!-- Complication -->

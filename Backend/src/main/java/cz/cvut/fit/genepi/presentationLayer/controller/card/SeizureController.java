@@ -66,7 +66,8 @@ public class SeizureController {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate())
                 || patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().size() == 0 ||
-                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
+                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getBeginningEpilepsy(), seizure.getDate())) {
+
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/seizure/createView";
         } else {
@@ -104,7 +105,7 @@ public class SeizureController {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizure.getDate())
                 || patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().size() == 0 ||
-                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getAnamnesisList().get(0).getBeginningEpilepsy(), seizure.getDate())) {
+                TimeConverter.compareDates(patientService.getPatientByIdWithAnamnesisList(patientId).getBeginningEpilepsy(), seizure.getDate())) {
             model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
             return "patient/seizure/editView";
         } else {
@@ -177,7 +178,7 @@ public class SeizureController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         model.addAttribute("patient", patient);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+       // model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
         model.addAttribute("seizureDisplayVoList", SeizureDisplayVoList);
         return "patient/seizure/listView";

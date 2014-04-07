@@ -31,10 +31,6 @@ public class AnamnesisVO {
 
     private boolean earlyPmdRetardation;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
-    private Date beginningEpilepsy;
-
     private boolean firstFever;
 
     private boolean infantileSpasm;
@@ -123,14 +119,6 @@ public class AnamnesisVO {
 
     public void setEarlyPmdRetardation(boolean earlyPmdRetardation) {
         this.earlyPmdRetardation = earlyPmdRetardation;
-    }
-
-    public Date getBeginningEpilepsy() {
-        return beginningEpilepsy;
-    }
-
-    public void setBeginningEpilepsy(Date beginningEpilepsy) {
-        this.beginningEpilepsy = beginningEpilepsy;
     }
 
     public boolean isFirstFever() {

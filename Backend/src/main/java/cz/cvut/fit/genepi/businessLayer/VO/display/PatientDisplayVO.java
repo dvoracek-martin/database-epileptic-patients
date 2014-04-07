@@ -15,6 +15,8 @@ public class PatientDisplayVO {
 
     private int age;
 
+    private int ageAtTheBeginningOfEpilepsy;
+
     private String gender;
 
     //private int doctorId;
@@ -27,7 +29,7 @@ public class PatientDisplayVO {
 
     private ContactDisplayVO contact;
 
-    private List<AnamnesisDisplayVO> anamnesisList;
+//    private List<AnamnesisDisplayVO> anamnesisList;
 /*
     private List<SeizureDisplayVO> seizureList;
 
@@ -113,13 +115,13 @@ public class PatientDisplayVO {
         this.contact = contact;
     }
 
-    public List<AnamnesisDisplayVO> getAnamnesisList() {
+/*    public List<AnamnesisDisplayVO> getAnamnesisList() {
         return anamnesisList;
     }
 
     public void setAnamnesisList(List<AnamnesisDisplayVO> anamnesisList) {
         this.anamnesisList = anamnesisList;
-    }
+    }*/
 
     /*
         public List<SeizureDisplayVO> getSeizureList() {
@@ -240,5 +242,13 @@ public class PatientDisplayVO {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public int getAgeAtTheBeginningOfEpilepsy() {
+        return ageAtTheBeginningOfEpilepsy;
+    }
+
+    public void setAgeAtTheBeginningOfEpilepsy(int ageAtTheBeginningOfEpilepsy) {
+        this.ageAtTheBeginningOfEpilepsy = ageAtTheBeginningOfEpilepsy;
     }
 }

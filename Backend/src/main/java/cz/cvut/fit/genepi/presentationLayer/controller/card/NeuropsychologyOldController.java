@@ -99,7 +99,7 @@ public class NeuropsychologyOldController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<NeuropsychologyOldDisplayVO> neuropsychologyOldDisplayVoList = neuropsychologyOldService.getRecordsByPatientId(patientId);
         model.addAttribute("neuropsychologyOldDisplayVoList", neuropsychologyOldDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neuropsychologyOld/listView";
     }

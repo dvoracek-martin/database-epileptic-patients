@@ -50,7 +50,7 @@
     <jsp:param name="messageCode" value="earlyPmdRetardation"/>
 </jsp:include>
 
-<div class="form-group">
+<%--<div class="form-group">
     <label for="date" class="col-xs-4 control-label">
         <spring:message code="label.beginningEpilepsy"/>
     </label>
@@ -73,7 +73,7 @@
         </c:choose>
         <form:errors path="beginningEpilepsy" cssClass="text-danger"/>
     </div>
-</div>
+</div>--%>
 
 <jsp:include page="../../components/checkboxComponentView.jsp">
     <jsp:param name="propertyName" value="firstFever"/>

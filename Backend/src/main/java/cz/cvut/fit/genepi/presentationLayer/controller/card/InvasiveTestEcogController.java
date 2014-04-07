@@ -173,7 +173,7 @@ public class InvasiveTestEcogController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
         model.addAttribute("invasiveTestEcogDisplayVoList", invasiveTestEcogDisplayVoList);
-        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
+//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestEcog/listView";
     }
