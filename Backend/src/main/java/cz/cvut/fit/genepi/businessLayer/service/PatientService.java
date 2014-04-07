@@ -5,6 +5,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.PatientWithAllListsDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -199,4 +200,6 @@ public interface PatientService extends GenericService<PatientVO, PatientEntity>
     public int getCountOfUnhidden(String searchString);
 
     public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString);
+
+    public boolean verifyBeginningEpilepsy(int patientId,Date beginningEpilepsy);
 }

@@ -5,9 +5,11 @@ import cz.cvut.fit.genepi.dataLayer.DAOImpl.GenericDAOImpl;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -72,5 +74,15 @@ public class GenericCardDAOImpl<CardEntity>
                 .setMaxResults(1);
 
         return (CardEntity) criteria.uniqueResult();
+    }
+
+    @Override
+    public Date getOldestRecordDate(int patientId, Class<CardEntity> entityClass) {
+        Criteria criteria = sessionFactory
+                .getCurrentSession()
+                .createCriteria(entityClass)
+                .setProjection(Projections.min("date"))
+                .add(Restrictions.eq("patientId", patientId));
+        return (Date) criteria.uniqueResult();
     }
 }

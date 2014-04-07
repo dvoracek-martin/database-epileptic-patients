@@ -2,6 +2,7 @@ package cz.cvut.fit.genepi.dataLayer.DAO.card;
 
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface GenericCardDAO<CardEntity> extends GenericDAO<CardEntity> {
@@ -15,4 +16,6 @@ public interface GenericCardDAO<CardEntity> extends GenericDAO<CardEntity> {
     public List<CardEntity> getRecordsByPatientId(int patientId, Class<CardEntity> entityClass);
 
     public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass);
+
+    public Date getOldestRecordDate(int patientId,Class<CardEntity> entityClass);
 }

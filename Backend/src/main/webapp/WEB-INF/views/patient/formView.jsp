@@ -49,22 +49,23 @@
     </label>
 
     <div class="col-xs-8">
-        <c:choose>
-            <c:when test="${empty beginningEpilepsy}">
                 <div class='input-group date datepicker-simple'>
-                    <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
+                    <form:input path="beginningEpilepsy"
+                                id="date"
+                                type="text"
+                                class="input-sm form-control"
                                 autocomplete="off"/>
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </div>
-            </c:when>
-            <c:otherwise>
-                <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
-                            disabled="true"/>
-            </c:otherwise>
-        </c:choose>
         <form:errors path="beginningEpilepsy" cssClass="text-danger"/>
+        <c:if test="${begginningEpiNotOk}">
+            <br>
+            <span id="date.errors" class="text-danger">
+                 <spring:message code="label.cannotBeAfterOldestSeizure"/>
+            </span>
+        </c:if>
     </div>
 </div>
 

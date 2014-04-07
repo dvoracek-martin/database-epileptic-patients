@@ -225,13 +225,17 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
+        boolean isBeginningOfEpilepsyOk = !patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
+        if (result.hasErrors() || !isBeginningOfEpilepsyOk) {
+            if (!isBeginningOfEpilepsyOk) {
+                model.addAttribute("begginningEpiNotOk", true);
+            }
 //            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 //            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
 //            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/editView";
         } else {
-            patientService.save(patientVO, PatientEntity.class);
+            patientService.update(patientVO, PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }

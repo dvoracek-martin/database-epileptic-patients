@@ -5,15 +5,19 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.PatientWithAllListsDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
+import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import cz.cvut.fit.genepi.util.TimeConverter;
 import org.dozer.Mapper;
+import org.joda.time.DateTime;
+import org.joda.time.Days;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // TODO: Auto-generated Javadoc
@@ -34,6 +38,9 @@ public class PatientServiceImpl
 
     @Autowired
     private Mapper dozer;
+
+    @Autowired
+    private GenericCardDAO<SeizureEntity> genericCardSeizureDAO;
 
     @Override
     @Transactional
@@ -527,8 +534,8 @@ public class PatientServiceImpl
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
         PatientEntity patientEntity = patientDAO.getPatientByIdWithDoctor(patientId);
         PatientDisplayVO patientDisplayVO = dozer.map(patientEntity, PatientDisplayVO.class);
-            String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
-            patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(ageAtTheBeginningOfEpilepsy);
+        String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
+        patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(ageAtTheBeginningOfEpilepsy);
         return patientDisplayVO;
     }
 
@@ -597,5 +604,18 @@ public class PatientServiceImpl
             paientDisplaVoList.add(patientDisplayVO);
         }
         return paientDisplaVoList;
+    }
+
+    @Override
+    @Transactional
+    public boolean verifyBeginningEpilepsy(int patientId, Date beginningEpilepsy) {
+        Date oldest = genericCardSeizureDAO.getOldestRecordDate(patientId, SeizureEntity.class);
+        if (oldest == null) {
+            return true;
+        }
+        DateTime beginningEpi = new DateTime(beginningEpilepsy);
+        DateTime oldestSeizureDate = new DateTime(oldest);
+        Days countOfTheDays = Days.daysBetween(oldestSeizureDate.withTimeAtStartOfDay(), beginningEpi.withTimeAtStartOfDay());
+        return countOfTheDays.getDays() > 0;
     }
 }
