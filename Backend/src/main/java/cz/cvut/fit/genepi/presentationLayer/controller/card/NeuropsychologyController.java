@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"neuropsychology"})
+@SessionAttributes({"neuropsychology","patient"})
 public class NeuropsychologyController {
 
     private AuthorizationChecker authorizationChecker;
@@ -56,12 +57,16 @@ public class NeuropsychologyController {
     public String neuropsychologyCreatePOST(
             @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neuropsychology.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             return "patient/neuropsychology/createView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {
@@ -91,12 +96,16 @@ public class NeuropsychologyController {
             @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
             @PathVariable("patientId") int patientId,
             @PathVariable("neuropsychologyId") int neuropsychologyId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neuropsychology.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             return "patient/neuropsychology/editView";
         } else {
             if (!authorizationChecker.isSuperDoctor()) {

@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDetailDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureDetailVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"seizureDetail"})
+@SessionAttributes({"seizureDetail","patient"})
 public class SeizureDetailController {
 
     private AuthorizationChecker authorizationChecker;
@@ -56,12 +58,16 @@ public class SeizureDetailController {
             @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizureDetail.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             return "patient/seizure/detail/createView";
         } else {
             seizureDetail.setPatientId(patientId);
@@ -97,12 +103,16 @@ public class SeizureDetailController {
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
             @PathVariable("seizureDetailId") Integer seizureDetailId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizureDetail.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             return "patient/seizure/detail/editView";
         } else {
             seizureDetail.setPatientId(patientId);

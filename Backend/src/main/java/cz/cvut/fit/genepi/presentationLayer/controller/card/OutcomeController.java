@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +23,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"outcome", "operation"})
+@SessionAttributes({"outcome", "operation","patient"})
 public class OutcomeController {
 
     private AuthorizationChecker authorizationChecker;
@@ -69,13 +70,17 @@ public class OutcomeController {
             @PathVariable("patientId") int patientId,
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             model.addAttribute("distance", distance);
             return "patient/outcome/createView";
         } else {
@@ -113,13 +118,17 @@ public class OutcomeController {
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
             @PathVariable("outcomeId") int outcomeId,
-            Model model, HttpServletRequest request) {
+            Model model, HttpServletRequest request, ModelMap modelMap) {
+
+        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
-            model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
+            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate())) {
+                model.addAttribute("dateBeforeBirth", true);
+            }
             model.addAttribute("distance", distance);
             return "patient/outcome/formView";
         } else {
