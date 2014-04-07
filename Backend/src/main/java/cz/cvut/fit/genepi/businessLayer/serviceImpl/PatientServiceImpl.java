@@ -8,9 +8,7 @@ import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import cz.cvut.fit.genepi.util.TimeConverter;
-import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
-import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -529,8 +527,8 @@ public class PatientServiceImpl
     public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
         PatientEntity patientEntity = patientDAO.getPatientByIdWithDoctor(patientId);
         PatientDisplayVO patientDisplayVO = dozer.map(patientEntity, PatientDisplayVO.class);
-        String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
-        patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(Integer.parseInt(ageAtTheBeginningOfEpilepsy));
+            String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
+            patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(ageAtTheBeginningOfEpilepsy);
         return patientDisplayVO;
     }
 

@@ -34,6 +34,12 @@
 
         <%@include file="../patientDetails.jsp" %>
 
+        <c:if test="${patient.ageAtTheBeginningOfEpilepsy == 'NA'}">
+            <div class="alert alert-danger">
+                <spring:message code="label.seizureCannotBeAdded"/>
+            </div>
+        </c:if>
+
         <form:form class="form-horizontal" role="form" method="POST"
                    action="/GENEPI/patient/${patient.id}/seizure/create" commandName="seizure">
 

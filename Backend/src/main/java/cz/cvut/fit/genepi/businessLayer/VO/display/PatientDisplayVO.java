@@ -15,7 +15,7 @@ public class PatientDisplayVO {
 
     private int age;
 
-    private int ageAtTheBeginningOfEpilepsy;
+    private String ageAtTheBeginningOfEpilepsy;
 
     private String gender;
 
@@ -244,11 +244,11 @@ public class PatientDisplayVO {
         this.verified = verified;
     }
 
-    public int getAgeAtTheBeginningOfEpilepsy() {
+    public String getAgeAtTheBeginningOfEpilepsy() {
         return ageAtTheBeginningOfEpilepsy;
     }
 
-    public void setAgeAtTheBeginningOfEpilepsy(int ageAtTheBeginningOfEpilepsy) {
+    public void setAgeAtTheBeginningOfEpilepsy(String ageAtTheBeginningOfEpilepsy) {
         this.ageAtTheBeginningOfEpilepsy = ageAtTheBeginningOfEpilepsy;
     }
 }
