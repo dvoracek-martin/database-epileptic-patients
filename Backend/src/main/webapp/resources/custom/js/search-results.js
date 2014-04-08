@@ -1,10 +1,5 @@
 $(document).ready(function () {
 
-    $("#postExport").click(function(){
-       $("#patientIds").submit();
-    });
-
-
     var pageNumberSel = $(".page-number");
     var pageSel = $(".page");
     var activePageId = 1;

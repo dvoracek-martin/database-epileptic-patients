@@ -18,7 +18,15 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                    <spring:message code="label.export"/>
+                    <c:choose>
+                        <c:when test="${source == 'search'}">
+                            <spring:message code="label.exportSearchResults"/>
+                        </c:when>
+                        <c:otherwise>
+                            <spring:message code="label.exportPatient"/>
+                        </c:otherwise>
+                    </c:choose>
+
                 </h2>
             </div>
             <div class="col-xs-6">

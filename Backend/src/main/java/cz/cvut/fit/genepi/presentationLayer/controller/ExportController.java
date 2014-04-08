@@ -26,12 +26,14 @@ public class ExportController {
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public String exportPOST(
             @ModelAttribute("patientId") @RequestParam("patientId") int[] patientIds,
+            @RequestParam("source") String source,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
+        model.addAttribute("source", source);
         model.addAttribute("patientIds", patientIds);
         model.addAttribute("exportParams", new ExportParamsVO());
         return "exportView";

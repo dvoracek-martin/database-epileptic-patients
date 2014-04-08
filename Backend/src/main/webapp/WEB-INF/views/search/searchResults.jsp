@@ -18,6 +18,7 @@
     	<jsp:attribute name="script">
     <script src="<c:url value="/resources/custom/js/clickable-row.js"/>"></script>
             <script src="<c:url value="/resources/custom/js/search-results.js"/>"></script>
+                <script src="<c:url value="/resources/custom/js/exportSubmit.js"/>"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -37,6 +38,7 @@
                             <input type="hidden" name="patientId" value="${patient.id}">
                         </c:forEach>
                     </c:forEach>
+                    <input name="source" type="hidden" value="search">
                 </form>
 
                 <h3 class="pull-right">

@@ -13,7 +13,7 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
     /**
      * Finds Pateint and all his lists for chosen patient
      *
-     * @param patientID the ID of the pateint
+     * @param patientId the ID of the pateint
      * @return Pateint as the PateintEntity
      */
     public PatientEntity getPatientByIdWithAllLists(int patientId);
@@ -21,7 +21,7 @@ public interface PatientDAO extends GenericDAO<PatientEntity> {
     /**
      * Finds Pateint and his anamnesis list for chosen patient
      *
-     * @param patientID the ID of the pateint
+     * @param patientId the ID of the pateint
      * @return Pateint as the PateintEntity
      */
     public PatientEntity getPatientByIdWithAnamnesisList(int patientId);

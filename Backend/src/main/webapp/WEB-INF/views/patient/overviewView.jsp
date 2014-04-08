@@ -14,6 +14,10 @@
      <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
     </jsp:attribute>
 
+ 	<jsp:attribute name="script">
+    <script src="<c:url value="/resources/custom/js/exportSubmit.js"/>"></script>
+    </jsp:attribute>
+
 <jsp:body>
 <div class="row">
     <div class="col-xs-3 col-sm-6 col-lg-3">
@@ -21,13 +25,20 @@
             <spring:message code="label.patient"/>
         </h2>
     </div>
-    <div class="col-xs-3  col-sm-6 col-lg-3 ">
+    <div class="col-xs-3 col-sm-6 col-lg-3">
+
+        <form id="patientIds" action="<c:url value="/export" />" method="POST">
+            <input type="hidden" name="patientId" value="${patient.id}">
+            <input name="source" type="hidden" value="overview">
+        </form>
+
         <h3 class="pull-right">
-            <a id="export" href="<c:url value="/patient/${patient.id}/export" />">
+            <a id="postExport" class="cursor-pointer">
                 <spring:message code="label.exportPatient"/>
             </a>
         </h3>
     </div>
+
     <div class="clearfix hidden-lg hidden-xs"></div>
     <div class="col-xs-2 col-sm-4 col-lg-2">
         <sec:authorize ifAnyGranted="ROLE_SUPER_DOCTOR,ROLE_ADMIN">
