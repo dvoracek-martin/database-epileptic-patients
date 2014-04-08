@@ -3,7 +3,10 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.ExportService;
+import cz.cvut.fit.genepi.businessLayer.service.GenericService;
+import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,9 +26,13 @@ public class ExportController {
     @Autowired
     private ExportService exportService;
 
+    @Autowired
+    @Qualifier("genericServiceImpl")
+    private GenericService<ExportParamsVO, ExportParamsEntity> genericServiceExportParams;
+
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public String exportPOST(
-            @ModelAttribute("patientId") @RequestParam("patientId") int[] patientIds,
+            @RequestParam("patientId") int[] patientIds,
             @RequestParam("source") String source,
             Model model, HttpServletRequest request) {
 
@@ -42,7 +49,7 @@ public class ExportController {
     @RequestMapping(value = "/perform-export", method = RequestMethod.POST)
     public String performExportPOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
-            @ModelAttribute("patientId") @RequestParam("patientId") int[] patientIds,
+            @RequestParam("patientId") int[] patientIds,
             @RequestParam("exportType") String exportType,
             Model model, Locale locale, HttpServletRequest request) {
 
@@ -70,6 +77,29 @@ public class ExportController {
 //        }
 
         return "redirect:/resources/downloads/" + url;
+    }
+
+    @RequestMapping(value = "/export/save", method = RequestMethod.POST)
+    public String exportSavePOST(
+            @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
+            @RequestParam("patientId") int[] patientIds,
+            @RequestParam("source") String source,
+            Model model) {
+
+        genericServiceExportParams.save(exportParams, ExportParamsEntity.class);
+
+        model.addAttribute("source", source);
+        model.addAttribute("patientIds", patientIds);
+
+        exportParams.setName("");
+
+        model.addAttribute("exportParams", exportParams);
+        return "exportView";
+    }
+
+    @RequestMapping(value = "/export/load", method = RequestMethod.POST)
+    public String exportLoadPOST() {
+        return "";
     }
 
 }

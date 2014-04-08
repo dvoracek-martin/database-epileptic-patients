@@ -444,6 +444,7 @@ public class PatientController {
         if ((listOfUsersSavedConfigurations.size() > 0) && (user.getId() == 1))
             listOfUsersSavedConfigurations.remove(0);
 
+
         model.addAttribute("listOfSavedConfigurations",
                 listOfSavedConfigurations);
         model.addAttribute("listOfUsersSavedConfigurations",
@@ -451,8 +452,12 @@ public class PatientController {
         model.addAttribute("user", user);
         model.addAttribute("exportParams",
                 exportParamsService.getById(1, ExportParamsVO.class, ExportParamsEntity.class));
+
+
         List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();
         listOfPatients.add(genericDAOPatient.getById(patientId, PatientEntity.class));
+
+
         model.addAttribute("patientList", listOfPatients);
         model.addAttribute("patient", listOfPatients.get(0));
         return "patient/exportView";

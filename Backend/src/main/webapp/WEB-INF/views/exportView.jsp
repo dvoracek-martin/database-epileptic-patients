@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -12,6 +13,10 @@
 
     <jsp:attribute name="head">
      <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+    </jsp:attribute>
+
+    <jsp:attribute name="script">
+    <script src="<c:url value="/resources/custom/js/export.js" />"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -34,9 +39,59 @@
             </div>
         </div>
 
+        <!-- Lists -->
+        <%--  <!-- user Lists -->
+          <div class="col-xs-6">
+              <form id="genericSets" method="POST" action="<c:url value="/export/load" />">
+                  <label>Generic Sets</label>
+
+                  <select name="exportId" class="input-sm">
+                      <c:forEach items="${listOfSavedConfigurations}" var="exportParam">
+                          <option value="${exportParam.id}">
+                                  ${exportParam.name}
+                          </option>
+                      </c:forEach>
+                  </select>
+
+                  <button class="btn btn-primary" type="submit">LOAD</button>
+
+                  <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                      <button id="genericSetDeleteButton" class="btn btn-primary" type="submit">DELETE
+                      </button>
+                  </sec:authorize>
+              </form>
+          </div>
+
+          <!-- generic Lists -->
+          <div class="col-xs-6">
+              <form id="userSets" method="POST" action="<c:url value="/export/load" />">
+                  <label>My Sets</label>
+
+                  <select name="exportId" class="input-large">
+                      <c:forEach items="${listOfUsersSavedConfigurations}" var="exportParam">
+                          <option value="${exportParam.id}">
+                                  ${exportParam.name}
+                          </option>
+                      </c:forEach>
+                  </select>
+
+                  <c:forEach items="${patientList}" var="patient">
+                      <input type="hidden" name="patient" value="${patient.id}">
+                  </c:forEach>
+
+                  <button class="btn btn-primary" type="submit">LOAD</button>
+                  <button id="userSetDeleteButton" class="btn btn-primary" type="submit">DELETE
+                  </button>
+              </form>
+          </div>--%>
+        <!-- Lists END -->
+
         <c:forEach items="${patientIds}" var="patientId">
             <input form="exportForm" name="patientId" type="hidden" value="${patientId}">
         </c:forEach>
+
+        <input type="hidden" name="source" value="${source}" form="exportForm">
+
 
         <%-- export aprams --%>
         <form:form id="exportForm" method="POST" action="/GENEPI/perform-export" commandName="exportParams">
@@ -56,8 +111,37 @@
             </div>
 
             <button class="btn" type="submit">export</button>
-        </form:form>
 
+
+            <fieldset>
+                <legend>
+                    <spring:message code="label.saveParameters"/>
+                </legend>
+
+                <div class="form-group">
+                    <label class="col-xs-2 control-label" for="name">
+                        <spring:message code="label.name"/>
+                    </label>
+
+
+                    <div class="col-xs-4">
+                        <form:input path="name" id="name" type="text" class="input-sm form-control"/>
+                    </div>
+
+                    <div class="col-xs-4">
+                        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                            <form:checkbox path="isGeneric"/>spolecne?
+                        </sec:authorize>
+                    </div>
+
+                    <div class="col-xs-2">
+                        <button id="saveButton" class="btn btn-primary">
+                            <spring:message code="label.save"/>
+                        </button>
+                    </div>
+                </div>
+            </fieldset>
+        </form:form>
 
     </jsp:body>
 </t:menuLVL2>

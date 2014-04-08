@@ -661,11 +661,11 @@ public class ExportParamsVO {
         this.userID = userID;
     }
 
-    public boolean isGeneric() {
+    public boolean isIsGeneric() {
         return isGeneric;
     }
 
-    public void setGeneric(boolean isGeneric) {
+    public void setIsGeneric(boolean isGeneric) {
         this.isGeneric = isGeneric;
     }
 
