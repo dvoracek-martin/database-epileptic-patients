@@ -31,17 +31,20 @@
             </div>
             <div class="col-xs-6">
 
-                <c:forEach items="${patients}" var="patientList">
-                    <c:forEach items="${patientList}" var="patient">
-                        <input type="hidden" name="patientId" value="${patient.id}">
+                <form id="patientIds" action="<c:url value="/export" />" method="POST">
+                    <c:forEach items="${patients}" var="patientList">
+                        <c:forEach items="${patientList}" var="patient">
+                            <input type="hidden" name="patientId" value="${patient.id}">
+                        </c:forEach>
                     </c:forEach>
-                </c:forEach>
+                </form>
 
                 <h3 class="pull-right">
-                    <a href="<c:url value="/patient/${patient.id}/neuropsychology/create" />">
-                        <spring:message code="label.export"/>-Wrong HREF
+                    <a id="postExport" class="cursor-pointer">
+                        <spring:message code="label.export"/>
                     </a>
                 </h3>
+
             </div>
         </div>
 

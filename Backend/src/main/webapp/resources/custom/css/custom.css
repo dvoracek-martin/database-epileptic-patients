@@ -14,3 +14,7 @@ textarea.resize-vertical {
     min-height: 28px;
     resize: vertical;
 }
+
+.cursor-pointer{
+    cursor: pointer;
+}

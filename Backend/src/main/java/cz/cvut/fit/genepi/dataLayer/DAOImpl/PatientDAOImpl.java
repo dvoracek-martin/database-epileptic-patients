@@ -49,7 +49,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                 .setFetchMode("neuropsychologyOldList", FetchMode.JOIN)
                 .setFetchMode("operationList", FetchMode.JOIN)
                 .setFetchMode("pharmacotherapyList", FetchMode.JOIN)
-                .setFetchMode("seizureList", FetchMode.JOIN);
+                .setFetchMode("seizureList", FetchMode.JOIN)
+                .add(Restrictions.eq("id",patientId));
 
         return (PatientEntity) criteria.uniqueResult();
 /*
