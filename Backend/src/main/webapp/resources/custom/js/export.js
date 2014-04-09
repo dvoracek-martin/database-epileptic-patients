@@ -18,4 +18,11 @@ $(document).ready(function () {
             '/GENEPI/export/delete');
     });
 
+    $("#tree").tree({
+        onCheck: { node: 'expand' },
+        onUncheck: { node: 'collapse' },
+        dnd:false
+
+    });
+
 });
