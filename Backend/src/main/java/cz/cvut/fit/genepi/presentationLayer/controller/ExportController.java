@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -58,6 +59,12 @@ public class ExportController {
         model.addAttribute("exportInfoWrapperVo", exportInfoWrapperVo);
         model.addAttribute("exportParams", new ExportParamsVO());
         return "redirect:/export";
+    }
+
+    @ExceptionHandler(HttpSessionRequiredException.class)
+    public String handleException(HttpSessionRequiredException e, HttpServletRequest request) {
+
+        return "deniedView";
     }
 
     @RequestMapping(value = "/export", method = RequestMethod.GET)
