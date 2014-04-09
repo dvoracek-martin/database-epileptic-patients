@@ -415,6 +415,7 @@ public class PatientController {
      * @param patientId the patient id
      * @return the string
      */
+    @Deprecated
     @RequestMapping(value = "/patient/{patientId}/export", method = RequestMethod.GET)
     public String patientExportGET(
             @PathVariable("patientId") int patientId,
@@ -463,6 +464,7 @@ public class PatientController {
         return "patient/exportView";
     }
 
+    @Deprecated
     @RequestMapping(value = "/patient/export", method = RequestMethod.POST)
     public String patientExportPOST(
             @ModelAttribute("exportParams") ExportParamsEntity exportParams, BindingResult result,
@@ -721,6 +723,7 @@ public class PatientController {
         return "patient/exportView";
     }
 
+    @Deprecated
     @RequestMapping(value = "/patient/export/save", method = RequestMethod.POST)
     public String patientExportSavePOST(
             @ModelAttribute("exportParams") ExportParamsEntity exportParams,
@@ -742,7 +745,7 @@ public class PatientController {
         return "redirect:/patient/" + patient[0] + "/export";
     }
 
-    // TODO: revision
+    @Deprecated
     @RequestMapping(value = "/patient/export/load", method = RequestMethod.POST)
     public String patientExportLoadPOST(Model model, Locale locale,
                                         @RequestParam("patient") Integer[] patientID,
@@ -796,6 +799,7 @@ public class PatientController {
         return "patient/exportView";
     }
 
+    @Deprecated
     @RequestMapping(value = "/patient/export/delete", method = RequestMethod.POST)
     public String patientExportDeletePOST(
             @RequestParam("patient") Integer[] patientId,

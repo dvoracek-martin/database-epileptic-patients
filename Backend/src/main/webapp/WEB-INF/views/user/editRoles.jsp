@@ -15,7 +15,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-        <script src="<c:url value="/resources/jquery-ui/jquery-ui.min.js" />"></script>
+        <script src="<c:url value="/resources/jquery-ui/js/jquery-ui.min.js" />"></script>
 	    <script src="<c:url value="/resources/custom/js/edit-roles.js" />"></script>
     </jsp:attribute>
 

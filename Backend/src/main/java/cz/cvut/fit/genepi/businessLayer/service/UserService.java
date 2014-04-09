@@ -52,4 +52,6 @@ public interface UserService extends GenericService<UserVO, UserEntity> {
 
     //public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber);
 
+    public int getLoggedUserId();
+
 }

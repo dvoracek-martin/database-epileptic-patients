@@ -12,6 +12,8 @@ import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang.RandomStringUtils;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -149,10 +151,21 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
         genericDAO.update(user);
     }
 
-  /*  @Override
+    /*  @Override
+      @Transactional
+      public UserDisplayVO getDisplayById(int userId) {
+          UserEntity user = genericDAO.getById(userId, UserEntity.class);
+          return dozer.map(user, UserDisplayVO.class);
+      }*/
+    @Override
     @Transactional
-    public UserDisplayVO getDisplayById(int userId) {
-        UserEntity user = genericDAO.getById(userId, UserEntity.class);
-        return dozer.map(user, UserDisplayVO.class);
-    }*/
+    public int getLoggedUserId() {
+
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+        String name = auth.getName();
+
+        UserEntity user = this.getUserByUsername(name);
+        return user.getId();
+    }
 }

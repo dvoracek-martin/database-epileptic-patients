@@ -2,10 +2,7 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportInfoWrapperVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
-import cz.cvut.fit.genepi.businessLayer.service.ExportParamsService;
-import cz.cvut.fit.genepi.businessLayer.service.ExportService;
-import cz.cvut.fit.genepi.businessLayer.service.GenericService;
+import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -36,6 +33,9 @@ public class ExportController {
 
     @Autowired
     private ExportParamsService exportParamsService;
+
+    @Autowired
+    private UserService userService;
 
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public String exportPOST(
@@ -87,7 +87,7 @@ public class ExportController {
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
             @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
-            Model model, Locale locale, HttpServletRequest request) {
+           Locale locale, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
@@ -101,30 +101,17 @@ public class ExportController {
 
         String url = exportService.performExport(exportParams, locale, exportType, anonymize, exportInfoWrapperVo.getPatientIds(), false);
 
-
-//        if (result.hasErrors()) {
-//            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-//            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-//            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
-//            return "patient/verifyView";
-//        } else {
-//            patientService.save(patientVO, PatientEntity.class);
-//            return "redirect:/patient/" + patientId + "/overview";
-//        }
-
         return "redirect:/resources/downloads/" + url;
     }
 
     @RequestMapping(value = "/export/save", method = RequestMethod.POST)
     public String exportSavePOST(
-            @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
-            Model model) {
+            @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result) {
 
+        int userId = userService.getLoggedUserId();
+        exportParams.setUserID(userId);
         genericServiceExportParams.save(exportParams, ExportParamsEntity.class);
 
-//        exportParams.setName("");
-
-//        model.addAttribute("exportParams", exportParams);
         return "redirect:/export";
     }
 

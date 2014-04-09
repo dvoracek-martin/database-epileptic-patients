@@ -21,8 +21,10 @@ $(document).ready(function () {
     $("#tree").tree({
         onCheck: { node: 'expand' },
         onUncheck: { node: 'collapse' },
-        dnd:false
-
+        dnd:false,
+        collapseUiIcon: 'ui-icon-plus',
+        expandUiIcon: 'ui-icon-minus',
+        leafUiIcon: 'ui-icon-bullet'
     });
 
 });
