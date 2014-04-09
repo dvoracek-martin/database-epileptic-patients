@@ -108,6 +108,10 @@ public class ExportController {
     public String exportSavePOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result) {
 
+        if(!authorizationChecker.isSuperDoctor() && !authorizationChecker.isAdmin()){
+            exportParams.setGeneric(false);
+        }
+
         int userId = userService.getLoggedUserId();
         exportParams.setUserID(userId);
         genericServiceExportParams.save(exportParams, ExportParamsEntity.class);
