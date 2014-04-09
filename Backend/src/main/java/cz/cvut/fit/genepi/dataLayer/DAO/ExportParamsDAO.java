@@ -16,4 +16,8 @@ public interface ExportParamsDAO extends GenericDAO<ExportParamsEntity> {
      * @return List of ExportParamsEntity
      */
     public List<ExportParamsEntity> findExportParamsByUserID(int userID);
+
+    public List<ExportParamsEntity> getGenericConfigurations();
+
+    public List<ExportParamsEntity> getConfigurationsByUsername(int userId);
 }

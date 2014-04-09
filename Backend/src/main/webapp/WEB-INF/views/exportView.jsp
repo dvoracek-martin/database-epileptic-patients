@@ -5,7 +5,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<t:menuLVL2>
+<t:menuLVL1>
 
     <jsp:attribute name="title">
       <spring:message code="label.seizures"/>
@@ -39,13 +39,53 @@
             </div>
         </div>
 
-        <fieldset>
-            <legend>Load</legend>
-            <form>
-                POST
-            </form>
-        </fieldset>
+        <div class="row">
+            <fieldset>
+                <legend>Load</legend>
+                <div class="col-xs-12">
+                    <form id="genericConfigurationsForm" action="<c:url value="/export/load"/>" method="POST">
+                        <label>Generic Sets</label>
+                        <select name="exportId" class="input-sm">
+                            <c:forEach items="${genericConfigurations}" var="exportParam">
+                                <option value="${exportParam.id}">
+                                        ${exportParam.name}
+                                </option>
+                            </c:forEach>
+                        </select>
 
+                        <button class="btn btn-primary" type="submit">
+                            LOAD
+                        </button>
+
+                        <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                            <button id="genericConfigurationsDeleteButton" class="btn btn-primary" type="submit">
+                                DELETE
+                            </button>
+                        </sec:authorize>
+                    </form>
+                </div>
+                <div class="col-xs-12">
+                    <form id="userConfigurationsForm" action="<c:url value="/export/load"/>" method="POST">
+                        <label>User Sets</label>
+                        <select name="exportId" class="input-sm">
+                            <c:forEach items="${userConfigurations}" var="exportParam">
+                                <option value="${exportParam.id}">
+                                        ${exportParam.name}
+                                </option>
+                            </c:forEach>
+                        </select>
+
+                        <button class="btn btn-primary" type="submit">
+                            LOAD
+                        </button>
+
+                        <button id="userConfigurationsDeleteButton" class="btn btn-primary" type="submit">
+                            DELETE
+                        </button>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
 
         <%-- export aprams --%>
         <form:form id="exportForm" method="POST" action="/GENEPI/perform-export" commandName="exportParams">
@@ -87,7 +127,7 @@
 
                     <div class="col-xs-4">
                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                            <form:checkbox path="isGeneric"/>spolecne?
+                            <form:checkbox path="generic"/>spolecne?
                         </sec:authorize>
                     </div>
 
@@ -101,4 +141,4 @@
         </form:form>
 
     </jsp:body>
-</t:menuLVL2>
+</t:menuLVL1>

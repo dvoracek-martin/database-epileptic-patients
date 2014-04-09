@@ -14,7 +14,7 @@ public class ExportParamsVO {
     private int userID;
 
 
-    private boolean isGeneric;
+    private boolean generic;
 
 
     private boolean patient;
@@ -661,12 +661,12 @@ public class ExportParamsVO {
         this.userID = userID;
     }
 
-    public boolean isIsGeneric() {
-        return isGeneric;
+    public boolean isGeneric() {
+        return generic;
     }
 
-    public void setIsGeneric(boolean isGeneric) {
-        this.isGeneric = isGeneric;
+    public void setGeneric(boolean generic) {
+        this.generic = generic;
     }
 
     public boolean isPatient() {

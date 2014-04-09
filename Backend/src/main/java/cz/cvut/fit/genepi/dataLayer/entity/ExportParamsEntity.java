@@ -16,8 +16,8 @@ public class ExportParamsEntity {
     @Column(name = "user_id")
     private int userID;
 
-    @Column(name = "is_generic")
-    private boolean isGeneric;
+    @Column(name = "generic")
+    private boolean generic;
 
     @Column(name = "patient")
     private boolean patient;
@@ -665,11 +665,11 @@ public class ExportParamsEntity {
     }
 
     public boolean isGeneric() {
-        return isGeneric;
+        return generic;
     }
 
-    public void setGeneric(boolean isGeneric) {
-        this.isGeneric = isGeneric;
+    public void setGeneric(boolean generic) {
+        this.generic = generic;
     }
 
     public boolean isPatient() {

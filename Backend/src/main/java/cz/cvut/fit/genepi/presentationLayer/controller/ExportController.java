@@ -3,11 +3,13 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportInfoWrapperVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.ExportParamsService;
 import cz.cvut.fit.genepi.businessLayer.service.ExportService;
 import cz.cvut.fit.genepi.businessLayer.service.GenericService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,8 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 @Controller
@@ -33,6 +33,9 @@ public class ExportController {
     @Autowired
     @Qualifier("genericServiceImpl")
     private GenericService<ExportParamsVO, ExportParamsEntity> genericServiceExportParams;
+
+    @Autowired
+    private ExportParamsService exportParamsService;
 
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public String exportPOST(
@@ -67,7 +70,12 @@ public class ExportController {
             return "deniedView";
         }
 
+        String username = SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName();
 
+        model.addAttribute("genericConfigurations", exportParamsService.getGenericConfigurations());
+        model.addAttribute("userConfigurations", exportParamsService.getConfigurationsByUsername(username));
 
         model.addAttribute("exportInfoWrapperVo", exportInfoWrapperVo);
         model.addAttribute("exportParams", exportParams);
@@ -121,8 +129,22 @@ public class ExportController {
     }
 
     @RequestMapping(value = "/export/load", method = RequestMethod.POST)
-    public String exportLoadPOST() {
-        return "";
+    public String exportLoadPOST(
+            @RequestParam("exportId") int exportId,
+            Model model) {
+
+        model.addAttribute("exportParams", genericServiceExportParams.getById(exportId, ExportParamsVO.class, ExportParamsEntity.class));
+
+        return "redirect:/export";
+    }
+
+    @RequestMapping(value = "/export/delete", method = RequestMethod.POST)
+    public String exportDeletePOST(
+            @RequestParam("exportId") int exportId) {
+
+        genericServiceExportParams.delete(exportId, ExportParamsEntity.class);
+
+        return "redirect:/export";
     }
 
 }

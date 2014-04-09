@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
+import cz.cvut.fit.genepi.businessLayer.VO.display.ExportParamsDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 
@@ -27,4 +28,8 @@ public interface ExportParamsService extends GenericService<ExportParamsVO, Expo
      */
     @Deprecated
     public String changerToString(int ID, Locale locale);
+
+    public List<ExportParamsDisplayVO> getGenericConfigurations();
+
+    public List<ExportParamsDisplayVO> getConfigurationsByUsername(String username);
 }
