@@ -1,5 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
+import cz.cvut.fit.genepi.businessLayer.VO.form.ExportInfoWrapperVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.ExportService;
@@ -14,11 +15,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Controller
-@SessionAttributes({"exportParams"})
+@SessionAttributes({"exportParams", "exportInfoWrapperVo"})
 public class ExportController {
+
 
     @Autowired
     private AuthorizationChecker authorizationChecker;
@@ -40,16 +44,40 @@ public class ExportController {
             return "deniedView";
         }
 
-        model.addAttribute("source", source);
-        model.addAttribute("patientIds", patientIds);
+        ExportInfoWrapperVO exportInfoWrapperVo = new ExportInfoWrapperVO();
+
+        for (int id : patientIds) {
+            exportInfoWrapperVo.addPatientId(id);
+        }
+
+        exportInfoWrapperVo.setSource(source);
+
+        model.addAttribute("exportInfoWrapperVo", exportInfoWrapperVo);
         model.addAttribute("exportParams", new ExportParamsVO());
+        return "redirect:/export";
+    }
+
+    @RequestMapping(value = "/export", method = RequestMethod.GET)
+    public String exportGET(
+            @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
+            @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams,
+            Model model, HttpServletRequest request) {
+
+        if (!authorizationChecker.checkAuthoritaion(request)) {
+            return "deniedView";
+        }
+
+
+
+        model.addAttribute("exportInfoWrapperVo", exportInfoWrapperVo);
+        model.addAttribute("exportParams", exportParams);
         return "exportView";
     }
 
     @RequestMapping(value = "/perform-export", method = RequestMethod.POST)
     public String performExportPOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
-            @RequestParam("patientId") int[] patientIds,
+            @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
             Model model, Locale locale, HttpServletRequest request) {
 
@@ -63,7 +91,7 @@ public class ExportController {
             anonymize = true;
         }
 
-        String url = exportService.performExport(exportParams, locale, exportType, anonymize, patientIds, false);
+        String url = exportService.performExport(exportParams, locale, exportType, anonymize, exportInfoWrapperVo.getPatientIds(), false);
 
 
 //        if (result.hasErrors()) {
@@ -82,19 +110,14 @@ public class ExportController {
     @RequestMapping(value = "/export/save", method = RequestMethod.POST)
     public String exportSavePOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
-            @RequestParam("patientId") int[] patientIds,
-            @RequestParam("source") String source,
             Model model) {
 
         genericServiceExportParams.save(exportParams, ExportParamsEntity.class);
 
-        model.addAttribute("source", source);
-        model.addAttribute("patientIds", patientIds);
+//        exportParams.setName("");
 
-        exportParams.setName("");
-
-        model.addAttribute("exportParams", exportParams);
-        return "exportView";
+//        model.addAttribute("exportParams", exportParams);
+        return "redirect:/export";
     }
 
     @RequestMapping(value = "/export/load", method = RequestMethod.POST)

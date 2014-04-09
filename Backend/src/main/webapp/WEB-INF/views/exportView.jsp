@@ -39,79 +39,36 @@
             </div>
         </div>
 
-        <!-- Lists -->
-        <%--  <!-- user Lists -->
-          <div class="col-xs-6">
-              <form id="genericSets" method="POST" action="<c:url value="/export/load" />">
-                  <label>Generic Sets</label>
-
-                  <select name="exportId" class="input-sm">
-                      <c:forEach items="${listOfSavedConfigurations}" var="exportParam">
-                          <option value="${exportParam.id}">
-                                  ${exportParam.name}
-                          </option>
-                      </c:forEach>
-                  </select>
-
-                  <button class="btn btn-primary" type="submit">LOAD</button>
-
-                  <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                      <button id="genericSetDeleteButton" class="btn btn-primary" type="submit">DELETE
-                      </button>
-                  </sec:authorize>
-              </form>
-          </div>
-
-          <!-- generic Lists -->
-          <div class="col-xs-6">
-              <form id="userSets" method="POST" action="<c:url value="/export/load" />">
-                  <label>My Sets</label>
-
-                  <select name="exportId" class="input-large">
-                      <c:forEach items="${listOfUsersSavedConfigurations}" var="exportParam">
-                          <option value="${exportParam.id}">
-                                  ${exportParam.name}
-                          </option>
-                      </c:forEach>
-                  </select>
-
-                  <c:forEach items="${patientList}" var="patient">
-                      <input type="hidden" name="patient" value="${patient.id}">
-                  </c:forEach>
-
-                  <button class="btn btn-primary" type="submit">LOAD</button>
-                  <button id="userSetDeleteButton" class="btn btn-primary" type="submit">DELETE
-                  </button>
-              </form>
-          </div>--%>
-        <!-- Lists END -->
-
-        <c:forEach items="${patientIds}" var="patientId">
-            <input form="exportForm" name="patientId" type="hidden" value="${patientId}">
-        </c:forEach>
-
-        <input type="hidden" name="source" value="${source}" form="exportForm">
+        <fieldset>
+            <legend>Load</legend>
+            <form>
+                POST
+            </form>
+        </fieldset>
 
 
         <%-- export aprams --%>
         <form:form id="exportForm" method="POST" action="/GENEPI/perform-export" commandName="exportParams">
-            <li><form:label path="anamnesisBeginningEpilepsy">anamnesisBeginningEpilepsy</form:label>
-                <form:checkbox path="anamnesisBeginningEpilepsy" class="input-block-level"/></li>
+            <fieldset>
+                <legend>Params</legend>
+                <li><form:label path="anamnesisBeginningEpilepsy">anamnesisBeginningEpilepsy</form:label>
+                    <form:checkbox path="anamnesisBeginningEpilepsy" class="input-block-level"/></li>
 
-            <div class="control-group span6">
-                <label class="control-label" for="pdfFormat">Formát</label>
+                <div class="control-group span6">
+                    <label class="control-label" for="pdfFormat">Formát</label>
 
-                <div class="controls">
-                    <input type="radio" id="pdfFormat" name="exportType" value="pdf" checked> pdf
-                    <input type="radio" id="xlsxFormat" name="exportType" value="xlsx"> xlsx
-                    <input type="radio" id="docxFormat" name="exportType" value="docx"> docx
-                    <input type="radio" id="txtFormat" name="exportType" value="txt"> txt
-                    <input type="radio" id="csvFormat" name="exportType" value="csv"> csv
+                    <div class="controls">
+                        <input type="radio" id="pdfFormat" name="exportType" value="pdf" checked> pdf
+                        <input type="radio" id="xlsxFormat" name="exportType" value="xlsx"> xlsx
+                        <input type="radio" id="docxFormat" name="exportType" value="docx"> docx
+                        <input type="radio" id="txtFormat" name="exportType" value="txt"> txt
+                        <input type="radio" id="csvFormat" name="exportType" value="csv"> csv
+                    </div>
                 </div>
-            </div>
 
-            <button class="btn" type="submit">export</button>
+                <button class="btn" type="submit">export</button>
 
+            </fieldset>
 
             <fieldset>
                 <legend>

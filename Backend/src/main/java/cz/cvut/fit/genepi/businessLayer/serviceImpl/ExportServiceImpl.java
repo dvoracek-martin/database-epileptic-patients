@@ -43,7 +43,7 @@ public class ExportServiceImpl implements ExportService {
     @Autowired
     private Mapper dozer;
 
-    public String performExport(ExportParamsVO exportParams, Locale locale, String exportType, boolean anonymize, int[] patientIds, boolean toTable) {
+    public String performExport(ExportParamsVO exportParams, Locale locale, String exportType, boolean anonymize, List<Integer> patientIds, boolean toTable) {
 
         List<PatientEntity> patientList = new ArrayList<>();
         for (int patientId : patientIds) {
