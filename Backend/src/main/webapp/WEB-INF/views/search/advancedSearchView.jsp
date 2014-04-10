@@ -13,21 +13,6 @@
 
     <jsp:attribute name="script">
         <script src="<c:url value="/resources/custom/js/advanced-search.js" />"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
-
-                var advancedSearchFormSel = $("#advancedSearchForm");
-
-                $("#searchButton").click(function () {
-                    advancedSearchFormSel.submit();
-                });
-
-                $("#saveButton").click(function () {
-                    advancedSearchFormSel.submit().attr('action', '<c:url value="/advanced-search/save" />')
-                    advancedSearchFormSel.submit();
-                });
-            });
-        </script>
     </jsp:attribute>
 
 <jsp:body>
@@ -152,11 +137,15 @@
             <spring:message code="label.gender"/>
         </label>
 
-        <div class="col-xs-8">
-            <form:radiobutton path="patientGender" value="1"/> <spring:message code="label.male"/>
-            <form:radiobutton path="patientGender" value="2"/> <spring:message code="label.female"/>
-            <form:radiobutton path="patientGender" value="3" checked="true"/><spring:message
-                code="label.notDistinguish"/>
+        <div id="patientGender" class="col-xs-8">
+            <form:radiobutton path="patientGender" value="1"/>
+            <spring:message code="label.male"/>
+
+            <form:radiobutton path="patientGender" value="2"/>
+            <spring:message code="label.female"/>
+
+            <form:radiobutton path="patientGender" value="3" checked="true"/>
+            <spring:message code="label.notDistinguish"/>
         </div>
     </div>
 
@@ -410,7 +399,7 @@
 
 <div class="form-group">
     <div class="col-xs-offset-4 col-xs-8">
-        <button id="searchButton" class="btn btn-primary">
+        <button id="searchButton" class="btn btn-primary" type="submit">
             <spring:message code="label.search"/>
         </button>
     </div>
