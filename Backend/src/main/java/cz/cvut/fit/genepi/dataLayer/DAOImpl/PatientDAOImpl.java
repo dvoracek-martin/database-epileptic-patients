@@ -579,6 +579,54 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
         }
 
+        		/* seizure specific section */
+
+        if (advancedSearch.isSeizure()) {
+        /* Fetching and creating alias for sub collection seizureList */
+            criteria.createAlias("patient.seizureList", "seizureList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getSeizureSeizureFrequency() != 0) {
+                criteria.add(Restrictions.eq("seizureList.seizureFrequency", advancedSearch.getSeizureSeizureFrequency()));
+            }
+
+            if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() != 3) {
+                if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() == 1) {
+                    criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", true));
+                } else {
+                    criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", false));
+                }
+            }
+
+            if (advancedSearch.getSeizureStatusEpilepticus() != 3) {
+                if (advancedSearch.getSeizureStatusEpilepticus() == 1) {
+                    criteria.add(Restrictions.eq("seizureList.statusEpilepticus", true));
+                } else {
+                    criteria.add(Restrictions.eq("seizureList.statusEpilepticus", false));
+                }
+            }
+
+            if (advancedSearch.getSeizureSeizureOccurence() != 4) {
+                criteria.add(Restrictions.eq("seizureList.seizureOccurrence", advancedSearch.getSeizureSeizureOccurence()));
+            }
+
+            /* seizure detail specific section */
+
+            if (advancedSearch.getSeizureSscClassification() != 0 ||
+                    advancedSearch.getSeizureIlaeClassification() != 0) {
+
+                criteria.createAlias("seizureList.seizureDetailList", "seizureDetailList", JoinType.LEFT_OUTER_JOIN);
+
+                if (advancedSearch.getSeizureSscClassification() != 0) {
+                    criteria.add(Restrictions.eq("seizureDetailList.sscClassification", advancedSearch.getSeizureSscClassification()));
+                }
+
+                if (advancedSearch.getSeizureIlaeClassification() != 0) {
+                    criteria.add(Restrictions.eq("seizureDetailList.ilaeClassification", advancedSearch.getSeizureIlaeClassification()));
+                }
+            }
+
+        }
+
         return (List<PatientEntity>) criteria.list();
     }
 

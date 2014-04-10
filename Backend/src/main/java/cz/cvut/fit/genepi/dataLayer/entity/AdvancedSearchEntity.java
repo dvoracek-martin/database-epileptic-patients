@@ -129,11 +129,80 @@ public class AdvancedSearchEntity {
     @Column(name = "anamnesis_first_fever")
     private int anamnesisFirstFever;
 
-  @Column(name = "anamnesis_infantile_spasm")
+    @Column(name = "anamnesis_infantile_spasm")
     private int anamnesisInfantileSpasm;
 
     @Column(name = "anamnesis_specific_syndrome")
     private int anamnesisSpecificSyndrome;
+
+    /* seizure specific */
+
+    @Column(name = "seizure_seizure_frequency")
+    private int seizureSeizureFrequency;
+
+    @Column(name = "seizure_secondarily_generalized_seizure")
+    private int seizureSecondarilyGeneralizedSeizure;
+
+    @Column(name = "seizure_status_epilepticus")
+    private int seizureStatusEpilepticus;
+
+    @Column(name = "seizure_ssc_classification")
+    private int seizureSscClassification;
+
+    @Column(name = "seizure_ilae_classification")
+    private int seizureIlaeClassification;
+
+    @Column(name = "seizure_seizure_occurence")
+    private int seizureSeizureOccurence;
+
+    public int getSeizureSecondarilyGeneralizedSeizure() {
+        return seizureSecondarilyGeneralizedSeizure;
+    }
+
+    public void setSeizureSecondarilyGeneralizedSeizure(int seizureSecondarilyGeneralizedSeizure) {
+        this.seizureSecondarilyGeneralizedSeizure = seizureSecondarilyGeneralizedSeizure;
+    }
+
+    public int getSeizureSeizureOccurence() {
+        return seizureSeizureOccurence;
+    }
+
+    public void setSeizureSeizureOccurence(int seizureSeizureOccurence) {
+        this.seizureSeizureOccurence = seizureSeizureOccurence;
+    }
+
+    public int getSeizureSeizureFrequency() {
+        return seizureSeizureFrequency;
+    }
+
+    public void setSeizureSeizureFrequency(int seizureSeizureFrequency) {
+        this.seizureSeizureFrequency = seizureSeizureFrequency;
+    }
+
+
+    public int getSeizureStatusEpilepticus() {
+        return seizureStatusEpilepticus;
+    }
+
+    public void setSeizureStatusEpilepticus(int seizureStatusEpilepticus) {
+        this.seizureStatusEpilepticus = seizureStatusEpilepticus;
+    }
+
+    public int getSeizureSscClassification() {
+        return seizureSscClassification;
+    }
+
+    public void setSeizureSscClassification(int seizureSscClassification) {
+        this.seizureSscClassification = seizureSscClassification;
+    }
+
+    public int getSeizureIlaeClassification() {
+        return seizureIlaeClassification;
+    }
+
+    public void setSeizureIlaeClassification(int seizureIlaeClassification) {
+        this.seizureIlaeClassification = seizureIlaeClassification;
+    }
 
     public int getId() {
         return id;

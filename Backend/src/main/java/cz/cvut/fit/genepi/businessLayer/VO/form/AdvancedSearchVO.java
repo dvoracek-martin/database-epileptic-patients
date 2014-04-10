@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -15,7 +14,7 @@ public class AdvancedSearchVO {
 
 //    private boolean hidden;
 
-//    private UserEntity user;
+    //    private UserEntity user;
     private int userId;
 
     @Size(max = 100)
@@ -68,6 +67,7 @@ public class AdvancedSearchVO {
 
     private boolean outcome;
 
+    /* anamnesis specific */
 
     private int anamnesisEpilepsyInFamily;
 
@@ -88,6 +88,69 @@ public class AdvancedSearchVO {
     private int anamnesisInfantileSpasm;
 
     private int anamnesisSpecificSyndrome;
+
+    /* seizure specific */
+
+    private int seizureSeizureFrequency;
+
+    private int seizureSecondarilyGeneralizedSeizure;
+
+    private int seizureStatusEpilepticus;
+
+    private int seizureSscClassification;
+
+    private int seizureIlaeClassification;
+
+    private int seizureSeizureOccurence;
+
+    public int getSeizureSecondarilyGeneralizedSeizure() {
+        return seizureSecondarilyGeneralizedSeizure;
+    }
+
+    public void setSeizureSecondarilyGeneralizedSeizure(int seizureSecondarilyGeneralizedSeizure) {
+        this.seizureSecondarilyGeneralizedSeizure = seizureSecondarilyGeneralizedSeizure;
+    }
+
+    public int getSeizureSeizureOccurence() {
+        return seizureSeizureOccurence;
+    }
+
+    public void setSeizureSeizureOccurence(int seizureSeizureOccurence) {
+        this.seizureSeizureOccurence = seizureSeizureOccurence;
+    }
+
+    public int getSeizureSeizureFrequency() {
+        return seizureSeizureFrequency;
+    }
+
+    public void setSeizureSeizureFrequency(int seizureSeizureFrequency) {
+        this.seizureSeizureFrequency = seizureSeizureFrequency;
+    }
+
+
+    public int getSeizureStatusEpilepticus() {
+        return seizureStatusEpilepticus;
+    }
+
+    public void setSeizureStatusEpilepticus(int seizureStatusEpilepticus) {
+        this.seizureStatusEpilepticus = seizureStatusEpilepticus;
+    }
+
+    public int getSeizureSscClassification() {
+        return seizureSscClassification;
+    }
+
+    public void setSeizureSscClassification(int seizureSscClassification) {
+        this.seizureSscClassification = seizureSscClassification;
+    }
+
+    public int getSeizureIlaeClassification() {
+        return seizureIlaeClassification;
+    }
+
+    public void setSeizureIlaeClassification(int seizureIlaeClassification) {
+        this.seizureIlaeClassification = seizureIlaeClassification;
+    }
 
     public int getId() {
         return id;

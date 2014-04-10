@@ -79,7 +79,7 @@
         <spring:message code="label.occurrence"/>
     </label>
 
-    <div class="col-xs-8">
+    <div id="seizureOccurrence" class="col-xs-8">
 
         <div class="radio">
             <label>
