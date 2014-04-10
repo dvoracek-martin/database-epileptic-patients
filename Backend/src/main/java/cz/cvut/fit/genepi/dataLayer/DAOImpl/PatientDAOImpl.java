@@ -13,6 +13,7 @@ import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -625,6 +626,24 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                 }
             }
 
+        }
+
+        /* pharmacotherapy specific section */
+        if (advancedSearch.isPharmacotherapy()) {
+               /* Fetching and creating alias for sub collection pharmacotherapyList */
+            criteria.createAlias("patient.pharmacotherapyList", "pharmacotherapyList", JoinType.LEFT_OUTER_JOIN);
+
+            if (!advancedSearch.getPharmacotherapyAed().equals("[]")) {
+
+                String str = advancedSearch.getPharmacotherapyAed().replaceAll("[^\\d,]", "");
+                String[] numbers = str.split(",");
+                List<Integer> ints = new ArrayList<>();
+                for (int i = 0; i < numbers.length; i++) {
+                    ints.add(Integer.parseInt(numbers[i]));
+                }
+
+                criteria.add(Restrictions.in("pharmacotherapyList.aed", ints));
+            }
         }
 
         return (List<PatientEntity>) criteria.list();

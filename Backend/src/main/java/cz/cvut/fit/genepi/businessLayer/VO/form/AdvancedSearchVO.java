@@ -103,6 +103,17 @@ public class AdvancedSearchVO {
 
     private int seizureSeizureOccurence;
 
+    /* pharmacotherapy specific section */
+    private int[] pharmacotherapyAed;
+
+    public int[] getPharmacotherapyAed() {
+        return pharmacotherapyAed;
+    }
+
+    public void setPharmacotherapyAed(int[] pharmacotherapyAed) {
+        this.pharmacotherapyAed = pharmacotherapyAed;
+    }
+
     public int getSeizureSecondarilyGeneralizedSeizure() {
         return seizureSecondarilyGeneralizedSeizure;
     }

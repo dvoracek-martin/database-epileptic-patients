@@ -135,7 +135,7 @@ public class AdvancedSearchEntity {
     @Column(name = "anamnesis_specific_syndrome")
     private int anamnesisSpecificSyndrome;
 
-    /* seizure specific */
+    /* seizure specific section*/
 
     @Column(name = "seizure_seizure_frequency")
     private int seizureSeizureFrequency;
@@ -154,6 +154,21 @@ public class AdvancedSearchEntity {
 
     @Column(name = "seizure_seizure_occurence")
     private int seizureSeizureOccurence;
+
+
+    /* pharmacotherapy specific section */
+
+    @Column(name = "pharmacotherapy_aed")
+    private String pharmacotherapyAed;
+
+    public String getPharmacotherapyAed() {
+        return pharmacotherapyAed;
+    }
+
+
+    public void setPharmacotherapyAed(String pharmacotherapyAed) {
+        this.pharmacotherapyAed = pharmacotherapyAed;
+    }
 
     public int getSeizureSecondarilyGeneralizedSeizure() {
         return seizureSecondarilyGeneralizedSeizure;

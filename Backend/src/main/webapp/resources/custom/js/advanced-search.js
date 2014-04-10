@@ -31,6 +31,17 @@ $(document).ready(function () {
         }
     });
 
+    var pharmacotherapyCheckbox = $("#pharmacotherapy");
+
+    pharmacotherapyCheckbox.click(function () {
+        var pharmacotherapyFieldset = $("#pharmacotherapyFieldset");
+        if ($(this).prop("checked")) {
+            pharmacotherapyFieldset.show();
+        } else {
+            pharmacotherapyFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -38,6 +49,9 @@ $(document).ready(function () {
 
     seizureCheckbox.click();
     seizureCheckbox.click();
+
+    pharmacotherapyCheckbox.click();
+    pharmacotherapyCheckbox.click();
 
 
 });

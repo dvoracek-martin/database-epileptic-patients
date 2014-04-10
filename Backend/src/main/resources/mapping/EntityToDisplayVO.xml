@@ -210,4 +210,16 @@
         </field>
     </mapping>
 
+
+    <mapping>
+        <class-a>cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity</class-a>
+        <class-b>cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO</class-b>
+        <field custom-converter="cz.cvut.fit.genepi.util.IntArrayToStringConverter">
+            <a>pharmacotherapyAed</a>
+            <b>pharmacotherapyAed</b>
+        </field>
+    </mapping>
+
+
+
 </mappings>
