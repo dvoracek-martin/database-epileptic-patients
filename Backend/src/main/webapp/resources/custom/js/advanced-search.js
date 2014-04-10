@@ -20,10 +20,24 @@ $(document).ready(function () {
         }
     });
 
+    var seizureCheckbox = $("#seizure");
+
+    seizureCheckbox.click(function () {
+        var seizureFieldset = $("#seizureFieldset");
+        if ($(this).prop("checked")) {
+            seizureFieldset.show();
+        } else {
+            seizureFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
     anamnesisCheckbox.click();
+
+    seizureCheckbox.click();
+    seizureCheckbox.click();
 
 
 });

@@ -50,7 +50,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                 .setFetchMode("operationList", FetchMode.JOIN)
                 .setFetchMode("pharmacotherapyList", FetchMode.JOIN)
                 .setFetchMode("seizureList", FetchMode.JOIN)
-                .add(Restrictions.eq("id",patientId));
+                .add(Restrictions.eq("id", patientId));
 
         return (PatientEntity) criteria.uniqueResult();
 /*
@@ -450,10 +450,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         if (!advancedSearch.getPatientAge().equals("")) {
             /* calculating years */
             LocalDate now = new LocalDate();
-            LocalDate dateBeforeInput = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAge()));
-            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
-                    .parseInt(advancedSearch.getPatientAge()) + 1);
+            LocalDate dateBeforeInput = now.minusYears(Integer.parseInt(advancedSearch.getPatientAge()));
+            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer.parseInt(advancedSearch.getPatientAge()) + 1);
 
             if (advancedSearch.getPatientAgeFilter().equals("=")) {
                 criteria.add(Restrictions.gt("birthday", dateBeforeInputPlusOneYear.toDate()));
@@ -469,36 +467,26 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             }
         }
 
-//        /* Age when epilepsy began */
-//        if (!advancedSearch.getPatientAgeEpilepsy().equals("")) {
-//            /* calculating years */
-//            LocalDate now = new LocalDate();
-//            LocalDate dateBeforeInput = now.minusYears(Integer
-//                    .parseInt(advancedSearch.getPatientAgeEpilepsy()));
-//            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer
-//                    .parseInt(advancedSearch.getPatientAgeEpilepsy()) + 1);
-//
-//            if (advancedSearch.getPatientAgeEpilepsyFilter().equals("=")) {
-//                criteria.add(Restrictions.gt("birthday",
-//                        dateBeforeInputPlusOneYear.toDate()));
-//                criteria.add(Restrictions.le("birthday",
-//                        dateBeforeInput.toDate()));
-//            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals(">")) {
-//                criteria.add(Restrictions.le("birthday",
-//                        dateBeforeInputPlusOneYear.toDate()));
-//            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals("<")) {
-//                criteria.add(Restrictions.gt("birthday",
-//                        dateBeforeInput.toDate()));
-//            } else if (advancedSearch.getPatientAgeEpilepsyFilter()
-//                    .equals(">=")) {
-//                criteria.add(Restrictions.le("birthday",
-//                        dateBeforeInput.toDate()));
-//            } else if (advancedSearch.getPatientAgeEpilepsyFilter()
-//                    .equals("<=")) {
-//                criteria.add(Restrictions.ge("birthday",
-//                        dateBeforeInput.toDate()));
-//            }
-//        }
+        /* Age when epilepsy began */
+        if (!advancedSearch.getPatientAgeEpilepsy().equals("")) {
+            /* calculating years */
+            LocalDate now = new LocalDate();
+            LocalDate dateBeforeInput = now.minusYears(Integer.parseInt(advancedSearch.getPatientAgeEpilepsy()));
+            LocalDate dateBeforeInputPlusOneYear = now.minusYears(Integer.parseInt(advancedSearch.getPatientAgeEpilepsy()) + 1);
+
+            if (advancedSearch.getPatientAgeEpilepsyFilter().equals("=")) {
+                criteria.add(Restrictions.gt("birthday", dateBeforeInputPlusOneYear.toDate()));
+                criteria.add(Restrictions.le("birthday", dateBeforeInput.toDate()));
+            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals(">")) {
+                criteria.add(Restrictions.le("birthday", dateBeforeInputPlusOneYear.toDate()));
+            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals("<")) {
+                criteria.add(Restrictions.gt("birthday", dateBeforeInput.toDate()));
+            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals(">=")) {
+                criteria.add(Restrictions.le("birthday", dateBeforeInput.toDate()));
+            } else if (advancedSearch.getPatientAgeEpilepsyFilter().equals("<=")) {
+                criteria.add(Restrictions.ge("birthday", dateBeforeInput.toDate()));
+            }
+        }
 
 		/* Fetching and creating alias for sub collection doctor */
         criteria.createAlias("patient.doctor", "doctor", JoinType.LEFT_OUTER_JOIN);
@@ -507,20 +495,88 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             criteria.add(Restrictions.eq("doctor.id", advancedSearch.getPatientDoctor()));
         }
 
-
 		/* anamnesis specific section */
 
         if (advancedSearch.isAnamnesis()) {
-        /* Fetching and creating alias for sub collection contact anamnesisList*/
+        /* Fetching and creating alias for sub collection anamnesisList */
             criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getAnamnesisEpilepsyInFamily() != 0) {
+            if (advancedSearch.getAnamnesisEpilepsyInFamily() != 3) {
                 if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
                     criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", true));
                 } else {
                     criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", false));
                 }
             }
+
+            if (advancedSearch.getAnamnesisPrenatalRisk() != 3) {
+                if (advancedSearch.getAnamnesisPrenatalRisk() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisFibrilConvulsions() != 3) {
+                if (advancedSearch.getAnamnesisFibrilConvulsions() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisInflammationCns() != 3) {
+                if (advancedSearch.getAnamnesisInflammationCns() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.inflammationCns", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.inflammationCns", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisInjuryCns() != 3) {
+                if (advancedSearch.getAnamnesisInjuryCns() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.injuryCns", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.injuryCns", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisOperationCns() != 3) {
+                if (advancedSearch.getAnamnesisOperationCns() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.operationCns", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.operationCns", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisEarlyPmdRetardation() != 3) {
+                if (advancedSearch.getAnamnesisEarlyPmdRetardation() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisFirstFever() != 3) {
+                if (advancedSearch.getAnamnesisFirstFever() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.firstFever", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.firstFever", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisInfantileSpasm() != 3) {
+                if (advancedSearch.getAnamnesisInfantileSpasm() == 1) {
+                    criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", true));
+                } else {
+                    criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", false));
+                }
+            }
+
+            if (advancedSearch.getAnamnesisSpecificSyndrome() != 0) {
+                criteria.add(Restrictions.eq("anamnesisList.specificSyndrome", advancedSearch.getAnamnesisSpecificSyndrome()));
+            }
+
         }
 
         return (List<PatientEntity>) criteria.list();

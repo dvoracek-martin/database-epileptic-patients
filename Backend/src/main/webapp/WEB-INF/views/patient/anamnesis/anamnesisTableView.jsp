@@ -65,14 +65,6 @@
             </td>
         </tr>
         <tr>
-            <th>
-                <spring:message code="label.beginningEpilepsy"/>
-            </th>
-            <td>
-                ${anamnesisDisplayVo.beginningEpilepsy}
-            </td>
-        </tr>
-        <tr>
             <th class="col-xs-3">
                 <spring:message code="label.firstFever"/>
             </th>

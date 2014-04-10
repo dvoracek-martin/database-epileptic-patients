@@ -395,6 +395,47 @@
         <jsp:param name="messageCode" value="infantileSpasm"/>
     </jsp:include>
 
+    <div class="form-group">
+        <label for="anamnesisSpecificSyndrome" class="col-xs-4 control-label">
+            <spring:message code="label.epilepticSyndrome"/>
+        </label>
+
+        <div class="col-xs-8">
+            <form:select path="anamnesisSpecificSyndrome" id="anamnesisSpecificSyndrome" type="text"
+                         class="form-control input-sm">
+                <form:option value="0">
+                    <spring:message code="label.specificSyndrome.0"/>
+                </form:option>
+                <form:option value="1">
+                    <spring:message code="label.specificSyndrome.1"/>
+                </form:option>
+                <form:option value="2">
+                    <spring:message code="label.specificSyndrome.2"/>
+                </form:option>
+                <form:option value="3">
+                    <spring:message code="label.specificSyndrome.3"/>
+                </form:option>
+                <form:option value="4">
+                    <spring:message code="label.specificSyndrome.4"/>
+                </form:option>
+                <form:option value="5">
+                    <spring:message code="label.specificSyndrome.5"/>
+                </form:option>
+                <form:option value="6">
+                    <spring:message code="label.specificSyndrome.6"/>
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+</fieldset>
+
+<fieldset id="seizureFieldset">
+    <legend>
+        <spring:message code="label.seizures"/>
+    </legend>
+
+
 </fieldset>
 
 <div class="form-group">

@@ -225,7 +225,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        boolean isBeginningOfEpilepsyOk = !patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
+        boolean isBeginningOfEpilepsyOk = patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
         if (result.hasErrors() || !isBeginningOfEpilepsyOk) {
             if (!isBeginningOfEpilepsyOk) {
                 model.addAttribute("begginningEpiNotOk", true);

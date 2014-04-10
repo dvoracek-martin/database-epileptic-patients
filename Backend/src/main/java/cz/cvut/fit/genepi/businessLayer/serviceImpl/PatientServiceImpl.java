@@ -616,6 +616,6 @@ public class PatientServiceImpl
         DateTime beginningEpi = new DateTime(beginningEpilepsy);
         DateTime oldestSeizureDate = new DateTime(oldest);
         Days countOfTheDays = Days.daysBetween(oldestSeizureDate.withTimeAtStartOfDay(), beginningEpi.withTimeAtStartOfDay());
-        return countOfTheDays.getDays() > 0;
+        return countOfTheDays.getDays() < 0; //consider =<
     }
 }
