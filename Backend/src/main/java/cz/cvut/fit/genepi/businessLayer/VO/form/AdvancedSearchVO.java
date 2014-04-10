@@ -118,6 +118,68 @@ public class AdvancedSearchVO {
 
     private int neurologicalFindingVisualFieldDefects;
 
+        /* diagnostic test scalp eeg */
+
+    private int diagnosticTestScalpEegBasicEegActivity;
+
+    private int diagnosticTestScalpEegEegSlow;
+
+    private int diagnosticTestScalpEegInterictalEegSpikes;
+
+    private int diagnosticTestScalpEegEegStatusEpilepticus;
+
+    private int diagnosticTestScalpEegSecondarySidedSynchrony;
+
+    private int diagnosticTestScalpEegIctalEegPatterns;
+
+
+    public int getDiagnosticTestScalpEegBasicEegActivity() {
+        return diagnosticTestScalpEegBasicEegActivity;
+    }
+
+    public void setDiagnosticTestScalpEegBasicEegActivity(int diagnosticTestScalpEegBasicEegActivity) {
+        this.diagnosticTestScalpEegBasicEegActivity = diagnosticTestScalpEegBasicEegActivity;
+    }
+
+    public int getDiagnosticTestScalpEegEegSlow() {
+        return diagnosticTestScalpEegEegSlow;
+    }
+
+    public void setDiagnosticTestScalpEegEegSlow(int diagnosticTestScalpEegEegSlow) {
+        this.diagnosticTestScalpEegEegSlow = diagnosticTestScalpEegEegSlow;
+    }
+
+    public int getDiagnosticTestScalpEegInterictalEegSpikes() {
+        return diagnosticTestScalpEegInterictalEegSpikes;
+    }
+
+    public void setDiagnosticTestScalpEegInterictalEegSpikes(int diagnosticTestScalpEegInterictalEegSpikes) {
+        this.diagnosticTestScalpEegInterictalEegSpikes = diagnosticTestScalpEegInterictalEegSpikes;
+    }
+
+    public int getDiagnosticTestScalpEegEegStatusEpilepticus() {
+        return diagnosticTestScalpEegEegStatusEpilepticus;
+    }
+
+    public void setDiagnosticTestScalpEegEegStatusEpilepticus(int diagnosticTestScalpEegEegStatusEpilepticus) {
+        this.diagnosticTestScalpEegEegStatusEpilepticus = diagnosticTestScalpEegEegStatusEpilepticus;
+    }
+
+    public int getDiagnosticTestScalpEegSecondarySidedSynchrony() {
+        return diagnosticTestScalpEegSecondarySidedSynchrony;
+    }
+
+    public void setDiagnosticTestScalpEegSecondarySidedSynchrony(int diagnosticTestScalpEegSecondarySidedSynchrony) {
+        this.diagnosticTestScalpEegSecondarySidedSynchrony = diagnosticTestScalpEegSecondarySidedSynchrony;
+    }
+
+    public int getDiagnosticTestScalpEegIctalEegPatterns() {
+        return diagnosticTestScalpEegIctalEegPatterns;
+    }
+
+    public void setDiagnosticTestScalpEegIctalEegPatterns(int diagnosticTestScalpEegIctalEegPatterns) {
+        this.diagnosticTestScalpEegIctalEegPatterns = diagnosticTestScalpEegIctalEegPatterns;
+    }
 
     public int getNeurologicalFindingHemisphereDominance() {
         return neurologicalFindingHemisphereDominance;

@@ -53,6 +53,27 @@ $(document).ready(function () {
         }
     });
 
+    var neuropsychologyCheckbox = $("#neuropsychology");
+
+    neuropsychologyCheckbox.click(function () {
+        var neuropsychologyFieldset = $("#neuropsychologyFieldset");
+        if ($(this).prop("checked")) {
+            neuropsychologyFieldset.show();
+        } else {
+            neuropsychologyFieldset.hide();
+        }
+    });
+
+    var diagnosticTestScalpEegCheckbox = $("#diagnosticTestScalpEeg");
+
+    diagnosticTestScalpEegCheckbox.click(function () {
+        var diagnosticTestScalpEegFieldset = $("#diagnosticTestScalpEegFieldset");
+        if ($(this).prop("checked")) {
+            diagnosticTestScalpEegFieldset.show();
+        } else {
+            diagnosticTestScalpEegFieldset.hide();
+        }
+    });
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -66,6 +87,12 @@ $(document).ready(function () {
 
     neurologicalFindingCheckbox.click();
     neurologicalFindingCheckbox.click();
+
+    neuropsychologyCheckbox.click();
+    neuropsychologyCheckbox.click();
+
+    diagnosticTestScalpEegCheckbox.click();
+    diagnosticTestScalpEegCheckbox.click();
 
 
 });

@@ -652,7 +652,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             criteria.createAlias("patient.neurologicalFindingList", "neurologicalFindingList", JoinType.LEFT_OUTER_JOIN);
 
 
-            if(advancedSearch.getNeurologicalFindingHemisphereDominance() != 0){
+            if (advancedSearch.getNeurologicalFindingHemisphereDominance() != 0) {
                 criteria.add(Restrictions.eq("neurologicalFindingList.hemisphereDominance", advancedSearch.getNeurologicalFindingHemisphereDominance()));
             }
 
@@ -678,6 +678,50 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                 } else {
                     criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", false));
                 }
+            }
+        }
+
+          /* neuropsychology specific section */
+        if (advancedSearch.isNeuropsychology()) {
+
+        }
+
+             /* diagnostic test scalp eeg specific section */
+        if (advancedSearch.isDiagnosticTestScalpEeg()) {
+     /* Fetching and creating alias for sub collection neurologicalFindingList */
+            criteria.createAlias("patient.diagnosticTestScalpEegList", "diagnosticTestScalpEegList", JoinType.LEFT_OUTER_JOIN);
+
+
+            if (advancedSearch.getDiagnosticTestScalpEegBasicEegActivity() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.basicEegActivity", advancedSearch.getDiagnosticTestScalpEegBasicEegActivity()));
+            }
+
+            if (advancedSearch.getDiagnosticTestScalpEegEegSlow() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegSlow", advancedSearch.getDiagnosticTestScalpEegEegSlow()));
+            }
+
+            if (advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.interictalEegSpikes", advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes()));
+            }
+
+            if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() != 3) {
+                if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", false));
+                }
+            }
+
+            if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() != 3) {
+                if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", false));
+                }
+            }
+
+            if (advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.ictalEegPatterns", advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns()));
             }
         }
 

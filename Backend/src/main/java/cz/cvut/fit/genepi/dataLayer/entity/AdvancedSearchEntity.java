@@ -174,6 +174,73 @@ public class AdvancedSearchEntity {
     @Column(name = "neurological_finding_visual_field_defects")
     private int neurologicalFindingVisualFieldDefects;
 
+    /* diagnostic test scalp eeg */
+
+    @Column(name = "diagnostic_test_scalp_eeg_basic_eeg_activity")
+    private int diagnosticTestScalpEegBasicEegActivity;
+
+    @Column(name = "diagnostic_test_scalp_eeg_eeg_slow")
+    private int diagnosticTestScalpEegEegSlow;
+
+    @Column(name = "diagnostic_test_scalp_eeg_interictal_eeg_spikes")
+    private int diagnosticTestScalpEegInterictalEegSpikes;
+
+    @Column(name = "diagnostic_test_scalp_eeg_eeg_status_epilepticus")
+    private int diagnosticTestScalpEegEegStatusEpilepticus;
+
+    @Column(name = "diagnostic_test_scalp_eeg_secondary_sided_synchrony")
+    private int diagnosticTestScalpEegSecondarySidedSynchrony;
+
+    @Column(name = "diagnostic_test_scalp_eeg_ictal_eeg_patterns")
+    private int diagnosticTestScalpEegIctalEegPatterns;
+
+    public int getDiagnosticTestScalpEegBasicEegActivity() {
+        return diagnosticTestScalpEegBasicEegActivity;
+    }
+
+    public void setDiagnosticTestScalpEegBasicEegActivity(int diagnosticTestScalpEegBasicEegActivity) {
+        this.diagnosticTestScalpEegBasicEegActivity = diagnosticTestScalpEegBasicEegActivity;
+    }
+
+    public int getDiagnosticTestScalpEegEegSlow() {
+        return diagnosticTestScalpEegEegSlow;
+    }
+
+    public void setDiagnosticTestScalpEegEegSlow(int diagnosticTestScalpEegEegSlow) {
+        this.diagnosticTestScalpEegEegSlow = diagnosticTestScalpEegEegSlow;
+    }
+
+    public int getDiagnosticTestScalpEegInterictalEegSpikes() {
+        return diagnosticTestScalpEegInterictalEegSpikes;
+    }
+
+    public void setDiagnosticTestScalpEegInterictalEegSpikes(int diagnosticTestScalpEegInterictalEegSpikes) {
+        this.diagnosticTestScalpEegInterictalEegSpikes = diagnosticTestScalpEegInterictalEegSpikes;
+    }
+
+    public int getDiagnosticTestScalpEegEegStatusEpilepticus() {
+        return diagnosticTestScalpEegEegStatusEpilepticus;
+    }
+
+    public void setDiagnosticTestScalpEegEegStatusEpilepticus(int diagnosticTestScalpEegEegStatusEpilepticus) {
+        this.diagnosticTestScalpEegEegStatusEpilepticus = diagnosticTestScalpEegEegStatusEpilepticus;
+    }
+
+    public int getDiagnosticTestScalpEegSecondarySidedSynchrony() {
+        return diagnosticTestScalpEegSecondarySidedSynchrony;
+    }
+
+    public void setDiagnosticTestScalpEegSecondarySidedSynchrony(int diagnosticTestScalpEegSecondarySidedSynchrony) {
+        this.diagnosticTestScalpEegSecondarySidedSynchrony = diagnosticTestScalpEegSecondarySidedSynchrony;
+    }
+
+    public int getDiagnosticTestScalpEegIctalEegPatterns() {
+        return diagnosticTestScalpEegIctalEegPatterns;
+    }
+
+    public void setDiagnosticTestScalpEegIctalEegPatterns(int diagnosticTestScalpEegIctalEegPattern) {
+        this.diagnosticTestScalpEegIctalEegPatterns = diagnosticTestScalpEegIctalEegPattern;
+    }
 
     public int getNeurologicalFindingHemisphereDominance() {
         return neurologicalFindingHemisphereDominance;
