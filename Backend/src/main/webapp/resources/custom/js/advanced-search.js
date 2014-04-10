@@ -42,6 +42,17 @@ $(document).ready(function () {
         }
     });
 
+    var neurologicalFindingCheckbox = $("#neurologicalFinding");
+
+    neurologicalFindingCheckbox.click(function () {
+        var neurologicalFindingFieldset = $("#neurologicalFindingFieldset");
+        if ($(this).prop("checked")) {
+            neurologicalFindingFieldset.show();
+        } else {
+            neurologicalFindingFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -52,6 +63,9 @@ $(document).ready(function () {
 
     pharmacotherapyCheckbox.click();
     pharmacotherapyCheckbox.click();
+
+    neurologicalFindingCheckbox.click();
+    neurologicalFindingCheckbox.click();
 
 
 });

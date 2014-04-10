@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -104,7 +105,51 @@ public class AdvancedSearchVO {
     private int seizureSeizureOccurence;
 
     /* pharmacotherapy specific section */
+
     private int[] pharmacotherapyAed;
+
+    /* neurological finding specific section */
+
+    private int neurologicalFindingHemisphereDominance;
+
+    private int neurologicalFindingAbnormalNeurologicalFinding;
+
+    private int neurologicalFindingHemiparesis;
+
+    private int neurologicalFindingVisualFieldDefects;
+
+
+    public int getNeurologicalFindingHemisphereDominance() {
+        return neurologicalFindingHemisphereDominance;
+    }
+
+    public void setNeurologicalFindingHemisphereDominance(int neurologicalFindingHemisphereDominance) {
+        this.neurologicalFindingHemisphereDominance = neurologicalFindingHemisphereDominance;
+    }
+
+    public int getNeurologicalFindingAbnormalNeurologicalFinding() {
+        return neurologicalFindingAbnormalNeurologicalFinding;
+    }
+
+    public void setNeurologicalFindingAbnormalNeurologicalFinding(int neurologicalFindingAbnormalNeurologicalFinding) {
+        this.neurologicalFindingAbnormalNeurologicalFinding = neurologicalFindingAbnormalNeurologicalFinding;
+    }
+
+    public int getNeurologicalFindingHemiparesis() {
+        return neurologicalFindingHemiparesis;
+    }
+
+    public void setNeurologicalFindingHemiparesis(int neurologicalFindingHemiparesis) {
+        this.neurologicalFindingHemiparesis = neurologicalFindingHemiparesis;
+    }
+
+    public int getNeurologicalFindingVisualFieldDefects() {
+        return neurologicalFindingVisualFieldDefects;
+    }
+
+    public void setNeurologicalFindingVisualFieldDefects(int neurologicalFindingVisualFieldDefects) {
+        this.neurologicalFindingVisualFieldDefects = neurologicalFindingVisualFieldDefects;
+    }
 
     public int[] getPharmacotherapyAed() {
         return pharmacotherapyAed;

@@ -646,6 +646,42 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             }
         }
 
+             /* neurological finding specific section */
+        if (advancedSearch.isNeurologicalFinding()) {
+               /* Fetching and creating alias for sub collection neurologicalFindingList */
+            criteria.createAlias("patient.neurologicalFindingList", "neurologicalFindingList", JoinType.LEFT_OUTER_JOIN);
+
+
+            if(advancedSearch.getNeurologicalFindingHemisphereDominance() != 0){
+                criteria.add(Restrictions.eq("neurologicalFindingList.hemisphereDominance", advancedSearch.getNeurologicalFindingHemisphereDominance()));
+            }
+
+            if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() != 3) {
+                if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() == 1) {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", true));
+                } else {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", false));
+                }
+            }
+
+            if (advancedSearch.getNeurologicalFindingHemiparesis() != 3) {
+                if (advancedSearch.getNeurologicalFindingHemiparesis() == 1) {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", true));
+                } else {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", false));
+                }
+            }
+
+            if (advancedSearch.getNeurologicalFindingVisualFieldDefects() != 3) {
+                if (advancedSearch.getNeurologicalFindingVisualFieldDefects() == 1) {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", true));
+                } else {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", false));
+                }
+            }
+        }
+
+
         return (List<PatientEntity>) criteria.list();
     }
 

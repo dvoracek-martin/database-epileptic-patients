@@ -161,6 +161,52 @@ public class AdvancedSearchEntity {
     @Column(name = "pharmacotherapy_aed")
     private String pharmacotherapyAed;
 
+    /* neurological finding specific section */
+    @Column(name = "neurological_finding_hemisphere_dominance")
+    private int neurologicalFindingHemisphereDominance;
+
+    @Column(name = "neurological_finding_abnormal_neurological_finding")
+    private int neurologicalFindingAbnormalNeurologicalFinding;
+
+    @Column(name = "neurological_finding_hemiparesis")
+    private int neurologicalFindingHemiparesis;
+
+    @Column(name = "neurological_finding_visual_field_defects")
+    private int neurologicalFindingVisualFieldDefects;
+
+
+    public int getNeurologicalFindingHemisphereDominance() {
+        return neurologicalFindingHemisphereDominance;
+    }
+
+    public void setNeurologicalFindingHemisphereDominance(int neurologicalFindingHemisphereDominance) {
+        this.neurologicalFindingHemisphereDominance = neurologicalFindingHemisphereDominance;
+    }
+
+    public int getNeurologicalFindingAbnormalNeurologicalFinding() {
+        return neurologicalFindingAbnormalNeurologicalFinding;
+    }
+
+    public void setNeurologicalFindingAbnormalNeurologicalFinding(int neurologicalFindingAbnormalNeurologicalFinding) {
+        this.neurologicalFindingAbnormalNeurologicalFinding = neurologicalFindingAbnormalNeurologicalFinding;
+    }
+
+    public int getNeurologicalFindingHemiparesis() {
+        return neurologicalFindingHemiparesis;
+    }
+
+    public void setNeurologicalFindingHemiparesis(int neurologicalFindingHemiparesis) {
+        this.neurologicalFindingHemiparesis = neurologicalFindingHemiparesis;
+    }
+
+    public int getNeurologicalFindingVisualFieldDefects() {
+        return neurologicalFindingVisualFieldDefects;
+    }
+
+    public void setNeurologicalFindingVisualFieldDefects(int neurologicalFindingVisualFieldDefects) {
+        this.neurologicalFindingVisualFieldDefects = neurologicalFindingVisualFieldDefects;
+    }
+
     public String getPharmacotherapyAed() {
         return pharmacotherapyAed;
     }
