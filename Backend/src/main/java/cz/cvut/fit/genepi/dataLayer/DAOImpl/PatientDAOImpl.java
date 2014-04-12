@@ -688,7 +688,7 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
              /* diagnostic test scalp eeg specific section */
         if (advancedSearch.isDiagnosticTestScalpEeg()) {
-     /* Fetching and creating alias for sub collection neurologicalFindingList */
+     /* Fetching and creating alias for sub collection diagnosticTestScalpEegList */
             criteria.createAlias("patient.diagnosticTestScalpEegList", "diagnosticTestScalpEegList", JoinType.LEFT_OUTER_JOIN);
 
 
@@ -725,6 +725,63 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             }
         }
 
+               /* diagnostic test mri specific section */
+        if (advancedSearch.isDiagnosticTestMri()) {
+     /* Fetching and creating alias for sub collection diagnosticTestMriList */
+            criteria.createAlias("patient.diagnosticTestMRIList", "diagnosticTestMriList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getDiagnosticTestMriMriFinding() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestMriList.mriFinding", advancedSearch.getDiagnosticTestMriMriFinding()));
+            }
+
+            if (advancedSearch.getDiagnosticTestMriFdgPet() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestMriList.fdgPet", advancedSearch.getDiagnosticTestMriFdgPet()));
+            }
+
+            if (advancedSearch.getDiagnosticTestMriInterictalSpect() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestMriList.interictalSpect", advancedSearch.getDiagnosticTestMriInterictalSpect()));
+            }
+
+            if (advancedSearch.getDiagnosticTestMriSiscom() != 3) {
+                if (advancedSearch.getDiagnosticTestMriSiscom() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", false));
+                }
+            }
+
+            if (advancedSearch.getDiagnosticTestMriMrsProtocol() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestMriList.mrsProtocol", advancedSearch.getDiagnosticTestMriMrsProtocol()));
+            }
+
+            if (advancedSearch.getDiagnosticTestMriMrsFinding() != 0) {
+                criteria.add(Restrictions.eq("diagnosticTestMriList.mrsFinding", advancedSearch.getDiagnosticTestMriMrsFinding()));
+            }
+
+            if (advancedSearch.getDiagnosticTestMriDti() != 3) {
+                if (advancedSearch.getDiagnosticTestMriDti() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.dti", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.dti", false));
+                }
+            }
+
+            if (advancedSearch.getDiagnosticTestMriFmri() != 3) {
+                if (advancedSearch.getDiagnosticTestMriFmri() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", false));
+                }
+            }
+
+            if (advancedSearch.getDiagnosticTestMriWada() != 3) {
+                if (advancedSearch.getDiagnosticTestMriWada() == 1) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.wada", true));
+                } else {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.wada", false));
+                }
+            }
+        }
 
         return (List<PatientEntity>) criteria.list();
     }

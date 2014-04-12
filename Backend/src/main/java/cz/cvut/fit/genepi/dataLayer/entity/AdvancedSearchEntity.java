@@ -194,6 +194,108 @@ public class AdvancedSearchEntity {
     @Column(name = "diagnostic_test_scalp_eeg_ictal_eeg_patterns")
     private int diagnosticTestScalpEegIctalEegPatterns;
 
+    /* diagnostic test mri */
+
+    @Column(name = "diagnostic_test_mri_mri_finding")
+    private int diagnosticTestMriMriFinding;
+
+    @Column(name = "diagnostic_test_mri_fdg_pet")
+    private int diagnosticTestMriFdgPet;
+
+    @Column(name = "diagnostic_test_mri_interictal_spect")
+    private int diagnosticTestMriInterictalSpect;
+
+    @Column(name = "diagnostic_test_mri_siscom")
+    private int diagnosticTestMriSiscom;
+
+    @Column(name = "diagnostic_test_mri_mrs_protocol")
+    private int diagnosticTestMriMrsProtocol;
+
+    @Column(name = "diagnostic_test_mri_mrs_finding")
+    private int diagnosticTestMriMrsFinding;
+
+    @Column(name = "diagnostic_test_mri_dti")
+    private int diagnosticTestMriDti;
+
+    @Column(name = "diagnostic_test_mri_fmri")
+    private int diagnosticTestMriFmri;
+
+    @Column(name = "diagnostic_test_mri_wada")
+    private int diagnosticTestMriWada;
+
+
+    public int getDiagnosticTestMriMriFinding() {
+        return diagnosticTestMriMriFinding;
+    }
+
+    public void setDiagnosticTestMriMriFinding(int diagnosticTestMriMriFinding) {
+        this.diagnosticTestMriMriFinding = diagnosticTestMriMriFinding;
+    }
+
+    public int getDiagnosticTestMriFdgPet() {
+        return diagnosticTestMriFdgPet;
+    }
+
+    public void setDiagnosticTestMriFdgPet(int diagnosticTestMriFdgPet) {
+        this.diagnosticTestMriFdgPet = diagnosticTestMriFdgPet;
+    }
+
+    public int getDiagnosticTestMriInterictalSpect() {
+        return diagnosticTestMriInterictalSpect;
+    }
+
+    public void setDiagnosticTestMriInterictalSpect(int diagnosticTestMriInterictalSpect) {
+        this.diagnosticTestMriInterictalSpect = diagnosticTestMriInterictalSpect;
+    }
+
+    public int getDiagnosticTestMriSiscom() {
+        return diagnosticTestMriSiscom;
+    }
+
+    public void setDiagnosticTestMriSiscom(int diagnosticTestMriSiscom) {
+        this.diagnosticTestMriSiscom = diagnosticTestMriSiscom;
+    }
+
+    public int getDiagnosticTestMriMrsProtocol() {
+        return diagnosticTestMriMrsProtocol;
+    }
+
+    public void setDiagnosticTestMriMrsProtocol(int diagnosticTestMriMrsProtocol) {
+        this.diagnosticTestMriMrsProtocol = diagnosticTestMriMrsProtocol;
+    }
+
+    public int getDiagnosticTestMriMrsFinding() {
+        return diagnosticTestMriMrsFinding;
+    }
+
+    public void setDiagnosticTestMriMrsFinding(int diagnosticTestMriMrsFinding) {
+        this.diagnosticTestMriMrsFinding = diagnosticTestMriMrsFinding;
+    }
+
+    public int getDiagnosticTestMriDti() {
+        return diagnosticTestMriDti;
+    }
+
+    public void setDiagnosticTestMriDti(int diagnosticTestMriDti) {
+        this.diagnosticTestMriDti = diagnosticTestMriDti;
+    }
+
+    public int getDiagnosticTestMriFmri() {
+        return diagnosticTestMriFmri;
+    }
+
+    public void setDiagnosticTestMriFmri(int diagnosticTestMriFmri) {
+        this.diagnosticTestMriFmri = diagnosticTestMriFmri;
+    }
+
+    public int getDiagnosticTestMriWada() {
+        return diagnosticTestMriWada;
+    }
+
+    public void setDiagnosticTestMriWada(int diagnosticTestMriWada) {
+        this.diagnosticTestMriWada = diagnosticTestMriWada;
+    }
+
     public int getDiagnosticTestScalpEegBasicEegActivity() {
         return diagnosticTestScalpEegBasicEegActivity;
     }

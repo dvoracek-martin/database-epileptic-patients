@@ -133,6 +133,98 @@ public class AdvancedSearchVO {
     private int diagnosticTestScalpEegIctalEegPatterns;
 
 
+        /* diagnostic test mri */
+
+    private int diagnosticTestMriMriFinding;
+
+    private int diagnosticTestMriFdgPet;
+
+    private int diagnosticTestMriInterictalSpect;
+
+    private int diagnosticTestMriSiscom;
+
+    private int diagnosticTestMriMrsProtocol;
+
+    private int diagnosticTestMriMrsFinding;
+
+    private int diagnosticTestMriDti;
+
+    private int diagnosticTestMriFmri;
+
+    private int diagnosticTestMriWada;
+
+    public int getDiagnosticTestMriMriFinding() {
+        return diagnosticTestMriMriFinding;
+    }
+
+    public void setDiagnosticTestMriMriFinding(int diagnosticTestMriMriFinding) {
+        this.diagnosticTestMriMriFinding = diagnosticTestMriMriFinding;
+    }
+
+    public int getDiagnosticTestMriFdgPet() {
+        return diagnosticTestMriFdgPet;
+    }
+
+    public void setDiagnosticTestMriFdgPet(int diagnosticTestMriFdgPet) {
+        this.diagnosticTestMriFdgPet = diagnosticTestMriFdgPet;
+    }
+
+    public int getDiagnosticTestMriInterictalSpect() {
+        return diagnosticTestMriInterictalSpect;
+    }
+
+    public void setDiagnosticTestMriInterictalSpect(int diagnosticTestMriInterictalSpect) {
+        this.diagnosticTestMriInterictalSpect = diagnosticTestMriInterictalSpect;
+    }
+
+    public int getDiagnosticTestMriSiscom() {
+        return diagnosticTestMriSiscom;
+    }
+
+    public void setDiagnosticTestMriSiscom(int diagnosticTestMriSiscom) {
+        this.diagnosticTestMriSiscom = diagnosticTestMriSiscom;
+    }
+
+    public int getDiagnosticTestMriMrsProtocol() {
+        return diagnosticTestMriMrsProtocol;
+    }
+
+    public void setDiagnosticTestMriMrsProtocol(int diagnosticTestMriMrsProtocol) {
+        this.diagnosticTestMriMrsProtocol = diagnosticTestMriMrsProtocol;
+    }
+
+    public int getDiagnosticTestMriMrsFinding() {
+        return diagnosticTestMriMrsFinding;
+    }
+
+    public void setDiagnosticTestMriMrsFinding(int diagnosticTestMriMrsFinding) {
+        this.diagnosticTestMriMrsFinding = diagnosticTestMriMrsFinding;
+    }
+
+    public int getDiagnosticTestMriDti() {
+        return diagnosticTestMriDti;
+    }
+
+    public void setDiagnosticTestMriDti(int diagnosticTestMriDti) {
+        this.diagnosticTestMriDti = diagnosticTestMriDti;
+    }
+
+    public int getDiagnosticTestMriFmri() {
+        return diagnosticTestMriFmri;
+    }
+
+    public void setDiagnosticTestMriFmri(int diagnosticTestMriFmri) {
+        this.diagnosticTestMriFmri = diagnosticTestMriFmri;
+    }
+
+    public int getDiagnosticTestMriWada() {
+        return diagnosticTestMriWada;
+    }
+
+    public void setDiagnosticTestMriWada(int diagnosticTestMriWada) {
+        this.diagnosticTestMriWada = diagnosticTestMriWada;
+    }
+
     public int getDiagnosticTestScalpEegBasicEegActivity() {
         return diagnosticTestScalpEegBasicEegActivity;
     }

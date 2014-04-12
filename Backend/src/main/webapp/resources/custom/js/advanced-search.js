@@ -75,6 +75,18 @@ $(document).ready(function () {
         }
     });
 
+    var diagnosticTestMriCheckbox = $("#diagnosticTestMri");
+
+    diagnosticTestMriCheckbox.click(function () {
+        var diagnosticTestMriFieldset = $("#diagnosticTestMriFieldset");
+        if ($(this).prop("checked")) {
+            diagnosticTestMriFieldset.show();
+        } else {
+            diagnosticTestMriFieldset.hide();
+        }
+    });
+
+
     /* trigger events */
     anamnesisCheckbox.click();
     anamnesisCheckbox.click();
@@ -93,6 +105,9 @@ $(document).ready(function () {
 
     diagnosticTestScalpEegCheckbox.click();
     diagnosticTestScalpEegCheckbox.click();
+
+    diagnosticTestMriCheckbox.click();
+    diagnosticTestMriCheckbox.click();
 
 
 });
