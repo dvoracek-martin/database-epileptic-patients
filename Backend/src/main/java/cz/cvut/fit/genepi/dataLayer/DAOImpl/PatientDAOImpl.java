@@ -833,6 +833,81 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             criteria.createAlias("patient.invasiveTestCorticalMappingList", "invasiveTestCorticalMappingList", JoinType.LEFT_OUTER_JOIN);
         }
 
+                            /* operation specific section */
+        if (advancedSearch.isOperation()) {
+     /* Fetching and creating alias for sub collection operationList */
+            criteria.createAlias("patient.operationList", "operationList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getOperationTypeOperation() != 0) {
+                criteria.add(Restrictions.eq("operationList.typeOperation", advancedSearch.getOperationTypeOperation()));
+            }
+
+            if (advancedSearch.getOperationRangeOperation() != 0) {
+                criteria.add(Restrictions.eq("operationList.rangeOperation", advancedSearch.getOperationRangeOperation()));
+            }
+
+            if (advancedSearch.getOperationMst() != 3) {
+                if (advancedSearch.getOperationMst() == 1) {
+                    criteria.add(Restrictions.eq("operationList.mst", true));
+                } else {
+                    criteria.add(Restrictions.eq("operationList.mst", false));
+                }
+            }
+
+            if (advancedSearch.getOperationColostomy() != 3) {
+                if (advancedSearch.getOperationColostomy() == 1) {
+                    criteria.add(Restrictions.eq("operationList.colostomy", true));
+                } else {
+                    criteria.add(Restrictions.eq("operationList.colostomy", false));
+                }
+            }
+
+            if (advancedSearch.getOperationVns() != 3) {
+                if (advancedSearch.getOperationVns() == 1) {
+                    criteria.add(Restrictions.eq("operationList.vns", true));
+                } else {
+                    criteria.add(Restrictions.eq("operationList.vns", false));
+                }
+            }
+
+            if (advancedSearch.getOperationCompleteResection() != 3) {
+                if (advancedSearch.getOperationCompleteResection() == 1) {
+                    criteria.add(Restrictions.eq("operationList.completeResection", true));
+                } else {
+                    criteria.add(Restrictions.eq("operationList.completeResection", false));
+                }
+            }
+
+        }
+
+                                /* histology specific section */
+        if (advancedSearch.isHistology()) {
+     /* Fetching and creating alias for sub collection histologyList */
+            criteria.createAlias("patient.histologyList", "histologyList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getHistologyHistopathology() != 0) {
+                criteria.add(Restrictions.eq("histologyList.histopathology", advancedSearch.getHistologyHistopathology()));
+            }
+
+            if (advancedSearch.getHistologyFcdClassification() != 0) {
+                criteria.add(Restrictions.eq("histologyList.fcdClassification", advancedSearch.getHistologyFcdClassification()));
+            }
+        }
+
+                                    /* complication specific section */
+        if (advancedSearch.isComplication()) {
+     /* Fetching and creating alias for sub collection complicationList */
+            criteria.createAlias("patient.complicationList", "complicationList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getComplicationComplicationType() != 0) {
+                criteria.add(Restrictions.eq("complicationList.complicationType", advancedSearch.getComplicationComplicationType()));
+            }
+
+            if (advancedSearch.getComplicationComplication() != 0) {
+                criteria.add(Restrictions.eq("complicationList.complication", advancedSearch.getComplicationComplication()));
+            }
+        }
+
         return (List<PatientEntity>) criteria.list();
     }
 

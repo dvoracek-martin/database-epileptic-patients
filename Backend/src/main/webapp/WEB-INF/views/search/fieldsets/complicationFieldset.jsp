@@ -1,51 +1,15 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div class="form-group">
-    <label for="date" class="col-xs-4 control-label">
-        <spring:message code="label.dateExamination"/>*
-    </label>
+<fieldset id="complicationFieldset">
+    <legend>
+        <spring:message code="label.complication"/>
+    </legend>
 
-    <div class="col-xs-8">
-        <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
-            <span class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-            </span>
-        </div>
-        <form:errors path="date" cssClass="text-danger"/>
-        <c:if test="${dateBeforeBirth}">
-            <span id="date.errors" class="text-danger">
-                <spring:message code="label.cannotBeBeforeBirth"/>
-            </span>
-        </c:if>
-    </div>
-</div>
-
-<div class="form-group">
-    <label class="col-xs-4 control-label" for="process">
-        <spring:message code="label.process"/>
-    </label>
-
-    <div class="col-xs-8">
-        <form:select path="withComplication" id="process" type="text" class="form-control input-sm">
-            <form:option value="0">
-                <spring:message code="label.process.0"/>
-            </form:option>
-            <form:option value="1">
-                <spring:message code="label.process.1"/>
-            </form:option>
-            <form:option value="2">
-                <spring:message code="label.process.2"/>
-            </form:option>
-        </form:select>
-    </div>
-</div>
-
-<div id="section-with-complication">
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="complicationType">
@@ -53,7 +17,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complicationType" id="complicationType" type="text" class="form-control input-sm">
+            <form:select path="complicationComplicationType" id="complicationType" type="text" class="form-control input-sm">
                 <form:option value="0">
                     <spring:message code="label.complicationType.0"/>
                 </form:option>
@@ -76,7 +40,7 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complication" id="complication" type="text" class="form-control input-sm">
+            <form:select path="complicationComplication" id="complication" type="text" class="form-control input-sm">
                 <form:option value="0">
                     <spring:message code="label.complication.0"/>
                 </form:option>
@@ -117,13 +81,4 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-xs-4 control-label" for="comment">
-            <spring:message code="label.comment"/>
-        </label>
-
-        <div class="col-xs-8">
-            <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
-        </div>
-    </div>
-</div>
+</fieldset>

@@ -65,6 +65,12 @@
 
             <jsp:include page="fieldsets/invasiveTestCorticalMappingFieldset.jsp" />
 
+            <jsp:include page="fieldsets/operationFieldset.jsp" />
+
+            <jsp:include page="fieldsets/histologyFieldset.jsp" />
+
+            <jsp:include page="fieldsets/complicationFieldset.jsp" />
+
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
                     <button id="searchButton" class="btn btn-primary" type="submit">

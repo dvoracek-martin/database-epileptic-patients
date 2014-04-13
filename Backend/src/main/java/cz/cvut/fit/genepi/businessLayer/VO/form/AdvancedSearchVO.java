@@ -175,6 +175,108 @@ public class AdvancedSearchVO {
 
     /* invasive test cortical mapping */
 
+    /* operation */
+    private int operationTypeOperation;
+
+    private int operationRangeOperation;
+
+    private int operationMst;
+
+    private int operationColostomy;
+
+    private int operationVns;
+
+    private int operationCompleteResection;
+
+    /* histology */
+    private int histologyHistopathology;
+
+    private int histologyFcdClassification;
+
+    /* complication */
+    private int complicationComplicationType;
+
+    private int complicationComplication;
+
+    public int getOperationTypeOperation() {
+        return operationTypeOperation;
+    }
+
+    public void setOperationTypeOperation(int operationTypeOperation) {
+        this.operationTypeOperation = operationTypeOperation;
+    }
+
+    public int getOperationRangeOperation() {
+        return operationRangeOperation;
+    }
+
+    public void setOperationRangeOperation(int operationRangeOperation) {
+        this.operationRangeOperation = operationRangeOperation;
+    }
+
+    public int getOperationMst() {
+        return operationMst;
+    }
+
+    public void setOperationMst(int operationMst) {
+        this.operationMst = operationMst;
+    }
+
+    public int getOperationColostomy() {
+        return operationColostomy;
+    }
+
+    public void setOperationColostomy(int operationColostomy) {
+        this.operationColostomy = operationColostomy;
+    }
+
+    public int getOperationVns() {
+        return operationVns;
+    }
+
+    public void setOperationVns(int operationVns) {
+        this.operationVns = operationVns;
+    }
+
+    public int getOperationCompleteResection() {
+        return operationCompleteResection;
+    }
+
+    public void setOperationCompleteResection(int operationCompleteResection) {
+        this.operationCompleteResection = operationCompleteResection;
+    }
+
+    public int getHistologyHistopathology() {
+        return histologyHistopathology;
+    }
+
+    public void setHistologyHistopathology(int histologyHistopathology) {
+        this.histologyHistopathology = histologyHistopathology;
+    }
+
+    public int getHistologyFcdClassification() {
+        return histologyFcdClassification;
+    }
+
+    public void setHistologyFcdClassification(int histologyFcdClassification) {
+        this.histologyFcdClassification = histologyFcdClassification;
+    }
+
+    public int getComplicationComplicationType() {
+        return complicationComplicationType;
+    }
+
+    public void setComplicationComplicationType(int complicationComplicationType) {
+        this.complicationComplicationType = complicationComplicationType;
+    }
+
+    public int getComplicationComplication() {
+        return complicationComplication;
+    }
+
+    public void setComplicationComplication(int complicationComplication) {
+        this.complicationComplication = complicationComplication;
+    }
 
     public int getInvasiveTestEegIntracranialElectrodes() {
         return invasiveTestEegIntracranialElectrodes;

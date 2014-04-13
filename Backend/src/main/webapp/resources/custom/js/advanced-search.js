@@ -119,6 +119,39 @@ $(document).ready(function () {
         }
     });
 
+    var operationCheckbox = $("#operation");
+
+    operationCheckbox.click(function () {
+        var  operationFieldset = $("#operationFieldset");
+        if ($(this).prop("checked")) {
+            operationFieldset.show();
+        } else {
+            operationFieldset.hide();
+        }
+    });
+
+    var histologyCheckbox = $("#histology");
+
+    histologyCheckbox.click(function () {
+        var  histologyFieldset = $("#histologyFieldset");
+        if ($(this).prop("checked")) {
+            histologyFieldset.show();
+        } else {
+            histologyFieldset.hide();
+        }
+    });
+
+    var complicationCheckbox = $("#complication");
+
+    complicationCheckbox.click(function () {
+        var  complicationFieldset = $("#complicationFieldset");
+        if ($(this).prop("checked")) {
+            complicationFieldset.show();
+        } else {
+            complicationFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -151,7 +184,13 @@ $(document).ready(function () {
     invasiveTestCorticalMappingCheckbox.click();
     invasiveTestCorticalMappingCheckbox.click();
 
+    operationCheckbox.click();
+    operationCheckbox.click();
 
+    histologyCheckbox.click();
+    histologyCheckbox.click();
 
+    complicationCheckbox.click();
+    complicationCheckbox.click();
 
 });

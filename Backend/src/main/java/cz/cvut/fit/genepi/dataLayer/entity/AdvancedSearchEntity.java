@@ -251,7 +251,118 @@ public class AdvancedSearchEntity {
     @Column(name = "invasive_test_ecog_after_resection_ecog")
     private int invasiveTestEcogAfterResectionEcog;
 
-    /* invasive test cortival mapping */
+    /* invasive test cortical mapping */
+
+    /* operation */
+    @Column(name = "operation_type_operation")
+    private int operationTypeOperation;
+
+    @Column(name = "operation_range_operation")
+    private int operationRangeOperation;
+
+    @Column(name = "operation_mst")
+    private int operationMst;
+
+    @Column(name = "operation_colostomy")
+    private int operationColostomy;
+
+    @Column(name = "operation_vns")
+    private int operationVns;
+
+    @Column(name = "operation_complete_resection")
+    private int operationCompleteResection;
+
+    /* histology */
+    @Column(name = "histology_histopathology")
+    private int histologyHistopathology;
+    @Column(name = "histology_fcd_classification")
+    private int histologyFcdClassification;
+
+    /* complication */
+    @Column(name = "complication_complication_type")
+    private int complicationComplicationType;
+    @Column(name = "complication_complication")
+    private int complicationComplication;
+
+    public int getOperationTypeOperation() {
+        return operationTypeOperation;
+    }
+
+    public void setOperationTypeOperation(int operationTypeOperation) {
+        this.operationTypeOperation = operationTypeOperation;
+    }
+
+    public int getOperationRangeOperation() {
+        return operationRangeOperation;
+    }
+
+    public void setOperationRangeOperation(int operationRangeOperation) {
+        this.operationRangeOperation = operationRangeOperation;
+    }
+
+    public int getOperationMst() {
+        return operationMst;
+    }
+
+    public void setOperationMst(int operationMst) {
+        this.operationMst = operationMst;
+    }
+
+    public int getOperationColostomy() {
+        return operationColostomy;
+    }
+
+    public void setOperationColostomy(int operationColostomy) {
+        this.operationColostomy = operationColostomy;
+    }
+
+    public int getOperationVns() {
+        return operationVns;
+    }
+
+    public void setOperationVns(int operationVns) {
+        this.operationVns = operationVns;
+    }
+
+    public int getOperationCompleteResection() {
+        return operationCompleteResection;
+    }
+
+    public void setOperationCompleteResection(int operationCompleteResection) {
+        this.operationCompleteResection = operationCompleteResection;
+    }
+
+    public int getHistologyHistopathology() {
+        return histologyHistopathology;
+    }
+
+    public void setHistologyHistopathology(int histologyHistopathology) {
+        this.histologyHistopathology = histologyHistopathology;
+    }
+
+    public int getHistologyFcdClassification() {
+        return histologyFcdClassification;
+    }
+
+    public void setHistologyFcdClassification(int histologyFcdClassification) {
+        this.histologyFcdClassification = histologyFcdClassification;
+    }
+
+    public int getComplicationComplicationType() {
+        return complicationComplicationType;
+    }
+
+    public void setComplicationComplicationType(int complicationComplicationType) {
+        this.complicationComplicationType = complicationComplicationType;
+    }
+
+    public int getComplicationComplication() {
+        return complicationComplication;
+    }
+
+    public void setComplicationComplication(int complicationComplication) {
+        this.complicationComplication = complicationComplication;
+    }
 
     public int getInvasiveTestEegIntracranialElectrodes() {
         return invasiveTestEegIntracranialElectrodes;
