@@ -1,7 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -42,6 +41,7 @@ public class AdvancedSearchVO {
 
     private int patientDoctor;
 
+    /* include parameters from */
     private boolean anamnesis;
 
     private boolean seizure;
@@ -59,6 +59,8 @@ public class AdvancedSearchVO {
     private boolean invasiveTestEeg;
 
     private boolean invasiveTestEcog;
+
+    private boolean invasiveTestCorticalMapping;
 
     private boolean operation;
 
@@ -152,6 +154,83 @@ public class AdvancedSearchVO {
     private int diagnosticTestMriFmri;
 
     private int diagnosticTestMriWada;
+
+    /* invasive test eeg */
+
+    private int invasiveTestEegIntracranialElectrodes;
+
+    private int invasiveTestEegInvasiveEegSlow;
+
+    private int invasiveTestEegInvasiveEegInterictalSpikes;
+
+    private int invasiveTestEegInvasiveEegStatusEpilepticus;
+
+    private int invasiveTestEegInvasiveIctalEegPatterns;
+
+    /* invasive test ecog */
+
+    private int invasiveTestEcogEcogPatterns;
+
+    private int invasiveTestEcogAfterResectionEcog;
+
+    /* invasive test cortical mapping */
+
+
+    public int getInvasiveTestEegIntracranialElectrodes() {
+        return invasiveTestEegIntracranialElectrodes;
+    }
+
+    public void setInvasiveTestEegIntracranialElectrodes(int invasiveTestEegIntracranialElectrodes) {
+        this.invasiveTestEegIntracranialElectrodes = invasiveTestEegIntracranialElectrodes;
+    }
+
+    public int getInvasiveTestEegInvasiveEegSlow() {
+        return invasiveTestEegInvasiveEegSlow;
+    }
+
+    public void setInvasiveTestEegInvasiveEegSlow(int invasiveTestEegInvasiveEegSlow) {
+        this.invasiveTestEegInvasiveEegSlow = invasiveTestEegInvasiveEegSlow;
+    }
+
+    public int getInvasiveTestEegInvasiveEegInterictalSpikes() {
+        return invasiveTestEegInvasiveEegInterictalSpikes;
+    }
+
+    public void setInvasiveTestEegInvasiveEegInterictalSpikes(int invasiveTestEegInvasiveEegInterictalSpikes) {
+        this.invasiveTestEegInvasiveEegInterictalSpikes = invasiveTestEegInvasiveEegInterictalSpikes;
+    }
+
+    public int getInvasiveTestEegInvasiveEegStatusEpilepticus() {
+        return invasiveTestEegInvasiveEegStatusEpilepticus;
+    }
+
+    public void setInvasiveTestEegInvasiveEegStatusEpilepticus(int invasiveTestEegInvasiveEegStatusEpilepticus) {
+        this.invasiveTestEegInvasiveEegStatusEpilepticus = invasiveTestEegInvasiveEegStatusEpilepticus;
+    }
+
+    public int getInvasiveTestEegInvasiveIctalEegPatterns() {
+        return invasiveTestEegInvasiveIctalEegPatterns;
+    }
+
+    public void setInvasiveTestEegInvasiveIctalEegPatterns(int invasiveTestEegInvasiveIctalEegPatterns) {
+        this.invasiveTestEegInvasiveIctalEegPatterns = invasiveTestEegInvasiveIctalEegPatterns;
+    }
+
+    public int getInvasiveTestEcogEcogPatterns() {
+        return invasiveTestEcogEcogPatterns;
+    }
+
+    public void setInvasiveTestEcogEcogPatterns(int invasiveTestEcogEcogPatterns) {
+        this.invasiveTestEcogEcogPatterns = invasiveTestEcogEcogPatterns;
+    }
+
+    public int getInvasiveTestEcogAfterResectionEcog() {
+        return invasiveTestEcogAfterResectionEcog;
+    }
+
+    public void setInvasiveTestEcogAfterResectionEcog(int invasiveTestEcogAfterResectionEcog) {
+        this.invasiveTestEcogAfterResectionEcog = invasiveTestEcogAfterResectionEcog;
+    }
 
     public int getDiagnosticTestMriMriFinding() {
         return diagnosticTestMriMriFinding;
@@ -664,5 +743,13 @@ public class AdvancedSearchVO {
 
     public void setAnamnesisSpecificSyndrome(int anamnesisSpecificSyndrome) {
         this.anamnesisSpecificSyndrome = anamnesisSpecificSyndrome;
+    }
+
+    public boolean isInvasiveTestCorticalMapping() {
+        return invasiveTestCorticalMapping;
+    }
+
+    public void setInvasiveTestCorticalMapping(boolean invasiveTestCorticalMapping) {
+        this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
     }
 }

@@ -59,6 +59,12 @@
 
             <jsp:include page="fieldsets/diagnosticTestMriFieldset.jsp" />
 
+            <jsp:include page="fieldsets/invasiveTestEegFieldset.jsp" />
+
+            <jsp:include page="fieldsets/invasiveTestEcogFieldset.jsp" />
+
+            <jsp:include page="fieldsets/invasiveTestCorticalMappingFieldset.jsp" />
+
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
                     <button id="searchButton" class="btn btn-primary" type="submit">

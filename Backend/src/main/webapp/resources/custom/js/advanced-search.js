@@ -86,6 +86,39 @@ $(document).ready(function () {
         }
     });
 
+    var invasiveTestEegCheckbox = $("#invasiveTestEeg");
+
+    invasiveTestEegCheckbox.click(function () {
+        var  invasiveTestEegFieldset = $("#invasiveTestEegFieldset");
+        if ($(this).prop("checked")) {
+            invasiveTestEegFieldset.show();
+        } else {
+            invasiveTestEegFieldset.hide();
+        }
+    });
+
+    var invasiveTestEcogCheckbox = $("#invasiveTestEcog");
+
+    invasiveTestEcogCheckbox.click(function () {
+        var  invasiveTestEcogFieldset = $("#invasiveTestEcogFieldset");
+        if ($(this).prop("checked")) {
+            invasiveTestEcogFieldset.show();
+        } else {
+            invasiveTestEcogFieldset.hide();
+        }
+    });
+
+    var invasiveTestCorticalMappingCheckbox = $("#invasiveTestCorticalMapping");
+
+    invasiveTestCorticalMappingCheckbox.click(function () {
+        var  invasiveTestCorticalMappingFieldset = $("#invasiveTestCorticalMappingFieldset");
+        if ($(this).prop("checked")) {
+            invasiveTestCorticalMappingFieldset.show();
+        } else {
+            invasiveTestCorticalMappingFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -108,6 +141,17 @@ $(document).ready(function () {
 
     diagnosticTestMriCheckbox.click();
     diagnosticTestMriCheckbox.click();
+
+    invasiveTestEegCheckbox.click();
+    invasiveTestEegCheckbox.click();
+
+    invasiveTestEcogCheckbox.click();
+    invasiveTestEcogCheckbox.click();
+
+    invasiveTestCorticalMappingCheckbox.click();
+    invasiveTestCorticalMappingCheckbox.click();
+
+
 
 
 });

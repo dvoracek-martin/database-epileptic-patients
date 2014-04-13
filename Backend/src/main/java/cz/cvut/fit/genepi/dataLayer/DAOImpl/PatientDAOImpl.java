@@ -783,6 +783,56 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             }
         }
 
+                       /* invasive test eeg specific section */
+        if (advancedSearch.isInvasiveTestEeg()) {
+     /* Fetching and creating alias for sub collection invasiveTestEegList */
+            criteria.createAlias("patient.invasiveTestEEGList", "invasiveTestEegList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getInvasiveTestEegIntracranialElectrodes() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEegList.intracranialElectrodes", advancedSearch.getInvasiveTestEegIntracranialElectrodes()));
+            }
+
+            if (advancedSearch.getInvasiveTestEegInvasiveEegSlow() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegSlow", advancedSearch.getInvasiveTestEegInvasiveEegSlow()));
+            }
+
+            if (advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegInterictalSpikes", advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes()));
+            }
+
+            if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() != 3) {
+                if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() == 1) {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", true));
+                } else {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", false));
+                }
+            }
+
+            if (advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveIctalEegPatterns", advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns()));
+            }
+        }
+
+                              /* invasive test ecog specific section */
+        if (advancedSearch.isInvasiveTestEcog()) {
+     /* Fetching and creating alias for sub collection invasiveTestEcogList */
+            criteria.createAlias("patient.invasiveTestECOGList", "invasiveTestEcogList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getInvasiveTestEcogEcogPatterns() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEcogList.ecogPatterns", advancedSearch.getInvasiveTestEcogEcogPatterns()));
+            }
+
+            if (advancedSearch.getInvasiveTestEcogAfterResectionEcog() != 0) {
+                criteria.add(Restrictions.eq("invasiveTestEcogList.afterResectionEcog", advancedSearch.getInvasiveTestEcogAfterResectionEcog()));
+            }
+        }
+
+                              /* invasive test corticalMapping specific section */
+        if (advancedSearch.isInvasiveTestCorticalMapping()) {
+     /* Fetching and creating alias for sub collection invasiveTestCorticalMappingList */
+            criteria.createAlias("patient.invasiveTestCorticalMappingList", "invasiveTestCorticalMappingList", JoinType.LEFT_OUTER_JOIN);
+        }
+
         return (List<PatientEntity>) criteria.list();
     }
 

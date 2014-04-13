@@ -56,6 +56,11 @@
     </jsp:include>
 
     <jsp:include page="../../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="invasiveTestCorticalMapping"/>
+        <jsp:param name="messageCode" value="invasiveTestCorticalMapping"/>
+    </jsp:include>
+
+    <jsp:include page="../../components/checkboxComponentView.jsp">
         <jsp:param name="propertyName" value="operation"/>
         <jsp:param name="messageCode" value="operation"/>
     </jsp:include>

@@ -91,6 +91,9 @@ public class AdvancedSearchEntity {
     @Column(name = "invasive_test_ecog")
     private boolean invasiveTestEcog;
 
+    @Column(name = "invasive_test_cortical_mapping")
+    private boolean invasiveTestCorticalMapping;
+
     @Column(name = "operation")
     private boolean operation;
 
@@ -223,6 +226,88 @@ public class AdvancedSearchEntity {
     @Column(name = "diagnostic_test_mri_wada")
     private int diagnosticTestMriWada;
 
+    /* invasive test eeg */
+
+    @Column(name = "invasive_test_eeg_intracranial_electrodes")
+    private int invasiveTestEegIntracranialElectrodes;
+
+    @Column(name = "invasive_test_eeg_invasive_eeg_slow")
+    private int invasiveTestEegInvasiveEegSlow;
+
+    @Column(name = "invasive_test_eeg_invasive_eeg_interictal_spikes")
+    private int invasiveTestEegInvasiveEegInterictalSpikes;
+
+    @Column(name = "invasive_test_eeg_invasive_eeg_status_epilepticus")
+    private int invasiveTestEegInvasiveEegStatusEpilepticus;
+
+    @Column(name = "invasive_test_eeg_invasive_ictal_eeg_patterns")
+    private int invasiveTestEegInvasiveIctalEegPatterns;
+
+    /* invasive test ecog */
+
+    @Column(name = "invasive_test_ecog_ecog_patterns")
+    private int invasiveTestEcogEcogPatterns;
+
+    @Column(name = "invasive_test_ecog_after_resection_ecog")
+    private int invasiveTestEcogAfterResectionEcog;
+
+    /* invasive test cortival mapping */
+
+    public int getInvasiveTestEegIntracranialElectrodes() {
+        return invasiveTestEegIntracranialElectrodes;
+    }
+
+    public void setInvasiveTestEegIntracranialElectrodes(int invasiveTestEegIntracranialElectrodes) {
+        this.invasiveTestEegIntracranialElectrodes = invasiveTestEegIntracranialElectrodes;
+    }
+
+    public int getInvasiveTestEegInvasiveEegSlow() {
+        return invasiveTestEegInvasiveEegSlow;
+    }
+
+    public void setInvasiveTestEegInvasiveEegSlow(int invasiveTestEegInvasiveEegSlow) {
+        this.invasiveTestEegInvasiveEegSlow = invasiveTestEegInvasiveEegSlow;
+    }
+
+    public int getInvasiveTestEegInvasiveEegInterictalSpikes() {
+        return invasiveTestEegInvasiveEegInterictalSpikes;
+    }
+
+    public void setInvasiveTestEegInvasiveEegInterictalSpikes(int invasiveTestEegInvasiveEegInterictalSpikes) {
+        this.invasiveTestEegInvasiveEegInterictalSpikes = invasiveTestEegInvasiveEegInterictalSpikes;
+    }
+
+    public int getInvasiveTestEegInvasiveEegStatusEpilepticus() {
+        return invasiveTestEegInvasiveEegStatusEpilepticus;
+    }
+
+    public void setInvasiveTestEegInvasiveEegStatusEpilepticus(int invasiveTestEegInvasiveEegStatusEpilepticus) {
+        this.invasiveTestEegInvasiveEegStatusEpilepticus = invasiveTestEegInvasiveEegStatusEpilepticus;
+    }
+
+    public int getInvasiveTestEegInvasiveIctalEegPatterns() {
+        return invasiveTestEegInvasiveIctalEegPatterns;
+    }
+
+    public void setInvasiveTestEegInvasiveIctalEegPatterns(int invasiveTestEegInvasiveIctalEegPatterns) {
+        this.invasiveTestEegInvasiveIctalEegPatterns = invasiveTestEegInvasiveIctalEegPatterns;
+    }
+
+    public int getInvasiveTestEcogEcogPatterns() {
+        return invasiveTestEcogEcogPatterns;
+    }
+
+    public void setInvasiveTestEcogEcogPatterns(int invasiveTestEcogEcogPatterns) {
+        this.invasiveTestEcogEcogPatterns = invasiveTestEcogEcogPatterns;
+    }
+
+    public int getInvasiveTestEcogAfterResectionEcog() {
+        return invasiveTestEcogAfterResectionEcog;
+    }
+
+    public void setInvasiveTestEcogAfterResectionEcog(int invasiveTestEcogAfterResectionEcog) {
+        this.invasiveTestEcogAfterResectionEcog = invasiveTestEcogAfterResectionEcog;
+    }
 
     public int getDiagnosticTestMriMriFinding() {
         return diagnosticTestMriMriFinding;
@@ -752,5 +837,13 @@ public class AdvancedSearchEntity {
 
     public void setAnamnesisSpecificSyndrome(int anamnesisSpecificSyndrome) {
         this.anamnesisSpecificSyndrome = anamnesisSpecificSyndrome;
+    }
+
+    public boolean isInvasiveTestCorticalMapping() {
+        return invasiveTestCorticalMapping;
+    }
+
+    public void setInvasiveTestCorticalMapping(boolean invasiveTestCorticalMapping) {
+        this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
     }
 }
