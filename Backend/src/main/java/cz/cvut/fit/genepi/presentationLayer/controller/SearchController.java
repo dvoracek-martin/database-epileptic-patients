@@ -7,8 +7,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Locale;
 
 //This controller is not doing anything right now
 @Controller
@@ -34,6 +31,7 @@ public class SearchController {
     private SearchService searchService;
 
     private RoleService roleService;
+
     @Autowired
     UserService userService;
 
@@ -88,7 +86,16 @@ public class SearchController {
             return "deniedView";
         }
 
-        List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch((AdvancedSearchVO) model.get("advancedSearch"));
+        AdvancedSearchVO advancedSearch = (AdvancedSearchVO) model.get("advancedSearch");
+
+        if (authorizationChecker.onlyResearcher()) {
+            advancedSearch.setPatientFirstname("");
+            advancedSearch.setPatientLastname("");
+            advancedSearch.setPatientNin("");
+        }
+
+        List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch(advancedSearch);
+
         model.addAttribute("patients", patients);
         model.addAttribute("pages", patients.size());
         return "search/searchResults";
@@ -97,7 +104,7 @@ public class SearchController {
     @RequestMapping(value = "/advanced-search/save", method = RequestMethod.POST)
     public String advancedSearchSaveGET(
             @ModelAttribute("advancedSearch") @Valid AdvancedSearchVO advancedSearch, BindingResult result,
-           HttpServletRequest request) {
+            HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";

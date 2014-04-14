@@ -3,6 +3,8 @@ package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 import cz.cvut.fit.genepi.businessLayer.VO.display.AdvancedSearchDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
+import cz.cvut.fit.genepi.businessLayer.service.AnonymizeService;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
@@ -36,6 +38,13 @@ public class SearchServiceImpl implements SearchService {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AnonymizeService anonymizeService;
+
+
+    @Autowired
+    private AuthorizationChecker authorizationChecker;
+
     @Override
     @Transactional
     public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch) {
@@ -58,6 +67,10 @@ public class SearchServiceImpl implements SearchService {
 
             for (PatientEntity patientEntity : patientEntityList) {
                 patientDisplayVoList.add(dozer.map(patientEntity, PatientDisplayVO.class));
+            }
+
+            if (authorizationChecker.onlyResearcher()) {
+                anonymizeService.anonymizePatients(patientDisplayVoList);
             }
 
             int pageCount = patientDisplayVoList.size() / 20;

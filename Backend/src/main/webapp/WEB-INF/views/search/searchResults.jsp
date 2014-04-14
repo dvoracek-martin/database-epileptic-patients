@@ -84,10 +84,13 @@
                             <thead>
                             <tr>
                                 <td>
-                                    <b><spring:message code="label.firstname"/></b>
+                                    <b><spring:message code="label.id"/></b>
                                 </td>
                                 <td>
                                     <b><spring:message code="label.lastname"/></b>
+                                </td>
+                                <td>
+                                    <b><spring:message code="label.firstname"/></b>
                                 </td>
                                 <td>
                                     <b><spring:message code="label.birthIdentificationNumber"/></b>
@@ -105,10 +108,13 @@
 
                                 <tr class="clickable-row" data-href="<c:url value="/patient/${patient.id}/overview" />">
                                     <td>
-                                            ${patient.contact.firstName}
+                                            ${patient.id}
                                     </td>
                                     <td>
                                             ${patient.contact.lastName}
+                                    </td>
+                                    <td>
+                                            ${patient.contact.firstName}
                                     </td>
                                     <td>
                                             ${patient.nin}
