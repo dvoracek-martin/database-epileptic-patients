@@ -61,11 +61,11 @@
                                    <spring:message code="label.users"/>
                                </a>
                            </li>
-                           <li>
+                          <%-- <li>
                                <a href="<c:url value="/hidden"/>">
                                    <spring:message code="label.hidden"/>
                                </a>
-                           </li>
+                           </li>--%>
                        </ul>
                    </div>
                </div>
