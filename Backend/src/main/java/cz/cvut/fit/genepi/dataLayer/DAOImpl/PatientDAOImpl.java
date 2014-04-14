@@ -908,6 +908,45 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
             }
         }
 
+        if (advancedSearch.isOutcome()) {
+     /* Fetching and creating alias for sub collection outcomeList */
+            criteria.createAlias("patient.outcomeList", "outcomeList", JoinType.LEFT_OUTER_JOIN);
+
+            if (advancedSearch.getOutcomeSeizureOutcome() != 0) {
+                criteria.add(Restrictions.eq("outcomeList.seizureOutcome", advancedSearch.getOutcomeSeizureOutcome()));
+            }
+
+            if (advancedSearch.getOutcomeEeg() != 0) {
+                criteria.add(Restrictions.eq("outcomeList.eeg", advancedSearch.getOutcomeEeg()));
+            }
+
+            if (advancedSearch.getOutcomeAed() != 0) {
+                criteria.add(Restrictions.eq("outcomeList.aed", advancedSearch.getOutcomeAed()));
+            }
+
+            if (advancedSearch.getOutcomeMri() != 0) {
+                criteria.add(Restrictions.eq("outcomeList.mri", advancedSearch.getOutcomeMri()));
+            }
+
+            if (advancedSearch.getOutcomeNeuropsychology() != 0) {
+                criteria.add(Restrictions.eq("outcomeList.neuropsychology", advancedSearch.getOutcomeNeuropsychology()));
+            }
+
+            if (advancedSearch.getOutcomeDistance() != 0) {
+                if (advancedSearch.getOutcomeDistanceFilter().equals("=")) {
+                    criteria.add(Restrictions.eq("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                } else if (advancedSearch.getOutcomeDistanceFilter().equals(">")) {
+                    criteria.add(Restrictions.gt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                } else if (advancedSearch.getOutcomeDistanceFilter().equals("<")) {
+                    criteria.add(Restrictions.lt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                } else if (advancedSearch.getOutcomeDistanceFilter().equals(">=")) {
+                    criteria.add(Restrictions.ge("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                } else if (advancedSearch.getOutcomeDistanceFilter().equals("<=")) {
+                    criteria.add(Restrictions.le("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                }
+            }
+        }
+
         return (List<PatientEntity>) criteria.list();
     }
 
@@ -986,7 +1025,8 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
     }
 
     @SuppressWarnings("unchecked")
-    public List<PatientEntity> findByNameWithPagination(int maxResults, int pageNumber, List<String> parameters, String name) {
+    public List<PatientEntity> findByNameWithPagination(int maxResults, int pageNumber, List<
+            String> parameters, String name) {
 
         String q = "from PatientEntity where status=0 AND (";
         for (int i = 0; i != parameters.size(); i++) {

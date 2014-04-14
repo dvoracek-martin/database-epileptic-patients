@@ -71,6 +71,8 @@
 
             <jsp:include page="fieldsets/complicationFieldset.jsp" />
 
+            <jsp:include page="fieldsets/outcomeFieldset.jsp" />
+
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
                     <button id="searchButton" class="btn btn-primary" type="submit">

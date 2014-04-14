@@ -152,6 +152,17 @@ $(document).ready(function () {
         }
     });
 
+    var outcomeCheckbox = $("#outcome");
+
+    outcomeCheckbox.click(function () {
+        var  outcomeFieldset = $("#outcomeFieldset");
+        if ($(this).prop("checked")) {
+            outcomeFieldset.show();
+        } else {
+            outcomeFieldset.hide();
+        }
+    });
+
 
     /* trigger events */
     anamnesisCheckbox.click();
@@ -192,5 +203,8 @@ $(document).ready(function () {
 
     complicationCheckbox.click();
     complicationCheckbox.click();
+
+    outcomeCheckbox.click();
+    outcomeCheckbox.click();
 
 });

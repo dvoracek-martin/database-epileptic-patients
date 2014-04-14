@@ -1,6 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
 
+import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -200,6 +201,79 @@ public class AdvancedSearchVO {
 
     public int getOperationTypeOperation() {
         return operationTypeOperation;
+    }
+
+       /* outcome */
+
+    private int outcomeSeizureOutcome;
+
+    private int outcomeEeg;
+
+    private int outcomeAed;
+
+    private int outcomeMri;
+
+    private int outcomeNeuropsychology;
+
+    private String outcomeDistanceFilter;
+
+    private int outcomeDistance;
+
+
+    public int getOutcomeSeizureOutcome() {
+        return outcomeSeizureOutcome;
+    }
+
+    public void setOutcomeSeizureOutcome(int outcomeSeizureOutcome) {
+        this.outcomeSeizureOutcome = outcomeSeizureOutcome;
+    }
+
+    public int getOutcomeEeg() {
+        return outcomeEeg;
+    }
+
+    public void setOutcomeEeg(int outcomeEeg) {
+        this.outcomeEeg = outcomeEeg;
+    }
+
+    public int getOutcomeAed() {
+        return outcomeAed;
+    }
+
+    public void setOutcomeAed(int outcomeAed) {
+        this.outcomeAed = outcomeAed;
+    }
+
+    public int getOutcomeMri() {
+        return outcomeMri;
+    }
+
+    public void setOutcomeMri(int outcomeMri) {
+        this.outcomeMri = outcomeMri;
+    }
+
+    public int getOutcomeNeuropsychology() {
+        return outcomeNeuropsychology;
+    }
+
+    public void setOutcomeNeuropsychology(int outcomeNeuropsychology) {
+        this.outcomeNeuropsychology = outcomeNeuropsychology;
+    }
+
+    public String getOutcomeDistanceFilter() {
+        return outcomeDistanceFilter;
+    }
+
+    public void setOutcomeDistanceFilter(String outcomeDistanceFilter) {
+        this.outcomeDistanceFilter = outcomeDistanceFilter;
+    }
+
+    public int getOutcomeDistance() {
+        return outcomeDistance;
+    }
+
+    public void setOutcomeDistance(int outcomeDistance) {
+        this.outcomeDistance = outcomeDistance;
     }
 
     public void setOperationTypeOperation(int operationTypeOperation) {
