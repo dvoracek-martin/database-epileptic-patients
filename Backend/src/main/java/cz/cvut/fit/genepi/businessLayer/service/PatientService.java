@@ -197,9 +197,9 @@ public interface PatientService extends GenericService<PatientVO, PatientEntity>
 
     public List<PatientDisplayVO> findAllWithHiddenRecords();
 
-    public int getCountOfUnhidden(String searchString);
+    public int getCountOfUnhidden(boolean onlyResearcher,String searchString);
 
-    public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString);
+    public List<PatientDisplayVO> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString);
 
     public boolean verifyBeginningEpilepsy(int patientId,Date beginningEpilepsy);
 }

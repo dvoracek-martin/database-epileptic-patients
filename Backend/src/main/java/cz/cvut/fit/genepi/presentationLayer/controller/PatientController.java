@@ -345,9 +345,8 @@ public class PatientController {
      * @return the string
      */
     @RequestMapping(value = "/patient/list-search", method = RequestMethod.GET, produces = "text/plain; charset=utf-8")
-    public
     @ResponseBody
-    String patientsListSearchGET(
+    public String patientsListSearchGET(
             @RequestParam("maxResults") int maxResults,
             @RequestParam("pageNumber") int pageNumber,
             @RequestParam("search") String searchString, HttpServletRequest request) {
@@ -356,20 +355,17 @@ public class PatientController {
             return "deniedView";
         }
 
-        List<String> searchParams = new ArrayList<>();
-        searchParams.add("contact.firstName");
-        searchParams.add("contact.lastName");
-        searchParams.add("nin");
+        boolean onlyResearcher = authorizationChecker.onlyResearcher();
 
-        int patientsCount = patientService.getCountOfUnhidden(searchString);
-        JSONEncoder e = new JSONEncoder();
-        List<PatientDisplayVO> patients = patientService
-                .findByNameWithPagination(maxResults, pageNumber, searchParams, searchString);
+        int patientsCount = patientService.getCountOfUnhidden(onlyResearcher, searchString);
 
-        if (authorizationChecker.onlyResearcher()) {
+        List<PatientDisplayVO> patients = patientService.getBySearchStringWithPagination(maxResults, pageNumber, onlyResearcher, searchString);
+
+        if (onlyResearcher) {
             anonymizeService.anonymizePatients(patients);
         }
 
+        JSONEncoder e = new JSONEncoder();
         return e.encode(patients, patientsCount);
     }
 

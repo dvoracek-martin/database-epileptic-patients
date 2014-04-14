@@ -590,14 +590,14 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public int getCountOfUnhidden(String searchString) {
-        return patientDAO.getCountOfUnhidden(searchString);
+    public int getCountOfUnhidden(boolean onlyResearcher,String searchString) {
+        return patientDAO.getCountOfUnhidden(onlyResearcher,searchString);
     }
 
     @Override
     @Transactional
-    public List<PatientDisplayVO> findByNameWithPagination(int maxResults, int pageNumber, List<String> searchParams, String searchString) {
-        List<PatientEntity> patientList = patientDAO.findByNameWithPagination(maxResults, pageNumber, searchParams, searchString);
+    public List<PatientDisplayVO> getBySearchStringWithPagination(int maxResults, int pageNumber,boolean onlyResearcher, String searchString) {
+        List<PatientEntity> patientList = patientDAO.getBySearchStringWithPagination(maxResults, pageNumber,onlyResearcher, searchString);
         List<PatientDisplayVO> paientDisplaVoList = new ArrayList<>();
         for (PatientEntity patient : patientList) {
             PatientDisplayVO patientDisplayVO = dozer.map(patient, PatientDisplayVO.class);

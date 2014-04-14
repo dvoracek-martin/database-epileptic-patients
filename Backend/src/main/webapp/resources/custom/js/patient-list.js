@@ -28,8 +28,6 @@ $(document).ready(function () {
         maxResults = $(this).data("max-results");
         searchString = searchSelector.val();
 
-        //alert("ser="+searchString +" max= "+maxResults+" pag="+pageNumber);
-
         $.ajax({
             type: "GET",
             //url: "http://isarg.feld.cvut.cz:2001/GENEPI/patient/list-search",
@@ -56,7 +54,8 @@ $(document).ready(function () {
 
 
                     patientListSelector.html(patientListSelector.html() + "<tr class='clickable-row' data-href='/GENEPI/patient/" + patientID + "/overview'><td>"
-                        + firstName + "</td><td>" + lastName + "</td><td>" + nin + "</td><td>" + address + "</td><td>" + city + "</td></tr>");
+                        + patientID + "</td><td>"
+                        + lastName + "</td><td>" + firstName + "</td><td>" + nin + "</td><td>" + address + "</td><td>" + city + "</td></tr>");
                 }
 
                 //make rows in patients list clickable
@@ -86,7 +85,7 @@ $(document).ready(function () {
                 });
             },
             error: function (/*e*/) {
-                alert("Error occured"/* + e*/);
+                alert("Error occured" /*+ e*/);
             }
         });
     });

@@ -1011,37 +1011,78 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
         return query.list();
     }
 
-    public int getCountOfUnhidden(String searchString) {
-        Long count = ((Long) sessionFactory
-                .getCurrentSession()
-                .createQuery("select count(id) " +
-                        "from PatientEntity" +
-                        " where status=0 AND (contact.firstName like '" + searchString + "%'" +
-                        " OR contact.lastName like '" + searchString + "%'" +
-                        " OR nin like '" + searchString + "%')")
-                .uniqueResult());
+    public int getCountOfUnhidden(boolean onlyResearcher, String searchString) {
+        Long count;
+        if (onlyResearcher) {
+            if (searchString.isEmpty()) {
+                count = ((Long) sessionFactory
+                        .getCurrentSession()
+                        .createQuery("select count(id) " +
+                                "from PatientEntity" +
+                                " where status = 0")
+                        .uniqueResult());
+            } else {
+                try {
+                    Integer.parseInt(searchString);
+                } catch (NumberFormatException e) {
+                    return 0;
+                }
+                count = ((Long) sessionFactory
+                        .getCurrentSession()
+                        .createQuery("select count(id) " +
+                                "from PatientEntity" +
+                                " where status = 0 AND id= " + searchString)
+                        .uniqueResult());
+            }
+
+        } else {
+            count = ((Long) sessionFactory
+                    .getCurrentSession()
+                    .createQuery("select count(id) " +
+                            "from PatientEntity" +
+                            " where status=0 AND (contact.firstName like '" + searchString + "%'" +
+                            " OR contact.lastName like '" + searchString + "%'" +
+                            " OR nin like '" + searchString + "%')")
+                    .uniqueResult());
+        }
 
         return count.intValue();
     }
 
     @SuppressWarnings("unchecked")
-    public List<PatientEntity> findByNameWithPagination(int maxResults, int pageNumber, List<
-            String> parameters, String name) {
+    public List<PatientEntity> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString) {
+        Query query;
+        if (onlyResearcher) {
 
-        String q = "from PatientEntity where status=0 AND (";
-        for (int i = 0; i != parameters.size(); i++) {
-            q += parameters.get(i) + " like '" + name + "%'";
-            if (i != parameters.size() - 1) {
-                q += " or ";
+            if (searchString.isEmpty()) {
+                query = sessionFactory
+                        .getCurrentSession()
+                        .createQuery("from PatientEntity where status=0")
+                        .setFirstResult(maxResults * (pageNumber - 1))
+                        .setMaxResults(maxResults);
+            } else {
+                try {
+                    Integer.parseInt(searchString);
+                } catch (NumberFormatException e) {
+                    return new ArrayList<>();
+                }
+                query = sessionFactory
+                        .getCurrentSession()
+                        .createQuery("from PatientEntity where status=0 AND id=" + searchString)
+                        .setFirstResult(maxResults * (pageNumber - 1))
+                        .setMaxResults(maxResults);
             }
-        }
-        q += ") ORDER BY contact.lastName, contact.firstName";
 
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(q)
-                .setFirstResult(maxResults * (pageNumber - 1))
-                .setMaxResults(maxResults);
+        } else {
+            query = sessionFactory
+                    .getCurrentSession()
+                    .createQuery("from PatientEntity" +
+                            " where status=0 AND (contact.firstName like '" + searchString + "%'" +
+                            " OR contact.lastName like '" + searchString + "%'" +
+                            " OR nin like '" + searchString + "%') ORDER BY contact.lastName, contact.firstName")
+                    .setFirstResult(maxResults * (pageNumber - 1))
+                    .setMaxResults(maxResults);
+        }
 
         return (List<PatientEntity>) query.list();
     }
