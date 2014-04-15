@@ -1,13 +1,14 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1>
 
 	<jsp:attribute name="head">
-         <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+         <link href="<c:url value="/resources/custom/css/custom.css" />"
+               rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -37,11 +38,15 @@
                 <label>
                     <spring:message code="label.availableRoles"/>
                 </label>
-                <ul id="sortable1" class="connected sortable panel-body role-list">
-                    <c:forEach var="possibleRole" items="${possibleRoles}">
+                <ul id="sortable1"
+                    class="connected sortable panel-body role-list">
+                    <c:forEach var="possibleRole"
+                               items="${possibleRoles}">
                         <li draggable>
                                 ${possibleRole.authority}
-                            <input type="hidden" name="role" value="${possibleRole.id}">
+                            <input type="hidden"
+                                   name="role"
+                                   value="${possibleRole.id}">
                         </li>
                     </c:forEach>
                 </ul>
@@ -52,13 +57,20 @@
                     <spring:message code="label.assignedRoles"/>
                 </label>
 
-                <form:form id="role-form" method="POST" action="/GENEPI/user/${user.id }/edit-roles">
+                <form:form id="role-form"
+                           action="/GENEPI/user/${user.id }/edit-roles"
+                           method="POST"
+                           role="form">
 
-                    <ul id="sortable2" class="connected sortable role-list">
-                        <c:forEach var="role" items="${user.roles}">
+                    <ul id="sortable2"
+                        class="connected sortable role-list">
+                        <c:forEach var="role"
+                                   items="${user.roles}">
                             <li draggable>
                                     ${role.authority}
-                                <input type="hidden" name="role" value="${role.id}">
+                                <input type="hidden"
+                                       name="role"
+                                       value="${role.id}">
                             </li>
                         </c:forEach>
                     </ul>
@@ -68,8 +80,11 @@
 
         <div class="row">
             <div class="col-xs-12">
-                <button form="role-form" type="submit" class="btn btn-primary"><spring:message
-                        code="label.save"/></button>
+                <button class="btn btn-primary"
+                        type="submit"
+                        form="role-form">
+                    <spring:message code="label.save"/>
+                </button>
             </div>
         </div>
     </jsp:body>

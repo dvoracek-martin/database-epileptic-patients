@@ -58,7 +58,9 @@
                         <spring:message code="label.userID"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.id}</div>
+                        <div class="label label-info">
+                                ${user.id}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -66,7 +68,9 @@
                         <spring:message code="label.username"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.username}</div>
+                        <div class="label label-info">
+                                ${user.username}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -74,7 +78,9 @@
                         <spring:message code="label.lastname"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.contact.lastName}</div>
+                        <div class="label label-info">
+                                ${user.contact.lastName}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -82,7 +88,9 @@
                         <spring:message code="label.firstname"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.contact.firstName}</div>
+                        <div class="label label-info">
+                                ${user.contact.firstName}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -90,7 +98,9 @@
                         <spring:message code="label.email"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.contact.email}</div>
+                        <div class="label label-info">
+                                ${user.contact.email}
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -98,7 +108,9 @@
                         <spring:message code="label.telephone"/>
                     </div>
                     <div class="col-xs-6">
-                        <div class="label label-info">${user.contact.phoneNumber}</div>
+                        <div class="label label-info">
+                                ${user.contact.phoneNumber}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -108,7 +120,8 @@
                         <h4><spring:message code="label.assignedRoles"/></h4>
                     </div>
                 </div>
-                <c:forEach items="${user.roles}" var="role">
+                <c:forEach items="${user.roles}"
+                           var="role">
                     <div class="row">
 
                         <div class="col-xs-12">
@@ -118,33 +131,6 @@
                 </c:forEach>
             </div>
         </div>
-
-        <%-- do we want this ???
-             <spring:message code="label.street"/>
-             &nbsp;
-             <div class="label label-info">${user.contact.addressStreet}</div>
-             <br>
-
-             <spring:message code="label.addressHn"/>
-             &nbsp;
-             <div class="label label-info">${user.contact.addressHn}</div>
-             <br>
-
-             <spring:message code="label.addressCity"/>
-             &nbsp;
-             <div class="label label-info">${user.contact.addressCity}</div>
-             <br>
-
-             <spring:message code="label.addressPostalcode"/>
-             &nbsp;
-             <div class="label label-info">${user.contact.addressPostalcode}</div>
-             <br>
-
-             <spring:message code="label.addressCountry"/>
-             &nbsp;
-             <div class="label label-info">${user.contact.addressCountry}</div>
-             <br>
-     --%>
 
     </jsp:body>
 </t:menuLVL1>

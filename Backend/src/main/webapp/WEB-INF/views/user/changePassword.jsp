@@ -13,7 +13,7 @@
 
     </jsp:attribute>
 	<jsp:attribute name="script">
-        <script src="<c:url value="/resources/custom/js/passwordValidation.js" />"></script>
+        <script src="<c:url value="/resources/custom/js/changePassword.js" />"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -28,32 +28,44 @@
                 </c:otherwise>
             </c:choose>
         </h2>
-        <form:form class="form-horizontal" method="POST" action="/GENEPI/user/${user.id}/change-password"
+        <form:form class="form-horizontal"
+                   action="/GENEPI/user/${user.id}/change-password"
+                   method="POST"
                    commandName="user">
 
             <div class="form-group">
-                <label for="newPassword" class="col-xs-3 control-label">
+                <label class="col-xs-3 control-label"
+                       for="newPassword">
                     <spring:message code="label.newPassword"/>
                 </label>
 
                 <div class="col-xs-8">
-                    <form:input path="password" id="newPassword" type="password" pattern=".{8,128}"
-                                class="form-control"/>
-                    <form:errors path="password" cssClass="text-danger">
+                    <form:input id="newPassword"
+                                class="form-control"
+                                type="password"
+                                path="password"/>
+                    <form:errors path="password"
+                                 cssClass="text-danger">
                     </form:errors>
                 </div>
             </div>
 
             <div class="form-group">
-                <label for="newPasswordAgain" class="col-xs-3 control-label">
+                <label class="col-xs-3 control-label"
+                       for="newPasswordAgain">
                     <spring:message code="label.passwordAgain"/>
                 </label>
 
                 <div class="col-xs-8">
-                    <input name="passwordAgain" id="newPasswordAgain" type="password" pattern=".{8,128}"
-                           class="form-control"/>
+                    <input id="newPasswordAgain"
+                           class="form-control"
+                           type="password"
+                           name="passwordAgain"
+                           pattern=".{8,128}"/>
                     <c:if test="${not samePasswords}">
-                        <span class="text-danger"><spring:message code="label.samePasswords"/> </span>
+                        <span class="text-danger">
+                            <spring:message code="label.samePasswords"/>
+                        </span>
                     </c:if>
                 </div>
             </div>
@@ -61,7 +73,8 @@
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.change"/>
                     </button>
                 </div>

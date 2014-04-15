@@ -10,8 +10,8 @@
       <spring:message code="label.allUsers"/>
     </jsp:attribute>
 
-    	<jsp:attribute name="head">
-    <link href="<c:url value="/resources/custom/css/clickable-row.css" />" rel="stylesheet">
+    <jsp:attribute name="head">
+        <link href="<c:url value="/resources/custom/css/clickable-row.css" />" rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -52,8 +52,10 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${userList}" var="user">
-                            <tr class="clickable-row" data-href="<c:url value="/user/${user.id}/overview" />">
+                        <c:forEach items="${userList}"
+                                   var="user">
+                            <tr class="clickable-row"
+                                data-href="<c:url value="/user/${user.id}/overview" />">
                                 <td class="col-xs-4">
                                         ${user.username}
                                 </td>

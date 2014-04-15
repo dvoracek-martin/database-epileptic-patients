@@ -8,6 +8,7 @@
 
 .role-list {
     border: 5px solid CornflowerBlue;
+    min-height: 30px;
 }
 
 textarea.resize-vertical {
