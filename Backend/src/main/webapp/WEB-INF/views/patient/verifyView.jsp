@@ -6,12 +6,13 @@
 
 <t:menuLVL2>
 
-<jsp:attribute name="title">
+    <jsp:attribute name="title">
       <spring:message code="label.patient"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/custom/css/custom.css" />"
+              rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -23,17 +24,21 @@
             </div>
         </div>
 
-        <%@include file="patientDetails.jsp" %>
+        <jsp:include page="patientDetails.jsp"/>
 
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/verify" commandName="patientVO">
+        <form:form class="form-horizontal"
+                   action="/GENEPI/patient/${patient.id}/verify"
+                   method="POST"
+                   role="form"
+                   commandName="patientVO">
 
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
                     <div class="checkbox">
                         <label>
-                            <form:checkbox path="verified" id="verified"/> <spring:message
-                                code="label.recordsVerified"/>
+                            <form:checkbox id="verified"
+                                           path="verified"/>
+                            <spring:message code="label.recordsVerified"/>
                         </label>
                     </div>
                 </div>
@@ -41,7 +46,8 @@
 
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.save"/>
                     </button>
                 </div>

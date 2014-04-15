@@ -11,15 +11,17 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/custom/css/custom.css" />"
+              rel="stylesheet">
     </jsp:attribute>
 
  	<jsp:attribute name="script">
-    <script src="<c:url value="/resources/custom/js/exportSubmit.js"/>"></script>
+        <script src="<c:url value="/resources/custom/js/exportSubmit.js"/>"></script>
     </jsp:attribute>
 
 <jsp:body>
-<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR" var="isAuthorized"/>
+<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"
+               var="isAuthorized"/>
 <div class="row">
     <div class="col-xs-3 col-sm-6 col-lg-3">
         <h2>
@@ -28,13 +30,20 @@
     </div>
     <div class="col-xs-3 col-sm-6 col-lg-3">
 
-        <form id="patientIds" action="<c:url value="/export" />" method="POST">
-            <input type="hidden" name="patientId" value="${patient.id}">
-            <input name="source" type="hidden" value="overview">
+        <form id="patientIds"
+              action="<c:url value="/export" />"
+              method="POST">
+            <input type="hidden"
+                   name="patientId"
+                   value="${patient.id}">
+            <input type="hidden"
+                   name="source"
+                   value="overview">
         </form>
 
         <h3 class="pull-right">
-            <a id="postExport" class="cursor-pointer">
+            <a id="postExport"
+               class="cursor-pointer">
                 <spring:message code="label.exportPatient"/>
             </a>
         </h3>
@@ -44,7 +53,8 @@
     <div class="col-xs-2 col-sm-4 col-lg-2">
         <sec:authorize ifAnyGranted="ROLE_SUPER_DOCTOR,ROLE_ADMIN">
             <h3 class="pull-right">
-                <a id="verify" href="<c:url value="/patient/${patient.id}/verify" />">
+                <a id="verify"
+                   href="<c:url value="/patient/${patient.id}/verify" />">
                     <spring:message code="label.verify"/>
                 </a>
             </h3>
@@ -53,7 +63,8 @@
     <div class="col-xs-2 col-sm-4 col-lg-2">
         <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
             <h3 class="pull-right">
-                <a id="edit" href="<c:url value="/patient/${patient.id}/edit" />">
+                <a id="edit"
+                   href="<c:url value="/patient/${patient.id}/edit" />">
                     <spring:message code="label.edit"/>
                 </a>
             </h3>
@@ -62,7 +73,8 @@
     <div class="col-xs-2 col-sm-4 col-lg-2 ">
         <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
             <h3 class="pull-right">
-                <a id="hide" href="<c:url value="/patient/${patient.id}/hide" />">
+                <a id="hide"
+                   href="<c:url value="/patient/${patient.id}/hide" />">
                     <spring:message code="label.delete"/>
                 </a>
             </h3>
@@ -70,7 +82,7 @@
     </div>
 </div>
 
-<%@include file="patientDetails.jsp" %>
+<jsp:include page="patientDetails.jsp" />
 
 <%-- Anamnesis --%>
 
@@ -98,17 +110,20 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
                     <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
-                        Zadano dne: ${anamnesisDisplayVo.date}
+                        <spring:message code="label.dateAdded"/>: ${anamnesisDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -116,9 +131,11 @@
             </tbody>
         </table>
 
-        <%@include file="anamnesis/anamnesisTableView.jsp" %>
+        <jsp:include page="anamnesis/anamnesisTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="page"/>
     </c:otherwise>
 </c:choose>
 
@@ -148,17 +165,20 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="page"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
                     <a data-toggle="collapse" href="#collapse-seizure-${seizureDisplayVo.id}">
-                        Zadano dne: ${seizureDisplayVo.date}
+                        <spring:message code="label.dateAdded"/>: ${seizureDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/seizure/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/seizure/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -168,7 +188,9 @@
 
         <jsp:include page="seizure/seizureTableForOverviewView.jsp"/>
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="page"/>
     </c:otherwise>
 </c:choose>
 
@@ -205,7 +227,8 @@
 
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -269,17 +292,21 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-neurological-finding-${neurologicalFindingDisplayVo.id}">
-                        Zadano dne: ${neurologicalFindingDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-neurological-finding-${neurologicalFindingDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${neurologicalFindingDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -287,9 +314,9 @@
             </tbody>
         </table>
 
-        <%@include file="neurologicalFinding/neurologicalFindingTableView.jsp" %>
+        <jsp:include page="neurologicalFinding/neurologicalFindingTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count" value="1" scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -319,13 +346,16 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-neuropsychology-${neuropsychologyDisplayVo.id}">
-                        Zadano dne: ${neuropsychologyDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-neuropsychology-${neuropsychologyDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${neuropsychologyDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -337,9 +367,11 @@
             </tbody>
         </table>
 
-        <%@include file="neuropsychology/neuropsychologyTableView.jsp" %>
+        <jsp:include page="neuropsychology/neuropsychologyTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -369,14 +401,16 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
                     <a data-toggle="collapse"
                        href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}">
-                        Zadano dne: ${diagnosticTestScalpEegDisplayVo.date}
+                        <spring:message code="label.dateAdded"/>: ${diagnosticTestScalpEegDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -389,9 +423,11 @@
             </tbody>
         </table>
 
-        <%@include file="diagnosticTestScalpEeg/diagnosticTestScalpEegTableView.jsp" %>
+        <jsp:include page="diagnosticTestScalpEeg/diagnosticTestScalpEegTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -420,17 +456,21 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}">
-                        Zadano dne: ${diagnosticTestMriDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${diagnosticTestMriDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -438,9 +478,11 @@
             </tbody>
         </table>
 
-        <%@include file="diagnosticTestMri/diagnosticTestMriTableView.jsp" %>
+        <jsp:include page="diagnosticTestMri/diagnosticTestMriTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -470,18 +512,22 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
 
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}">
-                        Zadano dne: ${invasiveTestEcogDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${invasiveTestEcogDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -489,9 +535,11 @@
             </tbody>
         </table>
 
-        <%@include file="invasiveTestEcog/invasiveTestEcogTableView.jsp" %>
+        <jsp:include page="invasiveTestEcog/invasiveTestEcogTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -520,18 +568,22 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
 
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}">
-                        Zadano dne: ${invasiveTestEegDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${invasiveTestEegDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/invasive-test-eeg/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -539,7 +591,7 @@
             </tbody>
         </table>
 
-        <%@include file="invasiveTestEeg/invasiveTestEegTableView.jsp" %>
+        <jsp:include page="invasiveTestEeg/invasiveTestEegTableView.jsp" />
 
         <c:set var="count" value="1" scope="page"/>
     </c:otherwise>
@@ -570,14 +622,16 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
                     <a data-toggle="collapse"
                        href="#collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayVo.id}">
-                        Zadano dne: ${invasiveTestCorticalMappingDisplayVo.date}
+                        <spring:message code="label.dateAdded"/>: ${invasiveTestCorticalMappingDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -590,9 +644,11 @@
             </tbody>
         </table>
 
-        <%@include file="invasiveTestCorticalMapping/invasiveTestCorticalMappingTableView.jsp" %>
+        <jsp:include page="invasiveTestCorticalMapping/invasiveTestCorticalMappingTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -621,13 +677,16 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <table class="record-head table">
             <tbody>
             <tr>
                 <th class="col-xs-8">
-                    <a data-toggle="collapse" href="#collapse-operation-${operationDisplayVo.id}">
-                        Zadano dne: ${operationDisplayVo.date}
+                    <a data-toggle="collapse"
+                       href="#collapse-operation-${operationDisplayVo.id}">
+                        <spring:message code="label.dateAdded"/>: ${operationDisplayVo.date}
                     </a>
                 </th>
                 <th class="col-xs-4">
@@ -640,9 +699,11 @@
             </tbody>
         </table>
 
-        <%@include file="operation/operationTableView.jsp" %>
+        <jsp:include page="operation/operationTableView.jsp" />
 
-        <c:set var="count" value="1" scope="page"/>
+        <c:set var="count"
+               value="1"
+               scope="request"/>
     </c:otherwise>
 </c:choose>
 
@@ -680,7 +741,8 @@
 
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/histology/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/histology/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -692,7 +754,8 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-4"><spring:message code="label.date"/>
+                    <th class="col-xs-4">
+                        <spring:message code="label.date"/>
                     </th>
                     <th class="col-xs-4">
                         <spring:message code="label.histopathology"/>
@@ -702,7 +765,8 @@
                     </th>
                 </tr>
             </table>
-            <c:forEach items="${histologyDisplayVoList}" var="histologyDisplayVo">
+            <c:forEach items="${histologyDisplayVoList}"
+                       var="histologyDisplayVo">
                 <c:set var="histologyDisplayVo"
                        value="${histologyDisplayVo}"
                        scope="request"/>
@@ -747,7 +811,8 @@
 
                 </th>
                 <th class="col-xs-4">
-                    <a class="pull-right" href="<c:url value="/patient/${patient.id}/complication/list" />">
+                    <a class="pull-right"
+                       href="<c:url value="/patient/${patient.id}/complication/list" />">
                         <spring:message code="label.showAll"/>
                     </a>
                 </th>
@@ -759,7 +824,8 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-3">Datum
+                    <th class="col-xs-3">
+                        <spring:message code="label.date"/>
                     </th>
                     <th class="col-xs-3">
                         <spring:message code="label.process"/>
@@ -772,7 +838,8 @@
                     </th>
                 </tr>
             </table>
-            <c:forEach items="${complicationDisplayVoList}" var="complicationDisplayVo">
+            <c:forEach items="${complicationDisplayVoList}"
+                       var="complicationDisplayVo">
                 <c:set var="complicationDisplayVo"
                        value="${complicationDisplayVo}"
                        scope="request"/>
@@ -802,14 +869,17 @@
         </div>
     </c:when>
     <c:otherwise>
-        <c:set var="count" value="0" scope="page"/>
+        <c:set var="count"
+               value="0"
+               scope="request"/>
         <div class="list-striped">
             <div>
                 <table class="record-head table">
                     <tbody>
                     <tr>
                         <th class="col-xs-12">
-                            <a data-toggle="collapse" href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
+                            <a data-toggle="collapse"
+                               href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
                                 <spring:message
                                         code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
                             </a>
@@ -818,10 +888,12 @@
                     </tbody>
                 </table>
 
-                <%@ include file="outcome/outcomeTableView.jsp" %>
+                <jsp:include page="outcome/outcomeTableView.jsp" />
 
             </div>
-            <c:set var="count" value="1" scope="page"/>
+            <c:set var="count"
+                   value="1"
+                   scope="request"/>
         </div>
     </c:otherwise>
 </c:choose>

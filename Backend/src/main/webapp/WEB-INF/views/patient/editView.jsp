@@ -5,7 +5,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL1>
-<jsp:attribute name="head">
+    <jsp:attribute name="head">
       <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
             rel="stylesheet">
     </jsp:attribute>
@@ -18,7 +18,7 @@
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
-   </jsp:attribute>
+    </jsp:attribute>
     <jsp:body>
 
         <div class="row">
@@ -29,16 +29,19 @@
             </div>
         </div>
 
-        <%@include file="patientDetails.jsp" %>
+        <jsp:include page="patientDetails.jsp" />
 
-        <form:form class="form-horizontal" method="POST" action="/GENEPI/patient/${patient.id}/edit"
+        <form:form class="form-horizontal"
+                   action="/GENEPI/patient/${patient.id}/edit"
+                   method="POST"
                    commandName="patientVO">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp" />
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-small btn-primary" type="submit">
+                    <button class="btn btn-small btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

@@ -28,13 +28,17 @@
             </div>
         </div>
 
-        <form:form class="form-horizontal" method="POST" action="/GENEPI/patient/create" commandName="patientVO">
+        <form:form class="form-horizontal"
+                   action="/GENEPI/patient/create"
+                   method="POST"
+                   commandName="patientVO">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">
-                    <button class="btn btn-small btn-primary" type="submit"
+                    <button class="btn btn-small btn-primary"
+                            type="submit"
                             <c:if test="${empty doctors}">
                                 disabled
                             </c:if> >

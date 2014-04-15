@@ -457,7 +457,7 @@ public class PatientController {
 
         model.addAttribute("patientList", listOfPatients);
         model.addAttribute("patient", listOfPatients.get(0));
-        return "patient/exportView";
+        return "patient/exportViewTBD";
     }
 
     @Deprecated
@@ -716,7 +716,7 @@ public class PatientController {
                 genericDAOExportParams.findAll(ExportParamsEntity.class));
         model.addAttribute("exportType", exportType);
         model.addAttribute("patient", listOfPatients.get(0));
-        return "patient/exportView";
+        return "patient/exportViewTBD";
     }
 
     @Deprecated
@@ -792,7 +792,7 @@ public class PatientController {
         }
 
         model.addAttribute("patientList", patientList);
-        return "patient/exportView";
+        return "patient/exportViewTBD";
     }
 
     @Deprecated

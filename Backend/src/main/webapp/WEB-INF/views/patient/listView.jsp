@@ -8,16 +8,17 @@
 
 <t:menuLVL1>
 
-<jsp:attribute name="title">
+    <jsp:attribute name="title">
       <spring:message code="label.cardIndex"/>
     </jsp:attribute>
 
 	<jsp:attribute name="head">
-    <link href="<c:url value="/resources/custom/css/clickable-row.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/custom/css/clickable-row.css" />"
+              rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-    <script src="<c:url value="/resources/custom/js/patient-list.js"/>"></script>
+        <script src="<c:url value="/resources/custom/js/patient-list.js"/>"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -40,7 +41,10 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="form-group">
-                    <label for="search" class="col-xs-2 control-label"><spring:message code="label.filter"/>:</label>
+                    <label  class="col-xs-2 control-label"
+                            for="search">
+                        <spring:message code="label.filter"/>:
+                    </label>
 
                     <div class="col-xs-4 input-group">
                         <span class="input-group-addon glyphicon glyphicon-search"></span>
@@ -54,12 +58,11 @@
                                        data-max-results="${maxResult}">
                             </c:when>
                             <c:otherwise>
-                                <input type="text" class="form-control" id="search"
+                                <input id="search" class="form-control" type="text"
                                        placeholder="<spring:message code="label.lastname"/>/<spring:message code="label.firstname"/>/<spring:message code="label.nin"/>"
                                        data-max-results="${maxResult}">
                             </c:otherwise>
                         </c:choose>
-
                     </div>
                 </div>
             </div>

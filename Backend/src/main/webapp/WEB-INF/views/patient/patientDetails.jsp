@@ -61,7 +61,8 @@
                             </th>
                             <td>
                                 <c:if test="${!empty patient.ageAtTheBeginningOfEpilepsy}">
-                                    ${patient.ageAtTheBeginningOfEpilepsy} let
+                                    ${patient.ageAtTheBeginningOfEpilepsy}
+                                    <spring:message code="label.years"/>
                                 </c:if>
                             </td>
                         </tr>

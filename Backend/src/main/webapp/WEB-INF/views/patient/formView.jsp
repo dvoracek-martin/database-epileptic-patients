@@ -4,65 +4,91 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="begginningEpiNotOk"
+             scope="request"
+             type="java.lang.Boolean"/>
+
+<jsp:useBean id="doctors"
+             scope="request"
+             type="java.util.List"/>
+
 <div class="form-group">
-    <label for="contact.lastName" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.lastName">
         <spring:message code="label.lastname"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.lastName" type="text" class="form-control input-sm" id="contact.lastName"/>
-        <form:errors path="contact.lastName" cssClass="text-danger"/>
+        <form:input id="contact.lastName"
+                    class="form-control input-sm"
+                    type="text"
+                    path="contact.lastName"/>
+        <form:errors path="contact.lastName"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.firstName" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.firstName">
         <spring:message code="label.firstname"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.firstName" type="text" class=" form-control input-sm"
-                    id="contact.firstName"/>
-        <form:errors path="contact.firstName" cssClass="text-danger"/>
+        <form:input id="contact.firstName"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.firstName"/>
+        <form:errors path="contact.firstName"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="birthday" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="birthday">
         <spring:message code="label.birthdate"/>*
     </label>
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="birthday" type="text" class="form-control input-sm" id="birthday" autocomplete="off"/>
+            <form:input id="birthday"
+                        class="form-control input-sm"
+                        type="text"
+                        autocomplete="off"
+                        path="birthday"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <form:errors path="birthday" cssClass="text-danger"/>
+        <form:errors path="birthday"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="date" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="date">
         <spring:message code="label.beginningEpilepsy"/>
     </label>
 
     <div class="col-xs-8">
-                <div class='input-group date datepicker-simple'>
-                    <form:input path="beginningEpilepsy"
-                                id="date"
-                                type="text"
-                                class="input-sm form-control"
-                                autocomplete="off"/>
+        <div class='input-group date datepicker-simple'>
+            <form:input id="date"
+                        class="input-sm form-control"
+                        type="text"
+                        autocomplete="off"
+                        path="beginningEpilepsy"/>
                     <span class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
-        <form:errors path="beginningEpilepsy" cssClass="text-danger"/>
+        </div>
+        <form:errors path="beginningEpilepsy"
+                     cssClass="text-danger"/>
         <c:if test="${begginningEpiNotOk}">
             <br>
-            <span id="date.errors" class="text-danger">
+            <span id="date.errors"
+                  class="text-danger">
                  <spring:message code="label.cannotBeAfterOldestSeizure"/>
             </span>
         </c:if>
@@ -70,13 +96,18 @@
 </div>
 
 <div class="form-group">
-    <label for="nin" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="nin">
         <spring:message code="label.idnumber"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="nin" type="text" class=" form-control input-sm" id="nin"/>
-        <form:errors path="nin" cssClass="text-danger"/>
+        <form:input id="nin"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="nin"/>
+        <form:errors path="nin"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
@@ -90,95 +121,131 @@
 
         <div class="radio">
             <label>
-                <form:radiobutton path="gender" value="1" checked="true"/> <spring:message code="label.male"/>
+                <form:radiobutton value="1"
+                                  checked="true"
+                                  path="gender"/>
+                <spring:message code="label.male"/>
             </label>
         </div>
         <div class="radio">
             <label>
-                <form:radiobutton path="gender" value="2"/> <spring:message code="label.female"/>
+                <form:radiobutton value="2"
+                                  path="gender"/>
+                <spring:message code="label.female"/>
             </label>
         </div>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.addressStreet" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.addressStreet">
         <spring:message code="label.street"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.addressStreet" type="text" class=" form-control input-sm" id="contact.addressStreet"/>
-        <form:errors path="contact.addressStreet" cssClass="text-danger"/>
+        <form:input id="contact.addressStreet"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.addressStreet"/>
+        <form:errors path="contact.addressStreet"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.addressHn" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.addressHn">
         <spring:message code="label.addressHn"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.addressHn" type="text" class=" form-control input-sm" id="contact.addressHn"/>
+        <form:input id="contact.addressHn"
+                    class="form-control input-sm"
+                    type="text"
+                    path="contact.addressHn"/>
         <form:errors path="contact.addressHn" cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.addressCity" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.addressCity">
         <spring:message code="label.addressCity"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.addressCity" type="text" class=" form-control input-sm" id="contact.addressCity"/>
-        <form:errors path="contact.addressCity" cssClass="text-danger"/>
+        <form:input id="contact.addressCity"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.addressCity"/>
+        <form:errors path="contact.addressCity"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.addressPostalcode" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.addressPostalcode">
         <spring:message code="label.addressPostalcode"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.addressPostalcode" type="text" class=" form-control input-sm"
-                    id="contact.addressPostalcode"/>
-        <form:errors path="contact.addressPostalcode" cssClass="text-danger"/>
+        <form:input id="contact.addressPostalcode"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.addressPostalcode"/>
+        <form:errors path="contact.addressPostalcode"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.addressCountry" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.addressCountry">
         <spring:message code="label.addressCountry"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.addressCountry" type="text" class=" form-control input-sm" id="contact.addressCountry"
-                    list="countries"/>
-        <form:errors path="contact.addressCountry" cssClass="text-danger"/>
+        <form:input id="contact.addressCountry"
+                    class=" form-control input-sm"
+                    type="text"
+                    list="countries"
+                    path="contact.addressCountry"/>
+        <form:errors path="contact.addressCountry"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.phoneNumber" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.phoneNumber">
         <spring:message code="label.telephone"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.phoneNumber" type="text"
-                    class=" form-control input-sm" id="contact.phoneNumber"/>
-        <form:errors path="contact.phoneNumber" cssClass="text-danger"/>
+        <form:input id="contact.phoneNumber"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.phoneNumber"/>
+        <form:errors path="contact.phoneNumber"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="contact.email" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="contact.email">
         <spring:message code="label.email"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="contact.email" type="text"
-                    class=" form-control input-sm" id="contact.email"/>
-        <form:errors path="contact.email" cssClass="text-danger"/>
+        <form:input id="contact.email"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="contact.email"/>
+        <form:errors path="contact.email"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
@@ -190,21 +257,30 @@
     <div class="col-xs-8">
         <c:choose>
             <c:when test="${!empty doctors}">
-                <form:select path="doctorId" class=" form-control input-sm" id="doctorId">
+                <form:select id="doctorId"
+                             class=" form-control input-sm"
+                             path="doctorId">
 
-                    <form:option
-                            value="0"> Zvolte doktora</form:option>
+                    <form:option value="0">
+                        <spring:message code="label.chooseDoctor"/>
+                    </form:option>
 
-                    <c:forEach items="${doctors}" var="doctor">
-                        <form:option
-                                value="${doctor.id}"> ${doctor.contact.firstName} ${doctor.contact.lastName}</form:option>
+                    <c:forEach items="${doctors}"
+                               var="doctor">
+                        <form:option value="${doctor.id}">
+                            ${doctor.contact.firstName} ${doctor.contact.lastName}
+                        </form:option>
                     </c:forEach>
 
                 </form:select>
-                <form:errors path="doctorId" cssClass="text-danger"/>
+                <form:errors path="doctorId"
+                             cssClass="text-danger"/>
             </c:when>
             <c:otherwise>
-                <form:select path="doctorId" class=" form-control input-sm" id="doctorId" disabled="true">
+                <form:select id="doctorId"
+                             class=" form-control input-sm"
+                             disabled="true"
+                             path="doctorId">
                 </form:select>
             </c:otherwise>
         </c:choose>
@@ -212,14 +288,18 @@
 </div>
 
 <div class="form-group">
-    <label for="indicatingDoctor" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="indicatingDoctor">
         <spring:message code="label.indicatingDoctor"/>
     </label>
 
     <div class="col-xs-8">
-        <form:input path="indicatingDoctor" type="text"
-                    class=" form-control input-sm" id="indicatingDoctor"/>
-        <form:errors path="indicatingDoctor" cssClass="text-danger"/>
+        <form:input id="indicatingDoctor"
+                    class=" form-control input-sm"
+                    type="text"
+                    path="indicatingDoctor"/>
+        <form:errors path="indicatingDoctor"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
