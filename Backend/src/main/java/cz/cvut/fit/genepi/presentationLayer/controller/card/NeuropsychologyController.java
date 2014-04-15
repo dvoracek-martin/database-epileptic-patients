@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"neuropsychology","patient"})
+@SessionAttributes({"neuropsychology", "patient"})
 public class NeuropsychologyController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +47,8 @@ public class NeuropsychologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neuropsychology", new NeuropsychologyVO());
         return "patient/neuropsychology/createView";
@@ -56,24 +57,24 @@ public class NeuropsychologyController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/create", method = RequestMethod.POST)
     public String neuropsychologyCreatePOST(
             @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neuropsychology.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/neuropsychology/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/neuropsychology/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(neuropsychology, NeuropsychologyEntity.class);
+                return "redirect:/patient/" + patientId + "/neuropsychology/list";
             }
-            genericCardService.save(neuropsychology, NeuropsychologyEntity.class);
-            return "redirect:/patient/" + patientId + "/neuropsychology/list";
         }
     }
 
@@ -86,6 +87,8 @@ public class NeuropsychologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neuropsychology", genericCardService.getById(neuropsychologyId, NeuropsychologyVO.class, NeuropsychologyEntity.class));
         return "patient/neuropsychology/editView";
@@ -94,27 +97,27 @@ public class NeuropsychologyController {
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/{neuropsychologyId}/edit", method = RequestMethod.POST)
     public String neuropsychologySavePOST(
             @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("neuropsychologyId") int neuropsychologyId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neuropsychology.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/neuropsychology/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/neuropsychology/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(neuropsychologyId, NeuropsychologyEntity.class);
+                neuropsychology.setId(0);
+                genericCardService.save(neuropsychology, NeuropsychologyEntity.class);
+                return "redirect:/patient/" + patientId + "/neuropsychology/list";
             }
-            genericCardService.makeHistory(neuropsychologyId, NeuropsychologyEntity.class);
-            neuropsychology.setId(0);
-            genericCardService.save(neuropsychology, NeuropsychologyEntity.class);
-            return "redirect:/patient/" + patientId + "/neuropsychology/list";
         }
     }
 

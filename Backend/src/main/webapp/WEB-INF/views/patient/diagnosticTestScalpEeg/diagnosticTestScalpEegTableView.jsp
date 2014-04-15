@@ -2,7 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="diagnosticTestScalpEegDisplayVo" scope="request"
+<jsp:useBean id="diagnosticTestScalpEegDisplayVo"
+             scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO"/>
 
 <div id="collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"

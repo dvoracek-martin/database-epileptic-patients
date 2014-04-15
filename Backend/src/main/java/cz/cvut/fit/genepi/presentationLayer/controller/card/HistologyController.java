@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"histology","patient"})
+@SessionAttributes({"histology", "patient"})
 public class HistologyController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +47,8 @@ public class HistologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("histology", new HistologyVO());
         return "patient/histology/createView";
@@ -56,24 +57,24 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/create", method = RequestMethod.POST)
     public String histologyCreatePOST(
             @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), histology.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/histology/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/histology/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(histology, HistologyEntity.class);
+                return "redirect:/patient/" + patientId + "/histology/list";
             }
-            genericCardService.save(histology, HistologyEntity.class);
-            return "redirect:/patient/" + patientId + "/histology/list";
         }
     }
 
@@ -86,6 +87,8 @@ public class HistologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("histology", genericCardService.getById(histologyId, HistologyVO.class, HistologyEntity.class));
         return "patient/histology/editView";
@@ -94,27 +97,27 @@ public class HistologyController {
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/edit", method = RequestMethod.POST)
     public String histologySavePOST(
             @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("histologyId") int histologyId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), histology.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/histology/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/histology/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(histologyId, HistologyEntity.class);
+                histology.setId(0);
+                genericCardService.save(histology, HistologyEntity.class);
+                return "redirect:/patient/" + patientId + "/histology/list";
             }
-            genericCardService.makeHistory(histologyId, HistologyEntity.class);
-            histology.setId(0);
-            genericCardService.save(histology, HistologyEntity.class);
-            return "redirect:/patient/" + patientId + "/histology/list";
         }
     }
 

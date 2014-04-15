@@ -6,31 +6,23 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.HistologyDisplayVO"/>
 
+<jsp:useBean id="patient"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
+
 <table class="record-head table">
     <tr>
-        <td class="col-xs-2">
+        <td class="col-xs-4">
             <a href="#collapse-histology-${histologyDisplayVo.id}"
                data-toggle="collapse">
                 ${histologyDisplayVo.date}
             </a>
         </td>
-        <td class="col-xs-3">
+        <td class="col-xs-4">
             <spring:message code="label.histopathology.${histologyDisplayVo.histopathology}"/>
         </td>
-        <td class="col-xs-3">
+        <td class="col-xs-4">
             <spring:message code="label.fcdClassification.${histologyDisplayVo.fcdClassification}"/>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/histology/${histologyDisplayVo.id}/edit"/>">
-                <span class="glyphicon glyphicon-edit"></span>
-                <spring:message code="label.edit"/>
-            </a>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/histology/${histologyDisplayVo.id}/hide"/>">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                <spring:message code="label.delete"/>
-            </a>
         </td>
     </tr>
 </table>

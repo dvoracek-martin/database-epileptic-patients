@@ -1,8 +1,9 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
+
+<jsp:useBean id="invasiveTestEegDisplayVo" scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO"/>
 
 <div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
@@ -32,7 +33,14 @@
                     <spring:message code="label.localizationIntracranialElectrodes"/>
                 </th>
                 <td class="col-xs-9">
-                        ${invasiveTestEegDisplayVo.localizationIntracranialElectrodes}
+                    <c:choose>
+                        <c:when test="${empty invasiveTestEegDisplayVo.localizationIntracranialElectrodes}">
+                            -
+                        </c:when>
+                        <c:otherwise>
+                            ${invasiveTestEegDisplayVo.localizationIntracranialElectrodes}
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
 
@@ -59,7 +67,14 @@
                     <spring:message code="label.localizationInvasiveEegInterictalSpikes"/>
                 </th>
                 <td class="col-xs-9">
-                        ${invasiveTestEegDisplayVo.localizationInvasiveEegInterictalSpikes}
+                    <c:choose>
+                        <c:when test="${empty invasiveTestEegDisplayVo.localizationInvasiveEegInterictalSpikes}">
+                            -
+                        </c:when>
+                        <c:otherwise>
+                            ${invasiveTestEegDisplayVo.localizationInvasiveEegInterictalSpikes}
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
             <tr>
@@ -83,7 +98,14 @@
                     <spring:message code="label.localizationInvasiveIctalEegPatterns"/>
                 </th>
                 <td class="col-xs-9">
-                        ${invasiveTestEegDisplayVo.localizationInvasiveIctalEegPatterns}
+                    <c:choose>
+                        <c:when test="${empty invasiveTestEegDisplayVo.localizationInvasiveIctalEegPatterns}">
+                            -
+                        </c:when>
+                        <c:otherwise>
+                            ${invasiveTestEegDisplayVo.localizationInvasiveIctalEegPatterns}
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
             <tr>

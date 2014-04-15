@@ -1,7 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
@@ -12,7 +12,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.addRecord"/>
+      <spring:message code="label.editRecord"/>
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -31,18 +31,20 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" role="form" method="POST"
+        <form:form class="form-horizontal"
                    action="/GENEPI/patient/${patient.id}/neurological-finding/${neurologicalFinding.id}/edit"
+                   method="POST"
+                   role="form"
                    commandName="neurologicalFinding">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.save"/>
                     </button>
                 </div>

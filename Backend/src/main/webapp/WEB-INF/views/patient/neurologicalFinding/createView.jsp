@@ -31,17 +31,19 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/neurological-finding/create" commandName="neurologicalFinding">
+        <form:form class="form-horizontal" action="/GENEPI/patient/${patient.id}/neurological-finding/create"
+                   method="POST"
+                   role="form"
+                   commandName="neurologicalFinding">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

@@ -1,8 +1,10 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
+
+<jsp:useBean id="invasiveTestEcogDisplayVo"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO"/>
 
 <div id="collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
@@ -23,7 +25,14 @@
                     <spring:message code="label.ecogCover"/>
                 </th>
                 <td class="col-xs-9">
-                        ${invasiveTestEcogDisplayVo.ecogCover}
+                    <c:choose>
+                        <c:when test="${empty invasiveTestEcogDisplayVo.ecogCover}">
+                            -
+                        </c:when>
+                        <c:otherwise>
+                            ${invasiveTestEcogDisplayVo.ecogCover}
+                        </c:otherwise>
+                    </c:choose>
                 </td>
             </tr>
             <tr>
@@ -63,38 +72,3 @@
         </tbody>
     </table>
 </div>
-
-<%--
-<tr class="info">
-    <td><spring:message code="label.ecogPatterns"/></td>
-    <c:if test="${invasiveTestECOG.ecogPatterns==1}">
-        <td><spring:message code="label.noSpikes"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.ecogPatterns==2}">
-        <td><spring:message code="label.burstSuppresion"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.ecogPatterns==3}">
-        <td><spring:message code="label.continuousSpikes"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.ecogPatterns==4}">
-        <td><spring:message code="label.ECoGAbnormality"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.ecogPatterns==5}">
-        <td><spring:message code="label.spikes"/></td>
-    </c:if>
-</tr>
-<tr class="info">
-    <td><spring:message code="label.afterResectionECoG"/></td>
-    <c:if test="${invasiveTestECOG.afterResectionEcog==1}">
-        <td><spring:message code="label.noSpikes"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.afterResectionEcog==2}">
-        <td><spring:message code="label.notDone"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.afterResectionEcog==3}">
-        <td><spring:message code="label.done"/></td>
-    </c:if>
-    <c:if test="${invasiveTestECOG.afterResectionEcog==4}">
-        <td><spring:message code="label.spikes"/></td>
-    </c:if>
-</tr>--%>

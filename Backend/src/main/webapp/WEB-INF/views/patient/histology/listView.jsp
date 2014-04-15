@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
@@ -9,7 +10,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -18,20 +20,19 @@
                 <h2>
                     <spring:message code="label.histology"/>
                 </h2>
-
             </div>
             <div class="col-xs-6">
-                <h3 class="pull-right">
-                    <a href="<c:url value="/patient/${patient.id}/histology/create" />">
-                        <spring:message code="label.addRecord"/>
-                    </a>
-                </h3>
+                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR">
+                    <h3 class="pull-right">
+                        <a href="<c:url value="/patient/${patient.id}/histology/create" />">
+                            <spring:message code="label.addRecord"/>
+                        </a>
+                    </h3>
+                </sec:authorize>
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- histology list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty histologyDisplayVoList}">
@@ -44,30 +45,31 @@
 
                     <table class="record-head table">
                         <tr>
-                            <th class="col-xs-2">Datum
-                            </th>
                             <th class="col-xs-2">
+                                <spring:message code="label.date"/>
+                            </th>
+                            <th class="col-xs-3">
                                 <spring:message code="label.histopathology"/>
                             </th>
-                            <th class="col-xs-4">
+                            <th class="col-xs-3">
                                 <spring:message code="label.fcdClassification"/>
                             </th>
                             <th class="col-xs-4">
-
                             </th>
                         </tr>
                     </table>
-                    <c:forEach items="${histologyDisplayVoList}" var="histologyDisplayVo">
+                    <c:forEach items="${histologyDisplayVoList}"
+                               var="histologyDisplayVo">
+                        <c:set var="histologyDisplayVo"
+                               value="${histologyDisplayVo}"
+                               scope="request"/>
                         <div>
-
-                            <%@ include file="histologyTableView.jsp" %>
-
+                            <jsp:include page="histologyTableView.jsp"/>
                         </div>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- histology list END -->
     </jsp:body>
 </t:menuLVL2>

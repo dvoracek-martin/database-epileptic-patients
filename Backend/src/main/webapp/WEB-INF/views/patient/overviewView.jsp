@@ -690,25 +690,22 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-2">Datum
+                    <th class="col-xs-4">   <spring:message code="label.date"/>
                     </th>
-                    <th class="col-xs-2">
-                        <spring:message code="label.aed"/>
+                    <th class="col-xs-4">
+                        <spring:message code="label.histopathology"/>
                     </th>
-                    <th class="col-xs-2">
-                        <spring:message code="label.efficiency"/>
+                    <th class="col-xs-4">
+                        <spring:message code="label.fcdClassification"/>
                     </th>
-                    <th class="col-xs-2">
-                        <spring:message code="label.duringSurgery"/>
-                    </th>
-                    <th class="col-xs-4"></th>
                 </tr>
             </table>
             <c:forEach items="${histologyDisplayVoList}" var="histologyDisplayVo">
+                <c:set var="histologyDisplayVo"
+                       value="${histologyDisplayVo}"
+                       scope="request"/>
                 <div>
-
-                    <%@ include file="histology/histologyTableView.jsp" %>
-
+                    <jsp:include page="histology/histologyTableForOverviewView.jsp" />
                 </div>
             </c:forEach>
         </div>

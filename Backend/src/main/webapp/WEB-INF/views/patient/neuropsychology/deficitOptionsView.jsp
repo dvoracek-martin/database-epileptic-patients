@@ -2,13 +2,17 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div class="form-group"><label for="${param.propertyName}" class="col-xs-4 control-label">
-    <spring:message code="label.${param.labelName}"/>
-</label>
+<div class="form-group">
+    <label class="col-xs-4 control-label"
+           for="${param.propertyName}">
+        <spring:message code="label.${param.labelName}"/>
+    </label>
 
     <div class="col-xs-8">
-        <form:select path="${param.propertyName}" id="${param.propertyName}" type="text"
-                     class="form-control">
+        <form:select id="${param.propertyName}"
+                     class="form-control"
+                     type="text"
+                     path="${param.propertyName}">
             <form:option value="1">
                 <spring:message code="label.deficit.1"/>
             </form:option>

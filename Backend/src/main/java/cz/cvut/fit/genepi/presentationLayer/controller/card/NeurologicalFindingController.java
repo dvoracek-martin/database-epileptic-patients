@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +20,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"neurologicalFinding","patient"})
+@SessionAttributes({"neurologicalFinding", "patient"})
 public class NeurologicalFindingController {
 
     private AuthorizationChecker authorizationChecker;
@@ -49,6 +48,7 @@ public class NeurologicalFindingController {
             return "deniedView";
         }
 
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
         return "patient/neurologicalFinding/createView";
@@ -57,24 +57,24 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
     public String neurologicalFindingCreatePOST(
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/neurologicalFinding/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/neurologicalFinding/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
+                return "redirect:/patient/" + patientId + "/neurological-finding/list";
             }
-            genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
-            return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
 
@@ -87,6 +87,8 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         NeurologicalFindingVO vo = genericCardService.getById(neurologicalFindingId, NeurologicalFindingVO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFinding", vo);
@@ -96,27 +98,27 @@ public class NeurologicalFindingController {
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.POST)
     public String neurologicalFindingEditPOST(
             @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("neurologicalFindingId") int neurologicalFindingId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), neurologicalFinding.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/neurologicalFinding/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/neurologicalFinding/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(neurologicalFindingId, NeurologicalFindingEntity.class);
+                neurologicalFinding.setId(0);
+                genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
+                return "redirect:/patient/" + patientId + "/neurological-finding/list";
             }
-            genericCardService.makeHistory(neurologicalFindingId, NeurologicalFindingEntity.class);
-            neurologicalFinding.setId(0);
-            genericCardService.save(neurologicalFinding, NeurologicalFindingEntity.class);
-            return "redirect:/patient/" + patientId + "/neurological-finding/list";
         }
     }
 

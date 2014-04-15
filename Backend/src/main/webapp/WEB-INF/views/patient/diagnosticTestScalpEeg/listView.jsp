@@ -10,7 +10,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -22,11 +23,13 @@
 
             </div>
             <div class="col-xs-6">
+                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR">
                 <h3 class="pull-right">
                     <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </h3>
+                </sec:authorize>
             </div>
         </div>
 
