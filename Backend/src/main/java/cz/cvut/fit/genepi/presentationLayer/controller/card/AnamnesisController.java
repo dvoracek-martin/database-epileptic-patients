@@ -82,6 +82,7 @@ public class AnamnesisController {
         model.addAttribute("patient", patient);
 
         if (anamnesisDisplayVo == null) {
+            model.addAttribute("dateBeforeBirth", false);
             model.addAttribute("anamnesis", new AnamnesisVO());
             return "patient/anamnesis/createView";
         } else {
@@ -130,6 +131,7 @@ public class AnamnesisController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("anamnesis", genericCardService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
         return "patient/anamnesis/editView";

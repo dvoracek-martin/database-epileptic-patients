@@ -1,5 +1,4 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
@@ -14,7 +13,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-   </jsp:attribute>
+    </jsp:attribute>
 
     <jsp:body>
         <div class="row">
@@ -25,13 +24,17 @@
             </div>
         </div>
 
-        <form:form class="form-horizontal" method="POST" action="/GENEPI/news/create" commandName="newsMessageVo">
+        <form:form class="form-horizontal"
+                   action="/GENEPI/news/create"
+                   method="POST"
+                   commandName="newsMessageVo">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-small btn-primary" type="submit">
+                    <button class="btn btn-small btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

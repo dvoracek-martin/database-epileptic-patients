@@ -1,5 +1,4 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
@@ -10,17 +9,24 @@
     </label>
 
     <div class="col-xs-8">
-        <form:input path="heading" type="text" class=" form-control input-sm" id="heading"/>
-        <form:errors path="heading" cssClass="text-danger"/>
+        <form:input id="heading"
+                    class="form-control input-sm"
+                    type="text"
+                    path="heading"/>
+        <form:errors path="heading"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="message" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="message">
         <spring:message code="label.message"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="message" id="message" class="form-control resize-vertical"/>
+        <form:textarea id="message"
+                       class="form-control resize-vertical"
+                       path="message"/>
     </div>
 </div>

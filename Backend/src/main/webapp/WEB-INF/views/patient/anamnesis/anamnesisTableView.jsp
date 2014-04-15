@@ -1,11 +1,15 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags"
-           prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-anamnesis-${anamnesisDisplayVo.id}" class="collapse in">
+<jsp:useBean id="anamnesisDisplayVo"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO"/>
+
+<div id="collapse-anamnesis-${anamnesisDisplayVo.id}"
+     class="collapse in">
     <table class="table">
         <tbody>
         <tr>

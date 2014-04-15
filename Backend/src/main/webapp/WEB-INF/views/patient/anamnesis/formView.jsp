@@ -1,8 +1,10 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
+
+<jsp:useBean id="dateBeforeBirth" scope="request" type="java.lang.Boolean"/>
 
 <div class="form-group">
     <label for="date" class="col-xs-4 control-label">
@@ -11,7 +13,11 @@
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <form:input id="date"
+                        class="input-sm form-control"
+                        type="text"
+                        autocomplete="off"
+                        path="date"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
@@ -55,31 +61,6 @@
     <jsp:param name="messageCode" value="earlyPmdRetardation"/>
 </jsp:include>
 
-<%--<div class="form-group">
-    <label for="date" class="col-xs-4 control-label">
-        <spring:message code="label.beginningEpilepsy"/>
-    </label>
-
-    <div class="col-xs-8">
-        <c:choose>
-            <c:when test="${empty anamnesis.beginningEpilepsy}">
-                <div class='input-group date datepicker-simple'>
-                    <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
-                                autocomplete="off"/>
-                    <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </c:when>
-            <c:otherwise>
-                <form:input path="beginningEpilepsy" id="date" type="text" class="input-sm form-control"
-                            disabled="true"/>
-            </c:otherwise>
-        </c:choose>
-        <form:errors path="beginningEpilepsy" cssClass="text-danger"/>
-    </div>
-</div>--%>
-
 <jsp:include page="../../components/checkboxComponentView.jsp">
     <jsp:param name="propertyName" value="firstFever"/>
     <jsp:param name="messageCode" value="firstFever"/>
@@ -96,7 +77,10 @@
     </label>
 
     <div class="col-xs-8">
-        <form:select path="specificSyndrome" id="specificSyndrome" type="text" class="form-control input-sm">
+        <form:select id="specificSyndrome"
+                     class="form-control input-sm"
+                     type="text"
+                     path="specificSyndrome">
             <form:option value="0">
                 <spring:message code="label.specificSyndrome.0"/>
             </form:option>
@@ -123,21 +107,26 @@
 </div>
 
 <div class="form-group">
-    <label for="nonCnsComorbidity" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="nonCnsComorbidity">
         <spring:message code="label.nonCnsComorbidity"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="nonCnsComorbidity" id="nonCnsComorbidity" class="form-control resize-vertical"/>
+        <form:textarea id="nonCnsComorbidity"
+                       class="form-control resize-vertical"
+                       path="nonCnsComorbidity"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="comment" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label" for="comment">
         <spring:message code="label.comment"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
+        <form:textarea id="comment"
+                       class="form-control resize-vertical"
+                       path="comment"/>
     </div>
 </div>

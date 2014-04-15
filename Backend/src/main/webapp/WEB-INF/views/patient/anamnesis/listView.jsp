@@ -14,6 +14,7 @@
     </jsp:attribute>
 
     <jsp:body>
+
         <div class="row">
             <div class="col-xs-6">
                 <h2>
@@ -31,8 +32,7 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
-
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty anamnesisDisplayVo}">
@@ -47,21 +47,16 @@
                             <tbody>
                             <tr>
                                 <th class="col-xs-8">
-                                    <a data-toggle="collapse" href="#collapse-anamnesis-${anamnesisDisplayVo.id}">
-                                        Zadano dne: ${anamnesisDisplayVo.date}
+                                    <a href="#collapse-anamnesis-${anamnesisDisplayVo.id}"
+                                       data-toggle="collapse" >
+                                        <spring:message code="label.dateAdded"/>: ${anamnesisDisplayVo.date}
                                     </a>
                                 </th>
-                                <th class="col-xs-2">
+                                <th class="col-xs-4">
                                     <a class="pull-right"
                                        href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
-                                        <span class="glyphicon glyphicon-edit"></span> edit
+                                        <span class="glyphicon glyphicon-edit"></span> <spring:message code="label.edit"/>
                                     </a>
-                                </th>
-                                <th class="col-xs-2">
-                                    <!-- <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
-                                        </a> -->
                                 </th>
                             </tr>
                             </tbody>
@@ -74,6 +69,5 @@
             </c:otherwise>
         </c:choose>
 
-        <!-- anamnesis list END -->
     </jsp:body>
 </t:menuLVL2>
