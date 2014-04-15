@@ -4,8 +4,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="dateBeforeBirth" scope="request" type="java.lang.Boolean"/>
-<jsp:useBean id="chooseBoth" scope="request" type="java.lang.Boolean"/>
+<jsp:useBean id="dateBeforeBirth"
+             scope="request"
+             type="java.lang.Boolean"/>
+<jsp:useBean id="chooseBoth"
+             scope="request"
+             type="java.lang.Boolean"/>
 
 <div class="form-group">
     <label for="date" class="col-xs-4 control-label">

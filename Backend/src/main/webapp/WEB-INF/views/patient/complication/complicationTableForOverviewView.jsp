@@ -1,4 +1,3 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -16,7 +15,7 @@
     <tr>
         <td class="col-xs-3">
             <a href="#collapse${complicationDisplayVo.id}"
-               data-toggle="collapse" >
+               data-toggle="collapse">
                 ${complicationDisplayVo.date}
             </a>
         </td>
@@ -44,7 +43,7 @@
                 <spring:message code="label.comment"/>
             </td>
             <td class="col-xs-8"
-                colspan="3" >
+                colspan="3">
                 ${complicationDisplayVo.comment}
             </td>
         </tr>

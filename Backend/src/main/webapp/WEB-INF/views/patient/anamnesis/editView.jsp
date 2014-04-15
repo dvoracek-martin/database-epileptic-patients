@@ -38,7 +38,7 @@
                    role="form"
                    commandName="anamnesis">
 
-            <jsp:include page="formView.jsp" />
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">

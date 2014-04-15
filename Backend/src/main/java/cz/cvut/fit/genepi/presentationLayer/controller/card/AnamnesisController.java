@@ -25,7 +25,7 @@ import javax.validation.Valid;
  * anamnesis.
  */
 @Controller
-@SessionAttributes({"anamnesis","patient"})
+@SessionAttributes({"anamnesis", "patient"})
 public class AnamnesisController {
 
     private GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService;
@@ -100,18 +100,20 @@ public class AnamnesisController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/anamnesis/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate());
+            if (result.hasErrors() || dateNotOk) {
+
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+
+                return "patient/anamnesis/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(anamnesis, AnamnesisEntity.class);
+                return "redirect:/patient/" + patientId + "/anamnesis/list";
             }
-            genericCardService.save(anamnesis, AnamnesisEntity.class);
-            return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
 
@@ -148,20 +150,21 @@ public class AnamnesisController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), anamnesis.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/anamnesis/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate());
+            if (result.hasErrors() || dateNotOk) {
+
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/anamnesis/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(anamnesisId, AnamnesisEntity.class);
+                anamnesis.setId(0);
+                genericCardService.save(anamnesis, AnamnesisEntity.class);
+                return "redirect:/patient/" + patientId + "/anamnesis/list";
             }
-            genericCardService.makeHistory(anamnesisId, AnamnesisEntity.class);
-            anamnesis.setId(0);
-            genericCardService.save(anamnesis, AnamnesisEntity.class);
-            return "redirect:/patient/" + patientId + "/anamnesis/list";
         }
     }
 

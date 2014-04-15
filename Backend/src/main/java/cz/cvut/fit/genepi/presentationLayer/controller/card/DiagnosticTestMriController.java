@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"diagnosticTestMri","patient"})
+@SessionAttributes({"diagnosticTestMri", "patient"})
 public class DiagnosticTestMriController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +48,8 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestMri", new DiagnosticTestMriVO());
         return "patient/diagnosticTestMri/createView";
@@ -63,17 +65,18 @@ public class DiagnosticTestMriController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/diagnosticTestMri/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/diagnosticTestMri/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
+                return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
             }
-            genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
-            return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
 
@@ -86,6 +89,8 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestMri", genericCardService.getById(diagnosticTestMriId, DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class));
         return "patient/diagnosticTestMri/editView";
@@ -102,19 +107,20 @@ public class DiagnosticTestMriController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestMri.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/diagnosticTestMri/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/diagnosticTestMri/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(diagnosticTestMriId, DiagnosticTestMriEntity.class);
+                diagnosticTestMri.setId(0);
+                genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
+                return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
             }
-            genericCardService.makeHistory(diagnosticTestMriId, DiagnosticTestMriEntity.class);
-            diagnosticTestMri.setId(0);
-            genericCardService.save(diagnosticTestMri, DiagnosticTestMriEntity.class);
-            return "redirect:/patient/" + patientId + "/diagnostic-test-mri/list";
         }
     }
 

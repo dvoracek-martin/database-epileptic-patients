@@ -12,7 +12,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.addRecord"/>
+      <spring:message code="label.editRecord"/>
     </jsp:attribute>
 
 	<jsp:attribute name="script">

@@ -3,13 +3,16 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <div class="form-group">
-    <label for="${param.propertyName}" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="${param.propertyName}">
         <spring:message code="label.${param.labelName}"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="${param.propertyName}" id="${param.propertyName}" type="text"
-                     class="input-sm form-control">
+        <form:select id="${param.propertyName}"
+                     class="input-sm form-control"
+                     type="text"
+                     path="${param.propertyName}">
             <form:option value="0">
                 <spring:message code="label.resultType.0"/>
             </form:option>
