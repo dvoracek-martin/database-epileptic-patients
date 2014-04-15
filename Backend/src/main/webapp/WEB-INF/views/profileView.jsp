@@ -101,7 +101,8 @@
                         <h4><spring:message code="label.assignedRoles"/></h4>
                     </div>
                 </div>
-                <c:forEach items="${user.roles}" var="role">
+                <c:forEach items="${user.roles}"
+                           var="role">
                     <div class="row">
 
                         <div class="col-xs-12">

@@ -12,9 +12,12 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
-           <link href="<c:url value="/resources/jquery-tree/jquery.tree.min.css" />" rel="stylesheet">
-          <link href="<c:url value="/resources/jquery-ui/css/ui-lightness/jquery-ui.min.css" />" rel="stylesheet">
+        <link href="<c:url value="/resources/custom/css/custom.css" />"
+              rel="stylesheet">
+           <link href="<c:url value="/resources/jquery-tree/jquery.tree.min.css" />"
+                 rel="stylesheet">
+          <link href="<c:url value="/resources/jquery-ui/css/ui-lightness/jquery-ui.min.css" />"
+                rel="stylesheet">
     </jsp:attribute>
 
     <jsp:attribute name="script">
@@ -52,9 +55,9 @@
             </legend>
 
             <form id="genericConfigurationsForm"
+                  class="form-horizontal"
                   action="<c:url value="/export/load"/>"
                   method="POST"
-                  class="form-horizontal"
                   role="form">
 
                 <div class="form-group">
@@ -142,8 +145,8 @@
     <div class="col-xs-12">
 
         <form:form id="exportForm"
-                   method="POST"
                    action="/GENEPI/perform-export"
+                   method="POST"
                    commandName="exportParams">
 
             <fieldset>
@@ -158,7 +161,7 @@
                             <form:checkbox id="anamnesis"
                                            path="anamnesis"/>
                             <form:label path="anamnesis">
-                                anamnesis
+                                <spring:message code="label.anamnesis"/>
                             </form:label>
                             <ul>
                                 <li>
@@ -283,7 +286,8 @@
                     </div>
                 </div>
 
-                <button class="btn btn-primary btn-sm" type="submit">
+                <button class="btn btn-primary btn-sm"
+                        type="submit">
                     <spring:message code="label.export"/>
                 </button>
 
@@ -295,23 +299,31 @@
                 </legend>
 
                 <div class="form-group">
-                    <label class="col-xs-2 control-label" for="name">
+                    <label class="col-xs-2 control-label"
+                           for="name">
                         <spring:message code="label.name"/>
                     </label>
 
                     <div class="col-xs-4">
-                        <form:input path="name" id="name" type="text" class="input-sm form-control"/>
+                        <form:input id="name"
+                                    class="input-sm form-control"
+                                    type="text"
+                                    path="name"/>
                     </div>
 
                     <div class="col-xs-2">
                         <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                            <form:checkbox id="generic" path="generic"/> <label for="generic"> <spring:message
-                                code="label.generic"/></label>
+                            <form:checkbox id="generic"
+                                           path="generic"/>
+                            <label for="generic">
+                                <spring:message code="label.generic"/>
+                            </label>
                         </sec:authorize>
                     </div>
 
                     <div>
-                        <button id="saveButton" class="btn btn-primary btn-sm">
+                        <button id="saveButton"
+                                class="btn btn-primary btn-sm">
                             <spring:message code="label.save"/>
                         </button>
                     </div>

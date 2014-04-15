@@ -39,7 +39,8 @@
             </c:when>
             <c:otherwise>
 
-                <c:forEach items="${newsMessages}" var="newsMessage">
+                <c:forEach items="${newsMessages}"
+                           var="newsMessage">
                     <div class="row">
                         <div class="col-xs-6">
                             <h3>
@@ -83,21 +84,29 @@
                 </c:forEach>
 
 
-                <c:forEach items="${newsMessages}" var="newsMessage">
+                <c:forEach items="${newsMessages}"
+                           var="newsMessage">
                     <!-- Modal -->
-                    <div class="modal fade" id="delete-news-${newsMessage.id}" tabindex="-1" role="dialog"
-                         aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div id="delete-news-${newsMessage.id}"
+                         class="modal fade"
+                         role="dialog"
+                         tabindex="-1"
+                         aria-labelledby="myModalLabel"
+                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-body">
                                     <spring:message code="label.reallyDeleteMessage"/>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                    <button class="btn btn-default"
+                                            type="button"
+                                            data-dismiss="modal">
                                         <spring:message code="label.cancel"/>
                                     </button>
-                                    <a type="button" class="btn btn-primary"
-                                       href="<c:url value="/news/${newsMessage.id}/delete" />">
+                                    <a class="btn btn-primary"
+                                       href="<c:url value="/news/${newsMessage.id}/delete" />"
+                                       type="button">
                                         <spring:message code="label.yes"/>
                                     </a>
                                 </div>

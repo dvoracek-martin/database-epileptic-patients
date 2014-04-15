@@ -1,16 +1,15 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Martin
-  Date: 27.2.14
-  Time: 19:23
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-ERROR
-</body>
-</html>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ page pageEncoding="UTF-8" %>
+
+<t:layout>
+
+	<jsp:attribute name="title">
+      <spring:message code="label.permissionDenied"/>
+    </jsp:attribute>
+
+    <jsp:body>
+        <h1><spring:message code="label.error"/></h1>
+    </jsp:body>
+</t:layout>
