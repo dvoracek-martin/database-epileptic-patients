@@ -6,43 +6,46 @@
 
 <t:menuLVL2>
 
-<jsp:attribute name="head">
+     <jsp:attribute name="head">
              <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
                    rel="stylesheet">
-        </jsp:attribute>
+     </jsp:attribute>
 
-    	<jsp:attribute name="title">
+     <jsp:attribute name="title">
           <spring:message code="label.addRecord"/>
-        </jsp:attribute>
+     </jsp:attribute>
 
-    	<jsp:attribute name="script">
+     <jsp:attribute name="script">
             <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
             <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
             <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		    <script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
-       </jsp:attribute>
+    </jsp:attribute>
 
     <jsp:body>
 
         <div class="row">
             <div class="col-xs-12">
                 <h2>
-                    <spring:message code="label.seizures"/> Záchvaty - Přidání záchvatu
+                    <spring:message code="label.seizureDetail"/>
                 </h2>
             </div>
         </div>
 
-        <%@include file="../../patientDetails.jsp" %>
+        <jsp:include page="../../patientDetails.jsp"/>
 
-        <form:form class="form-horizontal" role="form" method="POST"
+        <form:form class="form-horizontal"
                    action="/GENEPI/patient/${patient.id}/seizure/${seizureId}/seizure-detail/create"
+                   method="POST"
+                   role="form"
                    commandName="seizureDetail">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

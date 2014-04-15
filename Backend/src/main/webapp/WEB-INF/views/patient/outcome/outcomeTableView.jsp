@@ -1,11 +1,13 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<jsp:useBean id="operationWithOutcomesDisplayVo"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO"/>
 
+<div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}"
+     class="collapse <c:if test="${count == 0}">in</c:if> ">
 
 <%-- getting outcomes --%>
 <c:set var="outcome6" value=""/>
@@ -14,22 +16,28 @@
 <c:set var="outcome60" value=""/>
 <c:set var="outcome120" value=""/>
 
-<c:forEach items="${operationWithOutcomesDisplayVo.outcomeList}" var="outcomeDisplayVo">
+<c:forEach items="${operationWithOutcomesDisplayVo.outcomeList}"
+           var="outcomeDisplayVo">
     <c:choose>
         <c:when test="${outcomeDisplayVo.distance==6}">
-            <c:set var="outcome6" value="${outcomeDisplayVo}"/>
+            <c:set var="outcome6"
+                   value="${outcomeDisplayVo}"/>
         </c:when>
         <c:when test="${outcomeDisplayVo.distance==12}">
-            <c:set var="outcome12" value="${outcomeDisplayVo}"/>
+            <c:set var="outcome12"
+                   value="${outcomeDisplayVo}"/>
         </c:when>
         <c:when test="${outcome.distance==24}">
-            <c:set var="outcome24" value="${outcomeDisplayVo}"/>
+            <c:set var="outcome24"
+                   value="${outcomeDisplayVo}"/>
         </c:when>
         <c:when test="${outcomeDisplayVo.distance==60}">
-            <c:set var="outcome60" value="${outcomeDisplayVo}"/>
+            <c:set var="outcome60"
+                   value="${outcomeDisplayVo}"/>
         </c:when>
         <c:when test="${outcomeDisplayVo.distance==120}">
-            <c:set var="outcome120" value="${outcomeDisplayVo}"/>
+            <c:set var="outcome120"
+                   value="${outcomeDisplayVo}"/>
         </c:when>
     </c:choose>
 </c:forEach>
@@ -48,7 +56,7 @@
 </thead>
 <tbody>
 <tr>
-    <td rowspan="2"><b>6 měsíců</b></td>
+    <td rowspan="2"><b><spring:message code="label.distance.6"/></b></td>
     <c:choose>
         <c:when test="${!empty(outcome6)}">
             <td><spring:message code="label.seizureOutcome.${outcome6.seizureOutcome}"/></td>
@@ -92,7 +100,7 @@
 </tr>
 
 <tr>
-    <td rowspan="2"><b>1 rok</b></td>
+    <td rowspan="2"><b><spring:message code="label.distance.12"/></b></td>
 
     <c:choose>
         <c:when test="${!empty(outcome12)}">
@@ -133,7 +141,7 @@
 </tr>
 
 <tr>
-    <td rowspan="2"><b>2 roky</b></td>
+    <td rowspan="2"><b><spring:message code="label.distance.24"/></b></td>
 
     <c:choose>
         <c:when test="${!empty(outcome24)}">
@@ -174,7 +182,7 @@
 </tr>
 
 <tr>
-    <td rowspan="2"><b>5 let</b></td>
+    <td rowspan="2"><b><spring:message code="label.distance.60"/></b></td>
 
     <c:choose>
         <c:when test="${!empty(outcome60)}">
@@ -215,7 +223,7 @@
 </tr>
 
 <tr>
-    <td rowspan="2"><b>10 let</b></td>
+    <td rowspan="2"><b><spring:message code="label.distance.120"/></b></td>
 
     <c:choose>
         <c:when test="${!empty(outcome120)}">

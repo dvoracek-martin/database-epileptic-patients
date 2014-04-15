@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
@@ -9,7 +10,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -22,9 +24,7 @@
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- Outcome list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty operationWithOutcomesDisplayVoList}">
@@ -33,9 +33,15 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="page"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationWithOutcomesDisplayVoList}" var="operationWithOutcomesDisplayVo">
+                    <c:forEach items="${operationWithOutcomesDisplayVoList}"
+                               var="operationWithOutcomesDisplayVo">
+                        <c:set var="operationWithOutcomesDisplayVo"
+                               value="${operationWithOutcomesDisplayVo}"
+                               scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
@@ -51,15 +57,16 @@
                                 </tbody>
                             </table>
 
-                            <%@ include file="outcomeTableView.jsp" %>
+                            <jsp:include page="outcomeTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="page"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- Operation list END -->
     </jsp:body>
 </t:menuLVL2>

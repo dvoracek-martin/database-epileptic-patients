@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"seizureDetail","patient"})
+@SessionAttributes({"seizureDetail", "patient"})
 public class SeizureDetailController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +47,9 @@ public class SeizureDetailController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
+        model.addAttribute("seizureId", seizureId);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureDetail", new SeizureDetailVO());
         return "patient/seizure/detail/createView";
@@ -56,28 +58,28 @@ public class SeizureDetailController {
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.POST)
     public String seizureDetailCreatePOST(
             @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizureDetail.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/seizure/detail/createView";
         } else {
-            seizureDetail.setPatientId(patientId);
-            seizureDetail.setSeizureId(seizureId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/seizure/detail/createView";
+            } else {
+                seizureDetail.setPatientId(patientId);
+                seizureDetail.setSeizureId(seizureId);
 
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(seizureDetail, SeizureDetailEntity.class);
+                return "redirect:/patient/" + patientId + "/seizure/list";
             }
-            genericCardService.save(seizureDetail, SeizureDetailEntity.class);
-            return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }
 
@@ -91,6 +93,8 @@ public class SeizureDetailController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureId", seizureId);
         model.addAttribute("seizureDetail", genericCardService.getById(seizureDetailId, SeizureDetailVO.class, SeizureDetailEntity.class));
@@ -100,31 +104,31 @@ public class SeizureDetailController {
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.POST)
     public String seizureDetailEditPOST(
             @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
             @PathVariable("seizureDetailId") Integer seizureDetailId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), seizureDetail.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/seizure/detail/editView";
         } else {
-            seizureDetail.setPatientId(patientId);
-            seizureDetail.setSeizureId(seizureId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/seizure/detail/editView";
+            } else {
+                seizureDetail.setPatientId(patientId);
+                seizureDetail.setSeizureId(seizureId);
 
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(seizureDetailId, SeizureDetailEntity.class);
+                seizureDetail.setId(0);
+                genericCardService.save(seizureDetail, SeizureDetailEntity.class);
+                return "redirect:/patient/" + patientId + "/seizure/list";
             }
-            genericCardService.makeHistory(seizureDetailId, SeizureDetailEntity.class);
-            seizureDetail.setId(0);
-            genericCardService.save(seizureDetail, SeizureDetailEntity.class);
-            return "redirect:/patient/" + patientId + "/seizure/list";
         }
     }
 

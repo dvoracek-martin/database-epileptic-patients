@@ -6,6 +6,10 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO"/>
 
+<jsp:useBean id="patient"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
+
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
@@ -21,18 +25,6 @@
         </td>
         <td class="col-xs-2">
             <spring:message code="label.boolean.${pharmacotherapyDisplayVo.duringSurgery}"/>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/edit"/>">
-                <span class="glyphicon glyphicon-edit"></span>
-                <spring:message code="label.edit"/>
-            </a>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/hide"/>">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                <spring:message code="label.delete"/>
-            </a>
         </td>
     </tr>
 </table>

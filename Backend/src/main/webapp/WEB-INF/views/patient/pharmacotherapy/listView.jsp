@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -10,7 +11,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -30,9 +32,7 @@
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- neurologicalFinding list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty pharmacotherapyDisplayVoList}">
@@ -45,7 +45,8 @@
 
                     <table class="record-head table">
                         <tr>
-                            <th class="col-xs-2">Datum
+                            <th class="col-xs-2">
+                                <spring:message code="label.date"/>
                             </th>
                             <th class="col-xs-2">
                                 <spring:message code="label.aed"/>
@@ -59,17 +60,18 @@
                             <th class="col-xs-4"></th>
                         </tr>
                     </table>
-                    <c:forEach items="${pharmacotherapyDisplayVoList}" var="pharmacotherapyDisplayVo">
+                    <c:forEach items="${pharmacotherapyDisplayVoList}"
+                               var="pharmacotherapyDisplayVo">
+                        <c:set var="pharmacotherapyDisplayVo"
+                               value="${pharmacotherapyDisplayVo}"
+                               scope="request"/>
                         <div>
-
-                            <%@ include file="pharmacotherapyTableView.jsp" %>
-
+                            <jsp:include page="pharmacotherapyTableView.jsp"/>
                         </div>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- neurologicalFinding list END -->
     </jsp:body>
 </t:menuLVL2>

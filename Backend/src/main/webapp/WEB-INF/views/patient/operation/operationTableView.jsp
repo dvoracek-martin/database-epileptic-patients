@@ -1,10 +1,13 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<div id="collapse-operation-${operationDisplayVo.id}" class="collapse <c:if test="${count == 0}">in</c:if> ">
+<jsp:useBean id="operationDisplayVo"
+             scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO"/>
+
+<div id="collapse-operation-${operationDisplayVo.id}"
+     class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
         <tr>
@@ -53,9 +56,18 @@
             <th class="col-xs-3">
                 <spring:message code="label.localizationOfOperation"/>
             </th>
-            <td class="col-xs-9">
-                ${operationDisplayVo.localizationOperation}
-            </td>
+            <c:choose>
+                <c:when test="${empty operationDisplayVo.localizationOperation}">
+                    <td>
+                        -
+                    </td>
+                </c:when>
+                <c:otherwise>
+                    <td class="col-xs-9">
+                            ${operationDisplayVo.localizationOperation}
+                    </td>
+                </c:otherwise>
+            </c:choose>
         </tr>
         <tr>
             <th class="col-xs-3">
@@ -85,17 +97,35 @@
             <th class="col-xs-3">
                 <spring:message code="label.vnsImplantationDate"/>
             </th>
-            <td class="col-xs-9">
-                ${operationDisplayVo.vnsImplantationDate}
-            </td>
+            <c:choose>
+                <c:when test="${empty operationDisplayVo.vnsImplantationDate}">
+                    <td>
+                        -
+                    </td>
+                </c:when>
+                <c:otherwise>
+                    <td class="col-xs-9">
+                            ${operationDisplayVo.vnsImplantationDate}
+                    </td>
+                </c:otherwise>
+            </c:choose>
         </tr>
         <tr>
             <th class="col-xs-3">
                 <spring:message code="label.operationDetails"/>
             </th>
-            <td class="col-xs-9">
-                ${operationDisplayVo.operationDetails}
-            </td>
+            <c:choose>
+                <c:when test="${empty operationDisplayVo.operationDetails}">
+                    <td>
+                        -
+                    </td>
+                </c:when>
+                <c:otherwise>
+                    <td class="col-xs-9">
+                            ${operationDisplayVo.operationDetails}
+                    </td>
+                </c:otherwise>
+            </c:choose>
         </tr>
         <tr>
             <th class="col-xs-3">

@@ -42,7 +42,9 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="request"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
                     <c:forEach items="${neuropsychologyDisplayVoList}"
                                var="neuropsychologyDisplayVo">
@@ -62,15 +64,15 @@
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> <spring:message
-                                                code="label.edit"/>
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <spring:message code="label.edit"/>
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> <spring:message
-                                                code="label.delete"/>
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <spring:message code="label.delete"/>
                                         </a>
                                     </th>
                                 </tr>
@@ -80,7 +82,9 @@
                             <jsp:include page="neuropsychologyTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="request"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>

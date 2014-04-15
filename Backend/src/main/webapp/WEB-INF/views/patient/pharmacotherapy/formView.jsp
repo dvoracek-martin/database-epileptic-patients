@@ -1,24 +1,34 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="dateBeforeBirth"
+             scope="request"
+             type="java.lang.Boolean"/>
+
 <div class="form-group">
-    <label for="date" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="date">
         <spring:message code="label.dateExamination"/>*
     </label>
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <form:input id="date"
+                        class="input-sm form-control"
+                        type="text"
+                        autocomplete="off"
+                        path="date"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <form:errors path="date" cssClass="text-danger"/>
+        <form:errors path="date"
+                     cssClass="text-danger"/>
         <c:if test="${dateBeforeBirth}">
-            <span id="date.errors" class="text-danger">
+            <span id="date.errors"
+                  class="text-danger">
                 <spring:message code="label.cannotBeBeforeBirth"/>
             </span>
         </c:if>
@@ -26,12 +36,16 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="aed">
+    <label class="col-xs-4 control-label"
+           for="aed">
         <spring:message code="label.aed"/>*
     </label>
 
     <div class="col-xs-8">
-        <form:select path="aed" id="aed" type="text" class="form-control input-sm">
+        <form:select id="aed"
+                     class="form-control input-sm"
+                     type="text"
+                     path="aed">
             <form:option value="0">
                 <spring:message code="label.aed.0"/>
             </form:option>
@@ -111,17 +125,22 @@
                 <spring:message code="label.aed.25"/>
             </form:option>
         </form:select>
-        <form:errors path="aed" cssClass="text-danger"/>
+        <form:errors path="aed"
+                     cssClass="text-danger"/>
     </div>
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="efficiency">
+    <label class="col-xs-4 control-label"
+           for="efficiency">
         <spring:message code="label.efficiency"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="efficiency" id="efficiency" type="text" class="form-control input-sm">
+        <form:select id="efficiency"
+                     class="form-control input-sm"
+                     type="text"
+                     path="efficiency">
             <form:option value="1">
                 <spring:message code="label.efficiency.1"/>
             </form:option>
@@ -133,16 +152,21 @@
 </div>
 
 <jsp:include page="../../components/checkboxComponentView.jsp">
-    <jsp:param name="propertyName" value="duringSurgery"/>
-    <jsp:param name="messageCode" value="duringSurgery"/>
+    <jsp:param name="propertyName"
+               value="duringSurgery"/>
+    <jsp:param name="messageCode"
+               value="duringSurgery"/>
 </jsp:include>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="comment">
+    <label class="col-xs-4 control-label"
+           for="comment">
         <spring:message code="label.comment"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
+        <form:textarea id="comment"
+                       class="form-control resize-vertical"
+                       path="comment"/>
     </div>
 </div>

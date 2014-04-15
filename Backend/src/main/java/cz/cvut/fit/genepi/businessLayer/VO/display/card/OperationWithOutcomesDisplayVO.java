@@ -13,4 +13,8 @@ public class OperationWithOutcomesDisplayVO extends OperationDisplayVO {
     public void setOutcomeList(List<OutcomeDisplayVO> outcomeList) {
         this.outcomeList = outcomeList;
     }
+
+    public String getSeizureOutcome() {
+        return null;
+    }
 }

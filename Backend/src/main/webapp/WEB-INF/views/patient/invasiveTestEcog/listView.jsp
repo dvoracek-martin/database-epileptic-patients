@@ -41,7 +41,9 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="request"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
                     <c:forEach items="${invasiveTestEcogDisplayVoList}"
                                var="invasiveTestEcogDisplayVo">
@@ -79,7 +81,9 @@
                             <jsp:include page="invasiveTestEcogTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="request"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>

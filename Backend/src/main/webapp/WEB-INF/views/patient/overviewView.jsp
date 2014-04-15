@@ -166,7 +166,7 @@
             </tbody>
         </table>
 
-        <%@include file="seizure/seizureTableView.jsp" %>
+        <jsp:include page="seizure/seizureTableForOverviewView.jsp"/>
 
         <c:set var="count" value="1" scope="page"/>
     </c:otherwise>
@@ -216,25 +216,27 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-2">Datum
+                    <th class="col-xs-3">
+                        <spring:message code="label.date"/>
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.aed"/>
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.efficiency"/>
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.duringSurgery"/>
                     </th>
-                    <th class="col-xs-4"></th>
                 </tr>
             </table>
-            <c:forEach items="${pharmacotherapyDisplayVoList}" var="pharmacotherapyDisplayVo">
+            <c:forEach items="${pharmacotherapyDisplayVoList}"
+                       var="pharmacotherapyDisplayVo">
+                <c:set var="pharmacotherapyDisplayVo"
+                       value="${pharmacotherapyDisplayVo}"
+                       scope="request"/>
                 <div>
-
-                    <%@ include file="pharmacotherapy/pharmacotherapyTableView.jsp" %>
-
+                    <jsp:include page="pharmacotherapy/pharmacotherapyTableForOverviewView.jsp"/>
                 </div>
             </c:forEach>
         </div>
@@ -690,7 +692,7 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-4">   <spring:message code="label.date"/>
+                    <th class="col-xs-4"><spring:message code="label.date"/>
                     </th>
                     <th class="col-xs-4">
                         <spring:message code="label.histopathology"/>
@@ -705,7 +707,7 @@
                        value="${histologyDisplayVo}"
                        scope="request"/>
                 <div>
-                    <jsp:include page="histology/histologyTableForOverviewView.jsp" />
+                    <jsp:include page="histology/histologyTableForOverviewView.jsp"/>
                 </div>
             </c:forEach>
         </div>

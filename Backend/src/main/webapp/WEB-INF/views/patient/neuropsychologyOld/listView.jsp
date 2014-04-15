@@ -10,7 +10,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -22,9 +23,7 @@
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- neuropsychology old list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty neuropsychologyOldDisplayVoList}">
@@ -33,17 +32,23 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="page"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
                     <c:forEach items="${neuropsychologyOldDisplayVoList}" var="neuropsychologyOldDisplayVo">
+                        <c:set var="neuropsychologyOldDisplayVo"
+                               value="${neuropsychologyOldDisplayVo}"
+                               scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse"
-                                           href="#collapse-neuropsychology-old-${neuropsychologyOldDisplayVo.id}">
-                                            Zadano dne: ${neuropsychologyOldDisplayVo.date}
+                                        <a href="#collapse-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"
+                                           data-toggle="collapse">
+                                            <spring:message
+                                                    code="label.dateAdded"/>: ${neuropsychologyOldDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
@@ -52,22 +57,24 @@
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOldDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <spring:message code="label.delete"/>
                                         </a>
                                     </th>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <%@ include file="neuropsychologyOldTableView.jsp" %>
+                            <jsp:include page="neuropsychologyOldTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="page"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- neuropsychology list END -->
     </jsp:body>
 </t:menuLVL2>

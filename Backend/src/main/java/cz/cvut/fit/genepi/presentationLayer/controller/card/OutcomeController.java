@@ -14,7 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"outcome", "operation","patient"})
+@SessionAttributes({"outcome", "operation", "patient"})
 public class OutcomeController {
 
     private AuthorizationChecker authorizationChecker;
@@ -57,6 +56,8 @@ public class OutcomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("distance", distance);
         model.addAttribute("operation", operation);
@@ -67,30 +68,29 @@ public class OutcomeController {
     @RequestMapping(value = "/patient/{patientId}/outcome/create", method = RequestMethod.POST)
     public String outcomeCreatePOST(
             @ModelAttribute("outcome") @Valid OutcomeVO outcome, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            model.addAttribute("distance", distance);
-            return "patient/outcome/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                model.addAttribute("distance", distance);
+                return "patient/outcome/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                outcome.setDistance(distance);
+                outcome.setPatientId(patientId);
+                genericCardService.save(outcome, OutcomeEntity.class);
+                return "redirect:/patient/" + patientId + "/outcome/list";
             }
-            outcome.setDistance(distance);
-            outcome.setPatientId(patientId);
-            genericCardService.save(outcome, OutcomeEntity.class);
-            return "redirect:/patient/" + patientId + "/outcome/list";
         }
     }
 
@@ -103,7 +103,9 @@ public class OutcomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         OutcomeVO outcomeVO = genericCardService.getById(outcomeId, OutcomeVO.class, OutcomeEntity.class);
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("outcome", outcomeVO);
         model.addAttribute("distance", outcomeVO.getDistance());
@@ -114,33 +116,32 @@ public class OutcomeController {
     @RequestMapping(value = "/patient/{patientId}/outcome/{outcomeId}/edit", method = RequestMethod.POST)
     public String outcomeSavePOST(
             @ModelAttribute("outcome") @Valid OutcomeVO outcome, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
             @PathVariable("outcomeId") int outcomeId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        }
-        if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), outcome.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            model.addAttribute("distance", distance);
-            return "patient/outcome/formView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                model.addAttribute("distance", distance);
+                return "patient/outcome/formView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(outcomeId, OutcomeEntity.class);
+                outcome.setId(0);
+                outcome.setDistance(distance);
+                outcome.setPatientId(patientId);
+                genericCardService.save(outcome, OutcomeEntity.class);
+                return "redirect:/patient/" + patientId + "/outcome/list";
             }
-            genericCardService.makeHistory(outcomeId, OutcomeEntity.class);
-            outcome.setId(0);
-            outcome.setDistance(distance);
-            outcome.setPatientId(patientId);
-            genericCardService.save(outcome, OutcomeEntity.class);
-            return "redirect:/patient/" + patientId + "/outcome/list";
         }
     }
 

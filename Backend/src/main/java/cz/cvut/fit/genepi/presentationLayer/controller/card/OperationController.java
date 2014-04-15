@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"operation","patient"})
+@SessionAttributes({"operation", "patient"})
 public class OperationController {
 
     private AuthorizationChecker authorizationChecker;
@@ -53,6 +52,8 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("operation", new OperationVO());
         return "patient/operation/createView";
@@ -61,24 +62,24 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.POST)
     public String operationCreatePOST(
             @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/operation/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/operation/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(operation, OperationEntity.class);
+                return "redirect:/patient/" + patientId + "/operation/list";
             }
-            genericCardService.save(operation, OperationEntity.class);
-            return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
 
@@ -91,6 +92,8 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("operation", genericCardService.getById(operationId, OperationVO.class, OperationEntity.class));
         return "patient/operation/editView";
@@ -99,27 +102,27 @@ public class OperationController {
     @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/edit", method = RequestMethod.POST)
     public String operationSavePOST(
             @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("operationId") int operationId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), operation.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/operation/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/operation/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(operationId, OperationEntity.class);
+                operation.setId(0);
+                genericCardService.save(operation, OperationEntity.class);
+                return "redirect:/patient/" + patientId + "/operation/list";
             }
-            genericCardService.makeHistory(operationId, OperationEntity.class);
-            operation.setId(0);
-            genericCardService.save(operation, OperationEntity.class);
-            return "redirect:/patient/" + patientId + "/operation/list";
         }
     }
 

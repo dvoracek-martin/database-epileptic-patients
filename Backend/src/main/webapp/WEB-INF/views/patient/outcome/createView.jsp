@@ -1,14 +1,14 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
 
-<jsp:attribute name="head">
-    <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
-          rel="stylesheet">
+    <jsp:attribute name="head">
+        <link href="<c:url value="/resources/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />"
+              rel="stylesheet">
     </jsp:attribute>
 
 	<jsp:attribute name="title">
@@ -16,7 +16,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
- <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
+        <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
@@ -31,17 +31,19 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/outcome/create" commandName="outcome">
+        <form:form class="form-horizontal" action="/GENEPI/patient/${patient.id}/outcome/create"
+                   method="POST"
+                   role="form"
+                   commandName="outcome">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

@@ -83,7 +83,9 @@
                             <jsp:include page="diagnosticTestScalpEegTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="request"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>

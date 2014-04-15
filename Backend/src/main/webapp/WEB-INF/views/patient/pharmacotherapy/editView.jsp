@@ -12,7 +12,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="title">
-      <spring:message code="label.addRecord"/>
+      <spring:message code="label.editRecord"/>
     </jsp:attribute>
 
 	<jsp:attribute name="script">
@@ -31,18 +31,20 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" method="POST"
+        <form:form class="form-horizontal"
                    action="/GENEPI/patient/${patient.id}/pharmacotherapy/${pharmacotherapy.id}/edit"
+                   method="POST"
+                   role="form"
                    commandName="pharmacotherapy">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.save"/>
                     </button>
                 </div>

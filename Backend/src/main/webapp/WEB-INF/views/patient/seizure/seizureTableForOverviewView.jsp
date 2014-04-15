@@ -6,11 +6,8 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO"/>
 
-<%--@elvariable id="count" type="java.lang.Integer"--%>
-
 <div id="collapse-seizure-${seizureDisplayVo.id}"
-     class="collapse
-     <c:if test="${count == 0}">in</c:if> ">
+     class="collapse in ">
     <table class="table">
         <tbody>
         <tr>
@@ -84,15 +81,7 @@
                                scope="page"/>
                         <tr>
                             <th colspan="2" class="col-xs-12">
-                                    ${seizureDetailsCount}. <spring:message code="label.seizureType"/> (
-                                <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/edit"/>">
-                                    <spring:message code="label.edit"/>
-                                </a>
-                                |
-                                <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/hide"/>">
-                                    <spring:message code="label.delete"/>
-                                </a>
-                                )
+                                    ${seizureDetailsCount}. <spring:message code="label.seizureType"/>
                             </th>
                         </tr>
                         <tr>

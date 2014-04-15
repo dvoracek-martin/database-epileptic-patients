@@ -3,6 +3,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="dateBeforeBirth"
+             scope="request"
+             type="java.lang.Boolean"/>
+
 <div class="form-group">
     <label for="date" class="col-xs-4 control-label">
         <spring:message code="label.dateExamination"/>*
@@ -10,14 +14,21 @@
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <form:input id="date"
+                        class="input-sm form-control"
+                        type="text"
+                        autocomplete="off"
+                        path="date"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <form:errors path="date" cssClass="text-danger"/>
+        <form:errors path="date"
+
+                     cssClass="text-danger"/>
         <c:if test="${dateBeforeBirth}">
-            <span id="date.errors" class="text-danger">
+            <span id="date.errors"
+                  class="text-danger">
                 <spring:message code="label.cannotBeBeforeBirth"/>
             </span>
         </c:if>
@@ -25,12 +36,16 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="sscClassification">
+    <label class="col-xs-4 control-label"
+           for="sscClassification">
         <spring:message code="label.sscClassification"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="sscClassification" id="sscClassification" type="text" class="form-control input-sm">
+        <form:select id="sscClassification"
+                     class="form-control input-sm"
+                     type="text"
+                     path="sscClassification">
             <form:option value="0">
                 <spring:message code="label.sscClassification.0"/>
             </form:option>
@@ -127,12 +142,16 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="ilaeClassification">
+    <label class="col-xs-4 control-label"
+           for="ilaeClassification">
         <spring:message code="label.ilaeClassification"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="ilaeClassification" id="ilaeClassification" type="text" class="form-control input-sm">
+        <form:select id="ilaeClassification"
+                     class="form-control input-sm"
+                     type="text"
+                     path="ilaeClassification">
             <form:option value="0">
                 <spring:message code="label.ilaeClassification.0"/>
             </form:option>
@@ -187,11 +206,14 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="comment">
+    <label class="col-xs-4 control-label"
+           for="comment">
         <spring:message code="label.comment"/>
     </label>
 
     <div class="col-xs-8">
-        <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
+        <form:textarea id="comment"
+                       class="form-control resize-vertical"
+                       path="comment"/>
     </div>
 </div>

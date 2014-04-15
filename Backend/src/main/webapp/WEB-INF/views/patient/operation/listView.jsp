@@ -1,6 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
@@ -9,7 +10,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -29,9 +31,7 @@
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- Operation list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty operationDisplayVoList}">
@@ -40,43 +40,52 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="page"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationDisplayVoList}" var="operationDisplayVo">
+                    <c:forEach items="${operationDisplayVoList}"
+                               var="operationDisplayVo">
+                        <c:set var="operationDisplayVo"
+                               value="${operationDisplayVo}"
+                               scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse" href="#collapse-operation-${operationDisplayVo.id}">
-                                            Zadano dne: ${operationDisplayVo.date}
+                                            <spring:message code="label.dateAdded"/>: ${operationDisplayVo.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> edit
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <spring:message code="label.edit"/>
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> delete
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <spring:message code="label.delete"/>
                                         </a>
                                     </th>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <%@ include file="operationTableView.jsp" %>
+                            <jsp:include page="operationTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="page"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- Operation list END -->
     </jsp:body>
 </t:menuLVL2>

@@ -1,7 +1,7 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
@@ -32,16 +32,19 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <form:form class="form-horizontal" role="form" method="POST"
-                   action="/GENEPI/patient/${patient.id}/seizure/${seizure.id}/edit" commandName="seizure">
+        <form:form class="form-horizontal" action="/GENEPI/patient/${patient.id}/seizure/${seizure.id}/edit"
+                   method="POST"
+                   role="form"
+                   commandName="seizure">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.save"/>
                     </button>
                 </div>

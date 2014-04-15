@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -10,7 +11,8 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-     <link href="<c:url value="/resources/custom/css/custom.css" />" rel="stylesheet">
+     <link href="<c:url value="/resources/custom/css/custom.css" />"
+           rel="stylesheet">
     </jsp:attribute>
 
     <jsp:body>
@@ -29,9 +31,8 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <!-- Seizure list START -->
         <c:choose>
             <c:when test="${empty seizureDisplayVoList}">
                 <div class="alert alert-info">
@@ -39,9 +40,15 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <c:set var="count" value="0" scope="page"/>
+                <c:set var="count"
+                       value="0"
+                       scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${seizureDisplayVoList}" var="seizureDisplayVo">
+                    <c:forEach items="${seizureDisplayVoList}"
+                               var="seizureDisplayVo">
+                        <c:set var="seizureDisplayVo"
+                               value="${seizureDisplayVo}"
+                               scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
@@ -54,36 +61,38 @@
                                     <th class="col-xs-3">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/create"/>">
-                                            <span class="glyphicon glyphicon-edit"></span><spring:message
-                                                code="label.addSeizureDetail"/>&nbsp;
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <spring:message code="label.addSeizureDetail"/>
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span> <spring:message
-                                                code="label.edit"/>&nbsp;
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <spring:message code="label.edit"/>
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
                                            href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/hide"/>">
-                                            <span class="glyphicon glyphicon-remove-circle"></span> <spring:message
-                                                code="label.delete"/>
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <spring:message code="label.delete"/>
                                         </a>
                                     </th>
                                 </tr>
                                 </tbody>
                             </table>
 
-                            <%@include file="seizureTableView.jsp" %>
+                            <jsp:include page="seizureTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="page"/>
+                        <c:set var="count"
+                               value="1"
+                               scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
-        <!-- Seizure list END -->
+
     </jsp:body>
 </t:menuLVL2>
