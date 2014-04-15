@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"diagnosticTestScalpEeg","petient"})
+@SessionAttributes({"diagnosticTestScalpEeg", "patient"})
 public class DiagnosticTestScalpEegController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +48,8 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestScalpEeg", new DiagnosticTestScalpEegVO());
         return "patient/diagnosticTestScalpEeg/createView";
@@ -56,24 +58,24 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.POST)
     public String diagnosticTestScalpEegCreatePOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/diagnosticTestScalpEeg/createView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/diagnosticTestScalpEeg/createView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
+                return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
             }
-            genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
-            return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
         }
     }
 
@@ -86,6 +88,8 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("diagnosticTestScalpEeg", genericCardService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class));
         return "patient/diagnosticTestScalpEeg/editView";
@@ -94,27 +98,27 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.POST)
     public String diagnosticTestScalpEegEditPOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
+            @ModelAttribute("patient")  PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
-            Model model, HttpServletRequest request, ModelMap modelMap) {
-
-        PatientDisplayVO patientDisplayVo = (PatientDisplayVO) modelMap.get("patient");
+            Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), diagnosticTestScalpEeg.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/diagnosticTestScalpEeg/editView";
         } else {
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate());
+            if (result.hasErrors() || dateNotOk) {
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                return "patient/diagnosticTestScalpEeg/editView";
+            } else {
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
+                diagnosticTestScalpEeg.setId(0);
+                genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
+                return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
             }
-            genericCardService.makeHistory(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
-            diagnosticTestScalpEeg.setId(0);
-            genericCardService.save(diagnosticTestScalpEeg, DiagnosticTestScalpEegEntity.class);
-            return "redirect:/patient/" + patientId + "/diagnostic-test-scalp-eeg/list";
         }
     }
 

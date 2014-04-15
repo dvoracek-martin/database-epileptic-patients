@@ -78,7 +78,7 @@
                             <jsp:include page="diagnosticTestMriTableView.jsp"/>
 
                         </div>
-                        <c:set var="count" value="1" scope="page"/>
+                        <c:set var="count" value="1" scope="request"/>
                     </c:forEach>
                 </div>
             </c:otherwise>

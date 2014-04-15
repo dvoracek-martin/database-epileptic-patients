@@ -1,8 +1,9 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
+
+<jsp:useBean id="diagnosticTestScalpEegDisplayVo" scope="request"
+             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO"/>
 
 <div id="collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">

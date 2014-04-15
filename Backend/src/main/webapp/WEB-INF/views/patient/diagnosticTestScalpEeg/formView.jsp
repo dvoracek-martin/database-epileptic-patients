@@ -1,24 +1,33 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="dateBeforeBirth"
+             scope="request"
+             type="java.lang.Boolean"/>
+
 <div class="form-group">
-    <label for="date" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="date">
         <spring:message code="label.dateExamination"/>*
     </label>
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <form:input id="date" type="text"
+                        class="input-sm form-control"
+                        autocomplete="off"
+                        path="date"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
-        <form:errors path="date" cssClass="text-danger"/>
+        <form:errors path="date"
+                     cssClass="text-danger"/>
         <c:if test="${dateBeforeBirth}">
-            <span id="date.errors" class="text-danger">
+            <span id="date.errors"
+                  class="text-danger">
                 <spring:message code="label.cannotBeBeforeBirth"/>
             </span>
         </c:if>
@@ -26,12 +35,16 @@
 </div>
 
 <div class="form-group">
-    <label for="done" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="done">
         <spring:message code="label.diagnosticTestScalpEeg"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="done" id="done" type="text" class="input-sm form-control">
+        <form:select id="done"
+                     class="input-sm form-control"
+                     type="text"
+                     path="done">
             <form:option value="1">
                 <spring:message code="label.done.1"/>
             </form:option>
@@ -45,14 +58,18 @@
 <div id="section-done">
 
     <div class="form-group">
-        <label for="basicEegActivity" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="basicEegActivity">
             <spring:message code="label.basicEegActivity"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="basicEegActivity" id="basicEegActivity" type="text" class="input-sm form-control">
+            <form:select id="basicEegActivity"
+                         class="input-sm form-control"
+                         type="text"
+                         path="basicEegActivity">
                 <form:option value="0">
-                    Zvolte
+                    <spring:message code="label.basicEegActivity.0"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.basicEegActivity.1"/>
@@ -65,12 +82,16 @@
     </div>
 
     <div class="form-group">
-        <label for="eegSlow" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="eegSlow">
             <spring:message code="label.eegSlow"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="eegSlow" id="eegSlow" type="text" class="input-sm form-control">
+            <form:select id="eegSlow"
+                         class="input-sm form-control"
+                         type="text"
+                         path="eegSlow">
                 <form:option value="0">
                     <spring:message code="label.eegSlow.0"/>
                 </form:option>
@@ -94,12 +115,16 @@
     </div>
 
     <div class="form-group">
-        <label for="interictalEegSpikes" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="interictalEegSpikes">
             <spring:message code="label.interictalEegSpikes"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="interictalEegSpikes" id="interictalEegSpikes" type="text" class="input-sm form-control">
+            <form:select id="interictalEegSpikes"
+                         class="input-sm form-control"
+                         type="text"
+                         path="interictalEegSpikes">
                 <form:option value="0">
                     <spring:message code="label.interictalEegSpikes.0"/>
                 </form:option>
@@ -126,33 +151,43 @@
     </div>
 
     <div class="form-group">
-        <label for="localizationInterictalEegSpikes" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="localizationInterictalEegSpikes">
             <spring:message code="label.localizationInterictalEegSpikes"/>
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="localizationInterictalEegSpikes" id="localizationInterictalEegSpikes"
-                           class="form-control resize-vertical"/>
+            <form:textarea id="localizationInterictalEegSpikes"
+                           class="form-control resize-vertical"
+                           path="localizationInterictalEegSpikes"/>
         </div>
     </div>
 
     <jsp:include page="../../components/checkboxComponentView.jsp">
-        <jsp:param name="propertyName" value="eegStatusEpilepticus"/>
-        <jsp:param name="messageCode" value="eegStatusEpilepticus"/>
+        <jsp:param name="propertyName"
+                   value="eegStatusEpilepticus"/>
+        <jsp:param name="messageCode"
+                   value="eegStatusEpilepticus"/>
     </jsp:include>
 
     <jsp:include page="../../components/checkboxComponentView.jsp">
-        <jsp:param name="propertyName" value="secondarySidedSynchrony"/>
-        <jsp:param name="messageCode" value="secondarySidedSynchrony"/>
+        <jsp:param name="propertyName"
+                   value="secondarySidedSynchrony"/>
+        <jsp:param name="messageCode"
+                   value="secondarySidedSynchrony"/>
     </jsp:include>
 
     <div class="form-group">
-        <label for="ictalEegPatterns" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="ictalEegPatterns">
             <spring:message code="label.ictalEegPatterns"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="ictalEegPatterns" id="ictalEegPatterns" type="text" class="input-sm form-control">
+            <form:select id="ictalEegPatterns"
+                         class="input-sm form-control"
+                         type="text"
+                         path="ictalEegPatterns">
                 <form:option value="0">
                     <spring:message code="label.ictalEegPatterns.0"/>
                 </form:option>
@@ -179,23 +214,28 @@
     </div>
 
     <div class="form-group">
-        <label for="localizationIctalEegPattern" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="localizationIctalEegPattern">
             <spring:message code="label.localizationIctalEegPattern"/>
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="localizationIctalEegPattern" id="localizationIctalEegPattern"
-                           class="form-control resize-vertical"/>
+            <form:textarea id="localizationIctalEegPattern"
+                           class="form-control resize-vertical"
+                           path="localizationIctalEegPattern"/>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="descriptionVideoEeg" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="descriptionVideoEeg">
             <spring:message code="label.descriptionVideoEeg"/>
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="descriptionVideoEeg" id="descriptionVideoEeg" class="form-control resize-vertical"/>
+            <form:textarea id="descriptionVideoEeg"
+                           class="form-control resize-vertical"
+                           path="descriptionVideoEeg"/>
         </div>
     </div>
 
@@ -205,7 +245,9 @@
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
+            <form:textarea id="comment"
+                           class="form-control resize-vertical"
+                           path="comment"/>
         </div>
     </div>
 

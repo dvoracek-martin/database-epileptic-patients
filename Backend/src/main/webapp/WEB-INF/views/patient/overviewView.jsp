@@ -19,6 +19,7 @@
     </jsp:attribute>
 
 <jsp:body>
+<sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR" var="isAuthorized"/>
 <div class="row">
     <div class="col-xs-3 col-sm-6 col-lg-3">
         <h2>
@@ -80,7 +81,7 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <c:if test="${empty anamnesisDisplayVo}">
+        <c:if test="${empty anamnesisDisplayVo || isAuthorized}">
             <h3 class="pull-right">
                 <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                     <spring:message code="label.addRecord"/>
@@ -130,11 +131,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/seizure/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/seizure/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -178,11 +181,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -245,11 +250,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/neurological-finding/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/neurological-finding/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -293,11 +300,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/neuropsychology/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/neuropsychology/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -341,11 +350,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -390,11 +401,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -438,11 +451,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -486,11 +501,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/invasive-test-eeg/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/invasive-test-eeg/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -534,11 +551,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -583,11 +602,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/operation/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/operation/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -633,11 +654,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/histology/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/histology/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
@@ -701,11 +724,13 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <h3 class="pull-right">
-            <a href="<c:url value="/patient/${patient.id}/complication/create" />">
-                <spring:message code="label.addRecord"/>
-            </a>
-        </h3>
+        <c:if test="${isAuthorized}">
+            <h3 class="pull-right">
+                <a href="<c:url value="/patient/${patient.id}/complication/create" />">
+                    <spring:message code="label.addRecord"/>
+                </a>
+            </h3>
+        </c:if>
     </div>
 </div>
 
