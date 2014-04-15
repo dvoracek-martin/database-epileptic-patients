@@ -62,7 +62,7 @@
                             </tbody>
                         </table>
 
-                        <%@include file="anamnesisTableView.jsp" %>
+                        <jsp:include page="anamnesisTableView.jsp" />
 
                     </div>
                 </div>

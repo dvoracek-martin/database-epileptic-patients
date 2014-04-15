@@ -735,25 +735,25 @@
 
             <table class="record-head table">
                 <tr>
-                    <th class="col-xs-2">Datum
+                    <th class="col-xs-3">Datum
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.process"/>
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.typeComplication"/>
                     </th>
-                    <th class="col-xs-2">
+                    <th class="col-xs-3">
                         <spring:message code="label.complication"/>
                     </th>
-                    <th class="col-xs-4"></th>
                 </tr>
             </table>
             <c:forEach items="${complicationDisplayVoList}" var="complicationDisplayVo">
+                <c:set var="complicationDisplayVo"
+                       value="${complicationDisplayVo}"
+                       scope="request"/>
                 <div>
-
-                    <%@ include file="complication/complicationTableView.jsp" %>
-
+                    <jsp:include page="complication/complicationTableForOverviewView.jsp"/>
                 </div>
             </c:forEach>
         </div>

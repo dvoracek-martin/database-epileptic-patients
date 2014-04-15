@@ -4,6 +4,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="dateBeforeBirth" scope="request" type="java.lang.Boolean"/>
+<jsp:useBean id="chooseBoth" scope="request" type="java.lang.Boolean"/>
+
 <div class="form-group">
     <label for="date" class="col-xs-4 control-label">
         <spring:message code="label.dateExamination"/>*
@@ -11,14 +14,19 @@
 
     <div class="col-xs-8">
         <div class='input-group date datepicker-simple'>
-            <form:input path="date" id="date" type="text" class="input-sm form-control" autocomplete="off"/>
+            <form:input id="date"
+                        class="input-sm form-control"
+                        type="text"
+                        autocomplete="off"
+                        path="date"/>
             <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
         <form:errors path="date" cssClass="text-danger"/>
         <c:if test="${dateBeforeBirth}">
-            <span id="date.errors" class="text-danger">
+            <span id="date.errors"
+                  class="text-danger">
                 <spring:message code="label.cannotBeBeforeBirth"/>
             </span>
         </c:if>
@@ -26,12 +34,16 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="process">
+    <label class="col-xs-4 control-label"
+           for="process">
         <spring:message code="label.process"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="withComplication" id="process" type="text" class="form-control input-sm">
+        <form:select id="process"
+                     class="form-control input-sm"
+                     type="text"
+                     path="withComplication">
             <form:option value="0">
                 <spring:message code="label.process.0"/>
             </form:option>
@@ -48,12 +60,16 @@
 <div id="section-with-complication">
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="complicationType">
+        <label class="col-xs-4 control-label"
+               for="complicationType">
             <spring:message code="label.typeComplication"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complicationType" id="complicationType" type="text" class="form-control input-sm">
+            <form:select id="complicationType"
+                         class="form-control input-sm"
+                         type="text"
+                         path="complicationType">
                 <form:option value="0">
                     <spring:message code="label.complicationType.0"/>
                 </form:option>
@@ -71,12 +87,16 @@
     </div>
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="complication">
+        <label class="col-xs-4 control-label"
+               for="complication">
             <spring:message code="label.complication"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complication" id="complication" type="text" class="form-control input-sm">
+            <form:select id="complication"
+                         class="form-control input-sm"
+                         type="text"
+                         path="complication">
                 <form:option value="0">
                     <spring:message code="label.complication.0"/>
                 </form:option>
@@ -114,16 +134,24 @@
                     <spring:message code="label.complication.11"/>
                 </form:option>
             </form:select>
+            <c:if test="${chooseBoth}">
+                <span class="text-danger">
+                     <spring:message code="label.chooseBoth"/>
+                </span>
+            </c:if>
         </div>
     </div>
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="comment">
+        <label class="col-xs-4 control-label"
+               for="comment">
             <spring:message code="label.comment"/>
         </label>
 
         <div class="col-xs-8">
-            <form:textarea path="comment" id="comment" class="form-control resize-vertical"/>
+            <form:textarea id="comment"
+                           class="form-control resize-vertical"
+                           path="comment"/>
         </div>
     </div>
 </div>

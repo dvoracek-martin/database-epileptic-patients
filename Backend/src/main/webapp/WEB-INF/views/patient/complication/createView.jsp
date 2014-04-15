@@ -16,7 +16,7 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
- <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
+        <script src="<c:url value="/resources/moment/moment-with-langs.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" />"></script>
         <script src="<c:url value="/resources/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.cs.js" />"></script>
 		<script src="<c:url value="/resources/custom/js/datepicker.js" />"></script>
@@ -32,17 +32,19 @@
             </div>
         </div>
 
-        <%@include file="../patientDetails.jsp" %>
+        <jsp:include page="../patientDetails.jsp"/>
 
-        <%-- mapping resource in action with c:url caused errors --%>
-        <form:form class="form-horizontal" method="POST"
-                   action="/GENEPI/patient/${patient.id}/complication/create" commandName="complication">
+        <form:form class="form-horizontal"
+                   action="/GENEPI/patient/${patient.id}/complication/create"
+                   method="POST"
+                   commandName="complication">
 
-            <%@include file="formView.jsp" %>
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button class="btn btn-primary" type="submit">
+                    <button class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.add"/>
                     </button>
                 </div>

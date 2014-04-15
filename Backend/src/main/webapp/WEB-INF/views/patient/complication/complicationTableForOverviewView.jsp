@@ -14,34 +14,24 @@
 
 <table class="record-head table">
     <tr>
-        <td class="col-xs-2">
+        <td class="col-xs-3">
             <a href="#collapse${complicationDisplayVo.id}"
                data-toggle="collapse" >
                 ${complicationDisplayVo.date}
             </a>
         </td>
-        <td class="col-xs-2">
+        <td class="col-xs-3">
             <spring:message code="label.process.${complicationDisplayVo.withComplication}"/>
         </td>
-        <td class="col-xs-2">
+        <td class="col-xs-3">
             <c:if test="${complicationDisplayVo.withComplication == 2}">
                 <spring:message code="label.complicationType.${complicationDisplayVo.complicationType}"/>
             </c:if>
         </td>
-        <td class="col-xs-2">
+        <td class="col-xs-3">
             <c:if test="${complicationDisplayVo.withComplication == 2}">
                 <spring:message code="label.complication.${complicationDisplayVo.complication}"/>
             </c:if>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/edit"/>">
-                <span class="glyphicon glyphicon-edit"></span><spring:message code="label.edit"/>
-            </a>
-        </td>
-        <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/hide"/>">
-                <span class="glyphicon glyphicon-remove-circle"></span><spring:message code="label.delete"/>
-            </a>
         </td>
     </tr>
 </table>

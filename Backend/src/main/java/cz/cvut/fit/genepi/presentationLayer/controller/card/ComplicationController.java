@@ -21,7 +21,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@SessionAttributes({"complication","patient"})
+@SessionAttributes({"complication", "patient"})
 public class ComplicationController {
 
     private AuthorizationChecker authorizationChecker;
@@ -48,6 +48,9 @@ public class ComplicationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("dateBeforeBirth", false);
+        model.addAttribute("chooseBoth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("complication", new ComplicationVO());
         return "patient/complication/createView";
@@ -63,18 +66,24 @@ public class ComplicationController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/complication/createView";
         } else {
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate());
+            boolean complicationAndComplicationTypeNotOk = complication.getWithComplication() == 2 &&
+                    (complication.getComplicationType() == 0 || complication.getComplication() == 0);
 
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+            if (result.hasErrors() || dateNotOk || complicationAndComplicationTypeNotOk) {
+
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                model.addAttribute("chooseBoth", complicationAndComplicationTypeNotOk);
+                return "patient/complication/createView";
+            } else {
+
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.save(complication, ComplicationEntity.class);
+                return "redirect:/patient/" + patientId + "/complication/list";
             }
-            genericCardService.save(complication, ComplicationEntity.class);
-            return "redirect:/patient/" + patientId + "/complication/list";
         }
     }
 
@@ -87,6 +96,9 @@ public class ComplicationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("chooseBoth", false);
+        model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("complication", genericCardService.getById(complicationId, ComplicationVO.class, ComplicationEntity.class));
         return "patient/complication/editView";
@@ -103,20 +115,25 @@ public class ComplicationController {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (result.hasErrors() || TimeConverter.compareDates(patientService.getPatientByIdWithDoctor(patientId).getBirthday(), complication.getDate())) {
-            if (TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate())) {
-                model.addAttribute("dateBeforeBirth", true);
-            }
-            return "patient/complication/editView";
         } else {
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate());
+            boolean complicationAndComplicationTypeNotOk = complication.getWithComplication() == 2 &&
+                    (complication.getComplicationType() == 0 || complication.getComplication() == 0);
+            if (result.hasErrors() || dateNotOk || complicationAndComplicationTypeNotOk) {
 
-            if (!authorizationChecker.isSuperDoctor()) {
-                patientService.voidVerifyPatient(patientId);
+                model.addAttribute("dateBeforeBirth", dateNotOk);
+                model.addAttribute("chooseBoth", complicationAndComplicationTypeNotOk);
+                return "patient/complication/editView";
+            } else {
+
+                if (!authorizationChecker.isSuperDoctor()) {
+                    patientService.voidVerifyPatient(patientId);
+                }
+                genericCardService.makeHistory(complicationId, ComplicationEntity.class);
+                complication.setId(0);
+                genericCardService.save(complication, ComplicationEntity.class);
+                return "redirect:/patient/" + patientId + "/complication/list";
             }
-            genericCardService.makeHistory(complicationId, ComplicationEntity.class);
-            complication.setId(0);
-            genericCardService.save(complication, ComplicationEntity.class);
-            return "redirect:/patient/" + patientId + "/complication/list";
         }
     }
 
@@ -173,14 +190,6 @@ public class ComplicationController {
         return "redirect:/patient/" + patientId + "/complication/list";
     }
 
-   /* @RequestMapping(value = "/patient/{patientID}/complication/{complicationID}/export", method = RequestMethod.GET)
-    public String complicationExportGET(Locale locale, Model model,
-                                        @PathVariable("patientID") Integer patientID,
-                                        @PathVariable("complicationID") Integer complicationID) {
-
-        return "redirect:/patient/" + patientID + "/complication/list";
-    }*/
-
     @RequestMapping(value = "/patient/{patientId}/complication/list", method = RequestMethod.GET)
     public String complicationListGET(
             @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
@@ -191,7 +200,6 @@ public class ComplicationController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<ComplicationDisplayVO> complicationDisplayVoList = genericCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
         model.addAttribute("complicationDisplayVoList", complicationDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/complication/listView";
     }

@@ -4,8 +4,8 @@
 <%@ page pageEncoding="UTF-8" %>
 
 <t:menuLVL2>
-<jsp:attribute name="title">
-      <spring:message code="label.pharmacotherapy"/>
+    <jsp:attribute name="title">
+      <spring:message code="label.complication"/>
     </jsp:attribute>
 
     <jsp:attribute name="head">
@@ -18,7 +18,6 @@
                 <h2>
                     <spring:message code="label.complication"/>
                 </h2>
-
             </div>
             <div class="col-xs-6">
                 <h3 class="pull-right">
@@ -29,9 +28,7 @@
             </div>
         </div>
 
-        <%@ include file="../patientDetails.jsp" %>
-
-        <!-- complication list START -->
+        <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
             <c:when test="${empty complicationDisplayVoList}">
@@ -43,7 +40,8 @@
                 <div class="list-striped">
                     <table class="record-head table">
                         <tr>
-                            <th class="col-xs-2">Datum
+                            <th class="col-xs-2">
+                                <spring:message code="label.date"/>
                             </th>
                             <th class="col-xs-2">
                                 <spring:message code="label.process"/>
@@ -54,38 +52,22 @@
                             <th class="col-xs-2">
                                 <spring:message code="label.complication"/>
                             </th>
-                            <th class="col-xs-4"></th>
+                            <th class="col-xs-4">
+                            </th>
                         </tr>
                     </table>
-                    <c:forEach items="${complicationDisplayVoList}" var="complicationDisplayVo">
+                    <c:forEach items="${complicationDisplayVoList}"
+                               var="complicationDisplayVo">
+                        <c:set var="complicationDisplayVo"
+                               value="${complicationDisplayVo}"
+                               scope="request"/>
                         <div>
-
-                            <%@ include file="complicationTableView.jsp" %>
-
+                            <jsp:include page="complicationTableView.jsp"/>
                         </div>
                     </c:forEach>
                 </div>
             </c:otherwise>
         </c:choose>
 
-        <!-- neurologicalFinding list END -->
     </jsp:body>
 </t:menuLVL2>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
