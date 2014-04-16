@@ -178,6 +178,8 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
+        model.addAttribute("begginningEpiOk", true);
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("patientVO", new PatientVO());
         return "patient/createView";
@@ -186,12 +188,13 @@ public class PatientController {
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
     public String patientCreatePOST(
             @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
-            HttpServletRequest request) {
+            HttpServletRequest request, Model model) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
+            model.addAttribute("begginningEpiOk", true);
             return "patient/createView";
         } else {
             int patientId = patientService.save(patientVO, PatientEntity.class);
@@ -208,8 +211,7 @@ public class PatientController {
         }
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-//        model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+        model.addAttribute("begginningEpiOk", true);
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("patientVO", patientService.getById(patientId, PatientVO.class, PatientEntity.class));
@@ -227,12 +229,9 @@ public class PatientController {
         }
         boolean isBeginningOfEpilepsyOk = patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
         if (result.hasErrors() || !isBeginningOfEpilepsyOk) {
-            if (!isBeginningOfEpilepsyOk) {
-                model.addAttribute("begginningEpiNotOk", true);
-            }
-//            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-//            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-//            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
+
+                model.addAttribute("begginningEpiOk", isBeginningOfEpilepsyOk);
+
             return "patient/editView";
         } else {
             patientService.update(patientVO, PatientEntity.class);

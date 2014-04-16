@@ -4,7 +4,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="begginningEpiNotOk"
+<jsp:useBean id="begginningEpiOk"
              scope="request"
              type="java.lang.Boolean"/>
 
@@ -85,7 +85,7 @@
         </div>
         <form:errors path="beginningEpilepsy"
                      cssClass="text-danger"/>
-        <c:if test="${begginningEpiNotOk}">
+        <c:if test="${not begginningEpiOk}">
             <br>
             <span id="date.errors"
                   class="text-danger">

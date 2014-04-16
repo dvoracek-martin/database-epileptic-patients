@@ -121,7 +121,7 @@
                 </th>
                 <th>
                     <div class="col-xs-2">
-                        <spring:message code="label.dateOfContractAward"/>
+
                     </div>
                 </th>
                 <th>

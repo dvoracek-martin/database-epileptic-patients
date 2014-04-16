@@ -70,13 +70,16 @@ public class OperationServiceImpl implements OperationService {
             PatientEntity patient = genericDAO.getById(patientId, PatientEntity.class);
 
             DateTime patientBirthDate = new DateTime(patient.getBirthday());
+            DateTime patientBeginningEpilepsy = new DateTime(patient.getBeginningEpilepsy());
             List<OperationDisplayVO> operationDisplayVoList = new ArrayList<>();
 
             for (OperationEntity operationEntity : operationEntityList) {
                 DateTime operationDate = new DateTime(operationEntity.getDateOperation());
                 Years ageAtOperation = Years.yearsBetween(patientBirthDate.withTimeAtStartOfDay(), operationDate.withTimeAtStartOfDay());
+                Years epilepsyLastAtOperation = Years.yearsBetween(patientBeginningEpilepsy.withTimeAtStartOfDay(), operationDate.withTimeAtStartOfDay());
                 OperationDisplayVO operationDisplayVo = dozer.map(operationEntity, OperationDisplayVO.class);
                 operationDisplayVo.setAgeAtOperation(ageAtOperation.getYears());
+                operationDisplayVo.setEpilepsyLastAtOperation(epilepsyLastAtOperation.getYears());
                 operationDisplayVoList.add(operationDisplayVo);
             }
 

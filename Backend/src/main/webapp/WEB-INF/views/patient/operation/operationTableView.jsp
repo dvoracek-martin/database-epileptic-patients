@@ -30,15 +30,15 @@
                 ${operationDisplayVo.ageAtOperation}
             </td>
         </tr>
-        <%--
+
        <tr>
            <th class="col-xs-3">
                <spring:message code="label.durationOfEpilepsyAtTheTimeOfSurgery"/>
            </th>
            <td class="col-xs-9">
-               ${operationDisplayVo.durationOfEpilepsyAtTheTimeOfSurgery}
+               ${operationDisplayVo.epilepsyLastAtOperation}
            </td>
-       </tr>--%>
+       </tr>
 
         <tr>
             <th class="col-xs-3">

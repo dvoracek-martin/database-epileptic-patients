@@ -36,7 +36,7 @@
             <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
-                <div class="col-xs-offset-3 col-xs-8">
+                <div class="col-xs-offset-4 col-xs-8">
                     <button class="btn btn-small btn-primary"
                             type="submit"
                             <c:if test="${empty doctors}">
