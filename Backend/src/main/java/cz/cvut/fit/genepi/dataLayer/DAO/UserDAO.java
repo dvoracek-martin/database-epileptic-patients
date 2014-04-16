@@ -17,15 +17,6 @@ public interface UserDAO extends GenericDAO<UserEntity> {
      */
     public UserEntity findUserByUsername(String username);
 
-    /**
-     * Gets the list of all doctors.
-     *
-     * @return the doctors
-     */
-    public List<UserEntity> getDoctors();
-
-    public List findAllUsersWithPagination(int maxResults, int pageNumber);
-
     public UserEntity findUserByEmail(String email);
 
     public int saveUser(UserEntity userEntity);

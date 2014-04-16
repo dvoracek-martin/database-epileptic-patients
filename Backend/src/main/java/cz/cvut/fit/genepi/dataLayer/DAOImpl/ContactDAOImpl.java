@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class ContactDAOImpl extends GenericDAOImpl<ContactEntity> implements ContactDAO {
+public class ContactDAOImpl
+        extends GenericDAOImpl<ContactEntity>
+        implements ContactDAO {
 
 }

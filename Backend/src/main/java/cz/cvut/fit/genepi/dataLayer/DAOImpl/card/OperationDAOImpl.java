@@ -23,17 +23,8 @@ public class OperationDAOImpl implements OperationDAO {
     private SessionFactory sessionFactory;
 
     @SuppressWarnings("unchecked")
+    @Override
     public List<OperationEntity> getOperationWithOutcomeList(int patientId) {
-       /* Criteria criteria = sessionFactory
-                .getCurrentSession()
-                .createCriteria(OperationEntity.class)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
-                .add(Restrictions.eq("patientId", patientId))
-                .add(Restrictions.eq("hidden", false))
-                .add(Restrictions.eq("history", false))
-                .addOrder(Order.desc("date"))
-                .addOrder(Order.desc("id"))
-                .setFetchMode("outcomeList", FetchMode.JOIN);*/
 
         Criteria criteria = sessionFactory
                 .getCurrentSession()
@@ -45,7 +36,6 @@ public class OperationDAOImpl implements OperationDAO {
                 .addOrder(Order.desc("date"))
                 .addOrder(Order.desc("id"))
                 .createCriteria("outcomeList", JoinType.LEFT_OUTER_JOIN);
-        //.add(Restrictions.eq("history",false));
 
         return (List<OperationEntity>) criteria.list();
     }

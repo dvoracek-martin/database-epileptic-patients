@@ -10,8 +10,5 @@ import java.util.List;
  */
 public interface AnamnesisDAO extends GenericDAO<AnamnesisEntity> {
 
-
-    public List<AnamnesisEntity> findAllHidden();
-
     public AnamnesisEntity getRecordsByPatientId(int patientId);
 }

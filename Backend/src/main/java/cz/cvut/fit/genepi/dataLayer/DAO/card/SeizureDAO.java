@@ -8,5 +8,4 @@ import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
  */
 public interface SeizureDAO extends GenericDAO<SeizureEntity> {
 
-
 }

@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class PharmacotherapyDAOImpl extends GenericDAOImpl<PharmacotherapyEntity> implements
-        PharmacotherapyDAO {
+public class PharmacotherapyDAOImpl
+        extends GenericDAOImpl<PharmacotherapyEntity>
+        implements PharmacotherapyDAO {
 
 }

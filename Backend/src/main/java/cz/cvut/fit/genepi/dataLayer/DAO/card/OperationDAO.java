@@ -8,6 +8,7 @@ import java.util.List;
  * OperationDAO interface
  */
 public interface OperationDAO {
+
     public List<OperationEntity> getOperationWithOutcomeList(int patientId);
 
 }

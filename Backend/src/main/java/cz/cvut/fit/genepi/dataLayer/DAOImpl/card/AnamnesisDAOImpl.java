@@ -7,7 +7,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -15,18 +14,9 @@ import java.util.List;
  * Implementation of AnamnesisFindingDAO Extending implementation of GenericDAO
  */
 @Repository
-public class AnamnesisDAOImpl extends GenericDAOImpl<AnamnesisEntity> implements
-        AnamnesisDAO {
-
-
-    @SuppressWarnings("unchecked")
-    @Override
-    @Transactional
-    public List<AnamnesisEntity> findAllHidden() {
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from AnamnesisEntity where history = 1");
-        return query.list();
-    }
+public class AnamnesisDAOImpl
+        extends GenericDAOImpl<AnamnesisEntity>
+        implements AnamnesisDAO {
 
     @Override
     public AnamnesisEntity getRecordsByPatientId(int patientId) {

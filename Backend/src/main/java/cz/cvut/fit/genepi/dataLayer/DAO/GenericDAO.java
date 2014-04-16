@@ -40,14 +40,4 @@ public interface GenericDAO<Entity> {
      */
     public List<Entity> findAll(Class<Entity> myClass);
 
-    /**
-     * The same as findAll(Class<Entity> myClass), but this method can paginate the
-     * results
-     *
-     * @param myClass the my class
-     * @return the list
-     */
-    public List<Entity> findAllWithPagination(Class<Entity> myClass, int maxResults,
-                                              int pageNumber);
-
 }

@@ -5,7 +5,6 @@ import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,13 +22,14 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    @Override
     public int save(Entity entity) {
 
         return (int) sessionFactory.getCurrentSession().save(entity);
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
+    @Override
     public Entity getById(int id, Class<Entity> entityCass) {
         return (Entity) sessionFactory.getCurrentSession().get(entityCass, id);
     }
@@ -44,7 +44,7 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
     }
 
     @SuppressWarnings("unchecked")
-    @Transactional
+    @Override
     public List<Entity> findAll(Class<Entity> myClass) {
 
         Query query = sessionFactory
@@ -62,26 +62,5 @@ public class GenericDAOImpl<Entity> implements GenericDAO<Entity> {
                 .uniqueResult());
 
         return count.intValue();
-    }
-
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * cz.cvut.fit.genepi.models.GenericDAO#findAllWithPagination(java.lang.
-     * Class)
-     */
-    @SuppressWarnings("unchecked")
-    public List<Entity> findAllWithPagination(Class<Entity> myClass, int maxResults, int pageNumber) {
-
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery("from " + myClass.getName() +
-                        " WHERE status = 0 ORDER BY contact.lastName, contact.firstName")
-                .setFirstResult(maxResults * (pageNumber - 1))
-                .setMaxResults(maxResults);
-
-        return (List<Entity>) query.list();
     }
 }

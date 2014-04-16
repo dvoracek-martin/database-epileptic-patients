@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class NewsMessageDAOImpl extends GenericDAOImpl<NewsMessageEntity>
+public class NewsMessageDAOImpl
+        extends GenericDAOImpl<NewsMessageEntity>
         implements NewsMessageDAO {
 }

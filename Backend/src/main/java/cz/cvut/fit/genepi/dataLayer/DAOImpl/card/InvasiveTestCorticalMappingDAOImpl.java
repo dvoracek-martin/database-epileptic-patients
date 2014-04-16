@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class InvasiveTestCorticalMappingDAOImpl extends
-        GenericDAOImpl<InvasiveTestCorticalMappingEntity>
+public class InvasiveTestCorticalMappingDAOImpl
+        extends GenericDAOImpl<InvasiveTestCorticalMappingEntity>
         implements InvasiveTestCorticalMappingDAO {
 
 }

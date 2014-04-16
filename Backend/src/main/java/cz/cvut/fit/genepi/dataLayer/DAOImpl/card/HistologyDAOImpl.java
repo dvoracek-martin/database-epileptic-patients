@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class HistologyDAOImpl extends GenericDAOImpl<HistologyEntity> implements
-        HistologyDAO {
+public class HistologyDAOImpl
+        extends GenericDAOImpl<HistologyEntity>
+        implements HistologyDAO {
 
 }

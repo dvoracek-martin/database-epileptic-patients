@@ -9,5 +9,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class RoleDAOImpl extends GenericDAOImpl<RoleEntity> implements RoleDAO {
+public class RoleDAOImpl
+        extends GenericDAOImpl<RoleEntity>
+        implements RoleDAO {
+
 }

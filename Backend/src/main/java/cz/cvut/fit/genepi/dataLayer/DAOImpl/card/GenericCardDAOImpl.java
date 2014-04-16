@@ -20,7 +20,7 @@ public class GenericCardDAOImpl<CardEntity>
     public void hide(int id, Class<CardEntity> entityClass) {
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery("UPDATE " + entityClass.getName() + " SET hidden = 1 WHERE id = :id");
+                .createQuery("UPDATE " + entityClass.getName() + " SET hidden = true WHERE id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }
@@ -29,7 +29,7 @@ public class GenericCardDAOImpl<CardEntity>
     public void unhide(int id, Class<CardEntity> entityClass) {
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery("UPDATE " + entityClass.getName() + " SET hidden = 0 WHERE id = :id");
+                .createQuery("UPDATE " + entityClass.getName() + " SET hidden = false WHERE id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }
@@ -38,7 +38,7 @@ public class GenericCardDAOImpl<CardEntity>
     public void makeHistory(int id, Class<CardEntity> entityClass) {
         Query query = sessionFactory
                 .getCurrentSession()
-                .createQuery("UPDATE " + entityClass.getName() + " SET history = 1 WHERE id = :id");
+                .createQuery("UPDATE " + entityClass.getName() + " SET history = true WHERE id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
     }

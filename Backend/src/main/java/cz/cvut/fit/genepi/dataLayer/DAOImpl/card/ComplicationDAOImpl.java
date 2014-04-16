@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class ComplicationDAOImpl extends GenericDAOImpl<ComplicationEntity>
+public class ComplicationDAOImpl
+        extends GenericDAOImpl<ComplicationEntity>
         implements ComplicationDAO {
 
 }

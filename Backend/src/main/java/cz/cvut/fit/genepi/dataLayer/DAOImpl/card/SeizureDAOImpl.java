@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class SeizureDAOImpl extends GenericDAOImpl<SeizureEntity>
+public class SeizureDAOImpl
+        extends GenericDAOImpl<SeizureEntity>
         implements SeizureDAO {
-
 
 }

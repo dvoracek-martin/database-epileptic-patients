@@ -12,7 +12,9 @@ import java.util.List;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
+public class UserDAOImpl
+        extends GenericDAOImpl<UserEntity>
+        implements UserDAO {
 
     /* (non-Javadoc)
      * @see cz.cvut.fit.genepi.DAO.UserDAO#getUserByUsername(java.lang.String)
@@ -26,34 +28,6 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
                 .setParameter("user_name", username);
 
         return (UserEntity) query.uniqueResult();
-    }
-
-    @SuppressWarnings("unchecked")
-    public List<UserEntity> findAllUsersWithPagination(int maxResults, int pageNumber) {
-
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery("from " + UserEntity.class.getName() + "" +
-                        " WHERE hidden=0 ORDER BY contact.lastName,contact.firstName")
-                .setFirstResult(maxResults * (pageNumber - 1))
-                .setMaxResults(maxResults);
-
-        return query.list();
-    }
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.DAO.UserDAO#getDoctors()
-     */
-    //TODO really strange method!!!
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<UserEntity> getDoctors() {
-
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery("from UserEntity where username = :user_name");
-
-        return (List<UserEntity>) query.list();
     }
 
     @Override
@@ -75,8 +49,9 @@ public class UserDAOImpl extends GenericDAOImpl<UserEntity> implements UserDAO {
         return userEntity.getId();
     }
 
-    @Override
+
     @SuppressWarnings("unchecked")
+    @Override
     public List<UserEntity> findAllNonHidden() {
 
         Query query = sessionFactory

@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
  */
 
 @Repository
-public class SeizureDetailDAOImpl extends
-        GenericDAOImpl<SeizureDetailEntity> implements
-        SeizureDetailDAO {
+public class SeizureDetailDAOImpl
+        extends GenericDAOImpl<SeizureDetailEntity>
+        implements SeizureDetailDAO {
 
 }

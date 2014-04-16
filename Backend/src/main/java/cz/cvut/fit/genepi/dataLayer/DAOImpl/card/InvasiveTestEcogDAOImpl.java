@@ -10,7 +10,8 @@ import org.springframework.stereotype.Repository;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class InvasiveTestEcogDAOImpl extends
-        GenericDAOImpl<InvasiveTestEcogEntity> implements InvasiveTestEcogDAO {
+public class InvasiveTestEcogDAOImpl
+        extends GenericDAOImpl<InvasiveTestEcogEntity>
+        implements InvasiveTestEcogDAO {
 
 }

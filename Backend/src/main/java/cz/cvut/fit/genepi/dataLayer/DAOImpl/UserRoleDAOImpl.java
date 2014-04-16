@@ -12,20 +12,21 @@ import java.util.List;
  * Extending implementation of GenericDAO
  */
 @Repository
-public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
+public class UserRoleDAOImpl
+        extends GenericDAOImpl<UserRoleEntity>
         implements UserRoleDAO {
 
     /* (non-Javadoc)
      * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByUserID(int)
      */
-    @Override
+
     @SuppressWarnings("unchecked")
+    @Override
     public List<UserRoleEntity> findAllUserRolesByUserID(int user_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
                 "from UserRoleEntity where userId = :userID");
         query.setParameter("userID", user_id);
-        userRoleEntities = (List<UserRoleEntity>) query.list();
         userRoleEntities = (List<UserRoleEntity>) query.list();
         return userRoleEntities;
     }
@@ -33,8 +34,9 @@ public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
     /* (non-Javadoc)
      * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByRoleID(int)
      */
-    @Override
+
     @SuppressWarnings("unchecked")
+    @Override
     public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
