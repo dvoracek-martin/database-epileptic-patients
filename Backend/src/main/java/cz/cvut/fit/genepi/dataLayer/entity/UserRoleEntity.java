@@ -2,8 +2,6 @@ package cz.cvut.fit.genepi.dataLayer.entity;
 
 import javax.persistence.*;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class UserRoleEntity.
  */
@@ -23,13 +21,13 @@ public class UserRoleEntity {
      * The role_id.
      */
     @Column(name = "ROLE_ID", nullable = false)
-    private int role_id;
+    private int roleId;
 
     /**
      * The user_id.
      */
     @Column(name = "USER_ID", nullable = false)
-    private int user_id;
+    private int userId;
 
     /**
      * Gets the id.
@@ -54,8 +52,8 @@ public class UserRoleEntity {
      *
      * @return the role_id
      */
-    public int getRole_id() {
-        return role_id;
+    public int getRoleId() {
+        return roleId;
     }
 
     /**
@@ -63,8 +61,8 @@ public class UserRoleEntity {
      *
      * @param role_id the new role_id
      */
-    public void setRole_id(int role_id) {
-        this.role_id = role_id;
+    public void setRoleId(int role_id) {
+        this.roleId = role_id;
     }
 
     /**
@@ -72,8 +70,8 @@ public class UserRoleEntity {
      *
      * @return the user_id
      */
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
     /**
@@ -81,7 +79,7 @@ public class UserRoleEntity {
      *
      * @param user_id the new user_id
      */
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int user_id) {
+        this.userId = user_id;
     }
 }

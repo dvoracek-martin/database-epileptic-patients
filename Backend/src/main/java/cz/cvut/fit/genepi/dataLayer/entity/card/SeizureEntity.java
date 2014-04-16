@@ -6,8 +6,6 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class SeizureEntity.
  */

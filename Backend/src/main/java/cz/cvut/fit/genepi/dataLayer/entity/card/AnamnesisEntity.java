@@ -5,8 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import javax.persistence.*;
 import java.util.Date;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class AnamnesisEntity.
  */

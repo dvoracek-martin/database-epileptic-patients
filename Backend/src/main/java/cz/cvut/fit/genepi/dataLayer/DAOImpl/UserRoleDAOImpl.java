@@ -23,7 +23,7 @@ public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
     public List<UserRoleEntity> findAllUserRolesByUserID(int user_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserRoleEntity where user_id = :userID");
+                "from UserRoleEntity where userId = :userID");
         query.setParameter("userID", user_id);
         userRoleEntities = (List<UserRoleEntity>) query.list();
         userRoleEntities = (List<UserRoleEntity>) query.list();
@@ -38,7 +38,7 @@ public class UserRoleDAOImpl extends GenericDAOImpl<UserRoleEntity>
     public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id) {
         List<UserRoleEntity> userRoleEntities;
         Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserRoleEntity where role_id = :roleID");
+                "from UserRoleEntity where roleId = :roleID");
         query.setParameter("roleID", role_id);
         userRoleEntities = (List<UserRoleEntity>) query.list();
         return userRoleEntities;

@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import javax.persistence.*;
 import java.util.Date;
 
-//TODO: Merge with pszchology NEW??
 @Entity
 @Table(name = "neuropsychology_old")
 public class NeuropsychologyOldEntity implements Comparable<NeuropsychologyOldEntity> {

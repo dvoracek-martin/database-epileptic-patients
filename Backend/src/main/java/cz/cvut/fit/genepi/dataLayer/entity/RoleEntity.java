@@ -3,8 +3,6 @@ package cz.cvut.fit.genepi.dataLayer.entity;
 import javax.persistence.*;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class RoleEntity.
  */

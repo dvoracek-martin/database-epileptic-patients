@@ -32,7 +32,7 @@ public class AuthorizationCheckerImpl implements AuthorizationChecker {
         List<UserRoleEntity> roles = userRoleService.findAllUserRolesByUserID((userService.getUserByUsername(name)).getId());
         boolean isAuthorized = false;
         for (UserRoleEntity r : roles) {
-            if (r.getRole_id() == (1)) {
+            if (r.getRoleId() == (1)) {
                 isAuthorized = true;
                 break;
             }

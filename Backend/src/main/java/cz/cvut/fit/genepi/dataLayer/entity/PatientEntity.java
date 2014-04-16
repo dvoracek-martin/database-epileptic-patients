@@ -11,8 +11,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class PatientEntity.
  */
