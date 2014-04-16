@@ -12,7 +12,6 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
-
     <context:annotation-config/>
     <context:component-scan base-package="cz.cvut.fit.genepi"/>
 
@@ -34,7 +33,7 @@
 
     <mvc:interceptors>
         <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-            <property name="paramName" value="lang"></property>
+            <property name="paramName" value="lang"/>
         </bean>
     </mvc:interceptors>
 
@@ -45,30 +44,12 @@
 
     <bean id="handlerMapping"
           class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-        <property name="interceptors">
-            <ref bean="localeChangeInterceptor"/>
-        </property>
+        <property name="interceptors" ref="localeChangeInterceptor"/>
     </bean>
 
     <bean id="dozer" class="org.dozer.spring.DozerBeanMapperFactoryBean">
         <property name="mappingFiles"
                   value="classpath*:/mapping/*.xml"/>
-        <!--<property name="customConverters">
-            <list>
-                <bean class=
-                              "cz.cvut.fit.genepi.businessLayer.converter.DateToStringConverter"/>
-            </list>
-        </property>
-        <property name="eventListeners">
-            <list>
-                <bean class="org.dozer.listeners.EventListener"/>
-            </list>
-        </property>
-        <property name="factories">
-            <map>
-                <entry key="id" value-ref="bean-factory-ref"/>
-            </map>
-        </property>-->
     </bean>
 
 </beans>

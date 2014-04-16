@@ -1,6 +1,3 @@
-/**
- * Created by Jan on 30.1.14.
- */
 $(document).ready(function () {
     var histopathologySelector = $('#histopathology');
     var sectionFcdSelector = $("#section-fcd");

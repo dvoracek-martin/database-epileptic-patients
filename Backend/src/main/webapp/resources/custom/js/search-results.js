@@ -10,26 +10,29 @@ $(document).ready(function () {
     $(".pager-elem-1").addClass("active");
 
     pageNumberSel.click(function () {
-        $(".pager-elem-" + activePageId).removeClass("active");
+        var pageElem=$(".pager-elem-" + activePageId);
+        pageElem.removeClass("active");
         activePageId = $(this).data("page-number");
         pageSel.hide();
         $("#page-" + activePageId).show();
-        $(".pager-elem-" + activePageId).addClass("active");
+        pageElem.addClass("active");
     });
 
     $(".start").click(function () {
-        $(".pager-elem-" + activePageId).removeClass("active");
+        var pageElem=$(".pager-elem-" + activePageId);
+        pageElem.removeClass("active");
         activePageId = 1;
-        $(".pager-elem-" + activePageId).addClass("active");
+        pageElem.addClass("active");
         pageSel.hide();
         $("#page-" + activePageId).show();
 
     });
 
     $(".end").click(function () {
-        $(".pager-elem-" + activePageId).removeClass("active");
+        var pageElem=$(".pager-elem-" + activePageId);
+        pageElem.removeClass("active");
         activePageId = pagesCount;
-        $(".pager-elem-" + activePageId).addClass("active");
+        pageElem.addClass("active");
         pageSel.hide();
         $("#page-" + activePageId).show();
     });
@@ -37,9 +40,10 @@ $(document).ready(function () {
 
     $(".next").click(function () {
         if (pagesCount != activePageId) {
-            $(".pager-elem-" + activePageId).removeClass("active");
+            var pageElem=$(".pager-elem-" + activePageId);
+            pageElem.removeClass("active");
             activePageId++;
-            $(".pager-elem-" + activePageId).addClass("active");
+            pageElem.addClass("active");
             pageSel.hide();
             $("#page-" + activePageId).show();
         }
@@ -48,9 +52,10 @@ $(document).ready(function () {
 
     $(".prev").click(function () {
         if (activePageId != 1) {
-            $(".pager-elem-" + activePageId).removeClass("active");
+            var pageElem=$(".pager-elem-" + activePageId);
+            pageElem.removeClass("active");
             activePageId--;
-            $(".pager-elem-" + activePageId).addClass("active");
+            pageElem.addClass("active");
             pageSel.hide();
             $("#page-" + activePageId).show();
         }

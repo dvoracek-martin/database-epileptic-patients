@@ -407,6 +407,9 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
                 .createCriteria(PatientEntity.class, "patient")
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
+        /* search in non hidden only */
+        criteria.add(Restrictions.eq("status", 0));
+
         /* alias for contact */
         criteria.createAlias("patient.contact", "contact", JoinType.LEFT_OUTER_JOIN);
 

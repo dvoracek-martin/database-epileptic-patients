@@ -13,7 +13,6 @@
 
     <context:property-placeholder location="classpath:connection.properties"/>
 
-
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!-- connection to DB -->
         <property name="driverClass" value="${jdbc.driverClassName}"/>
@@ -47,4 +46,4 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
-</beans>    
+</beans>

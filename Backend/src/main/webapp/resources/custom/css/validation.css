@@ -1,7 +1,0 @@
-input[type="text"]:valid {
-    color: SteelBlue;
-}
-
-input[type="text"]:invalid {
-    color: red;
-}

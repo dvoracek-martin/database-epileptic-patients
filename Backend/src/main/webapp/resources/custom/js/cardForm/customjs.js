@@ -1,6 +1,3 @@
-/**
- * Created by Jan on 30.1.14.
- */
 $(document).ready(function () {
     var doneSelector = $('#done');
     var sectionDoneSelector = $("#section-done");

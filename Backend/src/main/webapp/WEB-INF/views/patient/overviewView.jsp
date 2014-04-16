@@ -16,7 +16,7 @@
     </jsp:attribute>
 
  	<jsp:attribute name="script">
-        <script src="<c:url value="/resources/custom/js/exportSubmit.js"/>"></script>
+        <script src="<c:url value="/resources/custom/js/export-submit.js"/>"></script>
     </jsp:attribute>
 
 <jsp:body>
