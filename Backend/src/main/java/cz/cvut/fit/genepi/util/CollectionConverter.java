@@ -11,13 +11,12 @@ public class CollectionConverter<T> {
         if (set == null) {
             return null;
         }
-        List<T> list = new ArrayList<T>();
+        List<T> list = new ArrayList<>();
         list.addAll(set);
         return list;
     }
 
     public Set<T> toSet(List<T> list) {
-        Set<T> set = new HashSet<T>(list);
-        return set;
+        return new HashSet<>(list);
     }
 }

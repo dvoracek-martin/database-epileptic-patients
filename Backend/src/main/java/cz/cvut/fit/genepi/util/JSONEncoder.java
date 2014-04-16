@@ -38,7 +38,6 @@ public class JSONEncoder {
         obj.put("patientList", patientListJSON);
         obj.put("patientsCount", patientsCount);
 
-        // System.out.println(obj);
         StringWriter out = new StringWriter();
         try {
             obj.writeJSONString(out);

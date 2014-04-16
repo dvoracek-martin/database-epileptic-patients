@@ -29,16 +29,6 @@ public class TimeConverter {
         return Integer.toString(age.getYears());
     }
 
-   /* public static String getAgeAtTheBeginningOfEpilepsy(PatientDisplayVO patient) {
-        DateTime birth = new DateTime(patient.getBirthday());
-        if (patient.getAnamnesisList().size() < 1)
-            return "NA";
-        DateTime epilepsy = new DateTime(patient.getB);
-        Years age = Years.yearsBetween(birth.withTimeAtStartOfDay(), epilepsy.withTimeAtStartOfDay());
-
-        return Integer.toString(age.getYears());
-    }*/
-
     public static String getCurrentAge(PatientEntity patient) {
         DateTime birth = new DateTime(patient.getBirthday());
         DateTime today = new DateTime(Calendar.getInstance().getTime());

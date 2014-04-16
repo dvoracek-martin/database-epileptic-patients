@@ -35,7 +35,7 @@ public class LoggingService {
         String reportDate = df.format(today);
         StringWriter sw = new StringWriter();
         e.printStackTrace(new PrintWriter(sw));
-        sw.toString(); // stack trace as a string
+
         this.logger.error(reportDate + ": " + message + " \n" + sw.toString());
     }
 }

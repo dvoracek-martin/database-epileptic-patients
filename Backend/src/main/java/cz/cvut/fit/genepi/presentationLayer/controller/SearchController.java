@@ -2,7 +2,10 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
-import cz.cvut.fit.genepi.businessLayer.service.*;
+import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
+import cz.cvut.fit.genepi.businessLayer.service.GenericService;
+import cz.cvut.fit.genepi.businessLayer.service.RoleService;
+import cz.cvut.fit.genepi.businessLayer.service.SearchService;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
