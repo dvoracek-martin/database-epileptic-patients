@@ -21,22 +21,30 @@ import java.util.Locale;
 @SessionAttributes({"exportParams", "exportInfoWrapperVo"})
 public class ExportController {
 
+    private final AuthorizationChecker authorizationChecker;
+
+    private final ExportService exportService;
+
+    private final GenericService<ExportParamsVO, ExportParamsEntity> genericServiceExportParams;
+
+    private final ExportParamsService exportParamsService;
+
+    private final UserService userService;
 
     @Autowired
-    private AuthorizationChecker authorizationChecker;
+    public ExportController(AuthorizationChecker authorizationChecker,
+                            ExportService exportService,
+                            @Qualifier("genericServiceImpl")
+                            GenericService<ExportParamsVO, ExportParamsEntity> genericServiceExportParams,
+                            ExportParamsService exportParamsService,
+                            UserService userService) {
 
-    @Autowired
-    private ExportService exportService;
-
-    @Autowired
-    @Qualifier("genericServiceImpl")
-    private GenericService<ExportParamsVO, ExportParamsEntity> genericServiceExportParams;
-
-    @Autowired
-    private ExportParamsService exportParamsService;
-
-    @Autowired
-    private UserService userService;
+        this.authorizationChecker = authorizationChecker;
+        this.exportService = exportService;
+        this.genericServiceExportParams = genericServiceExportParams;
+        this.exportParamsService = exportParamsService;
+        this.userService = userService;
+    }
 
     @RequestMapping(value = "/export", method = RequestMethod.POST)
     public String exportPOST(
@@ -62,7 +70,7 @@ public class ExportController {
     }
 
     @ExceptionHandler(HttpSessionRequiredException.class)
-    public String handleException(HttpSessionRequiredException e, HttpServletRequest request) {
+    public String handleException() {
 
         return "deniedView";
     }
@@ -94,7 +102,7 @@ public class ExportController {
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
             @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
-           Locale locale, HttpServletRequest request) {
+            Locale locale, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
@@ -115,7 +123,7 @@ public class ExportController {
     public String exportSavePOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result) {
 
-        if(!authorizationChecker.isSuperDoctor() && !authorizationChecker.isAdmin()){
+        if (!authorizationChecker.isSuperDoctor() && !authorizationChecker.isAdmin()) {
             exportParams.setGeneric(false);
         }
 
@@ -144,5 +152,4 @@ public class ExportController {
 
         return "redirect:/export";
     }
-
 }

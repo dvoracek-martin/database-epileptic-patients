@@ -12,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"diagnosticTestScalpEeg", "patient"})
 public class DiagnosticTestScalpEegController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService;
+    private final GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestScalpEegController(AuthorizationChecker authorizationChecker,
@@ -98,7 +97,7 @@ public class DiagnosticTestScalpEegController {
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.POST)
     public String diagnosticTestScalpEegEditPOST(
             @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
-            @ModelAttribute("patient")  PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
             @PathVariable("patientId") int patientId,
             @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
             Model model, HttpServletRequest request) {
@@ -172,8 +171,6 @@ public class DiagnosticTestScalpEegController {
             return "deniedView";
         }
         genericCardService.unhide(diagnosticTestScalpEegId, DiagnosticTestScalpEegEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/diagnostic-testScalp-eeg/list";
     }
 
@@ -188,7 +185,6 @@ public class DiagnosticTestScalpEegController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
         model.addAttribute("diagnosticTestScalpEegDisplayVoList", diagnosticTestScalpEegDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestScalpEeg/listView";
     }

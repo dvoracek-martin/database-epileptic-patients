@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"diagnosticTestMri", "patient"})
 public class DiagnosticTestMriController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService;
+    private final GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestMriController(AuthorizationChecker authorizationChecker,
@@ -169,8 +169,6 @@ public class DiagnosticTestMriController {
             return "deniedView";
         }
         genericCardService.unhide(diagnosticTestMriId, DiagnosticTestMriEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/diagnosticTestMri/list";
     }
 
@@ -185,7 +183,6 @@ public class DiagnosticTestMriController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<DiagnosticTestMriDisplayVO> diagnosticTestMriDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
         model.addAttribute("diagnosticTestMriDisplayVoList", diagnosticTestMriDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestMri/listView";
     }

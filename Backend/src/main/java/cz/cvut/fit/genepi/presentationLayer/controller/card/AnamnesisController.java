@@ -27,19 +27,19 @@ import javax.validation.Valid;
 @SessionAttributes({"anamnesis", "patient"})
 public class AnamnesisController {
 
-    private GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService;
+    private final GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService;
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
     /**
      * The patient service.
      */
-    private PatientService patientService;
+    private final PatientService patientService;
 
     /**
      * The anamnesis service.
      */
-    private AnamnesisService anamnesisService;
+    private final AnamnesisService anamnesisService;
 
     /**
      * Constructor which serves to autowire services.

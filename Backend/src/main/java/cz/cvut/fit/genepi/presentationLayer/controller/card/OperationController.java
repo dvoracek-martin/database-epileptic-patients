@@ -24,13 +24,13 @@ import java.util.List;
 @SessionAttributes({"operation", "patient"})
 public class OperationController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private OperationService operationService;
+    private final OperationService operationService;
 
-    private GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService;
+    private final GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService;
 
     @Autowired
     public OperationController(AuthorizationChecker authorizationChecker,
@@ -174,8 +174,6 @@ public class OperationController {
             return "deniedView";
         }
         genericCardService.unhide(operationId, OperationEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/operation/list";
     }
 
@@ -189,7 +187,6 @@ public class OperationController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<OperationDisplayVO> operationDisplayVoList = operationService.getOperationList(patientId);
         model.addAttribute("operationDisplayVoList", operationDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/operation/listView";
     }

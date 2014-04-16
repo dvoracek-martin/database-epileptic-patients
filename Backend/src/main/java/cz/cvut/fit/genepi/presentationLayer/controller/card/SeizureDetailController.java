@@ -22,11 +22,11 @@ import javax.validation.Valid;
 @SessionAttributes({"seizureDetail", "patient"})
 public class SeizureDetailController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<SeizureDetailDisplayVO, SeizureDetailVO, SeizureDetailEntity> genericCardService;
+    private final GenericCardService<SeizureDetailDisplayVO, SeizureDetailVO, SeizureDetailEntity> genericCardService;
 
     @Autowired
     public SeizureDetailController(AuthorizationChecker authorizationChecker,
@@ -157,7 +157,6 @@ public class SeizureDetailController {
             return "deniedView";
         }
         genericCardService.unhide(seizureDetailId, SeizureDetailEntity.class);
-        //TODO: address to get back to admin module where is list of hidden records.
         return "redirect:/patient/" + patientId + "/seizure/list";
     }
 }

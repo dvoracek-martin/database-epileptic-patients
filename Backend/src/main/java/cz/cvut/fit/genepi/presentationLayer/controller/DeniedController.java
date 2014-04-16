@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class DeniedController {
-    @Autowired
-    AuthorizationChecker authorizationChecker;
 
     /**
      * Handles the request to access denied page.

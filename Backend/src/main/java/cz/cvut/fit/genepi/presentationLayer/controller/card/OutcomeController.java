@@ -25,13 +25,13 @@ import java.util.List;
 @SessionAttributes({"outcome", "operation", "patient"})
 public class OutcomeController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private OperationService operationService;
+    private final OperationService operationService;
 
-    private GenericCardService<OutcomeDisplayVO, OutcomeVO, OutcomeEntity> genericCardService;
+    private final GenericCardService<OutcomeDisplayVO, OutcomeVO, OutcomeEntity> genericCardService;
 
     @Autowired
     public OutcomeController(AuthorizationChecker authorizationChecker,
@@ -154,7 +154,6 @@ public class OutcomeController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = operationService.getOperationWithOutcomeList(patientId);
         model.addAttribute("operationWithOutcomesDisplayVoList", operationWithOutcomesDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
 
         return "patient/outcome/listView";

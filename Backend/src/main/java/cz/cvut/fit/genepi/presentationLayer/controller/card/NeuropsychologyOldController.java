@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDispla
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
-import cz.cvut.fit.genepi.util.TimeConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,11 +20,11 @@ import java.util.List;
 @SessionAttributes({"neuropsychologyOld"})
 public class NeuropsychologyOldController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private NeuropsychologyOldService neuropsychologyOldService;
+    private final NeuropsychologyOldService neuropsychologyOldService;
 
     @Autowired
     public NeuropsychologyOldController(AuthorizationChecker authorizationChecker,
@@ -84,8 +83,6 @@ public class NeuropsychologyOldController {
             return "deniedView";
         }
         neuropsychologyOldService.unhide(neuropsychologyId);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/neuropsychology-old/list";
     }
 
@@ -99,7 +96,6 @@ public class NeuropsychologyOldController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<NeuropsychologyOldDisplayVO> neuropsychologyOldDisplayVoList = neuropsychologyOldService.getRecordsByPatientId(patientId);
         model.addAttribute("neuropsychologyOldDisplayVoList", neuropsychologyOldDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neuropsychologyOld/listView";
     }

@@ -3,7 +3,6 @@ package cz.cvut.fit.genepi.presentationLayer.controller;
 import cz.cvut.fit.genepi.businessLayer.VO.form.NewsMessageVO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.GenericService;
-import cz.cvut.fit.genepi.businessLayer.serviceImpl.GenericServiceImpl;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,9 +18,9 @@ import javax.validation.Valid;
 @SessionAttributes({"newsMessageVo"})
 public class NewsMessageController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private GenericService<NewsMessageVO, NewsMessageEntity> genericService;
+    private final GenericService<NewsMessageVO, NewsMessageEntity> genericService;
 
     @Autowired
     public NewsMessageController(AuthorizationChecker authorizationChecker,
@@ -39,6 +38,7 @@ public class NewsMessageController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         model.addAttribute("newsMessageVo", new NewsMessageVO());
         return "newsMessage/createView";
     }
@@ -47,10 +47,10 @@ public class NewsMessageController {
      * Handles the request to create new news message.
      *
      * @param newsMessageVo the news message which was filled in form at front-end. It is
-     * grabbed from POST string and validated.
-     * @param result the result of binding form from front-end to an
-     * NewsMessageEntity. It is used to determine if there were some
-     * errors during binding.
+     *                      grabbed from POST string and validated.
+     * @param result        the result of binding form from front-end to an
+     *                      NewsMessageEntity. It is used to determine if there were some
+     *                      errors during binding.
      * @return the string of a view to be rendered if the binding has errors
      * otherwise, the string of an address to which the user will be
      * redirected.
@@ -63,9 +63,11 @@ public class NewsMessageController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         if (result.hasErrors()) {
             return "newsMessage/createView";
         }
+
         genericService.save(newsMessageVo, NewsMessageEntity.class);
         return "redirect:/";
     }
@@ -88,9 +90,9 @@ public class NewsMessageController {
      * Handles the request to edit a news message.
      *
      * @param newsMessageId the id of a news message to be edited.
-     * @param result the result of binding form from front-end to an
-     * NewsMessageEntity. It is used to determine if there were some
-     * errors during binding.
+     * @param result        the result of binding form from front-end to an
+     *                      NewsMessageEntity. It is used to determine if there were some
+     *                      errors during binding.
      * @return the string of a view to be rendered if the binding has errors
      * otherwise, the string of an address to which the user will be
      * redirected.
@@ -126,6 +128,7 @@ public class NewsMessageController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         genericService.delete(newsMessageId, NewsMessageEntity.class);
         return "redirect:/";
     }

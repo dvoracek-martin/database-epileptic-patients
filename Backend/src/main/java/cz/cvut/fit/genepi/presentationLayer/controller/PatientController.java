@@ -43,33 +43,33 @@ import java.util.Locale;
 @SessionAttributes({"patient", "patientVO", "exportParams", "doctors"})
 public class PatientController {
 
-    private AnonymizeService anonymizeService;
+    private final AnonymizeService anonymizeService;
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private ExportParamsService exportParamsService;
+    private final ExportParamsService exportParamsService;
 
     /**
      * The patient service.
      */
-    private PatientService patientService;
+    private final PatientService patientService;
 
     /**
      * The user service.
      */
-    private UserService userService;
+    private final UserService userService;
 
-    private RoleService roleService;
+    private final RoleService roleService;
 
-    private ExportToPdfService exportToPdfService;
+    private final ExportToPdfService exportToPdfService;
 
-    private ExportToXlsxService exportToXlsxService;
+    private final ExportToXlsxService exportToXlsxService;
 
-    private ExportToDocxService exportToDocxService;
+    private final ExportToDocxService exportToDocxService;
 
-    private ExportToTxtService exportToTxtService;
+    private final ExportToTxtService exportToTxtService;
 
-    private ExportToCsvService exportToCsvService;
+    private final ExportToCsvService exportToCsvService;
 
 
     @Autowired
@@ -84,29 +84,29 @@ public class PatientController {
     @Qualifier("genericDAOImpl")
     private GenericDAO<PatientEntity> genericDAOPatient;
 
-    private AnamnesisService anamnesisService;
+    private final AnamnesisService anamnesisService;
 
-    private SeizureService seizureService;
+    private final SeizureService seizureService;
 
-    private GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService;
+    private final GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService;
 
-    private GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService;
+    private final GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService;
 
-    private GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService;
+    private final GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService;
 
-    private GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService;
+    private final GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService;
 
-    private GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService;
+    private final GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService;
 
-    private GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService;
+    private final GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService;
 
-    private GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService;
+    private final GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService;
 
-    private OperationService operationService;
+    private final OperationService operationService;
 
-    private GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService;
+    private final GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService;
 
-    private GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService;
+    private final GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService;
 
     @Autowired
     public PatientController(AnonymizeService anonymizeService,
@@ -170,7 +170,7 @@ public class PatientController {
     /**
      * The Constant logger.
      */
-    private LoggingService logger = new LoggingService();
+    private final LoggingService logger = new LoggingService();
 
     @RequestMapping(value = "/patient/create", method = RequestMethod.GET)
     public String patientCreateGET(HttpServletRequest request, Model model) {
@@ -193,6 +193,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
             model.addAttribute("begginningEpiOk", true);
             return "patient/createView";
@@ -209,6 +210,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
         model.addAttribute("begginningEpiOk", true);
@@ -227,10 +229,11 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         boolean isBeginningOfEpilepsyOk = patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
         if (result.hasErrors() || !isBeginningOfEpilepsyOk) {
 
-                model.addAttribute("begginningEpiOk", isBeginningOfEpilepsyOk);
+            model.addAttribute("begginningEpiOk", isBeginningOfEpilepsyOk);
 
             return "patient/editView";
         } else {
@@ -265,9 +268,6 @@ public class PatientController {
             return "deniedView";
         }
         if (result.hasErrors()) {
-            PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-//            model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
-//            model.addAttribute("currentAge", TimeConverter.getCurrentAge(patient));
             return "patient/verifyView";
         } else {
             patientService.save(patientVO, PatientEntity.class);
@@ -284,8 +284,6 @@ public class PatientController {
         }
 
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
 
         /* get all patients records */
         AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
@@ -320,8 +318,6 @@ public class PatientController {
                 .addAttribute("complicationDisplayVoList", complicationDisplayVoList)
                 .addAttribute("operationWithOutcomesDisplayVo", operationWithOutcomesDisplayVo);
 
-        //  .addAttribute("anamnesis",anamnesisDisplayVo);
-
         return "patient/overviewView";
     }
 
@@ -333,6 +329,7 @@ public class PatientController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         model.addAttribute("maxResult", maxResults);
         return "patient/listView";
     }
@@ -376,15 +373,18 @@ public class PatientController {
     @RequestMapping(value = "/patient/{patientId}/delete", method = RequestMethod.GET)
     public String patientDeleteGET(
             @PathVariable("patientId") int patientId, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         patientService.delete(patientId, PatientEntity.class);
         return "redirect:/patient/list";
     }
 
     @RequestMapping(value = "/patient/{patientId}/hide", method = RequestMethod.GET)
     public String patientHideGET(@PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
@@ -395,6 +395,7 @@ public class PatientController {
 
     @RequestMapping(value = "/patient/{patientId}/unhide", method = RequestMethod.GET)
     public String patientUnhideGET(@PathVariable("patientId") Integer patientId, HttpServletRequest request) {
+
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }

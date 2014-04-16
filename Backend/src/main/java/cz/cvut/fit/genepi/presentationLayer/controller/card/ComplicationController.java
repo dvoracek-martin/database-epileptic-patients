@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"complication", "patient"})
 public class ComplicationController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> genericCardService;
+    private final GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> genericCardService;
 
     @Autowired
     public ComplicationController(AuthorizationChecker authorizationChecker,
@@ -182,8 +182,6 @@ public class ComplicationController {
             return "deniedView";
         }
         genericCardService.unhide(complicationId, ComplicationEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/complication/list";
     }
 

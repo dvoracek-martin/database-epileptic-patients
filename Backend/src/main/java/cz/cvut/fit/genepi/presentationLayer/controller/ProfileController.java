@@ -19,14 +19,21 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class ProfileController {
 
-    @Autowired
-    AuthorizationChecker authorizationChecker;
+
+    private final AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
      */
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public ProfileController(AuthorizationChecker authorizationChecker,
+                             UserService userService) {
+
+        this.authorizationChecker = authorizationChecker;
+        this.userService = userService;
+    }
 
     /**
      * Handles the request to access user's profile page.

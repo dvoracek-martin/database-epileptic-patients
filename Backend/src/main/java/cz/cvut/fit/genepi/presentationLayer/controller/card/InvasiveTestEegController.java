@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"invasiveTestEeg", "patient"})
 public class InvasiveTestEegController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> genericCardService;
+    private final GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> genericCardService;
 
     @Autowired
     public InvasiveTestEegController(AuthorizationChecker authorizationChecker,
@@ -169,8 +169,6 @@ public class InvasiveTestEegController {
             return "deniedView";
         }
         genericCardService.unhide(invasiveTestEegId, InvasiveTestEegEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/invasive-test-eeg/list";
     }
 
@@ -184,7 +182,6 @@ public class InvasiveTestEegController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<InvasiveTestEegDisplayVO> invasiveTestEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
         model.addAttribute("invasiveTestEegDisplayVoList", invasiveTestEegDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestEeg/listView";
     }

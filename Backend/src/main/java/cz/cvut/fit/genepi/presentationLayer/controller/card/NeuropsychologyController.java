@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"neuropsychology", "patient"})
 public class NeuropsychologyController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService;
+    private final GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService;
 
     @Autowired
     public NeuropsychologyController(AuthorizationChecker authorizationChecker,
@@ -169,8 +169,6 @@ public class NeuropsychologyController {
             return "deniedView";
         }
         genericCardService.unhide(neuropsychologyId, NeuropsychologyEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/neuropsychology/list";
     }
 
@@ -184,7 +182,6 @@ public class NeuropsychologyController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<NeuropsychologyDisplayVO> neuropsychologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
         model.addAttribute("neuropsychologyDisplayVoList", neuropsychologyDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/neuropsychology/listView";
     }

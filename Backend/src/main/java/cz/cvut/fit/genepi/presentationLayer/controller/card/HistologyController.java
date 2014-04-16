@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"histology", "patient"})
 public class HistologyController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService;
+    private final GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService;
 
     @Autowired
     public HistologyController(AuthorizationChecker authorizationChecker,
@@ -169,8 +169,6 @@ public class HistologyController {
             return "deniedView";
         }
         genericCardService.unhide(histologyId, HistologyEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/histology/list";
     }
 
@@ -184,7 +182,6 @@ public class HistologyController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<HistologyDisplayVO> histologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
         model.addAttribute("histologyDisplayVoList", histologyDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/histology/listView";
     }

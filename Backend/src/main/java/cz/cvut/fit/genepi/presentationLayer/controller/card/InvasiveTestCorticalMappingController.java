@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"invasiveTestCorticalMapping", "patient"})
 public class InvasiveTestCorticalMappingController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService;
+    private final GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService;
 
     /**
      * Constructor which serves to autowire services.
@@ -180,8 +180,6 @@ public class InvasiveTestCorticalMappingController {
             return "deniedView";
         }
         genericCardService.unhide(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/invasive-test-cortical-mapping/list";
     }
 
@@ -202,7 +200,6 @@ public class InvasiveTestCorticalMappingController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<InvasiveTestCorticalMappingDisplayVO> corticalMappingDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
         model.addAttribute("invasiveTestCorticalMappingDisplayVoList", corticalMappingDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/invasiveTestCorticalMapping/listView";
     }

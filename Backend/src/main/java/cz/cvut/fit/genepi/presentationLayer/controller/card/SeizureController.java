@@ -24,13 +24,13 @@ import java.util.List;
 @SessionAttributes({"seizure", "patient"})
 public class SeizureController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService;
+    private final GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService;
 
-    private SeizureService seizureService;
+    private final SeizureService seizureService;
 
     @Autowired
     public SeizureController(AuthorizationChecker authorizationChecker,
@@ -185,8 +185,6 @@ public class SeizureController {
             return "deniedView";
         }
         genericCardService.unhide(seizureId, SeizureEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/seizure/list";
     }
 
@@ -197,10 +195,11 @@ public class SeizureController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
+
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        model.addAttribute("patient", patient);
-        // model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
+
+        model.addAttribute("patient", patient);
         model.addAttribute("seizureDisplayVoList", SeizureDisplayVoList);
         return "patient/seizure/listView";
     }

@@ -16,12 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class HomeController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
     /**
      * The news message service.
      */
-    private NewsMessageService newsMessageService;
+    private final NewsMessageService newsMessageService;
 
     @Autowired
     public HomeController(AuthorizationChecker authorizationChecker,

@@ -28,27 +28,23 @@ import java.util.Locale;
 @SessionAttributes({"user"})
 public class UserController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
     /**
      * The user service.
      */
-    private UserService userService;
+    private final UserService userService;
 
     /**
      * The role service.
      */
-    private RoleService roleService;
+    private final RoleService roleService;
 
     /**
      * The mail service.
      */
-    private MailService mailService;
+    private final MailService mailService;
 
-    /**
-     * The Constant logger.
-     */
-    // private LoggingService logger = new LoggingService();
     @Autowired
     public UserController(AuthorizationChecker authorizationChecker,
                           UserService userService,
@@ -304,12 +300,6 @@ public class UserController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-/*
-            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
-
-            List<RoleVO> possibleRoles = roleService.getAll(RoleVO.class, RoleEntity.class);
-            possibleRoles.removeAll(user.getRoles());
-*/
 
             UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
             List<RoleVO> possibleRoles = roleService.getPossibleRoles(userId);
@@ -328,7 +318,7 @@ public class UserController {
             return "deniedView";
         } else {
 
-            //todo transfer to service
+            //TODO transfer to service
             List<RoleVO> newRoles = new ArrayList<>();
 
             if (roleIds.length > 0 && roleIds[0] != 0) {

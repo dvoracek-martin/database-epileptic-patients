@@ -23,11 +23,11 @@ import java.util.List;
 @SessionAttributes({"pharmacotherapy", "patient"})
 public class PharmacotherapyController {
 
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    private PatientService patientService;
+    private final PatientService patientService;
 
-    private GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService;
+    private final GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService;
 
     @Autowired
     public PharmacotherapyController(AuthorizationChecker authorizationChecker,
@@ -92,7 +92,6 @@ public class PharmacotherapyController {
         model.addAttribute("pharmacotherapy", genericCardService.getById(pharmacotherapyId, PharmacotherapyVO.class, PharmacotherapyEntity.class));
         return "patient/pharmacotherapy/editView";
     }
-
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.POST)
     public String pharmacotherapyEditPOST(
@@ -168,8 +167,6 @@ public class PharmacotherapyController {
             return "deniedView";
         }
         genericCardService.unhide(pharmacotherapyId, PharmacotherapyEntity.class);
-        // TODO: address to get back to admin module where is list od hidden
-        // records.
         return "redirect:/patient/" + patientId + "/pharmacotherapy/list";
     }
 
@@ -183,7 +180,6 @@ public class PharmacotherapyController {
         PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
         List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
         model.addAttribute("pharmacotherapyDisplayVoList", pharmacotherapyDisplayVoList);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/pharmacotherapy/listView";
     }

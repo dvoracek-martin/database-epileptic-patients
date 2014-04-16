@@ -1,9 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
-import cz.cvut.fit.genepi.businessLayer.service.ContactService;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
-import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Locale;
 
 /**
  * This class is a controller class which handles requests connected with a
@@ -26,42 +23,27 @@ public class HiddenController {
     /**
      * The user service.
      */
-    private PatientService patientService;
-
-    /**
-     * The contact service.
-     */
-    private ContactService contactService;
-
-    /**
-     * The anamnesis service.
-     */
-    private AnamnesisService anamnesisService;
+    private final PatientService patientService;
 
     /**
      * Constructor which serves to autowire services.
      *
-     * @param patientService   the patientService to be autowired.
-     * @param anamnesisService the anamnesisService to be autowired.
+     * @param patientService the patientService to be autowired.
      */
     @Autowired
-    public HiddenController(PatientService patientService,
-                            ContactService contactService) {
+    public HiddenController(PatientService patientService) {
         this.patientService = patientService;
-
-        this.contactService = contactService;
 
     }
 
     /**
      * Handles the request to access list of hidden records.
      *
-     * @param locale the user's locale.
-     * @param model  the model to be filled for view.
+     * @param model the model to be filled for view.
      * @return the string of a view to be rendered.
      */
     @RequestMapping(value = "/hidden", method = RequestMethod.GET)
-    public String userListGET(Locale locale, Model model, HttpServletRequest request) {
+    public String userListGET(Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";

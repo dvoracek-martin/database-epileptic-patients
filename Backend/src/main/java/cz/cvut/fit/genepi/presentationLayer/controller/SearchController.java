@@ -6,7 +6,6 @@ import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -17,23 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
-//This controller is not doing anything right now
 @Controller
 @SessionAttributes({"advancedSearch", "patients"})
 public class SearchController {
 
-    @Autowired
-    private AuthorizationChecker authorizationChecker;
+    private final AuthorizationChecker authorizationChecker;
 
-    @Autowired
-    private MessageSource messageSource;
+    private final SearchService searchService;
 
-    private SearchService searchService;
-
-    private RoleService roleService;
-
-    @Autowired
-    UserService userService;
+    private final RoleService roleService;
 
     @Autowired
     @Qualifier("genericServiceImpl")
@@ -43,11 +34,14 @@ public class SearchController {
      * Constructor which serves to autowire services.
      */
     @Autowired
-    public SearchController(SearchService searchService, RoleService roleService) {
+    public SearchController(AuthorizationChecker authorizationChecker,
+                            SearchService searchService,
+                            RoleService roleService) {
+
+        this.authorizationChecker = authorizationChecker;
         this.searchService = searchService;
         this.roleService = roleService;
     }
-
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.GET)
     public String advancedSearchGET(Model model, HttpServletRequest request) {
@@ -146,5 +140,4 @@ public class SearchController {
         model.addAttribute("toCheck", false);
         return "search/advancedSearchView";
     }
-
 }

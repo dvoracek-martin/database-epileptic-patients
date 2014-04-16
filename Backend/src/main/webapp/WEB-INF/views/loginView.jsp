@@ -65,7 +65,7 @@
 
             <sec:authorize var="loggedIn" access="isAuthenticated()"/>
 
-            <h1>
+            <h1 class="col-xs-offset-3">
                 <spring:message code="label.login"/>
             </h1>
 
