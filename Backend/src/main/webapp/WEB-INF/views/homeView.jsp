@@ -90,8 +90,6 @@
                     <div id="delete-news-${newsMessage.id}"
                          class="modal fade"
                          role="dialog"
-                         tabindex="-1"
-                         aria-labelledby="myModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">

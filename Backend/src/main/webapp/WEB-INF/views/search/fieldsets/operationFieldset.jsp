@@ -18,7 +18,7 @@
         <div class="col-xs-8">
             <form:select path="operationTypeOperation" id="operationType" type="text" class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.operationType.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.operationType.1"/>
@@ -59,7 +59,7 @@
         <div class="col-xs-8">
             <form:select path="operationRangeOperation" id="operationRange" type="text" class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.operationRange.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.operationRange.1"/>

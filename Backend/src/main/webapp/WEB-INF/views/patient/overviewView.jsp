@@ -63,8 +63,7 @@
     <div class="col-xs-2 col-sm-4 col-lg-2">
         <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
             <h3 class="pull-right">
-                <a id="edit"
-                   href="<c:url value="/patient/${patient.id}/edit" />">
+                <a href="<c:url value="/patient/${patient.id}/edit" />">
                     <spring:message code="label.edit"/>
                 </a>
             </h3>
@@ -73,8 +72,8 @@
     <div class="col-xs-2 col-sm-4 col-lg-2 ">
         <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
             <h3 class="pull-right">
-                <a id="hide"
-                   href="<c:url value="/patient/${patient.id}/hide" />">
+                <a href="#delete-patient-${patient.id}"
+                   data-toggle="modal">
                     <spring:message code="label.delete"/>
                 </a>
             </h3>
@@ -82,7 +81,7 @@
     </div>
 </div>
 
-<jsp:include page="patientDetails.jsp" />
+<jsp:include page="patientDetails.jsp"/>
 
 <%-- Anamnesis --%>
 
@@ -131,7 +130,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="anamnesis/anamnesisTableView.jsp" />
+        <jsp:include page="anamnesis/anamnesisTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -314,7 +313,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="neurologicalFinding/neurologicalFindingTableView.jsp" />
+        <jsp:include page="neurologicalFinding/neurologicalFindingTableView.jsp"/>
 
         <c:set var="count" value="1" scope="request"/>
     </c:otherwise>
@@ -367,7 +366,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="neuropsychology/neuropsychologyTableView.jsp" />
+        <jsp:include page="neuropsychology/neuropsychologyTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -423,7 +422,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="diagnosticTestScalpEeg/diagnosticTestScalpEegTableView.jsp" />
+        <jsp:include page="diagnosticTestScalpEeg/diagnosticTestScalpEegTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -478,7 +477,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="diagnosticTestMri/diagnosticTestMriTableView.jsp" />
+        <jsp:include page="diagnosticTestMri/diagnosticTestMriTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -535,7 +534,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="invasiveTestEcog/invasiveTestEcogTableView.jsp" />
+        <jsp:include page="invasiveTestEcog/invasiveTestEcogTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -591,7 +590,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="invasiveTestEeg/invasiveTestEegTableView.jsp" />
+        <jsp:include page="invasiveTestEeg/invasiveTestEegTableView.jsp"/>
 
         <c:set var="count" value="1" scope="page"/>
     </c:otherwise>
@@ -644,7 +643,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="invasiveTestCorticalMapping/invasiveTestCorticalMappingTableView.jsp" />
+        <jsp:include page="invasiveTestCorticalMapping/invasiveTestCorticalMappingTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -699,7 +698,7 @@
             </tbody>
         </table>
 
-        <jsp:include page="operation/operationTableView.jsp" />
+        <jsp:include page="operation/operationTableView.jsp"/>
 
         <c:set var="count"
                value="1"
@@ -888,7 +887,7 @@
                     </tbody>
                 </table>
 
-                <jsp:include page="outcome/outcomeTableView.jsp" />
+                <jsp:include page="outcome/outcomeTableView.jsp"/>
 
             </div>
             <c:set var="count"
@@ -897,6 +896,15 @@
         </div>
     </c:otherwise>
 </c:choose>
+
+<jsp:include page="../components/deleteModalComponentView.jsp">
+    <jsp:param name="modalId"
+               value="delete-patient-${patient.id}"/>
+    <jsp:param name="bodyMessage"
+               value="reallyDeletePatient"/>
+    <jsp:param name="deleteUrl"
+               value="/patient/${patient.id}/hide"/>
+</jsp:include>
 
 </jsp:body>
 </t:menuLVL2>

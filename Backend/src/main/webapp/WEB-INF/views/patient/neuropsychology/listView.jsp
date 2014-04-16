@@ -70,7 +70,8 @@
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/hide"/>">
+                                           href="#delete-neuropsychology-${neuropsychologyDisplayVo.id}"
+                                           data-toggle="modal">
                                             <span class="glyphicon glyphicon-remove-circle"></span>
                                             <spring:message code="label.delete"/>
                                         </a>
@@ -80,6 +81,15 @@
                             </table>
 
                             <jsp:include page="neuropsychologyTableView.jsp"/>
+
+                            <jsp:include page="../../components/deleteModalComponentView.jsp">
+                                <jsp:param name="modalId"
+                                           value="delete-neuropsychology-${neuropsychologyDisplayVo.id}"/>
+                                <jsp:param name="bodyMessage"
+                                           value="reallyDeleteRecord"/>
+                                <jsp:param name="deleteUrl"
+                                           value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/hide"/>
+                            </jsp:include>
 
                         </div>
                         <c:set var="count"

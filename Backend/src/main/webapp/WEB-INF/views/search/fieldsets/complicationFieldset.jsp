@@ -17,9 +17,10 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complicationComplicationType" id="complicationType" type="text" class="form-control input-sm">
+            <form:select path="complicationComplicationType" id="complicationType" type="text"
+                         class="form-control input-sm">
                 <form:option value="0">
-                    <spring:message code="label.complicationType.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.complicationType.1"/>
@@ -42,7 +43,7 @@
         <div class="col-xs-8">
             <form:select path="complicationComplication" id="complication" type="text" class="form-control input-sm">
                 <form:option value="0">
-                    <spring:message code="label.complication.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.complication.1"/>

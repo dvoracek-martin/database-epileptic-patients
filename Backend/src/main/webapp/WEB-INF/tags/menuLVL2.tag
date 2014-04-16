@@ -10,10 +10,14 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 
 <%-- Attribute section --%>
-<%@ attribute name="title" fragment="true" %>
-<%@ attribute name="head" fragment="true" %>
-<%@ attribute name="header" fragment="true" %>
-<%@ attribute name="script" fragment="true" %>
+<%@ attribute name="title"
+              fragment="true" %>
+<%@ attribute name="head"
+              fragment="true" %>
+<%@ attribute name="header"
+              fragment="true" %>
+<%@ attribute name="script"
+              fragment="true" %>
 
 <%-- Template section --%>
 <t:menuLVL1>
@@ -38,56 +42,56 @@
             <ul>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/overview" />">
-                        Přehled
+                        <spring:message code="label.overview"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/anamnesis/list" />">
-                        Anamnéza
+                        <spring:message code="label.anamnesis"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/seizure/list" />">
-                        Záchvaty
+                        <spring:message code="label.seizures"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/list" />">
-                        Farmakoterapie
+                        <spring:message code="label.pharmacotherapy"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/neurological-finding/list" />">
-                        Neurologické nálezy
+                        <spring:message code="label.neurologicalFindings"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/neuropsychology/list" />">
-                        Neuropsychologie
+                        <spring:message code="label.neuropsychology"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/neuropsychology-old/list" />">
-                        Neuropsychologie - Old
+                        <spring:message code="label.neuropsychology"/> - old
                     </a>
                 </li>
                 <li>
-                    Diagnostické testy
+                    <spring:message code="label.diagnosticTests"/>
                     <ul>
                         <li>
                             <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/list" />">
-                                Skalpové EEG
+                                <spring:message code="label.scalpEeg"/>
                             </a>
                         </li>
                         <li>
                             <a href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/list" />">
-                                Neurozobraz. testy
+                                <spring:message code="label.neuroImagingTests"/>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    Invazivní testy
+                    <spring:message code="label.invasiveTests"/>
                     <ul>
                         <li>
                             <a href="<c:url value="/patient/${patient.id}/invasive-test-ecog/list" />">
@@ -101,28 +105,28 @@
                         </li>
                         <li>
                             <a href="<c:url value="/patient/${patient.id}/invasive-test-cortical-mapping/list" />">
-                                Kortikální mapování
+                                <spring:message code="label.corticalMapping"/>
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/operation/list" />">
-                        Operace
+                        <spring:message code="label.operation"/>
                     </a>
                 </li>
                 <li><a href="<c:url value="/patient/${patient.id}/histology/list" />">
-                    Histologie
+                    <spring:message code="label.histology"/>
                 </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/complication/list" />">
-                        Komplikace
+                        <spring:message code="label.complication"/>
                     </a>
                 </li>
                 <li>
                     <a href="<c:url value="/patient/${patient.id}/outcome/list" />">
-                        Outcome
+                        <spring:message code="label.outcome"/>
                     </a>
                 </li>
             </ul>

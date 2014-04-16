@@ -19,7 +19,7 @@
             <form:select path="diagnosticTestScalpEegBasicEegActivity" id="basicEegActivity" type="text"
                          class="input-sm form-control">
                 <form:option value="0">
-                    Zvolte
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.basicEegActivity.1"/>
@@ -39,7 +39,7 @@
         <div class="col-xs-8">
             <form:select path="diagnosticTestScalpEegEegSlow" id="eegSlow" type="text" class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.eegSlow.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.eegSlow.1"/>
@@ -69,7 +69,7 @@
             <form:select path="diagnosticTestScalpEegInterictalEegSpikes" id="interictalEegSpikes" type="text"
                          class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.interictalEegSpikes.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.interictalEegSpikes.1"/>
@@ -112,7 +112,7 @@
             <form:select path="diagnosticTestScalpEegIctalEegPatterns" id="ictalEegPatterns" type="text"
                          class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.ictalEegPatterns.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.ictalEegPatterns.1"/>

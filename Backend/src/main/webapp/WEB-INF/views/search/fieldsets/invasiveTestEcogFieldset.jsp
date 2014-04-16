@@ -16,9 +16,10 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEcogEcogPatterns" id="ecogPatterns" type="text" class="input-sm form-control">
+            <form:select path="invasiveTestEcogEcogPatterns" id="ecogPatterns" type="text"
+                         class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.ecogPatterns.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.ecogPatterns.1"/>
@@ -45,9 +46,10 @@
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEcogAfterResectionEcog" id="afterResectionEcog" type="text" class="input-sm form-control">
+            <form:select path="invasiveTestEcogAfterResectionEcog" id="afterResectionEcog" type="text"
+                         class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.afterResectionEcog.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.afterResectionEcog.1"/>

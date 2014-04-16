@@ -131,10 +131,11 @@
 
         </div>
     </div>
-    <div class="col-xs-2"></div>
+</div>
+<div class="col-xs-2"></div>
 
-    <script src="<c:url value="/resources/jquery/jquery.min.js"/>"></script>
-    <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+<script src="<c:url value="/resources/jquery/jquery.min.js"/>"></script>
+<script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 
 </body>
 </html>

@@ -89,7 +89,8 @@
                                     <spring:message code="label.edit"/>
                                 </a>
                                 |
-                                <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/hide"/>">
+                                <a href="#delete-seizure-detail-${seizureDetailDisplayVo.id}"
+                                   data-toggle="modal">
                                     <spring:message code="label.delete"/>
                                 </a>
                                 )
@@ -145,4 +146,17 @@
         </tr>
         </tbody>
     </table>
+    <c:forEach items="${seizureDisplayVo.seizureDetailList}"
+               var="seizureDetailDisplayVo">
+
+        <jsp:include page="../../components/deleteModalComponentView.jsp">
+            <jsp:param name="modalId"
+                       value="delete-seizure-detail-${seizureDetailDisplayVo.id}"/>
+            <jsp:param name="bodyMessage"
+                       value="reallyDeleteRecord"/>
+            <jsp:param name="deleteUrl"
+                       value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/hide"/>
+        </jsp:include>
+
+    </c:forEach>
 </div>

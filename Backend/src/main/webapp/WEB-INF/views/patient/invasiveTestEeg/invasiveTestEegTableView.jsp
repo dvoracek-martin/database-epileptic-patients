@@ -2,8 +2,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="invasiveTestEegDisplayVo" scope="request"
+<jsp:useBean id="invasiveTestEegDisplayVo"
+             scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO"/>
+
+<jsp:useBean id="count"
+             scope="request"
+             type="java.lang.Integer"/>
 
 <div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">

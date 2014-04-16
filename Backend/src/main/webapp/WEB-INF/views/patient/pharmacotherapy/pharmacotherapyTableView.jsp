@@ -29,7 +29,8 @@
             </a>
         </td>
         <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/hide"/>">
+            <a href="#delete-pharmacotherapy-${pharmacotherapyDisplayVo.id}"
+               data-toggle="modal">
                 <span class="glyphicon glyphicon-remove-circle"></span>
                 <spring:message code="label.delete"/>
             </a>
@@ -49,3 +50,12 @@
         </tr>
     </table>
 </div>
+
+<jsp:include page="../../components/deleteModalComponentView.jsp">
+    <jsp:param name="modalId"
+               value="delete-pharmacotherapy-${pharmacotherapyDisplayVo.id}"/>
+    <jsp:param name="bodyMessage"
+               value="reallyDeleteRecord"/>
+    <jsp:param name="deleteUrl"
+               value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/hide"/>
+</jsp:include>

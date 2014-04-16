@@ -39,7 +39,8 @@
             </div>
             <div class="col-xs-2">
                 <h3 class="pull-right">
-                    <a href="<c:url value="/user/${user.id}/hide" />">
+                    <a href="#delete-user-${user.id}"
+                       data-toggle="modal">
                         <spring:message code="label.delete"/>
                     </a>
                 </h3>
@@ -131,6 +132,15 @@
                 </c:forEach>
             </div>
         </div>
+
+        <jsp:include page="../components/deleteModalComponentView.jsp">
+            <jsp:param name="modalId"
+                       value="delete-user-${user.id}"/>
+            <jsp:param name="bodyMessage"
+                       value="reallyDeleteUser"/>
+            <jsp:param name="deleteUrl"
+                       value="/user/${user.id}/hide"/>
+        </jsp:include>
 
     </jsp:body>
 </t:menuLVL1>

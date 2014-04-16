@@ -24,11 +24,11 @@
             </div>
             <div class="col-xs-6">
                 <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR">
-                <h3 class="pull-right">
-                    <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
-                        <spring:message code="label.addRecord"/>
-                    </a>
-                </h3>
+                    <h3 class="pull-right">
+                        <a href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/create" />">
+                            <spring:message code="label.addRecord"/>
+                        </a>
+                    </h3>
                 </sec:authorize>
             </div>
         </div>
@@ -71,7 +71,8 @@
                                     </th>
                                     <th class="col-xs-2">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayVo.id}/hide"/>">
+                                           href="#delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"
+                                           data-toggle="modal">
                                             <span class="glyphicon glyphicon-remove-circle"></span>
                                             <spring:message code="label.delete"/>
                                         </a>
@@ -81,6 +82,15 @@
                             </table>
 
                             <jsp:include page="diagnosticTestScalpEegTableView.jsp"/>
+
+                            <jsp:include page="../../components/deleteModalComponentView.jsp">
+                                <jsp:param name="modalId"
+                                           value="delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"/>
+                                <jsp:param name="bodyMessage"
+                                           value="reallyDeleteRecord"/>
+                                <jsp:param name="deleteUrl"
+                                           value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayVo.id}/hide"/>
+                            </jsp:include>
 
                         </div>
                         <c:set var="count"

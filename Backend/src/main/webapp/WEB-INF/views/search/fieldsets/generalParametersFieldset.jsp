@@ -5,6 +5,10 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="doctors"
+             scope="request"
+             type="java.util.List"/>
+
 <fieldset>
     <legend>
         <spring:message code="label.generalParameters"/>
@@ -16,21 +20,28 @@
         </label>
 
         <div id="patientGender" class="col-xs-8">
-            <form:radiobutton path="patientGender" value="1"/>
-            <spring:message code="label.male"/>
 
-            <form:radiobutton path="patientGender" value="2"/>
-            <spring:message code="label.female"/>
+            <form:radiobutton id="patientGender1" path="patientGender" value="1"/>
+            <label for="patientGender1">
+                <spring:message code="label.male"/>
+            </label>
 
-            <form:radiobutton path="patientGender" value="3" checked="true"/>
-            <spring:message code="label.notDistinguish"/>
+            <form:radiobutton id="patientGender2" path="patientGender" value="2"/>
+            <label for="patientGender2">
+                <spring:message code="label.female"/>
+            </label>
+
+            <form:radiobutton id="patientGender3" path="patientGender" value="3" checked="true"/>
+            <label for="patientGender3">
+                <spring:message code="label.notDistinguish"/>
+            </label>
         </div>
     </div>
 
 
     <div class="form-group">
         <label class="col-xs-4 control-label" for="patientAgeFilter">
-            <spring:message code="label.age"/>
+            <spring:message code="label.ageFilter"/>
         </label>
 
         <div class="col-xs-8">
@@ -77,8 +88,9 @@
     </div>
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="patientAgeEpilepsyFilter"><strong><spring:message
-                code="label.age"/>patientAgeEpilepsyFilter</strong></label>
+        <label class="col-xs-4 control-label" for="patientAgeEpilepsyFilter">
+            <spring:message code="label.ageEpilepsyFilter"/>
+        </label>
 
         <div class="col-xs-8">
             <form:select id="patientAgeEpilepsyFilter"
@@ -135,6 +147,7 @@
                 <form:option value="0">
                     Nezvoleno
                 </form:option>
+
                 <c:forEach items="${doctors}" var="doctor">
                     <form:option value="${doctor.id}">
                         ${doctor.contact.firstName} ${doctor.contact.lastName}

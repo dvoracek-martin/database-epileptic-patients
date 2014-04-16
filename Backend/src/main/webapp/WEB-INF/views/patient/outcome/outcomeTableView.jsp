@@ -6,6 +6,10 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO"/>
 
+<jsp:useBean id="count"
+             scope="request"
+             type="java.lang.Integer"/>
+
 <div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
 
@@ -109,7 +113,10 @@
             <td><spring:message code="label.outcomeEeg.${outcome12.eeg}"/></td>
             <td><spring:message code="label.done.${outcome12.mri}"/></td>
             <td><spring:message code="label.done.${outcome12.neuropsychology}"/></td>
-            <td><a><spring:message code="label.editRecord"/></a></td>
+            <td>
+                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome12.id}/edit?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.editRecord"/>
+            </td>
         </c:when>
         <c:otherwise>
             <td>-</td>
@@ -150,7 +157,10 @@
             <td><spring:message code="label.outcomeEeg.${outcome24.eeg}"/></td>
             <td><spring:message code="label.done.${outcome24.mri}"/></td>
             <td><spring:message code="label.done.${outcome24.neuropsychology}"/></td>
-            <td><a><spring:message code="label.editRecord"/></a></td>
+            <td>
+                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome24.id}/edit?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.editRecord"/>
+            </td>
         </c:when>
         <c:otherwise>
             <td>-</td>
@@ -191,7 +201,10 @@
             <td><spring:message code="label.outcomeEeg.${outcome60.eeg}"/></td>
             <td><spring:message code="label.done.${outcome60.mri}"/></td>
             <td><spring:message code="label.done.${outcome60.neuropsychology}"/></td>
-            <td><a><spring:message code="label.editRecord"/></a></td>
+            <td>
+                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome60.id}/edit?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.editRecord"/>
+            </td>
         </c:when>
         <c:otherwise>
             <td>-</td>
@@ -232,7 +245,10 @@
             <td><spring:message code="label.outcomeEeg.${outcome120.eeg}"/></td>
             <td><spring:message code="label.done.${outcome120.mri}"/></td>
             <td><spring:message code="label.done.${outcome120.neuropsychology}"/></td>
-            <td><a><spring:message code="label.editRecord"/></a></td>
+            <td>
+                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome120.id}/edit?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.editRecord"/>
+            </td>
         </c:when>
         <c:otherwise>
             <td>-</td>

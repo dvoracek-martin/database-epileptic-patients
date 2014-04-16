@@ -424,12 +424,12 @@ public class PatientDAOImpl extends GenericDAOImpl<PatientEntity> implements
 
 		/* birth number */
         if (!advancedSearch.getPatientNin().equals("")) {
-            criteria.add(Restrictions.like("contact.nin", advancedSearch.getPatientNin() + "%"));
+            criteria.add(Restrictions.like("nin", advancedSearch.getPatientNin() + "%"));
         }
 
 		/* city */
         if (!advancedSearch.getPatientCity().equals("")) {
-            criteria.add(Restrictions.like("contact.addressTown", advancedSearch.getPatientCity() + "%"));
+            criteria.add(Restrictions.like("contact.addressCity", advancedSearch.getPatientCity() + "%"));
         }
 
 		/* Country */

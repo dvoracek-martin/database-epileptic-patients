@@ -13,13 +13,13 @@
 
     <div class="form-group">
         <label for="histopathology" class="col-xs-4 control-label">
-            <spring:message code="label.histopathology"/>*
+            <spring:message code="label.histopathology"/>
         </label>
 
         <div class="col-xs-8">
             <form:select path="histologyHistopathology" id="histopathology" type="text" class="form-control input-sm">
                 <form:option value="0">
-                    <spring:message code="label.histopathology.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.histopathology.1"/>
@@ -71,9 +71,10 @@
             </label>
 
             <div class="col-xs-8">
-                <form:select path="histologyFcdClassification" id="fcdClassification" type="text" class="form-control input-sm">
+                <form:select path="histologyFcdClassification" id="fcdClassification" type="text"
+                             class="form-control input-sm">
                     <form:option value="0">
-                     nezvoleno
+                        <spring:message code="label.notDistinguish"/>
                     </form:option>
                     <form:option value="1">
                         <spring:message code="label.fcdClassification.1"/>

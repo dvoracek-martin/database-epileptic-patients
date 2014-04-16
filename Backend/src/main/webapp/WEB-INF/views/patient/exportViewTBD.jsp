@@ -16,7 +16,6 @@
     </jsp:attribute>
 
 	<jsp:attribute name="script">
-	<script src="<c:url value="/resources/js/jquery-ui.js" />"></script>
 		<script>
             $(document).ready(function () {
                 $('p.tree-toggler').click(function () {

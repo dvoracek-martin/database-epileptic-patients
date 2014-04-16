@@ -64,7 +64,7 @@
             <form:select path="anamnesisSpecificSyndrome" id="anamnesisSpecificSyndrome" type="text"
                          class="form-control input-sm">
                 <form:option value="0">
-                    <spring:message code="label.specificSyndrome.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.specificSyndrome.1"/>

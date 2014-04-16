@@ -29,14 +29,14 @@
             </div>
         </div>
 
-        <jsp:include page="patientDetails.jsp" />
+        <jsp:include page="patientDetails.jsp"/>
 
         <form:form class="form-horizontal"
                    action="/GENEPI/patient/${patient.id}/edit"
                    method="POST"
                    commandName="patientVO">
 
-            <jsp:include page="formView.jsp" />
+            <jsp:include page="formView.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-3 col-xs-8">

@@ -5,6 +5,10 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="toCheck"
+             scope="request"
+             type="java.lang.Boolean"/>
+
 <fieldset id="seizureFieldset">
 <legend>
     <spring:message code="label.seizures"/>
@@ -18,7 +22,7 @@
     <div class="col-xs-8">
         <form:select path="seizureSeizureFrequency" id="seizureFrequency" type="text" class="form-control input-sm">
             <form:option value="0">
-                <spring:message code="label.seizureFrequency.0"/>
+                <spring:message code="label.notDistinguish"/>
             </form:option>
             <form:option value="1">
                 <spring:message code="label.seizureFrequency.1"/>
@@ -54,7 +58,7 @@
     <div class="col-xs-8">
         <form:select path="seizureSscClassification" id="sscClassification" type="text" class="form-control input-sm">
             <form:option value="0">
-                <spring:message code="label.sscClassification.0"/>
+                <spring:message code="label.notDistinguish"/>
             </form:option>
             <form:option value="1">
                 <spring:message code="label.sscClassification.1"/>
@@ -156,7 +160,7 @@
     <div class="col-xs-8">
         <form:select path="seizureIlaeClassification" id="ilaeClassification" type="text" class="form-control input-sm">
             <form:option value="0">
-                <spring:message code="label.ilaeClassification.0"/>
+                <spring:message code="label.notDistinguish"/>
             </form:option>
             <form:option value="1">
                 <spring:message code="label.ilaeClassification.1"/>

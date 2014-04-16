@@ -9,10 +9,14 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="t" %>
 
 <%-- Attribute section --%>
-<%@ attribute name="title" fragment="true" %>
-<%@ attribute name="head" fragment="true" %>
-<%@ attribute name="menuLVL2" fragment="true" %>
-<%@ attribute name="script" fragment="true" %>
+<%@ attribute name="title"
+              fragment="true" %>
+<%@ attribute name="head"
+              fragment="true" %>
+<%@ attribute name="menuLVL2"
+              fragment="true" %>
+<%@ attribute name="script"
+              fragment="true" %>
 
 <%-- Template section --%>
 <t:layout>
@@ -61,11 +65,11 @@
                                    <spring:message code="label.users"/>
                                </a>
                            </li>
-                          <%-- <li>
-                               <a href="<c:url value="/hidden"/>">
-                                   <spring:message code="label.hidden"/>
-                               </a>
-                           </li>--%>
+                               <%-- <li>
+                                    <a href="<c:url value="/hidden"/>">
+                                        <spring:message code="label.hidden"/>
+                                    </a>
+                                </li>--%>
                        </ul>
                    </div>
                </div>

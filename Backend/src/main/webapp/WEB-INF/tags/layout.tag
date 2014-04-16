@@ -40,13 +40,16 @@
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <button class="navbar-toggle" type="button"
+                    data-toggle="collapse"
+                    data-target=".navbar-ex1-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<c:url value="/" />">
+            <a class="navbar-brand"
+               href="<c:url value="/" />">
                 <img src="<c:url value="/resources/custom/img/logo.ico" />">GENEPI
             </a>
         </div>
@@ -67,10 +70,14 @@
                     </a>
                 </li>
                 <li>
-                    <a href="?lang=cs">CZ</a>
+                    <a href="?lang=cs">
+                        CZ
+                    </a>
                 </li>
                 <li>
-                    <a href="?lang=en">EN</a>
+                    <a href="?lang=en">
+                        EN
+                    </a>
                 </li>
             </ul>
         </div>
@@ -83,18 +90,23 @@
 <%-- Body section --%>
 <div class="container">
     <div class="row">
-        <button id="menu-button" type="button" class="btn btn-default btn-lg btn-block visible-xs">
-            menu/content
+        <button id="menu-button"
+                class="btn btn-default btn-lg btn-block visible-xs"
+                type="button">
+            <spring:message code="label.menuContent"/>
         </button>
         <br>
         <%-- Menu section --%>
-        <div id="menu" class="hide-content col-sm-4 col-md-4 col-lg-3" role="navigation">
+        <div id="menu"
+             class="hide-content col-sm-4 col-md-4 col-lg-3"
+             role="navigation">
             <%-- Menu hook --%>
             <jsp:invoke fragment="menuLVL1"/>
         </div>
 
         <%-- Content section --%>
-        <div id="content" class="col-sm-8 col-md-8 col-lg-9">
+        <div id="content"
+             class="col-sm-8 col-md-8 col-lg-9">
             <%-- Hook for body --%>
             <jsp:doBody/>
         </div>
@@ -103,7 +115,9 @@
     <%-- Footer section --%>
     <hr>
     <footer>
-        <p>&copy; GENEPI 2013</p>
+        <p>
+            &copy; GENEPI 2013
+        </p>
     </footer>
 
 </div>

@@ -6,6 +6,10 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestMriDisplayVO"/>
 
+<jsp:useBean id="count"
+             scope="request"
+             type="java.lang.Integer"/>
+
 <div id="collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
 <table class="table">

@@ -19,7 +19,7 @@
             <form:select path="neurologicalFindingHemisphereDominance" id="hemisphereDominance" type="text"
                          class="input-sm form-control">
                 <form:option value="0">
-                    <spring:message code="label.hemisphereDominance.0"/>
+                    <spring:message code="label.notDistinguish"/>
                 </form:option>
                 <form:option value="1">
                     <spring:message code="label.hemisphereDominance.1"/>

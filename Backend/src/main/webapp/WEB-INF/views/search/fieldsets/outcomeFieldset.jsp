@@ -198,7 +198,7 @@
                      path="outcomeDistance">
 
             <form:option value="0">
-                <spring:message code="label.distance.0"/>
+                <spring:message code="label.notDistinguish"/>
             </form:option>
             <form:option value="6">
                 <spring:message code="label.distance.6"/>
