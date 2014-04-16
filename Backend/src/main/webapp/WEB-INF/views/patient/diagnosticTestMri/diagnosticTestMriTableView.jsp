@@ -8,7 +8,7 @@
 
 <jsp:useBean id="count"
              scope="request"
-             type="java.lang.Integer"/>
+             type="java.lang.String"/>
 
 <div id="collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">

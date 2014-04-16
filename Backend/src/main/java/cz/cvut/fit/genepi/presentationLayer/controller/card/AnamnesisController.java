@@ -109,7 +109,9 @@ public class AnamnesisController {
                 if (!authorizationChecker.isSuperDoctor()) {
                     patientService.voidVerifyPatient(patientId);
                 }
-                genericCardService.save(anamnesis, AnamnesisEntity.class);
+                if (anamnesisService.getRecordsByPatientId(patientId) == null) {
+                    genericCardService.save(anamnesis, AnamnesisEntity.class);
+                }
                 return "redirect:/patient/" + patientId + "/anamnesis/list";
             }
         }
@@ -183,7 +185,6 @@ public class AnamnesisController {
         AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
 
         model.addAttribute("anamnesisDisplayVo", anamnesisDisplayVo);
-//        model.addAttribute("beginningEpilepsy", TimeConverter.getAgeAtTheBeginningOfEpilepsy(patient));
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";
     }

@@ -174,8 +174,8 @@
 
 
     <div class="form-group">
-        <label class="col-xs-4 control-label">
-            for="vnsImplantationDate"
+        <label class="col-xs-4 control-label"
+            for="vnsImplantationDate">
             <spring:message code="label.vnsImplantationDate"/>
         </label>
 

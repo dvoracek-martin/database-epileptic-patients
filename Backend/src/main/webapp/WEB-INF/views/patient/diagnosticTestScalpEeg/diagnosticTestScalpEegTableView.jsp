@@ -6,7 +6,9 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO"/>
 
-<jsp:useBean id="count" scope="request" type="java.lang.Integer"/>
+<jsp:useBean id="count"
+             scope="request"
+             type="java.lang.String"/>
 
 <div id="collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">

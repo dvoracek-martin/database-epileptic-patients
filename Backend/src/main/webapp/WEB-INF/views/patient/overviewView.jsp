@@ -92,7 +92,7 @@
         </h2>
     </div>
     <div class="col-xs-6">
-        <c:if test="${empty anamnesisDisplayVo || isAuthorized}">
+        <c:if test="${empty anamnesisDisplayVo && isAuthorized}">
             <h3 class="pull-right">
                 <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                     <spring:message code="label.addRecord"/>

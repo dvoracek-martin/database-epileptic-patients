@@ -22,8 +22,9 @@
                 </h2>
             </div>
             <div class="col-xs-6">
-                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR" var="isAuthorized"/>
-                <c:if test="${empty anamnesis || not isAuthorized}">
+                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"
+                               var="isAuthorized"/>
+                <c:if test="${empty anamnesisDisplayVo && isAuthorized}">
 
                     <h3 class="pull-right">
                         <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
@@ -57,8 +58,8 @@
                                 <th class="col-xs-4">
                                     <a class="pull-right"
                                        href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
-                                        <span class="glyphicon glyphicon-edit"></span> <spring:message
-                                            code="label.edit"/>
+                                        <span class="glyphicon glyphicon-edit"></span>
+                                        <spring:message code="label.edit"/>
                                     </a>
                                 </th>
                             </tr>
