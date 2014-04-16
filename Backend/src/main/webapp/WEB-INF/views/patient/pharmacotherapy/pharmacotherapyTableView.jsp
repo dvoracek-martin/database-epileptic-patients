@@ -1,10 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <jsp:useBean id="pharmacotherapyDisplayVo"
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO"/>
+
+<sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+               var="isAuthorized"/>
 
 <table class="record-head table">
     <tr>
@@ -23,17 +27,21 @@
             <spring:message code="label.boolean.${pharmacotherapyDisplayVo.duringSurgery}"/>
         </td>
         <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/edit"/>">
-                <span class="glyphicon glyphicon-edit"></span>
-                <spring:message code="label.edit"/>
-            </a>
+            <c:if test="${isAuthorized}">
+                <a href="<c:url value="/patient/${patient.id}/pharmacotherapy/${pharmacotherapyDisplayVo.id}/edit"/>">
+                    <span class="glyphicon glyphicon-edit"></span>
+                    <spring:message code="label.edit"/>
+                </a>
+            </c:if>
         </td>
         <td class="col-xs-2">
-            <a href="#delete-pharmacotherapy-${pharmacotherapyDisplayVo.id}"
-               data-toggle="modal">
-                <span class="glyphicon glyphicon-remove-circle"></span>
-                <spring:message code="label.delete"/>
-            </a>
+            <c:if test="${isAuthorized}">
+                <a href="#delete-pharmacotherapy-${pharmacotherapyDisplayVo.id}"
+                   data-toggle="modal">
+                    <span class="glyphicon glyphicon-remove-circle"></span>
+                    <spring:message code="label.delete"/>
+                </a>
+            </c:if>
         </td>
     </tr>
 </table>

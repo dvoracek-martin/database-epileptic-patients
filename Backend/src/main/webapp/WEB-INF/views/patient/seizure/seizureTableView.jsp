@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -6,7 +7,12 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO"/>
 
-<%--@elvariable id="count" type="java.lang.Integer"--%>
+<jsp:useBean id="count"
+             scope="request"
+             type="java.lang.String"/>
+
+<sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+               var="isAuthorized"/>
 
 <div id="collapse-seizure-${seizureDisplayVo.id}"
      class="collapse
@@ -84,16 +90,19 @@
                                scope="page"/>
                         <tr>
                             <th colspan="2" class="col-xs-12">
-                                    ${seizureDetailsCount}. <spring:message code="label.seizureType"/> (
-                                <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/edit"/>">
-                                    <spring:message code="label.edit"/>
-                                </a>
-                                |
-                                <a href="#delete-seizure-detail-${seizureDetailDisplayVo.id}"
-                                   data-toggle="modal">
-                                    <spring:message code="label.delete"/>
-                                </a>
-                                )
+                                    ${seizureDetailsCount}. <spring:message code="label.seizureType"/>
+                                <c:if test="${isAuthorized}">
+                                    (
+                                    <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/edit"/>">
+                                        <spring:message code="label.edit"/>
+                                    </a>
+                                    |
+                                    <a href="#delete-seizure-detail-${seizureDetailDisplayVo.id}"
+                                       data-toggle="modal">
+                                        <spring:message code="label.delete"/>
+                                    </a>
+                                    )
+                                </c:if>
                             </th>
                         </tr>
                         <tr>

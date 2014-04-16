@@ -11,6 +11,9 @@
              scope="request"
              type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
 
+<sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+               var="isAuthorized"/>
+
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
@@ -33,15 +36,19 @@
             </c:if>
         </td>
         <td class="col-xs-2">
-            <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/edit"/>">
-                <span class="glyphicon glyphicon-edit"></span><spring:message code="label.edit"/>
-            </a>
+            <c:if test="${isAuthorized}">
+                <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/edit"/>">
+                    <span class="glyphicon glyphicon-edit"></span><spring:message code="label.edit"/>
+                </a>
+            </c:if>
         </td>
         <td class="col-xs-2">
-            <a href="#delete-complication-${complicationDisplayVo.id}"
-               data-toggle="modal">
-                <span class="glyphicon glyphicon-remove-circle"></span><spring:message code="label.delete"/>
-            </a>
+            <c:if test="${isAuthorized}">
+                <a href="#delete-complication-${complicationDisplayVo.id}"
+                   data-toggle="modal">
+                    <span class="glyphicon glyphicon-remove-circle"></span><spring:message code="label.delete"/>
+                </a>
+            </c:if>
         </td>
     </tr>
 </table>

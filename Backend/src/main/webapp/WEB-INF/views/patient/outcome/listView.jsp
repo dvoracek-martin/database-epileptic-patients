@@ -20,7 +20,6 @@
                 <h2>
                     <spring:message code="label.outcome"/>
                 </h2>
-
             </div>
         </div>
 

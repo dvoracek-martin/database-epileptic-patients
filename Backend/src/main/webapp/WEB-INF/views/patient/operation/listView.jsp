@@ -15,6 +15,9 @@
     </jsp:attribute>
 
     <jsp:body>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+                       var="isAuthorized"/>
+
         <div class="row">
             <div class="col-xs-6">
                 <h2>
@@ -23,11 +26,13 @@
 
             </div>
             <div class="col-xs-6">
-                <h3 class="pull-right">
-                    <a href="<c:url value="/patient/${patient.id}/operation/create" />">
-                        <spring:message code="label.addRecord"/>
-                    </a>
-                </h3>
+                <c:if test="${isAuthorized}">
+                    <h3 class="pull-right">
+                        <a href="<c:url value="/patient/${patient.id}/operation/create" />">
+                            <spring:message code="label.addRecord"/>
+                        </a>
+                    </h3>
+                </c:if>
             </div>
         </div>
 
@@ -59,19 +64,23 @@
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/edit"/>">
-                                            <span class="glyphicon glyphicon-edit"></span>
-                                            <spring:message code="label.edit"/>
-                                        </a>
+                                        <c:if test="${isAuthorized}">
+                                            <a class="pull-right"
+                                               href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/edit"/>">
+                                                <span class="glyphicon glyphicon-edit"></span>
+                                                <spring:message code="label.edit"/>
+                                            </a>
+                                        </c:if>
                                     </th>
                                     <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="#delete-operation-${operationDisplayVo.id}"
-                                           data-toggle="modal">
-                                            <span class="glyphicon glyphicon-remove-circle"></span>
-                                            <spring:message code="label.delete"/>
-                                        </a>
+                                        <c:if test="${isAuthorized}">
+                                            <a class="pull-right"
+                                               href="#delete-operation-${operationDisplayVo.id}"
+                                               data-toggle="modal">
+                                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                                <spring:message code="label.delete"/>
+                                            </a>
+                                        </c:if>
                                     </th>
                                 </tr>
                                 </tbody>

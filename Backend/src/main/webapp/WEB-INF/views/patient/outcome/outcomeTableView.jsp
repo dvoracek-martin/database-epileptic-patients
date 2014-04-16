@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -9,6 +10,9 @@
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
+
+<sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+               var="isAuthorized"/>
 
 <div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
@@ -69,9 +73,11 @@
             <td><spring:message code="label.done.${outcome6.mri}"/></td>
             <td><spring:message code="label.done.${outcome6.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.editRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.editRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:when>
         <c:otherwise>
@@ -81,9 +87,11 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.addRecord"/>
+                    </a>
+                </c:if>
             </td>
 
         </c:otherwise>
@@ -114,8 +122,11 @@
             <td><spring:message code="label.done.${outcome12.mri}"/></td>
             <td><spring:message code="label.done.${outcome12.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome12.id}/edit?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome12.id}/edit?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
                         <spring:message code="label.editRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:when>
         <c:otherwise>
@@ -125,9 +136,11 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.addRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:otherwise>
     </c:choose>
@@ -158,8 +171,11 @@
             <td><spring:message code="label.done.${outcome24.mri}"/></td>
             <td><spring:message code="label.done.${outcome24.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome24.id}/edit?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome24.id}/edit?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
                         <spring:message code="label.editRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:when>
         <c:otherwise>
@@ -169,9 +185,11 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.addRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:otherwise>
     </c:choose>
@@ -202,8 +220,11 @@
             <td><spring:message code="label.done.${outcome60.mri}"/></td>
             <td><spring:message code="label.done.${outcome60.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome60.id}/edit?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome60.id}/edit?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
                         <spring:message code="label.editRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:when>
         <c:otherwise>
@@ -213,9 +234,11 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.addRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:otherwise>
     </c:choose>
@@ -246,8 +269,11 @@
             <td><spring:message code="label.done.${outcome120.mri}"/></td>
             <td><spring:message code="label.done.${outcome120.neuropsychology}"/></td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/${outcome120.id}/edit?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome120.id}/edit?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
                         <spring:message code="label.editRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:when>
         <c:otherwise>
@@ -257,9 +283,11 @@
             <td>-</td>
             <td>-</td>
             <td>
-                <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
-                    <spring:message code="label.addRecord"/>
-                </a>
+                <c:if test="${isAuthorized}">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
+                        <spring:message code="label.addRecord"/>
+                    </a>
+                </c:if>
             </td>
         </c:otherwise>
     </c:choose>

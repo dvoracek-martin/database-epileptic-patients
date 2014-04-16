@@ -1,5 +1,6 @@
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page pageEncoding="UTF-8" %>
 
@@ -15,6 +16,9 @@
     </jsp:attribute>
 
     <jsp:body>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+                       var="isAuthorized"/>
+
         <div class="row">
             <div class="col-xs-12">
                 <h2>
@@ -55,12 +59,14 @@
 
                                     </th>
                                     <th class="col-xs-2">
-                                        <a class="pull-right"
-                                           href="#delete-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"
-                                           data-toggle="modal">
-                                            <span class="glyphicon glyphicon-remove-circle"></span>
-                                            <spring:message code="label.delete"/>
-                                        </a>
+                                        <c:if test="${isAuthorized}">
+                                            <a class="pull-right"
+                                               href="#delete-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"
+                                               data-toggle="modal">
+                                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                                <spring:message code="label.delete"/>
+                                            </a>
+                                        </c:if>
                                     </th>
                                 </tr>
                                 </tbody>

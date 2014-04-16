@@ -14,6 +14,8 @@
     </jsp:attribute>
 
     <jsp:body>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+                       var="isAuthorized"/>
 
         <div class="row">
             <div class="col-xs-6">
@@ -22,10 +24,8 @@
                 </h2>
             </div>
             <div class="col-xs-6">
-                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR"
-                               var="isAuthorized"/>
-                <c:if test="${empty anamnesisDisplayVo && isAuthorized}">
 
+                <c:if test="${empty anamnesisDisplayVo && isAuthorized}">
                     <h3 class="pull-right">
                         <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                             <spring:message code="label.addRecord"/>
@@ -56,11 +56,13 @@
                                     </a>
                                 </th>
                                 <th class="col-xs-4">
-                                    <a class="pull-right"
-                                       href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
-                                        <span class="glyphicon glyphicon-edit"></span>
-                                        <spring:message code="label.edit"/>
-                                    </a>
+                                    <c:if test="${isAuthorized}">
+                                        <a class="pull-right"
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
+                                            <span class="glyphicon glyphicon-edit"></span>
+                                            <spring:message code="label.edit"/>
+                                        </a>
+                                    </c:if>
                                 </th>
                             </tr>
                             </tbody>

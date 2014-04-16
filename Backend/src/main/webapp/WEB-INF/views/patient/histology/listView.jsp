@@ -15,6 +15,9 @@
     </jsp:attribute>
 
     <jsp:body>
+        <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
+                       var="isAuthorized"/>
+
         <div class="row">
             <div class="col-xs-6">
                 <h2>
@@ -22,13 +25,13 @@
                 </h2>
             </div>
             <div class="col-xs-6">
-                <sec:authorize ifAnyGranted="ROLE_ADMIN,ROLE_DOCTOR,ROLE_SUPER_DOCTOR">
+                <c:if test="${isAuthorized}">
                     <h3 class="pull-right">
                         <a href="<c:url value="/patient/${patient.id}/histology/create" />">
                             <spring:message code="label.addRecord"/>
                         </a>
                     </h3>
-                </sec:authorize>
+                </c:if>
             </div>
         </div>
 
