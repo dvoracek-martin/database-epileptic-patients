@@ -12,12 +12,12 @@
     </jsp:attribute>
 
     	<jsp:attribute name="head">
-    <link href="<c:url value="/resources/custom/css/clickable-row.css" />" rel="stylesheet">
+    <link href="<c:url value="/resources/custom/css/clickable-row.css" />"
+          rel="stylesheet">
     </jsp:attribute>
 
-    	<jsp:attribute name="script">
-    <script src="<c:url value="/resources/custom/js/clickable-row.js"/>"></script>
-
+    <jsp:attribute name="script">
+        <script src="<c:url value="/resources/custom/js/clickable-row.js"/>"></script>
     </jsp:attribute>
 
     <jsp:body>
@@ -25,9 +25,8 @@
         <div class="row">
             <div class="col-xs-6">
                 <h2>
-                        <%--<spring:message code="label.searchResults"/>--%>ulozene parametry
+                    <spring:message code="label.savedParameters"/>
                 </h2>
-
             </div>
             <div class="col-xs-6">
 
@@ -36,28 +35,28 @@
 
         <c:choose>
             <c:when test="${empty advancedSearchList}">
-                no result
+                <spring:message code="label.savedParameters"/>
             </c:when>
             <c:otherwise>
-
 
                 <div class="table-responsive">
                     <table class="table table-striped table-hover">
                         <thead>
                         <tr>
                             <td>
-                                    <%--<b><spring:message code="label.firstname"/></b>--%>nazev
+                                <b><spring:message code="label.name"/></b>
                             </td>
                             <td>
-                                    <%--<b><spring:message code="label.firstname"/></b>--%>vytvoren
+                                <b><spring:message code="label.created"/></b>
                             </td>
                             <td>
-                                    <%--<b><spring:message code="label.firstname"/></b>--%>vytvoril
+                                <b><spring:message code="label.createdBy"/></b>
                             </td>
                         </tr>
                         </thead>
                         <tbody id="patientList">
-                        <c:forEach items="${advancedSearchList}" var="advancedSearchVo">
+                        <c:forEach items="${advancedSearchList}"
+                                   var="advancedSearchVo">
 
                             <tr class="clickable-row"
                                 data-href="<c:url value="/advanced-search/load/${advancedSearchVo.id}" />">

@@ -3,49 +3,52 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page pageEncoding="UTF-8" %>
 
+<jsp:useBean id="toCheck" scope="request" type="java.lang.Boolean"/>
+
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="${param.propertyName}">
+    <label class="col-xs-4 control-label"
+           for="${param.propertyName}">
         <spring:message code="label.${param.messageCode}"/>
     </label>
 
-    <c:choose>
-        <c:when test="${toCheck}">
-            <div class="col-xs-8">
-                <form:radiobutton id="${param.propertyName}1" path="${param.propertyName}" value="1"/>
-                <label for="${param.propertyName}1">
-                    <spring:message code="label.yes"/>
-                </label>
+    <div class="col-xs-8">
+        <form:radiobutton id="${param.propertyName}1"
+                          value="1"
+                          path="${param.propertyName}"/>
 
-                <form:radiobutton id="${param.propertyName}2" path="${param.propertyName}" value="2"/>
-                <label for="${param.propertyName}2">
-                    <spring:message code="label.no"/>
-                </label>
+        <label for="${param.propertyName}1">
+            <spring:message code="label.yes"/>
+        </label>
 
-                <form:radiobutton id="${param.propertyName}3" path="${param.propertyName}" value="3" checked="true"/>
+        <form:radiobutton id="${param.propertyName}2"
+                          value="2"
+                          path="${param.propertyName}"/>
 
-                <label for="${param.propertyName}3">
-                    <spring:message code="label.notDistinguish"/>
-                </label>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div class="col-xs-8 radios">
-                <form:radiobutton id="${param.propertyName}1" path="${param.propertyName}" value="1"/>
-                <label for="${param.propertyName}1">
-                    <spring:message code="label.yes"/>
-                </label>
+        <label for="${param.propertyName}2">
+            <spring:message code="label.no"/>
+        </label>
 
-                <form:radiobutton id="${param.propertyName}2" path="${param.propertyName}" value="2"/>
-                <label for="${param.propertyName}2">
-                    <spring:message code="label.no"/>
-                </label>
+        <c:choose>
+            <c:when test="${toCheck}">
 
-                <form:radiobutton id="${param.propertyName}3" path="${param.propertyName}" value="3"/>
+                <form:radiobutton id="${param.propertyName}3"
+                                  value="3"
+                                  checked="true"
+                                  path="${param.propertyName}"/>
 
-                <label for="${param.propertyName}3">
-                    <spring:message code="label.notDistinguish"/>
-                </label>
-            </div>
-        </c:otherwise>
-    </c:choose>
+            </c:when>
+            <c:otherwise>
+
+                <form:radiobutton id="${param.propertyName}3"
+                                  value="3"
+                                  path="${param.propertyName}"/>
+
+            </c:otherwise>
+        </c:choose>
+
+        <label for="${param.propertyName}3">
+            <spring:message code="label.notDistinguish"/>
+        </label>
+
+    </div>
 </div>

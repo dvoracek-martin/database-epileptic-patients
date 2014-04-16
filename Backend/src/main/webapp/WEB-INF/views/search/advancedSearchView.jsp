@@ -7,7 +7,7 @@
 
 <t:menuLVL1>
 
-<jsp:attribute name="title">
+    <jsp:attribute name="title">
       <spring:message code="label.advancedSearch"/>
     </jsp:attribute>
 
@@ -41,41 +41,43 @@
 
             <jsp:include page="fieldsets/generalParametersSpecificPersonFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/generalParametersFieldset.jsp" />
+            <jsp:include page="fieldsets/generalParametersFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/includeParametersFromFieldset.jsp" />
+            <jsp:include page="fieldsets/includeParametersFromFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/anamnesisFieldset.jsp" />
+            <jsp:include page="fieldsets/anamnesisFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/seizureFieldset.jsp" />
+            <jsp:include page="fieldsets/seizureFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/pharmacotherapyFieldset.jsp" />
+            <jsp:include page="fieldsets/pharmacotherapyFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/neurologicalFindingFieldset.jsp" />
+            <jsp:include page="fieldsets/neurologicalFindingFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/neuropsychologyFieldset.jsp" />
+            <jsp:include page="fieldsets/neuropsychologyFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/diagnosticTestScalpEegFieldset.jsp" />
+            <jsp:include page="fieldsets/diagnosticTestScalpEegFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/diagnosticTestMriFieldset.jsp" />
+            <jsp:include page="fieldsets/diagnosticTestMriFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/invasiveTestEegFieldset.jsp" />
+            <jsp:include page="fieldsets/invasiveTestEegFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/invasiveTestEcogFieldset.jsp" />
+            <jsp:include page="fieldsets/invasiveTestEcogFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/invasiveTestCorticalMappingFieldset.jsp" />
+            <jsp:include page="fieldsets/invasiveTestCorticalMappingFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/operationFieldset.jsp" />
+            <jsp:include page="fieldsets/operationFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/histologyFieldset.jsp" />
+            <jsp:include page="fieldsets/histologyFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/complicationFieldset.jsp" />
+            <jsp:include page="fieldsets/complicationFieldset.jsp"/>
 
-            <jsp:include page="fieldsets/outcomeFieldset.jsp" />
+            <jsp:include page="fieldsets/outcomeFieldset.jsp"/>
 
             <div class="form-group">
                 <div class="col-xs-offset-4 col-xs-8">
-                    <button id="searchButton" class="btn btn-primary" type="submit">
+                    <button id="searchButton"
+                            class="btn btn-primary"
+                            type="submit">
                         <spring:message code="label.search"/>
                     </button>
                 </div>
@@ -88,7 +90,8 @@
                 </legend>
 
                 <div class="form-group">
-                    <label class="col-xs-4 control-label" for="saveName">
+                    <label class="col-xs-4 control-label"
+                           for="saveName">
                         <spring:message code="label.name"/>
                     </label>
 
@@ -104,7 +107,8 @@
                     </div>
 
                     <div class="col-xs-2">
-                        <button id="saveButton" class="btn btn-primary">
+                        <button id="saveButton"
+                                class="btn btn-primary">
                             <spring:message code="label.save"/>
                         </button>
                     </div>
