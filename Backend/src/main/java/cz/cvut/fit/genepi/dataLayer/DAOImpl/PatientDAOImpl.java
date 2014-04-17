@@ -6,12 +6,10 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,213 +53,6 @@ public class PatientDAOImpl
                 .add(Restrictions.eq("id", patientId));
 
         return (PatientEntity) criteria.uniqueResult();
-    }
-
-    /*
-     * (non-Javadoc)
-     *
-     * @see
-     * cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO#getPatientByIdWithAnamnesisList
-     * (int)
-     */
-    @Override
-    public PatientEntity getPatientByIdWithAnamnesisList(int patientId) {
-        Session session = sessionFactory
-                .getCurrentSession();
-        Query query = session
-                .createQuery(
-                        "FROM PatientEntity p LEFT JOIN FETCH p.doctor LEFT JOIN FETCH p.anamnesisList aList"
-                                + " WHERE p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithComplicationList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "from PatientEntity p left join fetch p.doctor left join fetch p.complicationList cList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithDiagnosticTestScalpEegList(
-            int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestScalpEegList dtseList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithDiagnosticTestMriList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.diagnosticTestMRIList dtmList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithHistologyList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.histologyList hList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithInvasiveTestCorticalMappingList(
-            int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestCorticalMappingList itcmList"
-                                + " where p.id = :patientId"
-                );//AND ((itcmList.hidden = false AND itcmList.history = false) OR itcmList = NULL)");
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithInvasiveTestEcogList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestECOGList iteList"
-                                + " where p.id = :patientId"
-                );//AND ((iteList.hidden = false AND iteList.history = false) OR iteList = NULL)");
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithInvasiveTestEegList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.invasiveTestEEGList iteList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    @Transactional
-    public PatientEntity getPatientByIdWithNeurologicalFindingList(int patientId) {
-
-        Criteria criteria = sessionFactory.getCurrentSession()
-                .createCriteria(PatientEntity.class);
-
-        criteria.setFetchMode("doctor", FetchMode.JOIN);
-        criteria.setFetchMode("neurologicalFindingList", FetchMode.JOIN);
-        criteria.add(Restrictions.eq("id", patientId));
-
-        PatientEntity patient = (PatientEntity) criteria.uniqueResult();
-
-        return patient;
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithNeuropsychologyList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyList nList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithNeuropsychologyOldList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.neuropsychologyOldList noList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithOperationList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList oList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithOperationWithOutcomeList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.operationList left join fetch p.operationList"//TODO:join outcomes
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithOutcomeList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.outcomeList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithPharmacotherapyList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.pharmacotherapyList pList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
-    }
-
-    @Override
-    public PatientEntity getPatientByIdWithSeizureList(int patientId) {
-        Query query = sessionFactory
-                .getCurrentSession()
-                .createQuery(
-                        "select p from PatientEntity p left join fetch p.doctor left join fetch p.seizureList sList" +
-                                " left join fetch sList.seizureDetailList sdList"
-                                + " where p.id = :patientId"
-                );
-        query.setParameter("patientId", patientId);
-        return (PatientEntity) query.uniqueResult();
     }
 
     @SuppressWarnings("unchecked")
@@ -840,6 +631,7 @@ public class PatientDAOImpl
         return query.list();
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public List<PatientEntity> findAllWithHiddenRecords() {
         Query query = sessionFactory
@@ -879,6 +671,8 @@ public class PatientDAOImpl
         return query.list();
     }
 
+    @SuppressWarnings("unchecked")
+    @Override
     public int getCountOfUnhidden(boolean onlyResearcher, String searchString) {
         Long count;
         if (onlyResearcher) {
@@ -918,6 +712,7 @@ public class PatientDAOImpl
     }
 
     @SuppressWarnings("unchecked")
+    @Override
     public List<PatientEntity> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString) {
         Query query;
         if (onlyResearcher) {

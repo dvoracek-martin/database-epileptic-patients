@@ -17,5 +17,5 @@ public interface GenericCardDAO<CardEntity> extends GenericDAO<CardEntity> {
 
     public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass);
 
-    public Date getOldestRecordDate(int patientId,Class<CardEntity> entityClass);
+    public Date getOldestRecordDate(int patientId, Class<CardEntity> entityClass);
 }

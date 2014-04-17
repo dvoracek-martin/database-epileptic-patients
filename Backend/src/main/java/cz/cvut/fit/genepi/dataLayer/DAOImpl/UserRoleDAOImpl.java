@@ -16,10 +16,6 @@ public class UserRoleDAOImpl
         extends GenericDAOImpl<UserRoleEntity>
         implements UserRoleDAO {
 
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByUserID(int)
-     */
-
     @SuppressWarnings("unchecked")
     @Override
     public List<UserRoleEntity> findAllUserRolesByUserID(int user_id) {
@@ -31,18 +27,4 @@ public class UserRoleDAOImpl
         return userRoleEntities;
     }
 
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.DAO.UserRoleDAO#findAllUserRolesByRoleID(int)
-     */
-
-    @SuppressWarnings("unchecked")
-    @Override
-    public List<UserRoleEntity> findAllUserRolesByRoleID(int role_id) {
-        List<UserRoleEntity> userRoleEntities;
-        Query query = sessionFactory.getCurrentSession().createQuery(
-                "from UserRoleEntity where roleId = :roleID");
-        query.setParameter("roleID", role_id);
-        userRoleEntities = (List<UserRoleEntity>) query.list();
-        return userRoleEntities;
-    }
 }

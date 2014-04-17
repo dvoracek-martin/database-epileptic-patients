@@ -17,11 +17,4 @@ public interface UserRoleDAO extends GenericDAO<UserRoleEntity> {
      */
     List<UserRoleEntity> findAllUserRolesByUserID(int userID);
 
-    /**
-     * Find all user roles by role id.
-     *
-     * @param roleID the role id
-     * @return the list
-     */
-    List<UserRoleEntity> findAllUserRolesByRoleID(int roleID);
 }
