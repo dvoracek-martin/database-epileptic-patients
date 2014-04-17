@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="operationFieldset">
@@ -11,12 +9,16 @@
     </legend>
 
     <div class="form-group">
-        <label for="operationType" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="operationType">
             <spring:message code="label.typeOfOperation"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="operationTypeOperation" id="operationType" type="text" class="input-sm form-control">
+            <form:select id="operationType"
+                         class="input-sm form-control"
+                         type="text"
+                         path="operationTypeOperation">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -52,12 +54,16 @@
     </div>
 
     <div class="form-group">
-        <label for="operationRange" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="operationRange">
             <spring:message code="label.rangeOfOperation"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="operationRangeOperation" id="operationRange" type="text" class="input-sm form-control">
+            <form:select id="operationRange"
+                         class="input-sm form-control"
+                         type="text"
+                         path="operationRangeOperation">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -82,23 +88,31 @@
     </div>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="operationMst"/>
-        <jsp:param name="messageCode" value="mst"/>
+        <jsp:param name="propertyName"
+                   value="operationMst"/>
+        <jsp:param name="messageCode"
+                   value="mst"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="operationColostomy"/>
-        <jsp:param name="messageCode" value="calosotomy"/>
+        <jsp:param name="propertyName"
+                   value="operationColostomy"/>
+        <jsp:param name="messageCode"
+                   value="calosotomy"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="operationVns"/>
-        <jsp:param name="messageCode" value="vns"/>
+        <jsp:param name="propertyName"
+                   value="operationVns"/>
+        <jsp:param name="messageCode"
+                   value="vns"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="operationCompleteResection"/>
-        <jsp:param name="messageCode" value="completeResection"/>
+        <jsp:param name="propertyName"
+                   value="operationCompleteResection"/>
+        <jsp:param name="messageCode"
+                   value="completeResection"/>
     </jsp:include>
 
 </fieldset>

@@ -1,8 +1,7 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset>
@@ -11,7 +10,8 @@
 </legend>
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN">
     <div class="form-group">
-        <label for="patientFirstname" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="patientFirstname">
             <spring:message code="label.firstname"/>
         </label>
 
@@ -27,7 +27,8 @@
     </div>
 
     <div class="form-group">
-        <label for="patientLastname" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="patientLastname">
             <spring:message code="label.lastname"/>
         </label>
 
@@ -43,7 +44,8 @@
     </div>
 
     <div class="form-group">
-        <label for="patientLastname" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="patientLastname">
             <spring:message code="label.nin"/>
         </label>
 
@@ -59,7 +61,8 @@
     </div>
 </sec:authorize>
 <div class="form-group">
-    <label for="patientCity" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="patientCity">
         <spring:message code="label.addressCity"/>
     </label>
 
@@ -75,7 +78,8 @@
 </div>
 
 <div class="form-group">
-    <label for="patientCountry" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="patientCountry">
         <spring:message code="label.addressCountry"/>
     </label>
 
@@ -345,4 +349,3 @@
 </datalist>
 
 </fieldset>
-

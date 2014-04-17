@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="diagnosticTestMriFieldset">
@@ -137,17 +135,23 @@
 </div>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="diagnosticTestMriSiscom"/>
-    <jsp:param name="messageCode" value="siscom"/>
+    <jsp:param name="propertyName"
+               value="diagnosticTestMriSiscom"/>
+    <jsp:param name="messageCode"
+               value="siscom"/>
 </jsp:include>
 
 <div class="form-group">
-    <label for="mrsProtocol" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="mrsProtocol">
         <spring:message code="label.mrsProtocol"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="diagnosticTestMriMrsProtocol" id="mrsProtocol" type="text" class="input-sm form-control">
+        <form:select id="mrsProtocol"
+                     class="input-sm form-control"
+                     type="text"
+                     path="diagnosticTestMriMrsProtocol">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -207,17 +211,23 @@
 </div>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="diagnosticTestMriDti"/>
-    <jsp:param name="messageCode" value="dti"/>
+    <jsp:param name="propertyName"
+               value="diagnosticTestMriDti"/>
+    <jsp:param name="messageCode"
+               value="dti"/>
 </jsp:include>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="diagnosticTestMriFmri"/>
-    <jsp:param name="messageCode" value="fmri"/>
+    <jsp:param name="propertyName"
+               value="diagnosticTestMriFmri"/>
+    <jsp:param name="messageCode"
+               value="fmri"/>
 </jsp:include>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="diagnosticTestMriWada"/>
-    <jsp:param name="messageCode" value="wada"/>
+    <jsp:param name="propertyName"
+               value="diagnosticTestMriWada"/>
+    <jsp:param name="messageCode"
+               value="wada"/>
 </jsp:include>
 </fieldset>

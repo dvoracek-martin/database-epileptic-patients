@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <jsp:useBean id="toCheck"
@@ -15,12 +13,16 @@
 </legend>
 
 <div class="form-group">
-    <label for="seizureFrequency" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="seizureFrequency">
         <spring:message code="label.seizureFrequency"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="seizureSeizureFrequency" id="seizureFrequency" type="text" class="form-control input-sm">
+        <form:select id="seizureFrequency"
+                     class="form-control input-sm"
+                     type="text"
+                     path="seizureSeizureFrequency">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -41,22 +43,30 @@
 </div>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="seizureSecondarilyGeneralizedSeizure"/>
-    <jsp:param name="messageCode" value="secondarilyGeneralizedSeizure"/>
+    <jsp:param name="propertyName"
+               value="seizureSecondarilyGeneralizedSeizure"/>
+    <jsp:param name="messageCode"
+               value="secondarilyGeneralizedSeizure"/>
 </jsp:include>
 
 <jsp:include page="../decideRadiobuttons.jsp">
-    <jsp:param name="propertyName" value="seizureStatusEpilepticus"/>
-    <jsp:param name="messageCode" value="statusEpilepticus"/>
+    <jsp:param name="propertyName"
+               value="seizureStatusEpilepticus"/>
+    <jsp:param name="messageCode"
+               value="statusEpilepticus"/>
 </jsp:include>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="sscClassification">
+    <label class="col-xs-4 control-label"
+           for="sscClassification">
         <spring:message code="label.sscClassification"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="seizureSscClassification" id="sscClassification" type="text" class="form-control input-sm">
+        <form:select id="sscClassification"
+                     class="form-control input-sm"
+                     type="text"
+                     path="seizureSscClassification">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -153,12 +163,16 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="ilaeClassification">
+    <label class="col-xs-4 control-label"
+           for="ilaeClassification">
         <spring:message code="label.ilaeClassification"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="seizureIlaeClassification" id="ilaeClassification" type="text" class="form-control input-sm">
+        <form:select id="ilaeClassification"
+                     class="form-control input-sm"
+                     type="text"
+                     path="seizureIlaeClassification">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -214,58 +228,55 @@
 
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="seizureSeizureOccurence">
+    <label class="col-xs-4 control-label"
+           for="seizureSeizureOccurence">
         <spring:message code="label.occurrence"/>
     </label>
 
-    <c:choose>
-        <c:when test="${toCheck}">
-            <div id="seizureSeizureOccurence" class="col-xs-8">
-                <form:radiobutton id="seizureOccurence1" path="seizureSeizureOccurence" value="1"/>
-                <label for="seizureOccurence1">
-                    <spring:message code="label.seizureOccurence.1"/>
-                </label>
 
-                <form:radiobutton id="seizureOccurence2" path="seizureSeizureOccurence" value="2"/>
-                <label for="seizureOccurence2">
-                    <spring:message code="label.seizureOccurence.2"/>
-                </label>
+    <div id="seizureSeizureOccurence"
+         class="col-xs-8">
+        <form:radiobutton id="seizureOccurence1"
+                          value="1"
+                          path="seizureSeizureOccurence"/>
+        <label for="seizureOccurence1">
+            <spring:message code="label.seizureOccurence.1"/>
+        </label>
 
-                <form:radiobutton id="seizureOccurence3" path="seizureSeizureOccurence" value="3"/>
-                <label for="seizureOccurence3">
-                    <spring:message code="label.seizureOccurence.3"/>
-                </label>
+        <form:radiobutton id="seizureOccurence2"
+                          value="2"
+                          path="seizureSeizureOccurence"/>
+        <label for="seizureOccurence2">
+            <spring:message code="label.seizureOccurence.2"/>
+        </label>
 
-                <form:radiobutton id="seizureOccurence4" path="seizureSeizureOccurence" value="4" checked="true"/>
+        <form:radiobutton id="seizureOccurence3"
+                          value="3"
+                          path="seizureSeizureOccurence"/>
+        <label for="seizureOccurence3">
+            <spring:message code="label.seizureOccurence.3"/>
+        </label>
+
+        <c:choose>
+            <c:when test="${toCheck}">
+                <form:radiobutton id="seizureOccurence4"
+                                  value="4"
+                                  checked="true"
+                                  path="seizureSeizureOccurence"/>
                 <label for="seizureOccurence4">
                     <spring:message code="label.notDistinguish"/>
                 </label>
-            </div>
-        </c:when>
-        <c:otherwise>
-            <div id="seizureSeizureOccurence" class="col-xs-8">
-                <form:radiobutton id="seizureOccurence1" path="seizureSeizureOccurence" value="1"/>
-                <label for="seizureOccurence1">
-                    <spring:message code="label.seizureOccurence.1"/>
-                </label>
-
-                <form:radiobutton id="seizureOccurence2" path="seizureSeizureOccurence" value="2"/>
-                <label for="seizureOccurence2">
-                    <spring:message code="label.seizureOccurence.2"/>
-                </label>
-
-                <form:radiobutton id="seizureOccurence3" path="seizureSeizureOccurence" value="3"/>
-                <label for="seizureOccurence3">
-                    <spring:message code="label.seizureOccurence.3"/>
-                </label>
-
-                <form:radiobutton id="seizureOccurence4" path="seizureSeizureOccurence" value="4"/>
+            </c:when>
+            <c:otherwise>
+                <form:radiobutton id="seizureOccurence4"
+                                  value="4"
+                                  path="seizureSeizureOccurence"/>
                 <label for="seizureOccurence4">
                     <spring:message code="label.notDistinguish"/>
                 </label>
-            </div>
-        </c:otherwise>
-    </c:choose>
+            </c:otherwise>
+        </c:choose>
+    </div>
 </div>
 
 </fieldset>

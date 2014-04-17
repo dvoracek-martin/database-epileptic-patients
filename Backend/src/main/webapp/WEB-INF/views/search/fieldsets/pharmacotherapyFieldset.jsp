@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="pharmacotherapyFieldset">
@@ -11,13 +9,17 @@
     </legend>
 
     <div class="form-group">
-        <label for="pharmacotherapyAed" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="pharmacotherapyAed">
             <spring:message code="label.aed"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="pharmacotherapyAed" id="pharmacotherapyAed" type="text"
-                         class="form-control input-sm" multiple="multiple">
+            <form:select id="pharmacotherapyAed"
+                         class="form-control input-sm"
+                         type="text"
+                         multiple="multiple"
+                         path="pharmacotherapyAed">
                 <form:option value="1">
                     <spring:message code="label.aed.1"/>
                 </form:option>

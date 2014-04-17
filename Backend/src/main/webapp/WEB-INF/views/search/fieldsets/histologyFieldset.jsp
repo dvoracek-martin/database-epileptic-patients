@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="histologyFieldset">
@@ -10,14 +8,17 @@
         <spring:message code="label.histology"/>
     </legend>
 
-
     <div class="form-group">
-        <label for="histopathology" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="histopathology">
             <spring:message code="label.histopathology"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="histologyHistopathology" id="histopathology" type="text" class="form-control input-sm">
+            <form:select id="histopathology"
+                         class="form-control input-sm"
+                         type="text"
+                         path="histologyHistopathology">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -66,13 +67,16 @@
 
     <div id="section-fcd">
         <div class="form-group">
-            <label for="fcdClassification" class="col-xs-4 control-label">
+            <label class="col-xs-4 control-label"
+                   for="fcdClassification">
                 <spring:message code="label.fcdClassification"/>
             </label>
 
             <div class="col-xs-8">
-                <form:select path="histologyFcdClassification" id="fcdClassification" type="text"
-                             class="form-control input-sm">
+                <form:select id="fcdClassification"
+                             class="form-control input-sm"
+                             type="text"
+                             path="histologyFcdClassification">
                     <form:option value="0">
                         <spring:message code="label.notDistinguish"/>
                     </form:option>

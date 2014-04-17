@@ -98,6 +98,8 @@ public class SearchServiceImpl implements SearchService {
         genericDao.save(dozer.map(advancedSearch, AdvancedSearchEntity.class));
     }
 
+    @Override
+    @Transactional
     public List<AdvancedSearchDisplayVO> loadAll() {
         List<AdvancedSearchEntity> advancedSearchEntityList = genericDao.findAll(AdvancedSearchEntity.class);
         List<AdvancedSearchDisplayVO> advancedSearchDisplayVoList = new ArrayList<>();

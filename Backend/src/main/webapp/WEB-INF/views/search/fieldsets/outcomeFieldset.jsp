@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="outcomeFieldset">
@@ -11,12 +9,16 @@
 </legend>
 
 <div class="form-group">
-    <label for="seizureOutcome" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="seizureOutcome">
         <spring:message code="label.seizureOutcome"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="outcomeSeizureOutcome" id="seizureOutcome" type="text" class="form-control input-sm">
+        <form:select id="seizureOutcome"
+                     class="form-control input-sm"
+                     type="text"
+                     path="outcomeSeizureOutcome">
 
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
@@ -68,12 +70,16 @@
 </div>
 
 <div class="form-group">
-    <label for="outcomeAed" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="outcomeAed">
         <spring:message code="label.aed"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="outcomeAed" id="outcomeAed" type="text" class="form-control input-sm">
+        <form:select id="outcomeAed"
+                     class="form-control input-sm"
+                     type="text"
+                     path="outcomeAed">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -92,12 +98,16 @@
 </div>
 
 <div class="form-group">
-    <label for="outcomeEeg" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="outcomeEeg">
         <spring:message code="label.eeg"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="outcomeEeg" id="outcomeEeg" type="text" class="form-control input-sm">
+        <form:select id="outcomeEeg"
+                     class="form-control input-sm"
+                     type="text"
+                     path="outcomeEeg">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -116,12 +126,16 @@
 </div>
 
 <div class="form-group">
-    <label for="outcomeMri" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="outcomeMri">
         <spring:message code="label.mri"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="outcomeMri" id="outcomeMri" type="text" class="form-control input-sm">
+        <form:select id="outcomeMri"
+                     class="form-control input-sm"
+                     type="text"
+                     path="outcomeMri">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -136,13 +150,16 @@
 </div>
 
 <div class="form-group">
-    <label for="outcomeNeuropsychology" class="col-xs-4 control-label">
+    <label class="col-xs-4 control-label"
+           for="outcomeNeuropsychology">
         <spring:message code="label.neuropsychology"/>
     </label>
 
     <div class="col-xs-8">
-        <form:select path="outcomeNeuropsychology" id="outcomeNeuropsychology" type="text"
-                     class="form-control input-sm">
+        <form:select id="outcomeNeuropsychology"
+                     class="form-control input-sm"
+                     type="text"
+                     path="outcomeNeuropsychology">
             <form:option value="0">
                 <spring:message code="label.notDistinguish"/>
             </form:option>
@@ -157,7 +174,8 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="outcomeDistanceFilter">
+    <label class="col-xs-4 control-label"
+           for="outcomeDistanceFilter">
         <spring:message code="label.distanceFilter"/>
     </label>
 
@@ -187,7 +205,8 @@
 </div>
 
 <div class="form-group">
-    <label class="col-xs-4 control-label" for="outcomeDistanceFilter">
+    <label class="col-xs-4 control-label"
+           for="outcomeDistanceFilter">
         <spring:message code="label.outcomeDistance"/>
     </label>
 

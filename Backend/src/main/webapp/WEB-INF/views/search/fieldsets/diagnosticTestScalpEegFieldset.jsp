@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="diagnosticTestScalpEegFieldset">
@@ -11,13 +9,16 @@
     </legend>
 
     <div class="form-group">
-        <label for="basicEegActivity" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="basicEegActivity">
             <spring:message code="label.basicEegActivity"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="diagnosticTestScalpEegBasicEegActivity" id="basicEegActivity" type="text"
-                         class="input-sm form-control">
+            <form:select id="basicEegActivity"
+                         class="input-sm form-control"
+                         type="text"
+                         path="diagnosticTestScalpEegBasicEegActivity">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -32,12 +33,16 @@
     </div>
 
     <div class="form-group">
-        <label for="eegSlow" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="eegSlow">
             <spring:message code="label.eegSlow"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="diagnosticTestScalpEegEegSlow" id="eegSlow" type="text" class="input-sm form-control">
+            <form:select id="eegSlow"
+                         class="input-sm form-control"
+                         type="text"
+                         path="diagnosticTestScalpEegEegSlow">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -61,13 +66,16 @@
     </div>
 
     <div class="form-group">
-        <label for="interictalEegSpikes" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="interictalEegSpikes">
             <spring:message code="label.interictalEegSpikes"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="diagnosticTestScalpEegInterictalEegSpikes" id="interictalEegSpikes" type="text"
-                         class="input-sm form-control">
+            <form:select id="interictalEegSpikes"
+                         class="input-sm form-control"
+                         type="text"
+                         path="diagnosticTestScalpEegInterictalEegSpikes">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -94,23 +102,30 @@
     </div>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="diagnosticTestScalpEegEegStatusEpilepticus"/>
-        <jsp:param name="messageCode" value="statusEpilepticus"/>
+        <jsp:param name="propertyName"
+                   value="diagnosticTestScalpEegEegStatusEpilepticus"/>
+        <jsp:param name="messageCode"
+                   value="statusEpilepticus"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="diagnosticTestScalpEegSecondarySidedSynchrony"/>
-        <jsp:param name="messageCode" value="secondarySidedSynchrony"/>
+        <jsp:param name="propertyName"
+                   value="diagnosticTestScalpEegSecondarySidedSynchrony"/>
+        <jsp:param name="messageCode"
+                   value="secondarySidedSynchrony"/>
     </jsp:include>
 
     <div class="form-group">
-        <label for="ictalEegPatterns" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="ictalEegPatterns">
             <spring:message code="label.ictalEegPatterns"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="diagnosticTestScalpEegIctalEegPatterns" id="ictalEegPatterns" type="text"
-                         class="input-sm form-control">
+            <form:select id="ictalEegPatterns"
+                         class="input-sm form-control"
+                         type="text"
+                         path="diagnosticTestScalpEegIctalEegPatterns">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>

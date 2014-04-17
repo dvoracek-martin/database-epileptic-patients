@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="invasiveTestEegFieldset">
@@ -11,13 +9,16 @@
     </legend>
 
     <div class="form-group">
-        <label for="intracranialElectrodes" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="intracranialElectrodes">
             <spring:message code="label.intracranialElectrodes"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEegIntracranialElectrodes" id="intracranialElectrodes" type="text"
-                         class="input-sm form-control">
+            <form:select id="intracranialElectrodes"
+                         class="input-sm form-control"
+                         type="text"
+                         path="invasiveTestEegIntracranialElectrodes">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -47,13 +48,16 @@
     </div>
 
     <div class="form-group">
-        <label for="invasiveEegSlow" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="invasiveEegSlow">
             <spring:message code="label.invasiveEegSlowing"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEegInvasiveEegSlow" id="invasiveEegSlow" type="text"
-                         class="input-sm form-control">
+            <form:select id="invasiveEegSlow"
+                         class="input-sm form-control"
+                         type="text"
+                         path="invasiveTestEegInvasiveEegSlow">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -110,8 +114,10 @@
     </div>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="invasiveTestEegInvasiveEegStatusEpilepticus"/>
-        <jsp:param name="messageCode" value="statusEpilepticus"/>
+        <jsp:param name="propertyName"
+                   value="invasiveTestEegInvasiveEegStatusEpilepticus"/>
+        <jsp:param name="messageCode"
+                   value="statusEpilepticus"/>
     </jsp:include>
 
     <div class="form-group">

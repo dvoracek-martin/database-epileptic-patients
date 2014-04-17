@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="invasiveTestEcogFieldset">
@@ -11,13 +9,16 @@
     </legend>
 
     <div class="form-group">
-        <label for="ecogPatterns" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="ecogPatterns">
             <spring:message code="label.basicEegActivity"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEcogEcogPatterns" id="ecogPatterns" type="text"
-                         class="input-sm form-control">
+            <form:select id="ecogPatterns"
+                         class="input-sm form-control"
+                         type="text"
+                         path="invasiveTestEcogEcogPatterns">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -41,13 +42,16 @@
     </div>
 
     <div class="form-group">
-        <label for="afterResectionEcog" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="afterResectionEcog">
             <spring:message code="label.ecogAfterResection"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="invasiveTestEcogAfterResectionEcog" id="afterResectionEcog" type="text"
-                         class="input-sm form-control">
+            <form:select id="afterResectionEcog"
+                         class="input-sm form-control"
+                         type="text"
+                         path="invasiveTestEcogAfterResectionEcog">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>

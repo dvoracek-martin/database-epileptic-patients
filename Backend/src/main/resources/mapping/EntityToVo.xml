@@ -208,8 +208,11 @@
             <a>user.username</a>
             <b>username</b>
         </field>
+        <field>
+            <a>added</a>
+            <b date-format="yyyy-MM-dd">added</b>
+        </field>
     </mapping>
-
 
     <mapping>
         <class-a>cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity</class-a>

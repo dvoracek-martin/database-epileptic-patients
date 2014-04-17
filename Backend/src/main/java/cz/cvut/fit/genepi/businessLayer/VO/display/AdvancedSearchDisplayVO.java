@@ -1,12 +1,13 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display;
 
-import java.util.Date;
-
 public class AdvancedSearchDisplayVO {
 
     private int id;
+
     private String name;
-    private Date added;
+
+    private String added;
+
     private String username;
 
     public int getId() {
@@ -25,11 +26,11 @@ public class AdvancedSearchDisplayVO {
         this.name = name;
     }
 
-    public Date getAdded() {
+    public String getAdded() {
         return added;
     }
 
-    public void setAdded(Date added) {
+    public void setAdded(String added) {
         this.added = added;
     }
 

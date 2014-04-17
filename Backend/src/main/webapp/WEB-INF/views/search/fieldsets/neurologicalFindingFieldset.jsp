@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="neurologicalFindingFieldset">
@@ -11,13 +9,16 @@
     </legend>
 
     <div class="form-group">
-        <label for="hemisphereDominance" class="col-xs-4 control-label">
+        <label class="col-xs-4 control-label"
+               for="hemisphereDominance">
             <spring:message code="label.hemisphereDominance"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="neurologicalFindingHemisphereDominance" id="hemisphereDominance" type="text"
-                         class="input-sm form-control">
+            <form:select id="hemisphereDominance"
+                         class="input-sm form-control"
+                         type="text"
+                         path="neurologicalFindingHemisphereDominance">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -38,17 +39,23 @@
     </div>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="neurologicalFindingAbnormalNeurologicalFinding"/>
-        <jsp:param name="messageCode" value="abnormalNeurologicalFinding"/>
+        <jsp:param name="propertyName"
+                   value="neurologicalFindingAbnormalNeurologicalFinding"/>
+        <jsp:param name="messageCode"
+                   value="abnormalNeurologicalFinding"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="neurologicalFindingHemiparesis"/>
-        <jsp:param name="messageCode" value="hemiparesis"/>
+        <jsp:param name="propertyName"
+                   value="neurologicalFindingHemiparesis"/>
+        <jsp:param name="messageCode"
+                   value="hemiparesis"/>
     </jsp:include>
 
     <jsp:include page="../decideRadiobuttons.jsp">
-        <jsp:param name="propertyName" value="neurologicalFindingVisualFieldDefects"/>
-        <jsp:param name="messageCode" value="visualFieldDefect"/>
+        <jsp:param name="propertyName"
+                   value="neurologicalFindingVisualFieldDefects"/>
+        <jsp:param name="messageCode"
+                   value="visualFieldDefect"/>
     </jsp:include>
 </fieldset>

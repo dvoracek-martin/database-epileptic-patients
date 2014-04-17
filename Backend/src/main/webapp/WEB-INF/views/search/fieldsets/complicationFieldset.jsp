@@ -1,8 +1,6 @@
-<%@ taglib prefix="t" tagdir="/WEB-INF/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
 <fieldset id="complicationFieldset">
@@ -12,13 +10,16 @@
 
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="complicationType">
+        <label class="col-xs-4 control-label"
+               for="complicationType">
             <spring:message code="label.typeComplication"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complicationComplicationType" id="complicationType" type="text"
-                         class="form-control input-sm">
+            <form:select id="complicationType"
+                         class="form-control input-sm"
+                         type="text"
+                         path="complicationComplicationType">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
@@ -36,12 +37,16 @@
     </div>
 
     <div class="form-group">
-        <label class="col-xs-4 control-label" for="complication">
+        <label class="col-xs-4 control-label"
+               for="complication">
             <spring:message code="label.complication"/>
         </label>
 
         <div class="col-xs-8">
-            <form:select path="complicationComplication" id="complication" type="text" class="form-control input-sm">
+            <form:select id="complication"
+                         class="form-control input-sm"
+                         type="text"
+                         path="complicationComplication">
                 <form:option value="0">
                     <spring:message code="label.notDistinguish"/>
                 </form:option>
