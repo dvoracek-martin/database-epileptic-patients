@@ -99,7 +99,11 @@ public class UserController {
         }
 
         boolean uniqueUsername = userService.isUniqueUsername(user.getUsername());
-        boolean uniqueEmail = userService.isUniqueEmail(user.getContact().getEmail());
+        boolean uniqueEmail = true;
+
+        if (!user.getContact().getEmail().equals("")) {
+            uniqueEmail = userService.isUniqueEmail(user.getContact().getEmail());
+        }
 
         if (result.hasErrors() || !uniqueUsername || !uniqueEmail) {
             model.addAttribute("uniqueUsername", uniqueUsername);
