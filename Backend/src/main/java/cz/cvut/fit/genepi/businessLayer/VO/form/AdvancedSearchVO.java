@@ -13,6 +13,7 @@ public class AdvancedSearchVO {
 
     private int userId;
 
+    /* General parameters - specific person*/
     @Size(max = 100)
     private String patientFirstname;
 
@@ -36,6 +37,8 @@ public class AdvancedSearchVO {
     private String patientAgeEpilepsyFilter;
 
     private int patientDoctor;
+
+    private boolean verified;
 
     /* include parameters from */
     private boolean anamnesis;
@@ -922,5 +925,13 @@ public class AdvancedSearchVO {
 
     public void setInvasiveTestCorticalMapping(boolean invasiveTestCorticalMapping) {
         this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

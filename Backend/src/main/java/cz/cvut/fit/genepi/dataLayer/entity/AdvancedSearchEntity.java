@@ -63,6 +63,9 @@ public class AdvancedSearchEntity {
     @Column(name = "patient_doctor")
     private int patientDoctor;
 
+    @Column(name = "verified")
+    private boolean verified;
+
     /* Include params from */
     @Column(name = "anamnesis")
     private boolean anamnesis;
@@ -1035,5 +1038,13 @@ public class AdvancedSearchEntity {
 
     public void setInvasiveTestCorticalMapping(boolean invasiveTestCorticalMapping) {
         this.invasiveTestCorticalMapping = invasiveTestCorticalMapping;
+    }
+
+    public boolean isVerified() {
+        return verified;
+    }
+
+    public void setVerified(boolean verified) {
+        this.verified = verified;
     }
 }

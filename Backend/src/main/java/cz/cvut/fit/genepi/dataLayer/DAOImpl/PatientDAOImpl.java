@@ -155,6 +155,11 @@ public class PatientDAOImpl
             criteria.add(Restrictions.eq("doctor.id", advancedSearch.getPatientDoctor()));
         }
 
+        /* verified */
+        if (advancedSearch.isVerified()) {
+            criteria.add(Restrictions.eq("verified", true));
+        }
+
 		/* anamnesis specific section */
 
         if (advancedSearch.isAnamnesis()) {

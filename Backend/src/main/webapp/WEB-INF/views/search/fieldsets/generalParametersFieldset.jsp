@@ -157,4 +157,9 @@
         </div>
     </div>
 
+    <jsp:include page="../../components/checkboxComponentView.jsp">
+        <jsp:param name="propertyName" value="verified"/>
+        <jsp:param name="messageCode" value="verified"/>
+    </jsp:include>
+
 </fieldset>
