@@ -15,8 +15,6 @@ import org.springframework.stereotype.Service;
 import java.io.*;
 import java.util.Locale;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class ExportToPdfServiceImpl.
  * Export to pdf is done by creating docx and then converting this docx to pdf.

@@ -6,9 +6,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.util.Date;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class OperationVO {
 
     private int id;

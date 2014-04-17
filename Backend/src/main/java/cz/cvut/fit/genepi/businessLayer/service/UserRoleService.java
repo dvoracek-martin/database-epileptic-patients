@@ -17,11 +17,4 @@ public interface UserRoleService {
      */
     public List<UserRoleEntity> findAllUserRolesByUserID(int userID);
 
-    /**
-     * Find all user roles by role id.
-     *
-     * @param roleID the role id
-     * @return the list
-     */
-    public List<UserRoleEntity> findAllUserRolesByRoleID(int roleID);
 }

@@ -7,9 +7,6 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class InvasiveTestEcogVO {
 
     private int id;

@@ -31,14 +31,14 @@ public class NeuropsychologyOldServiceImpl implements NeuropsychologyOldService 
     @Override
     @Transactional
     public void delete(int neuropsychologyOldId) {
-        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId,NeuropsychologyOldEntity.class);
+        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId, NeuropsychologyOldEntity.class);
         genericDAO.delete(entity);
     }
 
     @Override
     @Transactional
     public void hide(int neuropsychologyOldId) {
-        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId,NeuropsychologyOldEntity.class);
+        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId, NeuropsychologyOldEntity.class);
         entity.setHidden(true);
         genericDAO.save(entity);
     }
@@ -46,7 +46,7 @@ public class NeuropsychologyOldServiceImpl implements NeuropsychologyOldService 
     @Override
     @Transactional
     public void unhide(int neuropsychologyOldId) {
-        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId,NeuropsychologyOldEntity.class);
+        NeuropsychologyOldEntity entity = genericDAO.getById(neuropsychologyOldId, NeuropsychologyOldEntity.class);
         entity.setHidden(false);
         genericDAO.save(entity);
     }

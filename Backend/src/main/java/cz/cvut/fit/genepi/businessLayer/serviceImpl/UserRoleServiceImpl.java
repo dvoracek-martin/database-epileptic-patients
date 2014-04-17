@@ -21,22 +21,9 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Autowired
     private UserRoleDAO userRoleDAO;
 
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.UserRoleService#findAllUserRolesByUserID(int)
-     */
     @Override
     @Transactional
     public List<UserRoleEntity> findAllUserRolesByUserID(int userID) {
         return userRoleDAO.findAllUserRolesByUserID(userID);
-    }
-
-    /* (non-Javadoc)
-     * @see cz.cvut.fit.genepi.service.UserRoleService#findAllUserRolesByRoleID(int)
-     */
-    @Override
-    @Transactional
-    public List<UserRoleEntity> findAllUserRolesByRoleID(int roleID) {
-        return userRoleDAO.findAllUserRolesByRoleID(roleID);
     }
 }

@@ -5,7 +5,6 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureVO;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
-import cz.cvut.fit.genepi.dataLayer.DAO.card.SeizureDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,9 +25,6 @@ public class SeizureServiceImpl
     @Autowired
     @Qualifier("genericDAOImpl")
     private GenericDAO<SeizureDetailEntity> seizureDetailDAO;
-
-    @Autowired
-    private SeizureDAO seizureDAO;
 
     @Override
     @Transactional

@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.businessLayer.VO.display;
 
 import java.util.Date;
 
-
 public class AdvancedSearchDisplayVO {
 
     private int id;

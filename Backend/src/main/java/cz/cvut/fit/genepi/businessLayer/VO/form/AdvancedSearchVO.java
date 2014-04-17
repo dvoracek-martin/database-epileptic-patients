@@ -1,7 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-
-import javax.persistence.Column;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -13,9 +11,6 @@ public class AdvancedSearchVO {
 
     private String name;
 
-//    private boolean hidden;
-
-    //    private UserEntity user;
     private int userId;
 
     @Size(max = 100)

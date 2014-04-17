@@ -14,8 +14,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class NewsMessageServiceImpl.
  */
@@ -43,5 +41,4 @@ public class NewsMessageServiceImpl implements NewsMessageService {
 
         return newsMessageDisplayVoList;
     }
-
 }

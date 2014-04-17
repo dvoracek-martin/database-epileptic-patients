@@ -1,8 +1,5 @@
 package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
-/**
- * Created by Jan on 25.1.14.
- */
 public class AnamnesisDisplayVO {
 
     private int id;

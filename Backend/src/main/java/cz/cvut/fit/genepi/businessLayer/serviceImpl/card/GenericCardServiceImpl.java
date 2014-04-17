@@ -24,7 +24,6 @@ public class GenericCardServiceImpl<CardDisplayVo, CardFormVo, CardEntity>
     @Autowired
     protected Mapper dozer;
 
-
     @Override
     @Transactional
     public void hide(int id, Class<CardEntity> entityClass) {

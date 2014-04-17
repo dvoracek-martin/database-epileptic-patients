@@ -27,8 +27,6 @@ import java.util.*;
 import static cz.cvut.fit.genepi.util.TimeConverter.getAgeAtTheBeginningOfEpilepsy;
 import static cz.cvut.fit.genepi.util.TimeConverter.getCurrentAge;
 
-// TODO: Auto-generated Javadoc
-
 /**
  * The Class ExportToXlsServiceImpl.
  */

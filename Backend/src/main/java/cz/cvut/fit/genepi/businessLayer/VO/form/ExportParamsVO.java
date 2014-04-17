@@ -1,69 +1,46 @@
 package cz.cvut.fit.genepi.businessLayer.VO.form;
 
-/**
- * Created by Jan on 16.3.14.
- */
 public class ExportParamsVO {
 
     private int id;
 
-
     private String name;
-
 
     private int userID;
 
-
     private boolean generic;
-
 
     private boolean patient;
 
-
     private boolean anamnesis;
-
 
     private boolean complication;
 
-
     private boolean diagnosticTestEEG;
-
 
     private boolean diagnosticTestMRI;
 
-
     private boolean histology;
-
 
     private boolean invasiveTestECOG;
 
-
     private boolean invasiveTestEEG;
-
 
     private boolean neurologicalFinding;
 
-
     private boolean neuropsychology;
-
 
     private boolean neuropsychologyOld;
 
-
     private boolean invasiveTestCorticalMapping;
-
 
     private boolean operation;
 
-
     private boolean outcome;
-
 
     private boolean pharmacotherapy;
 
-
     private boolean seizure;
-
 
     private boolean anonymize;
 

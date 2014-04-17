@@ -35,7 +35,7 @@ public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity
     @Override
     @Transactional
     public VO getById(int id, Class<VO> voClass, Class<Entity> entityClass) {
-        Entity entity = genericDAO.getById(id,entityClass);
+        Entity entity = genericDAO.getById(id, entityClass);
         return dozer.map(entity, voClass);
     }
 
@@ -49,7 +49,7 @@ public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity
     @Override
     @Transactional
     public void delete(int id, Class<Entity> entityClass) {
-        Entity entity = genericDAO.getById(id,entityClass);
+        Entity entity = genericDAO.getById(id, entityClass);
         genericDAO.delete(entity);
     }
 
@@ -66,31 +66,4 @@ public class GenericServiceImpl<VO, Entity> implements GenericService<VO, Entity
         return voList;
     }
 
-
-/*
-    @Override
-    @Transactional
-    public List<T> findAllWithPagination(Class<T> myClass, int maxResults, int pageNumber) {
-        return genericDAO.findAllWithPagination(myClass, maxResults, pageNumber);
-    }
-
-
-    @Override
-    @Transactional
-    public int getCount(Class<T> myClass) {
-        return genericDAO.getCount(myClass);
-    }
-
-    @Override
-    @Transactional
-    public int getCountOfUnhidden(Class<T> myClass, String searchString) {
-        return genericDAO.getCountOfUnhidden(myClass, searchString);
-    }
-
-    @Override
-    @Transactional
-    public List<T> findByNameWithPagination(Class<T> myClass, int maxResults,
-                                            int pageNumber, List<String> parameters, String name) {
-        return genericDAO.findByNameWithPagination(myClass, maxResults, pageNumber, parameters, name);
-    }*/
 }

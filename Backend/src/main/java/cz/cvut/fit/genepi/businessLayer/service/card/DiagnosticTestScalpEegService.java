@@ -4,6 +4,7 @@ import cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDi
 import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestScalpEegVO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.DiagnosticTestScalpEegEntity;
 
-public interface DiagnosticTestScalpEegService extends GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> {
+public interface DiagnosticTestScalpEegService
+        extends GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> {
 
 }

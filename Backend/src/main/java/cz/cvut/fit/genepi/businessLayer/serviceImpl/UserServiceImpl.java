@@ -41,6 +41,7 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
                            MailService mailService,
                            UserDAO userDAO,
                            Mapper dozer) {
+
         this.roleDAO = roleDAO;
         this.mailService = mailService;
         this.userDAO = userDAO;
@@ -151,12 +152,6 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
         genericDAO.update(user);
     }
 
-    /*  @Override
-      @Transactional
-      public UserDisplayVO getDisplayById(int userId) {
-          UserEntity user = genericDAO.getById(userId, UserEntity.class);
-          return dozer.map(user, UserDisplayVO.class);
-      }*/
     @Override
     @Transactional
     public int getLoggedUserId() {

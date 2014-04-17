@@ -2,9 +2,6 @@ package cz.cvut.fit.genepi.businessLayer.VO.display.card;
 
 import java.util.List;
 
-/**
- * Created by Jan on 21.1.14.
- */
 public class SeizureDisplayVO {
 
     private int id;

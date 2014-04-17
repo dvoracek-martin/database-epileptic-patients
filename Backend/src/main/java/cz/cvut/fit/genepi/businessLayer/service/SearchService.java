@@ -3,8 +3,6 @@ package cz.cvut.fit.genepi.businessLayer.service;
 import cz.cvut.fit.genepi.businessLayer.VO.display.AdvancedSearchDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
 import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
-import cz.cvut.fit.genepi.dataLayer.entity.AdvancedSearchEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 import java.util.List;
 
@@ -22,5 +20,6 @@ public interface SearchService {
     public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch);
 
     public void save(AdvancedSearchVO advancedSearch);
+
     public List<AdvancedSearchDisplayVO> loadAll();
 }

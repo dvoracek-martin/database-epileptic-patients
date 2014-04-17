@@ -7,6 +7,7 @@ import java.util.Locale;
 
 public interface ExportService {
 
-    public String performExport(ExportParamsVO exportParams, Locale locale, String exportType, boolean anonymize,List<Integer> patientIds,boolean toTable);
+    public String performExport(ExportParamsVO exportParams, Locale locale,
+                                String exportType, boolean anonymize, List<Integer> patientIds, boolean toTable);
 
 }

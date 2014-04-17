@@ -36,6 +36,7 @@ public class ExportParamsServiceImpl
         return exportParamsDAO.findExportParamsByUserID(userID);
     }
 
+    //TODO what is this for???
     public String changerToString(int ID, Locale locale) {
         if (ID == 0) {
             return messageSource.getMessage("label.anamnesis", null, locale);

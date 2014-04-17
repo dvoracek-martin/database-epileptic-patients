@@ -59,7 +59,6 @@ public class OperationServiceImpl implements OperationService {
         }
     }
 
-
     @Override
     @Transactional
     public List<OperationDisplayVO> getOperationList(int patientId) {
@@ -87,7 +86,6 @@ public class OperationServiceImpl implements OperationService {
         }
     }
 
-
     @Override
     @Transactional
     public OperationWithOutcomesDisplayVO getLatestOperationWithOutcomesByPatientId(int patientId) {
@@ -110,7 +108,6 @@ public class OperationServiceImpl implements OperationService {
             return dozer.map(operationEntity, OperationWithOutcomesDisplayVO.class);
         }
     }
-
 
     @Override
     @Transactional

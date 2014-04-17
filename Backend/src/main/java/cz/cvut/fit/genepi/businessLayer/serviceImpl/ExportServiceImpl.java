@@ -2,7 +2,6 @@ package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
-import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.dozer.Mapper;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -48,7 +46,7 @@ public class ExportServiceImpl implements ExportService {
 
         List<PatientEntity> patientList = new ArrayList<>();
         for (int patientId : patientIds) {
-            patientList.add(patientService.getPatientByIdWithAllLists(patientId));
+            patientList.add(patientService.getPatientDisplayByIdWithAllLists(patientId));
         }
 
         ExportParamsEntity exportParamsEntity = dozer.map(exportParams, ExportParamsEntity.class);
