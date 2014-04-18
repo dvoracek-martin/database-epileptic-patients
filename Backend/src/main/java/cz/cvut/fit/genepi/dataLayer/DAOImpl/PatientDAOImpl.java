@@ -6,6 +6,7 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
@@ -166,6 +167,8 @@ public class PatientDAOImpl
         /* Fetching and creating alias for sub collection anamnesisList */
             criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("anamnesisList.history", false));
+
             if (advancedSearch.getAnamnesisEpilepsyInFamily() != 3) {
                 if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
                     criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", true));
@@ -250,6 +253,9 @@ public class PatientDAOImpl
         /* Fetching and creating alias for sub collection seizureList */
             criteria.createAlias("patient.seizureList", "seizureList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("seizureList.history", false));
+            criteria.add(Restrictions.eq("seizureList.hidden", false));
+
             if (advancedSearch.getSeizureSeizureFrequency() != 0) {
                 criteria.add(Restrictions.eq("seizureList.seizureFrequency", advancedSearch.getSeizureSeizureFrequency()));
             }
@@ -281,6 +287,9 @@ public class PatientDAOImpl
 
                 criteria.createAlias("seizureList.seizureDetailList", "seizureDetailList", JoinType.LEFT_OUTER_JOIN);
 
+                criteria.add(Restrictions.eq("seizureDetailList.history", false));
+                criteria.add(Restrictions.eq("seizureDetailList.hidden", false));
+
                 if (advancedSearch.getSeizureSscClassification() != 0) {
                     criteria.add(Restrictions.eq("seizureDetailList.sscClassification", advancedSearch.getSeizureSscClassification()));
                 }
@@ -296,6 +305,9 @@ public class PatientDAOImpl
         if (advancedSearch.isPharmacotherapy()) {
                /* Fetching and creating alias for sub collection pharmacotherapyList */
             criteria.createAlias("patient.pharmacotherapyList", "pharmacotherapyList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("pharmacotherapyList.history", false));
+            criteria.add(Restrictions.eq("pharmacotherapyList.hidden", false));
 
             if (!advancedSearch.getPharmacotherapyAed().equals("[]")) {
 
@@ -315,6 +327,8 @@ public class PatientDAOImpl
                /* Fetching and creating alias for sub collection neurologicalFindingList */
             criteria.createAlias("patient.neurologicalFindingList", "neurologicalFindingList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("neurologicalFindingList.history", false));
+            criteria.add(Restrictions.eq("neurologicalFindingList.hidden", false));
 
             if (advancedSearch.getNeurologicalFindingHemisphereDominance() != 0) {
                 criteria.add(Restrictions.eq("neurologicalFindingList.hemisphereDominance", advancedSearch.getNeurologicalFindingHemisphereDominance()));
@@ -355,6 +369,8 @@ public class PatientDAOImpl
      /* Fetching and creating alias for sub collection diagnosticTestScalpEegList */
             criteria.createAlias("patient.diagnosticTestScalpEegList", "diagnosticTestScalpEegList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("diagnosticTestScalpEegList.history", false));
+            criteria.add(Restrictions.eq("diagnosticTestScalpEegList.hidden", false));
 
             if (advancedSearch.getDiagnosticTestScalpEegBasicEegActivity() != 0) {
                 criteria.add(Restrictions.eq("diagnosticTestScalpEegList.basicEegActivity", advancedSearch.getDiagnosticTestScalpEegBasicEegActivity()));
@@ -393,6 +409,9 @@ public class PatientDAOImpl
         if (advancedSearch.isDiagnosticTestMri()) {
      /* Fetching and creating alias for sub collection diagnosticTestMriList */
             criteria.createAlias("patient.diagnosticTestMRIList", "diagnosticTestMriList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("diagnosticTestMriList.history", false));
+            criteria.add(Restrictions.eq("diagnosticTestMriList.hidden", false));
 
             if (advancedSearch.getDiagnosticTestMriMriFinding() != 0) {
                 criteria.add(Restrictions.eq("diagnosticTestMriList.mriFinding", advancedSearch.getDiagnosticTestMriMriFinding()));
@@ -452,6 +471,9 @@ public class PatientDAOImpl
      /* Fetching and creating alias for sub collection invasiveTestEegList */
             criteria.createAlias("patient.invasiveTestEEGList", "invasiveTestEegList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("invasiveTestEegList.history", false));
+            criteria.add(Restrictions.eq("invasiveTestEegList.hidden", false));
+
             if (advancedSearch.getInvasiveTestEegIntracranialElectrodes() != 0) {
                 criteria.add(Restrictions.eq("invasiveTestEegList.intracranialElectrodes", advancedSearch.getInvasiveTestEegIntracranialElectrodes()));
             }
@@ -482,6 +504,9 @@ public class PatientDAOImpl
      /* Fetching and creating alias for sub collection invasiveTestEcogList */
             criteria.createAlias("patient.invasiveTestECOGList", "invasiveTestEcogList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("invasiveTestEcogList.history", false));
+            criteria.add(Restrictions.eq("invasiveTestEcogList.hidden", false));
+
             if (advancedSearch.getInvasiveTestEcogEcogPatterns() != 0) {
                 criteria.add(Restrictions.eq("invasiveTestEcogList.ecogPatterns", advancedSearch.getInvasiveTestEcogEcogPatterns()));
             }
@@ -495,12 +520,18 @@ public class PatientDAOImpl
         if (advancedSearch.isInvasiveTestCorticalMapping()) {
      /* Fetching and creating alias for sub collection invasiveTestCorticalMappingList */
             criteria.createAlias("patient.invasiveTestCorticalMappingList", "invasiveTestCorticalMappingList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.history", false));
+            criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.hidden", false));
         }
 
                             /* operation specific section */
         if (advancedSearch.isOperation()) {
      /* Fetching and creating alias for sub collection operationList */
             criteria.createAlias("patient.operationList", "operationList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("operationList.history", false));
+            criteria.add(Restrictions.eq("operationList.hidden", false));
 
             if (advancedSearch.getOperationTypeOperation() != 0) {
                 criteria.add(Restrictions.eq("operationList.typeOperation", advancedSearch.getOperationTypeOperation()));
@@ -544,10 +575,13 @@ public class PatientDAOImpl
 
         }
 
-                                /* histology specific section */
+        /* histology specific section */
         if (advancedSearch.isHistology()) {
-     /* Fetching and creating alias for sub collection histologyList */
+        /* Fetching and creating alias for sub collection histologyList */
             criteria.createAlias("patient.histologyList", "histologyList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("histologyList.history", false));
+            criteria.add(Restrictions.eq("histologyList.hidden", false));
 
             if (advancedSearch.getHistologyHistopathology() != 0) {
                 criteria.add(Restrictions.eq("histologyList.histopathology", advancedSearch.getHistologyHistopathology()));
@@ -563,6 +597,9 @@ public class PatientDAOImpl
      /* Fetching and creating alias for sub collection complicationList */
             criteria.createAlias("patient.complicationList", "complicationList", JoinType.LEFT_OUTER_JOIN);
 
+            criteria.add(Restrictions.eq("complicationList.history", false));
+            criteria.add(Restrictions.eq("complicationList.hidden", false));
+
             if (advancedSearch.getComplicationComplicationType() != 0) {
                 criteria.add(Restrictions.eq("complicationList.complicationType", advancedSearch.getComplicationComplicationType()));
             }
@@ -575,6 +612,8 @@ public class PatientDAOImpl
         if (advancedSearch.isOutcome()) {
      /* Fetching and creating alias for sub collection outcomeList */
             criteria.createAlias("patient.outcomeList", "outcomeList", JoinType.LEFT_OUTER_JOIN);
+
+            criteria.add(Restrictions.eq("outcomeList.history", false));
 
             if (advancedSearch.getOutcomeSeizureOutcome() != 0) {
                 criteria.add(Restrictions.eq("outcomeList.seizureOutcome", advancedSearch.getOutcomeSeizureOutcome()));
