@@ -179,7 +179,6 @@
                 </a>
             </c:forEach>
         </fieldset>
-
     </div>
 </div>
 
@@ -258,7 +257,7 @@
 </div>
 
 <div class="row">
-    <div class="col-xs-offset-3 col-xs-9">
+    <div class="col-xs-offset-2 col-xs-9">
         <fieldset>
             <legend>
                 <spring:message code="label.parameters"/>
