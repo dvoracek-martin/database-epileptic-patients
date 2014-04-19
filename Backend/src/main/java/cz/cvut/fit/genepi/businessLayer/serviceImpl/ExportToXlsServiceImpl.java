@@ -202,7 +202,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             if (!anonymize) {
                 Sheet sheet = wb.createSheet(patient.getContact().getLastName()
                         + " " + patient.getContact().getFirstName() + " "
-                        + patient.getNin());
+                        + patient.getNin()+ " ID " + Integer.toString(patient.getId()));
                 this.addContent(patient, locale, exportParams, sheet, p, anonymize);
             } else {
                 Sheet sheet = wb.createSheet(messageSource.getMessage("label.patient",
@@ -239,6 +239,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
     private void addContent(PatientEntity patient, Locale locale,
                             ExportParamsEntity exportParams, Sheet sheet, Position p, boolean anonymize) {
+        p.setRowcount(1);
+        p.setCellcount(-2);
         Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
         PrintSetup printSetup = sheet.getPrintSetup();
         printSetup.setLandscape(true);
@@ -766,7 +768,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.epilepticSyndrome", messageSource.getMessage("label.specificSyndrome." +
                     String.valueOf(anamnesis.getSpecificSyndrome()), null, locale), sheet, locale, styles, "cell", p);
         }
-        if (exportParams.isAnamnesisNonCnsComorbidity() && !anamnesis.getNonCnsComorbidity().equals("0")) {
+        if (exportParams.isAnamnesisNonCnsComorbidity() && !anamnesis.getNonCnsComorbidity().equals("")) {
             addCells("label.nonCnsComorbidity", translateValue(
                     String.valueOf(anamnesis.getNonCnsComorbidity()), locale), sheet, locale, styles, "cell", p);
         }
@@ -1330,7 +1332,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (dateRow == null) sheet.createRow(p.getRowcount());
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
-        dateCell.setCellValue(messageSource.getMessage("label.invasiveTestECOG", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
+        dateCell.setCellValue(messageSource.getMessage("label.invasiveTestECoG", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
         dateCell.setCellStyle(styles.get("cell"));
         Cell dateCellTwo = dateRow.createCell(p.getCellcount() + 1);
         dateCellTwo.setCellValue(TimeConverter.getDate(invasiveTestECOG.getDate()));
@@ -1574,7 +1576,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isComplicationWithCompication()) {
-            addCells("label.withComplications", translateValue(messageSource.getMessage("label.process." +
+            addCells("label.process", translateValue(messageSource.getMessage("label.process." +
                     String.valueOf(complication.getWithComplication()), null, locale), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isComplicationComplicationType()) {

@@ -497,7 +497,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     String.valueOf(anamnesis.getSpecificSyndrome()), null, locale);
             content += "\n";
         }
-        if (exportParams.isAnamnesisNonCnsComorbidity() && !anamnesis.getNonCnsComorbidity().equals("0")) {
+        if (exportParams.isAnamnesisNonCnsComorbidity() && !anamnesis.getNonCnsComorbidity().equals("")) {
             content += messageSource.getMessage("label.nonCnsComorbidity",
                     null, locale);
 
@@ -583,7 +583,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += messageSource.getMessage("label.ilaeClassification", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.ilaeClassification." +
-                                String.valueOf(seizureDetail.getSscClassification()), null, locale),
+                                String.valueOf(seizureDetail.getIlaeClassification()), null, locale),
                         locale
                 );
                 content += "\n";
@@ -1300,7 +1300,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += TimeConverter.getDate(invasiveTestECOG.getDate());
         content += "\n";
         if (exportParams.isInvasiveTestECOGDone()) {
-            content += messageSource.getMessage("label.ecog_done", null, locale);
+            content += messageSource.getMessage("label.ecogDone", null, locale);
             content += " - ";
             content += translateValue(messageSource.getMessage("label.done." +
                     String.valueOf(invasiveTestECOG.getDone()), null, locale), locale);
@@ -1392,7 +1392,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
             if (exportParams
                     .isInvasiveTestEEGLocalizationInvasiveEEGInterictalSpikes()) {
-                content += messageSource.getMessage("label.localizationInterictalEEGSpikes", null, locale);
+                content += messageSource.getMessage("label.localizationInterictalEegSpikes", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(invasiveTestEEG.getLocalizationInvasiveEegInterictalSpikes()),
                         locale);
@@ -1623,7 +1623,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         content += TimeConverter.getDate(complication.getDate());
         content += "\n";
         if (exportParams.isComplicationWithCompication()) {
-            content += messageSource.getMessage("label.withComplications", null, locale);
+            content += messageSource.getMessage("label.process", null, locale);
             content += " - ";
             content += translateValue(messageSource.getMessage("label.process." +
                     String.valueOf(complication.getWithComplication()), null, locale), locale);
