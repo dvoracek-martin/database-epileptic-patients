@@ -321,12 +321,22 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                     locale));
 
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                //TODO: outcome cannot be hidden
-                /*if (!outcome.isHidden())
-                    this.printOutOutcome(document, patient, outcome, locale,
-                            exportParams);*/
+                this.printOutOutcome(document, patient, outcome, locale,
+                        exportParams);
             }
         }
+
+
+        /**
+         * Following code is used when you want to add some custom message
+         *
+         * add following code whenever you would like to print your custom message
+         *
+         * @param document
+         * @param String text in the heading
+         * @param String text of your custom message
+         **/
+        // content += this.printCustom(document,"my heading","my message");
     }
 
 
@@ -346,9 +356,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             for (AnamnesisEntity anamnesis : patient.getAnamnesisList()) {
                 //TODO: anamnesis has changed - ishistory???
                 if (!anamnesis.isHistory())
-                    if (patient.getAnamnesisList().size()>0)
-                    this.printOutAnamnesisToTable(document, patient, anamnesis, locale,
-                            exportParams);
+                    if (patient.getAnamnesisList().size() > 0)
+                        this.printOutAnamnesisToTable(document, patient, anamnesis, locale,
+                                exportParams);
             }
         }
 
@@ -2878,7 +2888,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isOutcomeAED()) {
             content.add(messageSource.getMessage("label.aed",
-                    null, locale) + delimiter + translateValue(messageSource.getMessage("label.outcomeAed" +
+                    null, locale) + delimiter + translateValue(messageSource.getMessage("label.outcomeAed." +
                     String.valueOf(outcome.getAed()), null, locale), locale));
         }
         if (exportParams.isOutcomeMRI()) {
@@ -3181,5 +3191,18 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             }
             tc.getEGBlockLevelElts().add(document.getMainDocumentPart().createParagraphOfText(item));
         }
+    }
+
+
+    /**
+     * This function is used when it's needed to customize the export and print there some custom message
+     * during every export
+     */
+    private void printCustom(WordprocessingMLPackage document,String heading, String message) {
+        List<String> content = new ArrayList<String>();
+
+        document.getMainDocumentPart().addStyledParagraphOfText("Heading2", heading);
+            content.add(message);
+        printOutValues(document, content);
     }
 }

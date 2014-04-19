@@ -588,12 +588,41 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(1);
             p.setCellcount(p.getCellcount() + 2);
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                //TODO: outcome cannot be hidden
-              /*  if (!outcome.isHidden())
-                  this.printOutOutcome(patient, outcome, locale,
-                            exportParams, sheet, p);*/
+                this.printOutOutcome(patient, outcome, locale,
+                        exportParams, sheet, p);
             }
         }
+
+        /**
+         * Following code is used when you want to add some custom column
+         *
+         * add following code whenever you would like to print your custom message
+         *
+         * @param document
+         * @param String text in the heading
+         * @param String text of your custom message
+         **/
+
+        // headerCell = headerRow.createCell(i++);
+        // change the value to rename the cell
+        // headerCell.setCellValue("Text of the header cell");
+        //  headerCell.setCellStyle(styles.get("header"));
+        // sheet.addMergedRegion(new CellRangeAddress(
+        //         0, //first row (0-based)
+        //         0, //last row  (0-based)
+        //         i - 1, //first column (0-based)
+        //         i++  //last column  (0-based)
+        // ));
+
+        // p.setRowcount(1);
+        // p.setCellcount(p.getCellcount() + 2);
+        // this.printCustom(sheet, p);
+
+        /**
+         * !!!!!!!!!!!!!!!!!!
+         * end of custom part
+         * !!!!!!!!!!!!!!!!!!
+         */
 
         // makes cells a bit wider
         for (int k = 0; k != p.getCellcount() + 2; k++)
@@ -1643,6 +1672,36 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         if (exportParams.isOutcomeComment()) {
             addCells("label.comment", translateComment(String.valueOf(outcome.getComment()), locale), sheet, locale, styles, "cell", p);
         }
+    }
+
+    /**
+     * This function is used when it's needed to customize the export and print there some custom message
+     * during every export
+     */
+    private void printCustom(Sheet sheet, Position p) {
+        Map<String, CellStyle> styles = createStyles(sheet.getWorkbook());
+        if (p.getRowcount() > 1) {
+            Row dateRow = sheet.getRow(p.getRowcount());
+            if (dateRow == null) dateRow = sheet.createRow(p.getRowcount());
+            Cell dateCell = dateRow.createCell(p.getCellcount());
+            dateCell.setCellStyle(styles.get("empty"));
+            sheet.addMergedRegion(new CellRangeAddress(p.getRowcount(), p.getRowcount(), p.getCellcount(), p.getCellcount() + 1));
+            p.setRowcount(p.getRowcount() + 1);
+        }
+
+        Row cellRow = sheet.getRow(p.getRowcount());
+        if (cellRow == null)
+            cellRow = sheet.createRow(p.getRowcount());
+        p.setRowcount(p.getRowcount() + 1);
+
+        Cell cellCell = cellRow.createCell(p.getCellcount());
+        cellCell.setCellValue("first value");
+        cellCell.setCellStyle(styles.get("cell"));
+
+        Cell cellCellTwo = cellRow.createCell(p.getCellcount() + 1);
+        cellCellTwo.setCellValue("second value");
+        cellCellTwo.setCellStyle(styles.get("cell"));
+
     }
 }
 

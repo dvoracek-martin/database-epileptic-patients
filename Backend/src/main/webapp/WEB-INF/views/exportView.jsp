@@ -366,7 +366,7 @@
 
 </fieldset>
 
-<fieldset>
+<fieldset>z
     <legend>
         <spring:message code="label.saveParameters"/>
     </legend>

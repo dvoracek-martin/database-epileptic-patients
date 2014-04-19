@@ -141,7 +141,7 @@
     <input type="hidden" name="patient" value="${patient.id}">
 </c:forEach>
 <!-- Is Generic checkbox -->
-<input id="isGeneric" type="hidden" name="isGeneric" value="0">
+<input id="isGeneric" type="hidden" name="isGeparamneric" value="0">
 
 <ul class="nav nav-list">
 <li><p class="tree-toggler nav-header">Anamneza<form:checkbox

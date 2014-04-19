@@ -376,13 +376,21 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         }
         if (exportParams.isOutcome()) {
             for (OutcomeEntity outcome : patient.getOutcomeList()) {
-                //TODO: outcome cannot be hidden
-               /* if (!outcome.isHidden())
-                    content += this.printOutOutcome(patient, outcome, locale,
-                            exportParams);*/
+                content += this.printOutOutcome(patient, outcome, locale,
+                        exportParams);
                 content += addDashLine();
             }
         }
+
+
+        /**
+         * Following code is used when you want to add some custom message
+         *
+         * add following code whenever you would like to print your custom message
+         *
+         * @param String text of your custom message
+         **/
+        // content += this.printCustom("my message");
 
         return content;
     }
@@ -1833,4 +1841,16 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
 
         return content;
     }
+
+
+    /**
+     * This function is used when it's needed to customize the export and print there some custom message
+     * during every export
+     */
+    private String printCustom(String message) {
+        String content = message;
+        content += "\n";
+        return content;
+    }
+
 }
