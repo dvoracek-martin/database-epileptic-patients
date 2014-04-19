@@ -118,7 +118,6 @@
 
     <div class="col-xs-8">
 
-
         <div class="radio">
             <label>
                 <form:radiobutton value="1"
