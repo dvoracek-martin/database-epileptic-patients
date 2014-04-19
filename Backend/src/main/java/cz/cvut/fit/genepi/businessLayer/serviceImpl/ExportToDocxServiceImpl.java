@@ -1851,7 +1851,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         if (diagnosticTestScalpMRI.getDone() == 2) {
 
-            if (exportParams.isDiagnosticTestMRIFinding()) {
+            if (exportParams.isDiagnosticTestmriFinding()) {
                 content.add(messageSource.getMessage("label.mriFinding",
                         null, locale) + delimiter + translateValue(messageSource.getMessage("label.resultType." +
                         String.valueOf(diagnosticTestScalpMRI.getMriFinding()), null, locale), locale));
@@ -1911,7 +1911,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                         String.valueOf(diagnosticTestScalpMRI.getDescriptionMrsAbnormality()), locale));
             }
             if (exportParams.isDiagnosticTestMRIFmri() && diagnosticTestScalpMRI.isFmri()) {
-                content.add(messageSource.getMessage("label.FMRI",
+                content.add(messageSource.getMessage("label.fmri",
                         null, locale));
             }
             if (exportParams.isDiagnosticTestMRIDetailsFmri()) {
@@ -1968,7 +1968,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestMRIFinding()) {
+            if (exportParams.isDiagnosticTestmriFinding()) {
                 content.add(messageSource.getMessage("label.mriFinding", null, locale));
 
                 content.add(translateValue(messageSource.getMessage("label.resultType." +
@@ -2044,7 +2044,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
             }
             if (exportParams.isDiagnosticTestMRIFmri()) {
-                content.add(messageSource.getMessage("label.FMRI", null, locale));
+                content.add(messageSource.getMessage("label.fmri", null, locale));
 
                 content.add(translateValue(String.valueOf(diagnosticTestScalpMRI.isFmri()),
                         locale));

@@ -227,8 +227,8 @@ public class ExportParamsEntity {
     private boolean diagnosticTestMRIMrsProtocol;
     @Column(name = "diagnosticTestMRIMrsFinding")
     private boolean diagnosticTestMRIMrsFinding;
-    @Column(name = "diagnosticTestMRIFinding")
-    private boolean diagnosticTestMRIFinding;
+    @Column(name = "diagnosticTestMriFinding")
+    private boolean diagnosticTestMriFinding;
     @Column(name = "diagnosticTestMRIDescription")
     private boolean diagnosticTestMRIDescription;
     @Column(name = "diagnosticTestMRIDescriptionPetHypometabolism")
@@ -1392,12 +1392,12 @@ public class ExportParamsEntity {
         this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
     }
 
-    public boolean isDiagnosticTestMRIFinding() {
-        return diagnosticTestMRIFinding;
+    public boolean isDiagnosticTestmriFinding() {
+        return diagnosticTestMriFinding;
     }
 
-    public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
-        this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
+    public void setDiagnosticTestmriFinding(boolean diagnosticTestMriFinding) {
+        this.diagnosticTestMriFinding = diagnosticTestMriFinding;
     }
 
     public boolean isDiagnosticTestMRIDescription() {

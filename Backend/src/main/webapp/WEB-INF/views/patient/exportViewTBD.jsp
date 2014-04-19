@@ -236,8 +236,8 @@
         path="diagnosticTestMRIMrsProtocol" class="input-block-level"/></li>
 <li><form:label path="diagnosticTestMRIMrsFinding"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="diagnosticTestMRIMrsFinding" class="input-block-level"/></li>
-<li><form:label path="diagnosticTestMRIFinding"> <spring:message code="label.export"/></form:label> <form:checkbox
-        path="diagnosticTestMRIFinding" class="input-block-level"/></li>
+<li><form:label path="diagnosticTestMriFinding"> <spring:message code="label.export"/></form:label> <form:checkbox
+        path="diagnosticTestMriFinding" class="input-block-level"/></li>
 <li><form:label path="diagnosticTestMRIDescription"> <spring:message code="label.export"/></form:label> <form:checkbox
         path="diagnosticTestMRIDescription" class="input-block-level"/></li>
 <li><form:label path="diagnosticTestMRIDescriptionPetHypometabolism"> <spring:message code="label.export"/></form:label>
