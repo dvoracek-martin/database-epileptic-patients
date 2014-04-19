@@ -27,4 +27,8 @@ $(document).ready(function () {
         leafUiIcon: 'ui-icon-bullet'
     });
 
+    if($("#exportParamsId").val() == "0"){
+        $(".toCheck").prop("checked", true);
+    }
+
 });

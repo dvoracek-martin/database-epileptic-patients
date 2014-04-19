@@ -32,6 +32,10 @@
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
                var="isAuthorized"/>
 
+<input id="exportParamsId"
+       type="hidden"
+       value="${exportParams.id}">
+
 <div class="row">
     <div class="col-xs-6">
         <h2>
@@ -174,7 +178,7 @@
             </legend>
             <c:forEach items="${exportInfoWrapperVo.patientIds}"
                        var="patientId">
-                <a href="<c:url value="/patient/${patient.id}/overview" />">
+                <a href="<c:url value="/patient/${patientId}/overview" />">
                         ${patientId}
                 </a>
             </c:forEach>
@@ -236,6 +240,7 @@
                         <div class="checkbox">
                             <label>
                                 <form:checkbox id="anonymize"
+                                               class="toCheck"
                                                path="anonymize"/>
                                 <spring:message code="label.anonymize"/>
                             </label>
@@ -268,6 +273,7 @@
                 <ul>
                     <li class="collapsed">
                         <form:checkbox id="anamnesis"
+                                       class="toCheck"
                                        path="anamnesis"/>
                         <form:label path="anamnesis">
                             <spring:message code="label.anamnesis"/>
@@ -275,79 +281,79 @@
                         <ul>
                             <li>
                                 <form:checkbox id="anamnesisBeginningEpilepsy" path="anamnesisBeginningEpilepsy"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label
                                         path="anamnesisBeginningEpilepsy">anamnesisBeginningEpilepsy</form:label>
                             </li>
                             <li>
                                 <form:checkbox id="anamnesisFirstFever" path="anamnesisFirstFever"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisFirstFever">anamnesisFirstFever</form:label>
                             </li>
                             <li>
                                 <form:checkbox id="anamnesisInfantileSpasm" path="anamnesisInfantileSpasm"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisInfantileSpasm">anamnesisInfantileSpasm</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisSpecificSyndrome" path="anamnesisSpecificSyndrome"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisSpecificSyndrome">anamnesisSpecificSyndrome</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisEpilepsyInFamily" path="anamnesisEpilepsyInFamily"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisEpilepsyInFamily">anamnesisEpilepsyInFamily</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisParentalRisk" path="anamnesisParentalRisk"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisParentalRisk">anamnesisParentalRisk</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisFibrilConvulsions" path="anamnesisFibrilConvulsions"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label
                                         path="anamnesisFibrilConvulsions">anamnesisFibrilConvulsions</form:label>
                             </li>
                             <li>
                                 <form:checkbox id="anamnesisInflammationCns" path="anamnesisInflammationCns"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisInflammationCns">anamnesisInflammationCns</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisInjuryCns" path="anamnesisInjuryCns"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisInjuryCns">anamnesisInjuryCns</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisOperationCns" path="anamnesisOperationCns"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisOperationCns">anamnesisOperationCns</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisEarlyPmdRetardation" path="anamnesisEarlyPmdRetardation"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label
                                         path="anamnesisEarlyPmdRetardation">anamnesisEarlyPmdRetardation</form:label>
                             </li>
 
                             <li>
                                 <form:checkbox id="anamnesisNonCnsComorbidity" path="anamnesisNonCnsComorbidity"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label
                                         path="anamnesisNonCnsComorbidity">anamnesisNonCnsComorbidity</form:label>
                             </li>
                             <li>
                                 <form:checkbox id="anamnesisComment" path="anamnesisComment"
-                                               class="input-block-level"/>
+                                               class="input-block-level toCheck"/>
                                 <form:label path="anamnesisComment">anamnesisComment</form:label>
                             </li>
                         </ul>
