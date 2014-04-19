@@ -202,7 +202,7 @@ public class ExportParamsVO {
 
     private boolean diagnosticTestMRIMrsFinding;
 
-    private boolean diagnosticTestMRIFinding;
+    private boolean diagnosticTestMriFinding;
 
     private boolean diagnosticTestMRIDescription;
 
@@ -1366,12 +1366,12 @@ public class ExportParamsVO {
         this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
     }
 
-    public boolean isDiagnosticTestMRIFinding() {
-        return diagnosticTestMRIFinding;
+    public boolean isDiagnosticTestmriFinding() {
+        return diagnosticTestMriFinding;
     }
 
-    public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
-        this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
+    public void setDiagnosticTestmriFinding(boolean diagnosticTestMriFinding) {
+        this.diagnosticTestMriFinding = diagnosticTestMriFinding;
     }
 
     public boolean isDiagnosticTestMRIDescription() {

@@ -114,8 +114,8 @@ diagnosticTestMRIMrsProtocol")
 diagnosticTestMRIMrsProtocol;
 diagnosticTestMRIMrsFinding")
 diagnosticTestMRIMrsFinding;
-diagnosticTestMRIFinding")
-diagnosticTestMRIFinding;
+diagnosticTestMriFinding")
+diagnosticTestMriFinding;
 diagnosticTestMRIDescription")
 diagnosticTestMRIDescription;
 diagnosticTestMRIDescriptionPetHypometabolism")

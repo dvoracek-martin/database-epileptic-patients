@@ -202,7 +202,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             if (!anonymize) {
                 Sheet sheet = wb.createSheet(patient.getContact().getLastName()
                         + " " + patient.getContact().getFirstName() + " "
-                        + patient.getNin()+ " ID " + Integer.toString(patient.getId()));
+                        + patient.getNin() + " ID " + Integer.toString(patient.getId()));
                 this.addContent(patient, locale, exportParams, sheet, p, anonymize);
             } else {
                 Sheet sheet = wb.createSheet(messageSource.getMessage("label.patient",
@@ -874,7 +874,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.pharmacotherapy", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1209,7 +1212,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                 addCells("label.secondarySidedSynchrony", translateValue(String.valueOf(diagnosticTestScalpEEG.isSecondarySidedSynchrony()), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams.isDiagnosticTestEEGIctalEEGPatterns()) {
-                addCells("label.invasiveIctalEegPatterns", translateValue(messageSource.getMessage("label.ecogPatterns." +
+                addCells("label.invasiveIctalEegPatterns", translateValue(messageSource.getMessage("label.ictalEegPatterns." +
                         String.valueOf(diagnosticTestScalpEEG.getIctalEegPatterns()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
 
@@ -1249,8 +1252,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(diagnosticTestScalpMRI.getDone()), null, locale), locale), sheet, locale, styles, "cell", p);
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestMRIFinding()) {
-                addCells("label.MRIFindingf", translateValue(messageSource.getMessage("label.resultType." +
+            if (exportParams.isDiagnosticTestmriFinding()) {
+                addCells("label.mriFinding", translateValue(messageSource.getMessage("label.resultType." +
                         String.valueOf(diagnosticTestScalpMRI.getMriFinding()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams.isDiagnosticTestMRIDescription()) {
@@ -1351,7 +1354,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                         String.valueOf(invasiveTestECOG.getEcogPatterns()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
-                addCells("label.ecogAfterResection", translateValue(messageSource.getMessage("label.ecogPatterns." +
+                addCells("label.ecogAfterResection", translateValue(messageSource.getMessage("label.afterResectionEcog." +
                         String.valueOf(invasiveTestECOG.getAfterResectionEcog()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams.isInvasiveTestECOGComment()) {
@@ -1484,7 +1487,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.dateOfOperation", translateValue(String.valueOf(operation.getDateOperation()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationRangeOperation()) {
-            addCells("label.rangeOfOperation", translateValue(messageSource.getMessage("label.rangeOfOperation." +
+            addCells("label.rangeOfOperation", translateValue(messageSource.getMessage("label.operationType." +
                     String.valueOf(operation.getRangeOperation()), null, locale), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationTypeOperation()) {

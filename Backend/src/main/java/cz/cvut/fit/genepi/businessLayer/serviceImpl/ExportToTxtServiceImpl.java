@@ -1146,7 +1146,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestMRIFinding()) {
+            if (exportParams.isDiagnosticTestmriFinding()) {
                 content += messageSource.getMessage("label.mriFinding", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.resultType." +
@@ -1231,7 +1231,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                 content += "\n";
             }
             if (exportParams.isDiagnosticTestMRIFmri()) {
-                content += messageSource.getMessage("label.FMRI", null, locale);
+                content += messageSource.getMessage("label.fmri", null, locale);
                 content += " - ";
                 content += translateValue(String.valueOf(diagnosticTestScalpMRI.isFmri()),
                         locale);
@@ -1324,7 +1324,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             if (exportParams.isInvasiveTestECOGAfterResectionEcog()) {
                 content += messageSource.getMessage("label.ecogAfterResection", null, locale);
                 content += " - ";
-                content += translateValue(messageSource.getMessage("label.ecogPatterns." +
+                content += translateValue(messageSource.getMessage("label.afterResectionEcog." +
                         String.valueOf(invasiveTestECOG.getAfterResectionEcog()), null, locale), locale);
                 content += "\n";
             }
@@ -1408,7 +1408,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             if (exportParams.isInvasiveTestEEGInvasiveIctalEEGPatterns()) {
                 content += messageSource.getMessage("label.ictalEegPatterns", null, locale);
                 content += " - ";
-                content += translateValue(messageSource.getMessage("label.ecogPatterns." +
+                content += translateValue(messageSource.getMessage("label.ictalEegPatterns." +
                         String.valueOf(invasiveTestEEG.getInvasiveIctalEegPatterns()), null, locale), locale);
                 content += "\n";
             }
@@ -1496,7 +1496,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isOperationRangeOperation()) {
             content += messageSource.getMessage("label.rangeOfOperation", null, locale);
             content += " - ";
-            content += translateValue(messageSource.getMessage("label.rangeOfOperation." +
+            content += translateValue(messageSource.getMessage("label.operationType." +
                     String.valueOf(operation.getRangeOperation()), null, locale), locale);
             content += "\n";
         }
