@@ -943,7 +943,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.neurologicalFinding", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -982,7 +985,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.neuropsychology", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1162,7 +1168,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.neuropsychologyOld", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1203,7 +1212,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestScalpEeg", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1267,7 +1279,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.diagnosticTestsMri", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1361,7 +1376,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.invasiveTestECoG", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1405,7 +1423,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.invasiveTestIeeg", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1467,7 +1488,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.invasiveTestCorticalMapping", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1503,7 +1527,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.operation", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1562,7 +1589,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.histology", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1598,7 +1628,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.complication", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
@@ -1637,7 +1670,10 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             p.setRowcount(p.getRowcount() + 1);
         }
         Row dateRow = sheet.getRow(p.getRowcount());
-        if (dateRow == null) sheet.createRow(p.getRowcount());
+        if (dateRow == null) {
+            sheet.createRow(p.getRowcount());
+            dateRow = sheet.getRow(p.getRowcount());
+        }
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
         dateCell.setCellValue(messageSource.getMessage("label.outcome", null, locale) + " " + messageSource.getMessage("label.fromDate", null, locale));
