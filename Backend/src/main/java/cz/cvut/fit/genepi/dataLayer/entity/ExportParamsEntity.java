@@ -227,8 +227,8 @@ public class ExportParamsEntity {
     private boolean diagnosticTestMRIMrsProtocol;
     @Column(name = "diagnosticTestMRIMrsFinding")
     private boolean diagnosticTestMRIMrsFinding;
-    @Column(name = "diagnosticTestMriFinding")
-    private boolean diagnosticTestMriFinding;
+    @Column(name = "diagnosticTestMRIFinding")
+    private boolean diagnosticTestMRIFinding;
     @Column(name = "diagnosticTestMRIDescription")
     private boolean diagnosticTestMRIDescription;
     @Column(name = "diagnosticTestMRIDescriptionPetHypometabolism")
@@ -1390,14 +1390,6 @@ public class ExportParamsEntity {
 
     public void setDiagnosticTestMRIMrsFinding(boolean diagnosticTestMRIMrsFinding) {
         this.diagnosticTestMRIMrsFinding = diagnosticTestMRIMrsFinding;
-    }
-
-    public boolean isDiagnosticTestmriFinding() {
-        return diagnosticTestMriFinding;
-    }
-
-    public void setDiagnosticTestmriFinding(boolean diagnosticTestMriFinding) {
-        this.diagnosticTestMriFinding = diagnosticTestMriFinding;
     }
 
     public boolean isDiagnosticTestMRIDescription() {
@@ -2942,5 +2934,13 @@ public class ExportParamsEntity {
 
     public void setInvasiveTestCorticalMappingCorticalMapping(boolean invasiveTestCorticalMappingCorticalMapping) {
         this.invasiveTestCorticalMappingCorticalMapping = invasiveTestCorticalMappingCorticalMapping;
+    }
+
+    public boolean isDiagnosticTestMRIFinding() {
+        return diagnosticTestMRIFinding;
+    }
+
+    public void setDiagnosticTestMRIFinding(boolean diagnosticTestMRIFinding) {
+        this.diagnosticTestMRIFinding = diagnosticTestMRIFinding;
     }
 }

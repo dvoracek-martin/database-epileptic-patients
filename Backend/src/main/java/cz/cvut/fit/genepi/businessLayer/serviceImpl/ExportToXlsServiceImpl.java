@@ -1281,7 +1281,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     String.valueOf(diagnosticTestScalpMRI.getDone()), null, locale), locale), sheet, locale, styles, "cell", p);
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestmriFinding()) {
+            if (exportParams.isDiagnosticTestMRIFinding()) {
                 addCells("label.mriFinding", translateValue(messageSource.getMessage("label.resultType." +
                         String.valueOf(diagnosticTestScalpMRI.getMriFinding()), null, locale), locale), sheet, locale, styles, "cell", p);
             }

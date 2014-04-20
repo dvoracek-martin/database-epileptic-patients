@@ -988,7 +988,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                               ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.neuropsychology", null, locale)
+        content += messageSource.getMessage("label.neuropsychologyOld", null, locale)
                 + " "
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": ";
@@ -1154,7 +1154,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestmriFinding()) {
+            if (exportParams.isDiagnosticTestMRIFinding()) {
                 content += messageSource.getMessage("label.mriFinding", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.resultType." +

@@ -1861,7 +1861,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         if (diagnosticTestScalpMRI.getDone() == 2) {
 
-            if (exportParams.isDiagnosticTestmriFinding()) {
+            if (exportParams.isDiagnosticTestMRIFinding()) {
                 content.add(messageSource.getMessage("label.mriFinding",
                         null, locale) + delimiter + translateValue(messageSource.getMessage("label.resultType." +
                         String.valueOf(diagnosticTestScalpMRI.getMriFinding()), null, locale), locale));
@@ -1978,7 +1978,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (diagnosticTestScalpMRI.getDone() == 2) {
-            if (exportParams.isDiagnosticTestmriFinding()) {
+            if (exportParams.isDiagnosticTestMRIFinding()) {
                 content.add(messageSource.getMessage("label.mriFinding", null, locale));
 
                 content.add(translateValue(messageSource.getMessage("label.resultType." +
