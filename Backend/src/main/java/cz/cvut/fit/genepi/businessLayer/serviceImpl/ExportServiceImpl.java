@@ -58,6 +58,25 @@ public class ExportServiceImpl implements ExportService {
 
         String url = null;
 
+        /*
+         * set all mandatory variables to true
+         */
+        exportParamsEntity.setPatient(true);
+        exportParamsEntity.setPatientId(true);
+        exportParamsEntity.setContactFirstName(true);
+        exportParamsEntity.setContactLastName(true);
+        exportParamsEntity.setPatientNin(true);
+        exportParamsEntity.setPatientBirthday(true);
+        exportParamsEntity.setPatientGender(true);
+        exportParamsEntity.setContactCountry(true);
+        exportParamsEntity.setContactAddressCity(true);
+        exportParamsEntity.setContactAddressStreet(true);
+        exportParamsEntity.setContactAddressHn(true);
+        exportParamsEntity.setContactPhoneNumber(true);
+        exportParamsEntity.setContactEmail(true);
+        exportParamsEntity.setPatientAgeAtTheBeginningOfEpilepsy(true);
+
+
         switch (exportType) {
             case "pdf":
                 try {
