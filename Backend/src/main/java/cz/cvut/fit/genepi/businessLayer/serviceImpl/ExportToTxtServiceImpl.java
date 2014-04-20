@@ -755,7 +755,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                     .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
                 content += messageSource.getMessage("label.speechExpressively", null, locale);
                 content += " - ";
-                content += translateValue(messageSource.getMessage("label.speechExpressively." +
+                content += translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), null, locale), locale);
                 content += "\n";
             }

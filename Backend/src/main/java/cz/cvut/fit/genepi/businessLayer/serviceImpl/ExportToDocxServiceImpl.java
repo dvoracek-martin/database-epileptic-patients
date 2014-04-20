@@ -1169,7 +1169,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
                 content.add(messageSource.getMessage("label.speechExpressively",
-                        null, locale) + delimiter + translateValue(messageSource.getMessage("label.speechExpressively." +
+                        null, locale) + delimiter + translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), null, locale), locale));
             }
             if (exportParams.isNeuropsychologyNeurodevelopmentalExaminationSpeechReceptively()) {

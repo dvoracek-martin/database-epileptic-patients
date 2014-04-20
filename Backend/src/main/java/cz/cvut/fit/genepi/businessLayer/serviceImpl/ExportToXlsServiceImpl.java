@@ -1007,7 +1007,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             }
             if (exportParams
                     .isNeuropsychologyNeurodevelopmentalExaminationSpeechExpressively()) {
-                addCells("label.speechExpressively", translateValue(messageSource.getMessage("label.speechExpressively." +
+                addCells("label.speechExpressively", translateValue(messageSource.getMessage("label.deficit." +
                         String.valueOf(neuropsychology.getNeurodevelopmentalExaminationSpeechExpressively()), null, locale), locale), sheet, locale, styles, "cell", p);
             }
             if (exportParams
