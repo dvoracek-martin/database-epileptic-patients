@@ -21,14 +21,30 @@ $(document).ready(function () {
     $("#tree").tree({
         onCheck: { node: 'expand' },
         onUncheck: { node: 'collapse' },
-        dnd:false,
+        dnd: false,
         collapseUiIcon: 'ui-icon-plus',
         expandUiIcon: 'ui-icon-minus',
         leafUiIcon: 'ui-icon-bullet'
     });
 
-    if($("#exportParamsId").val() == "0"){
+    if ($("#exportParamsId").val() == "0") {
         $(".toCheck").prop("checked", true);
     }
 
+    var tableOptionSel = $("#tableOption");
+    var pdfFormatSel = $("#pdfFormat");
+
+    $(pdfFormatSel).change(function () {
+        tableOptionSel.show();
+    });
+
+    $("#docxFormat").change(function () {
+        tableOptionSel.show();
+    });
+
+    $("#csvFormat, #xlsxFormat, #txtFormat").change(function () {
+        tableOptionSel.hide();
+    });
+
+    pdfFormatSel.change();
 });

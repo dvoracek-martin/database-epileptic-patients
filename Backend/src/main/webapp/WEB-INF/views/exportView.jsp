@@ -234,6 +234,18 @@
                 </div>
             </div>
 
+            <div id="tableOption"
+                 class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="toTable"/>
+                                 <spring:message code="label.toTable"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
             <c:if test="${isAuthorized}">
                 <div class="form-group">
                     <div class="col-sm-offset-3 col-sm-9">
@@ -1412,7 +1424,7 @@
         </div>
 
         <div class="col-xs-2">
-            <sec:authorize ifAnyGranted="ROLE_ADMIN">
+            <sec:authorize ifAnyGranted="ROLE_SUPERDOCTOR">
                 <form:checkbox id="generic"
                                path="generic"/>
                 <label for="generic">

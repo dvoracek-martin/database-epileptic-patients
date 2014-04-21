@@ -102,6 +102,7 @@ public class ExportController {
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
             @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
+            @RequestParam("toTable") boolean toTable,
             Locale locale, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -114,7 +115,7 @@ public class ExportController {
             anonymize = true;
         }
 
-        String url = exportService.performExport(exportParams, locale, exportType, anonymize, exportInfoWrapperVo.getPatientIds(), false);
+        String url = exportService.performExport(exportParams, locale, exportType, anonymize, exportInfoWrapperVo.getPatientIds(), toTable);
 
         return "redirect:/resources/downloads/" + url;
     }
