@@ -102,7 +102,7 @@ public class ExportController {
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
             @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
-            @RequestParam("toTable") boolean toTable,
+            @RequestParam(value="toTable", defaultValue = "false") boolean toTable,
             Locale locale, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -142,16 +142,13 @@ public class ExportController {
 
         model.addAttribute("exportParams", genericServiceExportParams.getById(exportId, ExportParamsVO.class, ExportParamsEntity.class));
 
-        return "errorView";
+        return "redirect:/export";
     }
 
     @RequestMapping(value = "/export/delete", method = RequestMethod.POST)
     public String exportDeletePOST(
             @RequestParam("exportId") int exportId) {
-        if (!authorizationChecker.isSuperDoctor()) {
-            return "deniedView";
-        }
-
+       
         genericServiceExportParams.delete(exportId, ExportParamsEntity.class);
 
         return "redirect:/export";
