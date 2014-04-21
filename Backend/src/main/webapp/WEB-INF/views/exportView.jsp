@@ -95,7 +95,7 @@
                         <spring:message code="label.load"/>
                     </button>
 
-                    <sec:authorize ifAnyGranted="ROLE_ADMIN">
+                    <sec:authorize ifAnyGranted="ROLE_SUPER_DOCTOR">
                         <button id="genericConfigurationsDeleteButton"
                                 class="btn btn-primary btn-sm"
                                 type="submit">
