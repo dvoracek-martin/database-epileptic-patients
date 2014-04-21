@@ -124,7 +124,7 @@ public class ExportController {
     public String exportSavePOST(
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result) {
 
-        if (!authorizationChecker.isSuperDoctor() && !authorizationChecker.isAdmin()) {
+        if (!authorizationChecker.isSuperDoctor()) {
             exportParams.setGeneric(false);
         }
 
@@ -142,12 +142,15 @@ public class ExportController {
 
         model.addAttribute("exportParams", genericServiceExportParams.getById(exportId, ExportParamsVO.class, ExportParamsEntity.class));
 
-        return "redirect:/export";
+        return "errorView";
     }
 
     @RequestMapping(value = "/export/delete", method = RequestMethod.POST)
     public String exportDeletePOST(
             @RequestParam("exportId") int exportId) {
+        if (!authorizationChecker.isSuperDoctor()) {
+            return "deniedView";
+        }
 
         genericServiceExportParams.delete(exportId, ExportParamsEntity.class);
 
