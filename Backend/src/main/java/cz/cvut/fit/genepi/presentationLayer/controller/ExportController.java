@@ -148,7 +148,7 @@ public class ExportController {
     @RequestMapping(value = "/export/delete", method = RequestMethod.POST)
     public String exportDeletePOST(
             @RequestParam("exportId") int exportId) {
-
+       
         genericServiceExportParams.delete(exportId, ExportParamsEntity.class);
 
         return "redirect:/export";
