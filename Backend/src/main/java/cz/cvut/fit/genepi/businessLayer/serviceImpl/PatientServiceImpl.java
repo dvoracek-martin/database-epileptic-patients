@@ -66,7 +66,7 @@ public class PatientServiceImpl
     public void verifyPatient(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
         patient.setVerified(true);
-        patientDAO.save(patient);
+        patientDAO.update(patient);
     }
 
     @Override
@@ -74,7 +74,7 @@ public class PatientServiceImpl
     public void voidVerifyPatient(int patientId) {
         PatientEntity patient = patientDAO.getPatientByIdWithDoctor(patientId);
         patient.setVerified(false);
-        patientDAO.save(patient);
+        patientDAO.update(patient);
     }
 
     @Override
