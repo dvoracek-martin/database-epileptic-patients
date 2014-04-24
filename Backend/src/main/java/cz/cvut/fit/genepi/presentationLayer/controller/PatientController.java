@@ -270,7 +270,7 @@ public class PatientController {
         if (result.hasErrors()) {
             return "patient/verifyView";
         } else {
-            patientService.save(patientVO, PatientEntity.class);
+            patientService.update(patientVO, PatientEntity.class);
             return "redirect:/patient/" + patientId + "/overview";
         }
     }
