@@ -35,7 +35,7 @@
 
         <c:choose>
             <c:when test="${empty advancedSearchList}">
-                <spring:message code="label.savedParameters"/>
+                <spring:message code="label.noSavedParameters"/>
             </c:when>
             <c:otherwise>
 
