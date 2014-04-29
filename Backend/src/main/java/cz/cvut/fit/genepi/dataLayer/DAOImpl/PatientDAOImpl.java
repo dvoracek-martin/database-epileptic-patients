@@ -6,7 +6,6 @@ import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
-import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.sql.JoinType;
 import org.joda.time.LocalDate;
@@ -149,10 +148,12 @@ public class PatientDAOImpl
             }
         }
 
-		/* Fetching and creating alias for sub collection doctor */
-        criteria.createAlias("patient.doctor", "doctor", JoinType.LEFT_OUTER_JOIN);
 
         if (advancedSearch.getPatientDoctor() != 0) {
+
+            /* Fetching and creating alias for sub collection doctor */
+            criteria.createAlias("patient.doctor", "doctor", JoinType.LEFT_OUTER_JOIN);
+
             criteria.add(Restrictions.eq("doctor.id", advancedSearch.getPatientDoctor()));
         }
 

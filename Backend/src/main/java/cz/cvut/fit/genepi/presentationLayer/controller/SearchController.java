@@ -93,7 +93,13 @@ public class SearchController {
 
         List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch(advancedSearch);
 
-        model.addAttribute("patientCount");
+        /* TODO hotfix START*/
+        int patientCount = 0;
+        for (List<PatientDisplayVO> patientDisplayVOList : patients) {
+            patientCount += patientDisplayVOList.size();
+        }
+
+        model.addAttribute("patientCount",patientCount);
         model.addAttribute("patients", patients);
         model.addAttribute("pages", patients.size());
         return "search/searchResults";

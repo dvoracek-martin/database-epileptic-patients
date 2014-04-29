@@ -65,6 +65,7 @@
         <spring:message code="label.noCorrespondingResult"/>
     </c:when>
     <c:otherwise>
+        <spring:message code="label.matchingResultsCount"/>: ${patientCount}
 
         <input id="pagesCount"
                type="hidden"
