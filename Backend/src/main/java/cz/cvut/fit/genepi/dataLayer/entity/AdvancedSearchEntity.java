@@ -275,6 +275,12 @@ public class AdvancedSearchEntity {
     @Column(name = "operation_complete_resection")
     private int operationCompleteResection;
 
+    @Column(name = "operation_count_filter")
+    private String operationCountFilter;
+
+    @Column(name = "operation_count")
+    private String operationCount;
+
     /* histology */
     @Column(name = "histology_histopathology")
     private int histologyHistopathology;
@@ -1046,5 +1052,21 @@ public class AdvancedSearchEntity {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public String getOperationCountFilter() {
+        return operationCountFilter;
+    }
+
+    public void setOperationCountFilter(String operationCountFilter) {
+        this.operationCountFilter = operationCountFilter;
+    }
+
+    public String getOperationCount() {
+        return operationCount;
+    }
+
+    public void setOperationCount(String operationCount) {
+        this.operationCount = operationCount;
     }
 }

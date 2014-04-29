@@ -115,4 +115,53 @@
                    value="completeResection"/>
     </jsp:include>
 
+    <div class="form-group">
+        <label class="col-xs-4 control-label"
+               for="operationCountFilter">
+            <%--<spring:message code="label.distanceFilter"/>--%> operationCountFilter
+        </label>
+
+        <div class="col-xs-8">
+            <form:select id="operationCountFilter"
+                         class="form-control input-sm"
+                         type="text"
+                         path="operationCountFilter">
+
+                <form:option value="=">
+                    =
+                </form:option>
+                <form:option value=">">
+                    >
+                </form:option>
+                <form:option value="<">
+                    <
+                </form:option>
+                <form:option value=">=">
+                    >=
+                </form:option>
+                <form:option value="<=">
+                    <=
+                </form:option>
+            </form:select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-4 control-label"
+               for="patientAgeEpilepsy">
+            <%--<spring:message code="label.ageAtTheBeginningOfEpilepsy"/>--%> pocet operaci
+        </label>
+
+        <div class="col-xs-8">
+            <form:input id="patientAgeEpilepsy"
+                        class="form-control input-sm"
+                        type="text"
+                        path="operationCount"/>
+
+            <form:errors path="operationCount"
+                         cssClass="error">
+            </form:errors>
+        </div>
+    </div>
+
 </fieldset>

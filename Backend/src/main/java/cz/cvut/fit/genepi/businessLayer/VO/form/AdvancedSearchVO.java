@@ -187,6 +187,10 @@ public class AdvancedSearchVO {
 
     private int operationCompleteResection;
 
+    private String operationCountFilter;
+
+    private String operationCount;
+
     /* histology */
     private int histologyHistopathology;
 
@@ -933,5 +937,21 @@ public class AdvancedSearchVO {
 
     public void setVerified(boolean verified) {
         this.verified = verified;
+    }
+
+    public String getOperationCountFilter() {
+        return operationCountFilter;
+    }
+
+    public void setOperationCountFilter(String operationCountFilter) {
+        this.operationCountFilter = operationCountFilter;
+    }
+
+    public String getOperationCount() {
+        return operationCount;
+    }
+
+    public void setOperationCount(String operationCount) {
+        this.operationCount = operationCount;
     }
 }

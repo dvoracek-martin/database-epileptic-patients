@@ -574,6 +574,21 @@ public class PatientDAOImpl
                 }
             }
 
+            /* nefunguje, protoze nedokazu udelat AND aby to neuvazovalo hidden a history
+            if (!advancedSearch.getOperationCount().equals("")) {
+                if (advancedSearch.getOperationCountFilter().equals("=")) {
+                    criteria.add(Restrictions.sizeEq("operationList", Integer.parseInt(advancedSearch.getOperationCount())));
+                } else if (advancedSearch.getOperationCountFilter().equals(">")) {
+                    criteria.add(Restrictions.sizeGt("operationList", Integer.parseInt(advancedSearch.getOperationCount())));
+                } else if (advancedSearch.getOperationCountFilter().equals("<")) {
+                    criteria.add(Restrictions.sizeLt("operationList", Integer.parseInt(advancedSearch.getOperationCount())));
+                } else if (advancedSearch.getOperationCountFilter().equals(">=")) {
+                    criteria.add(Restrictions.sizeGe("operationList", Integer.parseInt(advancedSearch.getOperationCount())));
+                } else if (advancedSearch.getOperationCountFilter().equals("<=")) {
+                    criteria.add(Restrictions.sizeLe("operationList", Integer.parseInt(advancedSearch.getOperationCount())));
+                }
+            }*/
+
         }
 
         /* histology specific section */

@@ -100,6 +100,8 @@ public class SearchController {
         }
 
         model.addAttribute("patientCount",patientCount);
+
+        /* hotfix END */
         model.addAttribute("patients", patients);
         model.addAttribute("pages", patients.size());
         return "search/searchResults";

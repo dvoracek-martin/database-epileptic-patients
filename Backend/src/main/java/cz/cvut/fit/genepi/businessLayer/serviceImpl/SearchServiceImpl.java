@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -50,6 +51,38 @@ public class SearchServiceImpl implements SearchService {
     public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch) {
         AdvancedSearchEntity entity = dozer.map(advancedSearch, AdvancedSearchEntity.class);
         List<PatientEntity> patientEntityList = patientDAO.performSearch(entity);
+
+        /* TODO hotfix START */
+        if (!advancedSearch.getOperationCount().equals("")) {
+            Iterator<PatientEntity> i = patientEntityList.iterator();
+            while (i.hasNext()) {
+                PatientEntity patientEntity = i.next();
+                if (advancedSearch.getOperationCountFilter().equals("=")) {
+                    if (patientEntity.getOperationList().size() != Integer.parseInt(advancedSearch.getOperationCount())) {
+                        i.remove();
+                    }
+                } else if (advancedSearch.getOperationCountFilter().equals(">")) {
+                    if (patientEntity.getOperationList().size() <= Integer.parseInt(advancedSearch.getOperationCount())) {
+                        i.remove();
+                    }
+                } else if (advancedSearch.getOperationCountFilter().equals("<")) {
+                    if (patientEntity.getOperationList().size() >= Integer.parseInt(advancedSearch.getOperationCount())) {
+                        i.remove();
+                    }
+                } else if (advancedSearch.getOperationCountFilter().equals(">=")) {
+                    if (patientEntity.getOperationList().size() < Integer.parseInt(advancedSearch.getOperationCount())) {
+                        i.remove();
+                    }
+                } else if (advancedSearch.getOperationCountFilter().equals("<=")) {
+                    if (patientEntity.getOperationList().size() > Integer.parseInt(advancedSearch.getOperationCount())) {
+                        i.remove();
+                    }
+                }
+            }
+        }
+
+        /* hotfix END */
+
 
         List<List<PatientDisplayVO>> lists = new ArrayList<>();
 
@@ -85,6 +118,7 @@ public class SearchServiceImpl implements SearchService {
 
             return lists;
         }
+
     }
 
     @Override
