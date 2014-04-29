@@ -93,6 +93,7 @@ public class SearchController {
 
         List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch(advancedSearch);
 
+        model.addAttribute("patientCount");
         model.addAttribute("patients", patients);
         model.addAttribute("pages", patients.size());
         return "search/searchResults";

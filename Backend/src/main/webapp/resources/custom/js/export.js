@@ -47,4 +47,14 @@ $(document).ready(function () {
     });
 
     pdfFormatSel.change();
+
+
+    var checkAll = $('#checkAll');
+    checkAll.click(function () {
+        if (checkAll.prop('checked')) {
+            $(".check-all").prop("checked", true);
+        } else{
+            $(".check-all").prop("checked", false);
+        }
+    })
 });

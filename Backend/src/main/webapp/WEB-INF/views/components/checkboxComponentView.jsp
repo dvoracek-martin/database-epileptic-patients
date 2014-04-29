@@ -7,6 +7,7 @@
         <div class="checkbox">
             <label>
                 <form:checkbox id="${param.propertyName}"
+                               class="${param.className}"
                                path="${param.propertyName}"/>
                 <spring:message code="label.${param.messageCode}"/>
             </label>

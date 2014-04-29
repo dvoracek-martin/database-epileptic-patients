@@ -89,7 +89,7 @@ $(document).ready(function () {
     var invasiveTestEegCheckbox = $("#invasiveTestEeg");
 
     invasiveTestEegCheckbox.click(function () {
-        var  invasiveTestEegFieldset = $("#invasiveTestEegFieldset");
+        var invasiveTestEegFieldset = $("#invasiveTestEegFieldset");
         if ($(this).prop("checked")) {
             invasiveTestEegFieldset.show();
         } else {
@@ -100,7 +100,7 @@ $(document).ready(function () {
     var invasiveTestEcogCheckbox = $("#invasiveTestEcog");
 
     invasiveTestEcogCheckbox.click(function () {
-        var  invasiveTestEcogFieldset = $("#invasiveTestEcogFieldset");
+        var invasiveTestEcogFieldset = $("#invasiveTestEcogFieldset");
         if ($(this).prop("checked")) {
             invasiveTestEcogFieldset.show();
         } else {
@@ -111,7 +111,7 @@ $(document).ready(function () {
     var invasiveTestCorticalMappingCheckbox = $("#invasiveTestCorticalMapping");
 
     invasiveTestCorticalMappingCheckbox.click(function () {
-        var  invasiveTestCorticalMappingFieldset = $("#invasiveTestCorticalMappingFieldset");
+        var invasiveTestCorticalMappingFieldset = $("#invasiveTestCorticalMappingFieldset");
         if ($(this).prop("checked")) {
             invasiveTestCorticalMappingFieldset.show();
         } else {
@@ -122,7 +122,7 @@ $(document).ready(function () {
     var operationCheckbox = $("#operation");
 
     operationCheckbox.click(function () {
-        var  operationFieldset = $("#operationFieldset");
+        var operationFieldset = $("#operationFieldset");
         if ($(this).prop("checked")) {
             operationFieldset.show();
         } else {
@@ -133,7 +133,7 @@ $(document).ready(function () {
     var histologyCheckbox = $("#histology");
 
     histologyCheckbox.click(function () {
-        var  histologyFieldset = $("#histologyFieldset");
+        var histologyFieldset = $("#histologyFieldset");
         if ($(this).prop("checked")) {
             histologyFieldset.show();
         } else {
@@ -144,7 +144,7 @@ $(document).ready(function () {
     var complicationCheckbox = $("#complication");
 
     complicationCheckbox.click(function () {
-        var  complicationFieldset = $("#complicationFieldset");
+        var complicationFieldset = $("#complicationFieldset");
         if ($(this).prop("checked")) {
             complicationFieldset.show();
         } else {
@@ -155,7 +155,7 @@ $(document).ready(function () {
     var outcomeCheckbox = $("#outcome");
 
     outcomeCheckbox.click(function () {
-        var  outcomeFieldset = $("#outcomeFieldset");
+        var outcomeFieldset = $("#outcomeFieldset");
         if ($(this).prop("checked")) {
             outcomeFieldset.show();
         } else {
@@ -206,5 +206,16 @@ $(document).ready(function () {
 
     outcomeCheckbox.click();
     outcomeCheckbox.click();
+
+    var checkAll = $('#checkAll');
+    checkAll.click(function () {
+        if (checkAll.prop('checked')) {
+            $(".check-all").prop("checked", false);
+            $(".check-all").click();
+        } else {
+            $(".check-all").prop("checked", true);
+            $(".check-all").click();
+        }
+    })
 
 });
