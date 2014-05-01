@@ -148,7 +148,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
     }
 
     private String validateNin(String nin){
-        return nin.replace('/',' ');
+        return nin.replace('/','_');
     }
 
     public String export(java.util.List<PatientEntity> patientList,
