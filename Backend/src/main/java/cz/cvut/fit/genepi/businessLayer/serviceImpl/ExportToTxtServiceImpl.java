@@ -848,7 +848,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             }
             if (exportParams
                     .isNeuropsychologyNeuropsychologicalProfileExecutiveFunction()) {
-                content += messageSource.getMessage("label.executiveFunctionc" +
+                content += messageSource.getMessage("label.executiveFunction" +
                         "", null, locale);
                 content += " - ";
                 content += translateValue(messageSource.getMessage("label.deficit." +

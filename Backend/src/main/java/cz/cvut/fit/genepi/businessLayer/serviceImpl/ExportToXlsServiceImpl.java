@@ -147,6 +147,9 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         return reportDate;
     }
 
+    private String validateNin(String nin){
+        return nin.replace('/',' ');
+    }
 
     public String export(java.util.List<PatientEntity> patientList,
                          UserEntity user, Locale locale, ExportParamsEntity exportParams, boolean anonymize) {
@@ -202,7 +205,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             if (!anonymize) {
                 Sheet sheet = wb.createSheet(patient.getContact().getLastName()
                         + " " + patient.getContact().getFirstName() + " "
-                        + patient.getNin() + " ID " + Integer.toString(patient.getId()));
+                        + validateNin(patient.getNin()) + " ID " + Integer.toString(patient.getId()));
                 this.addContent(patient, locale, exportParams, sheet, p, anonymize);
             } else {
                 Sheet sheet = wb.createSheet(messageSource.getMessage("label.patient",
