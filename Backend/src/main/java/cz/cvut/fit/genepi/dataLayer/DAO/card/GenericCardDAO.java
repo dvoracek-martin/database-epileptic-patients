@@ -15,6 +15,8 @@ public interface GenericCardDAO<CardEntity> extends GenericDAO<CardEntity> {
 
     public List<CardEntity> getRecordsByPatientId(int patientId, Class<CardEntity> entityClass);
 
+    public List<CardEntity> getRecordsWithoutHistoryByPatientId(int patientId, Class<CardEntity> entityClass);
+
     public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass);
 
     public Date getOldestRecordDate(int patientId, Class<CardEntity> entityClass);

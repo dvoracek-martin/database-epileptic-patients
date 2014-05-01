@@ -61,6 +61,20 @@ public class GenericCardDAOImpl<CardEntity>
 
     @Override
     @SuppressWarnings("unchecked")
+    public List<CardEntity> getRecordsWithoutHistoryByPatientId(int patientId, Class<CardEntity> entityClass) {
+        Criteria criteria = sessionFactory
+                .getCurrentSession()
+                .createCriteria(entityClass)
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .add(Restrictions.eq("patientId", patientId))
+                .addOrder(Order.desc("date"))
+                .addOrder(Order.desc("id"));
+
+        return (List<CardEntity>) criteria.list();
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
     public CardEntity getLatestRecordByPatientId(int patientId, Class<CardEntity> entityClass) {
         Criteria criteria = sessionFactory
                 .getCurrentSession()

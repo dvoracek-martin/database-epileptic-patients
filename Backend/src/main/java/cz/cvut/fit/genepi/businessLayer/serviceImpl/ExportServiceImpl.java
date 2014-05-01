@@ -57,21 +57,21 @@ public class ExportServiceImpl implements ExportService {
         for (int patientId : patientIds) {
 
             PatientEntity patient = patientDAO.getById(patientId, PatientEntity.class);
-            patient.setAnamnesisList(genericCardDAO.getRecordsByPatientId(patientId, AnamnesisEntity.class));
-            patient.setSeizureList(genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class));
-            patient.setPharmacotherapyList(genericCardDAO.getRecordsByPatientId(patientId, PharmacotherapyEntity.class));
-            patient.setNeurologicalFindingList(genericCardDAO.getRecordsByPatientId(patientId, NeurologicalFindingEntity.class));
-            patient.setNeuropsychologyList(genericCardDAO.getRecordsByPatientId(patientId, NeuropsychologyEntity.class));
-            patient.setNeuropsychologyOldList(genericCardDAO.getRecordsByPatientId(patientId, NeuropsychologyOldEntity.class));
-            patient.setDiagnosticTestScalpEegList(genericCardDAO.getRecordsByPatientId(patientId, DiagnosticTestScalpEegEntity.class));
-            patient.setDiagnosticTestMRIList(genericCardDAO.getRecordsByPatientId(patientId, DiagnosticTestMriEntity.class));
-            patient.setInvasiveTestCorticalMappingList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingEntity.class));
-            patient.setInvasiveTestECOGList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestEcogEntity.class));
-            patient.setInvasiveTestEEGList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestEegEntity.class));
-            patient.setOperationList(genericCardDAO.getRecordsByPatientId(patientId, OperationEntity.class));
-            patient.setHistologyList(genericCardDAO.getRecordsByPatientId(patientId, HistologyEntity.class));
-            patient.setComplicationList(genericCardDAO.getRecordsByPatientId(patientId, ComplicationEntity.class));
-            patient.setOutcomeList(genericCardDAO.getRecordsByPatientId(patientId, OutcomeEntity.class));
+            patient.setAnamnesisList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, AnamnesisEntity.class));
+            patient.setSeizureList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, SeizureEntity.class));
+            patient.setPharmacotherapyList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, PharmacotherapyEntity.class));
+            patient.setNeurologicalFindingList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, NeurologicalFindingEntity.class));
+            patient.setNeuropsychologyList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, NeuropsychologyEntity.class));
+            patient.setNeuropsychologyOldList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, NeuropsychologyOldEntity.class));
+            patient.setDiagnosticTestScalpEegList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, DiagnosticTestScalpEegEntity.class));
+            patient.setDiagnosticTestMRIList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, DiagnosticTestMriEntity.class));
+            patient.setInvasiveTestCorticalMappingList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, InvasiveTestCorticalMappingEntity.class));
+            patient.setInvasiveTestECOGList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, InvasiveTestEcogEntity.class));
+            patient.setInvasiveTestEEGList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, InvasiveTestEegEntity.class));
+            patient.setOperationList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, OperationEntity.class));
+            patient.setHistologyList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, HistologyEntity.class));
+            patient.setComplicationList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, ComplicationEntity.class));
+            patient.setOutcomeList(genericCardDAO.getRecordsWithoutHistoryByPatientId(patientId, OutcomeEntity.class));
 
             patientList.add(patient);
         }
