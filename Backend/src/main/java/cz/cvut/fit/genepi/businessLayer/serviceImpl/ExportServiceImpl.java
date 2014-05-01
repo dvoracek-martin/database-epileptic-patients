@@ -2,8 +2,11 @@ package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
+import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
+import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
+import cz.cvut.fit.genepi.dataLayer.entity.card.*;
 import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -20,7 +23,10 @@ import java.util.Locale;
 public class ExportServiceImpl implements ExportService {
 
     @Autowired
-    private PatientService patientService;
+    private PatientDAO patientDAO;
+
+    @Autowired
+    private GenericCardDAO genericCardDAO;
 
     @Autowired
     private ExportToPdfService exportToPdfService;
@@ -49,7 +55,25 @@ public class ExportServiceImpl implements ExportService {
 
         List<PatientEntity> patientList = new ArrayList<>();
         for (int patientId : patientIds) {
-            patientList.add(patientService.getPatientDisplayByIdWithAllLists(patientId));
+
+            PatientEntity patient = patientDAO.getById(patientId, PatientEntity.class);
+            patient.setAnamnesisList(genericCardDAO.getRecordsByPatientId(patientId, AnamnesisEntity.class));
+            patient.setSeizureList(genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class));
+            patient.setPharmacotherapyList(genericCardDAO.getRecordsByPatientId(patientId, PharmacotherapyEntity.class));
+            patient.setNeurologicalFindingList(genericCardDAO.getRecordsByPatientId(patientId, NeurologicalFindingEntity.class));
+            patient.setNeuropsychologyList(genericCardDAO.getRecordsByPatientId(patientId, NeuropsychologyEntity.class));
+            patient.setNeuropsychologyOldList(genericCardDAO.getRecordsByPatientId(patientId, NeuropsychologyOldEntity.class));
+            patient.setDiagnosticTestScalpEegList(genericCardDAO.getRecordsByPatientId(patientId, DiagnosticTestScalpEegEntity.class));
+            patient.setDiagnosticTestMRIList(genericCardDAO.getRecordsByPatientId(patientId, DiagnosticTestMriEntity.class));
+            patient.setInvasiveTestCorticalMappingList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingEntity.class));
+            patient.setInvasiveTestECOGList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestEcogEntity.class));
+            patient.setInvasiveTestEEGList(genericCardDAO.getRecordsByPatientId(patientId, InvasiveTestEegEntity.class));
+            patient.setOperationList(genericCardDAO.getRecordsByPatientId(patientId, OperationEntity.class));
+            patient.setHistologyList(genericCardDAO.getRecordsByPatientId(patientId, HistologyEntity.class));
+            patient.setComplicationList(genericCardDAO.getRecordsByPatientId(patientId, ComplicationEntity.class));
+            patient.setOutcomeList(genericCardDAO.getRecordsByPatientId(patientId, OutcomeEntity.class));
+
+            patientList.add(patient);
         }
 
         ExportParamsEntity exportParamsEntity = dozer.map(exportParams, ExportParamsEntity.class);

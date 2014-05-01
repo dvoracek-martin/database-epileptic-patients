@@ -1755,7 +1755,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isDiagnosticTestEEGDone()) {
             content.add(messageSource.getMessage("label.eegDone", null, locale));
 
-            content.add(translateValue(messageSource.getMessage("label.eegDone." +
+            content.add(translateValue(messageSource.getMessage("label.done." +
                     String.valueOf(diagnosticTestScalpEEG.getDone()), null, locale), locale));
 
         }
@@ -3202,7 +3202,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", heading);
-            content.add(message);
+        content.add(message);
         printOutValues(document, content);
     }
 }
