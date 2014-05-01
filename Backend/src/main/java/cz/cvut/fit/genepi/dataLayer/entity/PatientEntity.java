@@ -29,7 +29,7 @@ public class PatientEntity {
     /**
      * The nin.
      */
-    @Column(name = "nin", length = 10)
+    @Column(name = "nin", length = 15)
     private String nin;
 
     /**

@@ -17,7 +17,7 @@ public class PatientVO {
      * The nin.
      */
     //can contain chars as well   @Pattern(regexp = "[0-9]*")
-    @Size(max = 10)
+    @Size(max = 15)
     private String nin;
 
     /**
