@@ -45,8 +45,12 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
     /**
      * Create a library of cell styles
      */
-    private static Map<String, CellStyle> createStyles(Workbook wb) {
-        Map<String, CellStyle> styles = new HashMap<String, CellStyle>();
+
+   private static Map<String, CellStyle> styles = null;
+
+
+    private static Map<String, CellStyle> generateStyles(Workbook wb) {
+        styles=new HashMap<String, CellStyle>();
         CellStyle style;
         Font titleFont = wb.createFont();
         titleFont.setFontHeightInPoints((short) 18);
@@ -118,6 +122,14 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         return styles;
     }
+
+
+    private static Map<String, CellStyle> createStyles(Workbook wb) {
+        if (styles==null)
+            generateStyles(wb);
+        return styles;
+    }
+
 
     private String translateValue(String value, Locale locale) {
         if (value.equals("true"))
@@ -236,7 +248,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     "File wasn't found when trying to close xls file.", e);
             e.printStackTrace();
         }
-
+styles=null;
         return name;
     }
 
@@ -835,7 +847,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
         Row dateRow = sheet.getRow(p.getRowcount());
         if (dateRow == null)
-            sheet.createRow(p.getRowcount());
+            dateRow = sheet.createRow(p.getRowcount());
 
         p.setRowcount(p.getRowcount() + 1);
         Cell dateCell = dateRow.createCell(p.getCellcount());
