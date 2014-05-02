@@ -684,7 +684,7 @@ styles=null;
             }
         }
         if (exportParams.isPatientBirthday()) {
-            addCells("label.birthdate", translateValue(String.valueOf(patient.getBirthday()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.birthdate", translateValue(String.valueOf(TimeConverter.getDate(patient.getBirthday())), locale), sheet, locale, styles, "cell", p);
             addCells("label.age", translateValue(String.valueOf(getCurrentAge(patient)), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isPatientGender()) {

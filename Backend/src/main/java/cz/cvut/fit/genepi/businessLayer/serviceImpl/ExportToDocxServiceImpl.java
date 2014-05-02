@@ -63,7 +63,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
     }
 
     private static String getDate() {
-        DateFormat df = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date today = Calendar.getInstance().getTime();
         String reportDate = df.format(today);
         reportDate = reportDate.replace(' ', '_');
@@ -3018,7 +3018,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isPatientBirthday()) {
             content.add(messageSource.getMessage("label.birthdate",
                     null, locale) + delimiter + translateValue(
-                    String.valueOf(patient.getBirthday()), locale));
+                    String.valueOf( TimeConverter.getDate(patient.getBirthday())), locale));
             content.add(messageSource.getMessage("label.age",
                     null, locale) + delimiter + translateValue(
                     String.valueOf(getCurrentAge(patient)), locale));

@@ -1764,7 +1764,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isPatientBirthday()) {
             content += messageSource.getMessage("label.birthdate", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(patient.getBirthday()), locale);
+            content += translateValue(String.valueOf(TimeConverter.getDate(patient.getBirthday())), locale);
             content += "\n";
             content += messageSource.getMessage("label.age", null, locale);
             content += " - ";
