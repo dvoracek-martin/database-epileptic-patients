@@ -1555,7 +1555,7 @@ styles=null;
         dateCellTwo.setCellStyle(styles.get("cell"));
 
         if (exportParams.isOperationDateOperation()) {
-            addCells("label.dateOfOperation", translateValue(String.valueOf(operation.getDateOperation()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.dateOfOperation", translateValue(String.valueOf( TimeConverter.getDate(operation.getDateOperation())), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isOperationRangeOperation()) {
             addCells("label.rangeOfOperation", translateValue(messageSource.getMessage("label.operationType." +

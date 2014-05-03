@@ -1497,7 +1497,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
         if (exportParams.isOperationDateOperation()) {
             content += messageSource.getMessage("label.dateOfOperation", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf( TimeConverter.getDate(operation.getDateOperation())),
                     locale);
             content += "\n";
         }
@@ -1551,9 +1551,9 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isOperationOperationDetails()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
+            content += messageSource.getMessage("label.operationDetails", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(operation.getDateOperation()),
+            content += translateValue(String.valueOf(operation.getOperationDetails()),
                     locale);
             content += "\n";
         }
