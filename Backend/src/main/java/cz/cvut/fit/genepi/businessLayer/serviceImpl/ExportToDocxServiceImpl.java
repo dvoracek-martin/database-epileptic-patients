@@ -2515,12 +2515,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(operation.getDate()));
 
-        if (exportParams.isOperationDateOperation()) {
-            content.add(messageSource.getMessage("label.dateOfOperation", null, locale));
 
-            content.add(translateValue(String.valueOf( TimeConverter.getDate(operation.getDateOperation())),
-                    locale));
-        }
         if (exportParams.isOperationRangeOperation()) {
             content.add(messageSource.getMessage("label.rangeOfOperation",
                     null, locale) + delimiter + translateValue(messageSource.getMessage("label.operationRange." +
@@ -2582,13 +2577,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
                 + messageSource.getMessage("label.fromDate", null, locale)
                 + ": " + TimeConverter.getDate(operation.getDate()));
 
-        if (exportParams.isOperationDateOperation()) {
-            content.add(messageSource.getMessage("label.dateOfOperation", null, locale));
 
-            content.add(translateValue(String.valueOf( TimeConverter.getDate(operation.getDateOperation())),
-                    locale));
-
-        }
         if (exportParams.isOperationRangeOperation()) {
             content.add(messageSource.getMessage("label.dateOfOperation", null, locale));
 

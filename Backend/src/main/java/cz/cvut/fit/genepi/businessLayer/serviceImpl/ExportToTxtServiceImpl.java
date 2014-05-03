@@ -1488,19 +1488,7 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
                                      ExportParamsEntity exportParams) {
         String content = "";
 
-        content += messageSource.getMessage("label.operation", null, locale)
-                + " "
-                + messageSource.getMessage("label.fromDate", null, locale)
-                + ": ";
-        content += TimeConverter.getDate(operation.getDate());
-        content += "\n";
-        if (exportParams.isOperationDateOperation()) {
-            content += messageSource.getMessage("label.dateOfOperation", null, locale);
-            content += " - ";
-            content += translateValue(String.valueOf( TimeConverter.getDate(operation.getDateOperation())),
-                    locale);
-            content += "\n";
-        }
+
         if (exportParams.isOperationRangeOperation()) {
             content += messageSource.getMessage("label.rangeOfOperation", null, locale);
             content += " - ";
