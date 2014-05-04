@@ -42,7 +42,7 @@
                     class="connected sortable panel-body role-list">
                     <c:forEach var="possibleRole"
                                items="${possibleRoles}">
-                        <li draggable>
+                        <li class="cursor-pointer" draggable>
                                 ${possibleRole.authority}
                             <input type="hidden"
                                    name="role"
@@ -66,7 +66,7 @@
                         class="connected sortable role-list">
                         <c:forEach var="role"
                                    items="${user.roles}">
-                            <li draggable>
+                            <li class="cursor-pointer" draggable>
                                     ${role.authority}
                                 <input type="hidden"
                                        name="role"
