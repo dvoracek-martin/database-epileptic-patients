@@ -240,7 +240,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="toTable"/>
-                                 <spring:message code="label.toTable"/>
+                            <spring:message code="label.toTable"/>
                         </label>
                     </div>
                 </div>
@@ -282,7 +282,7 @@
 
 <div class="checkbox col-xs-offset-1">
     <label>
-        <input id="checkAll" type="checkbox" checked>  <spring:message code="label.checkUncheckAll"/>
+        <input id="checkAll" type="checkbox" checked> <spring:message code="label.checkUncheckAll"/>
     </label>
 </div>
 
@@ -414,19 +414,22 @@
         <li>
             <form:checkbox id="seizureSSCClassification" path="seizureSSCClassification"
                            class="input-block-level toCheck check-all"/>
-            <form:label path="seizureSSCClassification"><spring:message code="label.seizureDetail"/> - <spring:message code="label.sscClassification"/></form:label>
+            <form:label path="seizureSSCClassification"><spring:message code="label.seizureDetail"/> - <spring:message
+                    code="label.sscClassification"/></form:label>
         </li>
 
         <li>
             <form:checkbox id="seizureILAEClassification" path="seizureILAEClassification"
                            class="input-block-level toCheck check-all"/>
             <form:label
-                    path="seizureILAEClassification"><spring:message code="label.seizureDetail"/> - <spring:message code="label.ilaeClassification"/></form:label>
+                    path="seizureILAEClassification"><spring:message code="label.seizureDetail"/> - <spring:message
+                    code="label.ilaeClassification"/></form:label>
         </li>
         <li>
             <form:checkbox id="seizureDetailComment" path="seizureDetailComment"
                            class="input-block-level toCheck check-all"/>
-            <form:label path="seizureDetailComment"><spring:message code="label.seizureDetail"/> - <spring:message code="label.comment"/></form:label>
+            <form:label path="seizureDetailComment"><spring:message code="label.seizureDetail"/> - <spring:message
+                    code="label.comment"/></form:label>
         </li>
     </ul>
 </li>
@@ -508,20 +511,20 @@
     </ul>
 </li>
 <li class="collapsed">
-    <form:checkbox id="neuropsychology"
-                   class="toCheck check-all"
-                   path="neuropsychology"/>
-    <form:label path="neuropsychology">
-        <spring:message code="label.neuropsychology"/>
+<form:checkbox id="neuropsychology"
+               class="toCheck check-all"
+               path="neuropsychology"/>
+<form:label path="neuropsychology">
+    <spring:message code="label.neuropsychology"/>
+</form:label>
+<ul>
+<li class="collapsed">
+    <form:checkbox id="neuropsychologyIntellect" path="neuropsychologyIntellect"
+                   class="input-block-level toCheck check-all"/>
+    <form:label
+            path="neuropsychologyIntellect"><spring:message code="label.intellect"/>
     </form:label>
     <ul>
-    <li class="collapsed">
-            <form:checkbox id="neuropsychologyIntellect" path="neuropsychologyIntellect"
-                           class="input-block-level toCheck check-all"/>
-            <form:label
-                    path="neuropsychologyIntellect"><spring:message code="label.intellect"/>
-            </form:label>
-            <ul>
         <li>
             <form:checkbox id="neuropsychologyNeurodevelopmentalExamination"
                            path="neuropsychologyNeurodevelopmentalExamination"
@@ -614,14 +617,14 @@
             <form:label path="neuropsychologyIntellectualPerformanceNonverbalDesignCap"><spring:message
                     code="label.intellectualPerformanceNonverbalDesignCapabilities"/></form:label>
         </li>
-</ul>
-    </li>
-    <li class="collapsed">
-            <form:checkbox id="neuropsychologyNeuropsychologicalProfile" path="neuropsychologyNeuropsychologicalProfile"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="neuropsychologyNeuropsychologicalProfile"><spring:message
-                    code="label.neuropsychologicalProfile"/></form:label>
-       <ul>
+    </ul>
+</li>
+<li class="collapsed">
+    <form:checkbox id="neuropsychologyNeuropsychologicalProfile" path="neuropsychologyNeuropsychologicalProfile"
+                   class="input-block-level toCheck check-all"/>
+    <form:label path="neuropsychologyNeuropsychologicalProfile"><spring:message
+            code="label.neuropsychologicalProfile"/></form:label>
+    <ul>
 
         <li>
             <form:checkbox id="neuropsychologyNeuropsychologicalProfileAttention"
@@ -746,36 +749,36 @@
                     code="label.neuropsychologicalProfile"/> - <spring:message
                     code="label.motorCoordination"/></form:label>
         </li>
-       </ul>
-    </li>
-        <li>
-            <form:checkbox id="neuropsychologyPresenceOfChanges" path="neuropsychologyPresenceOfChanges"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="neuropsychologyPresenceOfChanges"><spring:message
-                    code="label.presenceOfChanges"/></form:label>
-        </li>
-
-        <li>
-            <form:checkbox id="neuropsychologyPresenceOfChangesDetail" path="neuropsychologyPresenceOfChangesDetail"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="neuropsychologyPresenceOfChangesDetail"><spring:message
-                    code="label.presenceOfChangesDetail"/></form:label>
-        </li>
-
-        <li>
-            <form:checkbox id="neuropsychologyEmotionalStatus" path="neuropsychologyEmotionalStatus"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="neuropsychologyEmotionalStatus"><spring:message
-                    code="label.emotionalState"/></form:label>
-        </li>
-
-        <li>
-            <form:checkbox id="neuropsychologyComment" path="neuropsychologyComment"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="neuropsychologyComment"><spring:message code="label.comment"/></form:label>
-        </li>
-
     </ul>
+</li>
+<li>
+    <form:checkbox id="neuropsychologyPresenceOfChanges" path="neuropsychologyPresenceOfChanges"
+                   class="input-block-level toCheck check-all"/>
+    <form:label path="neuropsychologyPresenceOfChanges"><spring:message
+            code="label.presenceOfChanges"/></form:label>
+</li>
+
+<li>
+    <form:checkbox id="neuropsychologyPresenceOfChangesDetail" path="neuropsychologyPresenceOfChangesDetail"
+                   class="input-block-level toCheck check-all"/>
+    <form:label path="neuropsychologyPresenceOfChangesDetail"><spring:message
+            code="label.presenceOfChangesDetail"/></form:label>
+</li>
+
+<li>
+    <form:checkbox id="neuropsychologyEmotionalStatus" path="neuropsychologyEmotionalStatus"
+                   class="input-block-level toCheck check-all"/>
+    <form:label path="neuropsychologyEmotionalStatus"><spring:message
+            code="label.emotionalState"/></form:label>
+</li>
+
+<li>
+    <form:checkbox id="neuropsychologyComment" path="neuropsychologyComment"
+                   class="input-block-level toCheck check-all"/>
+    <form:label path="neuropsychologyComment"><spring:message code="label.comment"/></form:label>
+</li>
+
+</ul>
 </li>
 <li class="collapsed">
     <form:checkbox id="neuropsychologyOld"
@@ -844,66 +847,69 @@
             <form:label
                     path="diagnosticTestEEGDone"><spring:message code="label.eegDone"/>
             </form:label>
-        <ul>
-        <li>
-            <form:checkbox id="diagnosticTestEEGBasicActivity" path="diagnosticTestEEGBasicActivity"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGBasicActivity"><spring:message
-                    code="label.basicEegActivity"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGBasicActivity" path="diagnosticTestEEGBasicActivity"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGBasicActivity"><spring:message
+                            code="label.basicEegActivity"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGSlow" path="diagnosticTestEEGSlow"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGSlow"><spring:message code="label.eegSlow"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGSlow" path="diagnosticTestEEGSlow"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGSlow"><spring:message code="label.eegSlow"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGInterictalEEGSpikes" path="diagnosticTestEEGInterictalEEGSpikes"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGInterictalEEGSpikes"><spring:message code="label.interictalEegSpikes"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGInterictalEEGSpikes" path="diagnosticTestEEGInterictalEEGSpikes"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGInterictalEEGSpikes"><spring:message
+                            code="label.interictalEegSpikes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGLocalizationInerictalEEGSpikes"
-                           path="diagnosticTestEEGLocalizationInerictalEEGSpikes"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGLocalizationInerictalEEGSpikes"><spring:message
-                    code="label.localizationInterictalEegSpikes"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGLocalizationInerictalEEGSpikes"
+                                   path="diagnosticTestEEGLocalizationInerictalEEGSpikes"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGLocalizationInerictalEEGSpikes"><spring:message
+                            code="label.localizationInterictalEegSpikes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGStatusEpilepticus" path="diagnosticTestEEGStatusEpilepticus"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGStatusEpilepticus"><spring:message
-                    code="label.eegStatusEpilepticus"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGStatusEpilepticus" path="diagnosticTestEEGStatusEpilepticus"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGStatusEpilepticus"><spring:message
+                            code="label.eegStatusEpilepticus"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGSecondarySidedSynchrony" path="diagnosticTestEEGSecondarySidedSynchrony"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGSecondarySidedSynchrony"><spring:message
-                    code="label.secondarySidedSynchrony"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGSecondarySidedSynchrony"
+                                   path="diagnosticTestEEGSecondarySidedSynchrony"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGSecondarySidedSynchrony"><spring:message
+                            code="label.secondarySidedSynchrony"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGIctalEEGPatterns" path="diagnosticTestEEGIctalEEGPatterns"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGIctalEEGPatterns"><spring:message
-                    code="label.ictalEegPatterns"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGIctalEEGPatterns" path="diagnosticTestEEGIctalEEGPatterns"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGIctalEEGPatterns"><spring:message
+                            code="label.ictalEegPatterns"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGDescriptionVideoEEG" path="diagnosticTestEEGDescriptionVideoEEG"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGDescriptionVideoEEG"><spring:message code="label.descriptionVideoEeg"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGDescriptionVideoEEG" path="diagnosticTestEEGDescriptionVideoEEG"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGDescriptionVideoEEG"><spring:message
+                            code="label.descriptionVideoEeg"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestEEGComment" path="diagnosticTestEEGComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestEEGComment"><spring:message code="label.comment"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestEEGComment" path="diagnosticTestEEGComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestEEGComment"><spring:message code="label.comment"/></form:label>
+                </li>
             </ul>
         </li>
     </ul>
@@ -923,124 +929,129 @@
             <form:label
                     path="diagnosticTestMRIDone"><spring:message code="label.mri_done"/>
             </form:label>
-        <ul>
-        <li>
-            <form:checkbox id="diagnosticTestMRIFinding" path="diagnosticTestMRIFinding"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIFinding"><spring:message code="label.mriFinding"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIFinding" path="diagnosticTestMRIFinding"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIFinding"><spring:message code="label.mriFinding"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDescription" path="diagnosticTestMRIDescription"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDescription"><spring:message code="label.descriptionMri"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDescription" path="diagnosticTestMRIDescription"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDescription"><spring:message
+                            code="label.descriptionMri"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIFdgPet" path="diagnosticTestMRIFdgPet"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIFdgPet"><spring:message code="label.fdgPet"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIFdgPet" path="diagnosticTestMRIFdgPet"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIFdgPet"><spring:message code="label.fdgPet"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDescriptionPetHypometabolism"
-                           path="diagnosticTestMRIDescriptionPetHypometabolism"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDescriptionPetHypometabolism"><spring:message
-                    code="label.descriptionPetHypometabolism"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDescriptionPetHypometabolism"
+                                   path="diagnosticTestMRIDescriptionPetHypometabolism"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDescriptionPetHypometabolism"><spring:message
+                            code="label.descriptionPetHypometabolism"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIInterictalSpect" path="diagnosticTestMRIInterictalSpect"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIInterictalSpect"><spring:message
-                    code="label.interictalSpect"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIInterictalSpect" path="diagnosticTestMRIInterictalSpect"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIInterictalSpect"><spring:message
+                            code="label.interictalSpect"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDescriptionSpectHypoperfuse"
-                           path="diagnosticTestMRIDescriptionSpectHypoperfuse"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDescriptionSpectHypoperfuse"><spring:message
-                    code="label.descriptionSpectHypoperfuse"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDescriptionSpectHypoperfuse"
+                                   path="diagnosticTestMRIDescriptionSpectHypoperfuse"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDescriptionSpectHypoperfuse"><spring:message
+                            code="label.descriptionSpectHypoperfuse"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIIctalSpect" path="diagnosticTestMRIIctalSpect"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIIctalSpect"><spring:message code="label.ictalSpect"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIIctalSpect" path="diagnosticTestMRIIctalSpect"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIIctalSpect"><spring:message
+                            code="label.ictalSpect"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDescriptionSpectHyperperfuse"
-                           path="diagnosticTestMRIDescriptionSpectHyperperfuse"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDescriptionSpectHyperperfuse"><spring:message
-                    code="label.descriptionSpectHyperperfuse"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDescriptionSpectHyperperfuse"
+                                   path="diagnosticTestMRIDescriptionSpectHyperperfuse"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDescriptionSpectHyperperfuse"><spring:message
+                            code="label.descriptionSpectHyperperfuse"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRISiscom" path="diagnosticTestMRISiscom"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRISiscom"><spring:message code="label.siscom"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRISiscom" path="diagnosticTestMRISiscom"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRISiscom"><spring:message code="label.siscom"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIMrsProtocol" path="diagnosticTestMRIMrsProtocol"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIMrsProtocol"><spring:message code="label.mrsProtocol"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIMrsProtocol" path="diagnosticTestMRIMrsProtocol"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIMrsProtocol"><spring:message
+                            code="label.mrsProtocol"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDescriptionMrsAbnormality"
-                           path="diagnosticTestMRIDescriptionMrsAbnormality"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDescriptionMrsAbnormality"><spring:message
-                    code="label.descriptionMrsAbnormality"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDescriptionMrsAbnormality"
+                                   path="diagnosticTestMRIDescriptionMrsAbnormality"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDescriptionMrsAbnormality"><spring:message
+                            code="label.descriptionMrsAbnormality"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIFmri" path="diagnosticTestMRIFmri"
-                           class="input-statusEpilepticus-level toCiagnosticTestMRIMrsFindingheck"/>
-            <form:label path="diagnosticTestMRIFmri"><spring:message code="label.fmri"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIFmri" path="diagnosticTestMRIFmri"
+                                   class="input-statusEpilepticus-level toCiagnosticTestMRIMrsFindingheck"/>
+                    <form:label path="diagnosticTestMRIFmri"><spring:message code="label.fmri"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDetailsFmri" path="diagnosticTestMRIDetailsFmri"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDetailsFmri"><spring:message code="label.fmriDetails"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDetailsFmri" path="diagnosticTestMRIDetailsFmri"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDetailsFmri"><spring:message
+                            code="label.fmriDetails"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDti" path="diagnosticTestMRIDti"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDti"><spring:message code="label.dti"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDti" path="diagnosticTestMRIDti"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDti"><spring:message code="label.dti"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDetailsDtiStudy" path="diagnosticTestMRIDetailsDtiStudy"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDetailsDtiStudy"><spring:message
-                    code="label.dtiStudyDetails"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDetailsDtiStudy" path="diagnosticTestMRIDetailsDtiStudy"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDetailsDtiStudy"><spring:message
+                            code="label.dtiStudyDetails"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIWada" path="diagnosticTestMRIWada"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIWada"><spring:message code="label.wada"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIWada" path="diagnosticTestMRIWada"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIWada"><spring:message code="label.wada"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIDetailsWada" path="diagnosticTestMRIDetailsWada"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIDetailsWada"><spring:message code="label.wadaDetails"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIDetailsWada" path="diagnosticTestMRIDetailsWada"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIDetailsWada"><spring:message
+                            code="label.wadaDetails"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="diagnosticTestMRIComment" path="diagnosticTestMRIComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="diagnosticTestMRIComment"><spring:message code="label.comment"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="diagnosticTestMRIComment" path="diagnosticTestMRIComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="diagnosticTestMRIComment"><spring:message code="label.comment"/></form:label>
+                </li>
             </ul>
         </li>
     </ul>
@@ -1060,31 +1071,32 @@
             <form:label
                     path="invasiveTestECOGDone"><spring:message code="label.ecogDone"/>
             </form:label>
-        <ul>
-        <li>
-            <form:checkbox id="invasiveTestECOGEcogCover" path="invasiveTestECOGEcogCover"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="invasiveTestECOGEcogCover"><spring:message code="label.ecogCover"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="invasiveTestECOGEcogCover" path="invasiveTestECOGEcogCover"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="invasiveTestECOGEcogCover"><spring:message code="label.ecogCover"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestECOGEcogPatterns" path="invasiveTestECOGEcogPatterns"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestECOGEcogPatterns"><spring:message code="label.ecogPatterns"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestECOGEcogPatterns" path="invasiveTestECOGEcogPatterns"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestECOGEcogPatterns"><spring:message
+                            code="label.ecogPatterns"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestECOGAfterResectionEcog" path="invasiveTestECOGAfterResectionEcog"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestECOGAfterResectionEcog"><spring:message
-                    code="label.ecogAfterResection"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestECOGAfterResectionEcog" path="invasiveTestECOGAfterResectionEcog"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestECOGAfterResectionEcog"><spring:message
+                            code="label.ecogAfterResection"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestECOGComment" path="invasiveTestECOGComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestECOGComment"><spring:message code="label.comment"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestECOGComment" path="invasiveTestECOGComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestECOGComment"><spring:message code="label.comment"/></form:label>
+                </li>
             </ul>
         </li>
     </ul>
@@ -1103,71 +1115,75 @@
             <form:label
                     path="invasiveTestEEGDone"><spring:message code="label.ieegDone"/>
             </form:label>
-<ul>
-        <li>
-            <form:checkbox id="invasiveTestEEGIntracranialElectrodes" path="invasiveTestEEGIntracranialElectrodes"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGIntracranialElectrodes"><spring:message
-                    code="label.intracranialElectrodes"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="invasiveTestEEGIntracranialElectrodes"
+                                   path="invasiveTestEEGIntracranialElectrodes"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGIntracranialElectrodes"><spring:message
+                            code="label.intracranialElectrodes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGLocalizationIntracranialElectrodes"
-                           path="invasiveTestEEGLocalizationIntracranialElectrodes"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGLocalizationIntracranialElectrodes"><spring:message
-                    code="label.localizationIntracranialElectrodes"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGLocalizationIntracranialElectrodes"
+                                   path="invasiveTestEEGLocalizationIntracranialElectrodes"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGLocalizationIntracranialElectrodes"><spring:message
+                            code="label.localizationIntracranialElectrodes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGInvasiveEEGSlow" path="invasiveTestEEGInvasiveEEGSlow"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGInvasiveEEGSlow"><spring:message code="label.eegSlow"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGInvasiveEEGSlow" path="invasiveTestEEGInvasiveEEGSlow"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGInvasiveEEGSlow"><spring:message
+                            code="label.eegSlow"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGInvasiveEEGInterictalSpikes"
-                           path="invasiveTestEEGInvasiveEEGInterictalSpikes"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGInvasiveEEGInterictalSpikes"><spring:message
-                    code="label.interictalEegSpikes"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGInvasiveEEGInterictalSpikes"
+                                   path="invasiveTestEEGInvasiveEEGInterictalSpikes"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGInvasiveEEGInterictalSpikes"><spring:message
+                            code="label.interictalEegSpikes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"
-                           path="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"><spring:message
-                    code="label.localizationInvasiveEegInterictalSpikes"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"
+                                   path="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGLocalizationInvasiveEEGInterictalSpikes"><spring:message
+                            code="label.localizationInvasiveEegInterictalSpikes"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGStatusEpilepticus" path="invasiveTestEEGStatusEpilepticus"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGStatusEpilepticus"><spring:message
-                    code="label.invasiveEegStatusEpilepticus"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGStatusEpilepticus" path="invasiveTestEEGStatusEpilepticus"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGStatusEpilepticus"><spring:message
+                            code="label.invasiveEegStatusEpilepticus"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGInvasiveIctalEEGPatterns" path="invasiveTestEEGInvasiveIctalEEGPatterns"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGInvasiveIctalEEGPatterns"><spring:message code="label.ictalEegPatterns"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGInvasiveIctalEEGPatterns"
+                                   path="invasiveTestEEGInvasiveIctalEEGPatterns"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGInvasiveIctalEEGPatterns"><spring:message
+                            code="label.ictalEegPatterns"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGLocalizationIctalEEGPatterns"
-                           path="invasiveTestEEGLocalizationIctalEEGPatterns"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGLocalizationIctalEEGPatterns"><spring:message
-                    code="label.localizationIctalEegPattern"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestEEGLocalizationIctalEEGPatterns"
+                                   path="invasiveTestEEGLocalizationIctalEEGPatterns"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGLocalizationIctalEEGPatterns"><spring:message
+                            code="label.localizationIctalEegPattern"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestEEGComment" path="invasiveTestEEGComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestEEGComment"><spring:message code="label.comment"/></form:label>
-        </li>
-    </ul>
+                <li>
+                    <form:checkbox id="invasiveTestEEGComment" path="invasiveTestEEGComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestEEGComment"><spring:message code="label.comment"/></form:label>
+                </li>
+            </ul>
         </li>
     </ul>
 </li>
@@ -1186,20 +1202,21 @@
             <form:label
                     path="invasiveTestCorticalMappingDone"><spring:message code="label.corticalMappingDone"/>
             </form:label>
-        <ul>
-        <li>
-            <form:checkbox id="invasiveTestCorticalMappingCorticalMapping"
-                           path="invasiveTestCorticalMappingCorticalMapping"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="invasiveTestCorticalMappingCorticalMapping"><spring:message
-                    code="label.corticalMapping"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="invasiveTestCorticalMappingCorticalMapping"
+                                   path="invasiveTestCorticalMappingCorticalMapping"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="invasiveTestCorticalMappingCorticalMapping"><spring:message
+                            code="label.corticalMapping"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="invasiveTestCorticalMappingComment" path="invasiveTestCorticalMappingComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="invasiveTestCorticalMappingComment"><spring:message code="label.comment"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="invasiveTestCorticalMappingComment" path="invasiveTestCorticalMappingComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="invasiveTestCorticalMappingComment"><spring:message
+                            code="label.comment"/></form:label>
+                </li>
             </ul>
         </li>
     </ul>
@@ -1327,32 +1344,32 @@
             <form:label
                     path="complicationWithCompication"><spring:message code="label.process"/>
             </form:label>
-       <ul>
-        <li>
-            <form:checkbox id="complicationComplicationType" path="complicationComplicationType"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="complicationComplicationType"><spring:message
-                    code="label.typeComplication"/></form:label>
-        </li>
+            <ul>
+                <li>
+                    <form:checkbox id="complicationComplicationType" path="complicationComplicationType"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="complicationComplicationType"><spring:message
+                            code="label.typeComplication"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="complicationComplication" path="complicationComplication"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="complicationComplication"><spring:message code="label.complication"/></form:label>
-        </li>
-        <li>
-            <form:checkbox id="complicationComplicationType" path="complicationComplicationType"
-                           class="input-block-level toCheck check-all"/>
-            <form:label path="complicationComplicationType"><spring:message
-                    code="label.typeComplication"/></form:label>
-        </li>
+                <li>
+                    <form:checkbox id="complicationComplication" path="complicationComplication"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="complicationComplication"><spring:message code="label.complication"/></form:label>
+                </li>
+                <li>
+                    <form:checkbox id="complicationComplicationType" path="complicationComplicationType"
+                                   class="input-block-level toCheck check-all"/>
+                    <form:label path="complicationComplicationType"><spring:message
+                            code="label.typeComplication"/></form:label>
+                </li>
 
-        <li>
-            <form:checkbox id="complicationComment" path="complicationComment"
-                           class="input-statusEpilepticus-level toCheck check-all"/>
-            <form:label path="complicationComment"><spring:message code="label.comment"/></form:label>
-        </li>
-           </ul>
+                <li>
+                    <form:checkbox id="complicationComment" path="complicationComment"
+                                   class="input-statusEpilepticus-level toCheck check-all"/>
+                    <form:label path="complicationComment"><spring:message code="label.comment"/></form:label>
+                </li>
+            </ul>
         </li>
 
     </ul>

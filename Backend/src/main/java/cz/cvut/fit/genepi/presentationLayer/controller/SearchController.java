@@ -99,7 +99,7 @@ public class SearchController {
             patientCount += patientDisplayVOList.size();
         }
 
-        model.addAttribute("patientCount",patientCount);
+        model.addAttribute("patientCount", patientCount);
 
         /* hotfix END */
         model.addAttribute("patients", patients);
