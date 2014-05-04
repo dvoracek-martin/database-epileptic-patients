@@ -1430,7 +1430,7 @@
         </div>
 
         <div class="col-xs-2">
-            <sec:authorize ifAnyGranted="ROLE_SUPERDOCTOR">
+            <sec:authorize ifAnyGranted="ROLE_SUPER_DOCTOR">
                 <form:checkbox id="generic"
                                path="generic"/>
                 <label for="generic">
