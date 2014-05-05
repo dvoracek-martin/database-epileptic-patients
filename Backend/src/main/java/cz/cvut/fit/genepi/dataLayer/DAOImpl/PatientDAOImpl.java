@@ -168,84 +168,95 @@ public class PatientDAOImpl
         /* Fetching and creating alias for sub collection anamnesisList */
             criteria.createAlias("patient.anamnesisList", "anamnesisList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("anamnesisList.history", false));
 
-            if (advancedSearch.getAnamnesisEpilepsyInFamily() != 3) {
-                if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", false));
+            if (advancedSearch.getAnamnesisEpilepsyInFamily() != 3 ||
+                    advancedSearch.getAnamnesisPrenatalRisk() != 3 ||
+                    advancedSearch.getAnamnesisFibrilConvulsions() != 3 ||
+                    advancedSearch.getAnamnesisInflammationCns() != 3 ||
+                    advancedSearch.getAnamnesisInjuryCns() != 3 ||
+                    advancedSearch.getAnamnesisOperationCns() != 3 ||
+                    advancedSearch.getAnamnesisEarlyPmdRetardation() != 3 ||
+                    advancedSearch.getAnamnesisFirstFever() != 3 ||
+                    advancedSearch.getAnamnesisInfantileSpasm() != 3 ||
+                    advancedSearch.getAnamnesisSpecificSyndrome() != 0) {
+                criteria.add(Restrictions.eq("anamnesisList.history", false));
+
+                if (advancedSearch.getAnamnesisEpilepsyInFamily() != 3) {
+                    if (advancedSearch.getAnamnesisEpilepsyInFamily() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.epilepsyInFamily", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisPrenatalRisk() != 3) {
+                    if (advancedSearch.getAnamnesisPrenatalRisk() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisFibrilConvulsions() != 3) {
+                    if (advancedSearch.getAnamnesisFibrilConvulsions() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisInflammationCns() != 3) {
+                    if (advancedSearch.getAnamnesisInflammationCns() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.inflammationCns", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.inflammationCns", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisInjuryCns() != 3) {
+                    if (advancedSearch.getAnamnesisInjuryCns() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.injuryCns", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.injuryCns", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisOperationCns() != 3) {
+                    if (advancedSearch.getAnamnesisOperationCns() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.operationCns", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.operationCns", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisEarlyPmdRetardation() != 3) {
+                    if (advancedSearch.getAnamnesisEarlyPmdRetardation() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisFirstFever() != 3) {
+                    if (advancedSearch.getAnamnesisFirstFever() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.firstFever", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.firstFever", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisInfantileSpasm() != 3) {
+                    if (advancedSearch.getAnamnesisInfantileSpasm() == 1) {
+                        criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", true));
+                    } else {
+                        criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", false));
+                    }
+                }
+
+                if (advancedSearch.getAnamnesisSpecificSyndrome() != 0) {
+                    criteria.add(Restrictions.eq("anamnesisList.specificSyndrome", advancedSearch.getAnamnesisSpecificSyndrome()));
                 }
             }
-
-            if (advancedSearch.getAnamnesisPrenatalRisk() != 3) {
-                if (advancedSearch.getAnamnesisPrenatalRisk() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.prenatalRisk", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisFibrilConvulsions() != 3) {
-                if (advancedSearch.getAnamnesisFibrilConvulsions() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.fibrilConvulsions", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisInflammationCns() != 3) {
-                if (advancedSearch.getAnamnesisInflammationCns() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.inflammationCns", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.inflammationCns", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisInjuryCns() != 3) {
-                if (advancedSearch.getAnamnesisInjuryCns() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.injuryCns", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.injuryCns", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisOperationCns() != 3) {
-                if (advancedSearch.getAnamnesisOperationCns() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.operationCns", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.operationCns", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisEarlyPmdRetardation() != 3) {
-                if (advancedSearch.getAnamnesisEarlyPmdRetardation() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.earlyPmdRetardation", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisFirstFever() != 3) {
-                if (advancedSearch.getAnamnesisFirstFever() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.firstFever", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.firstFever", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisInfantileSpasm() != 3) {
-                if (advancedSearch.getAnamnesisInfantileSpasm() == 1) {
-                    criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", true));
-                } else {
-                    criteria.add(Restrictions.eq("anamnesisList.infantileSpasm", false));
-                }
-            }
-
-            if (advancedSearch.getAnamnesisSpecificSyndrome() != 0) {
-                criteria.add(Restrictions.eq("anamnesisList.specificSyndrome", advancedSearch.getAnamnesisSpecificSyndrome()));
-            }
-
         }
 
         		/* seizure specific section */
@@ -254,108 +265,125 @@ public class PatientDAOImpl
         /* Fetching and creating alias for sub collection seizureList */
             criteria.createAlias("patient.seizureList", "seizureList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("seizureList.history", false));
-            criteria.add(Restrictions.eq("seizureList.hidden", false));
+            //     criteria.add(Restrictions.or(Restrictions.sizeEq("seizureList",0),Restrictions.and(Restrictions.eq("seizureList.history", false),Restrictions.eq("seizureList.hidden", false))));
 
-            if (advancedSearch.getSeizureSeizureFrequency() != 0) {
-                criteria.add(Restrictions.eq("seizureList.seizureFrequency", advancedSearch.getSeizureSeizureFrequency()));
-            }
+            if (advancedSearch.getSeizureSeizureFrequency() != 0 ||
+                    advancedSearch.getSeizureSecondarilyGeneralizedSeizure() != 3 ||
+                    advancedSearch.getSeizureStatusEpilepticus() != 3 ||
+                    advancedSearch.getSeizureSeizureOccurence() != 4 ||
+                    advancedSearch.getSeizureSscClassification() != 0 ||
+                    advancedSearch.getSeizureIlaeClassification() != 0) {
+                criteria.add(Restrictions.eq("seizureList.history", false));
+                criteria.add(Restrictions.eq("seizureList.hidden", false));
 
-            if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() != 3) {
-                if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() == 1) {
-                    criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", true));
-                } else {
-                    criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", false));
+                if (advancedSearch.getSeizureSeizureFrequency() != 0) {
+                    criteria.add(Restrictions.eq("seizureList.seizureFrequency", advancedSearch.getSeizureSeizureFrequency()));
                 }
-            }
 
-            if (advancedSearch.getSeizureStatusEpilepticus() != 3) {
-                if (advancedSearch.getSeizureStatusEpilepticus() == 1) {
-                    criteria.add(Restrictions.eq("seizureList.statusEpilepticus", true));
-                } else {
-                    criteria.add(Restrictions.eq("seizureList.statusEpilepticus", false));
+                if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() != 3) {
+                    if (advancedSearch.getSeizureSecondarilyGeneralizedSeizure() == 1) {
+                        criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", true));
+                    } else {
+                        criteria.add(Restrictions.eq("seizureList.secondarilyGeneralizedSeizure", false));
+                    }
                 }
-            }
 
-            if (advancedSearch.getSeizureSeizureOccurence() != 4) {
-                criteria.add(Restrictions.eq("seizureList.seizureOccurrence", advancedSearch.getSeizureSeizureOccurence()));
-            }
+                if (advancedSearch.getSeizureStatusEpilepticus() != 3) {
+                    if (advancedSearch.getSeizureStatusEpilepticus() == 1) {
+                        criteria.add(Restrictions.eq("seizureList.statusEpilepticus", true));
+                    } else {
+                        criteria.add(Restrictions.eq("seizureList.statusEpilepticus", false));
+                    }
+                }
+
+                if (advancedSearch.getSeizureSeizureOccurence() != 4) {
+                    criteria.add(Restrictions.eq("seizureList.seizureOccurrence", advancedSearch.getSeizureSeizureOccurence()));
+                }
 
             /* seizure detail specific section */
 
-            if (advancedSearch.getSeizureSscClassification() != 0 ||
-                    advancedSearch.getSeizureIlaeClassification() != 0) {
+                if (advancedSearch.getSeizureSscClassification() != 0 ||
+                        advancedSearch.getSeizureIlaeClassification() != 0) {
 
-                criteria.createAlias("seizureList.seizureDetailList", "seizureDetailList", JoinType.LEFT_OUTER_JOIN);
+                    criteria.createAlias("seizureList.seizureDetailList", "seizureDetailList", JoinType.LEFT_OUTER_JOIN);
 
-                criteria.add(Restrictions.eq("seizureDetailList.history", false));
-                criteria.add(Restrictions.eq("seizureDetailList.hidden", false));
+                    criteria.add(Restrictions.eq("seizureDetailList.history", false));
+                    criteria.add(Restrictions.eq("seizureDetailList.hidden", false));
 
-                if (advancedSearch.getSeizureSscClassification() != 0) {
-                    criteria.add(Restrictions.eq("seizureDetailList.sscClassification", advancedSearch.getSeizureSscClassification()));
-                }
+                    if (advancedSearch.getSeizureSscClassification() != 0) {
+                        criteria.add(Restrictions.eq("seizureDetailList.sscClassification", advancedSearch.getSeizureSscClassification()));
+                    }
 
-                if (advancedSearch.getSeizureIlaeClassification() != 0) {
-                    criteria.add(Restrictions.eq("seizureDetailList.ilaeClassification", advancedSearch.getSeizureIlaeClassification()));
+                    if (advancedSearch.getSeizureIlaeClassification() != 0) {
+                        criteria.add(Restrictions.eq("seizureDetailList.ilaeClassification", advancedSearch.getSeizureIlaeClassification()));
+                    }
                 }
             }
-
         }
 
         /* pharmacotherapy specific section */
         if (advancedSearch.isPharmacotherapy()) {
                /* Fetching and creating alias for sub collection pharmacotherapyList */
-            criteria.createAlias("patient.pharmacotherapyList", "pharmacotherapyList", JoinType.LEFT_OUTER_JOIN);
-
-            criteria.add(Restrictions.eq("pharmacotherapyList.history", false));
-            criteria.add(Restrictions.eq("pharmacotherapyList.hidden", false));
 
             if (!advancedSearch.getPharmacotherapyAed().equals("[]")) {
+                criteria.createAlias("patient.pharmacotherapyList", "pharmacotherapyList", JoinType.LEFT_OUTER_JOIN);
 
-                String str = advancedSearch.getPharmacotherapyAed().replaceAll("[^\\d,]", "");
-                String[] numbers = str.split(",");
-                List<Integer> ints = new ArrayList<>();
-                for (String number : numbers) {
-                    ints.add(Integer.parseInt(number));
+                criteria.add(Restrictions.eq("pharmacotherapyList.history", false));
+                criteria.add(Restrictions.eq("pharmacotherapyList.hidden", false));
+
+                if (!advancedSearch.getPharmacotherapyAed().equals("[]")) {
+
+                    String str = advancedSearch.getPharmacotherapyAed().replaceAll("[^\\d,]", "");
+                    String[] numbers = str.split(",");
+                    List<Integer> ints = new ArrayList<>();
+                    for (String number : numbers) {
+                        ints.add(Integer.parseInt(number));
+                    }
+
+                    criteria.add(Restrictions.in("pharmacotherapyList.aed", ints));
                 }
-
-                criteria.add(Restrictions.in("pharmacotherapyList.aed", ints));
             }
         }
 
              /* neurological finding specific section */
         if (advancedSearch.isNeurologicalFinding()) {
                /* Fetching and creating alias for sub collection neurologicalFindingList */
-            criteria.createAlias("patient.neurologicalFindingList", "neurologicalFindingList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("neurologicalFindingList.history", false));
-            criteria.add(Restrictions.eq("neurologicalFindingList.hidden", false));
+            if (advancedSearch.getNeurologicalFindingHemisphereDominance() != 0 ||
+                    advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() != 3 ||
+                    advancedSearch.getNeurologicalFindingHemiparesis() != 3 ||
+                    advancedSearch.getNeurologicalFindingVisualFieldDefects() != 3) {
+                criteria.createAlias("patient.neurologicalFindingList", "neurologicalFindingList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getNeurologicalFindingHemisphereDominance() != 0) {
-                criteria.add(Restrictions.eq("neurologicalFindingList.hemisphereDominance", advancedSearch.getNeurologicalFindingHemisphereDominance()));
-            }
+                criteria.add(Restrictions.eq("neurologicalFindingList.history", false));
+                criteria.add(Restrictions.eq("neurologicalFindingList.hidden", false));
 
-            if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() != 3) {
-                if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() == 1) {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", true));
-                } else {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", false));
+                if (advancedSearch.getNeurologicalFindingHemisphereDominance() != 0) {
+                    criteria.add(Restrictions.eq("neurologicalFindingList.hemisphereDominance", advancedSearch.getNeurologicalFindingHemisphereDominance()));
                 }
-            }
 
-            if (advancedSearch.getNeurologicalFindingHemiparesis() != 3) {
-                if (advancedSearch.getNeurologicalFindingHemiparesis() == 1) {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", true));
-                } else {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", false));
+                if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() != 3) {
+                    if (advancedSearch.getNeurologicalFindingAbnormalNeurologicalFinding() == 1) {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", true));
+                    } else {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.abnormalNeurologicalFinding", false));
+                    }
                 }
-            }
 
-            if (advancedSearch.getNeurologicalFindingVisualFieldDefects() != 3) {
-                if (advancedSearch.getNeurologicalFindingVisualFieldDefects() == 1) {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", true));
-                } else {
-                    criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", false));
+                if (advancedSearch.getNeurologicalFindingHemiparesis() != 3) {
+                    if (advancedSearch.getNeurologicalFindingHemiparesis() == 1) {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", true));
+                    } else {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.hemiparesis", false));
+                    }
+                }
+
+                if (advancedSearch.getNeurologicalFindingVisualFieldDefects() != 3) {
+                    if (advancedSearch.getNeurologicalFindingVisualFieldDefects() == 1) {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", true));
+                    } else {
+                        criteria.add(Restrictions.eq("neurologicalFindingList.visualFieldDefects", false));
+                    }
                 }
             }
         }
@@ -368,101 +396,120 @@ public class PatientDAOImpl
              /* diagnostic test scalp eeg specific section */
         if (advancedSearch.isDiagnosticTestScalpEeg()) {
      /* Fetching and creating alias for sub collection diagnosticTestScalpEegList */
-            criteria.createAlias("patient.diagnosticTestScalpEegList", "diagnosticTestScalpEegList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("diagnosticTestScalpEegList.history", false));
-            criteria.add(Restrictions.eq("diagnosticTestScalpEegList.hidden", false));
+            if (advancedSearch.getDiagnosticTestScalpEegBasicEegActivity() != 0 ||
+                    advancedSearch.getDiagnosticTestScalpEegEegSlow() != 0 ||
+                    advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes() != 0 ||
+                    advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() != 3 ||
+                    advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() != 3 ||
+                    advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns() != 0) {
+                criteria.createAlias("patient.diagnosticTestScalpEegList", "diagnosticTestScalpEegList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getDiagnosticTestScalpEegBasicEegActivity() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.basicEegActivity", advancedSearch.getDiagnosticTestScalpEegBasicEegActivity()));
-            }
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.history", false));
+                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.hidden", false));
 
-            if (advancedSearch.getDiagnosticTestScalpEegEegSlow() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegSlow", advancedSearch.getDiagnosticTestScalpEegEegSlow()));
-            }
-
-            if (advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.interictalEegSpikes", advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes()));
-            }
-
-            if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() != 3) {
-                if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", false));
+                if (advancedSearch.getDiagnosticTestScalpEegBasicEegActivity() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.basicEegActivity", advancedSearch.getDiagnosticTestScalpEegBasicEegActivity()));
                 }
-            }
 
-            if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() != 3) {
-                if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", false));
+                if (advancedSearch.getDiagnosticTestScalpEegEegSlow() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegSlow", advancedSearch.getDiagnosticTestScalpEegEegSlow()));
                 }
-            }
 
-            if (advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestScalpEegList.ictalEegPatterns", advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns()));
+                if (advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.interictalEegSpikes", advancedSearch.getDiagnosticTestScalpEegInterictalEegSpikes()));
+                }
+
+                if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() != 3) {
+                    if (advancedSearch.getDiagnosticTestScalpEegEegStatusEpilepticus() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestScalpEegList.eegStatusEpilepticus", false));
+                    }
+                }
+
+                if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() != 3) {
+                    if (advancedSearch.getDiagnosticTestScalpEegSecondarySidedSynchrony() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestScalpEegList.secondarySidedSynchrony", false));
+                    }
+                }
+
+                if (advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestScalpEegList.ictalEegPatterns", advancedSearch.getDiagnosticTestScalpEegIctalEegPatterns()));
+                }
             }
         }
 
                /* diagnostic test mri specific section */
         if (advancedSearch.isDiagnosticTestMri()) {
      /* Fetching and creating alias for sub collection diagnosticTestMriList */
-            criteria.createAlias("patient.diagnosticTestMRIList", "diagnosticTestMriList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("diagnosticTestMriList.history", false));
-            criteria.add(Restrictions.eq("diagnosticTestMriList.hidden", false));
+            if (advancedSearch.getDiagnosticTestMriMriFinding() != 0 ||
+                    advancedSearch.getDiagnosticTestMriFdgPet() != 0 ||
+                    advancedSearch.getDiagnosticTestMriInterictalSpect() != 0 ||
+                    advancedSearch.getDiagnosticTestMriSiscom() != 3 ||
+                    advancedSearch.getDiagnosticTestMriMrsProtocol() != 0 ||
+                    advancedSearch.getDiagnosticTestMriMrsFinding() != 0 ||
+                    advancedSearch.getDiagnosticTestMriDti() != 3 ||
+                    advancedSearch.getDiagnosticTestMriFmri() != 3 ||
+                    advancedSearch.getDiagnosticTestMriWada() != 3) {
+                criteria.createAlias("patient.diagnosticTestMRIList", "diagnosticTestMriList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getDiagnosticTestMriMriFinding() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestMriList.mriFinding", advancedSearch.getDiagnosticTestMriMriFinding()));
-            }
+                criteria.add(Restrictions.eq("diagnosticTestMriList.history", false));
+                criteria.add(Restrictions.eq("diagnosticTestMriList.hidden", false));
 
-            if (advancedSearch.getDiagnosticTestMriFdgPet() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestMriList.fdgPet", advancedSearch.getDiagnosticTestMriFdgPet()));
-            }
-
-            if (advancedSearch.getDiagnosticTestMriInterictalSpect() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestMriList.interictalSpect", advancedSearch.getDiagnosticTestMriInterictalSpect()));
-            }
-
-            if (advancedSearch.getDiagnosticTestMriSiscom() != 3) {
-                if (advancedSearch.getDiagnosticTestMriSiscom() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", false));
+                if (advancedSearch.getDiagnosticTestMriMriFinding() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.mriFinding", advancedSearch.getDiagnosticTestMriMriFinding()));
                 }
-            }
 
-            if (advancedSearch.getDiagnosticTestMriMrsProtocol() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestMriList.mrsProtocol", advancedSearch.getDiagnosticTestMriMrsProtocol()));
-            }
-
-            if (advancedSearch.getDiagnosticTestMriMrsFinding() != 0) {
-                criteria.add(Restrictions.eq("diagnosticTestMriList.mrsFinding", advancedSearch.getDiagnosticTestMriMrsFinding()));
-            }
-
-            if (advancedSearch.getDiagnosticTestMriDti() != 3) {
-                if (advancedSearch.getDiagnosticTestMriDti() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.dti", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.dti", false));
+                if (advancedSearch.getDiagnosticTestMriFdgPet() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.fdgPet", advancedSearch.getDiagnosticTestMriFdgPet()));
                 }
-            }
 
-            if (advancedSearch.getDiagnosticTestMriFmri() != 3) {
-                if (advancedSearch.getDiagnosticTestMriFmri() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", false));
+                if (advancedSearch.getDiagnosticTestMriInterictalSpect() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.interictalSpect", advancedSearch.getDiagnosticTestMriInterictalSpect()));
                 }
-            }
 
-            if (advancedSearch.getDiagnosticTestMriWada() != 3) {
-                if (advancedSearch.getDiagnosticTestMriWada() == 1) {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.wada", true));
-                } else {
-                    criteria.add(Restrictions.eq("diagnosticTestMriList.wada", false));
+                if (advancedSearch.getDiagnosticTestMriSiscom() != 3) {
+                    if (advancedSearch.getDiagnosticTestMriSiscom() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.siscom", false));
+                    }
+                }
+
+                if (advancedSearch.getDiagnosticTestMriMrsProtocol() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.mrsProtocol", advancedSearch.getDiagnosticTestMriMrsProtocol()));
+                }
+
+                if (advancedSearch.getDiagnosticTestMriMrsFinding() != 0) {
+                    criteria.add(Restrictions.eq("diagnosticTestMriList.mrsFinding", advancedSearch.getDiagnosticTestMriMrsFinding()));
+                }
+
+                if (advancedSearch.getDiagnosticTestMriDti() != 3) {
+                    if (advancedSearch.getDiagnosticTestMriDti() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.dti", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.dti", false));
+                    }
+                }
+
+                if (advancedSearch.getDiagnosticTestMriFmri() != 3) {
+                    if (advancedSearch.getDiagnosticTestMriFmri() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.fmri", false));
+                    }
+                }
+
+                if (advancedSearch.getDiagnosticTestMriWada() != 3) {
+                    if (advancedSearch.getDiagnosticTestMriWada() == 1) {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.wada", true));
+                    } else {
+                        criteria.add(Restrictions.eq("diagnosticTestMriList.wada", false));
+                    }
                 }
             }
         }
@@ -470,107 +517,128 @@ public class PatientDAOImpl
                        /* invasive test eeg specific section */
         if (advancedSearch.isInvasiveTestEeg()) {
      /* Fetching and creating alias for sub collection invasiveTestEegList */
-            criteria.createAlias("patient.invasiveTestEEGList", "invasiveTestEegList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("invasiveTestEegList.history", false));
-            criteria.add(Restrictions.eq("invasiveTestEegList.hidden", false));
+            if (advancedSearch.getInvasiveTestEegIntracranialElectrodes() != 0 ||
+                    advancedSearch.getInvasiveTestEegInvasiveEegSlow() != 0 ||
+                    advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() != 3 ||
+                    advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns() != 0) {
+                criteria.createAlias("patient.invasiveTestEEGList", "invasiveTestEegList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getInvasiveTestEegIntracranialElectrodes() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEegList.intracranialElectrodes", advancedSearch.getInvasiveTestEegIntracranialElectrodes()));
-            }
+                criteria.add(Restrictions.eq("invasiveTestEegList.history", false));
+                criteria.add(Restrictions.eq("invasiveTestEegList.hidden", false));
 
-            if (advancedSearch.getInvasiveTestEegInvasiveEegSlow() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegSlow", advancedSearch.getInvasiveTestEegInvasiveEegSlow()));
-            }
-
-            if (advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegInterictalSpikes", advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes()));
-            }
-
-            if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() != 3) {
-                if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() == 1) {
-                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", true));
-                } else {
-                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", false));
+                if (advancedSearch.getInvasiveTestEegIntracranialElectrodes() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.intracranialElectrodes", advancedSearch.getInvasiveTestEegIntracranialElectrodes()));
                 }
-            }
 
-            if (advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEegList.invasiveIctalEegPatterns", advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns()));
+                if (advancedSearch.getInvasiveTestEegInvasiveEegSlow() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegSlow", advancedSearch.getInvasiveTestEegInvasiveEegSlow()));
+                }
+
+                if (advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegInterictalSpikes", advancedSearch.getInvasiveTestEegInvasiveEegInterictalSpikes()));
+                }
+
+                if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() != 3) {
+                    if (advancedSearch.getInvasiveTestEegInvasiveEegStatusEpilepticus() == 1) {
+                        criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", true));
+                    } else {
+                        criteria.add(Restrictions.eq("invasiveTestEegList.invasiveEegStatusEpilepticus", false));
+                    }
+                }
+
+                if (advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEegList.invasiveIctalEegPatterns", advancedSearch.getInvasiveTestEegInvasiveIctalEegPatterns()));
+                }
             }
         }
 
                               /* invasive test ecog specific section */
         if (advancedSearch.isInvasiveTestEcog()) {
      /* Fetching and creating alias for sub collection invasiveTestEcogList */
-            criteria.createAlias("patient.invasiveTestECOGList", "invasiveTestEcogList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("invasiveTestEcogList.history", false));
-            criteria.add(Restrictions.eq("invasiveTestEcogList.hidden", false));
+            if (advancedSearch.getInvasiveTestEcogEcogPatterns() != 0 ||
+                    advancedSearch.getInvasiveTestEcogAfterResectionEcog() != 0) {
+                criteria.createAlias("patient.invasiveTestECOGList", "invasiveTestEcogList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getInvasiveTestEcogEcogPatterns() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEcogList.ecogPatterns", advancedSearch.getInvasiveTestEcogEcogPatterns()));
-            }
+                criteria.add(Restrictions.eq("invasiveTestEcogList.history", false));
+                criteria.add(Restrictions.eq("invasiveTestEcogList.hidden", false));
 
-            if (advancedSearch.getInvasiveTestEcogAfterResectionEcog() != 0) {
-                criteria.add(Restrictions.eq("invasiveTestEcogList.afterResectionEcog", advancedSearch.getInvasiveTestEcogAfterResectionEcog()));
+                if (advancedSearch.getInvasiveTestEcogEcogPatterns() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEcogList.ecogPatterns", advancedSearch.getInvasiveTestEcogEcogPatterns()));
+                }
+
+                if (advancedSearch.getInvasiveTestEcogAfterResectionEcog() != 0) {
+                    criteria.add(Restrictions.eq("invasiveTestEcogList.afterResectionEcog", advancedSearch.getInvasiveTestEcogAfterResectionEcog()));
+                }
             }
         }
 
                               /* invasive test corticalMapping specific section */
         if (advancedSearch.isInvasiveTestCorticalMapping()) {
      /* Fetching and creating alias for sub collection invasiveTestCorticalMappingList */
-            criteria.createAlias("patient.invasiveTestCorticalMappingList", "invasiveTestCorticalMappingList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.history", false));
-            criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.hidden", false));
+            if (false) {
+                criteria.createAlias("patient.invasiveTestCorticalMappingList", "invasiveTestCorticalMappingList", JoinType.LEFT_OUTER_JOIN);
+
+                criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.history", false));
+                criteria.add(Restrictions.eq("invasiveTestCorticalMappingList.hidden", false));
+            }
         }
 
                             /* operation specific section */
         if (advancedSearch.isOperation()) {
      /* Fetching and creating alias for sub collection operationList */
-            criteria.createAlias("patient.operationList", "operationList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("operationList.history", false));
-            criteria.add(Restrictions.eq("operationList.hidden", false));
+            if (advancedSearch.getOperationTypeOperation() != 0 ||
+                    advancedSearch.getOperationRangeOperation() != 0 ||
+                    advancedSearch.getOperationMst() != 3 ||
+                    advancedSearch.getOperationColostomy() != 3 ||
+                    advancedSearch.getOperationVns() != 3 ||
+                    advancedSearch.getOperationCompleteResection() != 3) {
+                criteria.createAlias("patient.operationList", "operationList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getOperationTypeOperation() != 0) {
-                criteria.add(Restrictions.eq("operationList.typeOperation", advancedSearch.getOperationTypeOperation()));
-            }
+                criteria.add(Restrictions.eq("operationList.history", false));
+                criteria.add(Restrictions.eq("operationList.hidden", false));
 
-            if (advancedSearch.getOperationRangeOperation() != 0) {
-                criteria.add(Restrictions.eq("operationList.rangeOperation", advancedSearch.getOperationRangeOperation()));
-            }
-
-            if (advancedSearch.getOperationMst() != 3) {
-                if (advancedSearch.getOperationMst() == 1) {
-                    criteria.add(Restrictions.eq("operationList.mst", true));
-                } else {
-                    criteria.add(Restrictions.eq("operationList.mst", false));
+                if (advancedSearch.getOperationTypeOperation() != 0) {
+                    criteria.add(Restrictions.eq("operationList.typeOperation", advancedSearch.getOperationTypeOperation()));
                 }
-            }
 
-            if (advancedSearch.getOperationColostomy() != 3) {
-                if (advancedSearch.getOperationColostomy() == 1) {
-                    criteria.add(Restrictions.eq("operationList.colostomy", true));
-                } else {
-                    criteria.add(Restrictions.eq("operationList.colostomy", false));
+                if (advancedSearch.getOperationRangeOperation() != 0) {
+                    criteria.add(Restrictions.eq("operationList.rangeOperation", advancedSearch.getOperationRangeOperation()));
                 }
-            }
 
-            if (advancedSearch.getOperationVns() != 3) {
-                if (advancedSearch.getOperationVns() == 1) {
-                    criteria.add(Restrictions.eq("operationList.vns", true));
-                } else {
-                    criteria.add(Restrictions.eq("operationList.vns", false));
+                if (advancedSearch.getOperationMst() != 3) {
+                    if (advancedSearch.getOperationMst() == 1) {
+                        criteria.add(Restrictions.eq("operationList.mst", true));
+                    } else {
+                        criteria.add(Restrictions.eq("operationList.mst", false));
+                    }
                 }
-            }
 
-            if (advancedSearch.getOperationCompleteResection() != 3) {
-                if (advancedSearch.getOperationCompleteResection() == 1) {
-                    criteria.add(Restrictions.eq("operationList.completeResection", true));
-                } else {
-                    criteria.add(Restrictions.eq("operationList.completeResection", false));
+                if (advancedSearch.getOperationColostomy() != 3) {
+                    if (advancedSearch.getOperationColostomy() == 1) {
+                        criteria.add(Restrictions.eq("operationList.colostomy", true));
+                    } else {
+                        criteria.add(Restrictions.eq("operationList.colostomy", false));
+                    }
+                }
+
+                if (advancedSearch.getOperationVns() != 3) {
+                    if (advancedSearch.getOperationVns() == 1) {
+                        criteria.add(Restrictions.eq("operationList.vns", true));
+                    } else {
+                        criteria.add(Restrictions.eq("operationList.vns", false));
+                    }
+                }
+
+                if (advancedSearch.getOperationCompleteResection() != 3) {
+                    if (advancedSearch.getOperationCompleteResection() == 1) {
+                        criteria.add(Restrictions.eq("operationList.completeResection", true));
+                    } else {
+                        criteria.add(Restrictions.eq("operationList.completeResection", false));
+                    }
                 }
             }
 
@@ -594,74 +662,90 @@ public class PatientDAOImpl
         /* histology specific section */
         if (advancedSearch.isHistology()) {
         /* Fetching and creating alias for sub collection histologyList */
-            criteria.createAlias("patient.histologyList", "histologyList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("histologyList.history", false));
-            criteria.add(Restrictions.eq("histologyList.hidden", false));
+            if (advancedSearch.getHistologyHistopathology() != 0 ||
+                    advancedSearch.getHistologyFcdClassification() != 0) {
+                criteria.createAlias("patient.histologyList", "histologyList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getHistologyHistopathology() != 0) {
-                criteria.add(Restrictions.eq("histologyList.histopathology", advancedSearch.getHistologyHistopathology()));
-            }
+                criteria.add(Restrictions.eq("histologyList.history", false));
+                criteria.add(Restrictions.eq("histologyList.hidden", false));
 
-            if (advancedSearch.getHistologyFcdClassification() != 0) {
-                criteria.add(Restrictions.eq("histologyList.fcdClassification", advancedSearch.getHistologyFcdClassification()));
+                if (advancedSearch.getHistologyHistopathology() != 0) {
+                    criteria.add(Restrictions.eq("histologyList.histopathology", advancedSearch.getHistologyHistopathology()));
+                }
+
+                if (advancedSearch.getHistologyFcdClassification() != 0) {
+                    criteria.add(Restrictions.eq("histologyList.fcdClassification", advancedSearch.getHistologyFcdClassification()));
+                }
             }
         }
 
                                     /* complication specific section */
         if (advancedSearch.isComplication()) {
      /* Fetching and creating alias for sub collection complicationList */
-            criteria.createAlias("patient.complicationList", "complicationList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("complicationList.history", false));
-            criteria.add(Restrictions.eq("complicationList.hidden", false));
+            if (advancedSearch.getComplicationComplicationType() != 0 ||
+                    advancedSearch.getComplicationComplication() != 0) {
+                criteria.createAlias("patient.complicationList", "complicationList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getComplicationComplicationType() != 0) {
-                criteria.add(Restrictions.eq("complicationList.complicationType", advancedSearch.getComplicationComplicationType()));
-            }
+                criteria.add(Restrictions.eq("complicationList.history", false));
+                criteria.add(Restrictions.eq("complicationList.hidden", false));
 
-            if (advancedSearch.getComplicationComplication() != 0) {
-                criteria.add(Restrictions.eq("complicationList.complication", advancedSearch.getComplicationComplication()));
+                if (advancedSearch.getComplicationComplicationType() != 0) {
+                    criteria.add(Restrictions.eq("complicationList.complicationType", advancedSearch.getComplicationComplicationType()));
+                }
+
+                if (advancedSearch.getComplicationComplication() != 0) {
+                    criteria.add(Restrictions.eq("complicationList.complication", advancedSearch.getComplicationComplication()));
+                }
             }
         }
 
         if (advancedSearch.isOutcome()) {
      /* Fetching and creating alias for sub collection outcomeList */
-            criteria.createAlias("patient.outcomeList", "outcomeList", JoinType.LEFT_OUTER_JOIN);
 
-            criteria.add(Restrictions.eq("outcomeList.history", false));
+            if (advancedSearch.getOutcomeSeizureOutcome() != 0 ||
+                    advancedSearch.getOutcomeEeg() != 0 ||
+                    advancedSearch.getOutcomeAed() != 0 ||
+                    advancedSearch.getOutcomeMri() != 0 ||
+                    advancedSearch.getOutcomeNeuropsychology() != 0 ||
+                    advancedSearch.getOutcomeDistance() != 0) {
+                criteria.createAlias("patient.outcomeList", "outcomeList", JoinType.LEFT_OUTER_JOIN);
 
-            if (advancedSearch.getOutcomeSeizureOutcome() != 0) {
-                criteria.add(Restrictions.eq("outcomeList.seizureOutcome", advancedSearch.getOutcomeSeizureOutcome()));
-            }
+                criteria.add(Restrictions.eq("outcomeList.history", false));
 
-            if (advancedSearch.getOutcomeEeg() != 0) {
-                criteria.add(Restrictions.eq("outcomeList.eeg", advancedSearch.getOutcomeEeg()));
-            }
+                if (advancedSearch.getOutcomeSeizureOutcome() != 0) {
+                    criteria.add(Restrictions.eq("outcomeList.seizureOutcome", advancedSearch.getOutcomeSeizureOutcome()));
+                }
 
-            if (advancedSearch.getOutcomeAed() != 0) {
-                criteria.add(Restrictions.eq("outcomeList.aed", advancedSearch.getOutcomeAed()));
-            }
+                if (advancedSearch.getOutcomeEeg() != 0) {
+                    criteria.add(Restrictions.eq("outcomeList.eeg", advancedSearch.getOutcomeEeg()));
+                }
 
-            if (advancedSearch.getOutcomeMri() != 0) {
-                criteria.add(Restrictions.eq("outcomeList.mri", advancedSearch.getOutcomeMri()));
-            }
+                if (advancedSearch.getOutcomeAed() != 0) {
+                    criteria.add(Restrictions.eq("outcomeList.aed", advancedSearch.getOutcomeAed()));
+                }
 
-            if (advancedSearch.getOutcomeNeuropsychology() != 0) {
-                criteria.add(Restrictions.eq("outcomeList.neuropsychology", advancedSearch.getOutcomeNeuropsychology()));
-            }
+                if (advancedSearch.getOutcomeMri() != 0) {
+                    criteria.add(Restrictions.eq("outcomeList.mri", advancedSearch.getOutcomeMri()));
+                }
 
-            if (advancedSearch.getOutcomeDistance() != 0) {
-                if (advancedSearch.getOutcomeDistanceFilter().equals("=")) {
-                    criteria.add(Restrictions.eq("outcomeList.distance", advancedSearch.getOutcomeDistance()));
-                } else if (advancedSearch.getOutcomeDistanceFilter().equals(">")) {
-                    criteria.add(Restrictions.gt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
-                } else if (advancedSearch.getOutcomeDistanceFilter().equals("<")) {
-                    criteria.add(Restrictions.lt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
-                } else if (advancedSearch.getOutcomeDistanceFilter().equals(">=")) {
-                    criteria.add(Restrictions.ge("outcomeList.distance", advancedSearch.getOutcomeDistance()));
-                } else if (advancedSearch.getOutcomeDistanceFilter().equals("<=")) {
-                    criteria.add(Restrictions.le("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                if (advancedSearch.getOutcomeNeuropsychology() != 0) {
+                    criteria.add(Restrictions.eq("outcomeList.neuropsychology", advancedSearch.getOutcomeNeuropsychology()));
+                }
+
+                if (advancedSearch.getOutcomeDistance() != 0) {
+                    if (advancedSearch.getOutcomeDistanceFilter().equals("=")) {
+                        criteria.add(Restrictions.eq("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                    } else if (advancedSearch.getOutcomeDistanceFilter().equals(">")) {
+                        criteria.add(Restrictions.gt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                    } else if (advancedSearch.getOutcomeDistanceFilter().equals("<")) {
+                        criteria.add(Restrictions.lt("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                    } else if (advancedSearch.getOutcomeDistanceFilter().equals(">=")) {
+                        criteria.add(Restrictions.ge("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                    } else if (advancedSearch.getOutcomeDistanceFilter().equals("<=")) {
+                        criteria.add(Restrictions.le("outcomeList.distance", advancedSearch.getOutcomeDistance()));
+                    }
                 }
             }
         }
