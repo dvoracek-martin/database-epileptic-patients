@@ -8,7 +8,7 @@
 
     <div class="checkbox col-xs-offset-4">
         <label>
-            <input id="checkAll" type="checkbox"> <spring:message code="label.checkUncheckAll"/>
+            <input id="checkAll" type="checkbox">  <spring:message code="label.checkUncheckAll"/>
         </label>
     </div>
 

@@ -3006,7 +3006,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isPatientBirthday()) {
             content.add(messageSource.getMessage("label.birthdate",
                     null, locale) + delimiter + translateValue(
-                    String.valueOf(TimeConverter.getDate(patient.getBirthday())), locale));
+                    String.valueOf( TimeConverter.getDate(patient.getBirthday())), locale));
             content.add(messageSource.getMessage("label.age",
                     null, locale) + delimiter + translateValue(
                     String.valueOf(getCurrentAge(patient)), locale));
@@ -3186,7 +3186,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
      * This function is used when it's needed to customize the export and print there some custom message
      * during every export
      */
-    private void printCustom(WordprocessingMLPackage document, String heading, String message) {
+    private void printCustom(WordprocessingMLPackage document,String heading, String message) {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", heading);

@@ -1,5 +1,5 @@
-$(document).ready(function () {
-    $("#postExport").click(function () {
+$(document).ready(function(){
+    $("#postExport").click(function(){
         $("#patientIds").submit();
     });
 });

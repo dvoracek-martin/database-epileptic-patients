@@ -53,7 +53,7 @@ $(document).ready(function () {
     checkAll.click(function () {
         if (checkAll.prop('checked')) {
             $(".check-all").prop("checked", true);
-        } else {
+        } else{
             $(".check-all").prop("checked", false);
         }
     })

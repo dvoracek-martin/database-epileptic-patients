@@ -10,7 +10,7 @@ $(document).ready(function () {
     $(".pager-elem-1").addClass("active");
 
     pageNumberSel.click(function () {
-
+      
         $(".pager-elem-" + activePageId).removeClass("active");
         activePageId = $(this).data("page-number");
         pageSel.hide();
@@ -19,7 +19,7 @@ $(document).ready(function () {
     });
 
     $(".start").click(function () {
-
+      
         $(".pager-elem-" + activePageId).removeClass("active");
         activePageId = 1;
         $(".pager-elem-" + activePageId).addClass("active");
@@ -29,7 +29,7 @@ $(document).ready(function () {
     });
 
     $(".end").click(function () {
-
+      
         $(".pager-elem-" + activePageId).removeClass("active");
         activePageId = pagesCount;
         $(".pager-elem-" + activePageId).addClass("active");
@@ -40,7 +40,7 @@ $(document).ready(function () {
 
     $(".next").click(function () {
         if (pagesCount != activePageId) {
-
+          
             $(".pager-elem-" + activePageId).removeClass("active");
             activePageId++;
             $(".pager-elem-" + activePageId).addClass("active");
@@ -52,7 +52,7 @@ $(document).ready(function () {
 
     $(".prev").click(function () {
         if (activePageId != 1) {
-
+          
             $(".pager-elem-" + activePageId).removeClass("active");
             activePageId--;
             $(".pager-elem-" + activePageId).addClass("active");

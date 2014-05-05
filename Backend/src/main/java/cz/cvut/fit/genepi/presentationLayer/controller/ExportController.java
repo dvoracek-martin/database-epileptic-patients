@@ -102,7 +102,7 @@ public class ExportController {
             @ModelAttribute("exportParams") @Valid ExportParamsVO exportParams, BindingResult result,
             @ModelAttribute("exportInfoWrapperVo") ExportInfoWrapperVO exportInfoWrapperVo,
             @RequestParam("exportType") String exportType,
-            @RequestParam(value = "toTable", defaultValue = "false") boolean toTable,
+            @RequestParam(value="toTable", defaultValue = "false") boolean toTable,
             Locale locale, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
