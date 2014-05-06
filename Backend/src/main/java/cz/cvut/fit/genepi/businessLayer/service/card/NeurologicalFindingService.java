@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.NeurologicalFindingVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeurologicalFindingDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.NeurologicalFindingFormBO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.NeurologicalFindingEntity;
 
 public interface NeurologicalFindingService
-        extends GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> {
+        extends GenericCardService<NeurologicalFindingDisplayBO, NeurologicalFindingFormBO, NeurologicalFindingEntity> {
 
 }

@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.PatientFormBO;
 import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
 
 import java.util.Date;
@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * The Interface PatientService extends GenericService
  */
-public interface PatientService extends GenericService<PatientVO, PatientEntity> {
+public interface PatientService extends GenericService<PatientFormBO, PatientEntity> {
 
     /**
      * Finds patient and all his cards according to his ID
@@ -22,7 +22,7 @@ public interface PatientService extends GenericService<PatientVO, PatientEntity>
 
     public List<PatientEntity> findAllHidden();
 
-    public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId);
+    public PatientDisplayBO getPatientDisplayByIdWithDoctor(int patientId);
 
     public void verifyPatient(int patientId);
 
@@ -32,11 +32,11 @@ public interface PatientService extends GenericService<PatientVO, PatientEntity>
 
     public void unhide(int patientId);
 
-    public List<PatientDisplayVO> findAllWithHiddenRecords();
+    public List<PatientDisplayBO> findAllWithHiddenRecords();
 
     public int getCountOfUnhidden(boolean onlyResearcher, String searchString);
 
-    public List<PatientDisplayVO> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString);
+    public List<PatientDisplayBO> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString);
 
     public boolean verifyBeginningEpilepsy(int patientId, Date beginningEpilepsy);
 

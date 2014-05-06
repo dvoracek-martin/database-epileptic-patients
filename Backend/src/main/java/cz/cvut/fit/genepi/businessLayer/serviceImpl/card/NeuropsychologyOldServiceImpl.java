@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeuropsychologyOldDisplayBO;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
@@ -53,11 +53,11 @@ public class NeuropsychologyOldServiceImpl implements NeuropsychologyOldService 
 
     @Override
     @Transactional
-    public List<NeuropsychologyOldDisplayVO> getRecordsByPatientId(int patientId) {
+    public List<NeuropsychologyOldDisplayBO> getRecordsByPatientId(int patientId) {
         List<NeuropsychologyOldEntity> cardEntityList = genericCardDAO.getRecordsByPatientId(patientId, NeuropsychologyOldEntity.class);
-        List<NeuropsychologyOldDisplayVO> cardDisplayVoList = new ArrayList<>();
+        List<NeuropsychologyOldDisplayBO> cardDisplayVoList = new ArrayList<>();
         for (NeuropsychologyOldEntity entity : cardEntityList) {
-            NeuropsychologyOldDisplayVO vo = dozer.map(entity, NeuropsychologyOldDisplayVO.class);
+            NeuropsychologyOldDisplayBO vo = dozer.map(entity, NeuropsychologyOldDisplayBO.class);
             cardDisplayVoList.add(vo);
         }
         return cardDisplayVoList;

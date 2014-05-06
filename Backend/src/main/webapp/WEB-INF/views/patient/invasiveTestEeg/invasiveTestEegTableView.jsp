@@ -2,15 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="invasiveTestEegDisplayVo"
+<jsp:useBean id="invasiveTestEegDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestEegDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
 
-<div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayVo.id}"
+<div id="collapse-invasive-test-eeg-${invasiveTestEegDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -19,18 +19,18 @@
                 <spring:message code="label.invasiveTestIeeg"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${invasiveTestEegDisplayVo.done}"/>
+                <spring:message code="label.done.${invasiveTestEegDisplayBO.done}"/>
             </td>
         </tr>
 
-        <c:if test="${invasiveTestEegDisplayVo.done==2}">
+        <c:if test="${invasiveTestEegDisplayBO.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.intracranialElectrodes"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message
-                            code="label.intracranialElectrodes.${invasiveTestEegDisplayVo.intracranialElectrodes}"/>
+                            code="label.intracranialElectrodes.${invasiveTestEegDisplayBO.intracranialElectrodes}"/>
                 </td>
             </tr>
             <tr>
@@ -39,11 +39,11 @@
                 </th>
                 <td class="col-xs-9">
                     <c:choose>
-                        <c:when test="${empty invasiveTestEegDisplayVo.localizationIntracranialElectrodes}">
+                        <c:when test="${empty invasiveTestEegDisplayBO.localizationIntracranialElectrodes}">
                             -
                         </c:when>
                         <c:otherwise>
-                            ${invasiveTestEegDisplayVo.localizationIntracranialElectrodes}
+                            ${invasiveTestEegDisplayBO.localizationIntracranialElectrodes}
                         </c:otherwise>
                     </c:choose>
                 </td>
@@ -54,7 +54,7 @@
                     <spring:message code="label.invasiveEegSlowing"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.invasiveEegSlowing.${invasiveTestEegDisplayVo.invasiveEegSlow}"/>
+                    <spring:message code="label.invasiveEegSlowing.${invasiveTestEegDisplayBO.invasiveEegSlow}"/>
                 </td>
             </tr>
 
@@ -64,7 +64,7 @@
                 </th>
                 <td class="col-xs-9">
                     <spring:message
-                            code="label.invasiveEeg.${invasiveTestEegDisplayVo.invasiveEegInterictalSpikes}"/>
+                            code="label.invasiveEeg.${invasiveTestEegDisplayBO.invasiveEegInterictalSpikes}"/>
                 </td>
             </tr>
             <tr>
@@ -73,11 +73,11 @@
                 </th>
                 <td class="col-xs-9">
                     <c:choose>
-                        <c:when test="${empty invasiveTestEegDisplayVo.localizationInvasiveEegInterictalSpikes}">
+                        <c:when test="${empty invasiveTestEegDisplayBO.localizationInvasiveEegInterictalSpikes}">
                             -
                         </c:when>
                         <c:otherwise>
-                            ${invasiveTestEegDisplayVo.localizationInvasiveEegInterictalSpikes}
+                            ${invasiveTestEegDisplayBO.localizationInvasiveEegInterictalSpikes}
                         </c:otherwise>
                     </c:choose>
                 </td>
@@ -87,7 +87,7 @@
                     <spring:message code="label.invasiveEegStatusEpilepticus"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${invasiveTestEegDisplayVo.invasiveEegStatusEpilepticus}"/>
+                    <spring:message code="label.boolean.${invasiveTestEegDisplayBO.invasiveEegStatusEpilepticus}"/>
                 </td>
             </tr>
             <tr>
@@ -95,7 +95,7 @@
                     <spring:message code="label.invasiveIctalEegPatterns"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.invasiveEeg.${invasiveTestEegDisplayVo.invasiveIctalEegPatterns}"/>
+                    <spring:message code="label.invasiveEeg.${invasiveTestEegDisplayBO.invasiveIctalEegPatterns}"/>
                 </td>
             </tr>
             <tr>
@@ -104,11 +104,11 @@
                 </th>
                 <td class="col-xs-9">
                     <c:choose>
-                        <c:when test="${empty invasiveTestEegDisplayVo.localizationInvasiveIctalEegPatterns}">
+                        <c:when test="${empty invasiveTestEegDisplayBO.localizationInvasiveIctalEegPatterns}">
                             -
                         </c:when>
                         <c:otherwise>
-                            ${invasiveTestEegDisplayVo.localizationInvasiveIctalEegPatterns}
+                            ${invasiveTestEegDisplayBO.localizationInvasiveIctalEegPatterns}
                         </c:otherwise>
                     </c:choose>
                 </td>
@@ -118,14 +118,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty invasiveTestEegDisplayVo.comment}">
+                    <c:when test="${empty invasiveTestEegDisplayBO.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${invasiveTestEegDisplayVo.comment}
+                                ${invasiveTestEegDisplayBO.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

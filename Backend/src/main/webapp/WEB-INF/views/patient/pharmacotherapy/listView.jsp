@@ -41,7 +41,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty pharmacotherapyDisplayVoList}">
+            <c:when test="${empty pharmacotherapyDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -66,10 +66,10 @@
                             <th class="col-xs-4"></th>
                         </tr>
                     </table>
-                    <c:forEach items="${pharmacotherapyDisplayVoList}"
-                               var="pharmacotherapyDisplayVo">
-                        <c:set var="pharmacotherapyDisplayVo"
-                               value="${pharmacotherapyDisplayVo}"
+                    <c:forEach items="${pharmacotherapyDisplayBOList}"
+                               var="pharmacotherapyDisplayBO">
+                        <c:set var="pharmacotherapyDisplayBO"
+                               value="${pharmacotherapyDisplayBO}"
                                scope="request"/>
                         <div>
                             <jsp:include page="pharmacotherapyTableView.jsp"/>

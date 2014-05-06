@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestCorticalMappingDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestCorticalMappingVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestCorticalMappingDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.InvasiveTestCorticalMappingFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,7 +27,7 @@ public class InvasiveTestCorticalMappingController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService;
+    private final GenericCardService<InvasiveTestCorticalMappingDisplayBO, InvasiveTestCorticalMappingFormBO, InvasiveTestCorticalMappingEntity> genericCardService;
 
     /**
      * Constructor which serves to autowire services.
@@ -38,7 +38,7 @@ public class InvasiveTestCorticalMappingController {
     public InvasiveTestCorticalMappingController(AuthorizationChecker authorizationChecker,
                                                  PatientService patientService,
                                                  @Qualifier("genericCardServiceImpl")
-                                                 GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> genericCardService) {
+                                                 GenericCardService<InvasiveTestCorticalMappingDisplayBO, InvasiveTestCorticalMappingFormBO, InvasiveTestCorticalMappingEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -64,21 +64,21 @@ public class InvasiveTestCorticalMappingController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestCorticalMapping", new InvasiveTestCorticalMappingVO());
+        model.addAttribute("invasiveTestCorticalMapping", new InvasiveTestCorticalMappingFormBO());
         return "patient/invasiveTestCorticalMapping/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/create", method = RequestMethod.POST)
     public String invasiveTestCorticalMappingCreatePOST(
-            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingFormBO invasiveTestCorticalMapping, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), invasiveTestCorticalMapping.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), invasiveTestCorticalMapping.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/invasiveTestCorticalMapping/createView";
@@ -113,14 +113,14 @@ public class InvasiveTestCorticalMappingController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestCorticalMapping", genericCardService.getById(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingVO.class, InvasiveTestCorticalMappingEntity.class));
+        model.addAttribute("invasiveTestCorticalMapping", genericCardService.getById(invasiveTestCorticalMappingId, InvasiveTestCorticalMappingFormBO.class, InvasiveTestCorticalMappingEntity.class));
         return "patient/invasiveTestCorticalMapping/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-cortical-mapping/{invasiveTestCorticalMappingId}/edit", method = RequestMethod.POST)
     public String invasiveTestCorticalMappingSavePOST(
-            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingVO invasiveTestCorticalMapping, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("invasiveTestCorticalMapping") @Valid InvasiveTestCorticalMappingFormBO invasiveTestCorticalMapping, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("invasiveTestCorticalMappingId") int invasiveTestCorticalMappingId,
             Model model, HttpServletRequest request) {
@@ -128,7 +128,7 @@ public class InvasiveTestCorticalMappingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), invasiveTestCorticalMapping.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), invasiveTestCorticalMapping.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/invasiveTestCorticalMapping/editView";
@@ -197,9 +197,9 @@ public class InvasiveTestCorticalMappingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<InvasiveTestCorticalMappingDisplayVO> corticalMappingDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
-        model.addAttribute("invasiveTestCorticalMappingDisplayVoList", corticalMappingDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<InvasiveTestCorticalMappingDisplayBO> corticalMappingDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestCorticalMappingDisplayBO.class, InvasiveTestCorticalMappingEntity.class);
+        model.addAttribute("invasiveTestCorticalMappingDisplayBOList", corticalMappingDisplayVoList);
         model.addAttribute("patient", patient);
         return "patient/invasiveTestCorticalMapping/listView";
     }

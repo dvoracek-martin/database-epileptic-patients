@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.NewsMessageDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.NewsMessageDisplayBO;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ import java.util.List;
  */
 public interface NewsMessageService {
 
-    public List<NewsMessageDisplayVO> getSortedNewsMessages();
+    public List<NewsMessageDisplayBO> getSortedNewsMessages();
 
 }

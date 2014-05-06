@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.NewsMessageVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.NewsMessageFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.GenericService;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
@@ -15,17 +15,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 @Controller
-@SessionAttributes({"newsMessageVo"})
+@SessionAttributes({"newsMessageFormBO"})
 public class NewsMessageController {
 
     private final AuthorizationChecker authorizationChecker;
 
-    private final GenericService<NewsMessageVO, NewsMessageEntity> genericService;
+    private final GenericService<NewsMessageFormBO, NewsMessageEntity> genericService;
 
     @Autowired
     public NewsMessageController(AuthorizationChecker authorizationChecker,
                                  @Qualifier("genericServiceImpl")
-                                 GenericService<NewsMessageVO, NewsMessageEntity> genericService) {
+                                 GenericService<NewsMessageFormBO, NewsMessageEntity> genericService) {
 
         this.authorizationChecker = authorizationChecker;
         this.genericService = genericService;
@@ -39,25 +39,25 @@ public class NewsMessageController {
             return "deniedView";
         }
 
-        model.addAttribute("newsMessageVo", new NewsMessageVO());
+        model.addAttribute("newsMessageFormBO", new NewsMessageFormBO());
         return "newsMessage/createView";
     }
 
     /**
      * Handles the request to create new news message.
      *
-     * @param newsMessageVo the news message which was filled in form at front-end. It is
-     *                      grabbed from POST string and validated.
-     * @param result        the result of binding form from front-end to an
-     *                      NewsMessageEntity. It is used to determine if there were some
-     *                      errors during binding.
+     * @param newsMessageFormBO the news message which was filled in form at front-end. It is
+     *                          grabbed from POST string and validated.
+     * @param result            the result of binding form from front-end to an
+     *                          NewsMessageEntity. It is used to determine if there were some
+     *                          errors during binding.
      * @return the string of a view to be rendered if the binding has errors
      * otherwise, the string of an address to which the user will be
      * redirected.
      */
     @RequestMapping(value = "/news/create", method = RequestMethod.POST)
     public String newsMessageCreatePOST(
-            @ModelAttribute("newsMessageVo") @Valid NewsMessageVO newsMessageVo, BindingResult result,
+            @ModelAttribute("newsMessageFormBO") @Valid NewsMessageFormBO newsMessageFormBO, BindingResult result,
             HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -68,7 +68,7 @@ public class NewsMessageController {
             return "newsMessage/createView";
         }
 
-        genericService.save(newsMessageVo, NewsMessageEntity.class);
+        genericService.save(newsMessageFormBO, NewsMessageEntity.class);
         return "redirect:/";
     }
 
@@ -81,8 +81,8 @@ public class NewsMessageController {
             return "deniedView";
         }
 
-        NewsMessageVO newsMessageVo = genericService.getById(newsMessageId, NewsMessageVO.class, NewsMessageEntity.class);
-        model.addAttribute("newsMessageVo", newsMessageVo);
+        NewsMessageFormBO newsMessageFormBO = genericService.getById(newsMessageId, NewsMessageFormBO.class, NewsMessageEntity.class);
+        model.addAttribute("newsMessageFormBO", newsMessageFormBO);
         return "newsMessage/editView";
     }
 
@@ -100,7 +100,7 @@ public class NewsMessageController {
     @RequestMapping(value = "/news/{newsMessageId}/edit", method = RequestMethod.POST)
     public String newsMessageEditPOST(
             @PathVariable("newsMessageId") int newsMessageId,
-            @ModelAttribute("newsMessageVo") @Valid NewsMessageVO newsMessageVo, BindingResult result,
+            @ModelAttribute("newsMessageFormBO") @Valid NewsMessageFormBO newsMessageFormBO, BindingResult result,
             HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -111,7 +111,7 @@ public class NewsMessageController {
             return "newsMessage/editView";
         }
 
-        genericService.update(newsMessageVo, NewsMessageEntity.class);
+        genericService.update(newsMessageFormBO, NewsMessageEntity.class);
         return "redirect:/";
     }
 

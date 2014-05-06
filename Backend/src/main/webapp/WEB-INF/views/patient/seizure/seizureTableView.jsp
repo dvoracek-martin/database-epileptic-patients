@@ -3,9 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="seizureDisplayVo"
+<jsp:useBean id="seizureDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.SeizureDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
@@ -14,7 +14,7 @@
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
                var="isAuthorized"/>
 
-<div id="collapse-seizure-${seizureDisplayVo.id}"
+<div id="collapse-seizure-${seizureDisplayBO.id}"
      class="collapse
      <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
@@ -24,7 +24,7 @@
                 <spring:message code="label.seizureFrequency"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.seizureFrequency.${seizureDisplayVo.seizureFrequency}"/>
+                <spring:message code="label.seizureFrequency.${seizureDisplayBO.seizureFrequency}"/>
             </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@
                 <spring:message code="label.secondarilyGeneralizedSeizure"/>
             </th>
             <td>
-                <spring:message code="label.boolean.${seizureDisplayVo.secondarilyGeneralizedSeizure}"/>
+                <spring:message code="label.boolean.${seizureDisplayBO.secondarilyGeneralizedSeizure}"/>
             </td>
         </tr>
         <tr>
@@ -40,7 +40,7 @@
                 <spring:message code="label.statusEpilepticus"/>
             </th>
             <td>
-                <spring:message code="label.boolean.${seizureDisplayVo.statusEpilepticus}"/>
+                <spring:message code="label.boolean.${seizureDisplayBO.statusEpilepticus}"/>
             </td>
         </tr>
         <tr>
@@ -48,7 +48,7 @@
                 <spring:message code="label.nonepilepticSeizures"/>
             </th>
             <td>
-                <spring:message code="label.boolean.${seizureDisplayVo.nonepilepticSeizures}"/>
+                <spring:message code="label.boolean.${seizureDisplayBO.nonepilepticSeizures}"/>
             </td>
         </tr>
         <tr>
@@ -56,20 +56,20 @@
                 <spring:message code="label.occurrence"/>
             </th>
             <td>
-                <spring:message code="label.seizureOccurence.${seizureDisplayVo.seizureOccurrence}"/>
+                <spring:message code="label.seizureOccurence.${seizureDisplayBO.seizureOccurrence}"/>
             </td>
         </tr>
         <tr>
             <th class="col-xs-3"><spring:message code="label.comment"/></th>
             <c:choose>
-                <c:when test="${empty seizureDisplayVo.comment}">
+                <c:when test="${empty seizureDisplayBO.comment}">
                     <td class="col-xs-9">
                         <spring:message code="label.noComments"/>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td>
-                            ${seizureDisplayVo.comment}
+                            ${seizureDisplayBO.comment}
                     </td>
                 </c:otherwise>
             </c:choose>
@@ -83,8 +83,8 @@
                     <c:set var="seizureDetailsCount"
                            value="0"
                            scope="page"/>
-                    <c:forEach items="${seizureDisplayVo.seizureDetailList}"
-                               var="seizureDetailDisplayVo">
+                    <c:forEach items="${seizureDisplayBO.seizureDetailList}"
+                               var="seizureDetailDisplayBO">
                         <c:set var="seizureDetailsCount"
                                value="${seizureDetailsCount + 1}"
                                scope="page"/>
@@ -93,11 +93,11 @@
                                     ${seizureDetailsCount}. <spring:message code="label.seizureType"/>
                                 <c:if test="${isAuthorized}">
                                     (
-                                    <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/edit"/>">
+                                    <a href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayBO.id}/seizure-detail/${seizureDetailDisplayBO.id}/edit"/>">
                                         <spring:message code="label.edit"/>
                                     </a>
                                     |
-                                    <a href="#delete-seizure-detail-${seizureDetailDisplayVo.id}"
+                                    <a href="#delete-seizure-detail-${seizureDetailDisplayBO.id}"
                                        data-toggle="modal">
                                         <spring:message code="label.delete"/>
                                     </a>
@@ -110,7 +110,7 @@
                                 <spring:message code="label.dateAdded"/>:
                             </th>
                             <td class="col-xs-9">
-                                    ${seizureDetailDisplayVo.date}
+                                    ${seizureDetailDisplayBO.date}
                             </td>
                         </tr>
                         <tr>
@@ -119,7 +119,7 @@
                             </th>
                             <td class="col-xs-9">
                                 <spring:message
-                                        code="label.sscClassification.${seizureDetailDisplayVo.sscClassification}"/>
+                                        code="label.sscClassification.${seizureDetailDisplayBO.sscClassification}"/>
                             </td>
                         </tr>
                         <tr>
@@ -128,20 +128,20 @@
                             </th>
                             <td class="col-xs-9">
                                 <spring:message
-                                        code="label.ilaeClassification.${seizureDetailDisplayVo.ilaeClassification}"/>
+                                        code="label.ilaeClassification.${seizureDetailDisplayBO.ilaeClassification}"/>
                             </td>
                         </tr>
                         <tr>
                             <th class="col-xs-3"><spring:message code="label.comment"/></th>
                             <c:choose>
-                                <c:when test="${empty seizureDetailDisplayVo.comment}">
+                                <c:when test="${empty seizureDetailDisplayBO.comment}">
                                     <td class="col-xs-9">
                                         <spring:message code="label.noComments"/>
                                     </td>
                                 </c:when>
                                 <c:otherwise>
                                     <td>
-                                            ${seizureDetailDisplayVo.comment}
+                                            ${seizureDetailDisplayBO.comment}
                                     </td>
                                 </c:otherwise>
                             </c:choose>
@@ -155,16 +155,16 @@
         </tr>
         </tbody>
     </table>
-    <c:forEach items="${seizureDisplayVo.seizureDetailList}"
-               var="seizureDetailDisplayVo">
+    <c:forEach items="${seizureDisplayBO.seizureDetailList}"
+               var="seizureDetailDisplayBO">
 
         <jsp:include page="../../components/deleteModalComponentView.jsp">
             <jsp:param name="modalId"
-                       value="delete-seizure-detail-${seizureDetailDisplayVo.id}"/>
+                       value="delete-seizure-detail-${seizureDetailDisplayBO.id}"/>
             <jsp:param name="bodyMessage"
                        value="reallyDeleteRecord"/>
             <jsp:param name="deleteUrl"
-                       value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/${seizureDetailDisplayVo.id}/hide"/>
+                       value="/patient/${patient.id}/seizure/${seizureDisplayBO.id}/seizure-detail/${seizureDetailDisplayBO.id}/hide"/>
         </jsp:include>
 
     </c:forEach>

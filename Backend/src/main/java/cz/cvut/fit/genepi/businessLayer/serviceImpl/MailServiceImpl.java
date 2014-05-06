@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.dataLayer.entity.UserEntity;
 import org.slf4j.Logger;
@@ -150,7 +150,7 @@ public class MailServiceImpl implements MailService {
         }
     }
 
-    public void notifyChangedPassword(UserVO user, String password, Locale locale) {
+    public void notifyChangedPassword(UserFormBO user, String password, Locale locale) {
         try {
             HashMap<String, Object> map = new HashMap<>();
             map.put("subject", "changeOfThePassword");

@@ -40,7 +40,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty seizureDisplayVoList}">
+            <c:when test="${empty seizureDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -50,24 +50,24 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${seizureDisplayVoList}"
-                               var="seizureDisplayVo">
-                        <c:set var="seizureDisplayVo"
-                               value="${seizureDisplayVo}"
+                    <c:forEach items="${seizureDisplayBOList}"
+                               var="seizureDisplayBO">
+                        <c:set var="seizureDisplayBO"
+                               value="${seizureDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-5">
-                                        <a data-toggle="collapse" href="#collapse-seizure-${seizureDisplayVo.id}">
-                                            <spring:message code="label.examinationDate"/>: ${seizureDisplayVo.date}
+                                        <a data-toggle="collapse" href="#collapse-seizure-${seizureDisplayBO.id}">
+                                            <spring:message code="label.examinationDate"/>: ${seizureDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-3">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/seizure-detail/create"/>">
+                                               href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayBO.id}/seizure-detail/create"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.addSeizureDetail"/>
                                             </a>
@@ -76,7 +76,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/seizure/${seizureDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -85,7 +85,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-seizure-${seizureDisplayVo.id}"
+                                               href="#delete-seizure-${seizureDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -100,11 +100,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-seizure-${seizureDisplayVo.id}"/>
+                                           value="delete-seizure-${seizureDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/seizure/${seizureDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/seizure/${seizureDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

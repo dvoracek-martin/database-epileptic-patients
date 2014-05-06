@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -11,5 +11,5 @@ import java.util.Locale;
 public interface MailService {
     public void sendMail(String recipient, HashMap<String, Object> map, Locale locale) throws Exception;
 
-    public void notifyChangedPassword(UserVO user, String password, Locale locale);
+    public void notifyChangedPassword(UserFormBO user, String password, Locale locale);
 }

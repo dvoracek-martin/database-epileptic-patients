@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.ExportParamsFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
@@ -51,7 +51,7 @@ public class ExportServiceImpl implements ExportService {
 
     @Override
     @Transactional
-    public String performExport(ExportParamsVO exportParams, Locale locale, String exportType, boolean anonymize, List<Integer> patientIds, boolean toTable) {
+    public String performExport(ExportParamsFormBO exportParams, Locale locale, String exportType, boolean anonymize, List<Integer> patientIds, boolean toTable) {
 
         List<PatientEntity> patientList = new ArrayList<>();
         for (int patientId : patientIds) {

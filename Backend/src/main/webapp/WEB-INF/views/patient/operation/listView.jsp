@@ -39,7 +39,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty operationDisplayVoList}">
+            <c:when test="${empty operationDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -49,24 +49,24 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationDisplayVoList}"
-                               var="operationDisplayVo">
-                        <c:set var="operationDisplayVo"
-                               value="${operationDisplayVo}"
+                    <c:forEach items="${operationDisplayBOList}"
+                               var="operationDisplayBO">
+                        <c:set var="operationDisplayBO"
+                               value="${operationDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a data-toggle="collapse" href="#collapse-operation-${operationDisplayVo.id}">
-                                            <spring:message code="label.dateAdded"/>: ${operationDisplayVo.date}
+                                        <a data-toggle="collapse" href="#collapse-operation-${operationDisplayBO.id}">
+                                            <spring:message code="label.dateAdded"/>: ${operationDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/operation/${operationDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/operation/${operationDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -75,7 +75,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-operation-${operationDisplayVo.id}"
+                                               href="#delete-operation-${operationDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -90,11 +90,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-operation-${operationDisplayVo.id}"/>
+                                           value="delete-operation-${operationDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/operation/${operationDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/operation/${operationDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

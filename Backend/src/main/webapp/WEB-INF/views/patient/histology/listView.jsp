@@ -38,7 +38,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty histologyDisplayVoList}">
+            <c:when test="${empty histologyDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -61,10 +61,10 @@
                             </th>
                         </tr>
                     </table>
-                    <c:forEach items="${histologyDisplayVoList}"
-                               var="histologyDisplayVo">
-                        <c:set var="histologyDisplayVo"
-                               value="${histologyDisplayVo}"
+                    <c:forEach items="${histologyDisplayBOList}"
+                               var="histologyDisplayBO">
+                        <c:set var="histologyDisplayBO"
+                               value="${histologyDisplayBO}"
                                scope="request"/>
                         <div>
                             <jsp:include page="histologyTableView.jsp"/>

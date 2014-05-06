@@ -1,37 +1,19 @@
 package cz.cvut.fit.test;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
-import cz.cvut.fit.genepi.dataLayer.entity.PatientEntity;
-import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
-import cz.cvut.fit.genepi.presentationLayer.controller.card.AnamnesisController;
-import org.joda.time.LocalDate;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:anamnesisControllerTestContext.xml"})
@@ -68,10 +50,10 @@ public class AnamnesisControllerTest {
 /*
     @Test
     public void anamnesisCreateGET() throws Exception {
-        PatientDisplayVO found = new PatientDisplayVO();
+        PatientDisplayBO found = new PatientDisplayBO();
         found.setId(1);
 
-        found.setAnamnesisList(new ArrayList<AnamnesisDisplayVO>());
+        found.setAnamnesisList(new ArrayList<AnamnesisDisplayBO>());
 
         when(patientServiceMock.getPatientDisplayByIdWithAnamnesisList(1)).thenReturn(found);
 
@@ -79,10 +61,10 @@ public class AnamnesisControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("patient/anamnesis/formView"))
                 .andExpect(
-                        model().attribute("patient", isA(PatientDisplayVO.class)))
+                        model().attribute("patient", isA(PatientDisplayBO.class)))
                 .andExpect(
                         model().attribute("anamnesis",
-                                isA(AnamnesisVO.class)));
+                                isA(AnamnesisFormBO.class)));
 
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);
@@ -90,35 +72,35 @@ public class AnamnesisControllerTest {
 
     @Test
     public void anamnesisEditGET() throws Exception {
-        PatientDisplayVO patient = new PatientDisplayVO();
+        PatientDisplayBO patient = new PatientDisplayBO();
         patient.setId(1);
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
+        AnamnesisFormBO anamnesis = new AnamnesisFormBO();
         anamnesis.setId(1);
 
         when(patientServiceMock.getPatientDisplayByIdWithDoctor(1)).thenReturn(patient);
-        when(anamnesisServiceMock.getById(AnamnesisVO.class, AnamnesisEntity.class, 1)).thenReturn(anamnesis);
+        when(anamnesisServiceMock.getById(AnamnesisFormBO.class, AnamnesisEntity.class, 1)).thenReturn(anamnesis);
 
         mockMvc.perform(get("/patient/{patientId}/anamnesis/{anamnesisId}/edit", 1, 1))
                 .andExpect(status().isOk())
                 .andExpect(view().name("patient/anamnesis/formView"))
                 .andExpect(
-                        model().attribute("patient", isA(PatientDisplayVO.class)))
+                        model().attribute("patient", isA(PatientDisplayBO.class)))
                 .andExpect(
                         model().attribute("anamnesis",
-                                isA(AnamnesisVO.class)));
+                                isA(AnamnesisFormBO.class)));
 
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithDoctor(1);
         verifyNoMoreInteractions(patientServiceMock);
 
-        verify(anamnesisServiceMock, times(1)).getById(AnamnesisVO.class, AnamnesisEntity.class, 1);
+        verify(anamnesisServiceMock, times(1)).getById(AnamnesisFormBO.class, AnamnesisEntity.class, 1);
         verifyNoMoreInteractions(anamnesisServiceMock);
     }
 
     @Test
     public void anamnesisSavePOST_AnamnesisEntityValid() throws Exception {
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
+        AnamnesisFormBO anamnesis = new AnamnesisFormBO();
         anamnesis.setDate(new Date());
         anamnesis.setBeginningEpilepsy(new Date());
 
@@ -149,7 +131,7 @@ public class AnamnesisControllerTest {
         LocalDate date = now.plusDays(1);
         Date tomorrow = date.toDate();
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
+        AnamnesisFormBO anamnesis = new AnamnesisFormBO();
         anamnesis.setNonCnsComorbidity(nonCnsComorbidity);
         anamnesis.setDate(tomorrow);
         anamnesis.setBeginningEpilepsy(tomorrow);
@@ -191,7 +173,7 @@ public class AnamnesisControllerTest {
     @Test
     public void anamnesisEditPOST_AnamnesisEntityValid() throws Exception {
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
+        AnamnesisFormBO anamnesis = new AnamnesisFormBO();
         anamnesis.setDate(new Date());
         anamnesis.setBeginningEpilepsy(new Date());
 
@@ -217,7 +199,7 @@ public class AnamnesisControllerTest {
         LocalDate date = now.plusDays(1);
         Date tomorrow = date.toDate();
 
-        AnamnesisVO anamnesis = new AnamnesisVO();
+        AnamnesisFormBO anamnesis = new AnamnesisFormBO();
         anamnesis.setNonCnsComorbidity(nonCnsComorbidity);
         anamnesis.setDate(tomorrow);
         anamnesis.setBeginningEpilepsy(tomorrow);
@@ -246,9 +228,9 @@ public class AnamnesisControllerTest {
 /*
     @Test
     public void list_PatientEntityFound() throws Exception {
-        PatientDisplayVO found = new PatientDisplayVO();
+        PatientDisplayBO found = new PatientDisplayBO();
         found.setId(1);
-        found.setAnamnesisList(new ArrayList<AnamnesisDisplayVO>());
+        found.setAnamnesisList(new ArrayList<AnamnesisDisplayBO>());
 
         when(patientServiceMock.getPatientDisplayByIdWithAnamnesisList(1)).thenReturn(
                 found);
@@ -257,7 +239,7 @@ public class AnamnesisControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("patient/anamnesis/listView"))
                 .andExpect(
-                        model().attribute("patient", isA(PatientDisplayVO.class)));
+                        model().attribute("patient", isA(PatientDisplayBO.class)));
 
         verify(patientServiceMock, times(1)).getPatientDisplayByIdWithAnamnesisList(1);
         verifyNoMoreInteractions(patientServiceMock);

@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
 
 import java.util.List;
 
 public interface AnonymizeService {
 
-    public void anonymizePatients(List<PatientDisplayVO> patients);
+    public void anonymizePatients(List<PatientDisplayBO> patients);
 }

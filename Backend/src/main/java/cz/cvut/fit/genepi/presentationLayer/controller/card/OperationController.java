@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.OperationVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.OperationFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -30,14 +30,14 @@ public class OperationController {
 
     private final OperationService operationService;
 
-    private final GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService;
+    private final GenericCardService<OperationDisplayBO, OperationFormBO, OperationEntity> genericCardService;
 
     @Autowired
     public OperationController(AuthorizationChecker authorizationChecker,
                                PatientService patientService,
                                OperationService operationService,
                                @Qualifier("genericCardServiceImpl")
-                               GenericCardService<OperationDisplayVO, OperationVO, OperationEntity> genericCardService) {
+                               GenericCardService<OperationDisplayBO, OperationFormBO, OperationEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -55,21 +55,21 @@ public class OperationController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("operation", new OperationVO());
+        model.addAttribute("operation", new OperationFormBO());
         return "patient/operation/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/operation/create", method = RequestMethod.POST)
     public String operationCreatePOST(
-            @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("operation") @Valid OperationFormBO operation, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), operation.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/operation/createView";
@@ -95,14 +95,14 @@ public class OperationController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("operation", genericCardService.getById(operationId, OperationVO.class, OperationEntity.class));
+        model.addAttribute("operation", genericCardService.getById(operationId, OperationFormBO.class, OperationEntity.class));
         return "patient/operation/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/operation/{operationId}/edit", method = RequestMethod.POST)
     public String operationSavePOST(
-            @ModelAttribute("operation") @Valid OperationVO operation, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("operation") @Valid OperationFormBO operation, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("operationId") int operationId,
             Model model, HttpServletRequest request) {
@@ -110,7 +110,7 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), operation.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), operation.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/operation/editView";
@@ -184,9 +184,9 @@ public class OperationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<OperationDisplayVO> operationDisplayVoList = operationService.getOperationList(patientId);
-        model.addAttribute("operationDisplayVoList", operationDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<OperationDisplayBO> operationDisplayBOList = operationService.getOperationList(patientId);
+        model.addAttribute("operationDisplayBOList", operationDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/operation/listView";
     }

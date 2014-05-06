@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.AnamnesisDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.AnamnesisFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
@@ -27,7 +27,7 @@ import javax.validation.Valid;
 @SessionAttributes({"anamnesis", "patient"})
 public class AnamnesisController {
 
-    private final GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService;
+    private final GenericCardService<AnamnesisDisplayBO, AnamnesisFormBO, AnamnesisEntity> genericCardService;
 
     private final AuthorizationChecker authorizationChecker;
 
@@ -52,7 +52,7 @@ public class AnamnesisController {
                                PatientService patientService,
                                AnamnesisService anamnesisService,
                                @Qualifier("genericCardServiceImpl")
-                               GenericCardService<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity> genericCardService) {
+                               GenericCardService<AnamnesisDisplayBO, AnamnesisFormBO, AnamnesisEntity> genericCardService) {
 
         this.genericCardService = genericCardService;
         this.authorizationChecker = authorizationChecker;
@@ -75,14 +75,14 @@ public class AnamnesisController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        AnamnesisDisplayBO anamnesisDisplayBO = anamnesisService.getRecordsByPatientId(patientId);
 
         model.addAttribute("patient", patient);
 
-        if (anamnesisDisplayVo == null) {
+        if (anamnesisDisplayBO == null) {
             model.addAttribute("dateBeforeBirth", false);
-            model.addAttribute("anamnesis", new AnamnesisVO());
+            model.addAttribute("anamnesis", new AnamnesisFormBO());
             return "patient/anamnesis/createView";
         } else {
             return "redirect:/patient/" + patientId + "/anamnesis/list";
@@ -91,15 +91,15 @@ public class AnamnesisController {
 
     @RequestMapping(value = "/patient/{patientId}/anamnesis/create", method = RequestMethod.POST)
     public String anamnesisCreatePOST(
-            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("anamnesis") @Valid AnamnesisFormBO anamnesis, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), anamnesis.getDate());
             if (result.hasErrors() || dateNotOk) {
 
                 model.addAttribute("dateBeforeBirth", dateNotOk);
@@ -135,14 +135,14 @@ public class AnamnesisController {
         }
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("anamnesis", genericCardService.getById(anamnesisId, AnamnesisVO.class, AnamnesisEntity.class));
+        model.addAttribute("anamnesis", genericCardService.getById(anamnesisId, AnamnesisFormBO.class, AnamnesisEntity.class));
         return "patient/anamnesis/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/anamnesis/{anamnesisId}/edit", method = RequestMethod.POST)
     public String anamnesisEditPOST(
-            @ModelAttribute("anamnesis") @Valid AnamnesisVO anamnesis, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("anamnesis") @Valid AnamnesisFormBO anamnesis, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("anamnesisId") Integer anamnesisId,
             Model model, HttpServletRequest request) {
@@ -150,7 +150,7 @@ public class AnamnesisController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), anamnesis.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), anamnesis.getDate());
             if (result.hasErrors() || dateNotOk) {
 
                 model.addAttribute("dateBeforeBirth", dateNotOk);
@@ -181,10 +181,10 @@ public class AnamnesisController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        AnamnesisDisplayBO anamnesisDisplayBO = anamnesisService.getRecordsByPatientId(patientId);
 
-        model.addAttribute("anamnesisDisplayVo", anamnesisDisplayVo);
+        model.addAttribute("anamnesisDisplayBO", anamnesisDisplayBO);
         model.addAttribute("patient", patient);
         return "patient/anamnesis/listView";
     }

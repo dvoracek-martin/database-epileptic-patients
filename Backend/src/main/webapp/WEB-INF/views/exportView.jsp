@@ -40,7 +40,7 @@
     <div class="col-xs-6">
         <h2>
             <c:choose>
-                <c:when test="${exportInfoWrapperVo.source == 'search'}">
+                <c:when test="${exportInfoWrapperFormBO.source == 'search'}">
                     <spring:message code="label.exportSearchResults"/>
                 </c:when>
                 <c:otherwise>
@@ -168,7 +168,7 @@
         <fieldset>
             <legend>
                 <c:choose>
-                    <c:when test="${fn:length(exportInfoWrapperVo.patientIds) gt 1}">
+                    <c:when test="${fn:length(exportInfoWrapperFormBO.patientIds) gt 1}">
                         <spring:message code="label.patientsToExport"/>
                     </c:when>
                     <c:otherwise>
@@ -176,7 +176,7 @@
                     </c:otherwise>
                 </c:choose>
             </legend>
-            <c:forEach items="${exportInfoWrapperVo.patientIds}"
+            <c:forEach items="${exportInfoWrapperFormBO.patientIds}"
                        var="patientId">
                 <a href="<c:url value="/patient/${patientId}/overview" />">
                         ${patientId}

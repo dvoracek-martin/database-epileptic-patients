@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.PatientFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.dataLayer.DAO.PatientDAO;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.GenericCardDAO;
@@ -24,7 +24,7 @@ import java.util.List;
  */
 @Service
 public class PatientServiceImpl
-        extends GenericServiceImpl<PatientVO, PatientEntity>
+        extends GenericServiceImpl<PatientFormBO, PatientEntity>
         implements PatientService {
 
     /**
@@ -53,12 +53,12 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public PatientDisplayVO getPatientDisplayByIdWithDoctor(int patientId) {
+    public PatientDisplayBO getPatientDisplayByIdWithDoctor(int patientId) {
         PatientEntity patientEntity = patientDAO.getPatientByIdWithDoctor(patientId);
-        PatientDisplayVO patientDisplayVO = dozer.map(patientEntity, PatientDisplayVO.class);
+        PatientDisplayBO patientDisplayBO = dozer.map(patientEntity, PatientDisplayBO.class);
         String ageAtTheBeginningOfEpilepsy = TimeConverter.getAgeAtTheBeginningOfEpilepsy(patientEntity);
-        patientDisplayVO.setAgeAtTheBeginningOfEpilepsy(ageAtTheBeginningOfEpilepsy);
-        return patientDisplayVO;
+        patientDisplayBO.setAgeAtTheBeginningOfEpilepsy(ageAtTheBeginningOfEpilepsy);
+        return patientDisplayBO;
     }
 
     @Override
@@ -95,15 +95,15 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public List<PatientDisplayVO> findAllWithHiddenRecords() {
+    public List<PatientDisplayBO> findAllWithHiddenRecords() {
         List<PatientEntity> patientsWithHiddenRecordsList = patientDAO.findAllWithHiddenRecords();
-        List<PatientDisplayVO> patientVOsWithHiddenRecordsList = new ArrayList<>();
+        List<PatientDisplayBO> patientFormBOsWithHiddenRecordsList = new ArrayList<>();
 
         for (PatientEntity patient : patientsWithHiddenRecordsList) {
-            patientVOsWithHiddenRecordsList.add(dozer.map(patient, PatientDisplayVO.class));
+            patientFormBOsWithHiddenRecordsList.add(dozer.map(patient, PatientDisplayBO.class));
         }
 
-        return patientVOsWithHiddenRecordsList;
+        return patientFormBOsWithHiddenRecordsList;
     }
 
     @Override
@@ -114,12 +114,12 @@ public class PatientServiceImpl
 
     @Override
     @Transactional
-    public List<PatientDisplayVO> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString) {
+    public List<PatientDisplayBO> getBySearchStringWithPagination(int maxResults, int pageNumber, boolean onlyResearcher, String searchString) {
         List<PatientEntity> patientList = patientDAO.getBySearchStringWithPagination(maxResults, pageNumber, onlyResearcher, searchString);
-        List<PatientDisplayVO> paientDisplaVoList = new ArrayList<>();
+        List<PatientDisplayBO> paientDisplaVoList = new ArrayList<>();
         for (PatientEntity patient : patientList) {
-            PatientDisplayVO patientDisplayVO = dozer.map(patient, PatientDisplayVO.class);
-            paientDisplaVoList.add(patientDisplayVO);
+            PatientDisplayBO patientDisplayBO = dozer.map(patient, PatientDisplayBO.class);
+            paientDisplaVoList.add(patientDisplayBO);
         }
         return paientDisplaVoList;
     }

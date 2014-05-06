@@ -3,9 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="histologyDisplayVo"
+<jsp:useBean id="histologyDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.HistologyDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.HistologyDisplayBO"/>
 
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
                var="isAuthorized"/>
@@ -13,20 +13,20 @@
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
-            <a href="#collapse-histology-${histologyDisplayVo.id}"
+            <a href="#collapse-histology-${histologyDisplayBO.id}"
                data-toggle="collapse">
-                ${histologyDisplayVo.date}
+                ${histologyDisplayBO.date}
             </a>
         </td>
         <td class="col-xs-3">
-            <spring:message code="label.histopathology.${histologyDisplayVo.histopathology}"/>
+            <spring:message code="label.histopathology.${histologyDisplayBO.histopathology}"/>
         </td>
         <td class="col-xs-3">
-            <spring:message code="label.fcdClassification.${histologyDisplayVo.fcdClassification}"/>
+            <spring:message code="label.fcdClassification.${histologyDisplayBO.fcdClassification}"/>
         </td>
         <td class="col-xs-2">
             <c:if test="${isAuthorized}">
-                <a href="<c:url value="/patient/${patient.id}/histology/${histologyDisplayVo.id}/edit"/>">
+                <a href="<c:url value="/patient/${patient.id}/histology/${histologyDisplayBO.id}/edit"/>">
                     <span class="glyphicon glyphicon-edit"></span>
                     <spring:message code="label.edit"/>
                 </a>
@@ -34,7 +34,7 @@
         </td>
         <td class="col-xs-2">
             <c:if test="${isAuthorized}">
-                <a href="#delete-histology-${histologyDisplayVo.id}"
+                <a href="#delete-histology-${histologyDisplayBO.id}"
                    data-toggle="modal">
                     <span class="glyphicon glyphicon-remove-circle"></span>
                     <spring:message code="label.delete"/>
@@ -44,7 +44,7 @@
     </tr>
 </table>
 
-<div id="collapse-histology-${histologyDisplayVo.id}"
+<div id="collapse-histology-${histologyDisplayBO.id}"
      class="collapse">
     <table class="table">
         <tr>
@@ -52,7 +52,7 @@
                 <spring:message code="label.comment"/>
             </td>
             <td colspan="3" class="col-xs-8">
-                ${histologyDisplayVo.comment}
+                ${histologyDisplayBO.comment}
             </td>
         </tr>
     </table>
@@ -60,9 +60,9 @@
 
 <jsp:include page="../../components/deleteModalComponentView.jsp">
     <jsp:param name="modalId"
-               value="delete-histology-${histologyDisplayVo.id}"/>
+               value="delete-histology-${histologyDisplayBO.id}"/>
     <jsp:param name="bodyMessage"
                value="reallyDeleteRecord"/>
     <jsp:param name="deleteUrl"
-               value="/patient/${patient.id}/histology/${histologyDisplayVo.id}/hide"/>
+               value="/patient/${patient.id}/histology/${histologyDisplayBO.id}/hide"/>
 </jsp:include>

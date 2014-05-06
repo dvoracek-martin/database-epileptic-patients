@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.PharmacotherapyVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.PharmacotherapyDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.PharmacotherapyFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class PharmacotherapyController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService;
+    private final GenericCardService<PharmacotherapyDisplayBO, PharmacotherapyFormBO, PharmacotherapyEntity> genericCardService;
 
     @Autowired
     public PharmacotherapyController(AuthorizationChecker authorizationChecker,
                                      PatientService patientService,
                                      @Qualifier("genericCardServiceImpl")
-                                     GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> genericCardService) {
+                                     GenericCardService<PharmacotherapyDisplayBO, PharmacotherapyFormBO, PharmacotherapyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class PharmacotherapyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", new PharmacotherapyVO());
+        model.addAttribute("pharmacotherapy", new PharmacotherapyFormBO());
         return "patient/pharmacotherapy/createView";
     }
 
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/create", method = RequestMethod.POST)
     public String pharmacotherapyCreatePOST(
-            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyFormBO pharmacotherapy, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), pharmacotherapy.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), pharmacotherapy.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/pharmacotherapy/createView";
@@ -89,14 +89,14 @@ public class PharmacotherapyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("pharmacotherapy", genericCardService.getById(pharmacotherapyId, PharmacotherapyVO.class, PharmacotherapyEntity.class));
+        model.addAttribute("pharmacotherapy", genericCardService.getById(pharmacotherapyId, PharmacotherapyFormBO.class, PharmacotherapyEntity.class));
         return "patient/pharmacotherapy/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/pharmacotherapy/{pharmacotherapyId}/edit", method = RequestMethod.POST)
     public String pharmacotherapyEditPOST(
-            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyVO pharmacotherapy, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("pharmacotherapy") @Valid PharmacotherapyFormBO pharmacotherapy, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("pharmacotherapyId") int pharmacotherapyId,
             Model model, HttpServletRequest request) {
@@ -104,7 +104,7 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), pharmacotherapy.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), pharmacotherapy.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/pharmacotherapy/editView";
@@ -177,9 +177,9 @@ public class PharmacotherapyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
-        model.addAttribute("pharmacotherapyDisplayVoList", pharmacotherapyDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<PharmacotherapyDisplayBO> pharmacotherapyDisplayBOList = genericCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayBO.class, PharmacotherapyEntity.class);
+        model.addAttribute("pharmacotherapyDisplayBOList", pharmacotherapyDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/pharmacotherapy/listView";
     }

@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.*;
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.PatientVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.*;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.*;
+import cz.cvut.fit.genepi.businessLayer.BO.form.ExportParamsFormBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.PatientFormBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.*;
 import cz.cvut.fit.genepi.businessLayer.service.*;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -40,7 +40,7 @@ import java.util.Locale;
  * The Class PatientController.
  */
 @Controller
-@SessionAttributes({"patient", "patientVO", "exportParams", "doctors"})
+@SessionAttributes({"patient", "patientFormBO", "exportParams", "doctors"})
 public class PatientController {
 
     private final AnonymizeService anonymizeService;
@@ -74,7 +74,7 @@ public class PatientController {
 
     @Autowired
     @Qualifier("genericCardServiceImpl")
-    private GenericCardService<PharmacotherapyDisplayVO, PharmacotherapyVO, PharmacotherapyEntity> pharmacotherapyCardService;
+    private GenericCardService<PharmacotherapyDisplayBO, PharmacotherapyFormBO, PharmacotherapyEntity> pharmacotherapyCardService;
 
     @Autowired
     @Qualifier("genericDAOImpl")
@@ -88,25 +88,25 @@ public class PatientController {
 
     private final SeizureService seizureService;
 
-    private final GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService;
+    private final GenericCardService<NeurologicalFindingDisplayBO, NeurologicalFindingFormBO, NeurologicalFindingEntity> nerologicalFindingCardService;
 
-    private final GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService;
+    private final GenericCardService<NeuropsychologyDisplayBO, NeuropsychologyFormBO, NeuropsychologyEntity> neuropsychologyCardService;
 
-    private final GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService;
+    private final GenericCardService<DiagnosticTestScalpEegDisplayBO, DiagnosticTestScalpEegFormBO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService;
 
-    private final GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService;
+    private final GenericCardService<DiagnosticTestMriDisplayBO, DiagnosticTestMriFormBO, DiagnosticTestMriEntity> diagnosticTestMriCardService;
 
-    private final GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService;
+    private final GenericCardService<InvasiveTestEcogDisplayBO, InvasiveTestEcogFormBO, InvasiveTestEcogEntity> invasiveTestEcogCardService;
 
-    private final GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService;
+    private final GenericCardService<InvasiveTestEegDisplayBO, InvasiveTestEegFormBO, InvasiveTestEegEntity> invasiveTestEegCardService;
 
-    private final GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService;
+    private final GenericCardService<InvasiveTestCorticalMappingDisplayBO, InvasiveTestCorticalMappingFormBO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService;
 
     private final OperationService operationService;
 
-    private final GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService;
+    private final GenericCardService<HistologyDisplayBO, HistologyFormBO, HistologyEntity> histologyCardService;
 
-    private final GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService;
+    private final GenericCardService<ComplicationDisplayBO, ComplicationFormBO, ComplicationEntity> complicationCardService;
 
     @Autowired
     public PatientController(AnonymizeService anonymizeService,
@@ -123,24 +123,24 @@ public class PatientController {
                              AnamnesisService anamnesisService,
                              SeizureService seizureService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> nerologicalFindingCardService,
+                             GenericCardService<NeurologicalFindingDisplayBO, NeurologicalFindingFormBO, NeurologicalFindingEntity> nerologicalFindingCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> neuropsychologyCardService,
+                             GenericCardService<NeuropsychologyDisplayBO, NeuropsychologyFormBO, NeuropsychologyEntity> neuropsychologyCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService,
+                             GenericCardService<DiagnosticTestScalpEegDisplayBO, DiagnosticTestScalpEegFormBO, DiagnosticTestScalpEegEntity> diagnosticTestScalpEegCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> diagnosticTestMriCardService,
+                             GenericCardService<DiagnosticTestMriDisplayBO, DiagnosticTestMriFormBO, DiagnosticTestMriEntity> diagnosticTestMriCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> invasiveTestEcogCardService,
+                             GenericCardService<InvasiveTestEcogDisplayBO, InvasiveTestEcogFormBO, InvasiveTestEcogEntity> invasiveTestEcogCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> invasiveTestEegCardService,
+                             GenericCardService<InvasiveTestEegDisplayBO, InvasiveTestEegFormBO, InvasiveTestEegEntity> invasiveTestEegCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<InvasiveTestCorticalMappingDisplayVO, InvasiveTestCorticalMappingVO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService,
+                             GenericCardService<InvasiveTestCorticalMappingDisplayBO, InvasiveTestCorticalMappingFormBO, InvasiveTestCorticalMappingEntity> invasiveTestCorticalMappingCardService,
                              OperationService operationService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> histologyCardService,
+                             GenericCardService<HistologyDisplayBO, HistologyFormBO, HistologyEntity> histologyCardService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> complicationCardService) {
+                             GenericCardService<ComplicationDisplayBO, ComplicationFormBO, ComplicationEntity> complicationCardService) {
 
         this.anonymizeService = anonymizeService;
         this.authorizationChecker = authorizationChecker;
@@ -181,24 +181,24 @@ public class PatientController {
 
         model.addAttribute("begginningEpiOk", true);
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("patientVO", new PatientVO());
+        model.addAttribute("patientFormBO", new PatientFormBO());
         return "patient/createView";
     }
 
     @RequestMapping(value = "/patient/create", method = RequestMethod.POST)
     public String patientCreatePOST(
-            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            @ModelAttribute("patientFormBO") @Valid PatientFormBO patientFormBO, BindingResult result,
             HttpServletRequest request, Model model) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
-        if (result.hasErrors() || TimeConverter.compareDates(patientVO.getBirthday(), DateTime.now())) {
+        if (result.hasErrors() || TimeConverter.compareDates(patientFormBO.getBirthday(), DateTime.now())) {
             model.addAttribute("begginningEpiOk", true);
             return "patient/createView";
         } else {
-            int patientId = patientService.save(patientVO, PatientEntity.class);
+            int patientId = patientService.save(patientFormBO, PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -211,33 +211,33 @@ public class PatientController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
         model.addAttribute("begginningEpiOk", true);
         model.addAttribute("patient", patient);
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("patientVO", patientService.getById(patientId, PatientVO.class, PatientEntity.class));
+        model.addAttribute("patientFormBO", patientService.getById(patientId, PatientFormBO.class, PatientEntity.class));
 
         return "patient/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/edit", method = RequestMethod.POST)
     public String patientEditPOST(
-            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            @ModelAttribute("patientFormBO") @Valid PatientFormBO patientFormBO, BindingResult result,
             @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
 
-        boolean isBeginningOfEpilepsyOk = patientService.verifyBeginningEpilepsy(patientVO.getId(), patientVO.getBeginningEpilepsy());
+        boolean isBeginningOfEpilepsyOk = patientService.verifyBeginningEpilepsy(patientFormBO.getId(), patientFormBO.getBeginningEpilepsy());
         if (result.hasErrors() || !isBeginningOfEpilepsyOk) {
 
             model.addAttribute("begginningEpiOk", isBeginningOfEpilepsyOk);
 
             return "patient/editView";
         } else {
-            patientService.update(patientVO, PatientEntity.class);
+            patientService.update(patientFormBO, PatientEntity.class);
             return "redirect:/patient/" + Integer.toString(patientId) + "/overview";
         }
     }
@@ -250,18 +250,18 @@ public class PatientController {
             return "deniedView";
         }
 
-        PatientDisplayVO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        PatientVO patient = patientService.getById(patientId, PatientVO.class, PatientEntity.class);
+        PatientDisplayBO patientDisplay = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        PatientFormBO patient = patientService.getById(patientId, PatientFormBO.class, PatientEntity.class);
 
         model.addAttribute("patient", patientDisplay);
-        model.addAttribute("patientVO", patient);
+        model.addAttribute("patientFormBO", patient);
 
         return "patient/verifyView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/verify", method = RequestMethod.POST)
     public String patientVerifyPOST(
-            @ModelAttribute("patientVO") @Valid PatientVO patientVO, BindingResult result,
+            @ModelAttribute("patientFormBO") @Valid PatientFormBO patientFormBO, BindingResult result,
             @PathVariable("patientId") Integer patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -270,7 +270,7 @@ public class PatientController {
         if (result.hasErrors()) {
             return "patient/verifyView";
         } else {
-            patientService.update(patientVO, PatientEntity.class);
+            patientService.update(patientFormBO, PatientEntity.class);
             return "redirect:/patient/" + patientId + "/overview";
         }
     }
@@ -283,40 +283,40 @@ public class PatientController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
 
         /* get all patients records */
-        AnamnesisDisplayVO anamnesisDisplayVo = anamnesisService.getRecordsByPatientId(patientId);
-        SeizureDisplayVO seizureDisplayVo = seizureService.getLatestRecordByPatientId(patientId);
-        List<PharmacotherapyDisplayVO> pharmacotherapyDisplayVoList = pharmacotherapyCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayVO.class, PharmacotherapyEntity.class);
-        NeurologicalFindingDisplayVO neurologicalFindingDisplayVo = nerologicalFindingCardService.getLatestRecordByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
-        NeuropsychologyDisplayVO neuropsychologyDisplayVo = neuropsychologyCardService.getLatestRecordByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
-        DiagnosticTestScalpEegDisplayVO diagnosticTestScalpEegDisplayVo = diagnosticTestScalpEegCardService.getLatestRecordByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
-        DiagnosticTestMriDisplayVO diagnosticTestMriDisplayVo = diagnosticTestMriCardService.getLatestRecordByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
-        InvasiveTestEcogDisplayVO invasiveTestEcogDisplayVo = invasiveTestEcogCardService.getLatestRecordByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
-        InvasiveTestEegDisplayVO invasiveTestEegDisplayVo = invasiveTestEegCardService.getLatestRecordByPatientId(patientId, InvasiveTestEegDisplayVO.class, InvasiveTestEegEntity.class);
-        InvasiveTestCorticalMappingDisplayVO invasiveTestCorticalMappingDisplayVo = invasiveTestCorticalMappingCardService.getLatestRecordByPatientId(patientId, InvasiveTestCorticalMappingDisplayVO.class, InvasiveTestCorticalMappingEntity.class);
-        OperationDisplayVO operationDisplayVo = operationService.getLatestOperationByPatientId(patientId);
-        List<HistologyDisplayVO> histologyDisplayVoList = histologyCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
-        List<ComplicationDisplayVO> complicationDisplayVoList = complicationCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
-        OperationWithOutcomesDisplayVO operationWithOutcomesDisplayVo = operationService.getLatestOperationWithOutcomesByPatientId(patientId);
+        AnamnesisDisplayBO anamnesisDisplayBO = anamnesisService.getRecordsByPatientId(patientId);
+        SeizureDisplayBO seizureDisplayBO = seizureService.getLatestRecordByPatientId(patientId);
+        List<PharmacotherapyDisplayBO> pharmacotherapyDisplayBOList = pharmacotherapyCardService.getRecordsByPatientId(patientId, PharmacotherapyDisplayBO.class, PharmacotherapyEntity.class);
+        NeurologicalFindingDisplayBO neurologicalFindingDisplayBO = nerologicalFindingCardService.getLatestRecordByPatientId(patientId, NeurologicalFindingDisplayBO.class, NeurologicalFindingEntity.class);
+        NeuropsychologyDisplayBO neuropsychologyDisplayBO = neuropsychologyCardService.getLatestRecordByPatientId(patientId, NeuropsychologyDisplayBO.class, NeuropsychologyEntity.class);
+        DiagnosticTestScalpEegDisplayBO diagnosticTestScalpEegDisplayBO = diagnosticTestScalpEegCardService.getLatestRecordByPatientId(patientId, DiagnosticTestScalpEegDisplayBO.class, DiagnosticTestScalpEegEntity.class);
+        DiagnosticTestMriDisplayBO diagnosticTestMriDisplayBO = diagnosticTestMriCardService.getLatestRecordByPatientId(patientId, DiagnosticTestMriDisplayBO.class, DiagnosticTestMriEntity.class);
+        InvasiveTestEcogDisplayBO invasiveTestEcogDisplayBO = invasiveTestEcogCardService.getLatestRecordByPatientId(patientId, InvasiveTestEcogDisplayBO.class, InvasiveTestEcogEntity.class);
+        InvasiveTestEegDisplayBO invasiveTestEegDisplayBO = invasiveTestEegCardService.getLatestRecordByPatientId(patientId, InvasiveTestEegDisplayBO.class, InvasiveTestEegEntity.class);
+        InvasiveTestCorticalMappingDisplayBO invasiveTestCorticalMappingDisplayBO = invasiveTestCorticalMappingCardService.getLatestRecordByPatientId(patientId, InvasiveTestCorticalMappingDisplayBO.class, InvasiveTestCorticalMappingEntity.class);
+        OperationDisplayBO operationDisplayBO = operationService.getLatestOperationByPatientId(patientId);
+        List<HistologyDisplayBO> histologyDisplayBOList = histologyCardService.getRecordsByPatientId(patientId, HistologyDisplayBO.class, HistologyEntity.class);
+        List<ComplicationDisplayBO> complicationDisplayBOList = complicationCardService.getRecordsByPatientId(patientId, ComplicationDisplayBO.class, ComplicationEntity.class);
+        OperationWithOutcomesDisplayBO operationWithOutcomesDisplayBO = operationService.getLatestOperationWithOutcomesByPatientId(patientId);
 
         /* pass patient and all records to model */
         model.addAttribute("patient", patient)
-                .addAttribute("anamnesisDisplayVo", anamnesisDisplayVo)
-                .addAttribute("seizureDisplayVo", seizureDisplayVo)
-                .addAttribute("pharmacotherapyDisplayVoList", pharmacotherapyDisplayVoList)
-                .addAttribute("neurologicalFindingDisplayVo", neurologicalFindingDisplayVo)
-                .addAttribute("neuropsychologyDisplayVo", neuropsychologyDisplayVo)
-                .addAttribute("diagnosticTestScalpEegDisplayVo", diagnosticTestScalpEegDisplayVo)
-                .addAttribute("diagnosticTestMriDisplayVo", diagnosticTestMriDisplayVo)
-                .addAttribute("invasiveTestEcogDisplayVo", invasiveTestEcogDisplayVo)
-                .addAttribute("invasiveTestEegDisplayVo", invasiveTestEegDisplayVo)
-                .addAttribute("invasiveTestCorticalMappingDisplayVo", invasiveTestCorticalMappingDisplayVo)
-                .addAttribute("operationDisplayVo", operationDisplayVo)
-                .addAttribute("histologyDisplayVoList", histologyDisplayVoList)
-                .addAttribute("complicationDisplayVoList", complicationDisplayVoList)
-                .addAttribute("operationWithOutcomesDisplayVo", operationWithOutcomesDisplayVo);
+                .addAttribute("anamnesisDisplayBO", anamnesisDisplayBO)
+                .addAttribute("seizureDisplayBO", seizureDisplayBO)
+                .addAttribute("pharmacotherapyDisplayBOList", pharmacotherapyDisplayBOList)
+                .addAttribute("neurologicalFindingDisplayBO", neurologicalFindingDisplayBO)
+                .addAttribute("neuropsychologyDisplayBO", neuropsychologyDisplayBO)
+                .addAttribute("diagnosticTestScalpEegDisplayBO", diagnosticTestScalpEegDisplayBO)
+                .addAttribute("diagnosticTestMriDisplayBO", diagnosticTestMriDisplayBO)
+                .addAttribute("invasiveTestEcogDisplayBO", invasiveTestEcogDisplayBO)
+                .addAttribute("invasiveTestEegDisplayBO", invasiveTestEegDisplayBO)
+                .addAttribute("invasiveTestCorticalMappingDisplayBO", invasiveTestCorticalMappingDisplayBO)
+                .addAttribute("operationDisplayBO", operationDisplayBO)
+                .addAttribute("histologyDisplayBOList", histologyDisplayBOList)
+                .addAttribute("complicationDisplayBOList", complicationDisplayBOList)
+                .addAttribute("operationWithOutcomesDisplayBO", operationWithOutcomesDisplayBO);
 
         return "patient/overviewView";
     }
@@ -355,7 +355,7 @@ public class PatientController {
 
         int patientsCount = patientService.getCountOfUnhidden(onlyResearcher, searchString);
 
-        List<PatientDisplayVO> patients = patientService.getBySearchStringWithPagination(maxResults, pageNumber, onlyResearcher, searchString);
+        List<PatientDisplayBO> patients = patientService.getBySearchStringWithPagination(maxResults, pageNumber, onlyResearcher, searchString);
 
         if (onlyResearcher) {
             anonymizeService.anonymizePatients(patients);
@@ -448,7 +448,7 @@ public class PatientController {
                 listOfUsersSavedConfigurations);
         model.addAttribute("user", user);
         model.addAttribute("exportParams",
-                exportParamsService.getById(1, ExportParamsVO.class, ExportParamsEntity.class));
+                exportParamsService.getById(1, ExportParamsFormBO.class, ExportParamsEntity.class));
 
 
         List<PatientEntity> listOfPatients = new ArrayList<PatientEntity>();

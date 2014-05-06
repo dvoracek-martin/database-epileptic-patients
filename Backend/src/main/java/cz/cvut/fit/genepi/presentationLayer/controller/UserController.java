@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.RoleVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.RoleFormBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
@@ -72,7 +72,7 @@ public class UserController {
 
         model.addAttribute("uniqueUsername", true);
         model.addAttribute("uniqueEmail", true);
-        model.addAttribute("user", new UserVO());
+        model.addAttribute("user", new UserFormBO());
         return "user/createView";
     }
 
@@ -91,7 +91,7 @@ public class UserController {
      */
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
     public String userCreatePOST(
-            @ModelAttribute("user") @Valid UserVO user,
+            @ModelAttribute("user") @Valid UserFormBO user,
             BindingResult result, Locale locale, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -130,7 +130,7 @@ public class UserController {
             return "deniedView";
         }
 
-        model.addAttribute("user", userService.getById(userId, UserVO.class, UserEntity.class));
+        model.addAttribute("user", userService.getById(userId, UserFormBO.class, UserEntity.class));
 
         return "user/overviewView";
     }
@@ -164,7 +164,7 @@ public class UserController {
             return "deniedView";
         } else {
 
-            model.addAttribute("user", userService.getById(userId, UserVO.class, UserEntity.class));
+            model.addAttribute("user", userService.getById(userId, UserFormBO.class, UserEntity.class));
             model.addAttribute("uniqueUsername", true);
             model.addAttribute("uniqueEmail", true);
             model.addAttribute("isAdmin", authorizationChecker.isAdmin());
@@ -185,7 +185,7 @@ public class UserController {
      * redirected.
      */
     @RequestMapping(value = "/user/{userId}/edit", method = RequestMethod.POST)
-    public String userEditPOST(@ModelAttribute("user") @Valid UserVO user, BindingResult result,
+    public String userEditPOST(@ModelAttribute("user") @Valid UserFormBO user, BindingResult result,
                                @PathVariable("userId") int userId,
                                Model model, HttpServletRequest request) {
 
@@ -249,7 +249,7 @@ public class UserController {
         } else if (!authorizationChecker.isAdmin() && !authorizationChecker.isUserFromUrl(userId)) {
             return "deniedView";
         } else {
-            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
+            UserFormBO user = userService.getById(userId, UserFormBO.class, UserEntity.class);
             user.setPassword("");
             model.addAttribute("user", user);
             model.addAttribute("samePasswords", true);
@@ -272,7 +272,7 @@ public class UserController {
      */
     @RequestMapping(value = "/user/{userId}/change-password", method = RequestMethod.POST)
     public String userChangePasswordPOST(
-            @ModelAttribute("user") @Valid UserVO user, BindingResult result,
+            @ModelAttribute("user") @Valid UserFormBO user, BindingResult result,
             @PathVariable("userId") int userId,
             @RequestParam("passwordAgain") String passwordAgain,
             Locale locale, Model model, HttpServletRequest request) {
@@ -305,8 +305,8 @@ public class UserController {
             return "deniedView";
         } else {
 
-            UserVO user = userService.getById(userId, UserVO.class, UserEntity.class);
-            List<RoleVO> possibleRoles = roleService.getPossibleRoles(userId);
+            UserFormBO user = userService.getById(userId, UserFormBO.class, UserEntity.class);
+            List<RoleFormBO> possibleRoles = roleService.getPossibleRoles(userId);
             model.addAttribute("user", user);
             model.addAttribute("possibleRoles", possibleRoles);
             return "user/editRoles";
@@ -323,17 +323,17 @@ public class UserController {
         } else {
 
             //TODO transfer to service
-            List<RoleVO> newRoles = new ArrayList<>();
+            List<RoleFormBO> newRoles = new ArrayList<>();
 
             if (roleIds.length > 0 && roleIds[0] != 0) {
                 for (int id : roleIds) {
-                    newRoles.add(roleService.getById(id, RoleVO.class, RoleEntity.class));
+                    newRoles.add(roleService.getById(id, RoleFormBO.class, RoleEntity.class));
                 }
             }
-            UserVO userVO = userService.getById(userId, UserVO.class, UserEntity.class);
-            userVO.setRoles(newRoles);
+            UserFormBO userFormBO = userService.getById(userId, UserFormBO.class, UserEntity.class);
+            userFormBO.setRoles(newRoles);
 
-            userService.update(userVO, UserEntity.class);
+            userService.update(userFormBO, UserEntity.class);
             return "redirect:/user/" + userId + "/overview";
         }
     }

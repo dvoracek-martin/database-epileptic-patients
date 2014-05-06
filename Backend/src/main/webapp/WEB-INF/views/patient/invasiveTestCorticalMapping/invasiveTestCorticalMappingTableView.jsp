@@ -2,15 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="invasiveTestCorticalMappingDisplayVo"
+<jsp:useBean id="invasiveTestCorticalMappingDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestCorticalMappingDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestCorticalMappingDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
 
-<div id="collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayVo.id}"
+<div id="collapse-invasive-test-cortical-mapping-${invasiveTestCorticalMappingDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -19,18 +19,18 @@
                 <spring:message code="label.invasiveTestCorticalMapping"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${invasiveTestCorticalMappingDisplayVo.done}"/>
+                <spring:message code="label.done.${invasiveTestCorticalMappingDisplayBO.done}"/>
             </td>
         </tr>
 
-        <c:if test="${invasiveTestCorticalMappingDisplayVo.done==2}">
+        <c:if test="${invasiveTestCorticalMappingDisplayBO.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.corticalMapping"/>
                 </th>
                 <td class="col-xs-9">
                     <spring:message
-                            code="label.corticalMapping.${invasiveTestCorticalMappingDisplayVo.corticalMapping}"/>
+                            code="label.corticalMapping.${invasiveTestCorticalMappingDisplayBO.corticalMapping}"/>
                 </td>
             </tr>
             <tr>
@@ -38,14 +38,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty invasiveTestCorticalMappingDisplayVo.comment}">
+                    <c:when test="${empty invasiveTestCorticalMappingDisplayBO.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${invasiveTestCorticalMappingDisplayVo.comment}
+                                ${invasiveTestCorticalMappingDisplayBO.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

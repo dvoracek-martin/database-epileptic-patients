@@ -25,9 +25,9 @@
         </div>
 
         <form:form class="form-horizontal"
-                   action="/GENEPI/news/${newsMessageVo.id}/edit"
+                   action="/GENEPI/news/${newsMessageFormBO.id}/edit"
                    method="POST"
-                   commandName="newsMessageVo">
+                   commandName="newsMessageFormBO">
 
             <jsp:include page="formView.jsp"/>
 

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestScalpEegVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.DiagnosticTestScalpEegDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.DiagnosticTestScalpEegFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class DiagnosticTestScalpEegController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService;
+    private final GenericCardService<DiagnosticTestScalpEegDisplayBO, DiagnosticTestScalpEegFormBO, DiagnosticTestScalpEegEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestScalpEegController(AuthorizationChecker authorizationChecker,
                                             PatientService patientService,
                                             @Qualifier("genericCardServiceImpl")
-                                            GenericCardService<DiagnosticTestScalpEegDisplayVO, DiagnosticTestScalpEegVO, DiagnosticTestScalpEegEntity> genericCardService) {
+                                            GenericCardService<DiagnosticTestScalpEegDisplayBO, DiagnosticTestScalpEegFormBO, DiagnosticTestScalpEegEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class DiagnosticTestScalpEegController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestScalpEeg", new DiagnosticTestScalpEegVO());
+        model.addAttribute("diagnosticTestScalpEeg", new DiagnosticTestScalpEegFormBO());
         return "patient/diagnosticTestScalpEeg/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/create", method = RequestMethod.POST)
     public String diagnosticTestScalpEegCreatePOST(
-            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegFormBO diagnosticTestScalpEeg, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), diagnosticTestScalpEeg.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/diagnosticTestScalpEeg/createView";
@@ -90,14 +90,14 @@ public class DiagnosticTestScalpEegController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestScalpEeg", genericCardService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegVO.class, DiagnosticTestScalpEegEntity.class));
+        model.addAttribute("diagnosticTestScalpEeg", genericCardService.getById(diagnosticTestScalpEegId, DiagnosticTestScalpEegFormBO.class, DiagnosticTestScalpEegEntity.class));
         return "patient/diagnosticTestScalpEeg/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-scalp-eeg/{diagnosticTestScalpEegId}/edit", method = RequestMethod.POST)
     public String diagnosticTestScalpEegEditPOST(
-            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegVO diagnosticTestScalpEeg, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("diagnosticTestScalpEeg") @Valid DiagnosticTestScalpEegFormBO diagnosticTestScalpEeg, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("diagnosticTestScalpEegId") int diagnosticTestScalpEegId,
             Model model, HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class DiagnosticTestScalpEegController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestScalpEeg.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), diagnosticTestScalpEeg.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/diagnosticTestScalpEeg/editView";
@@ -182,9 +182,9 @@ public class DiagnosticTestScalpEegController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<DiagnosticTestScalpEegDisplayVO> diagnosticTestScalpEegDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestScalpEegDisplayVO.class, DiagnosticTestScalpEegEntity.class);
-        model.addAttribute("diagnosticTestScalpEegDisplayVoList", diagnosticTestScalpEegDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<DiagnosticTestScalpEegDisplayBO> diagnosticTestScalpEegDisplayBOList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestScalpEegDisplayBO.class, DiagnosticTestScalpEegEntity.class);
+        model.addAttribute("diagnosticTestScalpEegDisplayBOList", diagnosticTestScalpEegDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestScalpEeg/listView";
     }

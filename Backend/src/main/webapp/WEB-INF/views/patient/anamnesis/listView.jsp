@@ -25,7 +25,7 @@
             </div>
             <div class="col-xs-6">
 
-                <c:if test="${empty anamnesisDisplayVo && isAuthorized}">
+                <c:if test="${empty anamnesisDisplayBO && isAuthorized}">
                     <h3 class="pull-right">
                         <a href="<c:url value="/patient/${patient.id}/anamnesis/create" />">
                             <spring:message code="label.addRecord"/>
@@ -38,7 +38,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty anamnesisDisplayVo}">
+            <c:when test="${empty anamnesisDisplayBO}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -50,15 +50,15 @@
                             <tbody>
                             <tr>
                                 <th class="col-xs-8">
-                                    <a href="#collapse-anamnesis-${anamnesisDisplayVo.id}"
+                                    <a href="#collapse-anamnesis-${anamnesisDisplayBO.id}"
                                        data-toggle="collapse">
-                                        <spring:message code="label.dateAdded"/>: ${anamnesisDisplayVo.date}
+                                        <spring:message code="label.dateAdded"/>: ${anamnesisDisplayBO.date}
                                     </a>
                                 </th>
                                 <th class="col-xs-4">
                                     <c:if test="${isAuthorized}">
                                         <a class="pull-right"
-                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayVo.id}/edit"/>">
+                                           href="<c:url value="/patient/${patient.id}/anamnesis/${anamnesisDisplayBO.id}/edit"/>">
                                             <span class="glyphicon glyphicon-edit"></span>
                                             <spring:message code="label.edit"/>
                                         </a>

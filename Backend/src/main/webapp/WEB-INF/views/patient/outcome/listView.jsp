@@ -26,7 +26,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty operationWithOutcomesDisplayVoList}">
+            <c:when test="${empty operationWithOutcomesDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -36,10 +36,10 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${operationWithOutcomesDisplayVoList}"
-                               var="operationWithOutcomesDisplayVo">
-                        <c:set var="operationWithOutcomesDisplayVo"
-                               value="${operationWithOutcomesDisplayVo}"
+                    <c:forEach items="${operationWithOutcomesDisplayBOList}"
+                               var="operationWithOutcomesDisplayBO">
+                        <c:set var="operationWithOutcomesDisplayBO"
+                               value="${operationWithOutcomesDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
@@ -47,9 +47,9 @@
                                 <tr>
                                     <th class="col-xs-12">
                                         <a data-toggle="collapse"
-                                           href="#collapse-outcome-${operationWithOutcomesDisplayVo.id}">
+                                           href="#collapse-outcome-${operationWithOutcomesDisplayBO.id}">
                                             <spring:message
-                                                    code="label.operationFromDay"/>: ${operationWithOutcomesDisplayVo.dateOperation}
+                                                    code="label.operationFromDay"/>: ${operationWithOutcomesDisplayBO.dateOperation}
                                         </a>
                                     </th>
                                 </tr>

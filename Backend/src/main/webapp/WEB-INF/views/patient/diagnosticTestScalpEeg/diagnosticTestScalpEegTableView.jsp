@@ -2,15 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="diagnosticTestScalpEegDisplayVo"
+<jsp:useBean id="diagnosticTestScalpEegDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestScalpEegDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.DiagnosticTestScalpEegDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
 
-<div id="collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"
+<div id="collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -19,17 +19,17 @@
                 <spring:message code="label.diagnosticTestScalpEeg"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${diagnosticTestScalpEegDisplayVo.done}"/>
+                <spring:message code="label.done.${diagnosticTestScalpEegDisplayBO.done}"/>
             </td>
         </tr>
 
-        <c:if test="${diagnosticTestScalpEegDisplayVo.done==2}">
+        <c:if test="${diagnosticTestScalpEegDisplayBO.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.basicEegActivity"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.basicEegActivity.${diagnosticTestScalpEegDisplayVo.basicEegActivity}"/>
+                    <spring:message code="label.basicEegActivity.${diagnosticTestScalpEegDisplayBO.basicEegActivity}"/>
                 </td>
             </tr>
 
@@ -38,7 +38,7 @@
                     <spring:message code="label.eegSlow"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.eegSlow.${diagnosticTestScalpEegDisplayVo.eegSlow}"/>
+                    <spring:message code="label.eegSlow.${diagnosticTestScalpEegDisplayBO.eegSlow}"/>
                 </td>
             </tr>
             <tr>
@@ -47,7 +47,7 @@
                 </th>
                 <td class="col-xs-9">
                     <spring:message
-                            code="label.interictalEegSpikes.${diagnosticTestScalpEegDisplayVo.interictalEegSpikes}"/>
+                            code="label.interictalEegSpikes.${diagnosticTestScalpEegDisplayBO.interictalEegSpikes}"/>
                 </td>
             </tr>
             <tr>
@@ -55,7 +55,7 @@
                     <spring:message code="label.localizationInterictalEegSpikes"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestScalpEegDisplayVo.localizationInterictalEegSpikes}
+                        ${diagnosticTestScalpEegDisplayBO.localizationInterictalEegSpikes}
                 </td>
             </tr>
             <tr>
@@ -63,7 +63,7 @@
                     <spring:message code="label.eegStatusEpilepticus"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestScalpEegDisplayVo.eegStatusEpilepticus}"/>
+                    <spring:message code="label.boolean.${diagnosticTestScalpEegDisplayBO.eegStatusEpilepticus}"/>
                 </td>
             </tr>
             <tr>
@@ -71,7 +71,7 @@
                     <spring:message code="label.secondarySidedSynchrony"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.boolean.${diagnosticTestScalpEegDisplayVo.secondarySidedSynchrony}"/>
+                    <spring:message code="label.boolean.${diagnosticTestScalpEegDisplayBO.secondarySidedSynchrony}"/>
                 </td>
             </tr>
             <tr>
@@ -79,7 +79,7 @@
                     <spring:message code="label.ictalEegPatterns"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.ictalEegPatterns.${diagnosticTestScalpEegDisplayVo.ictalEegPatterns}"/>
+                    <spring:message code="label.ictalEegPatterns.${diagnosticTestScalpEegDisplayBO.ictalEegPatterns}"/>
                 </td>
             </tr>
             <tr>
@@ -87,7 +87,7 @@
                     <spring:message code="label.localizationIctalEegPattern"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestScalpEegDisplayVo.localizationIctalEegPattern}
+                        ${diagnosticTestScalpEegDisplayBO.localizationIctalEegPattern}
                 </td>
             </tr>
             <tr>
@@ -95,7 +95,7 @@
                     <spring:message code="label.descriptionVideoEeg"/>
                 </th>
                 <td class="col-xs-9">
-                        ${diagnosticTestScalpEegDisplayVo.descriptionVideoEeg}
+                        ${diagnosticTestScalpEegDisplayBO.descriptionVideoEeg}
                 </td>
             </tr>
             <tr>
@@ -103,14 +103,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty diagnosticTestScalpEegDisplayVo.comment}">
+                    <c:when test="${empty diagnosticTestScalpEegDisplayBO.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${diagnosticTestScalpEegDisplayVo.comment}
+                                ${diagnosticTestScalpEegDisplayBO.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

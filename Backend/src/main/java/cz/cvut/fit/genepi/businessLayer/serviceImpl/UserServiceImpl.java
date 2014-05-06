@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.UserDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.UserDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.MailService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.DAO.RoleDAO;
@@ -26,7 +26,7 @@ import java.util.Locale;
  * The Class UserServiceImpl.
  */
 @Service
-public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> implements UserService {
+public class UserServiceImpl extends GenericServiceImpl<UserFormBO, UserEntity> implements UserService {
 
     private RoleDAO roleDAO;
 
@@ -62,7 +62,7 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
 
     @Override
     @Transactional
-    public int create(UserVO user, Locale locale) {
+    public int create(UserFormBO user, Locale locale) {
 
         String password = RandomStringUtils.randomAlphanumeric(10);
         user.setPassword(DigestUtils.sha256Hex(password + "{" + user.getUsername() + "}"));
@@ -103,34 +103,34 @@ public class UserServiceImpl extends GenericServiceImpl<UserVO, UserEntity> impl
     @Override
     @Transactional
     public boolean isMineOrUniqueUsername(int userId, String username) {
-        UserVO user = getById(userId, UserVO.class, UserEntity.class);
+        UserFormBO user = getById(userId, UserFormBO.class, UserEntity.class);
         return user.getUsername().equals(username) || this.isUniqueUsername(username);
     }
 
     @Override
     @Transactional
     public boolean isMineOrUniqueEmail(int userId, String email) {
-        UserVO user = getById(userId, UserVO.class, UserEntity.class);
+        UserFormBO user = getById(userId, UserFormBO.class, UserEntity.class);
         return user.getContact().getEmail().equals(email) || this.isUniqueEmail(email);
     }
 
     @Override
     @Transactional
-    public List<UserDisplayVO> findAllNonHidden() {
+    public List<UserDisplayBO> findAllNonHidden() {
 
         List<UserEntity> userEntityList = userDAO.findAllNonHidden();
-        List<UserDisplayVO> userDisplayVOList = new ArrayList<>();
+        List<UserDisplayBO> userDisplayBOList = new ArrayList<>();
 
         for (UserEntity userEntity : userEntityList) {
-            userDisplayVOList.add(dozer.map(userEntity, UserDisplayVO.class));
+            userDisplayBOList.add(dozer.map(userEntity, UserDisplayBO.class));
         }
 
-        return userDisplayVOList;
+        return userDisplayBOList;
     }
 
     @Override
     @Transactional
-    public void changePassword(UserVO user) {
+    public void changePassword(UserFormBO user) {
 
         user.setPassword(DigestUtils.sha256Hex(user.getPassword()
                 + "{" + user.getUsername() + "}"));

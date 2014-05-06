@@ -27,7 +27,7 @@
         <form:form class="form-horizontal"
                    action="/GENEPI/news/create"
                    method="POST"
-                   commandName="newsMessageVo">
+                   commandName="newsMessageFormBO">
 
             <jsp:include page="formView.jsp"/>
 

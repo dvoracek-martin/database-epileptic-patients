@@ -38,7 +38,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty diagnosticTestMriDisplayVoList}">
+            <c:when test="${empty diagnosticTestMriDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -48,9 +48,9 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${diagnosticTestMriDisplayVoList}" var="diagnosticTestMriDisplayVo">
-                        <c:set var="diagnosticTestMriDisplayVo"
-                               value="${diagnosticTestMriDisplayVo}"
+                    <c:forEach items="${diagnosticTestMriDisplayBOList}" var="diagnosticTestMriDisplayBO">
+                        <c:set var="diagnosticTestMriDisplayBO"
+                               value="${diagnosticTestMriDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
@@ -58,14 +58,14 @@
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}">
-                                            <spring:message code="label.dateAdded"/>: ${diagnosticTestMriDisplayVo.date}
+                                           href="#collapse-diagnostic-test-mri-${diagnosticTestMriDisplayBO.id}">
+                                            <spring:message code="label.dateAdded"/>: ${diagnosticTestMriDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -74,7 +74,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-diagnostic-test-mri-${diagnosticTestMriDisplayVo.id}"
+                                               href="#delete-diagnostic-test-mri-${diagnosticTestMriDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -89,11 +89,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-diagnosticTestMri-${diagnosticTestMriDisplayVo.id}"/>
+                                           value="delete-diagnosticTestMri-${diagnosticTestMriDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/diagnostic-test-mri/${diagnosticTestMriDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

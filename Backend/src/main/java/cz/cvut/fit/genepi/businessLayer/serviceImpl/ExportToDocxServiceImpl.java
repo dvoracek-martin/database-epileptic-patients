@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
 import com.lowagie.text.Paragraph;
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToDocxService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -3006,7 +3006,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         if (exportParams.isPatientBirthday()) {
             content.add(messageSource.getMessage("label.birthdate",
                     null, locale) + delimiter + translateValue(
-                    String.valueOf( TimeConverter.getDate(patient.getBirthday())), locale));
+                    String.valueOf(TimeConverter.getDate(patient.getBirthday())), locale));
             content.add(messageSource.getMessage("label.age",
                     null, locale) + delimiter + translateValue(
                     String.valueOf(getCurrentAge(patient)), locale));
@@ -3064,7 +3064,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isPatientDoctorId()) {
             content.add(messageSource.getMessage("label.assignedDoctor",
-                    null, locale) + delimiter + translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale));
+                    null, locale) + delimiter + translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getLastName()), locale));
         }
 
         content.add(messageSource.getMessage("label.dateOfExport",
@@ -3155,7 +3155,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
         }
         if (exportParams.isPatientDoctorId()) {
             content.add(messageSource.getMessage("label.assignedDoctor", null, locale));
-            content.add(translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale));
+            content.add(translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getLastName()), locale));
         }
 
         content.add(messageSource.getMessage("label.dateOfExport", null, locale));
@@ -3186,7 +3186,7 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
      * This function is used when it's needed to customize the export and print there some custom message
      * during every export
      */
-    private void printCustom(WordprocessingMLPackage document,String heading, String message) {
+    private void printCustom(WordprocessingMLPackage document, String heading, String message) {
         List<String> content = new ArrayList<String>();
 
         document.getMainDocumentPart().addStyledParagraphOfText("Heading2", heading);

@@ -2,15 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="operationDisplayVo"
+<jsp:useBean id="operationDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
 
-<div id="collapse-operation-${operationDisplayVo.id}"
+<div id="collapse-operation-${operationDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -19,7 +19,7 @@
                 <spring:message code="label.dateOfOperation"/>
             </th>
             <td class="col-xs-9">
-                ${operationDisplayVo.dateOperation}
+                ${operationDisplayBO.dateOperation}
             </td>
         </tr>
         <tr>
@@ -27,7 +27,7 @@
                 <spring:message code="label.ageAtSurgery"/>
             </th>
             <td class="col-xs-9">
-                ${operationDisplayVo.ageAtOperation}
+                ${operationDisplayBO.ageAtOperation}
             </td>
         </tr>
 
@@ -36,7 +36,7 @@
                <spring:message code="label.durationOfEpilepsyAtTheTimeOfSurgery"/>
            </th>
            <td class="col-xs-9">
-               ${operationDisplayVo.epilepsyLastAtOperation}
+               ${operationDisplayBO.epilepsyLastAtOperation}
            </td>
        </tr>
 
@@ -45,7 +45,7 @@
                 <spring:message code="label.typeOfOperation"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.operationType.${operationDisplayVo.typeOperation}"/>
+                <spring:message code="label.operationType.${operationDisplayBO.typeOperation}"/>
             </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@
                 <spring:message code="label.rangeOfOperation"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.operationRange.${operationDisplayVo.rangeOperation}"/>
+                <spring:message code="label.operationRange.${operationDisplayBO.rangeOperation}"/>
             </td>
         </tr>
         <tr>
@@ -61,14 +61,14 @@
                 <spring:message code="label.localizationOfOperation"/>
             </th>
             <c:choose>
-                <c:when test="${empty operationDisplayVo.localizationOperation}">
+                <c:when test="${empty operationDisplayBO.localizationOperation}">
                     <td>
                         -
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${operationDisplayVo.localizationOperation}
+                            ${operationDisplayBO.localizationOperation}
                     </td>
                 </c:otherwise>
             </c:choose>
@@ -78,7 +78,7 @@
                 <spring:message code="label.mst"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${operationDisplayVo.mst}"/>
+                <spring:message code="label.boolean.${operationDisplayBO.mst}"/>
             </td>
         </tr>
         <tr>
@@ -86,7 +86,7 @@
                 <spring:message code="label.calosotomy"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${operationDisplayVo.colostomy}"/>
+                <spring:message code="label.boolean.${operationDisplayBO.colostomy}"/>
             </td>
         </tr>
         <tr>
@@ -94,7 +94,7 @@
                 <spring:message code="label.vns"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${operationDisplayVo.vns}"/>
+                <spring:message code="label.boolean.${operationDisplayBO.vns}"/>
             </td>
         </tr>
         <tr>
@@ -102,14 +102,14 @@
                 <spring:message code="label.vnsImplantationDate"/>
             </th>
             <c:choose>
-                <c:when test="${empty operationDisplayVo.vnsImplantationDate}">
+                <c:when test="${empty operationDisplayBO.vnsImplantationDate}">
                     <td>
                         -
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${operationDisplayVo.vnsImplantationDate}
+                            ${operationDisplayBO.vnsImplantationDate}
                     </td>
                 </c:otherwise>
             </c:choose>
@@ -119,14 +119,14 @@
                 <spring:message code="label.operationDetails"/>
             </th>
             <c:choose>
-                <c:when test="${empty operationDisplayVo.operationDetails}">
+                <c:when test="${empty operationDisplayBO.operationDetails}">
                     <td>
                         -
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${operationDisplayVo.operationDetails}
+                            ${operationDisplayBO.operationDetails}
                     </td>
                 </c:otherwise>
             </c:choose>
@@ -136,7 +136,7 @@
                 <spring:message code="label.completeResection"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.boolean.${operationDisplayVo.completeResection}"/>
+                <spring:message code="label.boolean.${operationDisplayBO.completeResection}"/>
             </td>
         </tr>
         <tr>
@@ -144,14 +144,14 @@
                 <spring:message code="label.comment"/>
             </th>
             <c:choose>
-                <c:when test="${empty operationDisplayVo.comment}">
+                <c:when test="${empty operationDisplayBO.comment}">
                     <td class="col-xs-9">
                         <spring:message code="label.noComments"/>
                     </td>
                 </c:when>
                 <c:otherwise>
                     <td class="col-xs-9">
-                            ${operationDisplayVo.comment}
+                            ${operationDisplayBO.comment}
                     </td>
                 </c:otherwise>
             </c:choose>

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEcogVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestEcogDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.InvasiveTestEcogFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class InvasiveTestEcogController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService;
+    private final GenericCardService<InvasiveTestEcogDisplayBO, InvasiveTestEcogFormBO, InvasiveTestEcogEntity> genericCardService;
 
     @Autowired
     public InvasiveTestEcogController(AuthorizationChecker authorizationChecker,
                                       PatientService patientService,
                                       @Qualifier("genericCardServiceImpl")
-                                      GenericCardService<InvasiveTestEcogDisplayVO, InvasiveTestEcogVO, InvasiveTestEcogEntity> genericCardService) {
+                                      GenericCardService<InvasiveTestEcogDisplayBO, InvasiveTestEcogFormBO, InvasiveTestEcogEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class InvasiveTestEcogController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEcog", new InvasiveTestEcogVO());
+        model.addAttribute("invasiveTestEcog", new InvasiveTestEcogFormBO());
         return "patient/invasiveTestEcog/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/create", method = RequestMethod.POST)
     public String invasiveTestEcogCreatePOST(
-            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogFormBO invasiveTestEcog, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), invasiveTestEcog.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), invasiveTestEcog.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/invasiveTestEcog/createView";
@@ -90,14 +90,14 @@ public class InvasiveTestEcogController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("invasiveTestEcog", genericCardService.getById(invasiveTestEcogId, InvasiveTestEcogVO.class, InvasiveTestEcogEntity.class));
+        model.addAttribute("invasiveTestEcog", genericCardService.getById(invasiveTestEcogId, InvasiveTestEcogFormBO.class, InvasiveTestEcogEntity.class));
         return "patient/invasiveTestEcog/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/invasive-test-ecog/{invasiveTestEcogId}/edit", method = RequestMethod.POST)
     public String invasiveTestEcogEditPOST(
-            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogVO invasiveTestEcog, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("invasiveTestEcog") @Valid InvasiveTestEcogFormBO invasiveTestEcog, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("invasiveTestEcogId") int invasiveTestEcogId,
             Model model, HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class InvasiveTestEcogController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), invasiveTestEcog.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), invasiveTestEcog.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/invasiveTestEcog/editView";
@@ -180,9 +180,9 @@ public class InvasiveTestEcogController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<InvasiveTestEcogDisplayVO> invasiveTestEcogDisplayVoList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEcogDisplayVO.class, InvasiveTestEcogEntity.class);
-        model.addAttribute("invasiveTestEcogDisplayVoList", invasiveTestEcogDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<InvasiveTestEcogDisplayBO> invasiveTestEcogDisplayBOList = genericCardService.getRecordsByPatientId(patientId, InvasiveTestEcogDisplayBO.class, InvasiveTestEcogEntity.class);
+        model.addAttribute("invasiveTestEcogDisplayBOList", invasiveTestEcogDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/invasiveTestEcog/listView";
     }

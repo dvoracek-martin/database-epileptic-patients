@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.NewsMessageDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.NewsMessageDisplayBO;
 import cz.cvut.fit.genepi.businessLayer.service.NewsMessageService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.NewsMessageEntity;
@@ -29,16 +29,16 @@ public class NewsMessageServiceImpl implements NewsMessageService {
 
     @Transactional
     @Override
-    public List<NewsMessageDisplayVO> getSortedNewsMessages() {
+    public List<NewsMessageDisplayBO> getSortedNewsMessages() {
         List<NewsMessageEntity> newsMessageEntityList = genericDAO.findAll(NewsMessageEntity.class);
         Collections.sort(newsMessageEntityList);
-        List<NewsMessageDisplayVO> newsMessageDisplayVoList = new ArrayList<>();
+        List<NewsMessageDisplayBO> newsMessageDisplayBOList = new ArrayList<>();
 
         for (NewsMessageEntity newsMessageEntity : newsMessageEntityList) {
-            NewsMessageDisplayVO newsMessageDisplayVo = dozer.map(newsMessageEntity, NewsMessageDisplayVO.class);
-            newsMessageDisplayVoList.add(newsMessageDisplayVo);
+            NewsMessageDisplayBO newsMessageDisplayBO = dozer.map(newsMessageEntity, NewsMessageDisplayBO.class);
+            newsMessageDisplayBOList.add(newsMessageDisplayBO);
         }
 
-        return newsMessageDisplayVoList;
+        return newsMessageDisplayBOList;
     }
 }

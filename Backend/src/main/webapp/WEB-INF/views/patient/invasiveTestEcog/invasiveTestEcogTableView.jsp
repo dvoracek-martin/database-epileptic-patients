@@ -2,15 +2,15 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="invasiveTestEcogDisplayVo"
+<jsp:useBean id="invasiveTestEcogDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEcogDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestEcogDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
              type="java.lang.String"/>
 
-<div id="collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}"
+<div id="collapse-invasive-test-ecog-${invasiveTestEcogDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
     <table class="table">
         <tbody>
@@ -19,22 +19,22 @@
                 <spring:message code="label.invasiveTestECoG"/>
             </th>
             <td class="col-xs-9">
-                <spring:message code="label.done.${invasiveTestEcogDisplayVo.done}"/>
+                <spring:message code="label.done.${invasiveTestEcogDisplayBO.done}"/>
             </td>
         </tr>
 
-        <c:if test="${invasiveTestEcogDisplayVo.done==2}">
+        <c:if test="${invasiveTestEcogDisplayBO.done==2}">
             <tr>
                 <th class="col-xs-3">
                     <spring:message code="label.ecogCover"/>
                 </th>
                 <td class="col-xs-9">
                     <c:choose>
-                        <c:when test="${empty invasiveTestEcogDisplayVo.ecogCover}">
+                        <c:when test="${empty invasiveTestEcogDisplayBO.ecogCover}">
                             -
                         </c:when>
                         <c:otherwise>
-                            ${invasiveTestEcogDisplayVo.ecogCover}
+                            ${invasiveTestEcogDisplayBO.ecogCover}
                         </c:otherwise>
                     </c:choose>
                 </td>
@@ -44,7 +44,7 @@
                     <spring:message code="label.ecogPatterns"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.ecogPatterns.${invasiveTestEcogDisplayVo.ecogPatterns}"/>
+                    <spring:message code="label.ecogPatterns.${invasiveTestEcogDisplayBO.ecogPatterns}"/>
                 </td>
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                     <spring:message code="label.ecogAfterResection"/>
                 </th>
                 <td class="col-xs-9">
-                    <spring:message code="label.afterResectionEcog.${invasiveTestEcogDisplayVo.afterResectionEcog}"/>
+                    <spring:message code="label.afterResectionEcog.${invasiveTestEcogDisplayBO.afterResectionEcog}"/>
                 </td>
             </tr>
             <tr>
@@ -60,14 +60,14 @@
                     <spring:message code="label.comment"/>
                 </th>
                 <c:choose>
-                    <c:when test="${empty invasiveTestEcogDisplayVo.comment}">
+                    <c:when test="${empty invasiveTestEcogDisplayBO.comment}">
                         <td class="col-xs-9">
                             <spring:message code="label.noComments"/>
                         </td>
                     </c:when>
                     <c:otherwise>
                         <td class="col-xs-9">
-                                ${invasiveTestEcogDisplayVo.comment}
+                                ${invasiveTestEcogDisplayBO.comment}
                         </td>
                     </c:otherwise>
                 </c:choose>

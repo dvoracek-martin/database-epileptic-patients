@@ -31,7 +31,7 @@
         <form:form class="form-horizontal"
                    action="/GENEPI/patient/create"
                    method="POST"
-                   commandName="patientVO">
+                   commandName="patientFormBO">
 
             <jsp:include page="formView.jsp"/>
 

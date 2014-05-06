@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.ExportParamsDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.ExportParamsDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.ExportParamsFormBO;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
 
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * The Interface ExportToCsvService extends GenericService
  */
-public interface ExportParamsService extends GenericService<ExportParamsVO, ExportParamsEntity> {
+public interface ExportParamsService extends GenericService<ExportParamsFormBO, ExportParamsEntity> {
 
     /**
      * Find export configurations according to user's ID
@@ -19,7 +19,7 @@ public interface ExportParamsService extends GenericService<ExportParamsVO, Expo
      */
     public List<ExportParamsEntity> findExportParamsEntityByUserID(int userID);
 
-    public List<ExportParamsDisplayVO> getGenericConfigurations();
+    public List<ExportParamsDisplayBO> getGenericConfigurations();
 
-    public List<ExportParamsDisplayVO> getConfigurationsByUsername(String username);
+    public List<ExportParamsDisplayBO> getConfigurationsByUsername(String username);
 }

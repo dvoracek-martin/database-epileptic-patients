@@ -3,13 +3,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="complicationDisplayVo"
+<jsp:useBean id="complicationDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.ComplicationDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.ComplicationDisplayBO"/>
 
 <jsp:useBean id="patient"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO"/>
 
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
                var="isAuthorized"/>
@@ -17,34 +17,34 @@
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
-            <a href="#collapse${complicationDisplayVo.id}"
+            <a href="#collapse${complicationDisplayBO.id}"
                data-toggle="collapse">
-                ${complicationDisplayVo.date}
+                ${complicationDisplayBO.date}
             </a>
         </td>
         <td class="col-xs-2">
-            <spring:message code="label.process.${complicationDisplayVo.withComplication}"/>
+            <spring:message code="label.process.${complicationDisplayBO.withComplication}"/>
         </td>
         <td class="col-xs-2">
-            <c:if test="${complicationDisplayVo.withComplication == 2}">
-                <spring:message code="label.complicationType.${complicationDisplayVo.complicationType}"/>
+            <c:if test="${complicationDisplayBO.withComplication == 2}">
+                <spring:message code="label.complicationType.${complicationDisplayBO.complicationType}"/>
             </c:if>
         </td>
         <td class="col-xs-2">
-            <c:if test="${complicationDisplayVo.withComplication == 2}">
-                <spring:message code="label.complication.${complicationDisplayVo.complication}"/>
+            <c:if test="${complicationDisplayBO.withComplication == 2}">
+                <spring:message code="label.complication.${complicationDisplayBO.complication}"/>
             </c:if>
         </td>
         <td class="col-xs-2">
             <c:if test="${isAuthorized}">
-                <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/edit"/>">
+                <a href="<c:url value="/patient/${patient.id}/complication/${complicationDisplayBO.id}/edit"/>">
                     <span class="glyphicon glyphicon-edit"></span><spring:message code="label.edit"/>
                 </a>
             </c:if>
         </td>
         <td class="col-xs-2">
             <c:if test="${isAuthorized}">
-                <a href="#delete-complication-${complicationDisplayVo.id}"
+                <a href="#delete-complication-${complicationDisplayBO.id}"
                    data-toggle="modal">
                     <span class="glyphicon glyphicon-remove-circle"></span><spring:message code="label.delete"/>
                 </a>
@@ -53,7 +53,7 @@
     </tr>
 </table>
 
-<div id="collapse${complicationDisplayVo.id}"
+<div id="collapse${complicationDisplayBO.id}"
      class="collapse">
     <table class="table">
         <tr>
@@ -62,7 +62,7 @@
             </td>
             <td class="col-xs-8"
                 colspan="3">
-                ${complicationDisplayVo.comment}
+                ${complicationDisplayBO.comment}
             </td>
         </tr>
     </table>
@@ -70,9 +70,9 @@
 
 <jsp:include page="../../components/deleteModalComponentView.jsp">
     <jsp:param name="modalId"
-               value="delete-complication-${complicationDisplayVo.id}"/>
+               value="delete-complication-${complicationDisplayBO.id}"/>
     <jsp:param name="bodyMessage"
                value="reallyDeleteRecord"/>
     <jsp:param name="deleteUrl"
-               value="/patient/${patient.id}/complication/${complicationDisplayVo.id}/hide"/>
+               value="/patient/${patient.id}/complication/${complicationDisplayBO.id}/hide"/>
 </jsp:include>

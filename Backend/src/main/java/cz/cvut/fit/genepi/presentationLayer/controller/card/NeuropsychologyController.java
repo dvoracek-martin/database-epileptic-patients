@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.NeuropsychologyVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeuropsychologyDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.NeuropsychologyFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class NeuropsychologyController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService;
+    private final GenericCardService<NeuropsychologyDisplayBO, NeuropsychologyFormBO, NeuropsychologyEntity> genericCardService;
 
     @Autowired
     public NeuropsychologyController(AuthorizationChecker authorizationChecker,
                                      PatientService patientService,
                                      @Qualifier("genericCardServiceImpl")
-                                     GenericCardService<NeuropsychologyDisplayVO, NeuropsychologyVO, NeuropsychologyEntity> genericCardService) {
+                                     GenericCardService<NeuropsychologyDisplayBO, NeuropsychologyFormBO, NeuropsychologyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class NeuropsychologyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neuropsychology", new NeuropsychologyVO());
+        model.addAttribute("neuropsychology", new NeuropsychologyFormBO());
         return "patient/neuropsychology/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/create", method = RequestMethod.POST)
     public String neuropsychologyCreatePOST(
-            @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("neuropsychology") @Valid NeuropsychologyFormBO neuropsychology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), neuropsychology.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/neuropsychology/createView";
@@ -90,14 +90,14 @@ public class NeuropsychologyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neuropsychology", genericCardService.getById(neuropsychologyId, NeuropsychologyVO.class, NeuropsychologyEntity.class));
+        model.addAttribute("neuropsychology", genericCardService.getById(neuropsychologyId, NeuropsychologyFormBO.class, NeuropsychologyEntity.class));
         return "patient/neuropsychology/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neuropsychology/{neuropsychologyId}/edit", method = RequestMethod.POST)
     public String neuropsychologySavePOST(
-            @ModelAttribute("neuropsychology") @Valid NeuropsychologyVO neuropsychology, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("neuropsychology") @Valid NeuropsychologyFormBO neuropsychology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("neuropsychologyId") int neuropsychologyId,
             Model model, HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class NeuropsychologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neuropsychology.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), neuropsychology.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/neuropsychology/editView";
@@ -179,9 +179,9 @@ public class NeuropsychologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<NeuropsychologyDisplayVO> neuropsychologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, NeuropsychologyDisplayVO.class, NeuropsychologyEntity.class);
-        model.addAttribute("neuropsychologyDisplayVoList", neuropsychologyDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<NeuropsychologyDisplayBO> neuropsychologyDisplayBOList = genericCardService.getRecordsByPatientId(patientId, NeuropsychologyDisplayBO.class, NeuropsychologyEntity.class);
+        model.addAttribute("neuropsychologyDisplayBOList", neuropsychologyDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/neuropsychology/listView";
     }

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.ComplicationDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.ComplicationVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.ComplicationDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.ComplicationFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class ComplicationController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> genericCardService;
+    private final GenericCardService<ComplicationDisplayBO, ComplicationFormBO, ComplicationEntity> genericCardService;
 
     @Autowired
     public ComplicationController(AuthorizationChecker authorizationChecker,
                                   PatientService patientService,
                                   @Qualifier("genericCardServiceImpl")
-                                  GenericCardService<ComplicationDisplayVO, ComplicationVO, ComplicationEntity> genericCardService) {
+                                  GenericCardService<ComplicationDisplayBO, ComplicationFormBO, ComplicationEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -51,21 +51,21 @@ public class ComplicationController {
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("chooseBoth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", new ComplicationVO());
+        model.addAttribute("complication", new ComplicationFormBO());
         return "patient/complication/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/complication/create", method = RequestMethod.POST)
     public String complicationCreatePOST(
-            @ModelAttribute("complication") @Valid ComplicationVO complication, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("complication") @Valid ComplicationFormBO complication, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), complication.getDate());
             boolean complicationAndComplicationTypeNotOk = complication.getWithComplication() == 2 &&
                     (complication.getComplicationType() == 0 || complication.getComplication() == 0);
 
@@ -98,14 +98,14 @@ public class ComplicationController {
         model.addAttribute("chooseBoth", false);
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("complication", genericCardService.getById(complicationId, ComplicationVO.class, ComplicationEntity.class));
+        model.addAttribute("complication", genericCardService.getById(complicationId, ComplicationFormBO.class, ComplicationEntity.class));
         return "patient/complication/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/complication/{complicationId}/edit", method = RequestMethod.POST)
     public String complicationEditPOST(
-            @ModelAttribute("complication") @Valid ComplicationVO complication, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("complication") @Valid ComplicationFormBO complication, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("complicationId") int complicationId,
             Model model, HttpServletRequest request) {
@@ -113,7 +113,7 @@ public class ComplicationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), complication.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), complication.getDate());
             boolean complicationAndComplicationTypeNotOk = complication.getWithComplication() == 2 &&
                     (complication.getComplicationType() == 0 || complication.getComplication() == 0);
             if (result.hasErrors() || dateNotOk || complicationAndComplicationTypeNotOk) {
@@ -192,9 +192,9 @@ public class ComplicationController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<ComplicationDisplayVO> complicationDisplayVoList = genericCardService.getRecordsByPatientId(patientId, ComplicationDisplayVO.class, ComplicationEntity.class);
-        model.addAttribute("complicationDisplayVoList", complicationDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<ComplicationDisplayBO> complicationDisplayBOList = genericCardService.getRecordsByPatientId(patientId, ComplicationDisplayBO.class, ComplicationEntity.class);
+        model.addAttribute("complicationDisplayBOList", complicationDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/complication/listView";
     }

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.AdvancedSearchDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.AdvancedSearchDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.AdvancedSearchFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AnonymizeService;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.SearchService;
@@ -48,7 +48,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     @Transactional
-    public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch) {
+    public List<List<PatientDisplayBO>> performAdvancedSearch(AdvancedSearchFormBO advancedSearch) {
         AdvancedSearchEntity entity = dozer.map(advancedSearch, AdvancedSearchEntity.class);
         List<PatientEntity> patientEntityList = patientDAO.performSearch(entity);
 
@@ -84,36 +84,36 @@ public class SearchServiceImpl implements SearchService {
         /* hotfix END */
 
 
-        List<List<PatientDisplayVO>> lists = new ArrayList<>();
+        List<List<PatientDisplayBO>> lists = new ArrayList<>();
 
         if (patientEntityList.isEmpty()) {
             return lists;
         } else {
 
-            List<PatientDisplayVO> patientDisplayVoList = new ArrayList<>();
+            List<PatientDisplayBO> patientDisplayBOList = new ArrayList<>();
 
         /* java 8 lambda example
         patientEntityList.forEach((PatientEntity patientEntity) -> {
-            patientDisplayVoList.add(dozer.map(patientEntity, PatientDisplayVO.class));
+            patientDisplayBOList.add(dozer.map(patientEntity, PatientDisplayBO.class));
         });
         */
 
             for (PatientEntity patientEntity : patientEntityList) {
-                patientDisplayVoList.add(dozer.map(patientEntity, PatientDisplayVO.class));
+                patientDisplayBOList.add(dozer.map(patientEntity, PatientDisplayBO.class));
             }
 
             if (authorizationChecker.onlyResearcher()) {
-                anonymizeService.anonymizePatients(patientDisplayVoList);
+                anonymizeService.anonymizePatients(patientDisplayBOList);
             }
 
-            int pageCount = patientDisplayVoList.size() / 20;
+            int pageCount = patientDisplayBOList.size() / 20;
 
             for (int i = 0; i < pageCount; i++) {
-                lists.add(patientDisplayVoList.subList(i * 20, (i + 1) * 20));
+                lists.add(patientDisplayBOList.subList(i * 20, (i + 1) * 20));
             }
 
-            if (patientDisplayVoList.size() % 20 != 0) {
-                lists.add(patientDisplayVoList.subList(pageCount * 20, patientDisplayVoList.size()));
+            if (patientDisplayBOList.size() % 20 != 0) {
+                lists.add(patientDisplayBOList.subList(pageCount * 20, patientDisplayBOList.size()));
             }
 
             return lists;
@@ -123,7 +123,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     @Transactional
-    public void save(AdvancedSearchVO advancedSearch) {
+    public void save(AdvancedSearchFormBO advancedSearch) {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
         String name = auth.getName();
@@ -134,12 +134,12 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     @Transactional
-    public List<AdvancedSearchDisplayVO> loadAll() {
+    public List<AdvancedSearchDisplayBO> loadAll() {
         List<AdvancedSearchEntity> advancedSearchEntityList = genericDao.findAll(AdvancedSearchEntity.class);
-        List<AdvancedSearchDisplayVO> advancedSearchDisplayVoList = new ArrayList<>();
+        List<AdvancedSearchDisplayBO> advancedSearchDisplayBOList = new ArrayList<>();
         for (AdvancedSearchEntity advancedSearchEntity : advancedSearchEntityList) {
-            advancedSearchDisplayVoList.add(dozer.map(advancedSearchEntity, AdvancedSearchDisplayVO.class));
+            advancedSearchDisplayBOList.add(dozer.map(advancedSearchEntity, AdvancedSearchDisplayBO.class));
         }
-        return advancedSearchDisplayVoList;
+        return advancedSearchDisplayBOList;
     }
 }

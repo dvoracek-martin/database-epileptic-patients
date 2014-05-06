@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.DiagnosticTestMriDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.DiagnosticTestMriVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.DiagnosticTestMriDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.DiagnosticTestMriFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class DiagnosticTestMriController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService;
+    private final GenericCardService<DiagnosticTestMriDisplayBO, DiagnosticTestMriFormBO, DiagnosticTestMriEntity> genericCardService;
 
     @Autowired
     public DiagnosticTestMriController(AuthorizationChecker authorizationChecker,
                                        PatientService patientService,
                                        @Qualifier("genericCardServiceImpl")
-                                       GenericCardService<DiagnosticTestMriDisplayVO, DiagnosticTestMriVO, DiagnosticTestMriEntity> genericCardService) {
+                                       GenericCardService<DiagnosticTestMriDisplayBO, DiagnosticTestMriFormBO, DiagnosticTestMriEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class DiagnosticTestMriController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestMri", new DiagnosticTestMriVO());
+        model.addAttribute("diagnosticTestMri", new DiagnosticTestMriFormBO());
         return "patient/diagnosticTestMri/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/create", method = RequestMethod.POST)
     public String diagnosticTestMriCreatePOST(
-            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriFormBO diagnosticTestMri, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), diagnosticTestMri.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/diagnosticTestMri/createView";
@@ -90,14 +90,14 @@ public class DiagnosticTestMriController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("diagnosticTestMri", genericCardService.getById(diagnosticTestMriId, DiagnosticTestMriVO.class, DiagnosticTestMriEntity.class));
+        model.addAttribute("diagnosticTestMri", genericCardService.getById(diagnosticTestMriId, DiagnosticTestMriFormBO.class, DiagnosticTestMriEntity.class));
         return "patient/diagnosticTestMri/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/diagnostic-test-mri/{diagnosticTestMriId}/edit", method = RequestMethod.POST)
     public String diagnosticTestMriEditPOST(
-            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriVO diagnosticTestMri, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("diagnosticTestMri") @Valid DiagnosticTestMriFormBO diagnosticTestMri, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("diagnosticTestMriId") int diagnosticTestMriId,
             Model model, HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class DiagnosticTestMriController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), diagnosticTestMri.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), diagnosticTestMri.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/diagnosticTestMri/createView";
@@ -180,9 +180,9 @@ public class DiagnosticTestMriController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<DiagnosticTestMriDisplayVO> diagnosticTestMriDisplayVoList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestMriDisplayVO.class, DiagnosticTestMriEntity.class);
-        model.addAttribute("diagnosticTestMriDisplayVoList", diagnosticTestMriDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<DiagnosticTestMriDisplayBO> diagnosticTestMriDisplayBOList = genericCardService.getRecordsByPatientId(patientId, DiagnosticTestMriDisplayBO.class, DiagnosticTestMriEntity.class);
+        model.addAttribute("diagnosticTestMriDisplayBOList", diagnosticTestMriDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/diagnosticTestMri/listView";
     }

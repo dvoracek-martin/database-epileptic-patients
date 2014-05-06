@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.SeizureDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.SeizureFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -28,7 +28,7 @@ public class SeizureController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService;
+    private final GenericCardService<SeizureDisplayBO, SeizureFormBO, SeizureEntity> genericCardService;
 
     private final SeizureService seizureService;
 
@@ -36,7 +36,7 @@ public class SeizureController {
     public SeizureController(AuthorizationChecker authorizationChecker,
                              PatientService patientService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<SeizureDisplayVO, SeizureVO, SeizureEntity> genericCardService,
+                             GenericCardService<SeizureDisplayBO, SeizureFormBO, SeizureEntity> genericCardService,
                              SeizureService seizureService) {
 
         this.authorizationChecker = authorizationChecker;
@@ -56,23 +56,25 @@ public class SeizureController {
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("dateBeforeEpiBeginning", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("seizure", new SeizureVO());
+        model.addAttribute("seizure", new SeizureFormBO());
         return "patient/seizure/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/create", method = RequestMethod.POST)
     public String seizureCreatePOST(
-            @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("seizure") @Valid SeizureFormBO seizure, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId, Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
-        } else if (patientDisplayVo.getAgeAtTheBeginningOfEpilepsy().equals("NA")) {
+        } else if (patientDisplayBO.getAgeAtTheBeginningOfEpilepsy().equals("NA")) {
+            model.addAttribute("dateBeforeBirth", false);
+            model.addAttribute("dateBeforeEpiBeginning", false);
             return "patient/seizure/createView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate());
-            boolean dateBeforeEpiBeginning = TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), seizure.getDate());
+            boolean dateBeforeEpiBeginning = TimeConverter.beforeDatePlusYears(patientDisplayBO.getBirthday(), patientDisplayBO.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate());
             if (result.hasErrors() || dateNotOk || dateBeforeEpiBeginning) {
 
                 model.addAttribute("dateBeforeBirth", dateNotOk);
@@ -102,15 +104,15 @@ public class SeizureController {
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("dateBeforeEpiBeginning", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("seizure", genericCardService.getById(seizureId, SeizureVO.class, SeizureEntity.class));
+        model.addAttribute("seizure", genericCardService.getById(seizureId, SeizureFormBO.class, SeizureEntity.class));
 
         return "patient/seizure/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/edit", method = RequestMethod.POST)
     public String seizureSavePOST(
-            @ModelAttribute("seizure") @Valid SeizureVO seizure, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("seizure") @Valid SeizureFormBO seizure, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
             Model model, HttpServletRequest request) {
@@ -118,8 +120,8 @@ public class SeizureController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizure.getDate());
-            boolean dateBeforeEpiBeginning = TimeConverter.beforeDatePlusYears(patientDisplayVo.getBirthday(), patientDisplayVo.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), seizure.getDate());
+            boolean dateBeforeEpiBeginning = TimeConverter.beforeDatePlusYears(patientDisplayBO.getBirthday(), patientDisplayBO.getAgeAtTheBeginningOfEpilepsy(), seizure.getDate());
             if (result.hasErrors() || dateNotOk || dateBeforeEpiBeginning) {
 
                 model.addAttribute("dateBeforeBirth", dateNotOk);
@@ -196,11 +198,11 @@ public class SeizureController {
             return "deniedView";
         }
 
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<SeizureDisplayVO> SeizureDisplayVoList = seizureService.getRecordsByPatientId(patientId);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<SeizureDisplayBO> seizureDisplayBOList = seizureService.getRecordsByPatientId(patientId);
 
         model.addAttribute("patient", patient);
-        model.addAttribute("seizureDisplayVoList", SeizureDisplayVoList);
+        model.addAttribute("seizureDisplayBOList", seizureDisplayBOList);
         return "patient/seizure/listView";
     }
 }

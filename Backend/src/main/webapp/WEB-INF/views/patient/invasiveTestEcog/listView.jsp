@@ -38,7 +38,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty invasiveTestEcogDisplayVoList}">
+            <c:when test="${empty invasiveTestEcogDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -48,10 +48,10 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${invasiveTestEcogDisplayVoList}"
-                               var="invasiveTestEcogDisplayVo">
-                        <c:set var="invasiveTestEcogDisplayVo"
-                               value="${invasiveTestEcogDisplayVo}"
+                    <c:forEach items="${invasiveTestEcogDisplayBOList}"
+                               var="invasiveTestEcogDisplayBO">
+                        <c:set var="invasiveTestEcogDisplayBO"
+                               value="${invasiveTestEcogDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
@@ -59,14 +59,14 @@
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}">
-                                            <spring:message code="label.dateAdded"/>: ${invasiveTestEcogDisplayVo.date}
+                                           href="#collapse-invasive-test-ecog-${invasiveTestEcogDisplayBO.id}">
+                                            <spring:message code="label.dateAdded"/>: ${invasiveTestEcogDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcogDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcogDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -75,7 +75,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}"
+                                               href="#delete-invasive-test-ecog-${invasiveTestEcogDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -90,11 +90,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-invasive-test-ecog-${invasiveTestEcogDisplayVo.id}"/>
+                                           value="delete-invasive-test-ecog-${invasiveTestEcogDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcogDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/invasive-test-ecog/${invasiveTestEcogDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

@@ -1,17 +1,17 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationWithOutcomesDisplayBO;
 
 import java.util.List;
 
 public interface OperationService {
 
-    public OperationDisplayVO getLatestOperationByPatientId(int patientId);
+    public OperationDisplayBO getLatestOperationByPatientId(int patientId);
 
-    public List<OperationDisplayVO> getOperationList(int patientId);
+    public List<OperationDisplayBO> getOperationList(int patientId);
 
-    public OperationWithOutcomesDisplayVO getLatestOperationWithOutcomesByPatientId(int patientId);
+    public OperationWithOutcomesDisplayBO getLatestOperationWithOutcomesByPatientId(int patientId);
 
-    public List<OperationWithOutcomesDisplayVO> getOperationWithOutcomeList(int patientId);
+    public List<OperationWithOutcomesDisplayBO> getOperationWithOutcomeList(int patientId);
 }

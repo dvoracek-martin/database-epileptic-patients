@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.AdvancedSearchFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.GenericService;
 import cz.cvut.fit.genepi.businessLayer.service.RoleService;
@@ -31,7 +31,7 @@ public class SearchController {
 
     @Autowired
     @Qualifier("genericServiceImpl")
-    private GenericService<AdvancedSearchVO, AdvancedSearchEntity> genericService;
+    private GenericService<AdvancedSearchFormBO, AdvancedSearchEntity> genericService;
 
     /**
      * Constructor which serves to autowire services.
@@ -54,14 +54,14 @@ public class SearchController {
         }
 
         model.addAttribute("doctors", roleService.getAllDoctors());
-        model.addAttribute("advancedSearch", new AdvancedSearchVO());
+        model.addAttribute("advancedSearch", new AdvancedSearchFormBO());
         model.addAttribute("toCheck", true);
         return "search/advancedSearchView";
     }
 
     @RequestMapping(value = "/advanced-search", method = RequestMethod.POST)
     public String advancedSearchPOST(
-            @ModelAttribute("advancedSearch") @Valid AdvancedSearchVO advancedSearch, BindingResult result,
+            @ModelAttribute("advancedSearch") @Valid AdvancedSearchFormBO advancedSearch, BindingResult result,
             HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -83,7 +83,7 @@ public class SearchController {
             return "deniedView";
         }
 
-        AdvancedSearchVO advancedSearch = (AdvancedSearchVO) model.get("advancedSearch");
+        AdvancedSearchFormBO advancedSearch = (AdvancedSearchFormBO) model.get("advancedSearch");
 
         if (authorizationChecker.onlyResearcher()) {
             advancedSearch.setPatientFirstname("");
@@ -91,15 +91,15 @@ public class SearchController {
             advancedSearch.setPatientNin("");
         }
 
-        List<List<PatientDisplayVO>> patients = searchService.performAdvancedSearch(advancedSearch);
+        List<List<PatientDisplayBO>> patients = searchService.performAdvancedSearch(advancedSearch);
 
         /* TODO hotfix START*/
         int patientCount = 0;
-        for (List<PatientDisplayVO> patientDisplayVOList : patients) {
-            patientCount += patientDisplayVOList.size();
+        for (List<PatientDisplayBO> patientDisplayBOList : patients) {
+            patientCount += patientDisplayBOList.size();
         }
 
-        model.addAttribute("patientCount",patientCount);
+        model.addAttribute("patientCount", patientCount);
 
         /* hotfix END */
         model.addAttribute("patients", patients);
@@ -109,7 +109,7 @@ public class SearchController {
 
     @RequestMapping(value = "/advanced-search/save", method = RequestMethod.POST)
     public String advancedSearchSaveGET(
-            @ModelAttribute("advancedSearch") @Valid AdvancedSearchVO advancedSearch, BindingResult result,
+            @ModelAttribute("advancedSearch") @Valid AdvancedSearchFormBO advancedSearch, BindingResult result,
             HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
@@ -147,7 +147,7 @@ public class SearchController {
             return "deniedView";
         }
 
-        model.addAttribute("advancedSearch", genericService.getById(adancedSearchId, AdvancedSearchVO.class, AdvancedSearchEntity.class));
+        model.addAttribute("advancedSearch", genericService.getById(adancedSearchId, AdvancedSearchFormBO.class, AdvancedSearchEntity.class));
         model.addAttribute("doctors", roleService.getAllDoctors());
         model.addAttribute("toCheck", false);
         return "search/advancedSearchView";

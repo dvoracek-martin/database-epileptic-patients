@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.ExportParamsDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.ExportParamsDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.ExportParamsFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportParamsService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.DAO.ExportParamsDAO;
@@ -18,7 +18,7 @@ import java.util.Locale;
 
 @Service
 public class ExportParamsServiceImpl
-        extends GenericServiceImpl<ExportParamsVO, ExportParamsEntity>
+        extends GenericServiceImpl<ExportParamsFormBO, ExportParamsEntity>
         implements ExportParamsService {
 
     @Autowired
@@ -86,24 +86,24 @@ public class ExportParamsServiceImpl
 
     @Override
     @Transactional
-    public List<ExportParamsDisplayVO> getGenericConfigurations() {
+    public List<ExportParamsDisplayBO> getGenericConfigurations() {
         List<ExportParamsEntity> exportParamsEntityList = exportParamsDAO.getGenericConfigurations();
-        List<ExportParamsDisplayVO> exportParamsDisplayVoList = new ArrayList<>();
+        List<ExportParamsDisplayBO> exportParamsDisplayBOList = new ArrayList<>();
         for (ExportParamsEntity exportParamsEntity : exportParamsEntityList) {
-            exportParamsDisplayVoList.add(dozer.map(exportParamsEntity, ExportParamsDisplayVO.class));
+            exportParamsDisplayBOList.add(dozer.map(exportParamsEntity, ExportParamsDisplayBO.class));
         }
-        return exportParamsDisplayVoList;
+        return exportParamsDisplayBOList;
     }
 
     @Override
     @Transactional
-    public List<ExportParamsDisplayVO> getConfigurationsByUsername(String username) {
+    public List<ExportParamsDisplayBO> getConfigurationsByUsername(String username) {
         UserEntity user = userService.getUserByUsername(username);
         List<ExportParamsEntity> exportParamsEntityList = exportParamsDAO.getConfigurationsByUsername(user.getId());
-        List<ExportParamsDisplayVO> exportParamsDisplayVoList = new ArrayList<>();
+        List<ExportParamsDisplayBO> exportParamsDisplayBOList = new ArrayList<>();
         for (ExportParamsEntity exportParamsEntity : exportParamsEntityList) {
-            exportParamsDisplayVoList.add(dozer.map(exportParamsEntity, ExportParamsDisplayVO.class));
+            exportParamsDisplayBOList.add(dozer.map(exportParamsEntity, ExportParamsDisplayBO.class));
         }
-        return exportParamsDisplayVoList;
+        return exportParamsDisplayBOList;
     }
 }

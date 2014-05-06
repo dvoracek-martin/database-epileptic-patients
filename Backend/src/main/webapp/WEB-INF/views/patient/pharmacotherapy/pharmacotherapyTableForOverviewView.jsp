@@ -2,41 +2,41 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="pharmacotherapyDisplayVo"
+<jsp:useBean id="pharmacotherapyDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.PharmacotherapyDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.PharmacotherapyDisplayBO"/>
 
 <jsp:useBean id="patient"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO"/>
 
 <table class="record-head table">
     <tr>
         <td class="col-xs-2">
-            <a data-toggle="collapse" href="#collapse-pharmacotherapy-${pharmacotherapyDisplayVo.id}">
-                ${pharmacotherapyDisplayVo.date}
+            <a data-toggle="collapse" href="#collapse-pharmacotherapy-${pharmacotherapyDisplayBO.id}">
+                ${pharmacotherapyDisplayBO.date}
             </a>
         </td>
         <td class="col-xs-2">
-            <spring:message code="label.aed.${pharmacotherapyDisplayVo.aed}"/>
+            <spring:message code="label.aed.${pharmacotherapyDisplayBO.aed}"/>
         </td>
         <td class="col-xs-2">
-            <spring:message code="label.efficiency.${pharmacotherapyDisplayVo.efficiency}"/>
+            <spring:message code="label.efficiency.${pharmacotherapyDisplayBO.efficiency}"/>
         </td>
         <td class="col-xs-2">
-            <spring:message code="label.boolean.${pharmacotherapyDisplayVo.duringSurgery}"/>
+            <spring:message code="label.boolean.${pharmacotherapyDisplayBO.duringSurgery}"/>
         </td>
     </tr>
 </table>
 
-<div id="collapse-pharmacotherapy-${pharmacotherapyDisplayVo.id}" class="collapse">
+<div id="collapse-pharmacotherapy-${pharmacotherapyDisplayBO.id}" class="collapse">
     <table class="table">
         <tr>
             <td class="col-xs-4">
                 <spring:message code="label.comment"/>
             </td>
             <td colspan="3" class="col-xs-8">
-                ${pharmacotherapyDisplayVo.comment}
+                ${pharmacotherapyDisplayBO.comment}
             </td>
         </tr>
     </table>

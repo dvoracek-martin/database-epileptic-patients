@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.util;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -11,10 +11,10 @@ import java.util.List;
 public class JSONEncoder {
 
     @SuppressWarnings("unchecked")
-    public String encode(List<PatientDisplayVO> patientList, int patientsCount) {
+    public String encode(List<PatientDisplayBO> patientList, int patientsCount) {
         JSONArray patientListJSON = new JSONArray();
 
-        for (PatientDisplayVO patient : patientList) {
+        for (PatientDisplayBO patient : patientList) {
             JSONArray patientInfoJSON = new JSONArray();
             JSONObject patientContactInfoJSON = new JSONObject();
             patientContactInfoJSON.put("patientID", patient.getId());

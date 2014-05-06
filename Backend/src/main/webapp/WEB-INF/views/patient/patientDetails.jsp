@@ -7,7 +7,7 @@
 
 <jsp:useBean id="patient"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO"/>
 
 <sec:authorize ifAllGranted="ROLE_USER,ROLE_RESEARCHER"
                ifNotGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"

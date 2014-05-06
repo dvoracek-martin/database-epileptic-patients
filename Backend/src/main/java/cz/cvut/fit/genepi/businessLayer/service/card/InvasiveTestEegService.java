@@ -1,10 +1,10 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.InvasiveTestEegDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.InvasiveTestEegVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.InvasiveTestEegDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.InvasiveTestEegFormBO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.InvasiveTestEegEntity;
 
 public interface InvasiveTestEegService
-        extends GenericCardService<InvasiveTestEegDisplayVO, InvasiveTestEegVO, InvasiveTestEegEntity> {
+        extends GenericCardService<InvasiveTestEegDisplayBO, InvasiveTestEegFormBO, InvasiveTestEegEntity> {
 
 }

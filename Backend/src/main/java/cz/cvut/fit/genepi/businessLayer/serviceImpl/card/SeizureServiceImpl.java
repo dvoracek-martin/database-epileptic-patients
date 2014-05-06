@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDetailDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.SeizureDetailDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.SeizureDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.SeizureFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.card.SeizureService;
 import cz.cvut.fit.genepi.dataLayer.DAO.GenericDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.SeizureDetailEntity;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 public class SeizureServiceImpl
-        extends GenericCardServiceImpl<SeizureDetailDisplayVO, SeizureVO, SeizureEntity>
+        extends GenericCardServiceImpl<SeizureDetailDisplayBO, SeizureFormBO, SeizureEntity>
         implements SeizureService {
 
     @Autowired
@@ -28,7 +28,7 @@ public class SeizureServiceImpl
 
     @Override
     @Transactional
-    public int save(SeizureVO seizure) {
+    public int save(SeizureFormBO seizure) {
         SeizureEntity entity = dozer.map(seizure, SeizureEntity.class);
         int seizureId = genericDAO.save(entity);
         for (SeizureDetailEntity seizureDetailEntity : entity.getSeizureDetailList()) {
@@ -40,12 +40,12 @@ public class SeizureServiceImpl
 
     @Override
     @Transactional
-    public List<SeizureDisplayVO> getRecordsByPatientId(int patientId) {
+    public List<SeizureDisplayBO> getRecordsByPatientId(int patientId) {
         List<SeizureEntity> seizureEntityList = genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class);
         if (seizureEntityList.isEmpty()) {
             return null;
         } else {
-            List<SeizureDisplayVO> seizureDisplayVoList = new ArrayList<>();
+            List<SeizureDisplayBO> seizureDisplayBOList = new ArrayList<>();
             for (SeizureEntity entity : seizureEntityList) {
 
                 List<SeizureDetailEntity> seizureDetailEntityList = entity.getSeizureDetailList();
@@ -59,16 +59,16 @@ public class SeizureServiceImpl
                 Collections.sort(entity.getSeizureDetailList());
                 Collections.reverse(entity.getSeizureDetailList());
 
-                SeizureDisplayVO vo = dozer.map(entity, SeizureDisplayVO.class);
-                seizureDisplayVoList.add(vo);
+                SeizureDisplayBO vo = dozer.map(entity, SeizureDisplayBO.class);
+                seizureDisplayBOList.add(vo);
             }
-            return seizureDisplayVoList;
+            return seizureDisplayBOList;
         }
     }
 
     @Override
     @Transactional
-    public SeizureDisplayVO getLatestRecordByPatientId(int patientId) {
+    public SeizureDisplayBO getLatestRecordByPatientId(int patientId) {
         List<SeizureEntity> seizureEntityList = genericCardDAO.getRecordsByPatientId(patientId, SeizureEntity.class);
         if (seizureEntityList.isEmpty()) {
             return null;
@@ -86,7 +86,7 @@ public class SeizureServiceImpl
             Collections.sort(seizureEntity.getSeizureDetailList());
             Collections.reverse(seizureEntity.getSeizureDetailList());
 
-            return dozer.map(seizureEntity, SeizureDisplayVO.class);
+            return dozer.map(seizureEntity, SeizureDisplayBO.class);
         }
     }
 }

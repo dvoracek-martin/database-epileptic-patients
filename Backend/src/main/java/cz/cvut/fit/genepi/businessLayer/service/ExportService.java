@@ -1,13 +1,13 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.ExportParamsVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.ExportParamsFormBO;
 
 import java.util.List;
 import java.util.Locale;
 
 public interface ExportService {
 
-    public String performExport(ExportParamsVO exportParams, Locale locale,
+    public String performExport(ExportParamsFormBO exportParams, Locale locale,
                                 String exportType, boolean anonymize, List<Integer> patientIds, boolean toTable);
 
 }

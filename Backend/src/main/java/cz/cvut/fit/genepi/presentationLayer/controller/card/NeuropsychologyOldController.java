@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeuropsychologyOldDisplayBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.NeuropsychologyOldService;
@@ -93,9 +93,9 @@ public class NeuropsychologyOldController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<NeuropsychologyOldDisplayVO> neuropsychologyOldDisplayVoList = neuropsychologyOldService.getRecordsByPatientId(patientId);
-        model.addAttribute("neuropsychologyOldDisplayVoList", neuropsychologyOldDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<NeuropsychologyOldDisplayBO> neuropsychologyOldDisplayBOList = neuropsychologyOldService.getRecordsByPatientId(patientId);
+        model.addAttribute("neuropsychologyOldDisplayBOList", neuropsychologyOldDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/neuropsychologyOld/listView";
     }

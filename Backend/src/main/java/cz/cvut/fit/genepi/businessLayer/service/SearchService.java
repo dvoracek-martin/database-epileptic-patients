@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.businessLayer.service;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.AdvancedSearchDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.AdvancedSearchVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.AdvancedSearchDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.AdvancedSearchFormBO;
 
 import java.util.List;
 
@@ -17,9 +17,9 @@ public interface SearchService {
      * @return List of PatientEntity
      * @params advancedSearch as AdvancedSearchEntyt
      */
-    public List<List<PatientDisplayVO>> performAdvancedSearch(AdvancedSearchVO advancedSearch);
+    public List<List<PatientDisplayBO>> performAdvancedSearch(AdvancedSearchFormBO advancedSearch);
 
-    public void save(AdvancedSearchVO advancedSearch);
+    public void save(AdvancedSearchFormBO advancedSearch);
 
-    public List<AdvancedSearchDisplayVO> loadAll();
+    public List<AdvancedSearchDisplayBO> loadAll();
 }

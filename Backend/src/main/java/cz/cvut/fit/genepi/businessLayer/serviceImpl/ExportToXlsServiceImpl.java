@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl;
 
-import cz.cvut.fit.genepi.businessLayer.VO.form.UserVO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.UserFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.ExportToXlsxService;
 import cz.cvut.fit.genepi.businessLayer.service.UserService;
 import cz.cvut.fit.genepi.dataLayer.entity.ExportParamsEntity;
@@ -46,11 +46,11 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
      * Create a library of cell styles
      */
 
-   private static Map<String, CellStyle> styles = null;
+    private static Map<String, CellStyle> styles = null;
 
 
     private static Map<String, CellStyle> generateStyles(Workbook wb) {
-        styles=new HashMap<String, CellStyle>();
+        styles = new HashMap<String, CellStyle>();
         CellStyle style;
         Font titleFont = wb.createFont();
         titleFont.setFontHeightInPoints((short) 18);
@@ -125,7 +125,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
 
 
     private static Map<String, CellStyle> createStyles(Workbook wb) {
-        if (styles==null)
+        if (styles == null)
             generateStyles(wb);
         return styles;
     }
@@ -159,8 +159,8 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
         return reportDate;
     }
 
-    private String validateNin(String nin){
-        return nin.replace('/','_');
+    private String validateNin(String nin) {
+        return nin.replace('/', '_');
     }
 
     public String export(java.util.List<PatientEntity> patientList,
@@ -248,7 +248,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
                     "File wasn't found when trying to close xls file.", e);
             e.printStackTrace();
         }
-styles=null;
+        styles = null;
         return name;
     }
 
@@ -724,7 +724,7 @@ styles=null;
             addCells("label.ageAtTheBeginningOfEpilepsy", translateValue(String.valueOf(getAgeAtTheBeginningOfEpilepsy(patient)), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isPatientDoctorId()) {
-            addCells("label.assignedDoctor", (translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserVO.class, UserEntity.class).getContact().getLastName()), locale)), sheet, locale, styles, "cell", p);
+            addCells("label.assignedDoctor", (translateValue(String.valueOf(userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getFirstName() + " " + userService.getById(patient.getDoctorId(), UserFormBO.class, UserEntity.class).getContact().getLastName()), locale)), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isPatientDoctorId()) {
             addCells("label.dateOfExport", (translateValue(String.valueOf(TimeConverter.getDate(Calendar.getInstance().getTime())), locale)), sheet, locale, styles, "cell", p);

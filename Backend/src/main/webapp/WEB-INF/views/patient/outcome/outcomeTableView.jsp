@@ -3,9 +3,9 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page pageEncoding="UTF-8" %>
 
-<jsp:useBean id="operationWithOutcomesDisplayVo"
+<jsp:useBean id="operationWithOutcomesDisplayBO"
              scope="request"
-             type="cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO"/>
+             type="cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationWithOutcomesDisplayBO"/>
 
 <jsp:useBean id="count"
              scope="request"
@@ -14,7 +14,7 @@
 <sec:authorize ifAnyGranted="ROLE_DOCTOR,ROLE_SUPER_DOCTOR,ROLE_ADMIN"
                var="isAuthorized"/>
 
-<div id="collapse-outcome-${operationWithOutcomesDisplayVo.id}"
+<div id="collapse-outcome-${operationWithOutcomesDisplayBO.id}"
      class="collapse <c:if test="${count == 0}">in</c:if> ">
 
 <%-- getting outcomes --%>
@@ -24,28 +24,28 @@
 <c:set var="outcome60" value=""/>
 <c:set var="outcome120" value=""/>
 
-<c:forEach items="${operationWithOutcomesDisplayVo.outcomeList}"
-           var="outcomeDisplayVo">
+<c:forEach items="${operationWithOutcomesDisplayBO.outcomeList}"
+           var="outcomeDisplayBO">
     <c:choose>
-        <c:when test="${outcomeDisplayVo.distance==6}">
+        <c:when test="${outcomeDisplayBO.distance==6}">
             <c:set var="outcome6"
-                   value="${outcomeDisplayVo}"/>
+                   value="${outcomeDisplayBO}"/>
         </c:when>
-        <c:when test="${outcomeDisplayVo.distance==12}">
+        <c:when test="${outcomeDisplayBO.distance==12}">
             <c:set var="outcome12"
-                   value="${outcomeDisplayVo}"/>
+                   value="${outcomeDisplayBO}"/>
         </c:when>
         <c:when test="${outcome.distance==24}">
             <c:set var="outcome24"
-                   value="${outcomeDisplayVo}"/>
+                   value="${outcomeDisplayBO}"/>
         </c:when>
-        <c:when test="${outcomeDisplayVo.distance==60}">
+        <c:when test="${outcomeDisplayBO.distance==60}">
             <c:set var="outcome60"
-                   value="${outcomeDisplayVo}"/>
+                   value="${outcomeDisplayBO}"/>
         </c:when>
-        <c:when test="${outcomeDisplayVo.distance==120}">
+        <c:when test="${outcomeDisplayBO.distance==120}">
             <c:set var="outcome120"
-                   value="${outcomeDisplayVo}"/>
+                   value="${outcomeDisplayBO}"/>
         </c:when>
     </c:choose>
 </c:forEach>
@@ -74,7 +74,7 @@
             <td><spring:message code="label.done.${outcome6.neuropsychology}"/></td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome6.id}/edit?distance=6&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.editRecord"/>
                     </a>
                 </c:if>
@@ -88,7 +88,7 @@
             <td>-</td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=6&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </c:if>
@@ -123,7 +123,7 @@
             <td><spring:message code="label.done.${outcome12.neuropsychology}"/></td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome12.id}/edit?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome12.id}/edit?distance=12&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.editRecord"/>
                     </a>
                 </c:if>
@@ -137,7 +137,7 @@
             <td>-</td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=12&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </c:if>
@@ -172,7 +172,7 @@
             <td><spring:message code="label.done.${outcome24.neuropsychology}"/></td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome24.id}/edit?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome24.id}/edit?distance=24&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.editRecord"/>
                     </a>
                 </c:if>
@@ -186,7 +186,7 @@
             <td>-</td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=24&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </c:if>
@@ -221,7 +221,7 @@
             <td><spring:message code="label.done.${outcome60.neuropsychology}"/></td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome60.id}/edit?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome60.id}/edit?distance=60&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.editRecord"/>
                     </a>
                 </c:if>
@@ -235,7 +235,7 @@
             <td>-</td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=60&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </c:if>
@@ -270,7 +270,7 @@
             <td><spring:message code="label.done.${outcome120.neuropsychology}"/></td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome120.id}/edit?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/${outcome120.id}/edit?distance=120&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.editRecord"/>
                     </a>
                 </c:if>
@@ -284,7 +284,7 @@
             <td>-</td>
             <td>
                 <c:if test="${isAuthorized}">
-                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operationWithOutcomesDisplayVo.id}" />">
+                    <a href="<c:url value="/patient/${patient.id}/outcome/create?distance=120&operation=${operationWithOutcomesDisplayBO.id}" />">
                         <spring:message code="label.addRecord"/>
                     </a>
                 </c:if>

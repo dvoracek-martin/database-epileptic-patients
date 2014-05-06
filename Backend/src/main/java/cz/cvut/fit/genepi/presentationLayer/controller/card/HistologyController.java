@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.HistologyDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.HistologyVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.HistologyDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.HistologyFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class HistologyController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService;
+    private final GenericCardService<HistologyDisplayBO, HistologyFormBO, HistologyEntity> genericCardService;
 
     @Autowired
     public HistologyController(AuthorizationChecker authorizationChecker,
                                PatientService patientService,
                                @Qualifier("genericCardServiceImpl")
-                               GenericCardService<HistologyDisplayVO, HistologyVO, HistologyEntity> genericCardService) {
+                               GenericCardService<HistologyDisplayBO, HistologyFormBO, HistologyEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class HistologyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("histology", new HistologyVO());
+        model.addAttribute("histology", new HistologyFormBO());
         return "patient/histology/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/histology/create", method = RequestMethod.POST)
     public String histologyCreatePOST(
-            @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("histology") @Valid HistologyFormBO histology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), histology.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/histology/createView";
@@ -90,14 +90,14 @@ public class HistologyController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("histology", genericCardService.getById(histologyId, HistologyVO.class, HistologyEntity.class));
+        model.addAttribute("histology", genericCardService.getById(histologyId, HistologyFormBO.class, HistologyEntity.class));
         return "patient/histology/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/histology/{histologyId}/edit", method = RequestMethod.POST)
     public String histologySavePOST(
-            @ModelAttribute("histology") @Valid HistologyVO histology, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("histology") @Valid HistologyFormBO histology, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("histologyId") int histologyId,
             Model model, HttpServletRequest request) {
@@ -105,7 +105,7 @@ public class HistologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), histology.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), histology.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/histology/editView";
@@ -179,9 +179,9 @@ public class HistologyController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<HistologyDisplayVO> histologyDisplayVoList = genericCardService.getRecordsByPatientId(patientId, HistologyDisplayVO.class, HistologyEntity.class);
-        model.addAttribute("histologyDisplayVoList", histologyDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<HistologyDisplayBO> histologyDisplayBOList = genericCardService.getRecordsByPatientId(patientId, HistologyDisplayBO.class, HistologyEntity.class);
+        model.addAttribute("histologyDisplayBOList", histologyDisplayBOList);
         model.addAttribute("patient", patient);
         return "patient/histology/listView";
     }

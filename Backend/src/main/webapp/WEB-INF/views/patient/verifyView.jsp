@@ -30,7 +30,7 @@
                    action="/GENEPI/patient/${patient.id}/verify"
                    method="POST"
                    role="form"
-                   commandName="patientVO">
+                   commandName="patientFormBO">
 
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-8">

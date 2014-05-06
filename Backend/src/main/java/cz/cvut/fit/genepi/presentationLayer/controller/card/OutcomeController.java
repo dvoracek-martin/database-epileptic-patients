@@ -1,9 +1,9 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.OperationWithOutcomesDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.OutcomeDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.OutcomeVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.OperationWithOutcomesDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.OutcomeDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.OutcomeFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -31,14 +31,14 @@ public class OutcomeController {
 
     private final OperationService operationService;
 
-    private final GenericCardService<OutcomeDisplayVO, OutcomeVO, OutcomeEntity> genericCardService;
+    private final GenericCardService<OutcomeDisplayBO, OutcomeFormBO, OutcomeEntity> genericCardService;
 
     @Autowired
     public OutcomeController(AuthorizationChecker authorizationChecker,
                              PatientService patientService,
                              OperationService operationService,
                              @Qualifier("genericCardServiceImpl")
-                             GenericCardService<OutcomeDisplayVO, OutcomeVO, OutcomeEntity> genericCardService) {
+                             GenericCardService<OutcomeDisplayBO, OutcomeFormBO, OutcomeEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -61,14 +61,14 @@ public class OutcomeController {
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("distance", distance);
         model.addAttribute("operation", operation);
-        model.addAttribute("outcome", new OutcomeVO());
+        model.addAttribute("outcome", new OutcomeFormBO());
         return "patient/outcome/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/outcome/create", method = RequestMethod.POST)
     public String outcomeCreatePOST(
-            @ModelAttribute("outcome") @Valid OutcomeVO outcome, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("outcome") @Valid OutcomeFormBO outcome, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
@@ -77,7 +77,7 @@ public class OutcomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), outcome.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 model.addAttribute("distance", distance);
@@ -104,19 +104,19 @@ public class OutcomeController {
             return "deniedView";
         }
 
-        OutcomeVO outcomeVO = genericCardService.getById(outcomeId, OutcomeVO.class, OutcomeEntity.class);
+        OutcomeFormBO outcomeFormBO = genericCardService.getById(outcomeId, OutcomeFormBO.class, OutcomeEntity.class);
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("outcome", outcomeVO);
-        model.addAttribute("distance", outcomeVO.getDistance());
-        model.addAttribute("operation", outcomeVO.getOperationId());
+        model.addAttribute("outcome", outcomeFormBO);
+        model.addAttribute("distance", outcomeFormBO.getDistance());
+        model.addAttribute("operation", outcomeFormBO.getOperationId());
         return "patient/outcome/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/outcome/{outcomeId}/edit", method = RequestMethod.POST)
     public String outcomeSavePOST(
-            @ModelAttribute("outcome") @Valid OutcomeVO outcome, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("outcome") @Valid OutcomeFormBO outcome, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @RequestParam("distance") int distance,
             @RequestParam("operationId") int operationId,
@@ -126,7 +126,7 @@ public class OutcomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), outcome.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), outcome.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 model.addAttribute("distance", distance);
@@ -151,9 +151,9 @@ public class OutcomeController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<OperationWithOutcomesDisplayVO> operationWithOutcomesDisplayVoList = operationService.getOperationWithOutcomeList(patientId);
-        model.addAttribute("operationWithOutcomesDisplayVoList", operationWithOutcomesDisplayVoList);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<OperationWithOutcomesDisplayBO> operationWithOutcomesDisplayBOList = operationService.getOperationWithOutcomeList(patientId);
+        model.addAttribute("operationWithOutcomesDisplayBOList", operationWithOutcomesDisplayBOList);
         model.addAttribute("patient", patient);
 
         return "patient/outcome/listView";

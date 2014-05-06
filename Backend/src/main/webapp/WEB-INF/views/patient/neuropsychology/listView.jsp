@@ -39,7 +39,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty neuropsychologyDisplayVoList}">
+            <c:when test="${empty neuropsychologyDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -49,10 +49,10 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${neuropsychologyDisplayVoList}"
-                               var="neuropsychologyDisplayVo">
-                        <c:set var="neuropsychologyDisplayVo"
-                               value="${neuropsychologyDisplayVo}"
+                    <c:forEach items="${neuropsychologyDisplayBOList}"
+                               var="neuropsychologyDisplayBO">
+                        <c:set var="neuropsychologyDisplayBO"
+                               value="${neuropsychologyDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
@@ -60,14 +60,14 @@
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-neuropsychology-${neuropsychologyDisplayVo.id}">
-                                            <spring:message code="label.dateAdded"/>: ${neuropsychologyDisplayVo.date}
+                                           href="#collapse-neuropsychology-${neuropsychologyDisplayBO.id}">
+                                            <spring:message code="label.dateAdded"/>: ${neuropsychologyDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -76,7 +76,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-neuropsychology-${neuropsychologyDisplayVo.id}"
+                                               href="#delete-neuropsychology-${neuropsychologyDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -91,11 +91,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-neuropsychology-${neuropsychologyDisplayVo.id}"/>
+                                           value="delete-neuropsychology-${neuropsychologyDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/neuropsychology/${neuropsychologyDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

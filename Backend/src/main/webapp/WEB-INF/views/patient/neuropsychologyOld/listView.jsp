@@ -30,7 +30,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty neuropsychologyOldDisplayVoList}">
+            <c:when test="${empty neuropsychologyOldDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -40,19 +40,19 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${neuropsychologyOldDisplayVoList}" var="neuropsychologyOldDisplayVo">
-                        <c:set var="neuropsychologyOldDisplayVo"
-                               value="${neuropsychologyOldDisplayVo}"
+                    <c:forEach items="${neuropsychologyOldDisplayBOList}" var="neuropsychologyOldDisplayBO">
+                        <c:set var="neuropsychologyOldDisplayBO"
+                               value="${neuropsychologyOldDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
                                 <tbody>
                                 <tr>
                                     <th class="col-xs-8">
-                                        <a href="#collapse-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"
+                                        <a href="#collapse-neuropsychology-old-${neuropsychologyOldDisplayBO.id}"
                                            data-toggle="collapse">
                                             <spring:message
-                                                    code="label.dateAdded"/>: ${neuropsychologyOldDisplayVo.date}
+                                                    code="label.dateAdded"/>: ${neuropsychologyOldDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
@@ -61,7 +61,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"
+                                               href="#delete-neuropsychology-old-${neuropsychologyOldDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -76,11 +76,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-neuropsychology-old-${neuropsychologyOldDisplayVo.id}"/>
+                                           value="delete-neuropsychology-old-${neuropsychologyOldDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOldDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/neuropsychology-old/${neuropsychologyOldDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

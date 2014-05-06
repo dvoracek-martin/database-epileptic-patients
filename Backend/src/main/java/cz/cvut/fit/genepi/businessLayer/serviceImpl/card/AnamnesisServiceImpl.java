@@ -1,7 +1,7 @@
 package cz.cvut.fit.genepi.businessLayer.serviceImpl.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.AnamnesisDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.AnamnesisVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.AnamnesisDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.AnamnesisFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.card.AnamnesisService;
 import cz.cvut.fit.genepi.dataLayer.DAO.card.AnamnesisDAO;
 import cz.cvut.fit.genepi.dataLayer.entity.card.AnamnesisEntity;
@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @Service
 public class AnamnesisServiceImpl
-        extends GenericCardServiceImpl<AnamnesisDisplayVO, AnamnesisVO, AnamnesisEntity>
+        extends GenericCardServiceImpl<AnamnesisDisplayBO, AnamnesisFormBO, AnamnesisEntity>
         implements AnamnesisService {
 
     @Autowired
@@ -22,12 +22,12 @@ public class AnamnesisServiceImpl
 
     @Transactional
     @Override
-    public AnamnesisDisplayVO getRecordsByPatientId(int patientId) {
+    public AnamnesisDisplayBO getRecordsByPatientId(int patientId) {
         AnamnesisEntity anamnesisEntity = anamnesisDao.getRecordsByPatientId(patientId);
         if (anamnesisEntity == null) {
             return null;
         } else {
-            return dozer.map(anamnesisEntity, AnamnesisDisplayVO.class);
+            return dozer.map(anamnesisEntity, AnamnesisDisplayBO.class);
         }
     }
 }

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeurologicalFindingDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.NeurologicalFindingVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeurologicalFindingDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.NeurologicalFindingFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -27,13 +27,13 @@ public class NeurologicalFindingController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> genericCardService;
+    private final GenericCardService<NeurologicalFindingDisplayBO, NeurologicalFindingFormBO, NeurologicalFindingEntity> genericCardService;
 
     @Autowired
     public NeurologicalFindingController(AuthorizationChecker authorizationChecker,
                                          PatientService patientService,
                                          @Qualifier("genericCardServiceImpl")
-                                         GenericCardService<NeurologicalFindingDisplayVO, NeurologicalFindingVO, NeurologicalFindingEntity> genericCardService) {
+                                         GenericCardService<NeurologicalFindingDisplayBO, NeurologicalFindingFormBO, NeurologicalFindingEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -50,21 +50,21 @@ public class NeurologicalFindingController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("neurologicalFinding", new NeurologicalFindingVO());
+        model.addAttribute("neurologicalFinding", new NeurologicalFindingFormBO());
         return "patient/neurologicalFinding/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/create", method = RequestMethod.POST)
     public String neurologicalFindingCreatePOST(
-            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingFormBO neurologicalFinding, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             Model model, HttpServletRequest request) {
 
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), neurologicalFinding.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/neurologicalFinding/createView";
@@ -90,15 +90,15 @@ public class NeurologicalFindingController {
 
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        NeurologicalFindingVO vo = genericCardService.getById(neurologicalFindingId, NeurologicalFindingVO.class, NeurologicalFindingEntity.class);
+        NeurologicalFindingFormBO vo = genericCardService.getById(neurologicalFindingId, NeurologicalFindingFormBO.class, NeurologicalFindingEntity.class);
         model.addAttribute("neurologicalFinding", vo);
         return "patient/neurologicalFinding/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/neurological-finding/{neurologicalFindingId}/edit", method = RequestMethod.POST)
     public String neurologicalFindingEditPOST(
-            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingVO neurologicalFinding, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("neurologicalFinding") @Valid NeurologicalFindingFormBO neurologicalFinding, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("neurologicalFindingId") int neurologicalFindingId,
             Model model, HttpServletRequest request) {
@@ -106,7 +106,7 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), neurologicalFinding.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), neurologicalFinding.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/neurologicalFinding/editView";
@@ -181,9 +181,9 @@ public class NeurologicalFindingController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         }
-        PatientDisplayVO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
-        List<NeurologicalFindingDisplayVO> neurologicalFindingDisplayVO = genericCardService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayVO.class, NeurologicalFindingEntity.class);
-        model.addAttribute("neurologicalFindingDisplayVoList", neurologicalFindingDisplayVO);
+        PatientDisplayBO patient = patientService.getPatientDisplayByIdWithDoctor(patientId);
+        List<NeurologicalFindingDisplayBO> neurologicalFindingDisplayBO = genericCardService.getRecordsByPatientId(patientId, NeurologicalFindingDisplayBO.class, NeurologicalFindingEntity.class);
+        model.addAttribute("neurologicalFindingDisplayBOList", neurologicalFindingDisplayBO);
         model.addAttribute("patient", patient);
         return "patient/neurologicalFinding/listView";
     }

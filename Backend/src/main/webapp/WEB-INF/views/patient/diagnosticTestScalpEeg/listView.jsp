@@ -39,7 +39,7 @@
         <jsp:include page="../patientDetails.jsp"/>
 
         <c:choose>
-            <c:when test="${empty diagnosticTestScalpEegDisplayVoList}">
+            <c:when test="${empty diagnosticTestScalpEegDisplayBOList}">
                 <div class="alert alert-info">
                     <spring:message code="label.noRecords"/>
                 </div>
@@ -49,10 +49,10 @@
                        value="0"
                        scope="request"/>
                 <div class="list-striped">
-                    <c:forEach items="${diagnosticTestScalpEegDisplayVoList}"
-                               var="diagnosticTestScalpEegDisplayVo">
-                        <c:set var="diagnosticTestScalpEegDisplayVo"
-                               value="${diagnosticTestScalpEegDisplayVo}"
+                    <c:forEach items="${diagnosticTestScalpEegDisplayBOList}"
+                               var="diagnosticTestScalpEegDisplayBO">
+                        <c:set var="diagnosticTestScalpEegDisplayBO"
+                               value="${diagnosticTestScalpEegDisplayBO}"
                                scope="request"/>
                         <div>
                             <table class="record-head table">
@@ -60,15 +60,15 @@
                                 <tr>
                                     <th class="col-xs-8">
                                         <a data-toggle="collapse"
-                                           href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}">
+                                           href="#collapse-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayBO.id}">
                                             <spring:message
-                                                    code="label.dateAdded"/>: ${diagnosticTestScalpEegDisplayVo.date}
+                                                    code="label.dateAdded"/>: ${diagnosticTestScalpEegDisplayBO.date}
                                         </a>
                                     </th>
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayVo.id}/edit"/>">
+                                               href="<c:url value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayBO.id}/edit"/>">
                                                 <span class="glyphicon glyphicon-edit"></span>
                                                 <spring:message code="label.edit"/>
                                             </a>
@@ -77,7 +77,7 @@
                                     <th class="col-xs-2">
                                         <c:if test="${isAuthorized}">
                                             <a class="pull-right"
-                                               href="#delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"
+                                               href="#delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayBO.id}"
                                                data-toggle="modal">
                                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                                 <spring:message code="label.delete"/>
@@ -92,11 +92,11 @@
 
                             <jsp:include page="../../components/deleteModalComponentView.jsp">
                                 <jsp:param name="modalId"
-                                           value="delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayVo.id}"/>
+                                           value="delete-diagnostic-test-scalp-eeg-${diagnosticTestScalpEegDisplayBO.id}"/>
                                 <jsp:param name="bodyMessage"
                                            value="reallyDeleteRecord"/>
                                 <jsp:param name="deleteUrl"
-                                           value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayVo.id}/hide"/>
+                                           value="/patient/${patient.id}/diagnostic-test-scalp-eeg/${diagnosticTestScalpEegDisplayBO.id}/hide"/>
                             </jsp:include>
 
                         </div>

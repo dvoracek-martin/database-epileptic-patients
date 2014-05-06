@@ -56,18 +56,18 @@
                         </thead>
                         <tbody id="patientList">
                         <c:forEach items="${advancedSearchList}"
-                                   var="advancedSearchVo">
+                                   var="advancedSearchFormBO">
 
                             <tr class="clickable-row"
-                                data-href="<c:url value="/advanced-search/load/${advancedSearchVo.id}" />">
+                                data-href="<c:url value="/advanced-search/load/${advancedSearchFormBO.id}" />">
                                 <td>
-                                        ${advancedSearchVo.name}
+                                        ${advancedSearchFormBO.name}
                                 </td>
                                 <td>
-                                        ${advancedSearchVo.added}
+                                        ${advancedSearchFormBO.added}
                                 </td>
                                 <td>
-                                        ${advancedSearchVo.username}
+                                        ${advancedSearchFormBO.username}
                                 </td>
                             </tr>
                         </c:forEach>

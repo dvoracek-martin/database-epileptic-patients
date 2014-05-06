@@ -1,6 +1,6 @@
 package cz.cvut.fit.genepi.businessLayer.service.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.NeuropsychologyOldDisplayVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.NeuropsychologyOldDisplayBO;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface NeuropsychologyOldService {
 
     public void unhide(int neuropsychologyOldId);
 
-    public List<NeuropsychologyOldDisplayVO> getRecordsByPatientId(int patientId);
+    public List<NeuropsychologyOldDisplayBO> getRecordsByPatientId(int patientId);
 }

@@ -1,8 +1,8 @@
 package cz.cvut.fit.genepi.presentationLayer.controller.card;
 
-import cz.cvut.fit.genepi.businessLayer.VO.display.PatientDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.display.card.SeizureDetailDisplayVO;
-import cz.cvut.fit.genepi.businessLayer.VO.form.card.SeizureDetailVO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.PatientDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.display.card.SeizureDetailDisplayBO;
+import cz.cvut.fit.genepi.businessLayer.BO.form.card.SeizureDetailFormBO;
 import cz.cvut.fit.genepi.businessLayer.service.AuthorizationChecker;
 import cz.cvut.fit.genepi.businessLayer.service.PatientService;
 import cz.cvut.fit.genepi.businessLayer.service.card.GenericCardService;
@@ -26,13 +26,13 @@ public class SeizureDetailController {
 
     private final PatientService patientService;
 
-    private final GenericCardService<SeizureDetailDisplayVO, SeizureDetailVO, SeizureDetailEntity> genericCardService;
+    private final GenericCardService<SeizureDetailDisplayBO, SeizureDetailFormBO, SeizureDetailEntity> genericCardService;
 
     @Autowired
     public SeizureDetailController(AuthorizationChecker authorizationChecker,
                                    PatientService patientService,
                                    @Qualifier("genericCardServiceImpl")
-                                   GenericCardService<SeizureDetailDisplayVO, SeizureDetailVO, SeizureDetailEntity> genericCardService) {
+                                   GenericCardService<SeizureDetailDisplayBO, SeizureDetailFormBO, SeizureDetailEntity> genericCardService) {
 
         this.authorizationChecker = authorizationChecker;
         this.patientService = patientService;
@@ -51,14 +51,14 @@ public class SeizureDetailController {
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("seizureId", seizureId);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
-        model.addAttribute("seizureDetail", new SeizureDetailVO());
+        model.addAttribute("seizureDetail", new SeizureDetailFormBO());
         return "patient/seizure/detail/createView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/create", method = RequestMethod.POST)
     public String seizureDetailCreatePOST(
-            @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("seizureDetail") @Valid SeizureDetailFormBO seizureDetail, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
             Model model, HttpServletRequest request) {
@@ -66,7 +66,7 @@ public class SeizureDetailController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), seizureDetail.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/seizure/detail/createView";
@@ -97,14 +97,14 @@ public class SeizureDetailController {
         model.addAttribute("dateBeforeBirth", false);
         model.addAttribute("patient", patientService.getPatientDisplayByIdWithDoctor(patientId));
         model.addAttribute("seizureId", seizureId);
-        model.addAttribute("seizureDetail", genericCardService.getById(seizureDetailId, SeizureDetailVO.class, SeizureDetailEntity.class));
+        model.addAttribute("seizureDetail", genericCardService.getById(seizureDetailId, SeizureDetailFormBO.class, SeizureDetailEntity.class));
         return "patient/seizure/detail/editView";
     }
 
     @RequestMapping(value = "/patient/{patientId}/seizure/{seizureId}/seizure-detail/{seizureDetailId}/edit", method = RequestMethod.POST)
     public String seizureDetailEditPOST(
-            @ModelAttribute("seizureDetail") @Valid SeizureDetailVO seizureDetail, BindingResult result,
-            @ModelAttribute("patient") PatientDisplayVO patientDisplayVo,
+            @ModelAttribute("seizureDetail") @Valid SeizureDetailFormBO seizureDetail, BindingResult result,
+            @ModelAttribute("patient") PatientDisplayBO patientDisplayBO,
             @PathVariable("patientId") int patientId,
             @PathVariable("seizureId") int seizureId,
             @PathVariable("seizureDetailId") Integer seizureDetailId,
@@ -113,7 +113,7 @@ public class SeizureDetailController {
         if (!authorizationChecker.checkAuthoritaion(request)) {
             return "deniedView";
         } else {
-            boolean dateNotOk = TimeConverter.compareDates(patientDisplayVo.getBirthday(), seizureDetail.getDate());
+            boolean dateNotOk = TimeConverter.compareDates(patientDisplayBO.getBirthday(), seizureDetail.getDate());
             if (result.hasErrors() || dateNotOk) {
                 model.addAttribute("dateBeforeBirth", dateNotOk);
                 return "patient/seizure/detail/editView";
