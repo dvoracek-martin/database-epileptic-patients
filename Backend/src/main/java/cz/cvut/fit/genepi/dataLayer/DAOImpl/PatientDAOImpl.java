@@ -595,7 +595,8 @@ public class PatientDAOImpl
                     advancedSearch.getOperationMst() != 3 ||
                     advancedSearch.getOperationColostomy() != 3 ||
                     advancedSearch.getOperationVns() != 3 ||
-                    advancedSearch.getOperationCompleteResection() != 3) {
+                    advancedSearch.getOperationCompleteResection() != 3 ||
+                    !advancedSearch.getOperationCount().equals("")) {
                 criteria.createAlias("patient.operationList", "operationList", JoinType.LEFT_OUTER_JOIN);
 
                 criteria.add(Restrictions.eq("operationList.history", false));
