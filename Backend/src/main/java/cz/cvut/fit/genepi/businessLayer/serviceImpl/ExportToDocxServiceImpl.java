@@ -1581,9 +1581,9 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
             content.add(messageSource.getMessage("label.neuropsychologicalExamination", null, locale));
         }
         if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
-            content.add(messageSource.getMessage("label.intellect",
-                    null, locale) + delimiter + translateValue(
-                    String.valueOf(neuropsychologyOld.getIntelligenceLevel()), locale));
+            content.add(messageSource.getMessage("label.intelligenceLevel",
+                    null, locale) + delimiter + messageSource.getMessage( translateValue("label.intelligenceLevel." +
+                    String.valueOf(neuropsychologyOld.getIntelligenceLevel()), locale),null,locale));
         }
         if (exportParams.isNeuropsychologyOldSpecificLearning() && neuropsychologyOld.isSpecificLearning()) {
             content.add(messageSource.getMessage("label.specificLearning", null, locale));
@@ -1624,11 +1624,10 @@ public class ExportToDocxServiceImpl implements ExportToDocxService {
 
         }
         if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
-            content.add(messageSource.getMessage("label.intellect", null, locale));
+            content.add(messageSource.getMessage("label.intelligenceLevel", null, locale));
 
-            content.add(translateValue(String.valueOf(neuropsychologyOld.getIntelligenceLevel()),
-                    locale));
-
+            content.add(messageSource.getMessage(translateValue("label.intelligenceLevel." + String.valueOf(neuropsychologyOld.getIntelligenceLevel()),
+                    locale),null,locale));
         }
         if (exportParams.isNeuropsychologyOldSpecificLearning()) {
             content.add(messageSource.getMessage("label.specificLearning", null, locale));

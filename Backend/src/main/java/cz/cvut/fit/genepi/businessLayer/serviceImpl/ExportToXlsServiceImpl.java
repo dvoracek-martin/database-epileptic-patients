@@ -1198,7 +1198,7 @@ public class ExportToXlsServiceImpl implements ExportToXlsxService {
             addCells("label.neuropsychologicalExamination", translateValue(String.valueOf(neuropsychologyOld.isNeuropsychologicalExamination()), locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
-            addCells("label.intelligenceLevel", translateValue(String.valueOf(neuropsychologyOld.getIntelligenceLevel()), locale), sheet, locale, styles, "cell", p);
+            addCells("label.intelligenceLevel",messageSource.getMessage( translateValue("label.intelligenceLevel." + String.valueOf(neuropsychologyOld.getIntelligenceLevel()), locale),null,locale), sheet, locale, styles, "cell", p);
         }
         if (exportParams.isNeuropsychologyOldSpecificLearning()) {
             addCells("label.specificLearning", translateValue(String.valueOf(neuropsychologyOld.isSpecificLearning()), locale), sheet, locale, styles, "cell", p);

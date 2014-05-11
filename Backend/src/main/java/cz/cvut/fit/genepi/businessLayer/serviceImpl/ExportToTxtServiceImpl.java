@@ -1002,10 +1002,10 @@ public class ExportToTxtServiceImpl implements ExportToTxtService {
             content += "\n";
         }
         if (exportParams.isNeuropsychologyOldIntelligenceLevel()) {
-            content += messageSource.getMessage("label.intellect", null, locale);
+            content += messageSource.getMessage("label.intelligenceLevel", null, locale);
             content += " - ";
-            content += translateValue(String.valueOf(neuropsychologyOld.getIntelligenceLevel()),
-                    locale);
+            content += messageSource.getMessage(translateValue("label.intelligenceLevel." + String.valueOf(neuropsychologyOld.getIntelligenceLevel()),
+                    locale),null,locale);
             content += "\n";
         }
         if (exportParams.isNeuropsychologyOldSpecificLearning()) {
